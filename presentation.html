@@ -34,6 +34,43 @@
             flex-direction: column;
             justify-content: center;
             position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle background pattern */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(97, 243, 147, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(10, 22, 40, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Decorative geometric elements */
+        .slide::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border: 1px solid rgba(97, 243, 147, 0.1);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            pointer-events: none;
+        }
+        
+        /* Grid pattern for select slides */
+        .slide-grid-bg::before {
+            background-image: 
+                linear-gradient(rgba(10, 22, 40, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(10, 22, 40, 0.02) 1px, transparent 1px),
+                radial-gradient(circle at 20% 80%, rgba(97, 243, 147, 0.03) 0%, transparent 50%);
+            background-size: 50px 50px, 50px 50px, 100% 100%;
         }
         
         .slide-number {
@@ -44,6 +81,30 @@
             font-size: 0.85rem;
             opacity: 0.5;
         }
+        
+        /* Floating accent shape */
+        .accent-shape {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        
+        .accent-shape-1 { top: 10%; left: 5%; transform: rotate(15deg); }
+        .accent-shape-2 { bottom: 15%; right: 8%; transform: rotate(-20deg); }
+        
+        /* Accent line */
+        .accent-line {
+            position: absolute;
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            border-radius: 2px;
+        }
+        
+        .accent-line-top { top: 80px; left: 100px; }
+        .accent-line-bottom { bottom: 80px; right: 100px; transform: rotate(180deg); }
         
         /* Common elements */
         h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
@@ -101,19 +162,58 @@
             align-items: center;
         }
         
-        /* Cards */
+        /* Cards - Enhanced */
         .card {
             background: var(--bg-card);
             border-radius: 16px;
             padding: 40px;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 20px rgba(10, 22, 40, 0.04);
+            box-shadow: 
+                0 4px 20px rgba(10, 22, 40, 0.04),
+                0 1px 3px rgba(10, 22, 40, 0.02);
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(97, 243, 147, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 30px rgba(10, 22, 40, 0.08),
+                0 2px 6px rgba(10, 22, 40, 0.04);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
         }
         
         .card-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
+        }
+        
+        /* Decorative corner element for cards */
+        .card-decorated::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, transparent 50%, rgba(97, 243, 147, 0.05) 50%);
+            border-radius: 0 0 16px 0;
         }
         
         /* Profile card */
@@ -229,14 +329,162 @@
         .slide + .slide {
             border-top: 1px solid var(--border);
         }
+        
+        /* Enhanced title slides */
+        .slide-title::after {
+            width: 600px;
+            height: 600px;
+            top: -300px;
+            right: -300px;
+            border-width: 2px;
+        }
+        
+        .slide-title h1 {
+            position: relative;
+        }
+        
+        .slide-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            border-radius: 2px;
+        }
+        
+        /* Stat numbers with glow */
+        .stat-glow {
+            text-shadow: 0 0 60px rgba(97, 243, 147, 0.2);
+        }
+        
+        /* Enhanced quote slides */
+        .slide-quote::before {
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(97, 243, 147, 0.04) 0%, transparent 70%);
+        }
+        
+        .quote {
+            position: relative;
+        }
+        
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            font-size: 8rem;
+            color: var(--accent);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        /* Badge enhancements */
+        .badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: badge-shine 3s infinite;
+        }
+        
+        @keyframes badge-shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+        
+        /* Emphasis box enhancements */
+        .emphasis-box {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .emphasis-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(97, 243, 147, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Dark slide enhancements */
+        .slide[style*="background: var(--text-primary)"]::after {
+            border-color: rgba(97, 243, 147, 0.2);
+        }
+        
+        .slide[style*="background: var(--text-primary)"]::before {
+            background-image: 
+                radial-gradient(circle at 30% 70%, rgba(97, 243, 147, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(97, 243, 147, 0.05) 0%, transparent 50%);
+        }
+        
+        /* Profile card enhancements */
+        .profile-card {
+            position: relative;
+        }
+        
+        .profile-card::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--accent), transparent, transparent, var(--border));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Demo frame enhancements */
+        .demo-frame {
+            position: relative;
+        }
+        
+        .demo-frame::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            border-radius: 2px;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
 
 <!-- Slide 1: The Hook -->
-<section class="slide slide-title">
+<section class="slide slide-title slide-grid-bg">
+    <!-- Decorative logo shape -->
+    <svg class="accent-shape accent-shape-1" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#0a1628"/>
+        <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#0a1628"/>
+        <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#0a1628"/>
+        <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#0a1628"/>
+    </svg>
+    <svg class="accent-shape accent-shape-2" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#61F393"/>
+        <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#61F393"/>
+        <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+        <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+    </svg>
+    <div class="accent-line accent-line-top"></div>
     <h1>Last night, I wanted to<br>break into <span class="accent">Vero Financial</span></h1>
-    <p class="subtitle" style="margin-top: 20px;">Let me show you how I did it.</p>
+    <p class="subtitle" style="margin-top: 40px;">Let me show you how I did it.</p>
     <div class="slide-number">1</div>
 </section>
 
