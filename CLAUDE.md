@@ -1,5 +1,28 @@
 # Clarity CISO Demo - Marcus Chen Attack
 
+## MICHAEL'S PRESENTATION PREFERENCES
+
+### Structure
+- **Story-first:** Paint a picture before problems/solutions
+- **Personal hook:** "Last night I wanted to..." is more powerful than opening with stats
+- **Targeted attack narrative:** Specific company, specific role, specific reasons — not hypothetical
+- **Clear phases:** Demo story → Scale → Impact ($) → Epidemic → Solution → Integration
+
+### Design
+- **Light theme:** Prefers light backgrounds (`#F0F4F8`), not dark/navy
+- **Enterprise-grade:** NO EMOJIS — use numbers, letters, accent bars
+- **Sophisticated but not template-y:** Subtle gradients, geometric patterns, visual depth
+- **Green sparingly:** Only logo icon, key CTAs — not splashed everywhere
+- **Real logos:** Show actual platform names (Greenhouse, Lever, etc.) not generic icons
+- **Real technologies:** List specific capabilities, not vague descriptions
+
+### Content
+- **Verify sources:** Don't make up stats — remove if can't verify
+- **Two pillars matter:** Workflow integration (ATS/HRIS) + Security (SIEM)
+- **Show the prize:** Explain WHY a role is valuable (what access it gives)
+
+---
+
 ## BRANDING (CRITICAL)
 
 📄 **Full branding guide:** `CLARITY-BRANDING.md`
@@ -14,6 +37,8 @@
 **Official Logo SVGs:**
 - White: `clarity-logo-website.svg` (downloaded from site)
 - Color: Has green `#61F393` icon variant
+
+**Branding Rule:** When Michael asks to use Clarity branding, do a 1:1 visual comparison with getclarity.ai — must match exactly.
 
 ---
 
