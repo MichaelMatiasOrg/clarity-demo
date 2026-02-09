@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity - Pre-Interview Alert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #f8fafc; 
+            padding: 30px;
+        }
+        .dashboard {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            background: #0a1628;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+        }
+        .nav {
+            display: flex;
+            gap: 30px;
+            font-size: 0.9rem;
+        }
+        .nav span { opacity: 0.7; cursor: pointer; }
+        .nav span.active { opacity: 1; border-bottom: 2px solid #61F393; padding-bottom: 4px; }
+        
+        .content {
+            padding: 30px;
+        }
+        .alert-banner {
+            background: linear-gradient(135deg, #FEE2E2, #FECACA);
+            border: 1px solid #F87171;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .alert-icon {
+            width: 48px;
+            height: 48px;
+            background: #EF4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .alert-content h3 {
+            color: #991B1B;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        .alert-content p {
+            color: #B91C1C;
+            font-size: 0.9rem;
+        }
+        .alert-action {
+            margin-left: auto;
+            background: #EF4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .candidate-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 30px;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .candidate-photo {
+            text-align: center;
+        }
+        .candidate-photo img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .candidate-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+        .candidate-role {
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+        
+        .risk-factors {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .risk-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .risk-score {
+            background: #EF4444;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .risk-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #EF4444;
+        }
+        .risk-item.warning {
+            border-left-color: #F59E0B;
+        }
+        .risk-icon {
+            width: 32px;
+            height: 32px;
+            background: #FEE2E2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        .risk-item.warning .risk-icon {
+            background: #FEF3C7;
+        }
+        .risk-text strong {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+        .risk-text span {
+            font-size: 0.8rem;
+            color: #64748B;
+        }
+        
+        .stage-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #E2E8F0;
+        }
+        .stage {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .stage.blocked {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+        .stage.pending {
+            background: #E2E8F0;
+            color: #64748B;
+        }
+        .stage-arrow {
+            color: #CBD5E1;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#61F393"/>
+                    <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#61F393"/>
+                    <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+                    <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+                </svg>
+                Clarity
+            </div>
+            <div class="nav">
+                <span>Dashboard</span>
+                <span class="active">Candidates</span>
+                <span>Interviews</span>
+                <span>Reports</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="alert-banner">
+                <div class="alert-icon">!</div>
+                <div class="alert-content">
+                    <h3>High-Risk Candidate Detected</h3>
+                    <p>Synthetic identity markers found — recommend blocking before interview stage</p>
+                </div>
+                <button class="alert-action">Review & Block</button>
+            </div>
+            
+            <div class="candidate-card">
+                <div class="candidate-photo">
+                    <img src="marcus-chen-headshot.png" alt="Marcus Chen">
+                    <div class="candidate-name">Marcus Chen</div>
+                    <div class="candidate-role">Sr. Software Engineer</div>
+                </div>
+                
+                <div class="risk-factors">
+                    <div class="risk-header">
+                        <h3>Risk Analysis</h3>
+                        <span class="risk-score">Risk Score: 94/100</span>
+                    </div>
+                    
+                    <div class="risk-item">
+                        <div class="risk-icon">⚠</div>
+                        <div class="risk-text">
+                            <strong>AI-Generated Profile Photo</strong>
+                            <span>GAN artifacts detected with 97.3% confidence</span>
+                        </div>
+                    </div>
+                    
+                    <div class="risk-item">
+                        <div class="risk-icon">⚠</div>
+                        <div class="risk-text">
+                            <strong>Employment History Anomaly</strong>
+                            <span>No verifiable records at claimed employers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="risk-item warning">
+                        <div class="risk-icon">!</div>
+                        <div class="risk-text">
+                            <strong>SSN Pattern Flag</strong>
+                            <span>Randomized-era SSN with no credit history</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stage-indicator">
+                        <span class="stage blocked">Application ✕</span>
+                        <span class="stage-arrow">→</span>
+                        <span class="stage pending">Phone Screen</span>
+                        <span class="stage-arrow">→</span>
+                        <span class="stage pending">Interview</span>
+                        <span class="stage-arrow">→</span>
+                        <span class="stage pending">Offer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

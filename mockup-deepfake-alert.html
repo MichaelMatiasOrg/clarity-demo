@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity - Real-Time Deepfake Alert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #0a1628; 
+            padding: 30px;
+            min-height: 100vh;
+        }
+        .dashboard {
+            background: #111827;
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid #1F2937;
+        }
+        .header {
+            background: #0a1628;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1F2937;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+        .logo-icon { width: 24px; height: 24px; }
+        .live-badge {
+            background: #EF4444;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            animation: pulse 2s infinite;
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+        }
+        
+        .video-area {
+            padding: 24px;
+            position: relative;
+        }
+        .video-frame {
+            background: #000;
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-placeholder {
+            color: #4B5563;
+            font-size: 0.9rem;
+        }
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            border: 4px solid #EF4444;
+            border-radius: 12px;
+            animation: alert-pulse 1s infinite;
+        }
+        @keyframes alert-pulse {
+            0%, 100% { border-color: #EF4444; }
+            50% { border-color: #F87171; }
+        }
+        .alert-popup {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(239, 68, 68, 0.95);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(8px);
+        }
+        .alert-popup-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: #EF4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        .alert-popup h4 {
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+        .alert-popup p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .video-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            color: #9CA3AF;
+            font-size: 0.85rem;
+        }
+        .participant-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .participant-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #374151;
+        }
+        
+        .sidebar {
+            background: #0D1420;
+            border-left: 1px solid #1F2937;
+            padding: 20px;
+        }
+        .sidebar h3 {
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #61F393;
+            border-radius: 50%;
+        }
+        .status-dot.alert {
+            background: #EF4444;
+            animation: pulse 1s infinite;
+        }
+        
+        .metric-card {
+            background: #111827;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #1F2937;
+        }
+        .metric-card.alert {
+            border-color: #EF4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        .metric-label {
+            color: #6B7280;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .metric-value {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .metric-value.danger {
+            color: #EF4444;
+        }
+        .metric-bar {
+            height: 4px;
+            background: #1F2937;
+            border-radius: 2px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        .metric-bar-fill {
+            height: 100%;
+            background: #61F393;
+            border-radius: 2px;
+        }
+        .metric-bar-fill.danger {
+            background: #EF4444;
+        }
+        
+        .detection-list {
+            margin-top: 20px;
+        }
+        .detection-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #1F2937;
+            color: #9CA3AF;
+            font-size: 0.85rem;
+        }
+        .detection-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+        .detection-icon.pass {
+            background: rgba(97, 243, 147, 0.2);
+            color: #61F393;
+        }
+        .detection-icon.fail {
+            background: rgba(239, 68, 68, 0.2);
+            color: #EF4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#61F393"/>
+                    <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#61F393"/>
+                    <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+                    <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+                </svg>
+                Clarity Interview Monitor
+            </div>
+            <div class="live-badge">
+                <span class="live-dot"></span>
+                LIVE — Deepfake Detected
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="video-area">
+                <div class="video-frame">
+                    <div class="video-overlay"></div>
+                    <div class="alert-popup">
+                        <div class="alert-popup-icon">!</div>
+                        <div>
+                            <h4>Deepfake Detected</h4>
+                            <p>Face manipulation detected — confidence: 94.7%</p>
+                        </div>
+                    </div>
+                    <span class="video-placeholder">[Live Interview Feed]</span>
+                </div>
+                <div class="video-controls">
+                    <div class="participant-info">
+                        <div class="participant-avatar"></div>
+                        <span>Marcus Chen — Technical Interview Round 2</span>
+                    </div>
+                    <span>Duration: 23:41</span>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3><span class="status-dot alert"></span> Real-Time Analysis</h3>
+                
+                <div class="metric-card alert">
+                    <div class="metric-label">Deepfake Probability</div>
+                    <div class="metric-value danger">94.7%</div>
+                    <div class="metric-bar">
+                        <div class="metric-bar-fill danger" style="width: 94.7%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-label">Face Match Score</div>
+                    <div class="metric-value">23%</div>
+                    <div class="metric-bar">
+                        <div class="metric-bar-fill danger" style="width: 23%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-label">Voice Match Score</div>
+                    <div class="metric-value">41%</div>
+                    <div class="metric-bar">
+                        <div class="metric-bar-fill danger" style="width: 41%"></div>
+                    </div>
+                </div>
+                
+                <div class="detection-list">
+                    <div class="detection-item">
+                        <div class="detection-icon fail">✕</div>
+                        <span>Facial boundary artifacts</span>
+                    </div>
+                    <div class="detection-item">
+                        <div class="detection-icon fail">✕</div>
+                        <span>Unnatural eye movement</span>
+                    </div>
+                    <div class="detection-item">
+                        <div class="detection-icon fail">✕</div>
+                        <span>Audio-visual sync mismatch</span>
+                    </div>
+                    <div class="detection-item">
+                        <div class="detection-icon pass">✓</div>
+                        <span>Network latency normal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

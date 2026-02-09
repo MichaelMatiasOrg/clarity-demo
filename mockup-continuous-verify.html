@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity - Continuous Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #f8fafc; 
+            padding: 30px;
+        }
+        .dashboard {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .header {
+            background: #0a1628;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .logo-icon { width: 28px; height: 28px; }
+        .nav {
+            display: flex;
+            gap: 30px;
+            font-size: 0.9rem;
+        }
+        .nav span { opacity: 0.7; cursor: pointer; }
+        .nav span.active { opacity: 1; border-bottom: 2px solid #61F393; padding-bottom: 4px; }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .page-title h2 {
+            font-size: 1.5rem;
+            color: #0a1628;
+            margin-bottom: 4px;
+        }
+        .page-title p {
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+        .verify-btn {
+            background: #61F393;
+            color: #0a1628;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .employee-card {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+        .employee-profile {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+        }
+        .employee-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #61F393;
+            margin-bottom: 16px;
+        }
+        .employee-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .employee-role {
+            color: #64748B;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #DCFCE7;
+            color: #166534;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22C55E;
+            border-radius: 50%;
+        }
+        
+        .verification-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .timeline-header h3 {
+            font-size: 1rem;
+            color: #0a1628;
+        }
+        .timeline-header span {
+            color: #64748B;
+            font-size: 0.85rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: #61F393;
+            border-radius: 50%;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        .timeline-dot.current {
+            box-shadow: 0 0 0 4px rgba(97, 243, 147, 0.3);
+        }
+        .timeline-content {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 16px;
+            border: 1px solid #E2E8F0;
+        }
+        .timeline-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .timeline-content p {
+            color: #64748B;
+            font-size: 0.85rem;
+        }
+        .check-icon {
+            color: #22C55E;
+        }
+        .timeline-date {
+            color: #94A3B8;
+            font-size: 0.75rem;
+            margin-top: 8px;
+        }
+        
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .metric-box {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .metric-box.highlighted {
+            border-color: #61F393;
+            background: linear-gradient(180deg, #F0FDF4 0%, white 100%);
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0a1628;
+            margin-bottom: 4px;
+        }
+        .metric-value.success {
+            color: #22C55E;
+        }
+        .metric-label {
+            color: #64748B;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#61F393"/>
+                    <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#61F393"/>
+                    <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+                    <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+                </svg>
+                Clarity
+            </div>
+            <div class="nav">
+                <span>Dashboard</span>
+                <span>Candidates</span>
+                <span class="active">Employees</span>
+                <span>Reports</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h2>Employee Verification</h2>
+                    <p>Continuous identity monitoring throughout employment lifecycle</p>
+                </div>
+                <button class="verify-btn">
+                    <span>↻</span> Run Verification Now
+                </button>
+            </div>
+            
+            <div class="employee-card">
+                <div class="employee-profile">
+                    <img src="marcus-chen-headshot.png" alt="Sarah Kim" class="employee-photo">
+                    <div class="employee-name">Sarah Kim</div>
+                    <div class="employee-role">Sr. Software Engineer</div>
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        Identity Verified
+                    </div>
+                </div>
+                
+                <div class="verification-timeline">
+                    <div class="timeline-header">
+                        <h3>Verification History</h3>
+                        <span>Employee since Nov 15, 2025</span>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot current"></div>
+                        <div class="timeline-content">
+                            <h4><span class="check-icon">✓</span> Day 90 — Periodic Verification</h4>
+                            <p>Biometric match: 99.2% • Voice match: 98.7% • Behavioral pattern: Consistent</p>
+                            <div class="timeline-date">Feb 13, 2026 — Automated</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4><span class="check-icon">✓</span> Day 30 — Periodic Verification</h4>
+                            <p>Biometric match: 99.4% • Voice match: 98.9% • Behavioral pattern: Consistent</p>
+                            <div class="timeline-date">Dec 15, 2025 — Automated</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4><span class="check-icon">✓</span> Day 1 — Onboarding Verification</h4>
+                            <p>ID document verified • Biometric enrollment complete • Background cleared</p>
+                            <div class="timeline-date">Nov 15, 2025 — HR Triggered</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metrics-row">
+                <div class="metric-box highlighted">
+                    <div class="metric-value success">99.2%</div>
+                    <div class="metric-label">Face Match</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">98.7%</div>
+                    <div class="metric-label">Voice Match</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">90</div>
+                    <div class="metric-label">Days Employed</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value success">3/3</div>
+                    <div class="metric-label">Verifications Passed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
