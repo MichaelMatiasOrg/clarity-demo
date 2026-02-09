@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Check Report - Marcus Chen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            color: #333;
+        }
+        .report {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        .logo span {
+            color: #68d391;
+        }
+        .report-meta {
+            text-align: right;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        .status-banner {
+            background: #68d391;
+            color: #1a4731;
+            text-align: center;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .subject-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-label {
+            font-size: 12px;
+            color: #a0aec0;
+            margin-bottom: 4px;
+        }
+        .info-value {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .check-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .check-item {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+        }
+        .check-name {
+            font-weight: 500;
+        }
+        .check-status {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+        .status-clear {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        .status-verified {
+            background: #bee3f8;
+            color: #2a4365;
+        }
+        .employment-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .employment-table th {
+            text-align: left;
+            padding: 12px;
+            background: #f7fafc;
+            font-size: 12px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .employment-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #38a169;
+            font-weight: 500;
+        }
+        .verified-badge::before {
+            content: "✓";
+            font-weight: bold;
+        }
+        .footer {
+            background: #f7fafc;
+            padding: 25px 40px;
+            font-size: 12px;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+        }
+        .disclaimer {
+            font-style: italic;
+            line-height: 1.6;
+        }
+        .report-id {
+            margin-top: 15px;
+            font-family: monospace;
+            color: #a0aec0;
+        }
+    </style>
+</head>
+<body>
+    <div class="report">
+        <div class="header">
+            <div class="logo">Clear<span>Check</span></div>
+            <div class="report-meta">
+                <div>Pre-Employment Background Screening</div>
+                <div style="margin-top: 5px; font-weight: 600;">February 9, 2026</div>
+            </div>
+        </div>
+        
+        <div class="status-banner">
+            ✓ ALL CHECKS PASSED — CANDIDATE CLEARED
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="section-title">Subject Information</div>
+                <div class="subject-info">
+                    <div class="info-item">
+                        <span class="info-label">Full Legal Name</span>
+                        <span class="info-value">Marcus Wei Chen</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Date of Birth</span>
+                        <span class="info-value">March 14, 1991</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">SSN (Last 4)</span>
+                        <span class="info-value">••••7842</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Current Address</span>
+                        <span class="info-value">2847 Marina Blvd, San Francisco, CA 94123</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">SSN Verification & Trace</div>
+                <div style="background: #f7fafc; border-radius: 8px; padding: 20px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <div style="font-size: 12px; color: #a0aec0; margin-bottom: 4px;">SSN Provided</div>
+                            <div style="font-size: 16px; font-weight: 500; font-family: monospace;">***-**-7842</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #a0aec0; margin-bottom: 4px;">Format Validation</div>
+                            <div style="color: #38a169; font-weight: 600;">✓ Valid Format</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #a0aec0; margin-bottom: 4px;">SSN Issuance</div>
+                            <div style="font-size: 14px;">Randomized Era (Post-2011)</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #a0aec0; margin-bottom: 4px;">Death Master File</div>
+                            <div style="color: #38a169; font-weight: 600;">✓ No Match</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <div style="font-size: 12px; color: #a0aec0; margin-bottom: 8px;">Address History Trace</div>
+                        <div style="font-size: 14px; color: #4a5568;">
+                            2847 Marina Blvd, San Francisco, CA 94123 <span style="color: #a0aec0;">(2023 - Present)</span><br>
+                            1456 Hayes St, San Francisco, CA 94117 <span style="color: #a0aec0;">(2018 - 2023)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Background Screening Results</div>
+                <div class="check-grid">
+                    <div class="check-item">
+                        <span class="check-name">Identity Verification</span>
+                        <span class="check-status status-clear">CLEAR</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-name">Criminal History</span>
+                        <span class="check-status status-clear">NO RECORDS</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-name">Sex Offender Registry</span>
+                        <span class="check-status status-clear">NO RECORDS</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-name">Global Watchlist</span>
+                        <span class="check-status status-clear">CLEAR</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-name">Credit Report</span>
+                        <span class="check-status status-clear">NO ADVERSE</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-name">Driving Record</span>
+                        <span class="check-status status-clear">CLEAR</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Employment Verification</div>
+                <table class="employment-table">
+                    <thead>
+                        <tr>
+                            <th>Employer</th>
+                            <th>Title</th>
+                            <th>Dates</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Stripe</strong><br><span style="color: #718096; font-size: 13px;">San Francisco, CA</span></td>
+                            <td>Senior Software Engineer</td>
+                            <td>Jan 2021 – Dec 2025</td>
+                            <td><span class="verified-badge">Verified</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plaid</strong><br><span style="color: #718096; font-size: 13px;">San Francisco, CA</span></td>
+                            <td>Software Engineer</td>
+                            <td>Jun 2018 – Dec 2020</td>
+                            <td><span class="verified-badge">Verified</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Education Verification</div>
+                <table class="employment-table">
+                    <thead>
+                        <tr>
+                            <th>Institution</th>
+                            <th>Degree</th>
+                            <th>Year</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>UC Berkeley</strong><br><span style="color: #718096; font-size: 13px;">Berkeley, CA</span></td>
+                            <td>B.S. Computer Science</td>
+                            <td>2018</td>
+                            <td><span class="verified-badge">Verified</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Reference Checks</div>
+                <table class="employment-table">
+                    <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Relationship</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>David Park</strong><br><span style="color: #718096; font-size: 13px;">Engineering Manager, Stripe</span></td>
+                            <td>Direct Supervisor</td>
+                            <td><span class="verified-badge">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jennifer Walsh</strong><br><span style="color: #718096; font-size: 13px;">Tech Lead, Plaid</span></td>
+                            <td>Former Manager</td>
+                            <td><span class="verified-badge">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="disclaimer">
+                This report is furnished to the requesting party in strict confidence for employment screening purposes only. 
+                ClearCheck certifies that all searches were conducted in compliance with FCRA regulations.
+            </div>
+            <div class="report-id">
+                Report ID: CC-2026-0209-78342 | Processed by: ClearCheck Employment Screening Services
+            </div>
+        </div>
+    </div>
+</body>
+</html>

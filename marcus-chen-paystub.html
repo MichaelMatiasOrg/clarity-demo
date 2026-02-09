@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Stub - Marcus Chen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f0f0;
+            padding: 40px;
+            color: #333;
+        }
+        .paystub {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .header {
+            background: #635bff;
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .company-name {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        .pay-period {
+            text-align: right;
+            font-size: 13px;
+        }
+        .pay-period strong {
+            display: block;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 25px 30px;
+        }
+        .employee-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+        .info-block h3 {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .info-block p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .earnings-section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #635bff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .earnings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .earnings-table th {
+            text-align: left;
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .earnings-table th:last-child,
+        .earnings-table td:last-child {
+            text-align: right;
+        }
+        .earnings-table td {
+            padding: 10px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .deductions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        .deduction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .deduction-label {
+            color: #666;
+        }
+        .totals-section {
+            background: #f8f9fa;
+            margin: 0 -30px -25px -30px;
+            padding: 20px 30px;
+            border-top: 2px solid #635bff;
+        }
+        .totals-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .total-item {
+            text-align: center;
+        }
+        .total-label {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .total-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .total-value.highlight {
+            color: #635bff;
+            font-size: 22px;
+        }
+        .ytd-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        .ytd-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .ytd-item {
+            text-align: center;
+        }
+        .ytd-label {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+        }
+        .ytd-value {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 3px;
+        }
+        .footer {
+            padding: 15px 30px;
+            background: #fafafa;
+            font-size: 11px;
+            color: #999;
+            border-top: 1px solid #e0e0e0;
+        }
+        .advice-number {
+            font-family: monospace;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="paystub">
+        <div class="header">
+            <div class="company-name">stripe</div>
+            <div class="pay-period">
+                Pay Period<br>
+                <strong>Dec 16 - Dec 31, 2025</strong>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="employee-info">
+                <div class="info-block">
+                    <h3>Employee</h3>
+                    <p>
+                        <strong>Marcus Wei Chen</strong><br>
+                        2847 Marina Blvd<br>
+                        San Francisco, CA 94123
+                    </p>
+                </div>
+                <div class="info-block">
+                    <h3>Employment Details</h3>
+                    <p>
+                        Employee ID: 847291<br>
+                        Department: Engineering<br>
+                        Title: Senior Software Engineer<br>
+                        SSN: ***-**-7842
+                    </p>
+                </div>
+            </div>
+            
+            <div class="earnings-section">
+                <div class="section-title">Earnings</div>
+                <table class="earnings-table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Hours</th>
+                            <th>Rate</th>
+                            <th>Current</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Regular Salary</td>
+                            <td>80.00</td>
+                            <td>$115.38/hr</td>
+                            <td>$9,230.77</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="deductions-grid">
+                <div>
+                    <div class="section-title">Pre-Tax Deductions</div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">401(k)</span>
+                        <span>-$923.08</span>
+                    </div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">Health Insurance</span>
+                        <span>-$287.50</span>
+                    </div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">Dental/Vision</span>
+                        <span>-$45.00</span>
+                    </div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">HSA Contribution</span>
+                        <span>-$125.00</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-title">Taxes</div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">Federal Income Tax</span>
+                        <span>-$1,847.23</span>
+                    </div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">Social Security</span>
+                        <span>-$572.31</span>
+                    </div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">Medicare</span>
+                        <span>-$133.85</span>
+                    </div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">CA State Tax</span>
+                        <span>-$758.42</span>
+                    </div>
+                    <div class="deduction-item">
+                        <span class="deduction-label">CA SDI</span>
+                        <span>-$101.54</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="totals-section">
+                <div class="totals-grid">
+                    <div class="total-item">
+                        <div class="total-label">Gross Pay</div>
+                        <div class="total-value">$9,230.77</div>
+                    </div>
+                    <div class="total-item">
+                        <div class="total-label">Pre-Tax</div>
+                        <div class="total-value">-$1,380.58</div>
+                    </div>
+                    <div class="total-item">
+                        <div class="total-label">Taxes</div>
+                        <div class="total-value">-$3,413.35</div>
+                    </div>
+                    <div class="total-item">
+                        <div class="total-label">Net Pay</div>
+                        <div class="total-value highlight">$4,436.84</div>
+                    </div>
+                </div>
+                
+                <div class="ytd-section">
+                    <div class="ytd-grid">
+                        <div class="ytd-item">
+                            <div class="ytd-label">YTD Gross</div>
+                            <div class="ytd-value">$240,000.00</div>
+                        </div>
+                        <div class="ytd-item">
+                            <div class="ytd-label">YTD Deductions</div>
+                            <div class="ytd-value">$124,641.48</div>
+                        </div>
+                        <div class="ytd-item">
+                            <div class="ytd-label">YTD Net</div>
+                            <div class="ytd-value">$115,358.52</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <span class="advice-number">Advice #: 2025-26-847291</span>
+            Stripe, Inc. • 354 Oyster Point Blvd, South San Francisco, CA 94080 • EIN: 46-1857087
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity - Light Theme Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #F0F4F8;
+            --bg-card: #FFFFFF;
+            --text-primary: #0a1628;
+            --text-secondary: #64748B;
+            --accent: #61F393;
+            --accent-muted: #E8FFF0;
+            --border: #E2E8F0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Slide 1: Title */
+        .slide-title {
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo {
+            margin-bottom: 60px;
+        }
+        
+        .logo svg {
+            height: 50px;
+            width: auto;
+        }
+        
+        .slide-title h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .slide-title h1 span {
+            color: var(--accent);
+        }
+        
+        .slide-title .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--accent-muted);
+            color: var(--text-primary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--accent);
+        }
+        
+        /* Slide 2: Stat */
+        .slide-stat {
+            align-items: center;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 12rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        
+        .stat-number span {
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            max-width: 600px;
+        }
+        
+        /* Slide 3: Content with cards */
+        .slide-content h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px 30px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(10, 22, 40, 0.04);
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-muted);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Slide 4: Quote */
+        .slide-quote {
+            align-items: center;
+            text-align: center;
+        }
+        
+        .quote {
+            font-size: 2.4rem;
+            font-weight: 600;
+            line-height: 1.4;
+            max-width: 900px;
+            margin-bottom: 30px;
+        }
+        
+        .quote-source {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .quote-source strong {
+            color: var(--accent);
+        }
+        
+        /* Navigation hint */
+        .nav-hint {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        /* Divider between slides */
+        .slide + .slide {
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-hint">Scroll to see slides ↓</div>
+
+    <!-- Slide 1: Title -->
+    <section class="slide slide-title">
+        <div class="logo">
+            <svg width="200" height="50" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#61F393"/>
+                <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#61F393"/>
+                <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+                <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+                <path d="M220.945 59.9998H215.473L221.686 46.6045L209.203 19.5859H214.618L224.422 41.2464L234.17 19.5859H239.642L220.945 59.9998Z" fill="#0a1628"/>
+                <path d="M202.716 48.3729C197.7 48.3729 193.995 45.5798 193.995 39.6517V24.0903H187.953V19.5872H193.995V11.6641H198.897V19.5872H207.106V24.0903H198.897V39.0247C198.897 42.6727 200.493 43.8698 203.628 43.8698C204.825 43.8698 206.194 43.6988 207.106 43.2998V47.6888C205.909 48.0879 204.483 48.3729 202.716 48.3729Z" fill="#0a1628"/>
+                <path d="M182.253 11.9463C180.258 11.9463 178.719 10.4643 178.719 8.46926C178.719 6.58822 180.258 4.99219 182.253 4.99219C184.248 4.99219 185.673 6.58822 185.673 8.46926C185.673 10.4643 184.248 11.9463 182.253 11.9463ZM179.745 48.0851V19.5845H184.647V48.0851H179.745Z" fill="#0a1628"/>
+                <path d="M161.148 48.0864V19.5858H166.051V25.1149C167.134 21.4668 170.782 19.3008 174.031 19.3008C174.772 19.3008 175.513 19.3578 176.254 19.5288V24.6019C175.342 24.2029 174.544 24.1459 173.575 24.1459C169.984 24.1459 166.051 27.281 166.051 33.9501V48.0864H161.148Z" fill="#0a1628"/>
+                <path d="M139.262 48.6563C131.282 48.6563 125.297 41.9871 125.297 33.836C125.297 25.6848 131.282 19.0156 139.262 19.0156C143.594 19.0156 147.413 21.2387 149.294 23.9747V19.5856H154.197V48.0863H149.294V43.6972C147.413 46.4332 143.594 48.6563 139.262 48.6563ZM140.003 44.1532C145.703 44.1532 149.693 39.5931 149.693 33.836C149.693 28.0788 145.703 23.5187 140.003 23.5187C134.246 23.5187 130.256 28.0788 130.256 33.836C130.256 39.5931 134.246 44.1532 140.003 44.1532Z" fill="#0a1628"/>
+                <path d="M115.609 48.0869V5.33594H120.511V48.0869H115.609Z" fill="#0a1628"/>
+                <path d="M93.732 48.7686C82.1037 48.7686 72.8125 39.5344 72.8125 27.8491C72.8125 16.1639 82.1037 6.92969 93.732 6.92969C101.484 6.92969 107.982 10.7488 111.63 16.7339L107.184 19.413C104.391 14.8529 99.6601 11.9458 93.732 11.9458C84.8968 11.9458 78.1706 18.957 78.1706 27.8491C78.1706 36.7413 84.8968 43.7525 93.732 43.7525C99.6601 43.7525 104.391 40.8454 107.184 36.2853L111.63 38.9644C107.982 44.9495 101.484 48.7686 93.732 48.7686Z" fill="#0a1628"/>
+            </svg>
+        </div>
+        <h1>Never Hire a<br><span>Bad-Actor</span></h1>
+        <p class="subtitle">Protecting your organization from synthetic identities and hiring fraud</p>
+        <span class="badge">CISO Security Briefing</span>
+    </section>
+
+    <!-- Slide 2: The Stat -->
+    <section class="slide slide-stat">
+        <div class="stat-number">$25.6<span>M</span></div>
+        <p class="stat-label">Lost in a single deepfake video call where every participant was AI-generated</p>
+    </section>
+
+    <!-- Slide 3: Content Cards -->
+    <section class="slide slide-content">
+        <h2>The Attack Surface Has Changed</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">🎭</div>
+                <h3>Synthetic Identities</h3>
+                <p>AI-generated candidates with fabricated work histories, references, and credentials that pass traditional screening.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📹</div>
+                <h3>Deepfake Interviews</h3>
+                <p>Real-time face-swapping and voice cloning allow bad actors to pass video interviews with cameras on.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔓</div>
+                <h3>Insider Access</h3>
+                <p>Once hired, these actors gain legitimate credentials to sensitive systems, data, and intellectual property.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Quote -->
+    <section class="slide slide-quote">
+        <p class="quote">"By 2028, 1 in 4 candidate profiles will be fake"</p>
+        <p class="quote-source">— <strong>Gartner</strong></p>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcus Chen | LinkedIn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f3f2ef;
+            color: #000000e6;
+            line-height: 1.4;
+        }
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0a66c2;
+        }
+        .search {
+            background: #eef3f8;
+            border-radius: 4px;
+            padding: 8px 16px;
+            width: 300px;
+            border: none;
+            font-size: 14px;
+        }
+        .nav {
+            display: flex;
+            gap: 24px;
+            margin-left: auto;
+            color: #666;
+            font-size: 12px;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .container {
+            max-width: 1128px;
+            margin: 24px auto;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 24px;
+            padding: 0 24px;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+        }
+        .profile-header {
+            position: relative;
+        }
+        .banner {
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=200&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .profile-photo {
+            width: 152px;
+            height: 152px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            position: absolute;
+            bottom: -76px;
+            left: 24px;
+            background: #0a66c2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 56px;
+            font-weight: 500;
+            background-image: url('marcus-chen-headshot.png');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        .profile-info {
+            padding: 88px 24px 24px;
+        }
+        .name {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .headline {
+            font-size: 16px;
+            color: #000000e6;
+            margin-top: 4px;
+        }
+        .location {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+        .location a {
+            color: #0a66c2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .connections {
+            color: #0a66c2;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        .buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .btn {
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: #0a66c2;
+            color: white;
+        }
+        .btn-secondary {
+            background: white;
+            color: #0a66c2;
+            border: 1px solid #0a66c2;
+        }
+        .btn-tertiary {
+            background: white;
+            color: #666;
+            border: 1px solid #666;
+        }
+        .section {
+            padding: 24px;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .about-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #000000e6;
+        }
+        .open-to-work {
+            background: #dce6f1;
+            border: 1px solid #0a66c2;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+        .open-to-work strong {
+            color: #0a66c2;
+        }
+        .experience-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .company-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+        }
+        .stripe-logo {
+            background: linear-gradient(135deg, #635bff, #7a73ff);
+        }
+        .plaid-logo {
+            background: #111;
+        }
+        .berkeley-logo {
+            background: #003262;
+        }
+        .exp-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .exp-company {
+            font-size: 14px;
+        }
+        .exp-duration {
+            font-size: 12px;
+            color: #666;
+        }
+        .exp-location {
+            font-size: 12px;
+            color: #666;
+        }
+        .exp-description {
+            font-size: 14px;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+        .exp-description li {
+            margin-left: 16px;
+            margin-bottom: 4px;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-tag {
+            background: #f3f2ef;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sidebar-card {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 16px;
+        }
+        .sidebar-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .people-item {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .people-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+        }
+        .people-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .people-role {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">in</div>
+        <input type="text" class="search" placeholder="Search">
+        <div class="nav">
+            <div class="nav-item">🏠<br>Home</div>
+            <div class="nav-item">👥<br>Network</div>
+            <div class="nav-item">💼<br>Jobs</div>
+            <div class="nav-item">💬<br>Messaging</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main">
+            <div class="card">
+                <div class="profile-header">
+                    <div class="banner"></div>
+                    <div class="profile-photo"></div>
+                </div>
+                <div class="profile-info">
+                    <h1 class="name">Marcus Chen</h1>
+                    <p class="headline">Senior Software Engineer | Kubernetes | AWS | Terraform | Building reliable infrastructure for fintech</p>
+                    <p class="location">San Francisco, California, United States · <a href="#">Contact info</a></p>
+                    <p class="connections">500+ connections</p>
+                    <div class="buttons">
+                        <button class="btn btn-primary">Connect</button>
+                        <button class="btn btn-secondary">Message</button>
+                        <button class="btn btn-tertiary">More</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section">
+                    <h2 class="section-title">About</h2>
+                    <p class="about-text">
+                        Software engineer passionate about building scalable, secure infrastructure for fintech companies. 7+ years of experience designing and maintaining cloud-native systems that process millions of transactions daily.
+                        <br><br>
+                        Specialties: Kubernetes orchestration, Infrastructure as Code, CI/CD optimization, compliance automation (PCI-DSS, SOC 2).
+                        <br><br>
+                        Currently exploring new opportunities where I can contribute to building reliable infrastructure that enables engineering teams to ship faster.
+                    </p>
+                    <div class="open-to-work">
+                        <strong>✓ Open to work</strong> · Senior Software Engineer, Staff Engineer, DevOps Lead roles
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section">
+                    <h2 class="section-title">Experience</h2>
+                    
+                    <div class="experience-item">
+                        <div class="company-logo stripe-logo">S</div>
+                        <div>
+                            <p class="exp-title">Senior Software Engineer</p>
+                            <p class="exp-company">Stripe</p>
+                            <p class="exp-duration">Jan 2021 - Dec 2025 · 5 yrs</p>
+                            <p class="exp-location">San Francisco, CA</p>
+                            <div class="exp-description">
+                                <ul>
+                                    <li>Led infrastructure team supporting 2M+ daily payment transactions across 3 AWS regions</li>
+                                    <li>Architected GitOps deployment pipeline using ArgoCD, increasing deployment frequency from weekly to 15+ deploys/day</li>
+                                    <li>Achieved PCI-DSS Level 1 certification through infrastructure compliance automation</li>
+                                    <li>Reduced infrastructure costs by 40% ($1.2M annually) through Kubernetes optimization</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="company-logo plaid-logo">P</div>
+                        <div>
+                            <p class="exp-title">Software Engineer</p>
+                            <p class="exp-company">Plaid</p>
+                            <p class="exp-duration">Jun 2018 - Dec 2020 · 2 yrs 7 mos</p>
+                            <p class="exp-location">San Francisco, CA</p>
+                            <div class="exp-description">
+                                <ul>
+                                    <li>Built CI/CD pipelines serving 40+ microservices using Jenkins and GitHub Actions</li>
+                                    <li>Managed Terraform codebase for 200+ AWS resources with automated drift detection</li>
+                                    <li>Reduced MTTR from 45 minutes to 8 minutes through improved observability</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="experience-item">
+                        <div class="company-logo berkeley-logo">B</div>
+                        <div>
+                            <p class="exp-title">University of California, Berkeley</p>
+                            <p class="exp-company">Bachelor of Science, Computer Science</p>
+                            <p class="exp-duration">2014 - 2018</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section">
+                    <h2 class="section-title">Skills</h2>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">ArgoCD</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Go</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Datadog</span>
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">PCI-DSS</span>
+                        <span class="skill-tag">SOC 2</span>
+                        <span class="skill-tag">GitOps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">People also viewed</h3>
+                <div class="people-item">
+                    <div class="people-avatar">JL</div>
+                    <div>
+                        <p class="people-name">Jennifer Liu</p>
+                        <p class="people-role">SRE at Stripe</p>
+                    </div>
+                </div>
+                <div class="people-item">
+                    <div class="people-avatar">AK</div>
+                    <div>
+                        <p class="people-name">Alex Kumar</p>
+                        <p class="people-role">DevOps Lead at Plaid</p>
+                    </div>
+                </div>
+                <div class="people-item">
+                    <div class="people-avatar">RG</div>
+                    <div>
+                        <p class="people-name">Ryan Garcia</p>
+                        <p class="people-role">Platform Engineer at Square</p>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">People you may know</h3>
+                <div class="people-item">
+                    <div class="people-avatar">SM</div>
+                    <div>
+                        <p class="people-name">Sarah Martinez</p>
+                        <p class="people-role">CEO at Vero Financial</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
