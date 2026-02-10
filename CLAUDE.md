@@ -1,174 +1,81 @@
-# Clarity CISO Demo - Marcus Chen Attack
+# CLAUDE.md - Clarity CISO Demo Project
 
-## MICHAEL'S PRESENTATION PREFERENCES
+## What This Is
+A 60-minute presentation for CISO sessions. Story-driven demo showing how Clarity catches hiring fraud and deepfakes.
 
-### Structure
-- **Story-first:** Paint a picture before problems/solutions
-- **Personal hook:** "Last night I wanted to..." is more powerful than opening with stats
-- **Targeted attack narrative:** Specific company, specific role, specific reasons — not hypothetical
-- **Clear phases:** Demo story → Scale → Impact ($) → Epidemic → Solution → Integration
+**Live:** https://michaelmatiasorg.github.io/clarity-demo/presentation.html
+**Repo:** https://github.com/MichaelMatiasOrg/clarity-demo
 
-### Design
-- **Light theme:** Prefers light backgrounds (`#F0F4F8`), not dark/navy
-- **Enterprise-grade:** NO EMOJIS — use numbers, letters, accent bars
-- **Sophisticated but not template-y:** Subtle gradients, geometric patterns, visual depth
-- **Green sparingly:** Only logo icon, key CTAs — not splashed everywhere
-- **Real logos:** Show actual platform names (Greenhouse, Lever, etc.) not generic icons
-- **Real technologies:** List specific capabilities, not vague descriptions
+## Current Structure (as of 2026-02-10)
 
-### Content
-- **Verify sources:** Don't make up stats — remove if can't verify
-- **Two pillars matter:** Workflow integration (ATS/HRIS) + Security (SIEM)
-- **Show the prize:** Explain WHY a role is valuable (what access it gives)
+### Act 1: The Attack Story (slides 1-11)
+- Hook: "Last night I wanted to break into Vero Financial"
+- Marcus Chen: synthetic identity created in one night
+- Background check passes — "he was born yesterday"
+- Arup $25M deepfake headline — deepfakes bypass interviews
+- "Would Marcus get an offer at YOUR company?"
 
----
+### Act 2: The Scale (slides 12-17)
+- 50x a day / numbers game
+- Bad hire costs ($240K) + insider threat ($4.99M)
+- Fortune 500 quote (NK IT workers)
+- Stats: 1 in 4 fake by 2028, 300+ NK workers, 220% increase
+- "This is the new attack surface"
 
-## BRANDING (CRITICAL)
+### Act 3: The Solution - Use Cases First (slides 18-25)
+- What's needed: security overlay for hiring
+- 4 validation pillars (exist? / who they claim? / story real? / AI cheating?)
+- Clarity intro
+- **"Let me show you how it works"** — 3 moments:
+  1. Pre-interview: catches synthetic profiles
+  2. Mid-interview: real-time deepfake detection
+  3. Day 90: continuous verification
 
-📄 **Full branding guide:** `CLARITY-BRANDING.md`
+### Act 4: How It's Built (slides 26-29)
+- Practical reality: must fit existing workflow
+- **Two Pillars intro** (clean, just headlines)
+- **Pillar A spotlight:** Deep Workflow Integration (ATS, HRIS, Video, Comms + logos)
+- **Pillar B spotlight:** Deep Security in Background (Deepfake, Biometric, Dark Web, Identity + SIEM logos)
 
-**Quick Reference:**
-- Primary Green: `#61F393` (bright lime green) — NOT `#00d4aa` (teal)
-- Navy Background: `#0a1628`
-- Font: **Manrope** (not Inter)
-- Logo: Four-point star icon + "Clarity" wordmark
-- Style: Flat colors, no gradients
+### Act 5: Lifecycle & Close (slides 30-32)
+- **Employee Identity Lifecycle:** 5 key moments
+  - Onboarding, MFA Resets, Privileged Access, Periodic Checks, Offboarding
+- Promise: "Hire like you always have, without bad actors"
+- Close: "Never hire a bad-actor. Get Clarity."
 
-**Official Logo SVGs:**
-- White: `clarity-logo-website.svg` (downloaded from site)
-- Color: Has green `#61F393` icon variant
+## Design Principles (from Michael's feedback)
 
-**Branding Rule:** When Michael asks to use Clarity branding, do a 1:1 visual comparison with getclarity.ai — must match exactly.
+### Story Flow
+- Use cases BEFORE implementation details
+- Show WHAT it catches → THEN explain HOW it works
+- Clean intros that tease what's coming (don't dump everything)
 
----
+### Visual Style
+- Light theme (soft blue-gray `#F0F4F8`, not pure white)
+- Clarity brand: `#61F393` (green), `#0a1628` (navy), Manrope font
+- Geometric accents: subtle circles/gradients in corners
+- Enterprise-grade: no emojis in main content, use numbers/letters
+- Spotlight effect: when showing A/B, enlarge one, dim the other
 
-## What We're Building
-A live demo for Michael's presentation showing how an AI-generated synthetic identity (Marcus Chen) can bypass hiring defenses and become an insider threat.
+### Logos
+- Use Clearbit API: `https://logo.clearbit.com/[domain]`
+- Integration logos: Greenhouse, Lever, Workday, Zoom, Slack
+- SIEM logos: Splunk, Microsoft, CrowdStrike, Elastic
 
-## The Story Arc
-1. **Creation** — "Last night I created Marcus Chen"
-2. **Spearphish** — Multiple vectors (LinkedIn, reference, inbound) to get to interview
-3. **Interview** — AI candidate excels with camera ON
-4. **Background Check Bypass** — SSN validates, no criminal record (because he's synthetic)
-5. **The Math** — "1 in 10 interviews converts to offer. This isn't if, it's when."
+## Key Messages for CISOs
+1. Hiring is the new attack surface
+2. Traditional background checks don't catch synthetic identities
+3. Deepfakes make "cameras on" insufficient
+4. Need continuous verification throughout employee lifecycle
+5. Clarity integrates into existing workflow (ATS, HRIS, SIEM)
 
----
+## Assets
+- `marcus-chen-headshot.png` — AI-generated fake candidate
+- `vero-financial-website.html` — Mock target company
+- `vero-careers-page.html` — Mock careers page
+- Screenshots for demo frames (placeholder images)
 
-## Assets Created (Status)
-
-### ✅ Complete - Documents
-| Asset | File | Notes |
-|-------|------|-------|
-| Background Check | `marcus-chen-background-check.html` | Shows SSN validates, all checks PASSED |
-| Pay Stub | `marcus-chen-paystub.html` | Stripe branded, $240k/year |
-| LinkedIn Profile | `marcus-chen-linkedin.html` | Stripe/Plaid/UC Berkeley + headshot |
-| Resume | `marcus-chen-resume.html` | Matching work history |
-| Offer Letter | `marcus-chen-offer-letter.html` | Generic tech company format |
-
-### ✅ Complete - Photos (6 total)
-| Asset | File | Notes |
-|-------|------|-------|
-| Headshot | `marcus-chen-headshot.png` | Professional LinkedIn style |
-| Office Candid | `marcus-chen-office.png` | At desk, looks natural |
-| Conference | `marcus-chen-conference.png` | Tech conference with badge |
-| Casual/Instagram | `marcus-chen-casual.png` | SF lifestyle shot |
-| Zoom Call | `marcus-chen-zoom.png` | Screenshot format |
-| GitHub Profile | `marcus-chen-github.png` | Profile page screenshot |
-
-### ❌ Still Needed
-| Asset | Status | Notes |
-|-------|--------|-------|
-| D-ID Avatar Video | Not started | Need to create at studio.d-id.com |
-| Presentation slides | Wrong branding | Needs update from `#00d4aa` → `#61F393` |
-
----
-
-## Marcus Chen Identity Details
-- **Name:** Marcus Wei Chen
-- **DOB:** March 14, 1991
-- **SSN:** ***-**-7842
-- **Address:** 2847 Marina Blvd, San Francisco, CA 94123
-- **Education:** UC Berkeley, B.S. Computer Science, 2018
-- **Work History:**
-  - Stripe (Jan 2021 - Dec 2025) - Senior Software Engineer
-  - Plaid (Jun 2018 - Dec 2020) - Software Engineer
-- **References:**
-  - David Park, Engineering Manager at Stripe
-  - Jennifer Walsh, Tech Lead at Plaid
-
----
-
-## Real Incidents for Presentation
-
-### 🎯 The $25.6 Million Arup Fraud (February 2024)
-- Employee at Arup (Sydney Opera House engineers) joined video call with "CFO"
-- **Every person on the call was a deepfake**
-- Made 15 transfers totaling $25.6M
-- Source: https://www.getclarity.ai/ai-deepfake-blog/25m-deepfake-ceo-scam-shakes-hong-kong-firm
-
-### 📊 Key Stats
-| Stat | Source |
-|------|--------|
-| $25.6M stolen via deepfake video call | Arup/Hong Kong Police, Feb 2024 |
-| 17% of hiring managers saw suspected deepfakes | Resume Genius, 2024 |
-| 1 in 4 candidate profiles will be fake by 2028 | Gartner |
-| 300+ US companies hired North Korean fake workers | DOJ, May 2024 |
-| North Korean IT worker infiltrations up 220% | Fortune, Aug 2025 |
-
----
-
-## Presentation Flow
-
-1. **Hook:** "In February 2024, a company lost $25 million to a video call where every participant was fake."
-
-2. **Bridge:** "But that was a one-time scam. What if the goal isn't a quick payout — it's getting *inside* your company?"
-
-3. **Demo:** "Last night, I created this person..."
-   - Show LinkedIn (looks real)
-   - Show resume (impressive background)
-   - Show background check (ALL PASSED)
-   - Show pay stub (establishes work history)
-
-4. **The SSN Reveal:**
-   - "Of course the SSN validated. Since 2011, SSA randomized assignment."
-   - "Of course there's no criminal record. He was born yesterday."
-
-5. **The Interview Question:**
-   - "Could Marcus pass your interview with camera ON?"
-   - Show D-ID avatar clip (if ready)
-   - Reference the 17% stat
-
-6. **The Math:** "1 in 10 interviews results in an offer. This isn't if — it's when."
-
-7. **Solution:** Introduce Clarity
-
----
-
-## D-ID Account
-- **URL:** studio.d-id.com
-- **Email:** genie@michaelmatias.com
-- **Password:** Clarity2026!DID
-
-## Files Location
-- Demo assets: `~/clawd/clarity-demo/`
-- Older slides: `~/clawd/work/ciso-demo/slides/`
-- Logo assets: `~/clawd/repos/michael-manifest-space/src/assets/`
-
----
-
-## Next Steps (Priority Order)
-
-1. ✅ **BRANDING DOCUMENTED** - See `CLARITY-BRANDING.md`
-2. **REBUILD SLIDES** - Update presentation with correct branding (Manrope font, `#61F393`, official logo)
-3. **Create D-ID avatar video** - The "camera on" argument needs visual proof
-4. **Test full presentation flow** - Run through all artifacts
-
----
-
-## Logo SVG (Reference)
-```svg
-<svg width="261" height="66" viewBox="0 0 261 66" fill="none">
-  <!-- Four-arrow icon in #61F393 (green) -->
-  <!-- "Clarity" text in white -->
-</svg>
-```
+## Next Steps / Open Items
+- [ ] Add actual product screenshots when available
+- [ ] Consider tightening slide count further
+- [ ] May need slides for specific verticals (finance, tech, etc.)
