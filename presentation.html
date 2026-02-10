@@ -2133,28 +2133,41 @@ function revealAnswer() {
     
     // Restart animations on a slide
     function restartAnimations(slide) {
-        // Find all animated elements (orbit, gauntlet, etc.)
-        const animatedElements = slide.querySelectorAll('.orbit-outer, .orbit-inner, .center-hub, .touchpoint, .flow-arrow, .check-station-1, .check-station-2, .check-station-3, .trusted-hire-circle, .verified-badge');
+        // Find ALL elements with animation in their inline style
+        const allAnimated = slide.querySelectorAll('[style*="animation"]');
+        allAnimated.forEach(el => {
+            const originalAnimation = el.style.animation;
+            el.style.animation = 'none';
+            el.offsetHeight; // Trigger reflow
+            el.style.animation = originalAnimation;
+        });
+        
+        // Find animated elements by class (orbit, gauntlet, etc.)
+        const animatedElements = slide.querySelectorAll('.orbit-outer, .orbit-inner, .center-hub, .touchpoint, .flow-arrow, .check-station-1, .check-station-2, .check-station-3, .trusted-hire-circle, .verified-badge, .lifecycle-orbit, .lifecycle-container, .candidate-dot, .threat-dot');
         animatedElements.forEach(el => {
             // Clone and replace to restart CSS animations
             const clone = el.cloneNode(true);
-            el.parentNode.replaceChild(clone, el);
+            if (el.parentNode) {
+                el.parentNode.replaceChild(clone, el);
+            }
         });
         
-        // Also restart any elements with animation styles
-        const allAnimated = slide.querySelectorAll('[class*="touchpoint-"]');
-        allAnimated.forEach(el => {
+        // Also restart any elements with touchpoint classes
+        const touchpoints = slide.querySelectorAll('[class*="touchpoint-"]');
+        touchpoints.forEach(el => {
             el.style.animation = 'none';
             el.offsetHeight; // Trigger reflow
             el.style.animation = '';
         });
         
-        // Restart gauntlet candidate animations by cloning the container
+        // Restart gauntlet candidate animations by cloning
         if (slide.classList.contains('gauntlet-slide')) {
-            const candidates = slide.querySelectorAll('[style*="candidateGoodPath"], [style*="candidateThreatPath"], [style*="blockAppear"], [style*="checkAppear"], [style*="lifecycleAppear"], [style*="alertsAppear"], .lifecycle-item, .alert-notification');
+            const candidates = slide.querySelectorAll('[style*="candidateFlow"], [style*="threatDotPath"], [style*="blockAppear"], [style*="checkAppear"], [style*="lifecycleContainerAppear"], .lifecycle-item, .alert-notification');
             candidates.forEach(el => {
                 const clone = el.cloneNode(true);
-                el.parentNode.replaceChild(clone, el);
+                if (el.parentNode) {
+                    el.parentNode.replaceChild(clone, el);
+                }
             });
         }
     }
@@ -2215,21 +2228,22 @@ function revealAnswer() {
     });
     
     // Restart animations when slides scroll into view
+    let lastVisibleSlide = null;
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-                restartAnimations(entry.target);
+            if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+                // Only restart if this is a new slide (avoid re-triggering same slide)
+                if (lastVisibleSlide !== entry.target) {
+                    lastVisibleSlide = entry.target;
+                    restartAnimations(entry.target);
+                }
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: [0.6, 0.8] });
     
-    // Observe all slides with animations
+    // Observe ALL slides for animation restart on scroll
     slides.forEach(slide => {
-        if (slide.classList.contains('gauntlet-slide') || 
-            slide.querySelector('[style*="animation"]') ||
-            slide.querySelector('.lifecycle-item')) {
-            animationObserver.observe(slide);
-        }
+        animationObserver.observe(slide);
     });
     
     // Hide nav hint after first navigation
