@@ -1576,6 +1576,13 @@
     let currentSlide = 0;
     let indicatorTimeout;
     
+    // Get current slide based on actual scroll position
+    function getCurrentSlideFromScroll() {
+        const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
+        const slideHeight = window.innerHeight;
+        return Math.round(scrollPos / slideHeight);
+    }
+    
     // Update slide indicator
     function updateIndicator() {
         indicator.textContent = `${currentSlide + 1} / ${slides.length}`;
@@ -1586,17 +1593,43 @@
         }, 2000);
     }
     
+    // Restart animations on a slide
+    function restartAnimations(slide) {
+        // Find all animated elements
+        const animatedElements = slide.querySelectorAll('.orbit-outer, .orbit-inner, .center-hub, .touchpoint, .flow-arrow');
+        animatedElements.forEach(el => {
+            // Clone and replace to restart CSS animations
+            const clone = el.cloneNode(true);
+            el.parentNode.replaceChild(clone, el);
+        });
+        
+        // Also restart any elements with animation styles
+        const allAnimated = slide.querySelectorAll('[class*="touchpoint-"]');
+        allAnimated.forEach(el => {
+            el.style.animation = 'none';
+            el.offsetHeight; // Trigger reflow
+            el.style.animation = '';
+        });
+    }
+    
     // Go to specific slide
     function goToSlide(index) {
         if (index < 0) index = 0;
         if (index >= slides.length) index = slides.length - 1;
         currentSlide = index;
+        
+        // Restart animations on the target slide
+        restartAnimations(slides[currentSlide]);
+        
         slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
         updateIndicator();
     }
     
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
+        // Always sync current slide from actual scroll position before navigating
+        currentSlide = getCurrentSlideFromScroll();
+        
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
             e.preventDefault();
             goToSlide(currentSlide + 1);
@@ -1612,14 +1645,12 @@
         }
     });
     
-    // Track current slide on scroll
+    // Track current slide on scroll (for indicator display)
     let scrollTimeout;
     document.body.addEventListener('scroll', () => {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
-            const slideHeight = window.innerHeight;
-            currentSlide = Math.round(scrollPos / slideHeight);
+            currentSlide = getCurrentSlideFromScroll();
             updateIndicator();
         }, 100);
     });
