@@ -3839,9 +3839,11 @@ function playCurrentSlide() {
     }
     
     const narration = narrationScript[currentNarrationIndex];
+    const slideIdx = getSlideIndex(narration);
+    console.log(`[Autoplay] Index: ${currentNarrationIndex}, ID: ${narration.id}, SlideIdx: ${slideIdx}`);
     
     // Go to slide
-    goToSlideAutoplay(getSlideIndex(narration));
+    goToSlideAutoplay(slideIdx);
     
     // Update subtitles
     updateSubtitles(narration.text);
