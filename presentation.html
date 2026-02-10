@@ -1126,46 +1126,85 @@
                 </div>
             </div>
         </div>
-        <!-- Fake Zoom call mockup -->
-        <div style="background: #1a1a1a; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
-            <!-- Zoom header -->
-            <div style="background: #2d2d2d; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between;">
-                <span style="color: #aaa; font-size: 0.8rem;">Vero Financial – Interview with Marcus Chen</span>
-                <div style="display: flex; gap: 8px;">
-                    <div style="width: 12px; height: 12px; background: #ff5f57; border-radius: 50%;"></div>
-                    <div style="width: 12px; height: 12px; background: #febc2e; border-radius: 50%;"></div>
-                    <div style="width: 12px; height: 12px; background: #28c840; border-radius: 50%;"></div>
+        <!-- Enterprise Video Call UI -->
+        <div style="background: #242424; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+            <!-- Top Bar -->
+            <div style="background: #1a1a1a; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #333;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <div style="width: 8px; height: 8px; background: #e53935; border-radius: 50%;"></div>
+                        <span style="color: #e53935; font-size: 11px; font-weight: 600;">REC</span>
+                    </div>
+                    <div style="width: 1px; height: 16px; background: #444;"></div>
+                    <span style="color: #888; font-size: 12px;">47:23</span>
+                </div>
+                <span style="color: #ccc; font-size: 13px; font-weight: 500;">Vero Financial – Technical Interview Round 3</span>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="background: #2d7d2d; padding: 3px 8px; border-radius: 4px;">
+                        <span style="color: white; font-size: 10px; font-weight: 600;">🔒 Encrypted</span>
+                    </div>
                 </div>
             </div>
-            <!-- Video grid -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 2px; background: #000;">
-                <!-- Marcus (deepfake) -->
-                <div style="background: linear-gradient(135deg, #2a3f5f 0%, #1e2d3d 100%); aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative;">
-                    <img src="marcus-chen-headshot.png" alt="Marcus" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
-                    <span style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.6); color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem;">Marcus Chen</span>
+            <!-- Video Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px; background: #1a1a1a;">
+                <!-- Marcus (deepfake) - Speaking indicator -->
+                <div style="background: #242424; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative; border-radius: 8px; overflow: hidden; border: 2px solid #0e71eb;">
+                    <img src="marcus-chen-headshot.png" alt="Marcus" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 20px 12px 8px;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="color: white; font-size: 12px; font-weight: 500;">Marcus Chen</span>
+                            <div style="width: 16px; height: 16px; background: rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                                <span style="font-size: 10px;">🎤</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Interviewer 1 -->
-                <div style="background: linear-gradient(135deg, #3d2a5f 0%, #2d1e3d 100%); aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative;">
-                    <div style="width: 60px; height: 60px; background: #666; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">JL</div>
-                    <span style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.6); color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem;">Jennifer Liu</span>
+                <div style="background: #3a3a3a; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative; border-radius: 8px; overflow: hidden;">
+                    <div style="width: 72px; height: 72px; background: linear-gradient(135deg, #5c6bc0, #3949ab); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 500;">JL</div>
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 20px 12px 8px;">
+                        <span style="color: white; font-size: 12px; font-weight: 500;">Jennifer Liu</span>
+                        <span style="color: #888; font-size: 11px; margin-left: 6px;">Engineering Manager</span>
+                    </div>
                 </div>
                 <!-- Interviewer 2 -->
-                <div style="background: linear-gradient(135deg, #5f3d2a 0%, #3d2d1e 100%); aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative;">
-                    <div style="width: 60px; height: 60px; background: #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">MR</div>
-                    <span style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.6); color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem;">Mike Reynolds</span>
+                <div style="background: #3a3a3a; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative; border-radius: 8px; overflow: hidden;">
+                    <div style="width: 72px; height: 72px; background: linear-gradient(135deg, #26a69a, #00897b); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 500;">MR</div>
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 20px 12px 8px;">
+                        <span style="color: white; font-size: 12px; font-weight: 500;">Michael Reynolds</span>
+                        <span style="color: #888; font-size: 11px; margin-left: 6px;">Staff Engineer</span>
+                    </div>
                 </div>
                 <!-- Interviewer 3 -->
-                <div style="background: linear-gradient(135deg, #2a5f3d 0%, #1e3d2d 100%); aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative;">
-                    <div style="width: 60px; height: 60px; background: #444; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">SK</div>
-                    <span style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.6); color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem;">Sarah Kim</span>
+                <div style="background: #3a3a3a; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative; border-radius: 8px; overflow: hidden;">
+                    <div style="width: 72px; height: 72px; background: linear-gradient(135deg, #ff7043, #f4511e); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 500;">SK</div>
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 20px 12px 8px;">
+                        <span style="color: white; font-size: 12px; font-weight: 500;">Sarah Kim</span>
+                        <span style="color: #888; font-size: 11px; margin-left: 6px;">VP Engineering</span>
+                    </div>
                 </div>
             </div>
-            <!-- Zoom controls -->
-            <div style="background: #2d2d2d; padding: 12px; display: flex; justify-content: center; gap: 20px;">
-                <div style="color: #aaa; font-size: 0.75rem; text-align: center;">🎤<br>Mute</div>
-                <div style="color: #aaa; font-size: 0.75rem; text-align: center;">📹<br>Video</div>
-                <div style="color: #aaa; font-size: 0.75rem; text-align: center;">👥<br>Participants</div>
-                <div style="color: #ff5f57; font-size: 0.75rem; text-align: center;">📞<br>End</div>
+            <!-- Control Bar -->
+            <div style="background: #1a1a1a; padding: 12px 20px; display: flex; align-items: center; justify-content: center; gap: 4px; border-top: 1px solid #333;">
+                <button style="background: #333; border: none; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <span style="font-size: 18px;">🎤</span>
+                </button>
+                <button style="background: #333; border: none; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <span style="font-size: 18px;">📹</span>
+                </button>
+                <button style="background: #333; border: none; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <span style="font-size: 18px;">🖥️</span>
+                </button>
+                <button style="background: #333; border: none; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <span style="font-size: 18px;">👥</span>
+                </button>
+                <button style="background: #333; border: none; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <span style="font-size: 18px;">💬</span>
+                </button>
+                <div style="width: 1px; height: 28px; background: #444; margin: 0 8px;"></div>
+                <button style="background: #e53935; border: none; width: 56px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <span style="font-size: 18px;">📞</span>
+                </button>
             </div>
         </div>
     </div>
