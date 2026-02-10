@@ -1316,59 +1316,84 @@ function revealAnswer() {
     <div class="slide-number">10</div>
 </section>
 
-<!-- Slide 11: Summary - What We've Done -->
-<section class="slide" style="position: relative; overflow: hidden;">
-    <div style="max-width: 900px; margin: 0 auto;">
-        <h2 style="text-align: center; margin-bottom: 50px;">So let's recap what <span class="accent">Marcus</span> can do:</h2>
+<!-- Slide 11: The Breach - Funnel vs Arsenal -->
+<section class="slide" style="position: relative; overflow: hidden; background: linear-gradient(135deg, #0a1628 0%, #1a1a2e 100%);">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 40px;">
+        <h2 style="text-align: center; margin-bottom: 50px; color: white;">Your defenses vs <span style="color: var(--danger);">Marcus's arsenal</span></h2>
         
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-            <!-- Step 1 -->
-            <div class="recap-item" style="display: flex; align-items: center; gap: 20px; background: white; padding: 24px 30px; border-radius: 16px; border: 1px solid var(--border); opacity: 0; animation: fade-in-up 0.6s ease-out forwards; animation-delay: 0.2s;">
-                <div style="width: 50px; height: 50px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <span style="font-size: 1.5rem;">✓</span>
-                </div>
-                <div>
-                    <h3 style="margin: 0 0 4px; font-size: 1.2rem;">Identify high-value targets automatically</h3>
-                    <p style="margin: 0; color: var(--text-secondary);">Found Vero Financial's open role in seconds</p>
-                </div>
-            </div>
-            
-            <!-- Step 2 -->
-            <div class="recap-item" style="display: flex; align-items: center; gap: 20px; background: white; padding: 24px 30px; border-radius: 16px; border: 1px solid var(--border); opacity: 0; animation: fade-in-up 0.6s ease-out forwards; animation-delay: 0.6s;">
-                <div style="width: 50px; height: 50px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <span style="font-size: 1.5rem;">✓</span>
-                </div>
-                <div>
-                    <h3 style="margin: 0 0 4px; font-size: 1.2rem;">Build a perfect candidate profile</h3>
-                    <p style="margin: 0; color: var(--text-secondary);">LinkedIn, resume, references — all tailored to the role</p>
-                </div>
-            </div>
-            
-            <!-- Step 3 -->
-            <div class="recap-item" style="display: flex; align-items: center; gap: 20px; background: white; padding: 24px 30px; border-radius: 16px; border: 1px solid var(--border); opacity: 0; animation: fade-in-up 0.6s ease-out forwards; animation-delay: 1.0s;">
-                <div style="width: 50px; height: 50px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <span style="font-size: 1.5rem;">✓</span>
-                </div>
-                <div>
-                    <h3 style="margin: 0 0 4px; font-size: 1.2rem;">Pass background checks</h3>
-                    <p style="margin: 0; color: var(--text-secondary);">Clean record — because he was "born yesterday"</p>
+        <div style="display: grid; grid-template-columns: 1fr 80px 1fr; gap: 20px; align-items: start;">
+            <!-- Left: Your Hiring Funnel -->
+            <div>
+                <p style="color: #888; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Your Hiring Funnel</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">🔍 Sourcing</p>
+                        <p style="margin: 4px 0 0; color: #888; font-size: 0.85rem;">LinkedIn, referrals, job boards</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">📄 Resume Screen</p>
+                        <p style="margin: 4px 0 0; color: #888; font-size: 0.85rem;">ATS filters, recruiter review</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">🎥 Video Interviews</p>
+                        <p style="margin: 4px 0 0; color: #888; font-size: 0.85rem;">Recruiter, technical, hiring manager</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">🔒 Background Check</p>
+                        <p style="margin: 4px 0 0; color: #888; font-size: 0.85rem;">Criminal, education, employment</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">✅ Offer</p>
+                        <p style="margin: 4px 0 0; color: #888; font-size: 0.85rem;">Welcome to the team!</p>
+                    </div>
                 </div>
             </div>
             
-            <!-- Step 4 -->
-            <div class="recap-item" style="display: flex; align-items: center; gap: 20px; background: white; padding: 24px 30px; border-radius: 16px; border: 1px solid var(--border); opacity: 0; animation: fade-in-up 0.6s ease-out forwards; animation-delay: 1.4s;">
-                <div style="width: 50px; height: 50px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <span style="font-size: 1.5rem;">✓</span>
-                </div>
-                <div>
-                    <h3 style="margin: 0 0 4px; font-size: 1.2rem;">Ace video interviews with deepfakes</h3>
-                    <p style="margin: 0; color: var(--text-secondary);">Real-time face swap, cloned voice — undetectable</p>
+            <!-- Center: Breach Arrows -->
+            <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 40px;">
+                <div style="background: var(--danger); color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; text-align: center; animation: pulse 2s infinite;">BYPASSED</div>
+                <div style="background: var(--danger); color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; text-align: center; animation: pulse 2s infinite 0.2s;">BYPASSED</div>
+                <div style="background: var(--danger); color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; text-align: center; animation: pulse 2s infinite 0.4s;">BYPASSED</div>
+                <div style="background: var(--danger); color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; text-align: center; animation: pulse 2s infinite 0.6s;">BYPASSED</div>
+                <div style="background: var(--danger); color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; text-align: center; animation: pulse 2s infinite 0.8s;">🎯 IN</div>
+            </div>
+            
+            <!-- Right: Marcus's Arsenal -->
+            <div>
+                <p style="color: var(--danger); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Marcus's Arsenal</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">AI Profile Generator</p>
+                        <p style="margin: 4px 0 0; color: #ef4444; font-size: 0.85rem;">500+ connections in minutes</p>
+                    </div>
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">Tailored Resume Builder</p>
+                        <p style="margin: 4px 0 0; color: #ef4444; font-size: 0.85rem;">Perfect match for any JD</p>
+                    </div>
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">Real-time Deepfakes</p>
+                        <p style="margin: 4px 0 0; color: #ef4444; font-size: 0.85rem;">Face swap + voice clone</p>
+                    </div>
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">Synthetic Identity</p>
+                        <p style="margin: 4px 0 0; color: #ef4444; font-size: 0.85rem;">"Born yesterday" = clean record</p>
+                    </div>
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px 20px;">
+                        <p style="margin: 0; color: white; font-weight: 600;">🔓 Full Access</p>
+                        <p style="margin: 4px 0 0; color: #ef4444; font-size: 0.85rem;">Production systems, customer data</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="slide-number">11</div>
+    <div class="slide-number" style="color: #666;">11</div>
 </section>
+<style>
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+</style>
 
 <!-- Slide 12: The Question -->
 <section class="slide slide-title">
