@@ -1679,8 +1679,50 @@ function revealAnswer() {
     <div class="slide-number">27</div>
 </section>
 
-<!-- Slide 29: CISO Architecture - Where Clarity Fits -->
+<!-- Slide 29: CISO Architecture - Where Clarity Fits (Animated) -->
 <section class="slide" data-slide-id="architecture" style="position: relative; overflow: hidden; background: #F0F4F8; padding: 60px;">
+    <style>
+        @keyframes flowRight {
+            0% { transform: translateX(-20px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateX(80px); opacity: 0; }
+        }
+        @keyframes flowRightAlert {
+            0% { transform: translateX(-20px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateX(80px); opacity: 0; }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.15); opacity: 0.7; }
+        }
+        @keyframes clarityPulse {
+            0%, 100% { box-shadow: 0 8px 32px rgba(10,22,40,0.3); }
+            50% { box-shadow: 0 8px 48px rgba(97,243,147,0.4); }
+        }
+        .flow-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: absolute;
+            animation: flowRight 2s ease-in-out infinite;
+        }
+        .flow-dot-alert {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            position: absolute;
+            animation: flowRightAlert 1.8s ease-in-out infinite;
+        }
+        .clarity-box-animated {
+            animation: clarityPulse 3s ease-in-out infinite;
+        }
+        .glow-ring {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
     <div style="max-width: 1200px; margin: 0 auto;">
         <h2 style="text-align: center; font-size: 2.4rem; color: #0a1628; margin-bottom: 8px; font-family: 'Manrope', sans-serif; font-weight: 700;">
             Where <span style="color: #61F393;">Clarity</span> Fits
@@ -1707,18 +1749,25 @@ function revealAnswer() {
                 </div>
             </div>
 
-            <!-- Arrow 1 -->
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
-                <svg width="48" height="24" viewBox="0 0 48 24" fill="none" style="opacity: 0.6;">
-                    <path d="M0 12H44M44 12L34 4M44 12L34 20" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Animated Flow: Candidates → Clarity -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; width: 100px; height: 120px;">
+                <!-- Flow track -->
+                <svg width="100" height="60" viewBox="0 0 100 60" fill="none" style="position: absolute; top: 30px;">
+                    <path d="M0 30H90" stroke="#E2E8F0" stroke-width="2" stroke-dasharray="4 4"/>
+                    <path d="M80 20L95 30L80 40" stroke="#E2E8F0" stroke-width="2" fill="none"/>
                 </svg>
-                <span style="font-size: 0.7rem; color: #64748B; font-family: 'Manrope', sans-serif;">Candidates</span>
+                <!-- Animated dots (candidates) -->
+                <div class="flow-dot" style="background: #64748B; top: 52px; left: 0; animation-delay: 0s;"></div>
+                <div class="flow-dot" style="background: #64748B; top: 52px; left: 0; animation-delay: 0.7s;"></div>
+                <div class="flow-dot" style="background: #64748B; top: 52px; left: 0; animation-delay: 1.4s;"></div>
+                <span style="font-size: 0.7rem; color: #64748B; font-family: 'Manrope', sans-serif; position: absolute; bottom: 0;">Candidates</span>
             </div>
 
-            <!-- CENTER: Clarity -->
+            <!-- CENTER: Clarity (with pulse animation) -->
             <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
-                <div style="background: linear-gradient(135deg, #0a1628 0%, #1a2d4a 100%); border-radius: 20px; padding: 32px 48px; box-shadow: 0 8px 32px rgba(10,22,40,0.3); position: relative;">
-                    <div style="position: absolute; inset: -2px; background: linear-gradient(135deg, #61F393, #3DD9EB); border-radius: 22px; z-index: -1; opacity: 0.4; filter: blur(8px);"></div>
+                <div class="clarity-box-animated" style="background: linear-gradient(135deg, #0a1628 0%, #1a2d4a 100%); border-radius: 20px; padding: 32px 48px; position: relative;">
+                    <!-- Animated glow ring -->
+                    <div class="glow-ring" style="position: absolute; inset: -4px; background: linear-gradient(135deg, #61F393, #3DD9EB); border-radius: 24px; z-index: -1; opacity: 0.4; filter: blur(12px);"></div>
                     <div style="display: flex; align-items: center; gap: 12px;">
                         <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
                             <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" fill="#61F393"/>
@@ -1729,12 +1778,19 @@ function revealAnswer() {
                 <span style="font-size: 0.85rem; color: #0a1628; font-weight: 600; font-family: 'Manrope', sans-serif;">Identity Validation Engine</span>
             </div>
 
-            <!-- Arrow 2 -->
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
-                <svg width="48" height="24" viewBox="0 0 48 24" fill="none" style="opacity: 0.6;">
-                    <path d="M0 12H44M44 12L34 4M44 12L34 20" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Animated Flow: Clarity → Security Stack -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; width: 100px; height: 120px;">
+                <!-- Flow track -->
+                <svg width="100" height="60" viewBox="0 0 100 60" fill="none" style="position: absolute; top: 30px;">
+                    <path d="M0 30H90" stroke="#E2E8F0" stroke-width="2" stroke-dasharray="4 4"/>
+                    <path d="M80 20L95 30L80 40" stroke="#E2E8F0" stroke-width="2" fill="none"/>
                 </svg>
-                <span style="font-size: 0.7rem; color: #64748B; font-family: 'Manrope', sans-serif;">Alerts</span>
+                <!-- Animated dots (alerts - green for verified, red for threats) -->
+                <div class="flow-dot-alert" style="background: #61F393; top: 53px; left: 0; animation-delay: 0s;"></div>
+                <div class="flow-dot-alert" style="background: #61F393; top: 53px; left: 0; animation-delay: 0.6s;"></div>
+                <div class="flow-dot-alert" style="background: #EF4444; top: 53px; left: 0; animation-delay: 1.2s;"></div>
+                <div class="flow-dot-alert" style="background: #61F393; top: 53px; left: 0; animation-delay: 1.8s;"></div>
+                <span style="font-size: 0.7rem; color: #64748B; font-family: 'Manrope', sans-serif; position: absolute; bottom: 0;">Alerts</span>
             </div>
 
             <!-- RIGHT: Security Stack -->
