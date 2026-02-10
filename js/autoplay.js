@@ -197,6 +197,14 @@ function setSpeed(speed) {
 
     if (currentAudio && !currentAudio.paused) {
         currentAudio.playbackRate = playbackSpeed;
+        // Restart subtitle timing at new speed
+        if (isPlaying && currentNarrationIndex < narrationScript.length) {
+            const narration = narrationScript[currentNarrationIndex];
+            const audioDurMs = isFinite(currentAudio.duration)
+                ? currentAudio.duration * 1000
+                : narration.duration;
+            updateSubtitles(narration.text, audioDurMs);
+        }
     }
 }
 
@@ -223,7 +231,7 @@ let subtitleSentences = [];
 let currentSentenceIndex = 0;
 let sentenceInterval = null;
 
-function updateSubtitles(text) {
+function updateSubtitles(text, audioDurationMs) {
     if (!subtitlesEnabled) return;
 
     if (sentenceInterval) {
@@ -243,8 +251,9 @@ function updateSubtitles(text) {
     subtitlesText.textContent = subtitleSentences[0];
 
     if (subtitleSentences.length > 1) {
-        const totalDuration = (text.length / 15) * 1000;
-        const timePerSentence = totalDuration / subtitleSentences.length;
+        // Use actual audio duration, adjusted for playback speed
+        const effectiveDuration = audioDurationMs / playbackSpeed;
+        const timePerSentence = effectiveDuration / subtitleSentences.length;
 
         sentenceInterval = setInterval(() => {
             currentSentenceIndex++;
@@ -254,7 +263,7 @@ function updateSubtitles(text) {
                 clearInterval(sentenceInterval);
                 sentenceInterval = null;
             }
-        }, Math.max(timePerSentence, 1500));
+        }, Math.max(timePerSentence, 800));
     }
 }
 
@@ -289,7 +298,7 @@ function updateProgress(slideIndex) {
 function playCurrentSlide() {
     if (!isPlaying || currentNarrationIndex >= narrationScript.length) {
         if (currentNarrationIndex >= narrationScript.length) {
-            updateSubtitles("Thank you for watching.");
+            updateSubtitles("Thank you for watching.", 2000);
             setTimeout(() => {
                 stopPresentation();
             }, 2000);
@@ -304,7 +313,6 @@ function playCurrentSlide() {
     const slideIdx = getSlideIndex(narration);
 
     goToSlideAutoplay(slideIdx);
-    updateSubtitles(narration.text);
 
     // Clean up previous audio handlers before reassigning
     if (currentAudio) {
@@ -315,6 +323,13 @@ function playCurrentSlide() {
     }
 
     currentAudio = audioFiles[currentNarrationIndex];
+
+    // Sync subtitles to actual audio duration when available, else use narration.duration
+    const audioDurMs = (currentAudio && isFinite(currentAudio.duration))
+        ? currentAudio.duration * 1000
+        : narration.duration;
+    updateSubtitles(narration.text, audioDurMs);
+
     if (currentAudio) {
         currentAudio.playbackRate = playbackSpeed;
         currentAudio.currentTime = 0;
