@@ -80,12 +80,12 @@ test.describe('Mockups Load', () => {
 test.describe('Shared Resources', () => {
 
   test('shared CSS loads', async ({ page }) => {
-    const response = await page.goto('/shared/css/presentation.css');
+    const response = await page.goto('/shared/css/design-system.css');
     expect(response.status()).toBe(200);
   });
 
   test('shared JS loads', async ({ page }) => {
-    const response = await page.goto('/shared/js/presentation.js');
+    const response = await page.goto('/shared/js/navigation.js');
     expect(response.status()).toBe(200);
   });
 

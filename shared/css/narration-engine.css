@@ -75,9 +75,6 @@
 
 /* ========== Start Presentation Button ========== */
 #start-presentation-btn {
-    position: fixed;
-    bottom: 24px;
-    left: 24px;
     background: var(--narration-bg);
     color: var(--narration-text);
     border: 1px solid var(--narration-border);
@@ -86,7 +83,6 @@
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    z-index: 100;
     display: flex;
     align-items: center;
     gap: 8px;
