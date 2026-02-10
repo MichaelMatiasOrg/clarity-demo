@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity Brand Guidelines</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #F0F4F8;
+            --navy: #0a1628;
+            --green: #61F393;
+            --text: #0a1628;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --card: #FFFFFF;
+            --danger: #EF4444;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            padding: 40px 40px 0;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .header-top a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .header-top a:hover { color: var(--text); }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+        }
+
+        /* Sections */
+        .content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        section {
+            margin-bottom: 56px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* Logo Section */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .logo-card {
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            min-height: 160px;
+        }
+
+        .logo-card img {
+            height: 36px;
+            width: auto;
+        }
+
+        .logo-card.light {
+            background: var(--card);
+            border: 1px solid var(--border);
+        }
+
+        .logo-card.dark {
+            background: var(--navy);
+        }
+
+        .logo-card .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .logo-card.light .label { color: var(--text); }
+        .logo-card.dark .label { color: white; }
+
+        .logo-files {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-size: 0.8rem;
+        }
+
+        .logo-files code {
+            font-family: 'Courier New', monospace;
+            background: var(--bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .swatch {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--card);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .swatch:hover { transform: translateY(-2px); }
+
+        .swatch-color {
+            height: 80px;
+            position: relative;
+        }
+
+        .swatch-info {
+            padding: 12px 14px;
+        }
+
+        .swatch-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .swatch-hex {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .swatch-usage {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .copied-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--navy);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .copied-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Donts */
+        .donts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .dont-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .dont-swatch {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            border: 2px dashed var(--danger);
+        }
+
+        .dont-card .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--danger);
+        }
+
+        .dont-card .desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Typography */
+        .type-samples {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .type-row {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .type-row .sample { flex: 1; }
+
+        .type-row .meta {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+            text-align: right;
+        }
+
+        /* Buttons */
+        .button-showcase {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: var(--navy);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .btn-secondary-dark {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .btn-secondary-light {
+            background: transparent;
+            color: var(--navy);
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .button-row {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .button-row.dark {
+            background: var(--navy);
+            border-color: transparent;
+        }
+
+        /* Rules Grid */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .rules-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .rules-card h3 {
+            margin-bottom: 14px;
+        }
+
+        .rules-card.do { border-top: 3px solid var(--green); }
+        .rules-card.dont { border-top: 3px solid var(--danger); }
+
+        .rules-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rules-card li {
+            font-size: 0.85rem;
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #374151;
+        }
+
+        .rules-card.do li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+        }
+
+        .rules-card.dont li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--danger);
+        }
+
+        /* Taglines */
+        .tagline-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tagline {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tagline q {
+            font-size: 1.15rem;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .tagline .tag {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            background: var(--bg);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Spacing */
+        .spacing-table {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+
+        .spacing-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 0;
+        }
+
+        .spacing-row + .spacing-row {
+            border-top: 1px solid var(--border);
+        }
+
+        .radius-sample {
+            width: 48px;
+            height: 48px;
+            background: var(--green);
+            flex-shrink: 0;
+        }
+
+        .spacing-row .meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .spacing-row .meta strong {
+            color: var(--text);
+        }
+
+        /* Alternatives table */
+        .alt-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .alt-table th {
+            background: var(--bg);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        .alt-table td {
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .alt-table .avoid {
+            color: var(--danger);
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-top">
+        <img src="assets/branding/clarity-logo.svg" alt="Clarity" style="height: 30px;">
+        <a href="index.html">Back to presentations</a>
+    </div>
+    <h1>Brand Guidelines</h1>
+    <p>Visual identity, design rules, and standards for all Clarity presentations and materials.</p>
+</div>
+
+<div class="content">
+
+    <!-- Logo -->
+    <section>
+        <h2>Logo</h2>
+        <p class="subtitle">The Clarity logo is a four-pointed star icon paired with the "Clarity" wordmark. Always use official SVG files.</p>
+
+        <div class="logo-grid">
+            <div class="logo-card dark">
+                <img src="assets/branding/clarity-logo-white.svg" alt="Clarity white logo">
+                <span class="label">White on dark</span>
+            </div>
+            <div class="logo-card light">
+                <img src="assets/branding/clarity-logo.svg" alt="Clarity dark logo">
+                <span class="label">Color on light</span>
+            </div>
+        </div>
+
+        <div class="logo-files">
+            <strong>Files:</strong>
+            <code>assets/branding/clarity-logo-white.svg</code> (dark backgrounds) &nbsp;
+            <code>assets/branding/clarity-logo.svg</code> (light backgrounds) &nbsp;
+            <code>assets/branding/clarity-logo-website.svg</code> (website version)
+        </div>
+    </section>
+
+    <!-- Colors -->
+    <section>
+        <h2>Colors</h2>
+        <h3>Primary Palette</h3>
+        <div class="color-grid">
+            <div class="swatch" onclick="copyHex('#61F393')">
+                <div class="swatch-color" style="background: #61F393;"></div>
+                <div class="swatch-info">
+                    <div class="swatch-name">Clarity Green</div>
+                    <div class="swatch-hex">#61F393</div>
+                    <div class="swatch-usage">Primary accent, CTAs, icon</div>
+                </div>
+            </div>
+            <div class="swatch" onclick="copyHex('#0a1628')">
+                <div class="swatch-color" style="background: #0a1628;"></div>
+                <div class="swatch-info">
+                    <div class="swatch-name">Navy</div>
+                    <div class="swatch-hex">#0a1628</div>
+                    <div class="swatch-usage">Primary text, dark backgrounds</div>
+                </div>
+            </div>
+            <div class="swatch" onclick="copyHex('#FFFFFF')">
+                <div class="swatch-color" style="background: #FFFFFF; border-bottom: 1px solid #E2E8F0;"></div>
+                <div class="swatch-info">
+                    <div class="swatch-name">White</div>
+                    <div class="swatch-hex">#FFFFFF</div>
+                    <div class="swatch-usage">Cards, text on dark</div>
+                </div>
+            </div>
+            <div class="swatch" onclick="copyHex('#F0F4F8')">
+                <div class="swatch-color" style="background: #F0F4F8; border-bottom: 1px solid #E2E8F0;"></div>
+                <div class="swatch-info">
+                    <div class="swatch-name">Light Gray</div>
+                    <div class="swatch-hex">#F0F4F8</div>
+                    <div class="swatch-usage">Page background</div>
+                </div>
+            </div>
+            <div class="swatch" onclick="copyHex('#64748B')">
+                <div class="swatch-color" style="background: #64748B;"></div>
+                <div class="swatch-info">
+                    <div class="swatch-name">Slate</div>
+                    <div class="swatch-hex">#64748B</div>
+                    <div class="swatch-usage">Secondary text</div>
+                </div>
+            </div>
+            <div class="swatch" onclick="copyHex('#E2E8F0')">
+                <div class="swatch-color" style="background: #E2E8F0;"></div>
+                <div class="swatch-info">
+                    <div class="swatch-name">Border</div>
+                    <div class="swatch-hex">#E2E8F0</div>
+                    <div class="swatch-usage">Borders, dividers</div>
+                </div>
+            </div>
+            <div class="swatch" onclick="copyHex('#EF4444')">
+                <div class="swatch-color" style="background: #EF4444;"></div>
+                <div class="swatch-info">
+                    <div class="swatch-name">Danger</div>
+                    <div class="swatch-hex">#EF4444</div>
+                    <div class="swatch-usage">Alerts, threats, warnings</div>
+                </div>
+            </div>
+            <div class="swatch" onclick="copyHex('#E8FFF0')">
+                <div class="swatch-color" style="background: #E8FFF0; border-bottom: 1px solid #E2E8F0;"></div>
+                <div class="swatch-info">
+                    <div class="swatch-name">Accent Muted</div>
+                    <div class="swatch-hex">#E8FFF0</div>
+                    <div class="swatch-usage">Success backgrounds</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Do Not Use</h3>
+        <div class="donts-grid">
+            <div class="dont-card">
+                <div class="dont-swatch" style="background: #00d4aa;"></div>
+                <div>
+                    <div class="label">Teal #00d4aa</div>
+                    <div class="desc">Often confused with Clarity Green. Wrong shade.</div>
+                </div>
+            </div>
+            <div class="dont-card">
+                <div class="dont-swatch" style="background: linear-gradient(135deg, #00d4aa, #00b892);"></div>
+                <div>
+                    <div class="label">Teal Gradient</div>
+                    <div class="desc">Clarity uses flat colors. No gradients on brand elements.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography -->
+    <section>
+        <h2>Typography</h2>
+        <p class="subtitle">Primary font: Manrope. Loaded via Google Fonts CDN. Never use Inter as a substitute.</p>
+
+        <div class="type-samples">
+            <div class="type-row">
+                <div class="sample" style="font-size: 2rem; font-weight: 800;">Display Heading</div>
+                <div class="meta">800 / 2rem</div>
+            </div>
+            <div class="type-row">
+                <div class="sample" style="font-size: 1.5rem; font-weight: 700;">Section Heading</div>
+                <div class="meta">700 / 1.5rem</div>
+            </div>
+            <div class="type-row">
+                <div class="sample" style="font-size: 1.1rem; font-weight: 600;">Card Title</div>
+                <div class="meta">600 / 1.1rem</div>
+            </div>
+            <div class="type-row">
+                <div class="sample" style="font-size: 1rem; font-weight: 500;">Subtitle Text</div>
+                <div class="meta">500 / 1rem</div>
+            </div>
+            <div class="type-row">
+                <div class="sample" style="font-size: 0.9rem; font-weight: 400; color: #64748B;">Body text — used for descriptions, paragraphs, and secondary content throughout the presentation.</div>
+                <div class="meta">400 / 0.9rem</div>
+            </div>
+            <div class="type-row">
+                <div class="sample" style="font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: #64748B;">OVERLINE LABEL</div>
+                <div class="meta">500 / 0.75rem / caps</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buttons -->
+    <section>
+        <h2>Buttons</h2>
+
+        <div class="button-row">
+            <button class="btn-primary">Get Clarity</button>
+            <button class="btn-secondary-light">Learn More</button>
+        </div>
+        <div class="button-row dark">
+            <button class="btn-primary">Request a Demo</button>
+            <button class="btn-secondary-dark">Watch Video</button>
+        </div>
+
+        <p class="subtitle" style="margin-top: 14px;">Primary: green bg, dark text, 8px radius. Secondary: transparent, border only. Never use pill shapes for CTAs.</p>
+    </section>
+
+    <!-- Corner Radii -->
+    <section>
+        <h2>Corner Radii</h2>
+        <div class="spacing-table">
+            <div class="spacing-row">
+                <div class="radius-sample" style="border-radius: 4px;"></div>
+                <div class="meta"><strong>4px</strong> &mdash; Tags, small chips, code blocks</div>
+            </div>
+            <div class="spacing-row">
+                <div class="radius-sample" style="border-radius: 8px;"></div>
+                <div class="meta"><strong>8px</strong> &mdash; Buttons, inputs</div>
+            </div>
+            <div class="spacing-row">
+                <div class="radius-sample" style="border-radius: 16px;"></div>
+                <div class="meta"><strong>16px</strong> &mdash; Cards, panels</div>
+            </div>
+            <div class="spacing-row">
+                <div class="radius-sample" style="border-radius: 20px;"></div>
+                <div class="meta"><strong>20px</strong> &mdash; Badges, pills</div>
+            </div>
+            <div class="spacing-row">
+                <div class="radius-sample" style="border-radius: 24px;"></div>
+                <div class="meta"><strong>24px</strong> &mdash; Large feature cards</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Taglines -->
+    <section>
+        <h2>Taglines</h2>
+        <div class="tagline-list">
+            <div class="tagline">
+                <q>Never Hire a Bad-Actor</q>
+                <span class="tag">Primary</span>
+            </div>
+            <div class="tagline">
+                <q>Protecting your organization from hiring fraudsters</q>
+                <span class="tag">Secondary</span>
+            </div>
+            <div class="tagline">
+                <q>Get Clarity</q>
+                <span class="tag">CTA</span>
+            </div>
+            <div class="tagline">
+                <q>Request a Demo</q>
+                <span class="tag">CTA</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminology -->
+    <section>
+        <h2>Terminology</h2>
+        <table class="alt-table">
+            <thead>
+                <tr>
+                    <th>Avoid</th>
+                    <th>Use Instead</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avoid">Background Verification</td>
+                    <td><strong>Applicant Screening</strong></td>
+                </tr>
+                <tr>
+                    <td class="avoid">Verification Ecosystem</td>
+                    <td><strong>Employee Identity Lifecycle</strong></td>
+                </tr>
+                <tr>
+                    <td class="avoid">AI Cheating Detection</td>
+                    <td><strong>Identity Risk Detection</strong></td>
+                </tr>
+                <tr>
+                    <td class="avoid">Skills assessment</td>
+                    <td><strong>Identity verification</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Visual Alternatives -->
+    <section>
+        <h2>Visual Elements</h2>
+        <p class="subtitle">No emojis in presentations. Use geometric shapes, color indicators, or nothing.</p>
+        <table class="alt-table">
+            <thead>
+                <tr>
+                    <th>Avoid</th>
+                    <th>Use Instead</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avoid">Emoji icons</td>
+                    <td>Accent-colored dots, numbers in styled containers</td>
+                </tr>
+                <tr>
+                    <td class="avoid">Generic stock icons</td>
+                    <td>Custom line icons or no icons</td>
+                </tr>
+                <tr>
+                    <td class="avoid">Text-only logo placeholders</td>
+                    <td>Real SVG logos from <code style="font-size: 0.8rem;">/logos/</code></td>
+                </tr>
+                <tr>
+                    <td class="avoid">Invented SVG paths</td>
+                    <td>Fetch real logos from company websites</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Do / Don't -->
+    <section>
+        <h2>Design Rules</h2>
+        <div class="rules-grid">
+            <div class="rules-card do">
+                <h3>Do</h3>
+                <ul>
+                    <li>Use flat colors (no gradients on brand elements)</li>
+                    <li>Maintain high contrast (white text on navy)</li>
+                    <li>Use official logo SVG files only</li>
+                    <li>Keep plenty of whitespace</li>
+                    <li>Use Manrope font consistently</li>
+                    <li>One key message per slide</li>
+                    <li>Cite sources for all statistics</li>
+                    <li>Use one-line titles (no wrapping)</li>
+                    <li>Show comparisons visually (strikethrough old values)</li>
+                    <li>Subtle animations only (rotating rings, pulsing elements)</li>
+                </ul>
+            </div>
+            <div class="rules-card dont">
+                <h3>Do Not</h3>
+                <ul>
+                    <li>Use teal (#00d4aa) instead of Clarity Green</li>
+                    <li>Use Inter or other substitute fonts</li>
+                    <li>Add effects (shadows, glows) to the logo</li>
+                    <li>Stretch or distort the logo</li>
+                    <li>Use emojis in presentations</li>
+                    <li>Create fake or invented SVG logos</li>
+                    <li>Use busy or cluttered layouts</li>
+                    <li>Use flashy or dramatic animations</li>
+                    <li>Use gradients on the green accent color</li>
+                    <li>Use dark theme unless specifically appropriate</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CSS Reference -->
+    <section>
+        <h2>CSS Variables</h2>
+        <div class="logo-files" style="font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8;">
+            --bg-primary: #F0F4F8;<br>
+            --bg-card: #FFFFFF;<br>
+            --text-primary: #0a1628;<br>
+            --text-secondary: #64748B;<br>
+            --accent: #61F393;<br>
+            --accent-muted: #E8FFF0;<br>
+            --border: #E2E8F0;<br>
+            --danger: #EF4444;<br>
+            --danger-muted: #FEE2E2;
+        </div>
+    </section>
+
+</div>
+
+<!-- Toast -->
+<div id="toast" class="copied-toast"></div>
+
+<script>
+function copyHex(hex) {
+    navigator.clipboard.writeText(hex).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = 'Copied ' + hex;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+    });
+}
+</script>
+
+</body>
+</html>

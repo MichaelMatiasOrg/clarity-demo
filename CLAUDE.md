@@ -18,8 +18,9 @@ A static HTML5 presentation demoing Clarity's hiring fraud and deepfake detectio
 
 Open `presentation.html` in a browser. No build step required.
 
-- `index.html` — Landing page linking to the presentation
+- `index.html` — Landing page linking to the presentation and brand guidelines
 - `presentation.html` — Main slide deck (the primary deliverable)
+- `brand.html` — Visual brand guidelines (colors, logos, typography, rules)
 - Append `?dev=1` for dev mode (press **D** on landing page to toggle)
 
 ## File Structure
@@ -27,6 +28,7 @@ Open `presentation.html` in a browser. No build step required.
 ```
 index.html                          # Landing page
 presentation.html                   # Slide markup (~2100 lines) — primary deliverable
+brand.html                          # Visual brand guidelines page
 favicon.svg                         # Browser favicon
 CNAME                               # GitHub Pages custom domain
 CLAUDE.md                           # This file
