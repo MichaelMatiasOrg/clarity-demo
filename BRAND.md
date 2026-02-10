@@ -44,6 +44,14 @@
 - No busy or cluttered layouts
 - No overly dramatic animations
 - No text-only logo placeholders — use actual logos
+- **NEVER create fake/invented SVG logos** — always fetch the real logo from the company's website
+
+## Logo Sourcing Checklist
+When adding a company logo:
+1. **ALWAYS fetch from official source** — curl the company's website and grep for logo URLs
+2. **Use CDN URLs** — e.g., `https://website-media.deel.com/logo_xxx.svg`
+3. **Never invent SVG paths** — if you can't find it, ask or use a placeholder with clear "LOGO NEEDED" text
+4. **Verify before committing** — check the logo renders correctly
 
 ## Presentation Style
 
