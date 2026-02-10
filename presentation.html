@@ -2922,8 +2922,15 @@ function stopPresentation() {
     // Stay on current slide (don't jump back to start)
 }
 
-// Auto-hide controls - show on mouse movement, fade quickly when stopped
+// Smart auto-hide controls - only show on intentional mouse movement
 let controlsHideTimeout = null;
+let lastMouseX = 0;
+let lastMouseY = 0;
+let mouseMovementAccumulator = 0;
+let lastMoveTime = 0;
+const MOVEMENT_THRESHOLD = 60; // pixels of movement needed
+const MOVEMENT_WINDOW = 300; // ms window to accumulate movement
+
 function showControls() {
     if (!isPlaying) return;
     controls.classList.add('visible');
@@ -2932,11 +2939,36 @@ function showControls() {
         if (isPlaying && !isPaused) {
             controls.classList.remove('visible');
         }
-    }, 800); // Quick fade after mouse stops
+    }, 1200);
 }
 
-document.addEventListener('mousemove', showControls);
-document.addEventListener('click', showControls);
+function handleMouseMove(e) {
+    if (!isPlaying) return;
+    
+    const now = Date.now();
+    const dx = Math.abs(e.clientX - lastMouseX);
+    const dy = Math.abs(e.clientY - lastMouseY);
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    // Reset accumulator if too much time passed
+    if (now - lastMoveTime > MOVEMENT_WINDOW) {
+        mouseMovementAccumulator = 0;
+    }
+    
+    mouseMovementAccumulator += distance;
+    lastMouseX = e.clientX;
+    lastMouseY = e.clientY;
+    lastMoveTime = now;
+    
+    // Only show controls if intentional movement detected
+    if (mouseMovementAccumulator >= MOVEMENT_THRESHOLD) {
+        showControls();
+        mouseMovementAccumulator = 0; // Reset after showing
+    }
+}
+
+document.addEventListener('mousemove', handleMouseMove);
+document.addEventListener('click', showControls); // Click always shows instantly
 
 // Stop any playing audio on page unload
 window.addEventListener('beforeunload', () => {
