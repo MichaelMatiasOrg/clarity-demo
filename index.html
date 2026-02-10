@@ -1,12 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=presentation.html">
-    <title>Clarity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity Presentations</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F0F4F8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        
+        .logo {
+            margin-bottom: 50px;
+        }
+        
+        .logo img {
+            height: 44px;
+        }
+        
+        .presentations {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+        }
+        
+        .presentation-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            width: 380px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(10, 22, 40, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .presentation-card:hover {
+            border-color: #61F393;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(10, 22, 40, 0.12);
+        }
+        
+        .presentation-card .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #61F393 0%, #4ade80 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        
+        .presentation-card .icon svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .presentation-card h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0a1628;
+            margin-bottom: 12px;
+        }
+        
+        .presentation-card .event {
+            font-size: 0.95rem;
+            color: #64748B;
+            margin-bottom: 20px;
+        }
+        
+        .presentation-card .meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+        
+        .presentation-card .meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to <a href="presentation.html">presentation</a>...</p>
+    <div class="logo">
+        <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity">
+    </div>
+    
+    <div class="presentations">
+        <a href="presentation.html" class="presentation-card">
+            <div class="icon">
+                <svg fill="none" stroke="#0a1628" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            <h2>The Attack Demo</h2>
+            <p class="event">GuidePoint CISO Lunch</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    60 min
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg>
+                    31 slides
+                </span>
+            </div>
+        </a>
+    </div>
+    
+    <p class="footer">© 2025 Clarity</p>
 </body>
 </html>
