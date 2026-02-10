@@ -1386,7 +1386,7 @@ function revealAnswer() {
         <!-- Circular Lifecycle -->
         <div style="position: relative; width: 500px; height: 500px; margin: 0 auto;">
             <!-- Connecting circle/ring -->
-            <svg style="position: absolute; inset: 0; width: 100%; height: 100%;" viewBox="0 0 500 500">
+            <svg id="lifecycle-ring" style="position: absolute; inset: 0; width: 100%; height: 100%;" viewBox="0 0 500 500">
                 <circle cx="250" cy="250" r="180" fill="none" stroke="#e2e8f0" stroke-width="3" stroke-dasharray="8 8"/>
                 <!-- Directional arrows on the ring -->
                 <path d="M250 70 L255 80 L245 80 Z" fill="#61F393"/>
@@ -1396,7 +1396,7 @@ function revealAnswer() {
             </svg>
             
             <!-- Center - Clarity star symbol only (no wordmark) -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+            <div id="lifecycle-center-icon" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
                 <svg width="48" height="48" viewBox="0 0 36 36" fill="none" style="margin-bottom: 8px;">
                     <path d="M23.0627 10.008L18.8453 0.46579L16.1663 6.60634H16.165L19.2924 13.7763L26.4613 16.9042L26.4675 16.9017L32.6034 14.2235L23.0602 10.0055L23.0627 10.008Z" fill="#61F393"/>
                     <path d="M23.1401 23.799L32.6816 19.5816L26.5415 16.9026L19.372 20.03L16.2444 27.1989H16.2432L16.2456 27.205L18.9236 33.341L23.1413 23.7977L23.1401 23.799Z" fill="#61F393"/>
@@ -1408,7 +1408,7 @@ function revealAnswer() {
             
             <!-- TOP: Onboarding (Biggest - Starting Point) -->
             <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); text-align: center;">
-                <div style="background: linear-gradient(145deg, #61F393 0%, #4ade80 100%); border-radius: 20px; padding: 24px 32px; box-shadow: 0 8px 30px rgba(97, 243, 147, 0.3); position: relative;">
+                <div class="lifecycle-card-onboarding" style="background: linear-gradient(145deg, #61F393 0%, #4ade80 100%); border-radius: 20px; padding: 24px 32px; box-shadow: 0 8px 30px rgba(97, 243, 147, 0.3); position: relative;">
                     <div class="lifecycle-check-1" style="position: absolute; top: -10px; right: -10px; width: 28px; height: 28px; background: var(--text-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#61F393" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
@@ -1423,7 +1423,7 @@ function revealAnswer() {
             
             <!-- RIGHT: Periodic Checks -->
             <div style="position: absolute; right: -30px; top: 50%; transform: translateY(-50%); text-align: center;">
-                <div style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
+                <div class="lifecycle-card-periodic" style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
                     <div class="lifecycle-check-2" style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#0a1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
@@ -1435,7 +1435,7 @@ function revealAnswer() {
             
             <!-- BOTTOM: Privileged Access -->
             <div style="position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); text-align: center;">
-                <div style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
+                <div class="lifecycle-card-privilege" style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
                     <div class="lifecycle-check-3" style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#0a1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
@@ -1447,7 +1447,7 @@ function revealAnswer() {
             
             <!-- LEFT: MFA Resets -->
             <div style="position: absolute; left: -30px; top: 50%; transform: translateY(-50%); text-align: center;">
-                <div style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
+                <div class="lifecycle-card-mfa" style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
                     <div class="lifecycle-check-4" style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#0a1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
