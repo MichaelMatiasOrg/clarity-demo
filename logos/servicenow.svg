@@ -1,6 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40">
-  <defs>
-    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600');</style>
-  </defs>
-  <text x="80" y="27" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#81B5A1" text-anchor="middle">ServiceNow</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 30">
+  <text x="55" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#81B5A1" text-anchor="middle">ServiceNow</text>
 </svg>
