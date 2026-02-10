@@ -2760,7 +2760,7 @@ function goToSlideAutoplay(index) {
 
 function restartAnimationsAutoplay(slide) {
     // Clone animated elements to restart animations
-    const animatedSelectors = '.orbit-outer, .orbit-inner, .center-hub, .touchpoint, .flow-arrow, .check-station-1, .check-station-2, .check-station-3, .trusted-hire-circle, .verified-badge';
+    const animatedSelectors = '.orbit-outer, .orbit-inner, .center-hub, .touchpoint, .flow-arrow, .check-station-1, .check-station-2, .check-station-3, .trusted-hire-circle, .verified-badge, .perimeter-ring, .person-icon';
     const animatedElements = slide.querySelectorAll(animatedSelectors);
     animatedElements.forEach(el => {
         const clone = el.cloneNode(true);
@@ -2775,6 +2775,13 @@ function restartAnimationsAutoplay(slide) {
             container.parentNode.replaceChild(clone, container);
         }
     }
+    
+    // Restart ALL inline animation styles (for perimeter slide etc)
+    const inlineAnimated = slide.querySelectorAll('[style*="animation"]');
+    inlineAnimated.forEach(el => {
+        const clone = el.cloneNode(true);
+        el.parentNode.replaceChild(clone, el);
+    });
 }
 
 function updateProgress(slideIndex) {
