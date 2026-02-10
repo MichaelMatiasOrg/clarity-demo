@@ -3512,40 +3512,40 @@ function revealAnswer() {
 // See NARRATION.md for full mapping documentation
 const narrationScript = [
   // ID-based mapping: each slide has data-slide-id attribute in HTML
-  // Format: { id: "slide-id", text: "narration", duration: ms, audio: "filename.mp3" }
-  { id: "intro", text: "I want to show you something important. There's a major blind spot in how companies hire people — and it's being exploited right now.", duration: 8000 },
-  { id: "vero-hook", text: "Here's the scenario. I want to infiltrate Vero Financial. Not by hacking their systems — by getting hired.", duration: 7000 },
-  { id: "vero-target", text: "Vero is a strong company. SOC 2 compliant, regular penetration testing, solid perimeter security.", duration: 5000 },
-  { id: "entry-point", text: "But they're hiring. And that's the entry point.", duration: 4000 },
-  { id: "why-role", text: "I'm targeting Platform Infrastructure Engineer. That role gets access to production systems, deployment pipelines, customer data — everything.", duration: 7000 },
-  { id: "meet-marcus", text: "So I created Marcus Chen. It took about fifteen minutes. He's completely synthetic — but indistinguishable from a real candidate.", duration: 6000 },
-  { id: "linkedin", text: "His LinkedIn profile has 500 connections, endorsements, work history at companies that rarely respond to reference checks. It looks entirely legitimate.", duration: 8000 },
-  { id: "resume", text: "His resume matches perfectly. Every date aligns. Every detail cross-references with the LinkedIn.", duration: 5000 },
-  { id: "interview-deepfake", text: "Marcus passes four video interviews. Recruiter screen, technical round, hiring manager, executive. Glowing reviews across the board. But here's what they didn't know — he was using a real-time deepfake the entire time.", duration: 10000 },
-  { id: "voice-quiz", text: "The same applies to voice. Can you tell which one is real? Most people can't. This technology is freely available.", duration: 6000 },
-  { id: "background-check", text: "The background check comes back clean. Because Marcus is built on real patterns — he's just not a real person.", duration: 7000 },
-  { id: "every-stage", text: "Every stage of the hiring process — bypassed. AI-generated profile for sourcing. AI-tailored resume. Real-time deepfake for interviews. Synthetic identity for background checks. And now Marcus has an offer letter and access to your systems.", duration: 10000 },
-  { id: "already-happening", text: "This isn't hypothetical. It's already happening. North Korean operatives infiltrated over 300 US companies. A security company — KnowBe4 — hired a fake employee who started loading malware on day one.", duration: 9000 },
-  { id: "the-question", text: "If Marcus applied to dozens of companies last month... how many is he working at right now?", duration: 5000 },
-  { id: "scale", text: "Remember — Marcus took fifteen minutes to create. One person could generate twenty identities per week, apply to hundreds of companies, and land multiple job offers. Every week.", duration: 10000 },
-  { id: "fortune-500", text: "This isn't a future problem. We've heard directly from Fortune 500 security teams — this is happening now.", duration: 5000 },
-  { id: "epidemic", text: "The data confirms it. Gartner predicts one in four candidate profiles will be fake by 2028. The Department of Justice identified over 300 companies that unknowingly hired North Korean operatives.", duration: 6000 },
-  { id: "hr-attack-surface", text: "HR is the new attack surface. Your firewall is solid. Your hiring process is the vulnerability.", duration: 6000 },
-  { id: "bad-hire-cost", text: "When a bad hire gets through, the average cost is over 240,000 dollars. And that's assuming they're just incompetent.", duration: 6000 },
-  { id: "malicious", text: "What if they're malicious? Insider threats cause the most damaging breaches. And you've just handed them credentials and access.", duration: 7000 },
-  { id: "clarity-intro", text: "Clarity provides end-to-end identity validation for the entire hiring lifecycle. From the first resume to their last day on the job.", duration: 6000 },
-  { id: "pipeline", text: "This is what we built. Clarity integrates into your existing hiring workflow. Legitimate candidates pass through seamlessly. Threats are identified and blocked.", duration: 10000 },
-  { id: "command-center", text: "This is your command center. Complete visibility into every employee's identity verification status. 99% of your workforce verified, threats blocked in real-time.", duration: 9000 },
-  { id: "pre-interview", text: "Before the interview even starts, we flag synthetic identities, AI-generated photos, and inconsistent employment history. Threats blocked before anyone wastes time.", duration: 8000 },
-  { id: "during-interview", text: "During the interview — real-time detection. Face manipulation, voice anomalies, identity mismatches. Flagged with high confidence, interview paused, your team notified immediately.", duration: 9000 },
-  { id: "continuous", text: "And protection continues after hiring. Day 90, day 180 — we verify it's still the same person who was hired. Continuous identity assurance.", duration: 9000 },
-  { id: "lifecycle", text: "The full employee identity lifecycle. From onboarding verification to periodic checks, MFA resets, and privileged access — identity confirmed at every critical moment.", duration: 8000 },
-  { id: "two-pillars", text: "Clarity is built on two pillars: deep workflow integration, and advanced fraud detection. Security tools fail when they create friction — so we built for zero friction.", duration: 8000 },
-  { id: "integrations", text: "We integrate into the tools your teams already use — from hiring to ongoing security. Okta, ServiceNow, Workday, Slack, Zoom.", duration: 8000 },
-  { id: "fraud-detection", text: "Our multi-layered fraud detection works together to identify threats with high confidence. Deepfakes, voice cloning, biometric matching, identity signals.", duration: 8000 },
-  { id: "alerts", text: "When Clarity detects a threat, alerts route to the right teams in the tools they already use. Full audit trail. Every action logged.", duration: 8000 },
-  { id: "vs-traditional", text: "Traditional solutions have gaps. Background checks can't verify the person. IDV platforms have no interview protection. Video platforms have no deepfake detection. Clarity fills all these gaps.", duration: 10000 },
-  { id: "social-proof", text: "Clarity is trusted by industry leaders like Deel, protecting hiring at scale across 150 countries.", duration: 6000 },
+  // Format: { id: "slide-id", text: "narration", duration: ms }
+  { id: "intro", text: "What I'm about to show you represents one of the most significant security blind spots in enterprise today. It's not your firewall. It's not your endpoints. It's your hiring process.", duration: 8000 },
+  { id: "vero-hook", text: "Let me demonstrate with a real scenario. My target: Vero Financial. But I'm not going to hack their systems. I'm going to get hired.", duration: 7000 },
+  { id: "vero-target", text: "Vero is a well-defended company. SOC 2 Type II certified. Regular penetration testing. Strong perimeter security. By traditional metrics, they're doing everything right.", duration: 6000 },
+  { id: "entry-point", text: "But they're hiring. Six open roles. And that's my entry point.", duration: 4000 },
+  { id: "why-role", text: "I'm targeting Platform Infrastructure. This role provides direct access to production systems, customer data, deployment pipelines, and internal credentials. One hire. Complete access.", duration: 7000 },
+  { id: "meet-marcus", text: "So I built a candidate. Marcus Chen. Senior engineer, seven years experience, Berkeley graduate. Completely synthetic. Built in fifteen minutes.", duration: 6000 },
+  { id: "linkedin", text: "His LinkedIn is indistinguishable from a real profile. Five hundred connections. Endorsements. Work history at companies that rarely verify references. Every detail engineered to pass scrutiny.", duration: 8000 },
+  { id: "resume", text: "His resume aligns perfectly with the job requirements. Every date matches LinkedIn. Every reference is prepared to vouch for him.", duration: 5000 },
+  { id: "interview-deepfake", text: "Marcus completes four video interviews. Recruiter screen. Technical round. Hiring manager. Executive review. All with glowing feedback. What they didn't know—every interview used a real-time deepfake. Face and voice, completely synthetic.", duration: 11000 },
+  { id: "voice-quiz", text: "Voice cloning is equally accessible. Three voices—can you identify which is AI-generated? Most security professionals can't. And this technology is commercially available.", duration: 7000 },
+  { id: "background-check", text: "The background check returns clean. No criminal history. No red flags. Because Marcus has no history at all. Synthetic identities don't have a past to discover.", duration: 7000 },
+  { id: "every-stage", text: "Every stage of the hiring funnel—bypassed. AI-generated identity for sourcing. Tailored resume. Deepfake interviews. Synthetic identity for background checks. Marcus now has an offer letter and access credentials.", duration: 9000 },
+  { id: "already-happening", text: "This isn't theoretical. The Department of Justice confirmed North Korean operatives infiltrated over three hundred US companies using these exact techniques. KnowBe4—a security awareness company—hired a fake employee who began deploying malware on day one.", duration: 10000 },
+  { id: "the-question", text: "If Marcus applied to dozens of companies last month, how many is he working at right now?", duration: 5000 },
+  { id: "scale", text: "One operator. Fifteen minutes per identity. Twenty identities per week. Two hundred applications. Multiple job offers. Every week. This is industrial-scale infiltration.", duration: 8000 },
+  { id: "fortune-500", text: "We've spoken directly with Fortune 500 security teams. This is happening now, at scale, across every industry.", duration: 5000 },
+  { id: "epidemic", text: "Gartner projects one in four candidate profiles will be fraudulent by 2028. The DOJ identified three hundred plus compromised companies. Infiltration attempts increased two hundred twenty percent in twelve months.", duration: 8000 },
+  { id: "hr-attack-surface", text: "Your perimeter is secure. Your firewall is hardened. But your hiring process? That's the vulnerability. HR is the new attack surface.", duration: 6000 },
+  { id: "bad-hire-cost", text: "A standard bad hire costs over two hundred forty thousand dollars in recruiting, onboarding, and replacement. Detection takes an average of six months.", duration: 6000 },
+  { id: "malicious", text: "But what if they're not just incompetent? Insider threat incidents average nearly five million dollars per breach. Detection and containment takes almost ten months.", duration: 7000 },
+  { id: "clarity-intro", text: "Clarity provides end-to-end identity verification across the entire employee lifecycle. From first application to last day. Continuous assurance that your people are who they claim to be.", duration: 7000 },
+  { id: "pipeline", text: "We integrate directly into your hiring workflow. Legitimate candidates pass through seamlessly. Threats are identified and blocked automatically.", duration: 6000 },
+  { id: "command-center", text: "This is your security team's view. Complete visibility into workforce verification status. Real-time threat detection. Ninety-nine percent verification coverage.", duration: 7000 },
+  { id: "pre-interview", text: "Before any interview, Clarity flags synthetic identities, AI-generated photos, and employment inconsistencies. Threats blocked before they waste anyone's time.", duration: 7000 },
+  { id: "during-interview", text: "During live interviews, real-time detection identifies face manipulation, voice cloning, and identity mismatches. Interview paused. Security notified. Incident logged.", duration: 8000 },
+  { id: "continuous", text: "Protection continues post-hire. Day ninety. Day one-eighty. Ongoing verification confirms it's still the same person who was hired.", duration: 6000 },
+  { id: "lifecycle", text: "The complete identity lifecycle—covered. Onboarding verification. Periodic checks. MFA resets. Privileged access requests. Identity confirmed at every critical moment.", duration: 7000 },
+  { id: "two-pillars", text: "Clarity is built on two pillars: deep workflow integration and advanced fraud detection. Security tools fail when they create friction. We built for zero friction.", duration: 7000 },
+  { id: "integrations", text: "Native integration with your existing stack. Okta. ServiceNow. Workday. Slack. Zoom. No workflow changes required.", duration: 5000 },
+  { id: "fraud-detection", text: "Multi-layered fraud detection. Deepfake analysis. Voice biometrics. Document forensics. Identity signal correlation. High-confidence threat identification.", duration: 6000 },
+  { id: "alerts", text: "When threats are detected, alerts route automatically to the right teams through existing tools. Full audit trail. Every action logged. Zero manual handoffs.", duration: 6000 },
+  { id: "vs-traditional", text: "Traditional background checks verify history—not identity. IDV platforms cover onboarding—not interviews. Video platforms enable calls—without deepfake detection. Clarity covers the complete surface.", duration: 9000 },
+  { id: "social-proof", text: "Clarity protects hiring at scale for industry leaders like Deel—verifying candidates across one hundred fifty countries.", duration: 5000 },
   { id: "closing", text: "Your people are your greatest asset. Make sure they're actually your people.", duration: 5000 }
 ];
 
@@ -3840,7 +3840,6 @@ function playCurrentSlide() {
     
     const narration = narrationScript[currentNarrationIndex];
     const slideIdx = getSlideIndex(narration);
-    console.log(`[Autoplay] Index: ${currentNarrationIndex}, ID: ${narration.id}, SlideIdx: ${slideIdx}`);
     
     // Go to slide
     goToSlideAutoplay(slideIdx);
