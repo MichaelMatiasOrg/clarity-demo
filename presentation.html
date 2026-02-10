@@ -1646,10 +1646,10 @@ function revealAnswer() {
         <div>
             <div class="demo-frame" style="transform: scale(1.05); transform-origin: center right; position: relative;">
                 <img src="screenshot-pre-interview.png" alt="Pre-Interview Detection" style="width: 100%; display: block;">
-                <!-- Synced badge INSIDE the screenshot UI -->
-                <div style="position: absolute; top: 12px; right: 12px; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.95); padding: 6px 12px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.08);">
-                    <span style="font-size: 0.7rem; color: #666;">Synced from</span>
-                    <img src="logos/greenhouse.svg" alt="Greenhouse" style="height: 14px;">
+                <!-- Synced badge positioned near candidate info as data source indicator -->
+                <div style="position: absolute; bottom: 95px; left: 28px; display: flex; align-items: center; gap: 5px; background: #f8fafc; padding: 4px 10px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                    <span style="font-size: 0.6rem; color: #64748b;">Source:</span>
+                    <img src="logos/greenhouse.svg" alt="Greenhouse" style="height: 12px;">
                 </div>
             </div>
             <!-- Integration logos -->
@@ -2587,15 +2587,14 @@ const narrationScript = [
   { slide: 19, text: "It covers the entire employee journey — from first application through offboarding.", duration: 6000 },
   { slide: 20, text: "This is what we built. Clarity integrates into your existing hiring workflow. Legitimate candidates pass through seamlessly. Threats are identified and blocked.", duration: 10000 },
   { slide: 21, text: "Before the interview, we flag synthetic identities, AI-generated photos, and inconsistent employment history. Threats are blocked before anyone invests time.", duration: 8000 },
-  { slide: 22, text: "During the interview, real-time detection. We identify face manipulation, voice anomalies, and biometric inconsistencies — alerting the interviewer immediately.", duration: 8000 },
-  { slide: 23, text: "Here's what the analysis looks like. Face verification, voice analysis, identity matching. When something doesn't add up, we flag it with high confidence.", duration: 9000 },
-  { slide: 24, text: "And protection continues after hiring. Day 90, day 180 — we verify it's still the same person who was hired. Continuous identity assurance.", duration: 9000 },
-  { slide: 25, text: "If a security tool creates friction, it won't get used. So Clarity is built on two pillars: deep workflow integration, and full security visibility.", duration: 8000 },
-  { slide: 26, text: "On the workflow side — Greenhouse, Lever, Workday, Okta, Zoom, Slack. Native integrations with the tools you already use.", duration: 7000 },
-  { slide: 27, text: "On the security side — SIEM integration, real-time alerts, threat correlation. Complete visibility for your team.", duration: 6000 },
-  { slide: 28, text: "It's the full employee identity lifecycle. Onboarding, MFA resets, privileged access requests, periodic verification. Every critical moment.", duration: 8000 },
-  { slide: 29, text: "Your people are your greatest asset. Make sure they're actually your people.", duration: 5000 },
-  { slide: 30, text: "Every hire, verified. Every identity, trusted. That's Clarity.", duration: 5000 }
+  { slide: 22, text: "During the interview, real-time detection. Face manipulation, voice anomalies, identity mismatches — flagged with high confidence and alerted immediately.", duration: 9000 },
+  { slide: 23, text: "And protection continues after hiring. Day 90, day 180 — we verify it's still the same person who was hired. Continuous identity assurance.", duration: 9000 },
+  { slide: 24, text: "If a security tool creates friction, it won't get used. So Clarity is built on two pillars: deep workflow integration, and full security visibility.", duration: 8000 },
+  { slide: 25, text: "On the workflow side — Greenhouse, Lever, Workday, Okta, Zoom, Slack. Native integrations with the tools you already use.", duration: 7000 },
+  { slide: 26, text: "On the security side — SIEM integration, real-time alerts, threat correlation. Complete visibility for your team.", duration: 6000 },
+  { slide: 27, text: "It's the full employee identity lifecycle. Onboarding, MFA resets, privileged access requests, periodic verification. Every critical moment.", duration: 8000 },
+  { slide: 28, text: "Your people are your greatest asset. Make sure they're actually your people.", duration: 5000 },
+  { slide: 29, text: "Every hire, verified. Every identity, trusted. That's Clarity.", duration: 5000 }
 ];
 
 // Autoplay State
