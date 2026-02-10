@@ -1,0 +1,55 @@
+/* ========== BASE ANIMATIONS ========== */
+/* Shared keyframes and animation classes used across presentations */
+
+@keyframes badge-shine {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+}
+
+@keyframes orbit-rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes orbit-rotate-reverse {
+    from { transform: translate(-50%, -50%) rotate(360deg); }
+    to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 10px 40px rgba(10, 22, 40, 0.3), 0 0 0 0 rgba(97, 243, 147, 0); }
+    50% { box-shadow: 0 10px 40px rgba(10, 22, 40, 0.3), 0 0 30px 10px rgba(97, 243, 147, 0.15); }
+}
+
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.orbit-outer {
+    animation: orbit-rotate 60s linear infinite;
+}
+.orbit-inner {
+    animation: orbit-rotate-reverse 45s linear infinite;
+}
+
+.center-hub {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.touchpoint {
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out forwards;
+}
+.touchpoint-1 { animation-delay: 0.3s; }
+.touchpoint-2 { animation-delay: 1.5s; }
+.touchpoint-3 { animation-delay: 2.7s; }
+.touchpoint-4 { animation-delay: 3.9s; }
+
+@keyframes dash-flow {
+    to { stroke-dashoffset: -20; }
+}
+.flow-arrow {
+    stroke-dasharray: 10 10;
+    animation: dash-flow 1s linear infinite;
+}

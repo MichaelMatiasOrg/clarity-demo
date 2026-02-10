@@ -7,7 +7,7 @@
 window.NarrationData = {
   meta: {
     title: "Clarity - Masterclass: Hiring Identity Fraud",
-    audioPathPattern: "audio/narration/slide-{index}.mp3",
+    audioPathPattern: "audio/slide-{index}.mp3",
     voice: {
       provider: "elevenlabs",
       id: "JBFqnCBsd6RMkjVDRZzb",
