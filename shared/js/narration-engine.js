@@ -184,9 +184,11 @@ class NarrationEngine {
                 <p class="narration-text" id="narration-text"></p>
             </div>
             <div id="narration-panel-footer">
-                <span><kbd>N</kbd> Toggle panel</span>
-                <span><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Navigate slides</span>
-                <span><kbd>Esc</kbd> Close</span>
+                <div class="footer-hints">
+                    <span><kbd>N</kbd> Toggle panel</span>
+                    <span><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Navigate slides</span>
+                    <span><kbd>Esc</kbd> Close</span>
+                </div>
             </div>`;
         document.body.appendChild(panel);
         panel.querySelector('#narration-panel-close').addEventListener('click', () => this.closeNarrationPanel());
@@ -555,10 +557,10 @@ class NarrationEngine {
         }
 
         this.progressContainer.classList.remove('active');
+        this._dockControls(false);
         this.controls.classList.remove('active');
         this.subtitlesContainer.classList.remove('active');
         this.startBtn.classList.remove('hidden');
-        this.speedMenu.classList.remove('visible');
 
         document.body.style.overflow = '';
 
@@ -668,13 +670,7 @@ class NarrationEngine {
 
     _showControls() {
         if (!this.isPlaying) return;
-        this.controls.classList.add('visible');
-        clearTimeout(this.controlsHideTimeout);
-        this.controlsHideTimeout = setTimeout(() => {
-            if (this.isPlaying && !this.isPaused) {
-                this.controls.classList.remove('visible');
-            }
-        }, 1200);
+        // Controls are always visible at bottom-left when active — no auto-hide needed
     }
 
     _handleMouseMove(e) {
@@ -723,6 +719,7 @@ class NarrationEngine {
         this.narrationPanelVisible = !this.narrationPanelVisible;
         this.narrationPanel.classList.toggle('visible', this.narrationPanelVisible);
         this.narrationToggle.classList.toggle('active', this.narrationPanelVisible);
+        this._dockControls(this.narrationPanelVisible);
         if (this.narrationPanelVisible) {
             const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
             const slideHeight = window.innerHeight;
@@ -735,5 +732,20 @@ class NarrationEngine {
         this.narrationPanelVisible = false;
         this.narrationPanel.classList.remove('visible');
         this.narrationToggle.classList.remove('active');
+        this._dockControls(false);
+    }
+
+    _dockControls(dock) {
+        if (!this.controls || !this.isPlaying) return;
+        const footer = document.getElementById('narration-panel-footer');
+        if (!footer) return;
+
+        if (dock) {
+            this.controls.classList.add('docked');
+            footer.prepend(this.controls);
+        } else {
+            this.controls.classList.remove('docked');
+            document.body.appendChild(this.controls);
+        }
     }
 }
