@@ -3089,6 +3089,259 @@ window.addEventListener('beforeunload', () => {
         currentAudio.pause();
     }
 });
+
+// ==========================================
+// DEVELOPER MODE - Element Inspector
+// ==========================================
+(function() {
+    let devModeEnabled = false;
+    let highlightedEl = null;
+    let tooltip = null;
+    let overlay = null;
+    
+    // Assign IDs to all slides and key elements
+    function assignDevIds() {
+        const slides = document.querySelectorAll('.slide');
+        slides.forEach((slide, idx) => {
+            const slideNum = idx + 1;
+            if (!slide.dataset.devId) {
+                slide.dataset.devId = `slide-${slideNum}`;
+            }
+            
+            // Assign IDs to key child elements
+            const selectors = ['h1', 'h2', 'h3', 'p', 'div', 'span', 'img', 'button', 'a', 'ul', 'li', 'section'];
+            let elCount = 0;
+            
+            selectors.forEach(sel => {
+                slide.querySelectorAll(sel).forEach(el => {
+                    if (!el.dataset.devId && !el.closest('[data-dev-id]')?.contains(el.parentElement)) {
+                        elCount++;
+                        const tag = el.tagName.toLowerCase();
+                        const text = el.textContent?.trim().substring(0, 20).replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase() || '';
+                        el.dataset.devId = `s${slideNum}-${tag}${elCount}${text ? '-' + text : ''}`;
+                    }
+                });
+            });
+        });
+    }
+    
+    // Create the dev mode toggle button
+    function createToggle() {
+        const btn = document.createElement('button');
+        btn.id = 'dev-mode-toggle';
+        btn.innerHTML = '🛠️';
+        btn.title = 'Toggle Developer Mode (Alt+D)';
+        btn.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: #1a1a2e;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.2s;
+            opacity: 0.7;
+        `;
+        btn.addEventListener('mouseenter', () => btn.style.opacity = '1');
+        btn.addEventListener('mouseleave', () => btn.style.opacity = devModeEnabled ? '1' : '0.7');
+        btn.addEventListener('click', toggleDevMode);
+        document.body.appendChild(btn);
+        return btn;
+    }
+    
+    // Create highlight overlay
+    function createOverlay() {
+        overlay = document.createElement('div');
+        overlay.id = 'dev-highlight-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            pointer-events: none;
+            border: 2px solid #61F393;
+            background: rgba(97, 243, 147, 0.1);
+            z-index: 9998;
+            display: none;
+            transition: all 0.1s ease;
+        `;
+        document.body.appendChild(overlay);
+    }
+    
+    // Create tooltip
+    function createTooltip() {
+        tooltip = document.createElement('div');
+        tooltip.id = 'dev-tooltip';
+        tooltip.style.cssText = `
+            position: fixed;
+            background: #1a1a2e;
+            color: #61F393;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            z-index: 9999;
+            pointer-events: none;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            max-width: 400px;
+            word-break: break-all;
+        `;
+        document.body.appendChild(tooltip);
+    }
+    
+    // Create toast notification
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #1a1a2e;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 10001;
+            font-size: 14px;
+            animation: toastIn 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s';
+            setTimeout(() => toast.remove(), 300);
+        }, 2000);
+    }
+    
+    // Toggle dev mode
+    function toggleDevMode() {
+        devModeEnabled = !devModeEnabled;
+        const btn = document.getElementById('dev-mode-toggle');
+        
+        if (devModeEnabled) {
+            btn.style.background = '#61F393';
+            btn.style.color = '#1a1a2e';
+            btn.style.opacity = '1';
+            showToast('🛠️ Dev Mode ON - Hover to inspect, click to copy ID');
+        } else {
+            btn.style.background = '#1a1a2e';
+            btn.style.color = 'white';
+            overlay.style.display = 'none';
+            tooltip.style.display = 'none';
+            showToast('Dev Mode OFF');
+        }
+    }
+    
+    // Handle mouse move for highlighting
+    function handleDevMouseMove(e) {
+        if (!devModeEnabled) return;
+        
+        const el = document.elementFromPoint(e.clientX, e.clientY);
+        if (!el || el.id === 'dev-mode-toggle' || el.id === 'dev-tooltip' || el.id === 'dev-highlight-overlay') {
+            overlay.style.display = 'none';
+            tooltip.style.display = 'none';
+            return;
+        }
+        
+        // Find closest element with dev ID or create one
+        let target = el.closest('[data-dev-id]') || el;
+        if (!target.dataset.devId) {
+            // Generate an ID on the fly for untracked elements
+            const slide = target.closest('.slide');
+            const slideNum = slide ? Array.from(document.querySelectorAll('.slide')).indexOf(slide) + 1 : 0;
+            const tag = target.tagName.toLowerCase();
+            target.dataset.devId = `s${slideNum}-${tag}-dynamic`;
+        }
+        
+        highlightedEl = target;
+        
+        // Position overlay
+        const rect = target.getBoundingClientRect();
+        overlay.style.left = rect.left + 'px';
+        overlay.style.top = rect.top + 'px';
+        overlay.style.width = rect.width + 'px';
+        overlay.style.height = rect.height + 'px';
+        overlay.style.display = 'block';
+        
+        // Position tooltip
+        const devId = target.dataset.devId;
+        const existingId = target.id ? ` (id="${target.id}")` : '';
+        const classes = target.className ? ` .${target.className.split(' ').slice(0, 2).join('.')}` : '';
+        tooltip.innerHTML = `<strong>${devId}</strong>${existingId}${classes}<br><span style="color: #888; font-size: 11px;">Click to copy</span>`;
+        tooltip.style.left = Math.min(e.clientX + 15, window.innerWidth - 420) + 'px';
+        tooltip.style.top = Math.max(e.clientY - 40, 10) + 'px';
+        tooltip.style.display = 'block';
+    }
+    
+    // Handle click to copy ID
+    function handleDevClick(e) {
+        if (!devModeEnabled || !highlightedEl) return;
+        
+        // Don't interfere with the toggle button
+        if (e.target.id === 'dev-mode-toggle') return;
+        
+        const devId = highlightedEl.dataset.devId;
+        const slideMatch = devId.match(/^s(\d+)/);
+        const slideNum = slideMatch ? slideMatch[1] : '?';
+        
+        // Build context string
+        const context = `[Element: ${devId} | Slide ${slideNum}]`;
+        
+        navigator.clipboard.writeText(context).then(() => {
+            showToast(`✓ Copied: ${devId}`);
+        });
+        
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
+    // Keyboard shortcut
+    function handleKeydown(e) {
+        if (e.altKey && e.key === 'd') {
+            toggleDevMode();
+            e.preventDefault();
+        }
+    }
+    
+    // Add toast animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes toastIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        assignDevIds();
+        createToggle();
+        createOverlay();
+        createTooltip();
+        
+        document.addEventListener('mousemove', handleDevMouseMove);
+        document.addEventListener('click', handleDevClick, true);
+        document.addEventListener('keydown', handleKeydown);
+    });
+    
+    // Re-run if already loaded
+    if (document.readyState !== 'loading') {
+        assignDevIds();
+        createToggle();
+        createOverlay();
+        createTooltip();
+        
+        document.addEventListener('mousemove', handleDevMouseMove);
+        document.addEventListener('click', handleDevClick, true);
+        document.addEventListener('keydown', handleKeydown);
+    }
+})();
 </script>
 
 </body>
