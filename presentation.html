@@ -468,29 +468,41 @@
 <body>
 
 <!-- Slide 1: Hero - Introduction -->
-<section class="slide" style="position: relative; overflow: hidden; background: #0a1628; display: flex; align-items: center; justify-content: center;">
-    <!-- Subtle geometric accents (flat, no gradients) -->
-    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border: 1px solid rgba(97, 243, 147, 0.08); border-radius: 50%; pointer-events: none;"></div>
-    <div style="position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; border: 1px solid rgba(97, 243, 147, 0.05); border-radius: 50%; pointer-events: none;"></div>
-    <div style="position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; border: 1px solid rgba(97, 243, 147, 0.06); border-radius: 50%; pointer-events: none;"></div>
+<section class="slide" style="position: relative; overflow: hidden; background: #F0F4F8; display: flex; align-items: center; justify-content: center;">
+    <!-- Geometric shapes inspired by Clarity logo -->
+    <svg style="position: absolute; top: 60px; right: 80px; width: 120px; height: 120px; opacity: 0.08;" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#0a1628"/>
+        <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#0a1628"/>
+        <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+        <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+    </svg>
+    <svg style="position: absolute; bottom: 80px; left: 100px; width: 80px; height: 80px; opacity: 0.06;" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#0a1628"/>
+        <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#0a1628"/>
+        <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+        <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+    </svg>
+    <!-- Subtle circles -->
+    <div style="position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; border: 2px solid rgba(97, 243, 147, 0.1); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -100px; left: -100px; width: 350px; height: 350px; border: 2px solid rgba(10, 22, 40, 0.05); border-radius: 50%; pointer-events: none;"></div>
     
     <div style="position: relative; z-index: 1; text-align: center;">
-        <!-- Official Clarity logo from website CDN -->
-        <div style="margin-bottom: 70px;">
-            <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846e27_Clarity%20Logo%20white.svg" alt="Clarity" style="height: 48px;">
+        <!-- Official Clarity logo (dark version for light bg) -->
+        <div style="margin-bottom: 60px;">
+            <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 52px;">
         </div>
         
         <!-- Name -->
-        <h1 style="font-size: 4.2rem; margin-bottom: 12px; color: white; font-weight: 700; letter-spacing: -1px; font-family: 'Manrope', sans-serif;">Michael Matias</h1>
+        <h1 style="font-size: 4.2rem; margin-bottom: 12px; color: #0a1628; font-weight: 700; letter-spacing: -1px; font-family: 'Manrope', sans-serif;">Michael Matias</h1>
         
-        <!-- Accent line (flat color, no gradient) -->
+        <!-- Accent line -->
         <div style="width: 60px; height: 3px; background: #61F393; margin: 0 auto 16px;"></div>
         
-        <p style="font-size: 1.2rem; color: rgba(255,255,255,0.5); margin-bottom: 70px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; font-family: 'Manrope', sans-serif;">Co-Founder & CEO</p>
+        <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 60px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; font-family: 'Manrope', sans-serif;">Co-Founder & CEO</p>
         
         <!-- Tagline -->
         <div style="max-width: 750px; margin: 0 auto;">
-            <p style="font-size: 1.5rem; color: rgba(255,255,255,0.9); line-height: 1.6; font-weight: 400; font-family: 'Manrope', sans-serif;">
+            <p style="font-size: 1.5rem; color: #0a1628; line-height: 1.6; font-weight: 400; font-family: 'Manrope', sans-serif;">
                 Protecting enterprises from the new attack surface:
             </p>
             <p style="font-size: 1.7rem; color: #61F393; margin-top: 16px; font-weight: 600; font-family: 'Manrope', sans-serif;">
@@ -499,7 +511,7 @@
         </div>
     </div>
     
-    <div class="slide-number" style="color: rgba(255,255,255,0.2);">1</div>
+    <div class="slide-number">1</div>
 </section>
 
 <!-- Slide 2: The Hook -->
