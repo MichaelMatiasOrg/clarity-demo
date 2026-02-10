@@ -25,9 +25,14 @@ Open `presentation.html` in a browser. No build step required.
 ## File Structure
 
 ```
-presentation.html          # Main presentation (all 33 slides, ~4500 lines)
+presentation.html          # Slide markup only (~2100 lines)
+css/presentation.css       # All styles — variables, layout, components, animations
+js/navigation.js           # Keyboard nav, scroll tracking, slide indicator
+js/autoplay.js             # Narration data, playback engine, subtitles, speed control
+js/narration-panel.js      # Speaker notes panel (N key toggle)
+js/dev-mode.js             # Element inspector (D key toggle)
 index.html                 # Landing page
-narration.js               # Slide narration text array (imported by presentation.html)
+narration.js               # Narration text array (used by audio generation scripts, NOT runtime)
 audio/narration/           # slide-0.mp3 through slide-33.mp3 (ElevenLabs TTS)
 logos/                     # SVG/PNG logos for integration slides
 marcus-chen-*.png/html     # Synthetic identity demo assets (headshots, resume, LinkedIn mockup)
@@ -49,10 +54,13 @@ NARRATION.md               # Slide-to-narration mapping
 
 ## Architecture Notes
 
-- All slides live in a single `presentation.html` file as `<section class="slide">` elements with `data-slide-id` attributes
-- CSS is embedded in `<style>` tags within the HTML (no external stylesheets)
-- JS is embedded at the bottom of `presentation.html` (no external scripts except `narration.js`)
-- Narration system: `narration.js` exports a `narrationScript` array; each entry maps a slide index to text and optional duration
+- All slides live in `presentation.html` as `<section class="slide">` elements with `data-slide-id` attributes
+- CSS is in `css/presentation.css` — organized by section (variables, layout, components, slide-specific animations, autoplay controls)
+- JS is split into 4 files loaded in order: `navigation.js` → `autoplay.js` → `narration-panel.js` → `dev-mode.js`
+- `navigation.js` exposes `window.restartAnimations()` and `window.goToSlide()` for autoplay to use
+- `autoplay.js` contains the authoritative `narrationScript` array (id-based slide matching) and exposes `isPlaying` globally
+- The root-level `narration.js` is only used by `generate_audio.sh` / `generate-narration.sh` for audio generation — it is NOT used at runtime
+- Two small inline scripts remain in `presentation.html`: voice quiz (`playVoice`/`revealAnswer`) and insider threat observer
 
 ## Current Focus: Identity Risk (NOT Skills)
 
