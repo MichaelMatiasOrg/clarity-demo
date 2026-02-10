@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="presentation-version" content="1.0.0-Guardian">
     <title>Clarity - Masterclass: Hiring Identity Fraud</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
@@ -2151,6 +2152,23 @@ new NarrationEngine({
 
 <!-- Developer Mode -->
 <script src="js/dev-mode.js"></script>
+
+<!-- Version Badge (Subtle Footer) -->
+<div id="version-badge" class="version-badge">v1.0.0-Guardian</div>
+<script>
+// Version badge - hidden by default, visible on hover over bottom-right corner
+const versionBadge = document.getElementById('version-badge');
+let hideTimeout;
+document.addEventListener('mousemove', (e) => {
+    const isBottomRight = e.clientX > window.innerWidth - 120 && e.clientY > window.innerHeight - 60;
+    if (isBottomRight) {
+        versionBadge.classList.add('visible');
+        clearTimeout(hideTimeout);
+    } else {
+        hideTimeout = setTimeout(() => versionBadge.classList.remove('visible'), 500);
+    }
+});
+</script>
 
 </body>
 </html>
