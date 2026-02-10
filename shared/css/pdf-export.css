@@ -92,13 +92,13 @@
         transition: none !important;
     }
 
-    /* Force visibility on elements that start at opacity: 0
-       and rely on animations to become visible */
+    /* Safety net: force visibility on elements that start at opacity: 0.
+       The JS trigger classes (.in-view, .revealed) + animation freeze handle
+       most cases, but these catch any elements without a triggering animation. */
     .touchpoint,
     .stage-card,
     .vero-section,
     .bypass-stamp,
-    .old-stat,
     .new-stat,
     .lifecycle-check-1,
     .lifecycle-check-2,

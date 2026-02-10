@@ -35,7 +35,18 @@ class PdfExporter {
         const originalTitle = document.title;
         document.title = this.filename.replace(/\.pdf$/i, '');
 
-        const restore = () => { document.title = originalTitle; };
+        // Force all slides into their final animation state by adding
+        // trigger classes that are normally set by IntersectionObserver
+        const slides = document.querySelectorAll(this.slideSelector);
+        slides.forEach(s => s.classList.add('in-view'));
+        const cards = document.querySelectorAll('.stage-card');
+        cards.forEach(c => c.classList.add('revealed'));
+
+        const restore = () => {
+            document.title = originalTitle;
+            slides.forEach(s => s.classList.remove('in-view'));
+            cards.forEach(c => c.classList.remove('revealed'));
+        };
         window.addEventListener('afterprint', restore, { once: true });
 
         window.print();
