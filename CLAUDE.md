@@ -50,12 +50,15 @@ A 60-minute presentation for CISO sessions. Story-driven demo showing how Clarit
 - Show WHAT it catches → THEN explain HOW it works
 - Clean intros that tease what's coming (don't dump everything)
 
-### Visual Style
-- Light theme (soft blue-gray `#F0F4F8`, not pure white)
-- Clarity brand: `#61F393` (green), `#0a1628` (navy), Manrope font
-- Geometric accents: subtle circles/gradients in corners
-- Enterprise-grade: no emojis in main content, use numbers/letters
-- Spotlight effect: when showing A/B, enlarge one, dim the other
+### Visual Style — IMPORTANT
+- **Light theme ONLY** — soft blue-gray `#F0F4F8` background (NOT dark/navy)
+- **Text:** Navy `#0a1628` (primary) + Green `#61F393` (accent) on light backgrounds
+- **Clarity logo geometric shapes:** Use the 4-pointed star icon as subtle background decorations
+- **Manrope font** — never Inter or system fonts
+- **NO gradients** on brand elements — flat colors only
+- **Enterprise-grade:** no emojis in main content, use numbers/letters
+- **Spotlight effect:** when showing A/B, enlarge one, dim the other
+- **Hero slide must match rest of deck** — same light theme, not a different dark style
 
 ### Logos
 - Use Clearbit API: `https://logo.clearbit.com/[domain]`
