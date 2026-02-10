@@ -106,8 +106,8 @@ class NarrationEngine {
         startBtn.title = 'Watch narrated presentation';
         startBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z"/></svg> Watch Presentation';
         startBtn.addEventListener('click', () => this.startPresentation());
-        const toolbar = document.getElementById('bottom-toolbar');
-        if (toolbar) toolbar.prepend(startBtn);
+        const bottomToolbar = document.getElementById('bottom-toolbar');
+        if (bottomToolbar) bottomToolbar.prepend(startBtn);
         else document.body.appendChild(startBtn);
 
         // Autoplay Overlay
