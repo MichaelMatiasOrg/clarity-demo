@@ -1,3 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30">
-  <text x="50" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#F68D2E" text-anchor="middle">workday</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Workday icon - rising sun/arc -->
+  <defs>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="100%" stop-color="#F68D2E"/>
+    </linearGradient>
+  </defs>
+  <!-- Horizon line -->
+  <rect x="10" y="65" width="80" height="4" rx="2" fill="#0066CC"/>
+  <!-- Sun arc -->
+  <path d="M15 68 A35 35 0 0 1 85 68" fill="none" stroke="url(#sunGrad)" stroke-width="8" stroke-linecap="round"/>
+  <!-- Sun center -->
+  <circle cx="50" cy="25" r="12" fill="#F68D2E"/>
+  <!-- Sun rays -->
+  <rect x="47" y="5" width="6" height="10" rx="3" fill="#F68D2E"/>
+  <rect x="23" y="17" width="6" height="10" rx="3" fill="#F68D2E" transform="rotate(-45 26 22)"/>
+  <rect x="71" y="17" width="6" height="10" rx="3" fill="#F68D2E" transform="rotate(45 74 22)"/>
 </svg>
