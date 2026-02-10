@@ -2197,8 +2197,20 @@ function revealAnswer() {
         updateIndicator();
     }
     
-    // Keyboard navigation
+    // Keyboard navigation (disabled during autoplay)
     document.addEventListener('keydown', (e) => {
+        // If autoplay is running, don't allow manual navigation
+        // (space for pause is handled separately in autoplay code)
+        if (typeof isPlaying !== 'undefined' && isPlaying) {
+            // Block navigation keys during playback
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || 
+                e.key === 'PageDown' || e.key === 'ArrowLeft' || e.key === 'ArrowUp' || 
+                e.key === 'PageUp' || e.key === 'Home' || e.key === 'End') {
+                e.preventDefault();
+                return;
+            }
+        }
+        
         // Always sync current slide from actual scroll position before navigating
         currentSlide = getCurrentSlideFromScroll();
         
@@ -2689,7 +2701,16 @@ function startPresentation() {
     hideAutoplayOverlay();
     isPlaying = true;
     isPaused = false;
-    currentNarrationIndex = 0;
+    
+    // Get current slide position and start narration from there
+    const slides = document.querySelectorAll('.slide');
+    const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
+    const slideHeight = window.innerHeight;
+    const currentSlideIndex = Math.round(scrollPos / slideHeight);
+    
+    // Find the narration index for the current slide
+    currentNarrationIndex = narrationScript.findIndex(n => n.slide >= currentSlideIndex);
+    if (currentNarrationIndex === -1) currentNarrationIndex = 0;
     
     // Show controls and subtitles
     progressContainer.classList.add('active');
@@ -2703,10 +2724,10 @@ function startPresentation() {
     const navHint = document.getElementById('nav-hint');
     if (navHint) navHint.style.display = 'none';
     
-    // Go to first slide
-    goToSlideAutoplay(0);
+    // Disable scrolling during playback
+    document.body.style.overflow = 'hidden';
     
-    // Start narration
+    // Start narration from current position
     playCurrentSlide();
 }
 
@@ -2914,14 +2935,16 @@ function stopPresentation() {
     startBtn.classList.remove('hidden');
     speedMenu.classList.remove('visible');
     
+    // Re-enable scrolling
+    document.body.style.overflow = '';
+    
     // Reset UI
     pauseIcon.style.display = 'block';
     playIcon.style.display = 'none';
     progressBar.style.width = '0%';
     subtitlesText.textContent = '';
     
-    // Go back to first slide
-    goToSlideAutoplay(0);
+    // Stay on current slide (don't jump back to start)
 }
 
 // Load voices (they load async)
