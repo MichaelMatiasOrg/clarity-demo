@@ -4036,9 +4036,16 @@ window.addEventListener('beforeunload', () => {
     
     // Build a map of slide index to narration text
     const slideNarrationMap = {};
-    if (typeof narrationScript !== 'undefined') {
+    if (typeof narrationScript !== 'undefined' && typeof slideIdToIndex !== 'undefined') {
         narrationScript.forEach(item => {
-            slideNarrationMap[item.slide] = item.text;
+            if (item.id) {
+                const idx = slideIdToIndex[item.id];
+                if (idx !== undefined) {
+                    slideNarrationMap[idx] = item.text;
+                }
+            } else if (item.slide !== undefined) {
+                slideNarrationMap[item.slide] = item.text;
+            }
         });
     }
     
