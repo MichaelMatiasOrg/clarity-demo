@@ -1,3 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40">
-  <text x="50" y="28" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#2b344a" text-anchor="middle">Lever</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700');</style>
+  </defs>
+  <text x="60" y="27" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#1A1A2E" text-anchor="middle">lever</text>
 </svg>

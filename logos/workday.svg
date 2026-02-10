@@ -1,3 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40">
-  <text x="60" y="28" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#0875e1" text-anchor="middle">Workday</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 40">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600');</style>
+  </defs>
+  <text x="70" y="27" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#F68D2E" text-anchor="middle">workday</text>
 </svg>
