@@ -1,106 +1,116 @@
 # CLAUDE.md - Clarity CISO Demo Project
 
-## What This Is
-A 60-minute presentation for CISO sessions. Story-driven demo showing how Clarity catches hiring fraud and deepfakes.
+## Project Overview
 
-**Live:** https://michaelmatiasorg.github.io/clarity-demo/presentation.html
-**Repo:** https://github.com/MichaelMatiasOrg/clarity-demo
+A static HTML5 presentation demoing Clarity's hiring fraud and deepfake detection for CISO audiences. No build tools, no frameworks — pure HTML/CSS/JS served via GitHub Pages.
 
-## Presentation Mode
-- **Arrow keys** (←→ or ↑↓) navigate between slides
-- **Space/PageDown** = next, **PageUp** = previous
-- **Home/End** = first/last slide
-- Slides snap to full screen, scrollbar hidden
+- **Live:** https://michaelmatiasorg.github.io/clarity-demo/presentation.html
+- **Repo:** https://github.com/MichaelMatiasOrg/clarity-demo
+
+## Tech Stack
+
+- **HTML5 / CSS3 / Vanilla JS** — no bundler, no framework, no package.json
+- **Font:** Manrope via Google Fonts CDN
+- **Hosting:** GitHub Pages (CNAME configured)
+- **Audio:** Pre-generated MP3 files via ElevenLabs TTS API
+
+## Running Locally
+
+Open `presentation.html` in a browser. No build step required.
+
+- `index.html` — Landing page linking to the presentation
+- `presentation.html` — Main slide deck (the primary deliverable)
+- Append `?dev=1` for dev mode (press **D** on landing page to toggle)
+
+## File Structure
+
+```
+presentation.html          # Main presentation (all 33 slides, ~4500 lines)
+index.html                 # Landing page
+narration.js               # Slide narration text array (imported by presentation.html)
+audio/narration/           # slide-0.mp3 through slide-33.mp3 (ElevenLabs TTS)
+logos/                     # SVG/PNG logos for integration slides
+marcus-chen-*.png/html     # Synthetic identity demo assets (headshots, resume, LinkedIn mockup)
+mockup-*.html              # Product UI mockups (pre-interview, deepfake alert, dashboard)
+vero-*.html                # Fictional target company pages
+generate_audio.sh          # ElevenLabs audio generation script
+generate-narration.sh      # OpenAI TTS fallback script
+BRAND.md                   # Visual design guidelines
+CLARITY-BRANDING.md        # Logo, color, and typography specs
+NARRATION.md               # Slide-to-narration mapping
+```
+
+## Presentation Navigation
+
+- **Arrow keys** (left/right or up/down) navigate between slides
+- **Space / PageDown** = next slide, **PageUp** = previous
+- **Home / End** = first / last slide
+- Slides snap to full screen, scrollbar is hidden
+
+## Architecture Notes
+
+- All slides live in a single `presentation.html` file as `<section class="slide">` elements with `data-slide-id` attributes
+- CSS is embedded in `<style>` tags within the HTML (no external stylesheets)
+- JS is embedded at the bottom of `presentation.html` (no external scripts except `narration.js`)
+- Narration system: `narration.js` exports a `narrationScript` array; each entry maps a slide index to text and optional duration
 
 ## Current Focus: Identity Risk (NOT Skills)
+
 **Key pivot (2026-02-10):** Removed "AI Cheating Detection" from the storyline.
-- CISOs care more about **identity risks** than skills risks
-- Focus on: Is this person who they claim to be?
-- NOT: Did they cheat on an assessment?
+- CISOs care about **identity risks**, not skills risks
+- Focus: "Is this person who they claim to be?"
+- NOT: "Did they cheat on an assessment?"
+
+## Slide Structure (33 slides, 5 acts)
+
+1. **Act 1 — The Attack Story (slides 0-11):** Hook with Marcus Chen synthetic identity
+2. **Act 2 — The Scale (slides 12-17):** Statistics on hiring fraud epidemic
+3. **Act 3 — The Solution (slides 18-25):** Clarity's 3 detection moments
+4. **Act 4 — Two Pillars (slides 26-29):** Workflow integration + security integrations
+5. **Act 5 — Lifecycle & Close (slides 30-33):** Employee identity lifecycle, CTA
+
+## Design Rules
+
+These are firm preferences — follow them when modifying slides:
+
+- **One-line titles** — no wrapping; use `white-space: nowrap` if needed
+- **Show comparisons** — strikethrough old values next to new (e.g., ~~$240K~~ → $4.99M)
+- **Cite sources** — always add citations for statistics (SHRM, IBM, Ponemon)
+- **Real logos only** — use SVGs from `/logos/`, never text placeholders or invented SVGs
+- **No emojis in slides** — use geometric shapes, color indicators, or nothing
+- **Subtle animations** — rotating rings, pulsing elements, flowing arrows; nothing flashy
+
+## Visual Style
+
+- **Background:** `#F0F4F8` (light blue-gray)
+- **Text primary:** `#0a1628` (navy)
+- **Accent:** `#61F393` (Clarity green)
+- **Text secondary:** `#64748B` (slate)
+- **Danger:** `#EF4444` (red)
+- **Font:** Manrope, weights 400-800
+- **Aesthetic:** Enterprise-grade, professional, not playful
 
 ## Terminology
-- ✅ **Applicant Screening** — pre-hire CV/LinkedIn verification
-- ❌ ~~Background Verification~~ — sounds like traditional background checks
-- ✅ **Employee Identity Lifecycle** — the ecosystem of verification moments
 
-## Current Structure (33 slides)
+- Use **"Applicant Screening"** (not "Background Verification")
+- Use **"Employee Identity Lifecycle"** for the verification ecosystem
 
-### Act 1: The Attack Story (slides 1-11)
-- Hook: "Last night I wanted to break into Vero Financial"
-- Marcus Chen: synthetic identity created in one night
-- Background check passes — "he was born yesterday"
-- **$25 Million** deepfake headline (Arup) — redesigned for impact
-- "Would Marcus get an offer at YOUR company?"
+## Narration / Audio
 
-### Act 2: The Scale (slides 12-17)
-- 50x a day / numbers game
-- Bad hire costs ($240K, 6 months) — title on ONE LINE
-- Malicious insider ($4.99M ~~$240K~~, 292 days ~~6mo~~) — show comparison
-- Fortune 500 quote (NK IT workers)
-- Stats: 1 in 4 fake by 2028, 300+ NK workers, 220% increase
-
-### Act 3: The Solution (slides 18-25)
-- 3 validation pillars (exist? / who they claim? / story real?)
-- **3 moments where Clarity catches what others miss:**
-  1. Pre-interview: catches synthetic profiles
-  2. Mid-interview: real-time deepfake detection
-  3. Day 90: continuous verification
-
-### Act 4: Two Pillars (slides 26-29)
-- **Pillar A:** Deep Workflow Integration
-  - ATS: Greenhouse, Lever, Workday
-  - IAM/HRIS: **Okta, Workday, ServiceNow** ← enterprise priorities
-  - Video: Zoom, Teams, Meet
-  - Comms: Slack, MS Teams
-- **Pillar B:** Deep Security in Background
-  - Deepfake Detection, Biometric Match, Dark Web Hunting, Identity Signals
-  - SIEM: Splunk, Sentinel, CrowdStrike, Elastic, **Okta**
-
-### Act 5: Lifecycle & Close (slides 30-33)
-- **Employee Identity Lifecycle** — orbital visualization with animations
-  - Center: Employee hub (pulsing)
-  - Onboarding = "The Front Door" (entry gate to more use-cases)
-  - MFA Resets, Privileged Access, Periodic Checks orbit around
-  - Rotating orbital rings, flowing arrows
-- Promise: "Hire like you always have, without bad actors"
-- Close: "Never hire a bad-actor. Get Clarity."
-
-## Design Principles
-
-### Michael's Preferences — LEARNED
-- **One-line titles** — no awkward wrapping, use `white-space: nowrap` if needed
-- **Show comparisons** — crossed-out old values next to new (e.g., ~~$240K~~ → $4.99M)
-- **Cite sources** — always add citations for stats (SHRM, IBM, Ponemon)
-- **Actual logos** — never text placeholders; use SVG icons from brand kits
-- **Geometric visualizations** — orbits, lifecycles, ecosystems (not just cards)
-- **Subtle animations** — rotating rings, pulsing elements, flowing arrows
-- **Presentable** — keyboard navigation, full-screen slides, hidden scrollbar
-
-### Visual Style
-- **Light theme** — soft blue-gray `#F0F4F8` background
-- **Text:** Navy `#0a1628` (primary) + Green `#61F393` (accent)
-- **Manrope font** — brand font
-- **Enterprise-grade** — professional, not playful
-
-### Logos (local SVGs in /logos/)
-Working icons: Greenhouse, Okta, Zoom, Slack, Splunk, CrowdStrike, Elastic, Microsoft
-Text wordmarks: Lever, Workday, ServiceNow (couldn't get official SVGs)
-
-## Key Messages for CISOs
-1. Hiring is the new attack surface
-2. Traditional checks don't catch synthetic identities
-3. Deepfakes make "cameras on" insufficient
-4. Need continuous verification throughout employee lifecycle
-5. Clarity integrates into existing workflow (ATS, HRIS, SIEM)
-6. **Okta, ServiceNow, Workday** — enterprise IAM priorities
-
-## Narration Audio
 - **Voice:** Chad (ElevenLabs voice ID: `WQcQveC0hbQNvI69FWyU`)
-- **Files:** `audio/narration/slide-{0-31}.mp3`
-- **Scripts:** `narration.js` contains all slide text
 - **Model:** eleven_multilingual_v2
+- **Files:** `audio/narration/slide-{0-33}.mp3`
+- **Script source:** `narration.js` — array of `{ slide, text, duration }` objects
+- To regenerate: run `./generate_audio.sh` (requires ElevenLabs API key)
+
+## Logos
+
+**Working SVG icons** (in `/logos/`): Greenhouse, Okta, Zoom, Slack, Splunk, CrowdStrike, Elastic, Microsoft Teams, Azure AD, Ashby, Checkr, HireRight, Persona, Plaid, Onfido, Jira, Stripe, ICIMS
+
+**Text wordmarks** (need proper SVGs): Lever, Workday, ServiceNow
 
 ## Open Items
+
 - [ ] Get proper SVG logos for Lever, Workday, ServiceNow
 - [ ] Add actual product screenshots when available
 - [ ] Consider adding more animated slides
