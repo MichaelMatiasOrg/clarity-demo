@@ -1425,11 +1425,35 @@ function revealAnswer() {
             100% { opacity: 1; transform: scale(1); }
         }
         
-        /* Block indicator */
+        /* Block indicator - loops every 6s */
         @keyframes blockAppear {
-            0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-            40% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-            50%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            0%, 15% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            25%, 55% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            70%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        }
+        
+        /* Red dot ejection from blocked alert */
+        @keyframes threatEject {
+            0%, 25% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            30% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            35% { opacity: 1; transform: translate(-50%, -80px) scale(1); }
+            50% { opacity: 0.5; transform: translate(-30%, -120px) scale(0.7); }
+            60%, 100% { opacity: 0; transform: translate(-20%, -150px) scale(0.3); }
+        }
+        
+        /* Particle burst effect */
+        @keyframes particleBurst1 {
+            0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            35% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.4; transform: translate(-80px, -100px) scale(0.5); }
+            60%, 100% { opacity: 0; transform: translate(-100px, -120px) scale(0); }
+        }
+        @keyframes particleBurst2 {
+            0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            35% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.4; transform: translate(30px, -110px) scale(0.5); }
+            60%, 100% { opacity: 0; transform: translate(50px, -130px) scale(0); }
         }
         
         /* Verified badge animation */
@@ -1529,9 +1553,17 @@ function revealAnswer() {
                 <div style="color: var(--text-secondary);">→</div>
                 <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px; position: relative;">
                     <div style="font-size: 0.8rem; font-weight: 600;">Video<br>Interview</div>
-                    <!-- BLOCKED indicator appears here -->
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; animation: blockAppear 4s ease-out forwards; opacity: 0; z-index: 20; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);">
-                        🚫 THREAT BLOCKED
+                    <!-- BLOCKED indicator appears here - loops -->
+                    <div class="threat-block-container" style="position: absolute; top: 50%; left: 50%; z-index: 20;">
+                        <!-- Main alert badge -->
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; animation: blockAppear 6s ease-out infinite; opacity: 0; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);">
+                            🚫 THREAT BLOCKED
+                        </div>
+                        <!-- Red dot ejecting upward -->
+                        <div style="position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; background: #ef4444; border-radius: 50%; animation: threatEject 6s ease-out infinite; opacity: 0; box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);"></div>
+                        <!-- Particle effects -->
+                        <div style="position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: particleBurst1 6s ease-out infinite; opacity: 0;"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: particleBurst2 6s ease-out infinite; opacity: 0;"></div>
                     </div>
                     </div>
                 <div style="color: var(--text-secondary);">→</div>
