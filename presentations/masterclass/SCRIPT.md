@@ -95,4 +95,90 @@ Built in minutes. Tailored for this exact role.
 
 ---
 
-*Remaining slides to be scripted after audio generation test.*
+### Slide 7: linkedin
+**Core message:** Social proof is easily fabricated  
+**Duration:** ~12 seconds  
+**Script:**
+```
+LinkedIn profile. Five hundred connections. Endorsements from former colleagues. Work history at companies that won't respond to verification requests.
+
+All fake. All built in an afternoon.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 8: resume
+**Core message:** Credentials are easily fabricated  
+**Duration:** ~10 seconds  
+**Script:**
+```
+A resume built specifically for Vero. Financial services background. Payment processing experience. The exact tech stack they use.
+
+Marcus isn't a generic candidate. He's designed to be irresistible to this specific company.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 9: interview-deepfake
+**Core message:** Even live video interviews can be faked  
+**Duration:** ~12 seconds  
+**Script:**
+```
+Here's where it gets scary.
+
+On a video call, anyone can be anyone. Real-time deepfakes. Or a mule — someone else interviewing on Marcus's behalf.
+
+Either way, the person you hire isn't the person you interviewed.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 10: voice-quiz
+**Core message:** You can't tell AI voices from real ones  
+**Duration:** ~8 seconds  
+**Script:**
+```
+It's becoming nearly impossible to tell if you're talking to a human or a synthetic voice.
+
+Do you think you could spot the difference?
+
+Most people can't.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 11: background-check
+**Core message:** Traditional checks don't catch synthetic identities  
+**Duration:** ~12 seconds  
+**Script:**
+```
+Background check? All clear.
+
+Traditional checks look for bad records. Criminal history. Employment disputes.
+
+They don't verify the identity actually exists. And fake identities don't have bad records.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 12: every-stage
+**Core message:** Every stage of hiring can be bypassed  
+**Duration:** ~15 seconds  
+**Script:**
+```
+Let's recap what Marcus can do.
+
+Fake identity that passes screening. Deepfake video for interviews. Cloned voice that sounds authentic. Background check comes back clean.
+
+Every single stage of your hiring process — bypassed.
+```
+**Status:** [x] Approved
+
+---
+
+*Remaining slides to be scripted.*
