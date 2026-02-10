@@ -3231,7 +3231,7 @@ window.addEventListener('beforeunload', () => {
         const btn = document.createElement('button');
         btn.id = 'dev-mode-toggle';
         btn.innerHTML = '🛠️';
-        btn.title = 'Toggle Developer Mode (Alt+D)';
+        btn.title = 'Dev Mode (Alt+D) | ESC=exit, C=copy, ?=help';
         btn.style.cssText = `
             position: fixed;
             bottom: 20px;
@@ -3328,7 +3328,7 @@ window.addEventListener('beforeunload', () => {
             btn.style.background = '#61F393';
             btn.style.color = '#1a1a2e';
             btn.style.opacity = '1';
-            showToast('🛠️ Dev Mode ON - Hover to inspect, click to copy ID');
+            showToast('🛠️ Dev Mode ON — ESC=exit, C=copy, ?=help');
         } else {
             btn.style.background = '#1a1a2e';
             btn.style.color = 'white';
@@ -3425,11 +3425,43 @@ window.addEventListener('beforeunload', () => {
         e.stopPropagation();
     }
     
-    // Keyboard shortcut
+    // Keyboard shortcuts for dev mode
     function handleKeydown(e) {
+        // Alt+D: Toggle dev mode
         if (e.altKey && e.key === 'd') {
             toggleDevMode();
             e.preventDefault();
+            return;
+        }
+        
+        // Only handle these when dev mode is ON
+        if (!devModeEnabled) return;
+        
+        // ESC: Exit dev mode
+        if (e.key === 'Escape') {
+            toggleDevMode();
+            e.preventDefault();
+            return;
+        }
+        
+        // C: Copy current element (if hovering)
+        if (e.key === 'c' && highlightedEl && !e.metaKey && !e.ctrlKey) {
+            const devId = highlightedEl.dataset.devId;
+            const slideMatch = devId.match(/^s(\d+)/);
+            const slideNum = slideMatch ? slideMatch[1] : '?';
+            const context = `[Element: ${devId} | Slide ${slideNum}]`;
+            navigator.clipboard.writeText(context).then(() => {
+                showToast(`✓ Copied: ${devId}`);
+            });
+            e.preventDefault();
+            return;
+        }
+        
+        // ?: Show help
+        if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+            showToast('Shortcuts: ESC=exit, C=copy, Alt+D=toggle, ?=help');
+            e.preventDefault();
+            return;
         }
     }
     
