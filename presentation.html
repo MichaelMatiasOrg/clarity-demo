@@ -2243,96 +2243,90 @@ function revealAnswer() {
     <div class="slide-number">24</div>
 </section>
 
-<!-- Slide 25: Employee Identity Lifecycle -->
+<!-- Slide 25: Employee Identity Lifecycle - Circular -->
 <section class="slide" style="position: relative; overflow: hidden;">
-    <!-- Subtle background accents -->
-    <div style="position: absolute; top: -150px; right: -150px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(97, 243, 147, 0.08) 0%, transparent 70%); pointer-events: none;"></div>
+    <style>
+        @keyframes checkAppear1 { 0%, 20% { opacity: 0; transform: scale(0); } 30%, 100% { opacity: 1; transform: scale(1); } }
+        @keyframes checkAppear2 { 0%, 35% { opacity: 0; transform: scale(0); } 45%, 100% { opacity: 1; transform: scale(1); } }
+        @keyframes checkAppear3 { 0%, 50% { opacity: 0; transform: scale(0); } 60%, 100% { opacity: 1; transform: scale(1); } }
+        @keyframes checkAppear4 { 0%, 65% { opacity: 0; transform: scale(0); } 75%, 100% { opacity: 1; transform: scale(1); } }
+        .lifecycle-check-1 { animation: checkAppear1 2s ease-out forwards; }
+        .lifecycle-check-2 { animation: checkAppear2 2s ease-out forwards; }
+        .lifecycle-check-3 { animation: checkAppear3 2s ease-out forwards; }
+        .lifecycle-check-4 { animation: checkAppear4 2s ease-out forwards; }
+    </style>
     
-    <div style="max-width: 1100px; margin: 0 auto; padding: 0 40px;">
-        <h2 style="text-align: center; margin-bottom: 12px; font-size: 2.4rem;">The <span class="accent">Employee Identity Lifecycle</span></h2>
-        <p class="subtitle" style="text-align: center; margin-bottom: 50px; font-size: 1.1rem;">Verify identity at every critical moment — especially for remote employees</p>
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+        <h2 style="margin-bottom: 8px; font-size: 2.4rem;">The <span class="accent">Employee Identity Lifecycle</span></h2>
+        <p class="subtitle" style="margin-bottom: 40px;">Clarity verifies identity at every critical moment</p>
         
-        <!-- Simple horizontal flow -->
-        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 24px;">
+        <!-- Circular Lifecycle -->
+        <div style="position: relative; width: 500px; height: 500px; margin: 0 auto;">
+            <!-- Connecting circle/ring -->
+            <svg style="position: absolute; inset: 0; width: 100%; height: 100%;" viewBox="0 0 500 500">
+                <circle cx="250" cy="250" r="180" fill="none" stroke="#e2e8f0" stroke-width="3" stroke-dasharray="8 8"/>
+                <!-- Directional arrows on the ring -->
+                <path d="M250 70 L255 80 L245 80 Z" fill="#61F393"/>
+                <path d="M430 250 L420 245 L420 255 Z" fill="#61F393"/>
+                <path d="M250 430 L245 420 L255 420 Z" fill="#61F393"/>
+                <path d="M70 250 L80 255 L80 245 Z" fill="#61F393"/>
+            </svg>
             
-            <!-- The Gate -->
-            <div style="text-align: center; width: 200px;">
-                <div style="background: linear-gradient(145deg, #61F393 0%, #4ade80 100%); border-radius: 16px; padding: 28px 20px; margin-bottom: 16px;">
-                    <div style="width: 56px; height: 56px; background: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                            <path d="M9 12l2 2 4-4" stroke="#0a1628" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="12" cy="12" r="10" stroke="#0a1628" stroke-width="2"/>
-                        </svg>
+            <!-- Center - Clarity logo -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 36px; margin-bottom: 8px;">
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Covers all stages</p>
+            </div>
+            
+            <!-- TOP: Onboarding (Biggest - Starting Point) -->
+            <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); text-align: center;">
+                <div style="background: linear-gradient(145deg, #61F393 0%, #4ade80 100%); border-radius: 20px; padding: 24px 32px; box-shadow: 0 8px 30px rgba(97, 243, 147, 0.3); position: relative;">
+                    <div class="lifecycle-check-1" style="position: absolute; top: -10px; right: -10px; width: 28px; height: 28px; background: var(--text-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#61F393" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <h3 style="margin: 0 0 6px; font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">Onboarding</h3>
-                    <p style="font-size: 0.8rem; color: var(--text-primary); opacity: 0.8; margin: 0;">Identity verification<br>before access</p>
-                </div>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;"><strong>Day 1</strong></p>
-            </div>
-            
-            <!-- Arrow -->
-            <div style="display: flex; align-items: center; padding-top: 60px; color: var(--border);">
-                <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
-                    <path d="M0 12h36M30 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            
-            <!-- Periodic Checks -->
-            <div style="text-align: center; width: 200px;">
-                <div style="background: white; border-radius: 16px; padding: 28px 20px; margin-bottom: 16px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-                    <div style="width: 56px; height: 56px; background: var(--text-primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
-                            <path d="M12 6v6l4 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
+                    <div style="font-size: 1.3rem; margin-bottom: 4px;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#0a1628" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="12" r="10" stroke="#0a1628" stroke-width="2"/></svg>
                     </div>
-                    <h3 style="margin: 0 0 6px; font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">Periodic Checks</h3>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Ongoing validation<br>— still them?</p>
+                    <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">Onboarding</h3>
+                    <p style="font-size: 0.75rem; color: var(--text-primary); opacity: 0.7; margin: 4px 0 0;">Day 1 verification</p>
                 </div>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;"><strong>Ongoing</strong></p>
+                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600; margin-top: 8px;">START</div>
             </div>
             
-            <!-- Arrow -->
-            <div style="display: flex; align-items: center; padding-top: 60px; color: var(--border);">
-                <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
-                    <path d="M0 12h36M30 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            
-            <!-- MFA Resets -->
-            <div style="text-align: center; width: 200px;">
-                <div style="background: white; border-radius: 16px; padding: 28px 20px; margin-bottom: 16px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-                    <div style="width: 56px; height: 56px; background: var(--text-primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                            <rect x="5" y="11" width="14" height="10" rx="2" stroke="white" stroke-width="2"/>
-                            <path d="M8 11V7a4 4 0 118 0v4" stroke="white" stroke-width="2"/>
-                        </svg>
+            <!-- RIGHT: Periodic Checks -->
+            <div style="position: absolute; right: -30px; top: 50%; transform: translateY(-50%); text-align: center;">
+                <div style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
+                    <div class="lifecycle-check-2" style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#0a1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <h3 style="margin: 0 0 6px; font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">MFA Resets</h3>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Social engineering<br>defense</p>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px;"><circle cx="12" cy="12" r="10" stroke="#0a1628" stroke-width="2"/><path d="M12 6v6l4 2" stroke="#0a1628" stroke-width="2" stroke-linecap="round"/></svg>
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--text-primary); font-weight: 700;">Periodic Checks</h3>
+                    <p style="font-size: 0.7rem; color: var(--text-secondary); margin: 2px 0 0;">Ongoing</p>
                 </div>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;"><strong>On demand</strong></p>
             </div>
             
-            <!-- Arrow -->
-            <div style="display: flex; align-items: center; padding-top: 60px; color: var(--border);">
-                <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
-                    <path d="M0 12h36M30 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            
-            <!-- Privileged Access -->
-            <div style="text-align: center; width: 200px;">
-                <div style="background: white; border-radius: 16px; padding: 28px 20px; margin-bottom: 16px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-                    <div style="width: 56px; height: 56px; background: var(--text-primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+            <!-- BOTTOM: Privileged Access -->
+            <div style="position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); text-align: center;">
+                <div style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
+                    <div class="lifecycle-check-3" style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#0a1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <h3 style="margin: 0 0 6px; font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">Privileged Access</h3>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Re-verify for<br>sensitive ops</p>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px;"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--text-primary); font-weight: 700;">Privileged Access</h3>
+                    <p style="font-size: 0.7rem; color: var(--text-secondary); margin: 2px 0 0;">Sensitive ops</p>
                 </div>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;"><strong>Sensitive actions</strong></p>
+            </div>
+            
+            <!-- LEFT: MFA Resets -->
+            <div style="position: absolute; left: -30px; top: 50%; transform: translateY(-50%); text-align: center;">
+                <div style="background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative;">
+                    <div class="lifecycle-check-4" style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#0a1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px;"><rect x="5" y="11" width="14" height="10" rx="2" stroke="#0a1628" stroke-width="2"/><path d="M8 11V7a4 4 0 118 0v4" stroke="#0a1628" stroke-width="2"/></svg>
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--text-primary); font-weight: 700;">MFA Resets</h3>
+                    <p style="font-size: 0.7rem; color: var(--text-secondary); margin: 2px 0 0;">On demand</p>
+                </div>
             </div>
         </div>
     </div>
