@@ -1680,87 +1680,92 @@ function revealAnswer() {
             </p>
         </div>
         
-        <!-- Right: Product Dashboard -->
+        <!-- Right: Product Screenshot - Professional Dashboard -->
         <div class="demo-frame" style="transform: scale(1.02); transform-origin: center right;">
-            <!-- Clarity Interview Monitor Dashboard -->
-            <div style="background: #0f172a; border-radius: 12px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
-                <!-- Header -->
-                <div style="background: #1e293b; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 18px; filter: brightness(0) invert(1);">
-                        <span style="color: white; font-size: 0.8rem; font-weight: 600;">Interview Security Monitor</span>
+            <!-- Clarity Interview Security Dashboard - Enterprise Style -->
+            <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+                <!-- App Header with Navigation -->
+                <div style="background: #0f172a; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 30px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 22px; filter: brightness(0) invert(1);">
+                        </div>
+                        <nav style="display: flex; gap: 24px;">
+                            <span style="color: #64748b; font-size: 0.8rem; cursor: pointer;">Dashboard</span>
+                            <span style="color: #64748b; font-size: 0.8rem; cursor: pointer;">Candidates</span>
+                            <span style="color: white; font-size: 0.8rem; font-weight: 600; border-bottom: 2px solid #61F393; padding-bottom: 2px;">Interviews</span>
+                            <span style="color: #64748b; font-size: 0.8rem; cursor: pointer;">Reports</span>
+                        </nav>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <div style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; display: flex; align-items: center; gap: 4px;">
-                            <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: pulse 1s infinite;"></span>
-                            THREAT DETECTED
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="background: #ef4444; color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 6px; animation: pulse 1.5s infinite;">
+                            <span style="width: 8px; height: 8px; background: white; border-radius: 50%;"></span>
+                            LIVE THREAT
                         </div>
                     </div>
                 </div>
                 
-                <!-- Main Content -->
-                <div style="padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-                    <!-- Left: Video Feed -->
-                    <div>
-                        <!-- Candidate Card -->
-                        <div style="background: #1e293b; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #374151, #1f2937); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <span style="font-size: 1.1rem;">👤</span>
-                                </div>
-                                <div>
-                                    <div style="color: white; font-size: 0.85rem; font-weight: 600;">Marcus Chen</div>
-                                    <div style="color: #94a3b8; font-size: 0.7rem;">Technical Interview • Round 2</div>
-                                </div>
-                                <div style="margin-left: auto; background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.6rem; font-weight: 700;">HIGH RISK</div>
-                            </div>
+                <!-- Alert Banner -->
+                <div style="background: linear-gradient(90deg, #fef2f2 0%, #fee2e2 100%); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #fecaca;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 36px; height: 36px; background: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <span style="color: white; font-size: 1.1rem;">!</span>
                         </div>
-                        
-                        <!-- Video Feed Placeholder -->
-                        <div style="background: #1e293b; border-radius: 8px; aspect-ratio: 16/10; position: relative; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(239,68,68,0.4);">
-                            <div style="width: 60px; height: 70px; background: linear-gradient(180deg, #475569, #334155); border-radius: 50% 50% 45% 45%; position: relative;">
-                                <div style="position: absolute; top: 30%; left: 22%; width: 10px; height: 6px; background: #1e293b; border-radius: 50%;"></div>
-                                <div style="position: absolute; top: 30%; right: 22%; width: 10px; height: 6px; background: #1e293b; border-radius: 50%;"></div>
-                            </div>
-                            <!-- Detection Overlay -->
-                            <div style="position: absolute; inset: 15%; border: 2px solid rgba(239,68,68,0.6); border-radius: 50% 50% 45% 45%;"></div>
-                            <div style="position: absolute; top: 8px; left: 8px; background: rgba(239,68,68,0.9); color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.55rem; font-weight: 600;">⚠️ ANOMALY DETECTED</div>
-                            <div style="position: absolute; bottom: 8px; right: 8px; color: #ef4444; font-size: 0.6rem;">● REC 23:41</div>
+                        <div>
+                            <div style="color: #991b1b; font-weight: 700; font-size: 0.9rem;">High-Confidence Deepfake Detected</div>
+                            <div style="color: #b91c1c; font-size: 0.75rem;">Multiple fraud signals confirmed — Interview automatically paused</div>
+                        </div>
+                    </div>
+                    <button style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Review & Block</button>
+                </div>
+                
+                <!-- Main Content Grid -->
+                <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 0; min-height: 280px;">
+                    <!-- Left: Video Feed with Real Photo -->
+                    <div style="padding: 20px; background: #f8fafc; border-right: 1px solid #e2e8f0;">
+                        <div style="position: relative; border-radius: 8px; overflow: hidden; border: 3px solid #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.2);">
+                            <img src="marcus-chen-zoom.png" alt="Video Feed" style="width: 100%; display: block; filter: brightness(0.95);">
+                            <!-- Overlay indicators -->
+                            <div style="position: absolute; top: 10px; left: 10px; background: rgba(239,68,68,0.95); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.65rem; font-weight: 700;">⚠️ ANOMALY DETECTED</div>
+                            <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.6rem;">Marcus Chen • Technical Interview</div>
+                            <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(239,68,68,0.9); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.6rem;">● REC 23:41</div>
                         </div>
                     </div>
                     
-                    <!-- Right: Analysis -->
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <!-- Risk Score -->
-                        <div style="background: linear-gradient(135deg, #7f1d1d, #991b1b); border-radius: 8px; padding: 14px; text-align: center;">
-                            <div style="color: rgba(255,255,255,0.7); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px;">Risk Score</div>
-                            <div style="color: white; font-size: 2rem; font-weight: 800;">94</div>
-                        </div>
-                        
-                        <!-- Signals -->
-                        <div style="background: #1e293b; border-radius: 8px; padding: 10px;">
-                            <div style="color: #94a3b8; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Detection Signals</div>
-                            
-                            <div style="display: flex; flex-direction: column; gap: 6px;">
-                                <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; background: rgba(239,68,68,0.1); border-radius: 4px; border-left: 3px solid #ef4444;">
-                                    <span style="color: #fca5a5; font-size: 0.7rem;">🎭 Face Analysis</span>
-                                    <span style="color: #ef4444; font-size: 0.7rem; font-weight: 700;">96%</span>
-                                </div>
-                                <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; background: rgba(239,68,68,0.1); border-radius: 4px; border-left: 3px solid #ef4444;">
-                                    <span style="color: #fca5a5; font-size: 0.7rem;">🎤 Voice Cloning</span>
-                                    <span style="color: #ef4444; font-size: 0.7rem; font-weight: 700;">89%</span>
-                                </div>
-                                <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; background: rgba(239,68,68,0.1); border-radius: 4px; border-left: 3px solid #ef4444;">
-                                    <span style="color: #fca5a5; font-size: 0.7rem;">👤 Identity Match</span>
-                                    <span style="color: #ef4444; font-size: 0.7rem; font-weight: 700;">23%</span>
+                    <!-- Right: Analysis Panel -->
+                    <div style="padding: 20px;">
+                        <!-- Risk Score Card -->
+                        <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                            <div style="flex: 1; background: linear-gradient(135deg, #dc2626, #b91c1c); border-radius: 10px; padding: 16px; text-align: center; color: white;">
+                                <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 4px;">Risk Score</div>
+                                <div style="font-size: 2.2rem; font-weight: 800; line-height: 1;">94</div>
+                                <div style="font-size: 0.6rem; opacity: 0.7;">/100</div>
+                            </div>
+                            <div style="flex: 2;">
+                                <div style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Detection Summary</div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
+                                        <span style="font-size: 0.75rem; color: #374151;">Face Manipulation</span>
+                                        <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">96%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
+                                        <span style="font-size: 0.75rem; color: #374151;">Voice Cloning</span>
+                                        <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">89%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
+                                        <span style="font-size: 0.75rem; color: #374151;">Identity Match</span>
+                                        <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">23%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Verdict -->
-                        <div style="background: #ef4444; border-radius: 8px; padding: 10px; text-align: center;">
-                            <div style="color: white; font-size: 0.75rem; font-weight: 700;">⚠️ Deepfake Confirmed</div>
-                            <div style="color: rgba(255,255,255,0.8); font-size: 0.6rem; margin-top: 4px;">Interview terminated • Alert sent</div>
+                        <!-- Action Status -->
+                        <div style="background: #0f172a; border-radius: 8px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #61F393;">✓</span>
+                                <span style="color: white; font-size: 0.75rem;">Interview paused • Slack alert sent • Incident created</span>
+                            </div>
+                            <span style="color: #64748b; font-size: 0.65rem;">2 sec ago</span>
                         </div>
                     </div>
                 </div>
