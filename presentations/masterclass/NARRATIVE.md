@@ -1,8 +1,18 @@
-# Clarity Presentation - Narrative & Speaker Notes
+# Masterclass: Hiring Identity Fraud
+## Guidepoint CISO Event - Narrative & Speaker Notes
 
+> **Event:** Guidepoint Security CISO Masterclass  
+> **Presenter:** Michael Matias, Co-Founder & CEO, Clarity  
 > **Audience:** CISOs and security leaders at large enterprises  
+> **Duration:** ~30 minutes  
 > **Goal:** Book follow-up meetings, offer CV/interview review, DPRK database matching  
 > **Last updated:** 2026-02-11
+
+### How to Use This Document
+1. **This is the source of truth** - slides serve this narrative, not the other way around
+2. **Each slide has:** Title, Goal (why it exists), Speaker Notes (what to say)
+3. **When adding slides:** Add the narrative entry FIRST, then build the slide
+4. **When editing:** Update narrative here, then update slides to match
 
 ---
 
