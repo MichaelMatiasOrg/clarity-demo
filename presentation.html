@@ -1366,15 +1366,92 @@ function revealAnswer() {
     <div class="slide-number" style="color: rgba(255,255,255,0.3);">17</div>
 </section>
 
-<!-- Slide 18: End-to-End Protection Flow -->
-<section id="section-solution" class="slide" style="position: relative; overflow: hidden;">
+<!-- Slide 18: End-to-End Protection Flow (Animated Gauntlet) -->
+<section id="section-solution" class="slide gauntlet-slide" style="position: relative; overflow: hidden;">
+    <style>
+        .gauntlet-slide .gauntlet-container { max-width: 1100px; margin: 0 auto; text-align: center; }
+        
+        /* Candidate animations */
+        @keyframes candidateGoodPath {
+            0% { left: -40px; opacity: 0; }
+            5% { left: -40px; opacity: 1; }
+            20% { left: calc(10% + 55px); } /* At stage 1 */
+            35% { left: calc(26% + 55px); } /* At stage 2 */
+            50% { left: calc(42% + 55px); } /* At stage 3 */
+            65% { left: calc(58% + 55px); } /* At stage 4 */
+            80%, 100% { left: calc(78% + 20px); opacity: 1; } /* At trusted hire */
+        }
+        
+        @keyframes candidateThreatPath {
+            0% { left: -40px; opacity: 0; top: 50%; }
+            5% { left: -40px; opacity: 1; top: 50%; }
+            20% { left: calc(10% + 55px); top: 50%; } /* At stage 1 */
+            35% { left: calc(26% + 55px); top: 50%; } /* At stage 2 - gets caught here */
+            40% { left: calc(26% + 55px); top: 50%; transform: translateY(-50%) scale(1.2); }
+            50% { left: calc(26% + 55px); top: 120%; transform: translateY(-50%) scale(0.5); opacity: 0; }
+            100% { left: calc(26% + 55px); top: 120%; opacity: 0; }
+        }
+        
+        /* Scan pulse animation */
+        @keyframes scanPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(97, 243, 147, 0); }
+            50% { box-shadow: 0 0 0 15px rgba(97, 243, 147, 0.3); }
+        }
+        
+        @keyframes scanPulseRed {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+            50% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0.4); }
+        }
+        
+        /* Checkmark appear */
+        @keyframes checkAppear {
+            0%, 90% { opacity: 0; transform: scale(0); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Block indicator */
+        @keyframes blockAppear {
+            0%, 35% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            40% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            45%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        /* Success celebration */
+        @keyframes celebratePulse {
+            0%, 75% { box-shadow: 0 4px 20px rgba(97, 243, 147, 0.3); }
+            85% { box-shadow: 0 0 0 20px rgba(97, 243, 147, 0.4), 0 0 0 40px rgba(97, 243, 147, 0.2); }
+            100% { box-shadow: 0 0 0 30px rgba(97, 243, 147, 0), 0 0 0 60px rgba(97, 243, 147, 0); }
+        }
+        
+        /* Check station scanning */
+        .gauntlet-slide .check-station-1 { animation: scanPulse 0.6s ease-out 2s 1; }
+        .gauntlet-slide .check-station-2 { animation: scanPulse 0.6s ease-out 3.5s 1, scanPulseRed 0.8s ease-out 3.8s 1; }
+        .gauntlet-slide .check-station-3 { animation: scanPulse 0.6s ease-out 5s 1; }
+        
+        /* Verified badge animation */
+        @keyframes verifiedAppear {
+            0%, 80% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .gauntlet-slide .verified-badge {
+            animation: verifiedAppear 0.5s ease-out 8s forwards;
+            opacity: 0;
+        }
+        
+        /* Trusted hire celebration */
+        .gauntlet-slide .trusted-hire-circle {
+            animation: celebratePulse 1.5s ease-out 7.5s 1;
+        }
+    </style>
+    
     <!-- Geometric accents -->
     <div style="position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; border: 2px solid rgba(97, 243, 147, 0.08); border-radius: 50%; pointer-events: none;"></div>
     <div style="position: absolute; bottom: -30px; left: -30px; width: 120px; height: 120px; border: 2px solid rgba(10, 22, 40, 0.05); border-radius: 50%; pointer-events: none;"></div>
     
-    <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <div class="gauntlet-container">
         <h2 style="margin-bottom: 8px;">End-to-End Protection <span class="accent">Built-in</span></h2>
-        <p class="subtitle" style="margin-bottom: 50px;">Seamlessly inside the talent acquisition flow</p>
+        <p class="subtitle" style="margin-bottom: 40px;">Watch Clarity protect every step of your hiring pipeline</p>
         
         <!-- Clarity Checks Layer -->
         <div style="margin-bottom: 20px;">
@@ -1386,17 +1463,29 @@ function revealAnswer() {
                 <!-- Dashed connection line -->
                 <div style="position: absolute; top: 50%; left: 15%; right: 15%; height: 2px; border-top: 2px dashed rgba(97, 243, 147, 0.4); z-index: 0;"></div>
                 
-                <div style="background: white; border: 2px solid #61F393; border-radius: 12px; padding: 18px 22px; text-align: center; position: relative; z-index: 1; min-width: 140px;">
+                <div class="check-station-1" style="background: white; border: 2px solid #61F393; border-radius: 12px; padding: 18px 22px; text-align: center; position: relative; z-index: 1; min-width: 140px; transition: all 0.3s;">
                     <div style="color: #61F393; font-size: 1.2rem; margin-bottom: 6px;">✦</div>
                     <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Applicant<br>Screening</div>
+                    <!-- Checkmark overlay -->
+                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 2.5s forwards; opacity: 0;">
+                        <span style="color: white; font-size: 14px; font-weight: bold;">✓</span>
+                    </div>
                 </div>
-                <div style="background: white; border: 2px solid #61F393; border-radius: 12px; padding: 18px 22px; text-align: center; position: relative; z-index: 1; min-width: 140px;">
+                <div class="check-station-2" style="background: white; border: 2px solid #61F393; border-radius: 12px; padding: 18px 22px; text-align: center; position: relative; z-index: 1; min-width: 140px; transition: all 0.3s;">
                     <div style="color: #61F393; font-size: 1.2rem; margin-bottom: 6px;">✦</div>
                     <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">AI Deepfake<br>Detection</div>
+                    <!-- Checkmark overlay -->
+                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 5s forwards; opacity: 0;">
+                        <span style="color: white; font-size: 14px; font-weight: bold;">✓</span>
+                    </div>
                 </div>
-                <div style="background: white; border: 2px solid #61F393; border-radius: 12px; padding: 18px 22px; text-align: center; position: relative; z-index: 1; min-width: 140px;">
+                <div class="check-station-3" style="background: white; border: 2px solid #61F393; border-radius: 12px; padding: 18px 22px; text-align: center; position: relative; z-index: 1; min-width: 140px; transition: all 0.3s;">
                     <div style="color: #61F393; font-size: 1.2rem; margin-bottom: 6px;">✦</div>
                     <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Identity<br>Check</div>
+                    <!-- Checkmark overlay -->
+                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 6.5s forwards; opacity: 0;">
+                        <span style="color: white; font-size: 14px; font-weight: bold;">✓</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1406,32 +1495,59 @@ function revealAnswer() {
             <span>↓</span><span>↓</span><span>↓</span>
         </div>
         
-        <!-- Hiring Flow -->
-        <div style="display: flex; justify-content: center; align-items: center; gap: 15px;">
-            <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px;">
-                <div style="font-size: 0.8rem; font-weight: 600;">Candidate is<br>Sourced</div>
+        <!-- Hiring Flow with Candidates -->
+        <div style="position: relative; padding: 20px 0;">
+            <!-- Pipeline Track -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; position: relative;">
+                <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px;">
+                    <div style="font-size: 0.8rem; font-weight: 600;">Candidate is<br>Sourced</div>
+                </div>
+                <div style="color: var(--text-secondary);">→</div>
+                <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px; position: relative;">
+                    <div style="font-size: 0.8rem; font-weight: 600;">Application<br>Screening</div>
+                </div>
+                <div style="color: var(--text-secondary);">→</div>
+                <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px; position: relative;">
+                    <div style="font-size: 0.8rem; font-weight: 600;">Video<br>Interview</div>
+                    <!-- BLOCKED indicator appears here -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; animation: blockAppear 10s ease-out forwards; opacity: 0; z-index: 20; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);">
+                        🚫 THREAT BLOCKED
+                    </div>
+                </div>
+                <div style="color: var(--text-secondary);">→</div>
+                <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px;">
+                    <div style="font-size: 0.8rem; font-weight: 600;">Final<br>Offer</div>
+                </div>
+                <div style="color: var(--text-secondary);">→</div>
+                <div class="trusted-hire-circle" style="background: #61F393; color: var(--text-primary); border-radius: 50%; width: 90px; height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                    <div style="font-size: 1.3rem; margin-bottom: 4px;">🏆</div>
+                    <div style="font-size: 0.75rem; font-weight: 700;">Trusted<br>Hire</div>
+                </div>
             </div>
-            <div style="color: var(--text-secondary);">→</div>
-            <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px;">
-                <div style="font-size: 0.8rem; font-weight: 600;">Application<br>Screening</div>
-            </div>
-            <div style="color: var(--text-secondary);">→</div>
-            <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px;">
-                <div style="font-size: 0.8rem; font-weight: 600;">Video<br>Interview</div>
-            </div>
-            <div style="color: var(--text-secondary);">→</div>
-            <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px;">
-                <div style="font-size: 0.8rem; font-weight: 600;">Final<br>Offer</div>
-            </div>
-            <div style="color: var(--text-secondary);">→</div>
-            <div style="background: #61F393; color: var(--text-primary); border-radius: 50%; width: 90px; height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(97, 243, 147, 0.3);">
-                <div style="font-size: 1.3rem; margin-bottom: 4px;">🏆</div>
-                <div style="font-size: 0.75rem; font-weight: 700;">Trusted<br>Hire</div>
+            
+            <!-- Animated Candidates Layer -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;">
+                <!-- Good Candidate (blue dot) -->
+                <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5); animation: candidateGoodPath 10s ease-in-out forwards; z-index: 10;">
+                    <span style="font-size: 16px;">👤</span>
+                </div>
+                
+                <!-- Threat Candidate (red-tinted dot) -->
+                <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: linear-gradient(135deg, #ef4444, #b91c1c); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5); animation: candidateThreatPath 10s ease-in-out forwards; animation-delay: 0.8s; z-index: 10;">
+                    <span style="font-size: 16px;">👤</span>
+                </div>
             </div>
         </div>
         
-        <p style="margin-top: 40px; color: var(--text-secondary); font-size: 1rem;">
-            We understand hiring is complex. Clarity integrates seamlessly — no workflow changes required.
+        <!-- Verified badge that appears at end -->
+        <div class="verified-badge" style="margin-top: 30px;">
+            <span style="background: linear-gradient(135deg, #61F393, #4ade80); color: var(--text-primary); padding: 10px 24px; border-radius: 30px; font-weight: 700; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(97, 243, 147, 0.3);">
+                ✓ Legitimate candidate verified &nbsp;•&nbsp; Threat neutralized before damage
+            </span>
+        </div>
+        
+        <p style="margin-top: 25px; color: var(--text-secondary); font-size: 1rem;">
+            No workflow changes required. Clarity works invisibly inside your existing process.
         </p>
     </div>
     <div class="slide-number">19</div>
@@ -1861,8 +1977,8 @@ function revealAnswer() {
     
     // Restart animations on a slide
     function restartAnimations(slide) {
-        // Find all animated elements
-        const animatedElements = slide.querySelectorAll('.orbit-outer, .orbit-inner, .center-hub, .touchpoint, .flow-arrow');
+        // Find all animated elements (orbit, gauntlet, etc.)
+        const animatedElements = slide.querySelectorAll('.orbit-outer, .orbit-inner, .center-hub, .touchpoint, .flow-arrow, .check-station-1, .check-station-2, .check-station-3, .trusted-hire-circle, .verified-badge');
         animatedElements.forEach(el => {
             // Clone and replace to restart CSS animations
             const clone = el.cloneNode(true);
@@ -1876,6 +1992,15 @@ function revealAnswer() {
             el.offsetHeight; // Trigger reflow
             el.style.animation = '';
         });
+        
+        // Restart gauntlet candidate animations by cloning the container
+        if (slide.classList.contains('gauntlet-slide')) {
+            const candidates = slide.querySelectorAll('[style*="candidateGoodPath"], [style*="candidateThreatPath"], [style*="blockAppear"], [style*="checkAppear"]');
+            candidates.forEach(el => {
+                const clone = el.cloneNode(true);
+                el.parentNode.replaceChild(clone, el);
+            });
+        }
     }
     
     // Go to specific slide
