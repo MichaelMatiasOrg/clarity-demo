@@ -3574,6 +3574,11 @@ I selected this element using Dev Mode on the Clarity presentation. Help me impr
         document.addEventListener('mousemove', handleDevMouseMove);
         document.addEventListener('click', handleDevClick, true);
         document.addEventListener('keydown', handleKeydown);
+        
+        // Auto-enable dev mode if ?dev=1 in URL
+        if (new URLSearchParams(window.location.search).get('dev') === '1') {
+            setTimeout(toggleDevMode, 500);
+        }
     });
     
     // Re-run if already loaded
