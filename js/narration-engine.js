@@ -66,10 +66,14 @@ class NarrationEngine {
         });
 
         // Preload audio files (dynamic count from data)
+        // Uses audioIndex when present to decouple entry order from audio file numbering
         this.audioFiles = {};
         for (let i = 0; i < this.data.entries.length; i++) {
-            this.audioFiles[i] = new Audio(this.data.meta.audioPathPattern.replace('{index}', i));
-            this.audioFiles[i].preload = 'auto';
+            const audioIdx = this.data.entries[i].audioIndex;
+            if (audioIdx !== undefined) {
+                this.audioFiles[i] = new Audio(this.data.meta.audioPathPattern.replace('{index}', audioIdx));
+                this.audioFiles[i].preload = 'auto';
+            }
         }
 
         // Inject UI elements
@@ -318,6 +322,9 @@ class NarrationEngine {
                 }
             }
 
+            // Invalidate stale onended/onerror callbacks before starting new playback
+            this.playbackGeneration++;
+
             if (!this.isPaused) {
                 this.playCurrentSlide();
             } else {
@@ -495,6 +502,10 @@ class NarrationEngine {
             this.currentAudio.play().catch(() => {
                 if (generation !== this.playbackGeneration) return;
                 if (!this.isPaused && this.isPlaying) {
+                    if (!this._audioBlockWarned) {
+                        this._audioBlockWarned = true;
+                        this._showAudioBlockedWarning();
+                    }
                     this.currentNarrationIndex++;
                     this.narrationTimeout = setTimeout(() => this.playCurrentSlide(), narration.duration / this.playbackSpeed);
                 }
@@ -615,6 +626,20 @@ class NarrationEngine {
         } else {
             this.subtitlesContainer.classList.remove('active');
         }
+    }
+
+    _showAudioBlockedWarning() {
+        const toast = document.createElement('div');
+        toast.textContent = 'Audio blocked by browser — click anywhere to enable sound';
+        toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#0a1628;color:#fff;padding:12px 24px;border-radius:8px;font-family:Manrope,sans-serif;font-size:0.85rem;z-index:10000;opacity:0;transition:opacity 0.3s;cursor:pointer;';
+        document.body.appendChild(toast);
+        requestAnimationFrame(() => { toast.style.opacity = '1'; });
+        const dismiss = () => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        };
+        toast.addEventListener('click', dismiss, { once: true });
+        setTimeout(dismiss, 5000);
     }
 
     _updateSubtitles(text, audioDurationMs) {

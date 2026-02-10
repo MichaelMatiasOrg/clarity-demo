@@ -73,9 +73,11 @@
         if (index >= slides.length) index = slides.length - 1;
         currentSlide = index;
 
+        keyboardNavigating = true;
         restartAnimations(slides[currentSlide]);
         slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
         updateIndicator();
+        setTimeout(() => { keyboardNavigating = false; }, 600);
     }
     window.goToSlide = goToSlide;
 
@@ -109,7 +111,7 @@
 
     // Track current slide on scroll
     let scrollTimeout;
-    document.body.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             currentSlide = getCurrentSlideFromScroll();
@@ -119,10 +121,11 @@
 
     // Restart animations when slides scroll into view
     let lastVisibleSlide = null;
+    let keyboardNavigating = false;
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
-                if (lastVisibleSlide !== entry.target) {
+                if (lastVisibleSlide !== entry.target && !keyboardNavigating) {
                     lastVisibleSlide = entry.target;
                     restartAnimations(entry.target);
                 }
