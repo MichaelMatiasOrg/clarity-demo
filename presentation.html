@@ -2353,32 +2353,33 @@ function revealAnswer() {
     /* Start Presentation Button - subtle, corner placement */
     #start-presentation-btn {
         position: fixed;
-        bottom: 20px;
-        left: 20px;
-        background: transparent;
-        color: #94a3b8;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 6px;
-        font-size: 0.75rem;
-        font-weight: 500;
+        bottom: 24px;
+        left: 24px;
+        background: rgba(10, 22, 40, 0.85);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 10px 16px;
+        border-radius: 24px;
+        font-size: 0.8rem;
+        font-weight: 600;
         cursor: pointer;
         z-index: 100;
         display: flex;
         align-items: center;
-        gap: 6px;
-        opacity: 0.4;
+        gap: 8px;
+        backdrop-filter: blur(10px);
         transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
     #start-presentation-btn:hover {
-        opacity: 0.8;
-        color: #64748b;
-        background: rgba(0,0,0,0.03);
+        background: rgba(10, 22, 40, 0.95);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.2);
     }
     #start-presentation-btn svg {
-        fill: currentColor;
-        width: 14px;
-        height: 14px;
+        fill: #61F393;
+        width: 16px;
+        height: 16px;
     }
     #start-presentation-btn.hidden {
         opacity: 0;
@@ -2420,6 +2421,12 @@ function revealAnswer() {
         gap: 20px;
         z-index: 10000;
         box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        opacity: 0.25;
+        transition: opacity 0.4s ease;
+    }
+    #presentation-controls:hover,
+    #presentation-controls.visible {
+        opacity: 1;
     }
     #presentation-controls.active {
         display: flex;
@@ -2553,9 +2560,9 @@ function revealAnswer() {
 </style>
 
 <!-- Start Presentation Button -->
-<button id="start-presentation-btn" onclick="startPresentation()" title="Listen to audio narration">
-    <svg viewBox="0 0 24 24" width="14" height="14"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-    🎧 Audio
+<button id="start-presentation-btn" onclick="startPresentation()" title="Listen to narrated presentation">
+    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z"/></svg>
+    Listen
 </button>
 
 <!-- Autoplay Overlay -->
@@ -2935,19 +2942,32 @@ function playCurrentSlide() {
 
 function togglePause() {
     if (isPaused) {
-        // Resume
+        // Resume - check if user scrolled to a different slide
+        const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
+        const slideHeight = window.innerHeight;
+        const currentSlideIndex = Math.round(scrollPos / slideHeight);
+        
+        // Find narration for current slide
+        const newIndex = narrationScript.findIndex(n => n.slide >= currentSlideIndex);
+        if (newIndex !== -1 && newIndex !== currentNarrationIndex) {
+            currentNarrationIndex = newIndex;
+        }
+        
         isPaused = false;
         pauseIcon.style.display = 'block';
         playIcon.style.display = 'none';
+        document.body.style.overflow = 'hidden'; // Lock scrolling
+        controls.classList.remove('visible'); // Allow auto-hide again
         
-        if (currentAudio) {
-            currentAudio.play();
-        }
+        // Start fresh from current position
+        playCurrentSlide();
     } else {
         // Pause
         isPaused = true;
         pauseIcon.style.display = 'none';
         playIcon.style.display = 'block';
+        document.body.style.overflow = ''; // Allow scrolling when paused
+        controls.classList.add('visible'); // Keep controls visible when paused
         
         if (currentAudio) {
             currentAudio.pause();
@@ -2994,6 +3014,22 @@ function stopPresentation() {
     
     // Stay on current slide (don't jump back to start)
 }
+
+// Auto-hide controls - show on mouse movement
+let controlsHideTimeout = null;
+function showControls() {
+    if (!isPlaying) return;
+    controls.classList.add('visible');
+    clearTimeout(controlsHideTimeout);
+    controlsHideTimeout = setTimeout(() => {
+        if (isPlaying && !isPaused) {
+            controls.classList.remove('visible');
+        }
+    }, 2500);
+}
+
+document.addEventListener('mousemove', showControls);
+document.addEventListener('click', showControls);
 
 // Stop any playing audio on page unload
 window.addEventListener('beforeunload', () => {
