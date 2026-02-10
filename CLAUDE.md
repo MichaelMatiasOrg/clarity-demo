@@ -94,6 +94,12 @@ Text wordmarks: Lever, Workday, ServiceNow (couldn't get official SVGs)
 5. Clarity integrates into existing workflow (ATS, HRIS, SIEM)
 6. **Okta, ServiceNow, Workday** — enterprise IAM priorities
 
+## Narration Audio
+- **Voice:** Chad (ElevenLabs voice ID: `WQcQveC0hbQNvI69FWyU`)
+- **Files:** `audio/narration/slide-{0-31}.mp3`
+- **Scripts:** `narration.js` contains all slide text
+- **Model:** eleven_multilingual_v2
+
 ## Open Items
 - [ ] Get proper SVG logos for Lever, Workday, ServiceNow
 - [ ] Add actual product screenshots when available
