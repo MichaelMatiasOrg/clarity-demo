@@ -2621,23 +2621,37 @@ document.addEventListener('keydown', (e) => {
         e.preventDefault();
         togglePause();
     }
-    // Arrow key navigation when paused
-    if (isPlaying && isPaused) {
-        const slides = document.querySelectorAll('.slide');
-        const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
-        const slideHeight = window.innerHeight;
-        let currentSlideIndex = Math.round(scrollPos / slideHeight);
+    // Arrow key navigation while playing (scroll disabled, but arrows work)
+    if (isPlaying && (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowUp')) {
+        e.preventDefault();
         
+        // Stop current audio
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+        clearTimeout(narrationTimeout);
+        
+        // Navigate
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-            e.preventDefault();
-            if (currentSlideIndex < slides.length - 1) {
-                slides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth' });
+            if (currentNarrationIndex < narrationScript.length - 1) {
+                currentNarrationIndex++;
             }
         } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-            e.preventDefault();
-            if (currentSlideIndex > 0) {
-                slides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth' });
+            if (currentNarrationIndex > 0) {
+                currentNarrationIndex--;
             }
+        }
+        
+        // Play from new position (if not paused)
+        if (!isPaused) {
+            playCurrentSlide();
+        } else {
+            // If paused, just navigate visually
+            const slides = document.querySelectorAll('.slide');
+            const targetSlide = narrationScript[currentNarrationIndex].slide;
+            slides[targetSlide].scrollIntoView({ behavior: 'smooth' });
+            currentSlideNum.textContent = currentNarrationIndex + 1;
         }
     }
 });
