@@ -2952,8 +2952,16 @@ function stopPresentation() {
     // Stay on current slide (don't jump back to start)
 }
 
-// Load voices (they load async)
+// Cancel any ongoing speech on page load/refresh
 if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    
+    // Also cancel on page unload
+    window.addEventListener('beforeunload', () => {
+        window.speechSynthesis.cancel();
+    });
+    
+    // Load voices (they load async)
     window.speechSynthesis.getVoices();
     window.speechSynthesis.onvoiceschanged = () => {
         window.speechSynthesis.getVoices();
