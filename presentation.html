@@ -2850,6 +2850,34 @@ function revealAnswer() {
 <!-- Navigation Hint -->
 <div id="nav-hint"><kbd>←</kbd> <kbd>→</kbd> or <kbd>↑</kbd> <kbd>↓</kbd> to navigate</div>
 
+<!-- Narration Panel Toggle -->
+<button id="narration-toggle" title="Speaker Notes (N)">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+    </svg>
+</button>
+
+<!-- Narration Panel -->
+<div id="narration-panel">
+    <div id="narration-panel-header">
+        <h3>Speaker Notes</h3>
+        <span class="slide-badge">Slide <span id="narration-slide-num">1</span></span>
+        <button id="narration-panel-close" title="Close (N or Esc)">×</button>
+    </div>
+    <div id="narration-panel-content">
+        <p class="narration-text" id="narration-text"></p>
+    </div>
+    <div id="narration-panel-footer">
+        <span><kbd>N</kbd> Toggle panel</span>
+        <span><kbd>←</kbd> <kbd>→</kbd> Navigate slides</span>
+        <span><kbd>Esc</kbd> Close</span>
+    </div>
+</div>
+
 <script>
 (function() {
     const slides = document.querySelectorAll('.slide');
@@ -3324,6 +3352,130 @@ function revealAnswer() {
     #subtitle-toggle.active {
         opacity: 1;
         color: #61F393;
+    }
+    
+    /* ========== NARRATION PANEL ========== */
+    #narration-toggle {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 10000;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        background: #1a1a2e;
+        color: white;
+        font-size: 1.4rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: all 0.2s;
+        opacity: 0.7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #narration-toggle:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    #narration-toggle.active {
+        background: #61F393;
+        color: #1a1a2e;
+        opacity: 1;
+    }
+    
+    #narration-panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 22, 40, 0.97);
+        color: white;
+        z-index: 9999;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        max-height: 35vh;
+        overflow-y: auto;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
+    }
+    #narration-panel.visible {
+        transform: translateY(0);
+    }
+    
+    #narration-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        position: sticky;
+        top: 0;
+        background: rgba(10, 22, 40, 0.98);
+    }
+    #narration-panel-header h3 {
+        margin: 0;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #61F393;
+        font-weight: 600;
+    }
+    #narration-panel-header .slide-badge {
+        background: rgba(97, 243, 147, 0.2);
+        color: #61F393;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    #narration-panel-close {
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.6);
+        cursor: pointer;
+        padding: 8px;
+        font-size: 1.2rem;
+        line-height: 1;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+    #narration-panel-close:hover {
+        background: rgba(255,255,255,0.1);
+        color: white;
+    }
+    
+    #narration-panel-content {
+        padding: 24px 32px 32px;
+    }
+    #narration-panel-content .narration-text {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: rgba(255,255,255,0.9);
+        margin: 0;
+        font-weight: 400;
+    }
+    #narration-panel-content .no-narration {
+        font-size: 1rem;
+        color: rgba(255,255,255,0.5);
+        font-style: italic;
+    }
+    
+    /* Keyboard hint */
+    #narration-panel-footer {
+        padding: 12px 24px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        font-size: 0.75rem;
+        color: rgba(255,255,255,0.4);
+        display: flex;
+        gap: 16px;
+    }
+    #narration-panel-footer kbd {
+        background: rgba(255,255,255,0.15);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: inherit;
     }
 </style>
 
@@ -3877,6 +4029,124 @@ window.addEventListener('beforeunload', () => {
         currentAudio.pause();
     }
 });
+
+// ==========================================
+// NARRATION PANEL - Speaker Notes
+// ==========================================
+(function() {
+    const narrationToggle = document.getElementById('narration-toggle');
+    const narrationPanel = document.getElementById('narration-panel');
+    const narrationText = document.getElementById('narration-text');
+    const narrationSlideNum = document.getElementById('narration-slide-num');
+    const narrationClose = document.getElementById('narration-panel-close');
+    let narrationPanelVisible = false;
+    let currentVisibleSlide = 0;
+    
+    // Build a map of slide index to narration text
+    const slideNarrationMap = {};
+    if (typeof narrationScript !== 'undefined') {
+        narrationScript.forEach(item => {
+            slideNarrationMap[item.slide] = item.text;
+        });
+    }
+    
+    function updateNarrationText() {
+        const slideNum = currentVisibleSlide + 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+        narrationSlideNum.textContent = slideNum + ' / ' + totalSlides;
+        
+        const text = slideNarrationMap[currentVisibleSlide];
+        if (text) {
+            narrationText.textContent = text;
+            narrationText.classList.remove('no-narration');
+        } else {
+            narrationText.textContent = 'No speaker notes for this slide.';
+            narrationText.classList.add('no-narration');
+        }
+    }
+    
+    function toggleNarrationPanel() {
+        narrationPanelVisible = !narrationPanelVisible;
+        narrationPanel.classList.toggle('visible', narrationPanelVisible);
+        narrationToggle.classList.toggle('active', narrationPanelVisible);
+        if (narrationPanelVisible) {
+            // Calculate current slide
+            const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
+            const slideHeight = window.innerHeight;
+            currentVisibleSlide = Math.round(scrollPos / slideHeight);
+            updateNarrationText();
+        }
+    }
+    
+    function closeNarrationPanel() {
+        narrationPanelVisible = false;
+        narrationPanel.classList.remove('visible');
+        narrationToggle.classList.remove('active');
+    }
+    
+    // Event listeners
+    narrationToggle.addEventListener('click', toggleNarrationPanel);
+    narrationClose.addEventListener('click', closeNarrationPanel);
+    
+    // Keyboard shortcut
+    document.addEventListener('keydown', (e) => {
+        // N key toggles narration panel (when not in dev mode or typing)
+        if (e.key === 'n' || e.key === 'N') {
+            if (!e.metaKey && !e.ctrlKey && !e.altKey) {
+                // Don't toggle if dev mode is enabled (check by class)
+                const devModeBtn = document.getElementById('dev-mode-toggle');
+                if (devModeBtn && devModeBtn.classList.contains('dev-mode-on')) {
+                    return; // Dev mode is on, don't interfere
+                }
+                toggleNarrationPanel();
+                e.preventDefault();
+            }
+        }
+        // Escape closes panel
+        if (e.key === 'Escape' && narrationPanelVisible) {
+            closeNarrationPanel();
+            e.preventDefault();
+        }
+    });
+    
+    // Track slide changes via scroll
+    let scrollTimeout;
+    document.addEventListener('scroll', () => {
+        if (!narrationPanelVisible) return;
+        
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
+            const slideHeight = window.innerHeight;
+            const newSlide = Math.round(scrollPos / slideHeight);
+            
+            if (newSlide !== currentVisibleSlide) {
+                currentVisibleSlide = newSlide;
+                updateNarrationText();
+            }
+        }, 50);
+    }, { passive: true });
+    
+    // Also track via IntersectionObserver for more accuracy
+    const slides = document.querySelectorAll('.slide');
+    const narrationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                const slideIndex = Array.from(slides).indexOf(entry.target);
+                if (slideIndex !== -1 && slideIndex !== currentVisibleSlide) {
+                    currentVisibleSlide = slideIndex;
+                    if (narrationPanelVisible) {
+                        updateNarrationText();
+                    }
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    slides.forEach(slide => {
+        narrationObserver.observe(slide);
+    });
+})();
 
 // ==========================================
 // DEVELOPER MODE - Element Inspector
