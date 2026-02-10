@@ -2411,12 +2411,13 @@ function revealAnswer() {
         gap: 20px;
         z-index: 10000;
         box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        opacity: 0.25;
-        transition: opacity 0.4s ease;
+        opacity: 0.15;
+        transition: opacity 0.5s ease-out;
     }
     #presentation-controls:hover,
     #presentation-controls.visible {
         opacity: 1;
+        transition: opacity 0.2s ease-in;
     }
     #presentation-controls.active {
         display: flex;
@@ -3004,7 +3005,7 @@ function stopPresentation() {
     // Stay on current slide (don't jump back to start)
 }
 
-// Auto-hide controls - show on mouse movement
+// Auto-hide controls - show on mouse movement, fade quickly when stopped
 let controlsHideTimeout = null;
 function showControls() {
     if (!isPlaying) return;
@@ -3014,7 +3015,7 @@ function showControls() {
         if (isPlaying && !isPaused) {
             controls.classList.remove('visible');
         }
-    }, 2500);
+    }, 800); // Quick fade after mouse stops
 }
 
 document.addEventListener('mousemove', showControls);
