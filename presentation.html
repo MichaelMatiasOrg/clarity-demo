@@ -1923,39 +1923,40 @@ function revealAnswer() {
         <div style="background: white; border-radius: 20px; padding: 40px; box-shadow: 0 10px 50px rgba(10, 22, 40, 0.1); border: 2px solid var(--text-primary); position: relative;">
             <div style="position: absolute; top: -2px; left: 40px; right: 40px; height: 4px; background: var(--text-primary); border-radius: 0 0 4px 4px;"></div>
             
-            <h2 style="text-align: center; margin-bottom: 10px;">Feeds into your <span style="color: var(--text-primary); font-weight: 700;">security stack</span></h2>
-            <p class="subtitle" style="text-align: center; margin-bottom: 25px;">Full visibility for your security team. No blind spots.</p>
+            <h2 style="text-align: center; margin-bottom: 10px;">Multi-layered <span style="color: var(--text-primary); font-weight: 700;">fraud detection</span></h2>
+            <p class="subtitle" style="text-align: center; margin-bottom: 30px;">Our technology pillars work together to identify threats with high confidence.</p>
             
-            <!-- SIEM Logos -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 30px; padding: 15px 20px; background: rgba(10, 22, 40, 0.03); border-radius: 12px;">
-                <img src="logos/splunk.svg" alt="Splunk" style="height: 28px; opacity: 0.85;">
-                <img src="logos/sentinel.svg" alt="Microsoft Sentinel" style="height: 28px; opacity: 0.85;" title="Microsoft Sentinel">
-                <img src="logos/crowdstrike.svg" alt="CrowdStrike" style="height: 28px; opacity: 0.85;">
-                <img src="logos/elastic.svg" alt="Elastic" style="height: 28px; opacity: 0.85;">
-                <img src="logos/okta.png" alt="Okta" style="height: 28px; opacity: 0.85;">
+            <!-- Core Detection Technology Grid -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px;">
+                <div style="background: linear-gradient(135deg, var(--text-primary) 0%, #1e3a5f 100%); border-radius: 16px; padding: 24px 18px; color: white; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🎭</div>
+                    <p style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">Deepfake Detection</p>
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); line-height: 1.5;">Face swap artifacts, GAN signatures, temporal inconsistencies</p>
+                </div>
+                <div style="background: linear-gradient(135deg, var(--text-primary) 0%, #1e3a5f 100%); border-radius: 16px; padding: 24px 18px; color: white; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🎤</div>
+                    <p style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">Voice Analysis</p>
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); line-height: 1.5;">Cloning detection, audio-visual sync, voice biometrics</p>
+                </div>
+                <div style="background: linear-gradient(135deg, var(--text-primary) 0%, #1e3a5f 100%); border-radius: 16px; padding: 24px 18px; color: white; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">👤</div>
+                    <p style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">Biometric Match</p>
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); line-height: 1.5;">Cross-document face matching, photo forensics</p>
+                </div>
+                <div style="background: linear-gradient(135deg, var(--text-primary) 0%, #1e3a5f 100%); border-radius: 16px; padding: 24px 18px; color: white; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🔍</div>
+                    <p style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">Identity Signals</p>
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); line-height: 1.5;">Multi-source validation, dark web monitoring, pattern analysis</p>
+                </div>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
-                <div style="text-align: center; padding: 20px 15px; background: var(--text-primary); border-radius: 12px; color: white;">
-                    <p style="font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Core Tech</p>
-                    <p style="font-size: 0.95rem; font-weight: 600; margin-bottom: 6px;">Deepfake Detection</p>
-                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">Real-time video analysis</p>
-                </div>
-                <div style="text-align: center; padding: 20px 15px; background: var(--text-primary); border-radius: 12px; color: white;">
-                    <p style="font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Core Tech</p>
-                    <p style="font-size: 0.95rem; font-weight: 600; margin-bottom: 6px;">Biometric Match</p>
-                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">Cross-document verification</p>
-                </div>
-                <div style="text-align: center; padding: 20px 15px; background: var(--text-primary); border-radius: 12px; color: white;">
-                    <p style="font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Core Tech</p>
-                    <p style="font-size: 0.95rem; font-weight: 600; margin-bottom: 6px;">Dark Web Hunting</p>
-                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">Credential monitoring</p>
-                </div>
-                <div style="text-align: center; padding: 20px 15px; background: var(--text-primary); border-radius: 12px; color: white;">
-                    <p style="font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Core Tech</p>
-                    <p style="font-size: 0.95rem; font-weight: 600; margin-bottom: 6px;">Identity Signals</p>
-                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">Multi-source validation</p>
-                </div>
+            <!-- SIEM Integration (secondary) -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 12px 20px; background: rgba(10, 22, 40, 0.03); border-radius: 10px;">
+                <span style="font-size: 0.75rem; color: var(--text-secondary);">Alerts export to:</span>
+                <img src="logos/splunk.svg" alt="Splunk" style="height: 20px; opacity: 0.7;">
+                <img src="logos/sentinel.svg" alt="Sentinel" style="height: 20px; opacity: 0.7;">
+                <img src="logos/okta.png" alt="Okta" style="height: 20px; opacity: 0.7;">
+                <img src="logos/slack.svg" alt="Slack" style="height: 20px; opacity: 0.7;">
             </div>
         </div>
     </div>
@@ -2608,7 +2609,7 @@ const narrationScript = [
   { slide: 23, text: "And protection continues after hiring. Day 90, day 180 — we verify it's still the same person who was hired. Continuous identity assurance.", duration: 9000 },
   { slide: 24, text: "If a security tool creates friction, it won't get used. So Clarity is built on two pillars: deep workflow integration, and full security visibility.", duration: 8000 },
   { slide: 25, text: "On the workflow side — Greenhouse, Lever, Workday, Zoom, Slack. Native integrations with the tools recruiters already use.", duration: 7000 },
-  { slide: 26, text: "On the security side — SIEM integration, real-time alerts, threat correlation. Complete visibility for your team.", duration: 6000 },
+  { slide: 26, text: "On the security side — multi-layered fraud detection. Deepfake analysis, voice cloning detection, biometric matching, and identity signal correlation. All working together.", duration: 8000 },
   { slide: 27, text: "It's the full employee identity lifecycle. Onboarding, MFA resets, privileged access requests, periodic verification. Every critical moment.", duration: 8000 },
   { slide: 28, text: "Your people are your greatest asset. Make sure they're actually your people.", duration: 5000 },
   { slide: 29, text: "Every hire, verified. Every identity, trusted. That's Clarity.", duration: 5000 }
