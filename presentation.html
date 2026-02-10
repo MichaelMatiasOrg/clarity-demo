@@ -1619,9 +1619,10 @@ function revealAnswer() {
                             <rect x="16" y="22" width="8" height="14" rx="4" stroke="#61F393" stroke-width="2" fill="none"/>
                             <line x1="20" y1="36" x2="20" y2="38" stroke="#61F393" stroke-width="2" stroke-linecap="round"/>
                             <line x1="16" y1="38" x2="24" y2="38" stroke="#61F393" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M8 18c0 0 2-8 12-8s12 8 12 8" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-                            <path d="M6 14c0 0 3-10 14-10s14 10 14 10" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-                            <path d="M4 10c0 0 4-8 16-8s16 8 16 8" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                            <!-- Animated sound waves -->
+                            <path class="voice-wave-1" d="M8 18c0 0 2-8 12-8s12 8 12 8" stroke="#61F393" stroke-width="1.5" fill="none"/>
+                            <path class="voice-wave-2" d="M6 14c0 0 3-10 14-10s14 10 14 10" stroke="#61F393" stroke-width="1.5" fill="none"/>
+                            <path class="voice-wave-3" d="M4 10c0 0 4-8 16-8s16 8 16 8" stroke="#61F393" stroke-width="1.5" fill="none"/>
                         </svg>
                     </div>
                     <p style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">Voice Analysis</p>
@@ -1632,12 +1633,13 @@ function revealAnswer() {
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="20" cy="14" r="7" stroke="#61F393" stroke-width="2" fill="none"/>
                             <path d="M10 34c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#61F393" stroke-width="2" fill="none"/>
-                            <circle cx="16" cy="12" r="1.5" fill="#61F393"/>
-                            <circle cx="24" cy="12" r="1.5" fill="#61F393"/>
-                            <circle cx="20" cy="16" r="1" fill="#61F393"/>
-                            <circle cx="14" cy="26" r="1" fill="rgba(255,255,255,0.4)"/>
-                            <circle cx="26" cy="26" r="1" fill="rgba(255,255,255,0.4)"/>
-                            <circle cx="20" cy="30" r="1" fill="rgba(255,255,255,0.4)"/>
+                            <!-- Animated biometric points -->
+                            <circle class="bio-point-1" cx="16" cy="12" r="1.5" fill="#61F393"/>
+                            <circle class="bio-point-2" cx="24" cy="12" r="1.5" fill="#61F393"/>
+                            <circle class="bio-point-3" cx="20" cy="16" r="1.5" fill="#61F393"/>
+                            <circle class="bio-point-1" cx="14" cy="26" r="1" fill="rgba(255,255,255,0.6)"/>
+                            <circle class="bio-point-2" cx="26" cy="26" r="1" fill="rgba(255,255,255,0.6)"/>
+                            <circle class="bio-point-3" cx="20" cy="30" r="1" fill="rgba(255,255,255,0.6)"/>
                             <line x1="16" y1="12" x2="24" y2="12" stroke="rgba(97,243,147,0.4)" stroke-width="1"/>
                             <line x1="20" y1="8" x2="20" y2="16" stroke="rgba(97,243,147,0.4)" stroke-width="1"/>
                         </svg>
@@ -1652,9 +1654,12 @@ function revealAnswer() {
                             <circle cx="20" cy="20" r="11" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
                             <circle cx="20" cy="20" r="6" stroke="#61F393" stroke-width="2"/>
                             <circle cx="20" cy="20" r="2" fill="#61F393"/>
-                            <circle cx="28" cy="14" r="2" fill="#61F393" opacity="0.8"/>
-                            <circle cx="12" cy="24" r="2" fill="#61F393" opacity="0.6"/>
-                            <circle cx="26" cy="28" r="1.5" fill="#ef4444" opacity="0.8"/>
+                            <!-- Radar sweep line -->
+                            <line class="radar-sweep" x1="20" y1="20" x2="20" y2="4" stroke="#61F393" stroke-width="1.5" opacity="0.6"/>
+                            <!-- Animated signal points -->
+                            <circle class="radar-ping" cx="28" cy="14" r="2" fill="#61F393" opacity="0.8"/>
+                            <circle class="radar-ping" cx="12" cy="24" r="2" fill="#61F393" opacity="0.6" style="animation-delay: 0.5s;"/>
+                            <circle class="radar-ping" cx="26" cy="28" r="1.5" fill="#ef4444" opacity="0.8" style="animation-delay: 1s;"/>
                             <line x1="20" y1="20" x2="28" y2="14" stroke="rgba(97,243,147,0.4)" stroke-width="1"/>
                             <line x1="20" y1="20" x2="12" y2="24" stroke="rgba(97,243,147,0.4)" stroke-width="1"/>
                             <line x1="20" y1="20" x2="26" y2="28" stroke="rgba(239,68,68,0.4)" stroke-width="1"/>
@@ -1702,6 +1707,38 @@ function revealAnswer() {
         .deepfake-scan-line {
             animation: deepfakeScan 2.5s ease-in-out infinite;
         }
+        /* Voice Analysis - Sound wave pulse */
+        @keyframes voiceWave {
+            0%, 100% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.1); }
+        }
+        .voice-wave-1 { animation: voiceWave 2s ease-in-out infinite; }
+        .voice-wave-2 { animation: voiceWave 2s ease-in-out infinite 0.3s; }
+        .voice-wave-3 { animation: voiceWave 2s ease-in-out infinite 0.6s; }
+        
+        /* Biometric Match - Points pulse */
+        @keyframes biometricPulse {
+            0%, 100% { opacity: 0.4; r: 1; }
+            50% { opacity: 1; r: 1.5; }
+        }
+        .bio-point-1 { animation: biometricPulse 1.5s ease-in-out infinite; }
+        .bio-point-2 { animation: biometricPulse 1.5s ease-in-out infinite 0.2s; }
+        .bio-point-3 { animation: biometricPulse 1.5s ease-in-out infinite 0.4s; }
+        
+        /* Identity Signals - Radar sweep */
+        @keyframes radarSweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes radarPing {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+        .radar-sweep { 
+            transform-origin: 20px 20px;
+            animation: radarSweep 4s linear infinite; 
+        }
+        .radar-ping { animation: radarPing 2s ease-in-out infinite; }
         .flow-dot {
             width: 10px;
             height: 10px;
