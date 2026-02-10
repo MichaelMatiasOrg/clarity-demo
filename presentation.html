@@ -1371,77 +1371,77 @@ function revealAnswer() {
     <style>
         .gauntlet-slide .gauntlet-container { max-width: 1100px; margin: 0 auto; text-align: center; }
         
-        /* Candidate animations */
+        /* FAST Candidate animations - 4 seconds total */
         @keyframes candidateGoodPath {
             0% { left: -40px; opacity: 0; }
-            5% { left: -40px; opacity: 1; }
-            20% { left: calc(10% + 55px); } /* At stage 1 */
-            35% { left: calc(26% + 55px); } /* At stage 2 */
-            50% { left: calc(42% + 55px); } /* At stage 3 */
-            65% { left: calc(58% + 55px); } /* At stage 4 */
-            80%, 100% { left: calc(78% + 20px); opacity: 1; } /* At trusted hire */
+            10% { left: -40px; opacity: 1; }
+            30% { left: calc(10% + 55px); } /* At stage 1 */
+            45% { left: calc(26% + 55px); } /* At stage 2 */
+            60% { left: calc(42% + 55px); } /* At stage 3 */
+            75% { left: calc(58% + 55px); } /* At stage 4 */
+            90%, 100% { left: calc(78% + 20px); opacity: 1; } /* At trusted hire */
         }
         
         @keyframes candidateThreatPath {
             0% { left: -40px; opacity: 0; top: 50%; }
-            5% { left: -40px; opacity: 1; top: 50%; }
-            20% { left: calc(10% + 55px); top: 50%; } /* At stage 1 */
-            35% { left: calc(26% + 55px); top: 50%; } /* At stage 2 - gets caught here */
-            40% { left: calc(26% + 55px); top: 50%; transform: translateY(-50%) scale(1.2); }
-            50% { left: calc(26% + 55px); top: 120%; transform: translateY(-50%) scale(0.5); opacity: 0; }
+            10% { left: -40px; opacity: 1; top: 50%; }
+            30% { left: calc(10% + 55px); top: 50%; } /* At stage 1 */
+            45% { left: calc(26% + 55px); top: 50%; } /* At stage 2 - gets caught */
+            50% { left: calc(26% + 55px); top: 50%; transform: translateY(-50%) scale(1.2); }
+            65% { left: calc(26% + 55px); top: 120%; transform: translateY(-50%) scale(0.5); opacity: 0; }
             100% { left: calc(26% + 55px); top: 120%; opacity: 0; }
         }
         
         /* Scan pulse animation */
         @keyframes scanPulse {
             0%, 100% { box-shadow: 0 0 0 0 rgba(97, 243, 147, 0); }
-            50% { box-shadow: 0 0 0 15px rgba(97, 243, 147, 0.3); }
+            50% { box-shadow: 0 0 0 12px rgba(97, 243, 147, 0.3); }
         }
         
         @keyframes scanPulseRed {
             0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-            50% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0.4); }
         }
         
         /* Checkmark appear */
         @keyframes checkAppear {
-            0%, 90% { opacity: 0; transform: scale(0); }
+            0%, 80% { opacity: 0; transform: scale(0); }
             100% { opacity: 1; transform: scale(1); }
         }
         
-        /* Block indicator */
+        /* Block indicator - fast */
         @keyframes blockAppear {
-            0%, 35% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-            40% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-            45%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            0%, 40% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            60%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
         
         /* Success celebration */
         @keyframes celebratePulse {
-            0%, 75% { box-shadow: 0 4px 20px rgba(97, 243, 147, 0.3); }
-            85% { box-shadow: 0 0 0 20px rgba(97, 243, 147, 0.4), 0 0 0 40px rgba(97, 243, 147, 0.2); }
-            100% { box-shadow: 0 0 0 30px rgba(97, 243, 147, 0), 0 0 0 60px rgba(97, 243, 147, 0); }
+            0%, 60% { box-shadow: 0 4px 20px rgba(97, 243, 147, 0.3); }
+            80% { box-shadow: 0 0 0 15px rgba(97, 243, 147, 0.4), 0 0 0 30px rgba(97, 243, 147, 0.2); }
+            100% { box-shadow: 0 0 0 20px rgba(97, 243, 147, 0), 0 0 0 40px rgba(97, 243, 147, 0); }
         }
         
-        /* Check station scanning */
-        .gauntlet-slide .check-station-1 { animation: scanPulse 0.6s ease-out 2s 1; }
-        .gauntlet-slide .check-station-2 { animation: scanPulse 0.6s ease-out 3.5s 1, scanPulseRed 0.8s ease-out 3.8s 1; }
-        .gauntlet-slide .check-station-3 { animation: scanPulse 0.6s ease-out 5s 1; }
+        /* Check station scanning - FAST timing */
+        .gauntlet-slide .check-station-1 { animation: scanPulse 0.4s ease-out 0.8s 1; }
+        .gauntlet-slide .check-station-2 { animation: scanPulse 0.4s ease-out 1.4s 1, scanPulseRed 0.5s ease-out 1.6s 1; }
+        .gauntlet-slide .check-station-3 { animation: scanPulse 0.4s ease-out 2.2s 1; }
         
-        /* Verified badge animation */
+        /* Verified badge animation - appears at end */
         @keyframes verifiedAppear {
-            0%, 80% { opacity: 0; transform: translateY(10px); }
+            0%, 70% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
         }
         
         .gauntlet-slide .verified-badge {
-            animation: verifiedAppear 0.5s ease-out 8s forwards;
+            animation: verifiedAppear 0.4s ease-out 3.5s forwards;
             opacity: 0;
         }
         
         /* Trusted hire celebration */
         .gauntlet-slide .trusted-hire-circle {
-            animation: celebratePulse 1.5s ease-out 7.5s 1;
+            animation: celebratePulse 0.8s ease-out 3.2s 1;
         }
     </style>
     
@@ -1467,7 +1467,7 @@ function revealAnswer() {
                     <div style="color: #61F393; font-size: 1.2rem; margin-bottom: 6px;">✦</div>
                     <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Applicant<br>Screening</div>
                     <!-- Checkmark overlay -->
-                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 2.5s forwards; opacity: 0;">
+                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 1s forwards; opacity: 0;">
                         <span style="color: white; font-size: 14px; font-weight: bold;">✓</span>
                     </div>
                 </div>
@@ -1475,7 +1475,7 @@ function revealAnswer() {
                     <div style="color: #61F393; font-size: 1.2rem; margin-bottom: 6px;">✦</div>
                     <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">AI Deepfake<br>Detection</div>
                     <!-- Checkmark overlay -->
-                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 5s forwards; opacity: 0;">
+                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 2s forwards; opacity: 0;">
                         <span style="color: white; font-size: 14px; font-weight: bold;">✓</span>
                     </div>
                 </div>
@@ -1483,7 +1483,7 @@ function revealAnswer() {
                     <div style="color: #61F393; font-size: 1.2rem; margin-bottom: 6px;">✦</div>
                     <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Identity<br>Check</div>
                     <!-- Checkmark overlay -->
-                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 6.5s forwards; opacity: 0;">
+                    <div style="position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: checkAppear 0.3s ease-out 2.8s forwards; opacity: 0;">
                         <span style="color: white; font-size: 14px; font-weight: bold;">✓</span>
                     </div>
                 </div>
@@ -1510,7 +1510,7 @@ function revealAnswer() {
                 <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px; position: relative;">
                     <div style="font-size: 0.8rem; font-weight: 600;">Video<br>Interview</div>
                     <!-- BLOCKED indicator appears here -->
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; animation: blockAppear 10s ease-out forwards; opacity: 0; z-index: 20; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; animation: blockAppear 4s ease-out forwards; opacity: 0; z-index: 20; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);">
                         🚫 THREAT BLOCKED
                     </div>
                 </div>
@@ -1528,12 +1528,12 @@ function revealAnswer() {
             <!-- Animated Candidates Layer -->
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;">
                 <!-- Good Candidate (blue dot) -->
-                <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5); animation: candidateGoodPath 10s ease-in-out forwards; z-index: 10;">
+                <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5); animation: candidateGoodPath 4s ease-in-out forwards; z-index: 10;">
                     <span style="font-size: 16px;">👤</span>
                 </div>
                 
                 <!-- Threat Candidate (red-tinted dot) -->
-                <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: linear-gradient(135deg, #ef4444, #b91c1c); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5); animation: candidateThreatPath 10s ease-in-out forwards; animation-delay: 0.8s; z-index: 10;">
+                <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: linear-gradient(135deg, #ef4444, #b91c1c); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5); animation: candidateThreatPath 4s ease-in-out forwards; animation-delay: 0.3s; z-index: 10;">
                     <span style="font-size: 16px;">👤</span>
                 </div>
             </div>
