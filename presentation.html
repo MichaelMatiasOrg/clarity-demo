@@ -468,34 +468,55 @@
 <body>
 
 <!-- Slide 1: Hero - Introduction -->
-<section class="slide slide-title" style="position: relative; overflow: hidden; background: linear-gradient(135deg, var(--bg-primary) 0%, #e8f4f8 100%);">
-    <!-- Geometric accents -->
-    <div style="position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; border: 3px solid rgba(97, 243, 147, 0.15); border-radius: 50%; pointer-events: none;"></div>
-    <div style="position: absolute; top: 40px; right: 40px; width: 180px; height: 180px; border: 2px solid rgba(97, 243, 147, 0.1); border-radius: 50%; pointer-events: none;"></div>
-    <div style="position: absolute; bottom: -60px; left: -60px; width: 250px; height: 250px; border: 3px solid rgba(10, 22, 40, 0.06); border-radius: 50%; pointer-events: none;"></div>
+<section class="slide" style="position: relative; overflow: hidden; background: linear-gradient(145deg, #0a1628 0%, #0f2136 50%, #132744 100%); display: flex; align-items: center; justify-content: center;">
+    <!-- Premium geometric pattern overlay -->
+    <div style="position: absolute; inset: 0; opacity: 0.03; background-image: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\"><path d=\"M30 0L60 30L30 60L0 30Z\" fill=\"none\" stroke=\"white\" stroke-width=\"0.5\"/></svg>'); background-size: 60px 60px;"></div>
     
-    <!-- Clarity logo -->
-    <div style="margin-bottom: 50px;">
-        <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M25.4833 10.2804L18.3475 -6L13.8146 4.4767H13.8125L19.1041 16.7097L31.2339 22.0464L31.2444 22.0422L41.6263 17.4727L25.4791 10.2762L25.4833 10.2804Z" fill="#0a1628"/>
-            <path d="M25.4812 33.8149L41.6242 26.6184L31.236 22.0469L19.1062 27.3835L13.8146 39.6165H13.8125L13.8167 39.6271L18.3475 50.0975L25.4833 33.8128L25.4812 33.8149Z" fill="#0a1628"/>
-            <path d="M2.14716 33.8206L9.28296 50.1011L13.8159 39.6244H13.818L8.52638 27.3913L-3.60334 22.0547L-3.61382 22.0589L-14 26.6241L2.14716 33.8206Z" fill="#61F393"/>
-            <path d="M2.14506 10.2847L-14 17.4791L-3.61168 22.0506L8.51814 16.714L13.8096 4.4809H13.8117L13.8076 4.4704L9.28088 -6L2.14506 10.2847Z" fill="#61F393"/>
-            <text x="55" y="35" font-family="Manrope, sans-serif" font-size="28" font-weight="800" fill="#0a1628">clarity</text>
-        </svg>
+    <!-- Accent circles -->
+    <div style="position: absolute; top: -150px; right: -150px; width: 500px; height: 500px; border: 1px solid rgba(97, 243, 147, 0.1); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border: 1px solid rgba(97, 243, 147, 0.07); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -200px; left: -200px; width: 600px; height: 600px; border: 1px solid rgba(97, 243, 147, 0.05); border-radius: 50%; pointer-events: none;"></div>
+    
+    <!-- Gradient orb -->
+    <div style="position: absolute; top: 20%; right: 10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(97, 243, 147, 0.15) 0%, transparent 70%); border-radius: 50%; filter: blur(60px); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: 20%; left: 15%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(97, 243, 147, 0.1) 0%, transparent 70%); border-radius: 50%; filter: blur(40px); pointer-events: none;"></div>
+    
+    <div style="position: relative; z-index: 1; text-align: center;">
+        <!-- Real Clarity logo -->
+        <div style="margin-bottom: 60px;">
+            <img src="clarity-logo-white.svg" alt="Clarity" style="height: 50px;">
+        </div>
+        
+        <!-- Name with elegant underline -->
+        <h1 style="font-size: 4rem; margin-bottom: 8px; color: white; font-weight: 700; letter-spacing: -1px;">Michael Matias</h1>
+        <div style="width: 80px; height: 3px; background: linear-gradient(90deg, var(--accent), #4ade80); margin: 0 auto 20px; border-radius: 2px;"></div>
+        <p style="font-size: 1.3rem; color: rgba(255,255,255,0.6); margin-bottom: 60px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase;">Co-Founder & CEO</p>
+        
+        <!-- Tagline -->
+        <div style="max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.6rem; color: rgba(255,255,255,0.85); line-height: 1.5; font-weight: 300;">
+                Protecting enterprises from the new attack surface
+            </p>
+            <p style="font-size: 1.8rem; color: var(--accent); margin-top: 15px; font-weight: 600;">
+                Fraudulent hires. Synthetic identities. Deepfakes.
+            </p>
+        </div>
+        
+        <!-- Subtle trust indicators -->
+        <div style="margin-top: 80px; display: flex; justify-content: center; gap: 50px; opacity: 0.5;">
+            <div style="text-align: center;">
+                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Backed by</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 4px;">Top-tier investors</div>
+            </div>
+            <div style="width: 1px; background: rgba(255,255,255,0.2);"></div>
+            <div style="text-align: center;">
+                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Trusted by</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 4px;">Fortune 500 companies</div>
+            </div>
+        </div>
     </div>
     
-    <h1 style="font-size: 3.2rem; margin-bottom: 20px;">Michael Matias</h1>
-    <p style="font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 40px;">Co-Founder & CEO</p>
-    
-    <div style="max-width: 700px; margin: 0 auto;">
-        <p style="font-size: 1.3rem; color: var(--text-primary); line-height: 1.6;">
-            Protecting enterprises from the new attack surface:<br>
-            <strong style="color: var(--accent);">fraudulent hires and synthetic identities</strong>
-        </p>
-    </div>
-    
-    <div class="slide-number">1</div>
+    <div class="slide-number" style="color: rgba(255,255,255,0.3);">1</div>
 </section>
 
 <!-- Slide 2: The Hook -->
