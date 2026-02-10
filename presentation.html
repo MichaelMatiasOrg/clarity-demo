@@ -468,55 +468,38 @@
 <body>
 
 <!-- Slide 1: Hero - Introduction -->
-<section class="slide" style="position: relative; overflow: hidden; background: linear-gradient(145deg, #0a1628 0%, #0f2136 50%, #132744 100%); display: flex; align-items: center; justify-content: center;">
-    <!-- Premium geometric pattern overlay -->
-    <div style="position: absolute; inset: 0; opacity: 0.03; background-image: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\"><path d=\"M30 0L60 30L30 60L0 30Z\" fill=\"none\" stroke=\"white\" stroke-width=\"0.5\"/></svg>'); background-size: 60px 60px;"></div>
-    
-    <!-- Accent circles -->
-    <div style="position: absolute; top: -150px; right: -150px; width: 500px; height: 500px; border: 1px solid rgba(97, 243, 147, 0.1); border-radius: 50%; pointer-events: none;"></div>
-    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border: 1px solid rgba(97, 243, 147, 0.07); border-radius: 50%; pointer-events: none;"></div>
-    <div style="position: absolute; bottom: -200px; left: -200px; width: 600px; height: 600px; border: 1px solid rgba(97, 243, 147, 0.05); border-radius: 50%; pointer-events: none;"></div>
-    
-    <!-- Gradient orb -->
-    <div style="position: absolute; top: 20%; right: 10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(97, 243, 147, 0.15) 0%, transparent 70%); border-radius: 50%; filter: blur(60px); pointer-events: none;"></div>
-    <div style="position: absolute; bottom: 20%; left: 15%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(97, 243, 147, 0.1) 0%, transparent 70%); border-radius: 50%; filter: blur(40px); pointer-events: none;"></div>
+<section class="slide" style="position: relative; overflow: hidden; background: #0a1628; display: flex; align-items: center; justify-content: center;">
+    <!-- Subtle geometric accents (flat, no gradients) -->
+    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border: 1px solid rgba(97, 243, 147, 0.08); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; border: 1px solid rgba(97, 243, 147, 0.05); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; border: 1px solid rgba(97, 243, 147, 0.06); border-radius: 50%; pointer-events: none;"></div>
     
     <div style="position: relative; z-index: 1; text-align: center;">
-        <!-- Real Clarity logo -->
-        <div style="margin-bottom: 60px;">
-            <img src="clarity-logo-white.svg" alt="Clarity" style="height: 50px;">
+        <!-- Official Clarity logo from website CDN -->
+        <div style="margin-bottom: 70px;">
+            <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846e27_Clarity%20Logo%20white.svg" alt="Clarity" style="height: 48px;">
         </div>
         
-        <!-- Name with elegant underline -->
-        <h1 style="font-size: 4rem; margin-bottom: 8px; color: white; font-weight: 700; letter-spacing: -1px;">Michael Matias</h1>
-        <div style="width: 80px; height: 3px; background: linear-gradient(90deg, var(--accent), #4ade80); margin: 0 auto 20px; border-radius: 2px;"></div>
-        <p style="font-size: 1.3rem; color: rgba(255,255,255,0.6); margin-bottom: 60px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase;">Co-Founder & CEO</p>
+        <!-- Name -->
+        <h1 style="font-size: 4.2rem; margin-bottom: 12px; color: white; font-weight: 700; letter-spacing: -1px; font-family: 'Manrope', sans-serif;">Michael Matias</h1>
+        
+        <!-- Accent line (flat color, no gradient) -->
+        <div style="width: 60px; height: 3px; background: #61F393; margin: 0 auto 16px;"></div>
+        
+        <p style="font-size: 1.2rem; color: rgba(255,255,255,0.5); margin-bottom: 70px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; font-family: 'Manrope', sans-serif;">Co-Founder & CEO</p>
         
         <!-- Tagline -->
-        <div style="max-width: 800px; margin: 0 auto;">
-            <p style="font-size: 1.6rem; color: rgba(255,255,255,0.85); line-height: 1.5; font-weight: 300;">
-                Protecting enterprises from the new attack surface
+        <div style="max-width: 750px; margin: 0 auto;">
+            <p style="font-size: 1.5rem; color: rgba(255,255,255,0.9); line-height: 1.6; font-weight: 400; font-family: 'Manrope', sans-serif;">
+                Protecting enterprises from the new attack surface:
             </p>
-            <p style="font-size: 1.8rem; color: var(--accent); margin-top: 15px; font-weight: 600;">
+            <p style="font-size: 1.7rem; color: #61F393; margin-top: 16px; font-weight: 600; font-family: 'Manrope', sans-serif;">
                 Fraudulent hires. Synthetic identities. Deepfakes.
             </p>
         </div>
-        
-        <!-- Subtle trust indicators -->
-        <div style="margin-top: 80px; display: flex; justify-content: center; gap: 50px; opacity: 0.5;">
-            <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Backed by</div>
-                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 4px;">Top-tier investors</div>
-            </div>
-            <div style="width: 1px; background: rgba(255,255,255,0.2);"></div>
-            <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Trusted by</div>
-                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 4px;">Fortune 500 companies</div>
-            </div>
-        </div>
     </div>
     
-    <div class="slide-number" style="color: rgba(255,255,255,0.3);">1</div>
+    <div class="slide-number" style="color: rgba(255,255,255,0.2);">1</div>
 </section>
 
 <!-- Slide 2: The Hook -->
