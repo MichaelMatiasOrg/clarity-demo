@@ -987,7 +987,7 @@
     <div style="max-width: 900px; margin: 0 auto; text-align: center;">
         <span class="badge" style="margin-bottom: 25px;">🎧 Interactive Demo</span>
         <h2 style="font-size: 2.8rem; margin-bottom: 16px;">Can <span class="accent">you</span> tell which voice is real?</h2>
-        <p class="subtitle" style="margin-bottom: 50px;">Listen to these three audio clips. Two are real. One is AI-generated.</p>
+        <p class="subtitle" style="margin-bottom: 50px;">Listen to these three audio clips. Can you spot the AI?</p>
         
         <!-- Audio Players -->
         <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;">
@@ -1020,8 +1020,8 @@
         
         <!-- Answer (hidden initially) -->
         <div id="voice-answer" style="display: none; margin-top: 40px; padding: 30px; background: var(--danger-muted); border-radius: 16px; border: 2px solid var(--danger);">
-            <h3 style="color: var(--danger); margin: 0 0 12px; font-size: 1.5rem;">Voice B was AI-generated</h3>
-            <p style="color: var(--text-primary); margin: 0; font-size: 1.1rem;">Most people can't tell the difference. Neither can your interviewers.</p>
+            <h3 style="color: var(--danger); margin: 0 0 12px; font-size: 1.5rem;">All three were AI-generated.</h3>
+            <p style="color: var(--text-primary); margin: 0; font-size: 1.1rem;">You couldn't tell. Neither can your interviewers.</p>
         </div>
     </div>
     
@@ -1059,12 +1059,10 @@ function revealAnswer() {
     answer.style.display = 'block';
     btn.style.display = 'none';
     
-    // Highlight the fake one
+    // All three are AI-generated - highlight all red
     document.querySelectorAll('.voice-option').forEach(el => {
-        if (el.dataset.voice === 'B') {
-            el.style.borderColor = 'var(--danger)';
-            el.style.background = 'var(--danger-muted)';
-        }
+        el.style.borderColor = 'var(--danger)';
+        el.style.background = 'var(--danger-muted)';
     });
 }
 </script>
