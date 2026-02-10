@@ -634,6 +634,18 @@ h3 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
 .text-secondary-sm { font-size: 0.85rem; color: var(--text-secondary); }
 .text-danger { color: var(--danger); }
 
+/* === Bottom Toolbar === */
+#bottom-toolbar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
 /* === Version Badge === */
 .version-badge {
     position: fixed;

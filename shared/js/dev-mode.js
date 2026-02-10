@@ -37,12 +37,8 @@
         btn.innerHTML = '\uD83D\uDEE0\uFE0F';
         btn.title = 'Dev Mode (Alt+D) | ESC=exit, C=copy, ?=help';
         btn.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 10000;
-            width: 50px;
-            height: 50px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: none;
             background: #1a1a2e;
@@ -56,7 +52,9 @@
         btn.addEventListener('mouseenter', () => btn.style.opacity = '1');
         btn.addEventListener('mouseleave', () => btn.style.opacity = devModeEnabled ? '1' : '0.7');
         btn.addEventListener('click', toggleDevMode);
-        document.body.appendChild(btn);
+        const toolbar = document.getElementById('bottom-toolbar');
+        if (toolbar) toolbar.appendChild(btn);
+        else document.body.appendChild(btn);
         return btn;
     }
 

@@ -28,7 +28,8 @@ class PdfExporter {
             '#subtitles',
             '#autoplay-overlay',
             '#pdf-download-btn',
-            '#pdf-progress-overlay'
+            '#pdf-progress-overlay',
+            '#bottom-toolbar'
         ].concat(opts.uiSelectors || []);
 
         this.isCapturing = false;
@@ -46,7 +47,9 @@ class PdfExporter {
             </svg>
             PDF`;
         btn.addEventListener('click', () => this.exportPdf());
-        document.body.appendChild(btn);
+        const toolbar = document.getElementById('bottom-toolbar');
+        if (toolbar) toolbar.appendChild(btn);
+        else document.body.appendChild(btn);
 
         // Progress overlay
         const overlay = document.createElement('div');

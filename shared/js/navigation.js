@@ -150,7 +150,7 @@
 
     // Section navigation
     const sectionIds = ['section-attack', 'section-threat', 'section-impact', 'section-solution', 'section-close'];
-    const navLinks = document.querySelectorAll('#nav-panel a');
+    const navLinks = document.querySelectorAll('#nav-panel a[data-section]');
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -196,4 +196,9 @@
     });
 
     setActiveNav('section-attack');
+
+    // Create shared bottom toolbar for utility buttons (speaker notes, dev mode, PDF, etc.)
+    const toolbar = document.createElement('div');
+    toolbar.id = 'bottom-toolbar';
+    document.body.appendChild(toolbar);
 })();
