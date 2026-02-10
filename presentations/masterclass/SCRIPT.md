@@ -10,26 +10,28 @@
 ## ACT 1: THE ATTACK
 
 ### Slide 1: intro
-**Core message:** (Setup - establishes credibility)  
-**Duration:** ~5 seconds  
+**Core message:** Setup - establishes credibility + paradigm shift  
+**Duration:** ~15 seconds  
 **Script:**
 ```
 I'm Michael Matias, Co-Founder and CEO of Clarity.
+
+In cybersecurity, we're used to thinking about breaking into companies through software. Vulnerabilities. Exploits. Zero-days.
+
+Today, I want to talk about a different threat: breaking in through the front door.
 ```
 **Status:** [x] Approved
 
 ---
 
 ### Slide 2: vero-hook
-**Core message:** Your hiring process is a security vulnerability  
-**Duration:** ~15 seconds  
+**Core message:** The hook - pulls them into the story  
+**Duration:** ~8 seconds  
 **Script:**
 ```
-In cybersecurity, we're used to thinking about breaking into companies through software. Vulnerabilities. Exploits. Zero-days.
+Last night, I wanted to test how easy this really is.
 
-Today, I want to talk about a different threat: breaking in through the front door.
-
-Last night, I wanted to break into Vero Financial. Let me show you how I did it.
+I picked a target: Vero Financial. Let me show you how I got in.
 ```
 **Status:** [x] Approved
 
