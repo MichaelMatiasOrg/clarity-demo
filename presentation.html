@@ -2621,6 +2621,25 @@ document.addEventListener('keydown', (e) => {
         e.preventDefault();
         togglePause();
     }
+    // Arrow key navigation when paused
+    if (isPlaying && isPaused) {
+        const slides = document.querySelectorAll('.slide');
+        const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
+        const slideHeight = window.innerHeight;
+        let currentSlideIndex = Math.round(scrollPos / slideHeight);
+        
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (currentSlideIndex < slides.length - 1) {
+                slides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (currentSlideIndex > 0) {
+                slides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }
 });
 
 function startPresentation() {
