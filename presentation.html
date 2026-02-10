@@ -1202,50 +1202,49 @@
         <h2 style="text-align: center; margin-bottom: 10px;">The <span class="accent">Employee Identity Lifecycle</span></h2>
         <p class="subtitle" style="text-align: center; margin-bottom: 40px;">Especially for remote employees — verify identity at every critical moment.</p>
         
-        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;">
-            <div style="background: white; border-radius: 16px; padding: 25px 15px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 2px solid var(--accent);">
-                <div style="width: 50px; height: 50px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                    <span style="font-size: 1.5rem;">📋</span>
+        <div style="display: flex; align-items: stretch; gap: 25px; justify-content: center;">
+            <!-- ONBOARDING - The Front Door (Big/Prominent) -->
+            <div style="background: linear-gradient(135deg, var(--accent) 0%, #4ade80 100%); border-radius: 20px; padding: 35px 30px; text-align: center; box-shadow: 0 12px 40px rgba(97, 243, 147, 0.35); flex: 0 0 280px; position: relative; transform: scale(1.05);">
+                <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--text-primary); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">The Front Door</div>
+                <div style="width: 70px; height: 70px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 15px auto 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <span style="font-size: 2rem;">🚪</span>
                 </div>
-                <h4 style="margin-bottom: 8px; font-size: 1rem;">Onboarding</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">Verify before granting any system access</p>
+                <h3 style="margin-bottom: 12px; font-size: 1.4rem; color: var(--text-primary);">Onboarding</h3>
+                <p style="font-size: 0.95rem; color: var(--text-primary); line-height: 1.5; opacity: 0.85;">Verify identity before granting<br><strong>any</strong> system access</p>
             </div>
             
-            <div style="background: white; border-radius: 16px; padding: 25px 15px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);">
-                <div style="width: 50px; height: 50px; background: var(--text-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                    <span style="font-size: 1.5rem; filter: grayscale(1) brightness(10);">🔐</span>
+            <!-- Other 3 checkpoints -->
+            <div style="display: flex; flex-direction: column; gap: 15px; flex: 0 0 200px;">
+                <div style="background: white; border-radius: 14px; padding: 20px 18px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="width: 45px; height: 45px; background: var(--text-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                        <span style="font-size: 1.3rem; filter: grayscale(1) brightness(10);">🔐</span>
+                    </div>
+                    <h4 style="margin-bottom: 6px; font-size: 0.95rem;">MFA Resets</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.3;">Social engineering's favorite target</p>
                 </div>
-                <h4 style="margin-bottom: 8px; font-size: 1rem;">MFA Resets</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">Social engineering's favorite target</p>
+                
+                <div style="background: white; border-radius: 14px; padding: 20px 18px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="width: 45px; height: 45px; background: var(--text-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                        <span style="font-size: 1.3rem; filter: grayscale(1) brightness(10);">⚡</span>
+                    </div>
+                    <h4 style="margin-bottom: 6px; font-size: 0.95rem;">Privileged Access</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.3;">Re-verify before sensitive ops</p>
+                </div>
             </div>
             
-            <div style="background: white; border-radius: 16px; padding: 25px 15px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);">
-                <div style="width: 50px; height: 50px; background: var(--text-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                    <span style="font-size: 1.5rem; filter: grayscale(1) brightness(10);">⚡</span>
+            <div style="display: flex; flex-direction: column; justify-content: center; flex: 0 0 200px;">
+                <div style="background: white; border-radius: 14px; padding: 20px 18px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);">
+                    <div style="width: 45px; height: 45px; background: var(--text-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                        <span style="font-size: 1.3rem; filter: grayscale(1) brightness(10);">🔄</span>
+                    </div>
+                    <h4 style="margin-bottom: 6px; font-size: 0.95rem;">Periodic Checks</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.3;">Ongoing validation — still them?</p>
                 </div>
-                <h4 style="margin-bottom: 8px; font-size: 1rem;">Privileged Access</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">Re-verify before sensitive operations</p>
-            </div>
-            
-            <div style="background: white; border-radius: 16px; padding: 25px 15px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);">
-                <div style="width: 50px; height: 50px; background: var(--text-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                    <span style="font-size: 1.5rem; filter: grayscale(1) brightness(10);">🔄</span>
-                </div>
-                <h4 style="margin-bottom: 8px; font-size: 1rem;">Periodic Checks</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">Ongoing validation — same person?</p>
-            </div>
-            
-            <div style="background: white; border-radius: 16px; padding: 25px 15px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);">
-                <div style="width: 50px; height: 50px; background: var(--text-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                    <span style="font-size: 1.5rem; filter: grayscale(1) brightness(10);">🚪</span>
-                </div>
-                <h4 style="margin-bottom: 8px; font-size: 1rem;">Offboarding</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">Verify identity at exit interview</p>
             </div>
         </div>
         
-        <p style="text-align: center; margin-top: 35px; font-size: 1.1rem; color: var(--text-primary);">
-            <strong>From first day to last</strong> — continuous identity assurance for your remote workforce.
+        <p style="text-align: center; margin-top: 40px; font-size: 1.1rem; color: var(--text-primary);">
+            <strong>Continuous identity assurance</strong> for your remote workforce.
         </p>
     </div>
     <div class="slide-number">31</div>
