@@ -677,7 +677,7 @@
 </div>
 
 <!-- Slide 1: Hero - Introduction -->
-<section id="section-attack" class="slide" style="position: relative; overflow: hidden; background: #F0F4F8; display: flex; align-items: center; justify-content: center;">
+<section id="section-attack" class="slide" data-slide-id="intro" style="position: relative; overflow: hidden; background: #F0F4F8; display: flex; align-items: center; justify-content: center;">
     <!-- Geometric shapes inspired by Clarity logo -->
     <svg style="position: absolute; top: 60px; right: 80px; width: 120px; height: 120px; opacity: 0.08;" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#0a1628"/>
@@ -723,7 +723,7 @@
 </section>
 
 <!-- Slide 2: The Hook -->
-<section class="slide slide-title slide-grid-bg">
+<section class="slide slide-title slide-grid-bg" data-slide-id="vero-hook">
     <!-- Decorative logo shape -->
     <svg class="accent-shape accent-shape-1" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#0a1628"/>
@@ -744,7 +744,7 @@
 </section>
 
 <!-- Slide 2: The Target -->
-<section class="slide">
+<section class="slide" data-slide-id="vero-target">
     <div class="two-col">
         <div>
             <!-- Vero Financial Logo - matches screenshot -->
@@ -3445,41 +3445,61 @@ function revealAnswer() {
 </div>
 
 <script>
-// Narration Script
+// Narration Script - Uses data-slide-id for reliable slide matching
+// See NARRATION.md for full mapping documentation
 const narrationScript = [
-  // Audio files: slide-0.mp3 through slide-29.mp3 (30 recordings)
-  // Mapping: narration index → DOM slide index
-  { slide: 0, text: "I want to show you something important. There's a major blind spot in how companies hire people — and it's being exploited right now.", duration: 8000 },
-  { slide: 1, text: "Here's the scenario. I want to infiltrate Vero Financial. Not by hacking their systems — by getting hired. Vero is strong. SOC 2 compliant, regular pen tests. But they're hiring. That's the entry point.", duration: 9000 },
-  { slide: 2, text: "I'm targeting Platform Infrastructure Engineer. That role gets access to production systems, deployment pipelines, customer data — everything.", duration: 7000 },
-  { slide: 3, text: "So I created Marcus Chen. It took about fifteen minutes. He's completely synthetic — but indistinguishable from a real candidate.", duration: 6000 },
-  { slide: 4, text: "His LinkedIn profile has 500 connections, endorsements, work history at companies that rarely respond to reference checks. It looks entirely legitimate.", duration: 8000 },
-  { slide: 5, text: "His resume matches perfectly. Every date aligns. Every detail cross-references with the LinkedIn.", duration: 5000 },
-  { slide: 6, text: "Marcus passes four video interviews. Recruiter screen, technical round, hiring manager, executive. Glowing reviews across the board. But here's what they didn't know — he was using a real-time deepfake the entire time.", duration: 10000 },
-  { slide: 7, text: "The same applies to voice. Can you tell which one is real? Most people can't. This technology is freely available.", duration: 6000 },
-  { slide: 8, text: "The background check comes back clean. Because Marcus is built on real patterns — he's just not a real person.", duration: 7000 },
-  { slide: 9, text: "Every stage of the hiring process — bypassed. AI-generated profile for sourcing. AI-tailored resume. Real-time deepfake for interviews. Synthetic identity for background checks. And now Marcus has an offer letter and access to your systems.", duration: 10000 },
-  { slide: 10, text: "This isn't hypothetical. It's already happening. North Korean operatives infiltrated over 300 US companies. A security company — KnowBe4 — hired a fake employee who started loading malware on day one.", duration: 9000 },
-  { slide: 11, text: "Remember — Marcus took fifteen minutes to create. One person could generate twenty identities per week, apply to hundreds of companies, and land multiple job offers. Every week.", duration: 10000 },
-  { slide: 12, text: "This isn't a future problem. We've heard directly from Fortune 500 security teams — this is happening now.", duration: 5000 },
-  { slide: 13, text: "The data confirms it. Gartner predicts one in four candidate profiles will be fake by 2028. The Department of Justice identified over 300 companies that unknowingly hired North Korean operatives.", duration: 6000 },
-  { slide: 14, text: "HR is the new attack surface. Your firewall is solid. Your hiring process is the vulnerability.", duration: 6000 },
-  { slide: 15, text: "When a bad hire gets through, the average cost is over 240,000 dollars. And that's assuming they're just incompetent.", duration: 6000 },
-  { slide: 16, text: "What if they're malicious? Insider threats cause the most damaging breaches. And you've just handed them credentials and access.", duration: 7000 },
-  { slide: 17, text: "Clarity provides end-to-end identity validation for the entire hiring lifecycle. From the first resume to their last day on the job.", duration: 6000 },
-  { slide: 18, text: "This is what we built. Clarity integrates into your existing hiring workflow. Legitimate candidates pass through seamlessly. Threats are identified and blocked.", duration: 10000 },
-  { slide: 19, text: "This is your command center. Complete visibility into every employee's identity verification status. 99% of your workforce verified, threats blocked in real-time.", duration: 9000 },
-  { slide: 20, text: "Before the interview even starts, we flag synthetic identities, AI-generated photos, and inconsistent employment history. Threats blocked before anyone wastes time.", duration: 8000 },
-  { slide: 21, text: "During the interview — real-time detection. Face manipulation, voice anomalies, identity mismatches. Flagged with high confidence, interview paused, your team notified immediately.", duration: 9000 },
-  { slide: 22, text: "And protection continues after hiring. Day 90, day 180 — we verify it's still the same person who was hired. Continuous identity assurance.", duration: 9000 },
-  { slide: 23, text: "The full employee identity lifecycle. From onboarding verification to periodic checks, MFA resets, and privileged access — identity confirmed at every critical moment.", duration: 8000 },
-  { slide: 24, text: "Clarity is built on two pillars: deep workflow integration, and advanced fraud detection. Security tools fail when they create friction — so we built for zero friction.", duration: 8000 },
-  { slide: 25, text: "We integrate into the tools your teams already use — from hiring to ongoing security. Okta, ServiceNow, Workday, Slack, Zoom.", duration: 8000 },
-  { slide: 26, text: "Our multi-layered fraud detection works together to identify threats with high confidence. Deepfakes, voice cloning, biometric matching, identity signals.", duration: 8000 },
-  { slide: 27, text: "When Clarity detects a threat, alerts route to the right teams in the tools they already use. Full audit trail. Every action logged.", duration: 8000 },
-  { slide: 28, text: "Traditional solutions have gaps. Background checks can't verify the person. IDV platforms have no interview protection. Video platforms have no deepfake detection. Clarity fills all these gaps.", duration: 10000 },
-  { slide: 29, text: "Clarity is trusted by industry leaders like Deel, protecting hiring at scale across 150 countries.", duration: 6000 }
+  // ID-based mapping: each slide has data-slide-id attribute in HTML
+  // Format: { id: "slide-id", text: "narration", duration: ms, audio: "filename.mp3" }
+  { id: "intro", text: "I want to show you something important. There's a major blind spot in how companies hire people — and it's being exploited right now.", duration: 8000 },
+  { id: "vero-hook", text: "Here's the scenario. I want to infiltrate Vero Financial. Not by hacking their systems — by getting hired.", duration: 7000 },
+  { id: "vero-target", text: "Vero is a strong company. SOC 2 compliant, regular penetration testing, solid perimeter security.", duration: 5000 },
+  { id: "entry-point", text: "But they're hiring. And that's the entry point.", duration: 4000 },
+  { id: "why-role", text: "I'm targeting Platform Infrastructure Engineer. That role gets access to production systems, deployment pipelines, customer data — everything.", duration: 7000 },
+  { id: "meet-marcus", text: "So I created Marcus Chen. It took about fifteen minutes. He's completely synthetic — but indistinguishable from a real candidate.", duration: 6000 },
+  { id: "linkedin", text: "His LinkedIn profile has 500 connections, endorsements, work history at companies that rarely respond to reference checks. It looks entirely legitimate.", duration: 8000 },
+  { id: "resume", text: "His resume matches perfectly. Every date aligns. Every detail cross-references with the LinkedIn.", duration: 5000 },
+  { id: "interview-deepfake", text: "Marcus passes four video interviews. Recruiter screen, technical round, hiring manager, executive. Glowing reviews across the board. But here's what they didn't know — he was using a real-time deepfake the entire time.", duration: 10000 },
+  { id: "voice-quiz", text: "The same applies to voice. Can you tell which one is real? Most people can't. This technology is freely available.", duration: 6000 },
+  { id: "background-check", text: "The background check comes back clean. Because Marcus is built on real patterns — he's just not a real person.", duration: 7000 },
+  { id: "every-stage", text: "Every stage of the hiring process — bypassed. AI-generated profile for sourcing. AI-tailored resume. Real-time deepfake for interviews. Synthetic identity for background checks. And now Marcus has an offer letter and access to your systems.", duration: 10000 },
+  { id: "already-happening", text: "This isn't hypothetical. It's already happening. North Korean operatives infiltrated over 300 US companies. A security company — KnowBe4 — hired a fake employee who started loading malware on day one.", duration: 9000 },
+  { id: "scale", text: "Remember — Marcus took fifteen minutes to create. One person could generate twenty identities per week, apply to hundreds of companies, and land multiple job offers. Every week.", duration: 10000 },
+  { id: "fortune-500", text: "This isn't a future problem. We've heard directly from Fortune 500 security teams — this is happening now.", duration: 5000 },
+  { id: "epidemic", text: "The data confirms it. Gartner predicts one in four candidate profiles will be fake by 2028. The Department of Justice identified over 300 companies that unknowingly hired North Korean operatives.", duration: 6000 },
+  { id: "hr-attack-surface", text: "HR is the new attack surface. Your firewall is solid. Your hiring process is the vulnerability.", duration: 6000 },
+  { id: "bad-hire-cost", text: "When a bad hire gets through, the average cost is over 240,000 dollars. And that's assuming they're just incompetent.", duration: 6000 },
+  { id: "malicious", text: "What if they're malicious? Insider threats cause the most damaging breaches. And you've just handed them credentials and access.", duration: 7000 },
+  { id: "clarity-intro", text: "Clarity provides end-to-end identity validation for the entire hiring lifecycle. From the first resume to their last day on the job.", duration: 6000 },
+  { id: "pipeline", text: "This is what we built. Clarity integrates into your existing hiring workflow. Legitimate candidates pass through seamlessly. Threats are identified and blocked.", duration: 10000 },
+  { id: "command-center", text: "This is your command center. Complete visibility into every employee's identity verification status. 99% of your workforce verified, threats blocked in real-time.", duration: 9000 },
+  { id: "pre-interview", text: "Before the interview even starts, we flag synthetic identities, AI-generated photos, and inconsistent employment history. Threats blocked before anyone wastes time.", duration: 8000 },
+  { id: "during-interview", text: "During the interview — real-time detection. Face manipulation, voice anomalies, identity mismatches. Flagged with high confidence, interview paused, your team notified immediately.", duration: 9000 },
+  { id: "continuous", text: "And protection continues after hiring. Day 90, day 180 — we verify it's still the same person who was hired. Continuous identity assurance.", duration: 9000 },
+  { id: "lifecycle", text: "The full employee identity lifecycle. From onboarding verification to periodic checks, MFA resets, and privileged access — identity confirmed at every critical moment.", duration: 8000 },
+  { id: "two-pillars", text: "Clarity is built on two pillars: deep workflow integration, and advanced fraud detection. Security tools fail when they create friction — so we built for zero friction.", duration: 8000 },
+  { id: "integrations", text: "We integrate into the tools your teams already use — from hiring to ongoing security. Okta, ServiceNow, Workday, Slack, Zoom.", duration: 8000 },
+  { id: "fraud-detection", text: "Our multi-layered fraud detection works together to identify threats with high confidence. Deepfakes, voice cloning, biometric matching, identity signals.", duration: 8000 },
+  { id: "alerts", text: "When Clarity detects a threat, alerts route to the right teams in the tools they already use. Full audit trail. Every action logged.", duration: 8000 },
+  { id: "vs-traditional", text: "Traditional solutions have gaps. Background checks can't verify the person. IDV platforms have no interview protection. Video platforms have no deepfake detection. Clarity fills all these gaps.", duration: 10000 },
+  { id: "social-proof", text: "Clarity is trusted by industry leaders like Deel, protecting hiring at scale across 150 countries.", duration: 6000 },
+  { id: "closing", text: "Your people are your greatest asset. Make sure they're actually your people.", duration: 5000 }
 ];
+
+// Build slide index lookup from IDs
+const slideIdToIndex = {};
+document.querySelectorAll('.slide[data-slide-id]').forEach((slide, idx) => {
+  slideIdToIndex[slide.dataset.slideId] = idx;
+});
+
+// Helper: get slide index from narration entry
+function getSlideIndex(narration) {
+  if (narration.id) {
+    const idx = slideIdToIndex[narration.id];
+    if (idx !== undefined) return idx;
+    console.warn(`Slide ID not found: ${narration.id}`);
+  }
+  return narration.slide ?? 0; // Fallback to numeric index
+}
 
 // Autoplay State
 let isPlaying = false;
@@ -3568,7 +3588,7 @@ document.addEventListener('keydown', (e) => {
         } else {
             // If paused, just navigate visually
             const slides = document.querySelectorAll('.slide');
-            const targetSlide = narrationScript[currentNarrationIndex].slide;
+            const targetSlide = getSlideIndex(narrationScript[currentNarrationIndex]);
             slides[targetSlide].scrollIntoView({ behavior: 'smooth' });
             currentSlideNum.textContent = currentNarrationIndex + 1;
         }
@@ -3587,7 +3607,7 @@ function startPresentation() {
     const currentSlideIndex = Math.round(scrollPos / slideHeight);
     
     // Find the narration index for the current slide
-    currentNarrationIndex = narrationScript.findIndex(n => n.slide >= currentSlideIndex);
+    currentNarrationIndex = narrationScript.findIndex(n => getSlideIndex(n) >= currentSlideIndex);
     if (currentNarrationIndex === -1) currentNarrationIndex = 0;
     
     // Show controls and subtitles
@@ -3757,7 +3777,7 @@ function playCurrentSlide() {
     const narration = narrationScript[currentNarrationIndex];
     
     // Go to slide
-    goToSlideAutoplay(narration.slide);
+    goToSlideAutoplay(getSlideIndex(narration));
     
     // Update subtitles
     updateSubtitles(narration.text);
@@ -3816,7 +3836,7 @@ function togglePause() {
         const currentSlideIndex = Math.round(scrollPos / slideHeight);
         
         // Find narration for current slide
-        const newIndex = narrationScript.findIndex(n => n.slide >= currentSlideIndex);
+        const newIndex = narrationScript.findIndex(n => getSlideIndex(n) >= currentSlideIndex);
         if (newIndex !== -1 && newIndex !== currentNarrationIndex) {
             currentNarrationIndex = newIndex;
         }
