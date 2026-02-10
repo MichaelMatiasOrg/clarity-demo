@@ -18,6 +18,92 @@
             --danger-muted: #FEE2E2;
         }
         
+        /* Slide-out Navigation Menu */
+        #nav-menu {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+        }
+        
+        #nav-trigger {
+            width: 20px;
+            height: 120px;
+            background: linear-gradient(90deg, rgba(10, 22, 40, 0.1), transparent);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: width 0.2s;
+        }
+        
+        #nav-trigger:hover {
+            width: 24px;
+            background: linear-gradient(90deg, rgba(10, 22, 40, 0.15), transparent);
+        }
+        
+        #nav-trigger::after {
+            content: '›';
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+        
+        #nav-panel {
+            background: var(--text-primary);
+            border-radius: 0 16px 16px 0;
+            padding: 20px 24px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+        }
+        
+        #nav-menu:hover #nav-panel {
+            transform: translateX(0);
+        }
+        
+        #nav-menu:hover #nav-trigger::after {
+            content: '‹';
+        }
+        
+        #nav-panel h4 {
+            color: var(--accent);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+        
+        #nav-panel a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.7;
+            transition: all 0.2s;
+            border-left: 2px solid transparent;
+            padding-left: 12px;
+            margin-left: -12px;
+        }
+        
+        #nav-panel a:hover {
+            opacity: 1;
+            border-left-color: var(--accent);
+            padding-left: 16px;
+        }
+        
+        #nav-panel a.active {
+            opacity: 1;
+            border-left-color: var(--accent);
+            color: var(--accent);
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
@@ -575,8 +661,21 @@
 </head>
 <body>
 
+<!-- Navigation Menu -->
+<div id="nav-menu">
+    <div id="nav-trigger"></div>
+    <div id="nav-panel">
+        <h4>Sections</h4>
+        <a href="#section-attack" data-section="attack">The Attack</a>
+        <a href="#section-threat" data-section="threat">The Threat</a>
+        <a href="#section-impact" data-section="impact">The Impact</a>
+        <a href="#section-solution" data-section="solution">The Solution</a>
+        <a href="#section-close" data-section="close">Close</a>
+    </div>
+</div>
+
 <!-- Slide 1: Hero - Introduction -->
-<section class="slide" style="position: relative; overflow: hidden; background: #F0F4F8; display: flex; align-items: center; justify-content: center;">
+<section id="section-attack" class="slide" style="position: relative; overflow: hidden; background: #F0F4F8; display: flex; align-items: center; justify-content: center;">
     <!-- Geometric shapes inspired by Clarity logo -->
     <svg style="position: absolute; top: 60px; right: 80px; width: 120px; height: 120px; opacity: 0.08;" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#0a1628"/>
@@ -814,7 +913,7 @@
 </section>
 
 <!-- Slide 9: The Deepfake Reality -->
-<section class="slide" style="position: relative; overflow: hidden;">
+<section id="section-threat" class="slide" style="position: relative; overflow: hidden;">
     <!-- Geometric accents -->
     <div style="position: absolute; top: -30px; right: -30px; width: 150px; height: 150px; border: 2px solid rgba(10, 22, 40, 0.08); border-radius: 50%; pointer-events: none;"></div>
     <div style="position: absolute; bottom: -40px; left: -40px; width: 180px; height: 180px; border: 2px solid rgba(10, 22, 40, 0.06); border-radius: 50%; pointer-events: none;"></div>
@@ -1088,7 +1187,7 @@ function revealAnswer() {
 </section>
 
 <!-- Slide 13: The Impact - Bad Hire -->
-<section class="slide">
+<section id="section-impact" class="slide">
     <div style="max-width: 900px; margin: 0 auto; text-align: center;">
         <span class="badge badge-danger" style="margin-bottom: 30px;">The Impact</span>
         <h2 style="white-space: nowrap;">What happens when a <span class="danger">bad hire</span> gets in?</h2>
@@ -1181,7 +1280,7 @@ function revealAnswer() {
 </section>
 
 <!-- Slide 18: End-to-End Protection Flow -->
-<section class="slide" style="position: relative; overflow: hidden;">
+<section id="section-solution" class="slide" style="position: relative; overflow: hidden;">
     <!-- Geometric accents -->
     <div style="position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; border: 2px solid rgba(97, 243, 147, 0.08); border-radius: 50%; pointer-events: none;"></div>
     <div style="position: absolute; bottom: -30px; left: -30px; width: 120px; height: 120px; border: 2px solid rgba(10, 22, 40, 0.05); border-radius: 50%; pointer-events: none;"></div>
@@ -1652,7 +1751,7 @@ function revealAnswer() {
 </section>
 
 <!-- Slide 31: The Promise / Value Prop -->
-<section class="slide slide-quote">
+<section id="section-close" class="slide slide-quote">
     <p class="quote" style="font-size: 3.2rem;">Your people are your <span class="accent">greatest asset</span>.</p>
     <p class="quote" style="font-size: 2.4rem; margin-top: 30px; opacity: 0.85;">Make sure they're really your people.</p>
     <div class="slide-number">32</div>
@@ -1802,6 +1901,47 @@ function revealAnswer() {
     
     // Initial indicator
     updateIndicator();
+    
+    // Section navigation
+    const sectionIds = ['section-attack', 'section-threat', 'section-impact', 'section-solution', 'section-close'];
+    const navLinks = document.querySelectorAll('#nav-panel a');
+    
+    // Smooth scroll to section
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+    
+    // Update active section on scroll
+    function updateActiveSection() {
+        const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
+        let activeSection = 'section-attack';
+        
+        sectionIds.forEach(id => {
+            const section = document.getElementById(id);
+            if (section && section.offsetTop <= scrollPos + 200) {
+                activeSection = id;
+            }
+        });
+        
+        navLinks.forEach(link => {
+            const linkSection = link.getAttribute('href').substring(1);
+            if (linkSection === activeSection) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+    
+    document.body.addEventListener('scroll', updateActiveSection);
+    updateActiveSection();
 })();
 </script>
 
