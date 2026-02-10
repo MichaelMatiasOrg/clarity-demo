@@ -2458,14 +2458,14 @@ function revealAnswer() {
         background: rgba(239, 68, 68, 0.4);
     }
     
-    /* Subtitles */
+    /* Subtitles - movie style, one sentence at a time */
     #subtitles {
         position: fixed;
-        bottom: 100px;
+        bottom: 90px;
         left: 50%;
         transform: translateX(-50%);
-        max-width: 800px;
-        width: 90%;
+        max-width: 700px;
+        width: 85%;
         text-align: center;
         z-index: 9998;
         display: none;
@@ -2476,16 +2476,15 @@ function revealAnswer() {
     }
     #subtitles-text {
         display: inline-block;
-        background: rgba(10, 22, 40, 0.85);
+        background: rgba(0, 0, 0, 0.65);
         color: white;
-        padding: 14px 28px;
-        border-radius: 12px;
-        font-size: 1.2rem;
-        line-height: 1.5;
-        font-weight: 500;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 1.05rem;
+        line-height: 1.4;
+        font-weight: 400;
         max-width: 100%;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
     
     /* Speed Selector */
@@ -2783,9 +2782,47 @@ function toggleSubtitles() {
     }
 }
 
+// Subtitle sentence cycling
+let subtitleSentences = [];
+let currentSentenceIndex = 0;
+let sentenceInterval = null;
+
 function updateSubtitles(text) {
-    if (subtitlesEnabled) {
-        subtitlesText.textContent = text;
+    if (!subtitlesEnabled) return;
+    
+    // Clear any existing sentence cycling
+    if (sentenceInterval) {
+        clearInterval(sentenceInterval);
+        sentenceInterval = null;
+    }
+    
+    // Split into sentences (handle ., !, ? followed by space or end)
+    subtitleSentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    subtitleSentences = subtitleSentences.map(s => s.trim()).filter(s => s.length > 0);
+    
+    if (subtitleSentences.length === 0) {
+        subtitlesText.textContent = '';
+        return;
+    }
+    
+    currentSentenceIndex = 0;
+    subtitlesText.textContent = subtitleSentences[0];
+    
+    // If multiple sentences, cycle through them
+    if (subtitleSentences.length > 1) {
+        // Estimate time per sentence based on length
+        const totalDuration = (text.length / 15) * 1000; // ~15 chars per second speaking rate
+        const timePerSentence = totalDuration / subtitleSentences.length;
+        
+        sentenceInterval = setInterval(() => {
+            currentSentenceIndex++;
+            if (currentSentenceIndex < subtitleSentences.length) {
+                subtitlesText.textContent = subtitleSentences[currentSentenceIndex];
+            } else {
+                clearInterval(sentenceInterval);
+                sentenceInterval = null;
+            }
+        }, Math.max(timePerSentence, 1500)); // At least 1.5s per sentence
     }
 }
 
@@ -2932,6 +2969,12 @@ function stopPresentation() {
     }
     
     clearTimeout(narrationTimeout);
+    
+    // Stop subtitle cycling
+    if (sentenceInterval) {
+        clearInterval(sentenceInterval);
+        sentenceInterval = null;
+    }
     
     // Hide controls and subtitles
     progressContainer.classList.remove('active');
