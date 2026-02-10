@@ -883,7 +883,94 @@
     <div class="slide-number">10</div>
 </section>
 
-<!-- Slide 10: Deepfake in Hiring -->
+<!-- Slide 10b: Interactive Voice Quiz -->
+<section class="slide" style="position: relative; overflow: hidden;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="badge" style="margin-bottom: 25px;">🎧 Interactive Demo</span>
+        <h2 style="font-size: 2.8rem; margin-bottom: 16px;">Can <span class="accent">you</span> tell which voice is real?</h2>
+        <p class="subtitle" style="margin-bottom: 50px;">Listen to these three audio clips. Two are real. One is AI-generated.</p>
+        
+        <!-- Audio Players -->
+        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;">
+            <!-- Voice A -->
+            <div class="voice-option" data-voice="A" style="background: white; border-radius: 16px; padding: 30px 40px; box-shadow: 0 6px 25px rgba(0,0,0,0.08); border: 2px solid var(--border); cursor: pointer; transition: all 0.2s; min-width: 180px;" onclick="playVoice('A', this)">
+                <div style="width: 60px; height: 60px; background: var(--bg-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.5rem;">🔊</div>
+                <h3 style="margin: 0 0 8px; font-size: 1.3rem;">Voice A</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Click to play</p>
+            </div>
+            
+            <!-- Voice B -->
+            <div class="voice-option" data-voice="B" style="background: white; border-radius: 16px; padding: 30px 40px; box-shadow: 0 6px 25px rgba(0,0,0,0.08); border: 2px solid var(--border); cursor: pointer; transition: all 0.2s; min-width: 180px;" onclick="playVoice('B', this)">
+                <div style="width: 60px; height: 60px; background: var(--bg-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.5rem;">🔊</div>
+                <h3 style="margin: 0 0 8px; font-size: 1.3rem;">Voice B</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Click to play</p>
+            </div>
+            
+            <!-- Voice C -->
+            <div class="voice-option" data-voice="C" style="background: white; border-radius: 16px; padding: 30px 40px; box-shadow: 0 6px 25px rgba(0,0,0,0.08); border: 2px solid var(--border); cursor: pointer; transition: all 0.2s; min-width: 180px;" onclick="playVoice('C', this)">
+                <div style="width: 60px; height: 60px; background: var(--bg-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.5rem;">🔊</div>
+                <h3 style="margin: 0 0 8px; font-size: 1.3rem;">Voice C</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Click to play</p>
+            </div>
+        </div>
+        
+        <!-- Reveal Button -->
+        <button id="reveal-btn" onclick="revealAnswer()" style="background: var(--text-primary); color: white; border: none; padding: 16px 40px; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif;">
+            Reveal the AI Voice →
+        </button>
+        
+        <!-- Answer (hidden initially) -->
+        <div id="voice-answer" style="display: none; margin-top: 40px; padding: 30px; background: var(--danger-muted); border-radius: 16px; border: 2px solid var(--danger);">
+            <h3 style="color: var(--danger); margin: 0 0 12px; font-size: 1.5rem;">Voice B was AI-generated</h3>
+            <p style="color: var(--text-primary); margin: 0; font-size: 1.1rem;">Most people can't tell the difference. Neither can your interviewers.</p>
+        </div>
+    </div>
+    
+    <!-- Hidden audio elements -->
+    <audio id="audio-A" src="audio/voice-a.mp3" preload="auto"></audio>
+    <audio id="audio-B" src="audio/voice-b.mp3" preload="auto"></audio>
+    <audio id="audio-C" src="audio/voice-c.mp3" preload="auto"></audio>
+    
+    <div class="slide-number">10b</div>
+</section>
+
+<script>
+function playVoice(voice, element) {
+    // Stop all audio first
+    document.querySelectorAll('audio').forEach(a => { a.pause(); a.currentTime = 0; });
+    
+    // Remove playing state from all
+    document.querySelectorAll('.voice-option').forEach(el => {
+        el.style.borderColor = 'var(--border)';
+        el.style.transform = 'scale(1)';
+    });
+    
+    // Play selected and highlight
+    const audio = document.getElementById('audio-' + voice);
+    if (audio) {
+        audio.play();
+        element.style.borderColor = 'var(--accent)';
+        element.style.transform = 'scale(1.05)';
+    }
+}
+
+function revealAnswer() {
+    const answer = document.getElementById('voice-answer');
+    const btn = document.getElementById('reveal-btn');
+    answer.style.display = 'block';
+    btn.style.display = 'none';
+    
+    // Highlight the fake one
+    document.querySelectorAll('.voice-option').forEach(el => {
+        if (el.dataset.voice === 'B') {
+            el.style.borderColor = 'var(--danger)';
+            el.style.background = 'var(--danger-muted)';
+        }
+    });
+}
+</script>
+
+<!-- Slide 11: Deepfake in Hiring -->
 <section class="slide slide-title">
     <h2 style="font-size: 2.8rem;">If deepfakes can steal <span class="accent">$25 million</span>...</h2>
     <p class="subtitle" style="margin-top: 30px; font-size: 1.5rem;">
