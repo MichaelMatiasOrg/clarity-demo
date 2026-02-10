@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Software Engineer, Platform Infrastructure - Vero Financial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .nav-links a.active { color: #3b82f6; }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 40px;
+        }
+        
+        .breadcrumb {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        
+        .breadcrumb a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
+        .job-header {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            border: 2px solid #3b82f6;
+            margin-bottom: 30px;
+        }
+        
+        .job-header h1 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 24px;
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        
+        .tag {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .tag-eng { background: #dbeafe; color: #1d4ed8; }
+        .tag-remote { background: #dcfce7; color: #16a34a; }
+        .tag-urgent { background: #fef3c7; color: #d97706; }
+        
+        .apply-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 24px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+        
+        .section p {
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        
+        .section ul {
+            color: #475569;
+            line-height: 1.8;
+            padding-left: 24px;
+        }
+        
+        .section li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: linear-gradient(to right, rgba(239, 68, 68, 0.1), transparent);
+            border-left: 3px solid #ef4444;
+            padding: 4px 12px;
+            margin: 4px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .access-item {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .access-icon {
+            width: 32px;
+            height: 32px;
+            background: #ef4444;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .access-item strong {
+            display: block;
+            color: #991b1b;
+            margin-bottom: 4px;
+        }
+        
+        .access-item span {
+            color: #7f1d1d;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">V</div>
+            Vero Financial
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Platform</a></li>
+            <li><a href="#">Solutions</a></li>
+            <li><a href="#">Developers</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Company</a></li>
+            <li><a href="#" class="active">Careers</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">Careers</a> / Engineering / Senior Software Engineer, Platform Infrastructure
+        </div>
+        
+        <div class="job-header">
+            <h1>Senior Software Engineer, Platform Infrastructure</h1>
+            <div class="job-meta">
+                <span>📍 San Francisco / Remote</span>
+                <span>💰 $180,000 - $240,000</span>
+                <span>🕐 Full-time</span>
+                <span>🏢 Engineering</span>
+            </div>
+            <div class="tags">
+                <span class="tag tag-eng">Engineering</span>
+                <span class="tag tag-remote">Remote OK</span>
+                <span class="tag tag-urgent">Urgent Hire</span>
+            </div>
+            <a href="#" class="apply-btn">Apply Now →</a>
+        </div>
+        
+        <div class="section">
+            <h2>About the Role</h2>
+            <p>We're looking for a Senior Software Engineer to join our Platform Infrastructure team. You'll be responsible for building and maintaining the core systems that power our financial products.</p>
+            <p>This is a high-impact role where you'll work directly with our most critical systems and have significant autonomy over technical decisions.</p>
+        </div>
+        
+        <div class="section">
+            <h2>What You'll Have Access To</h2>
+            <div class="access-grid">
+                <div class="access-item">
+                    <div class="access-icon">🔐</div>
+                    <div>
+                        <strong>Production Infrastructure</strong>
+                        <span>Full AWS/GCP access, deployment pipelines, Kubernetes clusters</span>
+                    </div>
+                </div>
+                <div class="access-item">
+                    <div class="access-icon">💳</div>
+                    <div>
+                        <strong>Payment Systems</strong>
+                        <span>Transaction processing, ledger systems, payment rails</span>
+                    </div>
+                </div>
+                <div class="access-item">
+                    <div class="access-icon">👥</div>
+                    <div>
+                        <strong>Customer Data</strong>
+                        <span>PII, account details, transaction history</span>
+                    </div>
+                </div>
+                <div class="access-item">
+                    <div class="access-icon">🔑</div>
+                    <div>
+                        <strong>API Keys & Secrets</strong>
+                        <span>Vault access, service credentials, encryption keys</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Requirements</h2>
+            <ul>
+                <li>7+ years of software engineering experience</li>
+                <li>Experience with distributed systems at scale</li>
+                <li>Strong background in cloud infrastructure (AWS/GCP)</li>
+                <li>Experience with financial systems or fintech (preferred)</li>
+                <li>Familiarity with SOC 2, PCI-DSS compliance</li>
+                <li>Excellent communication skills</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Benefits</h2>
+            <ul>
+                <li>Competitive salary + equity</li>
+                <li>Unlimited PTO</li>
+                <li>Remote-friendly culture</li>
+                <li>Health, dental, vision insurance</li>
+                <li>401(k) matching</li>
+                <li>Learning & development budget</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
