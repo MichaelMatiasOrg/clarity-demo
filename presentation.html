@@ -2235,5 +2235,457 @@ function revealAnswer() {
 })();
 </script>
 
+<!-- Auto-Play Presentation Feature -->
+<style>
+    /* Play Button Overlay */
+    #autoplay-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 22, 40, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+    }
+    #autoplay-overlay.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    #play-button {
+        background: linear-gradient(135deg, #61F393 0%, #4ade80 100%);
+        border: none;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 60px rgba(97, 243, 147, 0.4);
+        transition: all 0.3s ease;
+    }
+    #play-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 30px 80px rgba(97, 243, 147, 0.5);
+    }
+    #play-button svg {
+        width: 60px;
+        height: 60px;
+        margin-left: 10px;
+        fill: #0a1628;
+    }
+    #play-button-container {
+        text-align: center;
+    }
+    #play-button-container h2 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    #play-button-container p {
+        color: rgba(255,255,255,0.7);
+        margin-top: 20px;
+        font-size: 1rem;
+    }
+    
+    /* Start Presentation Button (on first slide) */
+    #start-presentation-btn {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #61F393 0%, #4ade80 100%);
+        color: #0a1628;
+        border: none;
+        padding: 16px 40px;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 10px 40px rgba(97, 243, 147, 0.3);
+        transition: all 0.3s ease;
+    }
+    #start-presentation-btn:hover {
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 15px 50px rgba(97, 243, 147, 0.4);
+    }
+    #start-presentation-btn.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    /* Progress Bar */
+    #presentation-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: rgba(97, 243, 147, 0.2);
+        z-index: 10000;
+        display: none;
+    }
+    #presentation-progress.active {
+        display: block;
+    }
+    #presentation-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #61F393, #4ade80);
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+    
+    /* Control Bar */
+    #presentation-controls {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(10, 22, 40, 0.95);
+        padding: 12px 24px;
+        border-radius: 50px;
+        display: none;
+        align-items: center;
+        gap: 20px;
+        z-index: 10000;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    #presentation-controls.active {
+        display: flex;
+    }
+    #presentation-controls button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #presentation-controls button:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    #presentation-controls button svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+    }
+    #presentation-controls .slide-info {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.9rem;
+        min-width: 80px;
+        text-align: center;
+    }
+    #presentation-controls #stop-btn {
+        background: rgba(239, 68, 68, 0.2);
+    }
+    #presentation-controls #stop-btn:hover {
+        background: rgba(239, 68, 68, 0.4);
+    }
+</style>
+
+<!-- Start Presentation Button -->
+<button id="start-presentation-btn" onclick="showAutoplayOverlay()">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    Watch Presentation
+</button>
+
+<!-- Autoplay Overlay -->
+<div id="autoplay-overlay">
+    <div id="play-button-container">
+        <h2>Ready to watch?</h2>
+        <button id="play-button" onclick="startPresentation()">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <p>~4 minutes • Auto-narrated presentation</p>
+        <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.5;">Press Escape to close</p>
+    </div>
+</div>
+
+<!-- Progress Bar -->
+<div id="presentation-progress">
+    <div id="presentation-progress-bar"></div>
+</div>
+
+<!-- Control Bar -->
+<div id="presentation-controls">
+    <button id="pause-btn" onclick="togglePause()" title="Pause/Resume">
+        <svg id="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        <svg id="play-icon" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <span class="slide-info"><span id="current-slide-num">1</span> / <span id="total-slides-num">31</span></span>
+    <button id="stop-btn" onclick="stopPresentation()" title="Stop">
+        <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
+    </button>
+</div>
+
+<script>
+// Narration Script
+const narrationScript = [
+  { slide: 0, text: "Hi, I'm Michael Matias, CEO of Clarity. I'm going to show you something that will change how you think about hiring security.", duration: 7000 },
+  { slide: 1, text: "Last night, I wanted to break into Vero Financial. Not physically. I wanted to become one of their employees.", duration: 7000 },
+  { slide: 2, text: "Vero Financial. A mid-size financial services company. Good security posture. SOC 2 compliant. The works.", duration: 7000 },
+  { slide: 3, text: "But they're hiring. And that's all I need.", duration: 4000 },
+  { slide: 4, text: "Platform Infrastructure Engineer. This role gets me access to cloud infrastructure, deployment pipelines, and internal systems. Perfect.", duration: 8000 },
+  { slide: 5, text: "Meet Marcus Chen. He doesn't exist. I created him in about an hour.", duration: 5000 },
+  { slide: 6, text: "A LinkedIn profile that looks perfect. 500 plus connections. Endorsements. Work history at companies that won't respond to verification requests.", duration: 8000 },
+  { slide: 7, text: "A resume that matches perfectly. Every detail cross-references. Every date aligns.", duration: 6000 },
+  { slide: 8, text: "Background check? All clear. Because Marcus Chen's identity is built on real patterns. Just not a real person.", duration: 7000 },
+  { slide: 9, text: "And here's where it gets scary. On a video call, anyone can be anyone. Real-time deepfakes are no longer science fiction.", duration: 8000 },
+  { slide: 10, text: "Can you tell which voice is real? Go ahead, take a guess. The technology to clone voices is now available to anyone.", duration: 8000 },
+  { slide: 11, text: "So let's recap what Marcus can do. Fake identity that passes screening. Deepfake video for interviews. Cloned voice that sounds authentic. Background check comes back clean.", duration: 10000 },
+  { slide: 12, text: "So here's my question: How would you have caught him?", duration: 5000 },
+  { slide: 13, text: "This was one target. One hour of work. Now imagine threat actors doing this at scale. Automated. Against hundreds of companies.", duration: 8000 },
+  { slide: 14, text: "This isn't theoretical. Fortune 500 CISOs are telling us this is happening. Right now.", duration: 6000 },
+  { slide: 15, text: "The hiring fraud epidemic is real. Billions lost. And most companies have zero detection capabilities.", duration: 6000 },
+  { slide: 16, text: "What happens when a bad hire gets in? Average cost: over 240,000 dollars. But that's just incompetence.", duration: 7000 },
+  { slide: 17, text: "What if they're malicious? Insider threats cause the most devastating breaches. And you just hired one.", duration: 7000 },
+  { slide: 18, text: "This is the new attack surface. Your perimeter is secure. But your employees? That's the vulnerability.", duration: 7000 },
+  { slide: 19, text: "This is why we built Clarity. End-to-end protection, built into your existing hiring flow. Watch as candidates move through your pipeline. Legitimate hires proceed. Threats get caught and blocked. No workflow changes required.", duration: 14000 },
+  { slide: 20, text: "Clarity provides end-to-end identity validation for the entire hiring lifecycle. From the first resume to their last day on the job.", duration: 8000 },
+  { slide: 21, text: "Before the interview even starts, Clarity flags synthetic identities. AI-generated photos. Unverifiable employment. Blocked before wasting interviewer time.", duration: 9000 },
+  { slide: 22, text: "Mid-interview, real-time alerts. 23 minutes in, we detect face manipulation, voice sync mismatch, and biometric anomalies. Interviewer notified immediately.", duration: 10000 },
+  { slide: 23, text: "Here's how we detected it. Face analysis shows swap artifacts. Voice analysis catches cloning signatures. Identity match confirms it's not the same person. High confidence deepfake. Interview terminated.", duration: 12000 },
+  { slide: 24, text: "Day 90, still the same person? Hired employees are continuously verified. Periodic biometric checks. Voice pattern consistency. Confirm it's still them, not a replacement.", duration: 10000 },
+  { slide: 25, text: "But here's the practical reality. A solution that doesn't fit into your existing workflow is a solution that won't get used.", duration: 7000 },
+  { slide: 26, text: "That's why Clarity is built on two pillars. Deep workflow integration. And deep security in the background.", duration: 7000 },
+  { slide: 27, text: "Pillar A: We integrate into the tools you already use. Greenhouse, Lever, Workday, Okta, Zoom, Slack. No new workflows to learn.", duration: 9000 },
+  { slide: 28, text: "Pillar B: Full visibility for your security team. SIEM integration. Real-time alerts. Threat correlation. No blind spots.", duration: 8000 },
+  { slide: 29, text: "The employee identity lifecycle. From onboarding to MFA resets to privileged access to periodic checks. Every critical moment, verified.", duration: 9000 },
+  { slide: 30, text: "Your people are your greatest asset. Make sure they're really your people.", duration: 6000 },
+  { slide: 31, text: "Every hire, verified. Every identity, trusted. That's Clarity.", duration: 6000 }
+];
+
+// Autoplay State
+let isPlaying = false;
+let isPaused = false;
+let currentNarrationIndex = 0;
+let narrationTimeout = null;
+let speechUtterance = null;
+
+// Elements
+const overlay = document.getElementById('autoplay-overlay');
+const progressBar = document.getElementById('presentation-progress-bar');
+const progressContainer = document.getElementById('presentation-progress');
+const controls = document.getElementById('presentation-controls');
+const startBtn = document.getElementById('start-presentation-btn');
+const pauseIcon = document.getElementById('pause-icon');
+const playIcon = document.getElementById('play-icon');
+const currentSlideNum = document.getElementById('current-slide-num');
+const totalSlidesNum = document.getElementById('total-slides-num');
+
+// Initialize
+totalSlidesNum.textContent = narrationScript.length;
+
+function showAutoplayOverlay() {
+    overlay.classList.add('visible');
+    startBtn.classList.add('hidden');
+}
+
+function hideAutoplayOverlay() {
+    overlay.classList.remove('visible');
+}
+
+// Close overlay on Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (overlay.classList.contains('visible')) {
+            hideAutoplayOverlay();
+            startBtn.classList.remove('hidden');
+        } else if (isPlaying) {
+            stopPresentation();
+        }
+    }
+    // Space to pause/resume during presentation
+    if (e.key === ' ' && isPlaying) {
+        e.preventDefault();
+        togglePause();
+    }
+});
+
+function startPresentation() {
+    hideAutoplayOverlay();
+    isPlaying = true;
+    isPaused = false;
+    currentNarrationIndex = 0;
+    
+    // Show controls
+    progressContainer.classList.add('active');
+    controls.classList.add('active');
+    startBtn.classList.add('hidden');
+    
+    // Hide nav hint
+    const navHint = document.getElementById('nav-hint');
+    if (navHint) navHint.style.display = 'none';
+    
+    // Go to first slide
+    goToSlideAutoplay(0);
+    
+    // Start narration
+    playCurrentSlide();
+}
+
+function goToSlideAutoplay(index) {
+    const slides = document.querySelectorAll('.slide');
+    if (index >= 0 && index < slides.length) {
+        // Restart animations
+        const slide = slides[index];
+        restartAnimationsAutoplay(slide);
+        
+        slides[index].scrollIntoView({ behavior: 'smooth' });
+        updateProgress(index);
+        currentSlideNum.textContent = index + 1;
+    }
+}
+
+function restartAnimationsAutoplay(slide) {
+    // Clone animated elements to restart animations
+    const animatedSelectors = '.orbit-outer, .orbit-inner, .center-hub, .touchpoint, .flow-arrow, .check-station-1, .check-station-2, .check-station-3, .trusted-hire-circle, .verified-badge';
+    const animatedElements = slide.querySelectorAll(animatedSelectors);
+    animatedElements.forEach(el => {
+        const clone = el.cloneNode(true);
+        el.parentNode.replaceChild(clone, el);
+    });
+    
+    // Restart gauntlet animations
+    if (slide.classList.contains('gauntlet-slide')) {
+        const container = slide.querySelector('[style*="position: absolute"]');
+        if (container) {
+            const clone = container.cloneNode(true);
+            container.parentNode.replaceChild(clone, container);
+        }
+    }
+}
+
+function updateProgress(slideIndex) {
+    const progress = ((slideIndex + 1) / narrationScript.length) * 100;
+    progressBar.style.width = progress + '%';
+}
+
+function playCurrentSlide() {
+    if (!isPlaying || currentNarrationIndex >= narrationScript.length) {
+        if (currentNarrationIndex >= narrationScript.length) {
+            // Presentation complete
+            setTimeout(() => {
+                stopPresentation();
+            }, 2000);
+        }
+        return;
+    }
+    
+    const narration = narrationScript[currentNarrationIndex];
+    
+    // Go to slide
+    goToSlideAutoplay(narration.slide);
+    
+    // Speak narration
+    if ('speechSynthesis' in window) {
+        // Cancel any ongoing speech
+        window.speechSynthesis.cancel();
+        
+        speechUtterance = new SpeechSynthesisUtterance(narration.text);
+        speechUtterance.rate = 0.95;
+        speechUtterance.pitch = 1;
+        speechUtterance.volume = 1;
+        
+        // Try to use a good voice
+        const voices = window.speechSynthesis.getVoices();
+        const preferredVoice = voices.find(v => v.name.includes('Daniel') || v.name.includes('Samantha') || v.name.includes('Google') || v.lang.startsWith('en'));
+        if (preferredVoice) {
+            speechUtterance.voice = preferredVoice;
+        }
+        
+        speechUtterance.onend = () => {
+            if (!isPaused && isPlaying) {
+                currentNarrationIndex++;
+                // Small pause between slides
+                narrationTimeout = setTimeout(playCurrentSlide, 500);
+            }
+        };
+        
+        window.speechSynthesis.speak(speechUtterance);
+    } else {
+        // Fallback: just use duration timing
+        narrationTimeout = setTimeout(() => {
+            if (!isPaused && isPlaying) {
+                currentNarrationIndex++;
+                playCurrentSlide();
+            }
+        }, narration.duration);
+    }
+}
+
+function togglePause() {
+    if (isPaused) {
+        // Resume
+        isPaused = false;
+        pauseIcon.style.display = 'block';
+        playIcon.style.display = 'none';
+        
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.resume();
+        }
+    } else {
+        // Pause
+        isPaused = true;
+        pauseIcon.style.display = 'none';
+        playIcon.style.display = 'block';
+        
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.pause();
+        }
+        
+        clearTimeout(narrationTimeout);
+    }
+}
+
+function stopPresentation() {
+    isPlaying = false;
+    isPaused = false;
+    currentNarrationIndex = 0;
+    
+    // Stop speech
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+    }
+    
+    clearTimeout(narrationTimeout);
+    
+    // Hide controls
+    progressContainer.classList.remove('active');
+    controls.classList.remove('active');
+    startBtn.classList.remove('hidden');
+    
+    // Reset UI
+    pauseIcon.style.display = 'block';
+    playIcon.style.display = 'none';
+    progressBar.style.width = '0%';
+    
+    // Go back to first slide
+    goToSlideAutoplay(0);
+}
+
+// Load voices (they load async)
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+    };
+}
+</script>
+
 </body>
 </html>
