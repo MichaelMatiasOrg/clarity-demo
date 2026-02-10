@@ -42,12 +42,30 @@
 28. **Pillar B: Advanced Fraud Detection** — AI-powered
 29. **Integration ecosystem** — Where Clarity fits
 
-### Act 4: The Close (Slides 31+)
-**Proof → CTA**
+### Act 4: The Close (Slides 29-33)
+**Architecture → Differentiation → Proof → CTA**
 
-- Customer validation
-- ROI / Business case
-- Next steps
+29. **Integration Architecture** — Alert flow to Security + Recruiting
+    - SIEM: Splunk alerts, ServiceNow incidents, Slack notifications
+    - ATS: Greenhouse flagging, Workday pausing, Okta access blocking
+    - *Key message: "Zero manual handoffs"*
+
+30. **Why Clarity** — Competitive differentiation
+    - Background checks: verify docs, not humans
+    - IDV platforms: point-in-time, no interview protection
+    - Video platforms: no deepfake detection
+    - *Clarity fills all the gaps*
+
+31. **Customer Validation** — Deel
+    - 1M+ candidates screened annually
+    - "Protecting hiring at scale"
+
+32. **CTA** — Let's Talk
+    - michael@getclarity.ai
+    - (650) 437-6332
+    - "See it in action"
+
+33. **Closing** — Logo + tagline
 
 ---
 
