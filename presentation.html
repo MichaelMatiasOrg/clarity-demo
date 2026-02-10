@@ -1407,26 +1407,16 @@ function revealAnswer() {
             100% { left: calc(85%); opacity: 0; } /* Into lifecycle */
         }
         
-        /* Threat dot - stops and triggers alert */
+        /* Threat dot - turns red, ejects upward, fades out */
         @keyframes threatDotPath {
-            0% { left: -30px; opacity: 0; }
+            0% { left: -30px; opacity: 0; background: #94a3b8; }
             5% { opacity: 1; }
             20% { left: calc(8%); }
-            40% { left: calc(24%); } /* Gets caught at Video Interview */
-            45% { left: calc(24%); transform: translateY(-50%) scale(1.3); background: #ef4444; }
-            60%, 100% { left: calc(24%); transform: translateY(-50%) scale(0); opacity: 0; }
-        }
-        
-        /* Threat signal flying to integration logos */
-        @keyframes threatSignalToSlack {
-            0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-            20% { opacity: 1; transform: translate(0, -20px) scale(1); }
-            100% { opacity: 1; transform: translate(-60px, -80px) scale(0.8); }
-        }
-        @keyframes threatSignalToSiem {
-            0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-            20% { opacity: 1; transform: translate(0, -20px) scale(1); }
-            100% { opacity: 1; transform: translate(60px, -80px) scale(0.8); }
+            40% { left: calc(24%); background: #94a3b8; } /* Gets caught at Video Interview */
+            45% { left: calc(24%); transform: translateY(-50%) scale(1.2); background: #ef4444; }
+            55% { left: calc(24%); transform: translateY(-150px) scale(1); background: #ef4444; opacity: 1; }
+            70% { left: calc(26%); transform: translateY(-200px) scale(0.8); background: #ef4444; opacity: 0.5; }
+            100% { left: calc(28%); transform: translateY(-250px) scale(0.5); background: #ef4444; opacity: 0; }
         }
         
         /* Checkmark appear */
@@ -1543,26 +1533,7 @@ function revealAnswer() {
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; animation: blockAppear 4s ease-out forwards; opacity: 0; z-index: 20; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);">
                         🚫 THREAT BLOCKED
                     </div>
-                    <!-- Threat signal flying to integration logos -->
-                    <div class="threat-signal-slack" style="position: absolute; top: 0; left: 50%; width: 24px; height: 24px; background: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; animation: threatSignalToSlack 1s ease-out 4.2s forwards; z-index: 30;">
-                        <span style="color: white; font-size: 0.7rem;">⚠️</span>
                     </div>
-                    <div class="threat-signal-siem" style="position: absolute; top: 0; left: 50%; width: 24px; height: 24px; background: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; animation: threatSignalToSiem 1s ease-out 4.4s forwards; z-index: 30;">
-                        <span style="color: white; font-size: 0.7rem;">⚠️</span>
-                    </div>
-                </div>
-                
-                <!-- Integration logo targets above pipeline -->
-                <div style="position: absolute; top: -70px; left: calc(24% - 30px); display: flex; gap: 40px; z-index: 5;">
-                    <div class="integration-target" style="background: white; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;">
-                        <img src="logos/slack.svg" alt="Slack" style="height: 16px;">
-                        <span style="font-size: 0.65rem; color: var(--text-secondary);">Slack</span>
-                    </div>
-                    <div class="integration-target" style="background: white; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;">
-                        <span style="font-size: 0.9rem;">📊</span>
-                        <span style="font-size: 0.65rem; color: var(--text-secondary);">Coralogix</span>
-                    </div>
-                </div>
                 <div style="color: var(--text-secondary);">→</div>
                 <div style="background: var(--text-primary); color: white; border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 110px;">
                     <div style="font-size: 0.8rem; font-weight: 600;">Final<br>Offer</div>
