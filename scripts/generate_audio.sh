@@ -3,6 +3,8 @@
 # Generate narration audio files from clarity-narration-data.js (single source of truth)
 # Requires: node, curl
 
+cd "$(dirname "$0")/.."
+
 API_KEY="sk_6f6bbbcc42bffe9ffb6bc715ac2879c66c2718a37905649a"
 OUTPUT_DIR="audio/narration"
 
@@ -12,7 +14,7 @@ mkdir -p "$OUTPUT_DIR"
 DATA_JSON=$(node -e "
   const vm = require('vm');
   const fs = require('fs');
-  const code = fs.readFileSync('clarity-narration-data.js', 'utf8');
+  const code = fs.readFileSync('js/clarity-narration-data.js', 'utf8');
   const window = {};
   vm.runInNewContext(code, { window });
   const data = window.NarrationData;

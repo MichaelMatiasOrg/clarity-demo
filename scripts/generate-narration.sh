@@ -1,6 +1,8 @@
 #!/bin/bash
 # Generate narration audio using OpenAI TTS
 
+cd "$(dirname "$0")/.."
+
 VOICE="onyx"  # Deep, authoritative
 MODEL="tts-1-hd"  # High quality
 OUTPUT_DIR="audio/narration"

@@ -25,24 +25,39 @@ Open `presentation.html` in a browser. No build step required.
 ## File Structure
 
 ```
-presentation.html          # Slide markup only (~2100 lines)
-css/presentation.css       # Base styles — variables, layout, components, animations
-js/navigation.js           # Keyboard nav, scroll tracking, slide indicator
-js/dev-mode.js             # Element inspector (D key toggle)
-clarity-narration-data.js  # Single source of truth: 34 narration entries + voice config
-narration-engine.js        # Reusable NarrationEngine class (autoplay, subtitles, speaker notes)
-narration-engine.css       # Narration UI styles with CSS custom properties
-index.html                 # Landing page
-audio/narration/           # slide-0.mp3 through slide-33.mp3 (ElevenLabs TTS)
-logos/                     # SVG/PNG logos for integration slides
-marcus-chen-*.png/html     # Synthetic identity demo assets (headshots, resume, LinkedIn mockup)
-mockup-*.html              # Product UI mockups (pre-interview, deepfake alert, dashboard)
-vero-*.html                # Fictional target company pages
-generate_audio.sh          # ElevenLabs audio generation (reads from clarity-narration-data.js)
-generate-narration.sh      # OpenAI TTS fallback script
-BRAND.md                   # Visual design guidelines
-CLARITY-BRANDING.md        # Logo, color, and typography specs
-NARRATION.md               # Slide-to-narration mapping
+index.html                          # Landing page
+presentation.html                   # Slide markup (~2100 lines) — primary deliverable
+favicon.svg                         # Browser favicon
+CNAME                               # GitHub Pages custom domain
+CLAUDE.md                           # This file
+
+css/
+  presentation.css                  # Base styles — variables, layout, components, animations
+  narration-engine.css              # Narration UI styles with CSS custom properties
+
+js/
+  navigation.js                     # Keyboard nav, scroll tracking, slide indicator
+  dev-mode.js                       # Element inspector (D key toggle)
+  narration-engine.js               # Reusable NarrationEngine class (autoplay, subtitles, speaker notes)
+  clarity-narration-data.js         # Single source of truth: 34 narration entries + voice config
+
+assets/
+  marcus-chen/                      # 6 PNGs — synthetic identity headshots & photos
+  vero/                             # 4 screenshots — fictional target company
+  screenshots/                      # 4 product screenshots (dashboard, pre-interview, etc.)
+  branding/                         # 3 logo SVGs + 2 PNGs
+
+audio/
+  narration/                        # slide-0.mp3 through slide-33.mp3 (ElevenLabs TTS)
+  narration-backup/                 # Backup narration files
+  voice-{a,b,c}.opus                # Voice sample files
+
+logos/                              # 25 SVG/PNG logos for integration slides
+mockups/                            # 11 HTML mockup pages (product UI, identity docs)
+slides/                             # architecture-slide.html
+dev/                                # 5 testing/preview pages
+scripts/                            # generate_audio.sh, generate-narration.sh
+docs/                               # 7 markdown docs (branding, narration, incidents)
 ```
 
 ## Presentation Navigation
@@ -56,10 +71,10 @@ NARRATION.md               # Slide-to-narration mapping
 
 - All slides live in `presentation.html` as `<section class="slide">` elements with `data-slide-id` attributes
 - Base CSS is in `css/presentation.css` — variables, layout, components, slide-specific animations
-- Narration CSS is in `narration-engine.css` — autoplay controls, subtitles, speaker notes panel (themed via CSS custom properties)
+- Narration CSS is in `css/narration-engine.css` — autoplay controls, subtitles, speaker notes panel (themed via CSS custom properties)
 - `js/navigation.js` handles keyboard nav, scroll tracking, and exposes `window.restartAnimations()` and `window.goToSlide()`
-- `narration-engine.js` provides a reusable `NarrationEngine` class (autoplay, subtitles, speed control, speaker notes). Exposes `window.isPlaying` for navigation.js
-- `clarity-narration-data.js` is the single source of truth for narration text, voice config, and animation selectors
+- `js/narration-engine.js` provides a reusable `NarrationEngine` class (autoplay, subtitles, speed control, speaker notes). Exposes `window.isPlaying` for navigation.js
+- `js/clarity-narration-data.js` is the single source of truth for narration text, voice config, and animation selectors
 - `js/dev-mode.js` handles the element inspector (D key toggle)
 - Two small inline scripts remain in `presentation.html`: voice quiz (`playVoice`/`revealAnswer`) and insider threat observer
 
@@ -107,22 +122,22 @@ These are firm preferences — follow them when modifying slides:
 ## Narration System (Extracted & Reusable)
 
 ### Architecture
-- **`clarity-narration-data.js`** — Single source of truth: 34 narration entries, voice config, animation selectors
-- **`narration-engine.js`** — Reusable `NarrationEngine` class: autoplay, subtitles, speed control, speaker notes panel
-- **`narration-engine.css`** — Engine UI styles with CSS custom properties for theming
+- **`js/clarity-narration-data.js`** — Single source of truth: 34 narration entries, voice config, animation selectors
+- **`js/narration-engine.js`** — Reusable `NarrationEngine` class: autoplay, subtitles, speed control, speaker notes panel
+- **`css/narration-engine.css`** — Engine UI styles with CSS custom properties for theming
 
 ### Audio
 - **Voice:** George (ElevenLabs voice ID: `JBFqnCBsd6RMkjVDRZzb`)
 - **Files:** `audio/narration/slide-{0-33}.mp3` (34 files)
 - **Model:** eleven_multilingual_v2
-- **Generation:** `generate_audio.sh` reads from `clarity-narration-data.js` via Node.js
+- **Generation:** `scripts/generate_audio.sh` reads from `js/clarity-narration-data.js` via Node.js
 
 ### presentation.html Integration
 ```html
 <script src="js/navigation.js"></script>
-<link rel="stylesheet" href="narration-engine.css">
-<script src="clarity-narration-data.js"></script>
-<script src="narration-engine.js"></script>
+<link rel="stylesheet" href="css/narration-engine.css">
+<script src="js/clarity-narration-data.js"></script>
+<script src="js/narration-engine.js"></script>
 <script>
 new NarrationEngine({ ... });
 </script>
