@@ -21,12 +21,12 @@ window.NarrationData = {
   // Format: { id, text, audioIndex (optional), duration (fallback ms) }
   entries: [
     // === Act 1: The Attack Story (slides 0-11) ===
-    { id: "intro", audioIndex: 0, text: "Hi, I'm Michael Matias, CEO of Clarity. I'm going to show you something that will change how you think about hiring security.", duration: 8000 },
-    { id: "vero-hook", audioIndex: 1, text: "Last night, I wanted to break into Vero Financial. Not physically — I wanted to become one of their employees.", duration: 6000 },
-    { id: "vero-target", audioIndex: 2, text: "Vero Financial. A mid-size financial services company. Good security posture. SOC 2 compliant. The works.", duration: 8000 },
-    { id: "entry-point", audioIndex: 3, text: "But they're hiring, and that's all I need.", duration: 3000 },
-    { id: "why-role", audioIndex: 4, text: "Platform Infrastructure Engineer. This role gets me access to cloud infrastructure, deployment pipelines, and internal systems. Perfect.", duration: 9000 },
-    { id: "meet-marcus", audioIndex: 5, text: "Meet Marcus Chen. He doesn't exist. I created him in about an hour.", duration: 4000 },
+    { id: "intro", audioIndex: 0, text: "I'm Michael Matias, Co-Founder and CEO of Clarity.", duration: 5000 },
+    { id: "vero-hook", audioIndex: 1, text: "In cybersecurity, we're used to thinking about breaking into companies through software. Vulnerabilities. Exploits. Zero-days. Today, I want to talk about a different threat: breaking in through the front door. Last night, I wanted to break into Vero Financial. Let me show you how I did it.", duration: 15000 },
+    { id: "vero-target", audioIndex: 2, text: "Vero Financial. Four point two billion dollars processed annually. One hundred eighty platform customers. A mature security perimeter. Regular penetration tests. They do everything right. Except for one thing.", duration: 12000 },
+    { id: "entry-point", audioIndex: 3, text: "They're hiring. Six open roles. One stands out: Staff Software Engineer, Platform. Hiring isn't doing anything wrong. It's just an opportunity. This is my way in.", duration: 10000 },
+    { id: "why-role", audioIndex: 4, text: "Why this role? Production access to systems processing billions in transactions. Customer data. Account numbers. Transaction history. Vault access. API keys. The keys to the kingdom. One hire. Complete access.", duration: 12000 },
+    { id: "meet-marcus", audioIndex: 5, text: "So I created the perfect candidate. Meet Marcus Chen. Senior Software Engineer. Seven years of experience. Stripe. Plaid. UC Berkeley. Built in minutes. Tailored for this exact role.", duration: 10000 },
     { id: "linkedin", audioIndex: 6, text: "A LinkedIn profile that looks perfect. 500-plus connections, endorsements, work history at companies that won't respond to verification requests.", duration: 11000 },
     { id: "resume", audioIndex: 7, text: "A resume that matches perfectly. Every detail cross-references, every date aligns.", duration: 5000 },
     { id: "interview-deepfake", audioIndex: 9, text: "And here's where it gets scary. On a video call, anyone can be anyone. Real-time deepfakes are no longer science fiction.", duration: 8000 },
