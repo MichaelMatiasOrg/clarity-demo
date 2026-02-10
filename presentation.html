@@ -2152,7 +2152,8 @@ function revealAnswer() {
         document.removeEventListener('keydown', hideHint);
     }, { once: true });
     
-    // Initial indicator
+    // Initial indicator - get current slide from scroll position on page load
+    currentSlide = getCurrentSlideFromScroll();
     updateIndicator();
     
     // Section navigation
