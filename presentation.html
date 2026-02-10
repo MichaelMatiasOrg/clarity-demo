@@ -2395,6 +2395,101 @@ function revealAnswer() {
     #presentation-controls #stop-btn:hover {
         background: rgba(239, 68, 68, 0.4);
     }
+    
+    /* Subtitles */
+    #subtitles {
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 800px;
+        width: 90%;
+        text-align: center;
+        z-index: 9998;
+        display: none;
+        pointer-events: none;
+    }
+    #subtitles.active {
+        display: block;
+    }
+    #subtitles-text {
+        display: inline-block;
+        background: rgba(10, 22, 40, 0.85);
+        color: white;
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        font-weight: 500;
+        max-width: 100%;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    
+    /* Speed Selector */
+    #speed-selector {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    #speed-btn {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        min-width: 55px;
+    }
+    #speed-btn:hover {
+        background: rgba(255,255,255,0.2);
+    }
+    #speed-menu {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(10, 22, 40, 0.98);
+        border-radius: 12px;
+        padding: 8px 0;
+        display: none;
+        flex-direction: column;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    #speed-menu.visible {
+        display: flex;
+    }
+    #speed-menu button {
+        background: none;
+        border: none;
+        color: white;
+        padding: 10px 24px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+    #speed-menu button:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    #speed-menu button.active {
+        color: #61F393;
+        font-weight: 700;
+    }
+    
+    /* Subtitle toggle in controls */
+    #subtitle-toggle {
+        opacity: 0.6;
+    }
+    #subtitle-toggle.active {
+        opacity: 1;
+        color: #61F393;
+    }
 </style>
 
 <!-- Start Presentation Button -->
@@ -2420,13 +2515,35 @@ function revealAnswer() {
     <div id="presentation-progress-bar"></div>
 </div>
 
+<!-- Subtitles -->
+<div id="subtitles">
+    <span id="subtitles-text"></span>
+</div>
+
 <!-- Control Bar -->
 <div id="presentation-controls">
     <button id="pause-btn" onclick="togglePause()" title="Pause/Resume">
         <svg id="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         <svg id="play-icon" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
     </button>
+    
+    <button id="subtitle-toggle" class="active" onclick="toggleSubtitles()" title="Toggle Subtitles">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm-6-4h8v2h-8z"/></svg>
+    </button>
+    
     <span class="slide-info"><span id="current-slide-num">1</span> / <span id="total-slides-num">31</span></span>
+    
+    <div id="speed-selector">
+        <button id="speed-btn" onclick="toggleSpeedMenu()">1x</button>
+        <div id="speed-menu">
+            <button onclick="setSpeed(0.75)">0.75x</button>
+            <button onclick="setSpeed(1)" class="active">1x</button>
+            <button onclick="setSpeed(1.25)">1.25x</button>
+            <button onclick="setSpeed(1.5)">1.5x</button>
+            <button onclick="setSpeed(2)">2x</button>
+        </div>
+    </div>
+    
     <button id="stop-btn" onclick="stopPresentation()" title="Stop">
         <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
     </button>
@@ -2475,6 +2592,8 @@ let isPaused = false;
 let currentNarrationIndex = 0;
 let narrationTimeout = null;
 let speechUtterance = null;
+let playbackSpeed = 1;
+let subtitlesEnabled = true;
 
 // Elements
 const overlay = document.getElementById('autoplay-overlay');
@@ -2486,6 +2605,11 @@ const pauseIcon = document.getElementById('pause-icon');
 const playIcon = document.getElementById('play-icon');
 const currentSlideNum = document.getElementById('current-slide-num');
 const totalSlidesNum = document.getElementById('total-slides-num');
+const subtitlesContainer = document.getElementById('subtitles');
+const subtitlesText = document.getElementById('subtitles-text');
+const speedBtn = document.getElementById('speed-btn');
+const speedMenu = document.getElementById('speed-menu');
+const subtitleToggle = document.getElementById('subtitle-toggle');
 
 // Initialize
 totalSlidesNum.textContent = narrationScript.length;
@@ -2522,9 +2646,12 @@ function startPresentation() {
     isPaused = false;
     currentNarrationIndex = 0;
     
-    // Show controls
+    // Show controls and subtitles
     progressContainer.classList.add('active');
     controls.classList.add('active');
+    if (subtitlesEnabled) {
+        subtitlesContainer.classList.add('active');
+    }
     startBtn.classList.add('hidden');
     
     // Hide nav hint
@@ -2536,6 +2663,59 @@ function startPresentation() {
     
     // Start narration
     playCurrentSlide();
+}
+
+// Speed Control
+function toggleSpeedMenu() {
+    speedMenu.classList.toggle('visible');
+}
+
+function setSpeed(speed) {
+    playbackSpeed = speed;
+    speedBtn.textContent = speed + 'x';
+    
+    // Update active state in menu
+    speedMenu.querySelectorAll('button').forEach(btn => {
+        btn.classList.remove('active');
+        if (parseFloat(btn.textContent) === speed) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Hide menu
+    speedMenu.classList.remove('visible');
+    
+    // If currently speaking, update the rate
+    if (speechUtterance && window.speechSynthesis.speaking) {
+        // Can't change rate mid-speech, so we restart the current slide
+        window.speechSynthesis.cancel();
+        playCurrentSlide();
+    }
+}
+
+// Close speed menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('#speed-selector')) {
+        speedMenu.classList.remove('visible');
+    }
+});
+
+// Subtitles Control
+function toggleSubtitles() {
+    subtitlesEnabled = !subtitlesEnabled;
+    subtitleToggle.classList.toggle('active', subtitlesEnabled);
+    
+    if (subtitlesEnabled && isPlaying) {
+        subtitlesContainer.classList.add('active');
+    } else {
+        subtitlesContainer.classList.remove('active');
+    }
+}
+
+function updateSubtitles(text) {
+    if (subtitlesEnabled) {
+        subtitlesText.textContent = text;
+    }
 }
 
 function goToSlideAutoplay(index) {
@@ -2579,6 +2759,7 @@ function playCurrentSlide() {
     if (!isPlaying || currentNarrationIndex >= narrationScript.length) {
         if (currentNarrationIndex >= narrationScript.length) {
             // Presentation complete
+            updateSubtitles("Thank you for watching.");
             setTimeout(() => {
                 stopPresentation();
             }, 2000);
@@ -2591,19 +2772,28 @@ function playCurrentSlide() {
     // Go to slide
     goToSlideAutoplay(narration.slide);
     
+    // Update subtitles
+    updateSubtitles(narration.text);
+    
     // Speak narration
     if ('speechSynthesis' in window) {
         // Cancel any ongoing speech
         window.speechSynthesis.cancel();
         
         speechUtterance = new SpeechSynthesisUtterance(narration.text);
-        speechUtterance.rate = 0.95;
+        speechUtterance.rate = 0.95 * playbackSpeed; // Apply speed multiplier
         speechUtterance.pitch = 1;
         speechUtterance.volume = 1;
         
         // Try to use a good voice
         const voices = window.speechSynthesis.getVoices();
-        const preferredVoice = voices.find(v => v.name.includes('Daniel') || v.name.includes('Samantha') || v.name.includes('Google') || v.lang.startsWith('en'));
+        const preferredVoice = voices.find(v => 
+            v.name.includes('Daniel') || 
+            v.name.includes('Samantha') || 
+            v.name.includes('Google US English') ||
+            v.name.includes('Microsoft David') ||
+            (v.lang.startsWith('en') && v.localService)
+        );
         if (preferredVoice) {
             speechUtterance.voice = preferredVoice;
         }
@@ -2611,20 +2801,28 @@ function playCurrentSlide() {
         speechUtterance.onend = () => {
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
-                // Small pause between slides
-                narrationTimeout = setTimeout(playCurrentSlide, 500);
+                // Pause between slides adjusted for speed
+                narrationTimeout = setTimeout(playCurrentSlide, 400 / playbackSpeed);
+            }
+        };
+        
+        speechUtterance.onerror = () => {
+            // Fallback on error
+            if (!isPaused && isPlaying) {
+                currentNarrationIndex++;
+                narrationTimeout = setTimeout(playCurrentSlide, (narration.duration / playbackSpeed));
             }
         };
         
         window.speechSynthesis.speak(speechUtterance);
     } else {
-        // Fallback: just use duration timing
+        // Fallback: just use duration timing (adjusted for speed)
         narrationTimeout = setTimeout(() => {
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
                 playCurrentSlide();
             }
-        }, narration.duration);
+        }, narration.duration / playbackSpeed);
     }
 }
 
@@ -2664,15 +2862,18 @@ function stopPresentation() {
     
     clearTimeout(narrationTimeout);
     
-    // Hide controls
+    // Hide controls and subtitles
     progressContainer.classList.remove('active');
     controls.classList.remove('active');
+    subtitlesContainer.classList.remove('active');
     startBtn.classList.remove('hidden');
+    speedMenu.classList.remove('visible');
     
     // Reset UI
     pauseIcon.style.display = 'block';
     playIcon.style.display = 'none';
     progressBar.style.width = '0%';
+    subtitlesText.textContent = '';
     
     // Go back to first slide
     goToSlideAutoplay(0);
