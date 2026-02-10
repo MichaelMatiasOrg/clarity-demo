@@ -149,16 +149,7 @@ class NarrationEngine {
                 <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm-6-4h8v2h-8z"/></svg>
             </button>
             <span class="slide-info"><span id="current-slide-num">1</span> / <span id="total-slides-num">${this.data.entries.length}</span></span>
-            <div id="speed-selector">
-                <button id="speed-btn">1x</button>
-                <div id="speed-menu">
-                    <button data-speed="0.75">0.75x</button>
-                    <button data-speed="1" class="active">1x</button>
-                    <button data-speed="1.25">1.25x</button>
-                    <button data-speed="1.5">1.5x</button>
-                    <button data-speed="2">2x</button>
-                </div>
-            </div>
+            <button id="speed-btn" title="Cycle playback speed">1x</button>
             <button id="stop-btn" title="Stop">
                 <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
             </button>`;
@@ -169,9 +160,6 @@ class NarrationEngine {
         controls.querySelector('#subtitle-toggle').addEventListener('click', () => this.toggleSubtitles());
         controls.querySelector('#speed-btn').addEventListener('click', () => this.toggleSpeedMenu());
         controls.querySelector('#stop-btn').addEventListener('click', () => this.stopPresentation());
-        controls.querySelectorAll('#speed-menu button').forEach(btn => {
-            btn.addEventListener('click', () => this.setSpeed(parseFloat(btn.dataset.speed)));
-        });
 
         // Narration Panel Toggle (Speaker Notes button)
         const narrationToggle = document.createElement('button');
@@ -217,7 +205,6 @@ class NarrationEngine {
         this.subtitlesContainer = document.getElementById('subtitles');
         this.subtitlesText = document.getElementById('subtitles-text');
         this.speedBtn = document.getElementById('speed-btn');
-        this.speedMenu = document.getElementById('speed-menu');
         this.subtitleToggle = document.getElementById('subtitle-toggle');
 
         this.narrationToggle = document.getElementById('narration-toggle');
@@ -232,11 +219,6 @@ class NarrationEngine {
 
     _bindEvents() {
         this._on(document, 'keydown', (e) => this._handleKeydown(e));
-        this._on(document, 'click', (e) => {
-            if (!e.target.closest('#speed-selector')) {
-                this.speedMenu.classList.remove('visible');
-            }
-        });
         this._on(document, 'mousemove', (e) => this._handleMouseMove(e));
         this._on(document, 'click', () => this._showControls());
         this._on(window, 'beforeunload', () => {
@@ -599,18 +581,16 @@ class NarrationEngine {
     // ==========================================
 
     toggleSpeedMenu() {
-        this.speedMenu.classList.toggle('visible');
+        // Cycle through speeds on click
+        const speeds = [0.75, 1, 1.25, 1.5, 2];
+        const currentIdx = speeds.indexOf(this.playbackSpeed);
+        const nextIdx = (currentIdx + 1) % speeds.length;
+        this.setSpeed(speeds[nextIdx]);
     }
 
     setSpeed(speed) {
         this.playbackSpeed = speed;
         this.speedBtn.textContent = speed + 'x';
-
-        this.speedMenu.querySelectorAll('button').forEach(btn => {
-            btn.classList.toggle('active', parseFloat(btn.dataset.speed) === speed);
-        });
-
-        this.speedMenu.classList.remove('visible');
 
         if (this.currentAudio && !this.currentAudio.paused) {
             this.currentAudio.playbackRate = this.playbackSpeed;

@@ -212,12 +212,6 @@
 }
 
 /* ========== Speed Selector ========== */
-#speed-selector {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
 #speed-btn {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
@@ -232,39 +226,6 @@
 }
 #speed-btn:hover {
     background: rgba(255,255,255,0.2);
-}
-#speed-menu {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10, 22, 40, 0.98);
-    border-radius: 12px;
-    padding: 8px 0;
-    display: none;
-    flex-direction: column;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    border: 1px solid var(--narration-border);
-}
-#speed-menu.visible {
-    display: flex;
-}
-#speed-menu button {
-    background: none;
-    border: none;
-    color: var(--narration-text);
-    padding: 10px 24px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.2s ease;
-}
-#speed-menu button:hover {
-    background: rgba(255,255,255,0.1);
-}
-#speed-menu button.active {
-    color: var(--narration-accent);
-    font-weight: 700;
 }
 
 /* ========== Subtitle Toggle ========== */
