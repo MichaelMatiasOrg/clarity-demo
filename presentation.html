@@ -3573,10 +3573,11 @@ let narrationTimeout = null;
 let currentAudio = null;
 let playbackSpeed = 1;
 let subtitlesEnabled = true;
+let playbackGeneration = 0; // Guards against stale audio callbacks
 
-// Preload audio files
+// Preload audio files (one per narration entry)
 const audioFiles = {};
-for (let i = 0; i < 32; i++) {
+for (let i = 0; i < narrationScript.length; i++) {
     audioFiles[i] = new Audio(`audio/narration/slide-${i}.mp3`);
     audioFiles[i].preload = 'auto';
 }
@@ -3628,8 +3629,10 @@ document.addEventListener('keydown', (e) => {
     if (isPlaying && (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowUp')) {
         e.preventDefault();
         
-        // Stop current audio
+        // Stop current audio and clean up handlers
         if (currentAudio) {
+            currentAudio.onended = null;
+            currentAudio.onerror = null;
             currentAudio.pause();
             currentAudio.currentTime = 0;
         }
@@ -3788,8 +3791,9 @@ function goToSlideAutoplay(index) {
         // Restart animations
         const slide = slides[index];
         restartAnimationsAutoplay(slide);
-        
-        slides[index].scrollIntoView({ behavior: 'smooth' });
+
+        // Use instant scroll so audio and visible slide stay in sync
+        slides[index].scrollIntoView({ behavior: 'instant' });
         updateProgress(index);
         currentSlideNum.textContent = index + 1;
     }
@@ -3837,46 +3841,51 @@ function playCurrentSlide() {
         }
         return;
     }
-    
+
+    // Increment generation to invalidate any stale callbacks from previous slide
+    const generation = ++playbackGeneration;
+
     const narration = narrationScript[currentNarrationIndex];
     const slideIdx = getSlideIndex(narration);
-    
+
     // Go to slide
     goToSlideAutoplay(slideIdx);
-    
+
     // Update subtitles
     updateSubtitles(narration.text);
-    
-    // Play pre-generated audio
+
+    // Clean up previous audio handlers before reassigning
     if (currentAudio) {
+        currentAudio.onended = null;
+        currentAudio.onerror = null;
         currentAudio.pause();
         currentAudio.currentTime = 0;
     }
-    
+
     currentAudio = audioFiles[currentNarrationIndex];
     if (currentAudio) {
         currentAudio.playbackRate = playbackSpeed;
         currentAudio.currentTime = 0;
-        
+
         currentAudio.onended = () => {
+            if (generation !== playbackGeneration) return; // Stale callback
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
-                // Minimal pause for fluid transitions
                 narrationTimeout = setTimeout(playCurrentSlide, 50);
             }
         };
-        
+
         currentAudio.onerror = () => {
-            // Fallback on error - use duration timing
+            if (generation !== playbackGeneration) return; // Stale callback
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
                 narrationTimeout = setTimeout(playCurrentSlide, narration.duration / playbackSpeed);
             }
         };
-        
+
         currentAudio.play().catch(err => {
+            if (generation !== playbackGeneration) return; // Stale callback
             console.log('Audio play failed:', err);
-            // Fallback
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
                 narrationTimeout = setTimeout(playCurrentSlide, narration.duration / playbackSpeed);
@@ -3885,6 +3894,7 @@ function playCurrentSlide() {
     } else {
         // Fallback: just use duration timing
         narrationTimeout = setTimeout(() => {
+            if (generation !== playbackGeneration) return; // Stale callback
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
                 playCurrentSlide();
@@ -3917,15 +3927,16 @@ function togglePause() {
     } else {
         // Pause
         isPaused = true;
+        playbackGeneration++; // Invalidate pending callbacks
         pauseIcon.style.display = 'none';
         playIcon.style.display = 'block';
         document.body.style.overflow = ''; // Allow scrolling when paused
         controls.classList.add('visible'); // Keep controls visible when paused
-        
+
         if (currentAudio) {
             currentAudio.pause();
         }
-        
+
         clearTimeout(narrationTimeout);
     }
 }
@@ -3934,13 +3945,16 @@ function stopPresentation() {
     isPlaying = false;
     isPaused = false;
     currentNarrationIndex = 0;
-    
-    // Stop audio
+    playbackGeneration++; // Invalidate any pending stale callbacks
+
+    // Stop audio and clean up handlers
     if (currentAudio) {
+        currentAudio.onended = null;
+        currentAudio.onerror = null;
         currentAudio.pause();
         currentAudio.currentTime = 0;
     }
-    
+
     clearTimeout(narrationTimeout);
     
     // Stop subtitle cycling
