@@ -2538,7 +2538,7 @@ function revealAnswer() {
 </style>
 
 <!-- Start Presentation Button -->
-<button id="start-presentation-btn" onclick="showAutoplayOverlay()">
+<button id="start-presentation-btn" onclick="startPresentation()">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
     Watch Presentation
 </button>
@@ -2660,8 +2660,8 @@ const subtitleToggle = document.getElementById('subtitle-toggle');
 totalSlidesNum.textContent = narrationScript.length;
 
 function showAutoplayOverlay() {
-    overlay.classList.add('visible');
-    startBtn.classList.add('hidden');
+    // Skip overlay - start immediately
+    startPresentation();
 }
 
 function hideAutoplayOverlay() {
