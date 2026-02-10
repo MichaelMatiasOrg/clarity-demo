@@ -14,7 +14,7 @@ Format: **MAJOR.MINOR.PATCH[-Codename]** (e.g. `1.0.0-Guardian`)
 ./scripts/bump-version.sh 1.1.0-Phoenix
 ```
 
-This updates the `VERSION` file and the `<meta>` tag in `presentation.html`. The on-screen badge reads from the meta tag automatically.
+This updates the `VERSION` file and the `<meta>` tag in all `presentations/*/index.html` files. The on-screen badge reads from the meta tag automatically.
 
 Include `[version]` at the end of commit messages so PRs show the version:
 
