@@ -1301,13 +1301,68 @@ function revealAnswer() {
     <div class="slide-number">15</div>
 </section>
 
-<!-- Slide 17: Transition -->
-<section class="slide slide-title" style="background: var(--text-primary);">
-    <h1 style="color: white;">This is the new attack surface.</h1>
-    <p class="subtitle" style="color: rgba(255,255,255,0.7); margin-top: 20px;">
-        Your perimeter is secure.<br>
-        Your employees are the vulnerability.
-    </p>
+<!-- Slide 17: Transition - Animated Perimeter -->
+<section class="slide" style="background: var(--text-primary); position: relative; overflow: hidden;">
+    <style>
+        @keyframes perimeter-pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+        @keyframes person-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        @keyframes shield-appear {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .perimeter-ring {
+            animation: perimeter-pulse 3s ease-in-out infinite;
+        }
+        .person-icon {
+            animation: person-pulse 1.5s ease-in-out infinite;
+        }
+    </style>
+    
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+        <h1 style="color: white; font-size: 3rem; margin-bottom: 50px; text-align: center; opacity: 0; animation: fade-in-up 0.8s ease-out forwards;">This is the new attack surface.</h1>
+        
+        <!-- Perimeter Visualization -->
+        <div style="position: relative; width: 400px; height: 400px; margin-bottom: 40px;">
+            <!-- Outer perimeter ring (secure) -->
+            <div class="perimeter-ring" style="position: absolute; inset: 0; border: 4px solid var(--accent); border-radius: 50%; opacity: 0; animation: shield-appear 0.6s ease-out forwards; animation-delay: 0.5s;"></div>
+            <div class="perimeter-ring" style="position: absolute; inset: 20px; border: 2px dashed rgba(97, 243, 147, 0.4); border-radius: 50%; opacity: 0; animation: shield-appear 0.6s ease-out forwards; animation-delay: 0.7s;"></div>
+            
+            <!-- Security icons around perimeter -->
+            <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--text-primary); padding: 5px 15px; border-radius: 20px; border: 2px solid var(--accent); opacity: 0; animation: shield-appear 0.5s ease-out forwards; animation-delay: 1s;">
+                <span style="color: var(--accent); font-size: 1.2rem;">🛡️ Firewall</span>
+            </div>
+            <div style="position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); background: var(--text-primary); padding: 5px 15px; border-radius: 20px; border: 2px solid var(--accent); opacity: 0; animation: shield-appear 0.5s ease-out forwards; animation-delay: 1.2s;">
+                <span style="color: var(--accent); font-size: 1.2rem;">🔐 Encryption</span>
+            </div>
+            <div style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); background: var(--text-primary); padding: 5px 15px; border-radius: 20px; border: 2px solid var(--accent); opacity: 0; animation: shield-appear 0.5s ease-out forwards; animation-delay: 1.4s;">
+                <span style="color: var(--accent); font-size: 1.2rem;">🔒 EDR</span>
+            </div>
+            <div style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); background: var(--text-primary); padding: 5px 15px; border-radius: 20px; border: 2px solid var(--accent); opacity: 0; animation: shield-appear 0.5s ease-out forwards; animation-delay: 1.6s;">
+                <span style="color: var(--accent); font-size: 1.2rem;">🛡️ SIEM</span>
+            </div>
+            
+            <!-- Vulnerable center (people) -->
+            <div style="position: absolute; inset: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column; opacity: 0; animation: shield-appear 0.8s ease-out forwards; animation-delay: 2s;">
+                <div class="person-icon" style="font-size: 4rem; filter: grayscale(1) brightness(2);">👥</div>
+                <div style="background: var(--danger); color: white; padding: 8px 20px; border-radius: 20px; margin-top: 15px; font-weight: 600; font-size: 0.9rem;">
+                    ⚠️ VULNERABLE
+                </div>
+            </div>
+        </div>
+        
+        <!-- Text -->
+        <div style="text-align: center; opacity: 0; animation: fade-in-up 0.8s ease-out forwards; animation-delay: 2.5s;">
+            <p style="color: var(--accent); font-size: 1.3rem; margin-bottom: 8px;">Your perimeter is secure.</p>
+            <p style="color: var(--danger); font-size: 1.5rem; font-weight: 700;">Your employees are the vulnerability.</p>
+        </div>
+    </div>
+    
     <div class="slide-number" style="color: rgba(255,255,255,0.3);">17</div>
 </section>
 
