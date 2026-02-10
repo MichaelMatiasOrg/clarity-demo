@@ -1246,25 +1246,51 @@ function revealAnswer() {
     <div class="slide-number">14</div>
 </section>
 
-<!-- Slide 14: The Impact - Insider Threat -->
+<!-- Slide 14: The Impact - Insider Threat (Animated) -->
 <section class="slide">
+    <style>
+        @keyframes shrink-cross {
+            0% { font-size: 3rem; opacity: 1; text-decoration: none; }
+            50% { font-size: 3rem; opacity: 1; text-decoration: line-through; }
+            100% { font-size: 1.5rem; opacity: 0.5; text-decoration: line-through; }
+        }
+        @keyframes grow-in {
+            0% { font-size: 0; opacity: 0; }
+            100% { font-size: 3rem; opacity: 1; }
+        }
+        .old-stat {
+            font-size: 3rem;
+            color: var(--danger);
+            margin: 0;
+            animation: shrink-cross 1.5s ease-out forwards;
+            animation-delay: 1s;
+        }
+        .new-stat {
+            font-size: 0;
+            opacity: 0;
+            color: var(--danger);
+            margin: 0;
+            animation: grow-in 0.8s ease-out forwards;
+            animation-delay: 2s;
+        }
+    </style>
     <div style="max-width: 900px; margin: 0 auto; text-align: center;">
         <span class="badge badge-danger" style="margin-bottom: 30px;">The Real Danger</span>
         <h2>But a bad hire isn't just incompetent.<br>What if they're <span class="danger">malicious</span>?</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
             <div class="card" style="text-align: left;">
-                <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px;">
-                    <h3 style="font-size: 3rem; color: var(--danger); margin: 0;">$4.99M</h3>
-                    <span style="font-size: 1.5rem; color: var(--text-secondary); text-decoration: line-through; opacity: 0.5;">$240K</span>
+                <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; min-height: 50px;">
+                    <h3 class="new-stat">$4.99M</h3>
+                    <h3 class="old-stat" style="color: var(--text-secondary);">$240K</h3>
                 </div>
                 <p style="font-size: 1.2rem; margin-bottom: 8px;"><strong>Insider threat incident cost</strong></p>
                 <p style="color: var(--text-secondary);">Average cost per insider-caused data breach or theft</p>
                 <p style="margin-top: 16px; font-size: 0.85rem; color: var(--text-secondary);">— Ponemon Institute 2024</p>
             </div>
             <div class="card" style="text-align: left;">
-                <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px;">
-                    <h3 style="font-size: 3rem; color: var(--danger); margin: 0;">292 days</h3>
-                    <span style="font-size: 1.5rem; color: var(--text-secondary); text-decoration: line-through; opacity: 0.5;">6 mo</span>
+                <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; min-height: 50px;">
+                    <h3 class="new-stat">292 days</h3>
+                    <h3 class="old-stat" style="color: var(--text-secondary);">6 mo</h3>
                 </div>
                 <p style="font-size: 1.2rem; margin-bottom: 8px;"><strong>To identify and contain</strong></p>
                 <p style="color: var(--text-secondary);">Nearly 10 months of damage before you even know what happened</p>
