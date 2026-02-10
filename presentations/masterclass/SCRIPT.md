@@ -2,7 +2,7 @@
 ## Guidepoint CISO Event
 
 > **Voice:** Chad (ElevenLabs)  
-> **Status:** DRAFT - Awaiting review  
+> **Status:** Slides 1-6 APPROVED  
 > **Last updated:** 2026-02-11
 
 ---
@@ -16,36 +16,35 @@
 ```
 I'm Michael Matias, Co-Founder and CEO of Clarity.
 ```
-**Status:** [ ] Approved  [NEEDS AUDIO]
+**Status:** [x] Approved
 
 ---
 
 ### Slide 2: vero-hook
 **Core message:** Your hiring process is a security vulnerability  
-**Duration:** ~8 seconds  
+**Duration:** ~15 seconds  
 **Script:**
 ```
-Last night, I wanted to break into Vero Financial.
+In cybersecurity, we're used to thinking about breaking into companies through software. Vulnerabilities. Exploits. Zero-days.
 
-Let me show you how I did it.
+Today, I want to talk about a different threat: breaking in through the front door.
+
+Last night, I wanted to break into Vero Financial. Let me show you how I did it.
 ```
-**Status:** [ ] Approved  [NEEDS AUDIO]
+**Status:** [x] Approved
 
 ---
 
 ### Slide 3: vero-target
 **Core message:** Even well-secured companies have this blind spot  
-**Duration:** ~15 seconds  
+**Duration:** ~12 seconds  
 **Script:**
 ```
-Vero Financial. Four point two billion dollars processed annually. 
-One hundred eighty platform customers. 
-SOC 2 Type II certified. PCI-DSS compliant.
-Strong perimeter security. Regular penetration tests.
+Vero Financial. Four point two billion dollars processed annually. One hundred eighty platform customers. A mature security perimeter. Regular penetration tests.
 
 They do everything right. Except for one thing.
 ```
-**Status:** [ ] Approved  [NEEDS AUDIO]
+**Status:** [x] Approved
 
 ---
 
@@ -58,9 +57,11 @@ They're hiring.
 
 Six open roles. One stands out: Staff Software Engineer, Platform.
 
+Hiring isn't doing anything wrong. It's just an opportunity.
+
 This is my way in.
 ```
-**Status:** [ ] Approved  [NEEDS AUDIO]
+**Status:** [x] Approved
 
 ---
 
@@ -71,13 +72,11 @@ This is my way in.
 ```
 Why this role?
 
-Production access to systems processing billions in transactions.
-Customer data. Account numbers. Transaction history.
-Vault access. API keys. The keys to the kingdom.
+Production access to systems processing billions in transactions. Customer data. Account numbers. Transaction history. Vault access. API keys. The keys to the kingdom.
 
 One hire. Complete access.
 ```
-**Status:** [ ] Approved  [NEEDS AUDIO]
+**Status:** [x] Approved
 
 ---
 
@@ -88,24 +87,12 @@ One hire. Complete access.
 ```
 So I created the perfect candidate.
 
-Meet Marcus Chen. Senior Software Engineer. Seven years of experience. 
-Stripe. Plaid. UC Berkeley.
+Meet Marcus Chen. Senior Software Engineer. Seven years of experience. Stripe. Plaid. UC Berkeley.
 
 Built in minutes. Tailored for this exact role.
 ```
-**Status:** [ ] Approved  [NEEDS AUDIO]
+**Status:** [x] Approved
 
 ---
 
-## REVIEW INSTRUCTIONS
-
-Michael - please review each script above:
-1. Check if the spoken text matches the core message
-2. Mark as `[x] Approved` when ready
-3. Add notes for any changes needed
-
-Once approved, I'll generate the audio files.
-
----
-
-*Remaining slides to be added after first batch is approved.*
+*Remaining slides to be scripted after audio generation test.*
