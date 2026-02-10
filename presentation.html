@@ -1467,6 +1467,12 @@ function revealAnswer() {
         .gauntlet-slide .trusted-hire-circle {
             animation: celebratePulse 0.8s ease-out 3.2s 1;
         }
+        
+        /* Employee lifecycle appear */
+        @keyframes lifecycleAppear {
+            0% { opacity: 0; transform: translateX(-10px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
     </style>
     
     <!-- Geometric accents -->
@@ -1547,6 +1553,32 @@ function revealAnswer() {
                     <div style="font-size: 1.3rem; margin-bottom: 4px;">🏆</div>
                     <div style="font-size: 0.75rem; font-weight: 700;">Trusted<br>Hire</div>
                 </div>
+                
+                <!-- Employee Lifecycle Extension -->
+                <div style="color: var(--text-secondary); margin: 0 8px;">→</div>
+                <div style="display: flex; gap: 12px; opacity: 0; animation: lifecycleAppear 0.5s ease-out 3.5s forwards;">
+                    <div class="lifecycle-item" style="background: rgba(97, 243, 147, 0.1); border: 2px dashed rgba(97, 243, 147, 0.4); border-radius: 50%; width: 65px; height: 65px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                        <div style="font-size: 0.9rem;">🔐</div>
+                        <div style="font-size: 0.55rem; font-weight: 600; color: var(--text-secondary);">MFA<br>Resets</div>
+                        <div style="position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; animation: checkAppear 0.3s ease-out 4s forwards;">
+                            <span style="color: white; font-size: 10px; font-weight: bold;">✓</span>
+                        </div>
+                    </div>
+                    <div class="lifecycle-item" style="background: rgba(97, 243, 147, 0.1); border: 2px dashed rgba(97, 243, 147, 0.4); border-radius: 50%; width: 65px; height: 65px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                        <div style="font-size: 0.9rem;">🛡️</div>
+                        <div style="font-size: 0.55rem; font-weight: 600; color: var(--text-secondary);">Privileged<br>Access</div>
+                        <div style="position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; animation: checkAppear 0.3s ease-out 4.3s forwards;">
+                            <span style="color: white; font-size: 10px; font-weight: bold;">✓</span>
+                        </div>
+                    </div>
+                    <div class="lifecycle-item" style="background: rgba(97, 243, 147, 0.1); border: 2px dashed rgba(97, 243, 147, 0.4); border-radius: 50%; width: 65px; height: 65px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                        <div style="font-size: 0.9rem;">🔄</div>
+                        <div style="font-size: 0.55rem; font-weight: 600; color: var(--text-secondary);">Ongoing<br>Checks</div>
+                        <div style="position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: #61F393; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; animation: checkAppear 0.3s ease-out 4.6s forwards;">
+                            <span style="color: white; font-size: 10px; font-weight: bold;">✓</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- Animated Candidates Layer -->
@@ -1612,192 +1644,91 @@ function revealAnswer() {
     <div class="slide-number">21</div>
 </section>
 
-<!-- Slide 24: Deepfake Detected - Clean Alert -->
+<!-- Slide 22: Real-Time Deepfake Detection (Merged) -->
 <section class="slide" style="position: relative; overflow: hidden;">
     <!-- Subtle background accent -->
-    <div style="position: absolute; top: -30%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(239,68,68,0.06) 0%, transparent 70%); pointer-events: none;"></div>
+    <div style="position: absolute; top: -30%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(239,68,68,0.05) 0%, transparent 70%); pointer-events: none;"></div>
     
-    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <h2 style="margin-bottom: 12px;">Clarity <span class="accent">Catches It</span></h2>
-        <p class="subtitle" style="margin-bottom: 50px;">Real-time protection during live interviews</p>
+    <div style="max-width: 1000px; margin: 0 auto;">
+        <h2 style="text-align: center; margin-bottom: 8px;">Real-Time <span style="color: #ef4444;">Deepfake Detection</span></h2>
+        <p class="subtitle" style="text-align: center; margin-bottom: 35px;">Clarity catches threats the moment they appear</p>
         
-        <!-- Clean Alert Card -->
-        <div style="background: white; border-radius: 24px; box-shadow: 0 20px 60px rgba(239,68,68,0.15), 0 4px 20px rgba(0,0,0,0.06); border: 2px solid #fecaca; padding: 50px 60px; max-width: 600px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
             
-            <!-- Alert Icon -->
-            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; border: 2px solid #fecaca;">
-                <span style="font-size: 2.5rem;">🚨</span>
+            <!-- Left: Clean Alert Card -->
+            <div style="background: white; border-radius: 20px; box-shadow: 0 15px 50px rgba(239,68,68,0.12), 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #fecaca; padding: 35px; text-align: center;">
+                <!-- Alert Badge -->
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: #ef4444; color: white; padding: 10px 24px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; margin-bottom: 20px;">
+                    <span style="width: 8px; height: 8px; background: white; border-radius: 50%; animation: pulse 1.5s infinite;"></span>
+                    DEEPFAKE DETECTED
+                </div>
+                
+                <!-- Candidate Info -->
+                <div style="color: var(--text-primary); font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">Marcus Chen</div>
+                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 25px;">Technical Interview • Round 2</div>
+                
+                <!-- Confidence -->
+                <div style="background: #fef2f2; border-radius: 12px; padding: 20px;">
+                    <div style="color: #ef4444; font-size: 2.5rem; font-weight: 800;">94%</div>
+                    <div style="color: var(--text-secondary); font-size: 0.85rem;">Detection Confidence</div>
+                </div>
+                
+                <p style="margin-top: 20px; color: var(--text-secondary); font-size: 0.8rem;">
+                    Interview paused • Security notified
+                </p>
             </div>
             
-            <!-- Alert Badge -->
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: #ef4444; color: white; padding: 10px 24px; border-radius: 30px; font-weight: 700; font-size: 0.9rem; margin-bottom: 20px;">
-                <span style="width: 10px; height: 10px; background: white; border-radius: 50%; animation: pulse 1.5s infinite;"></span>
-                DEEPFAKE DETECTED
-            </div>
-            
-            <!-- Candidate Info -->
-            <div style="color: var(--text-primary); font-size: 1.3rem; font-weight: 600; margin-bottom: 8px;">Marcus Chen</div>
-            <div style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 30px;">Technical Interview • Round 2</div>
-            
-            <!-- Simple Status -->
-            <div style="display: flex; justify-content: center; gap: 40px; padding-top: 24px; border-top: 1px solid var(--border);">
-                <div style="text-align: center;">
-                    <div style="color: #ef4444; font-size: 2rem; font-weight: 800;">94%</div>
-                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Confidence</div>
+            <!-- Right: What We Detected -->
+            <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Multi-Signal Analysis</div>
+                
+                <!-- Signal Cards -->
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 44px; height: 44px; background: #fef2f2; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <span style="font-size: 1.3rem;">🎭</span>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">Face Swap Detected</div>
+                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Boundary artifacts, lighting mismatch</div>
+                        </div>
+                        <div style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;">96%</div>
+                    </div>
+                    
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 44px; height: 44px; background: #fef2f2; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <span style="font-size: 1.3rem;">🎤</span>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">Voice Cloning Suspected</div>
+                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Audio-visual desync, unnatural patterns</div>
+                        </div>
+                        <div style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;">89%</div>
+                    </div>
+                    
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 44px; height: 44px; background: #fef2f2; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <span style="font-size: 1.3rem;">👤</span>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">Identity Mismatch</div>
+                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Face doesn't match LinkedIn or resume</div>
+                        </div>
+                        <div style="background: #ef4444; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;">97%</div>
+                    </div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="color: var(--text-primary); font-size: 2rem; font-weight: 800;">23:14</div>
-                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Detected at</div>
-                </div>
+                
+                <p style="margin-top: 20px; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6;">
+                    <strong style="color: var(--text-primary);">The tech works.</strong> Multiple independent signals cross-validated in real-time during the live interview.
+                </p>
             </div>
         </div>
-        
-        <!-- Simple footer note -->
-        <p style="margin-top: 40px; color: var(--text-secondary); font-size: 0.9rem;">
-            Interview automatically paused • Security team notified
-        </p>
     </div>
     <div class="slide-number">22</div>
     
     <style>
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     </style>
-</section>
-
-<!-- Slide 22b: Detection Analysis Report -->
-<section class="slide">
-    <div style="max-width: 1150px; margin: 0 auto;">
-        <h2 style="text-align: center; margin-bottom: 8px;">How We <span class="accent">Detected It</span></h2>
-        <p class="subtitle" style="text-align: center; margin-bottom: 30px;">Real-time analysis across multiple signals</p>
-        
-        <!-- Detection Report Card -->
-        <div style="background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid var(--border); overflow: hidden;">
-            
-            <!-- Report Header -->
-            <div style="background: linear-gradient(135deg, #0a1628 0%, #1a2d4a 100%); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center;">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 28px; filter: brightness(0) invert(1);">
-                    <div>
-                        <div style="font-size: 1.1rem; font-weight: 700;">Interview Analysis Report</div>
-                        <div style="font-size: 0.8rem; opacity: 0.7;">Video Interview • Feb 4, 2026 • 23:41 duration</div>
-                    </div>
-                </div>
-                <div style="background: #ef4444; padding: 10px 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 0.7rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px;">Risk Score</div>
-                    <div style="font-size: 1.8rem; font-weight: 800;">94</div>
-                </div>
-            </div>
-            
-            <!-- Signal Analysis Grid -->
-            <div style="padding: 25px 30px;">
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                    
-                    <!-- Face Analysis -->
-                    <div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 14px; padding: 18px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                            <span style="font-size: 0.75rem; font-weight: 700; color: #991b1b; text-transform: uppercase; letter-spacing: 0.5px;">🎭 Face Analysis</span>
-                            <span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;">ALERT</span>
-                        </div>
-                        <div style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.6;">
-                            <div style="margin-bottom: 8px;"><strong>Face swap detected</strong></div>
-                            <div style="color: var(--text-secondary); font-size: 0.8rem;">
-                                • Boundary artifacts at jawline<br>
-                                • Inconsistent lighting on face vs neck<br>
-                                • Micro-expression anomalies
-                            </div>
-                        </div>
-                        <div style="margin-top: 12px; background: #fee2e2; border-radius: 8px; padding: 8px 12px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                                <span style="color: #991b1b;">Confidence</span>
-                                <span style="font-weight: 700; color: #991b1b;">96%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Voice Analysis -->
-                    <div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 14px; padding: 18px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                            <span style="font-size: 0.75rem; font-weight: 700; color: #991b1b; text-transform: uppercase; letter-spacing: 0.5px;">🎤 Voice Analysis</span>
-                            <span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;">ALERT</span>
-                        </div>
-                        <div style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.6;">
-                            <div style="margin-bottom: 8px;"><strong>Voice cloning suspected</strong></div>
-                            <div style="color: var(--text-secondary); font-size: 0.8rem;">
-                                • Unnatural pitch stability<br>
-                                • Missing breathing patterns<br>
-                                • Audio-visual sync drift: 340ms
-                            </div>
-                        </div>
-                        <div style="margin-top: 12px; background: #fee2e2; border-radius: 8px; padding: 8px 12px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                                <span style="color: #991b1b;">Confidence</span>
-                                <span style="font-weight: 700; color: #991b1b;">89%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Biometric Match -->
-                    <div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 14px; padding: 18px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                            <span style="font-size: 0.75rem; font-weight: 700; color: #991b1b; text-transform: uppercase; letter-spacing: 0.5px;">👤 Identity Match</span>
-                            <span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;">MISMATCH</span>
-                        </div>
-                        <div style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.6;">
-                            <div style="margin-bottom: 8px;"><strong>Not the same person</strong></div>
-                            <div style="color: var(--text-secondary); font-size: 0.8rem;">
-                                • Face ≠ LinkedIn photo: 23% match<br>
-                                • Face ≠ Resume photo: 19% match<br>
-                                • Underlying face structure differs
-                            </div>
-                        </div>
-                        <div style="margin-top: 12px; background: #fee2e2; border-radius: 8px; padding: 8px 12px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
-                                <span style="color: #991b1b;">Confidence</span>
-                                <span style="font-weight: 700; color: #991b1b;">97%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                <!-- Additional Signals Row -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 20px;">
-                    <div style="background: var(--bg-surface); border-radius: 10px; padding: 14px; text-align: center;">
-                        <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Lip Sync</div>
-                        <div style="font-size: 1.1rem; font-weight: 700; color: #ef4444;">Failed</div>
-                        <div style="font-size: 0.7rem; color: var(--text-secondary);">340ms drift</div>
-                    </div>
-                    <div style="background: var(--bg-surface); border-radius: 10px; padding: 14px; text-align: center;">
-                        <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Blink Rate</div>
-                        <div style="font-size: 1.1rem; font-weight: 700; color: #f59e0b;">Abnormal</div>
-                        <div style="font-size: 0.7rem; color: var(--text-secondary);">3.2/min (low)</div>
-                    </div>
-                    <div style="background: var(--bg-surface); border-radius: 10px; padding: 14px; text-align: center;">
-                        <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Metadata</div>
-                        <div style="font-size: 1.1rem; font-weight: 700; color: #61F393;">Clean</div>
-                        <div style="font-size: 0.7rem; color: var(--text-secondary);">No anomalies</div>
-                    </div>
-                    <div style="background: var(--bg-surface); border-radius: 10px; padding: 14px; text-align: center;">
-                        <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Device</div>
-                        <div style="font-size: 1.1rem; font-weight: 700; color: #61F393;">Verified</div>
-                        <div style="font-size: 0.7rem; color: var(--text-secondary);">MacBook Pro</div>
-                    </div>
-                </div>
-                
-                <!-- Verdict -->
-                <div style="margin-top: 20px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #ef4444; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 15px;">
-                    <div style="width: 50px; height: 50px; background: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <span style="color: white; font-size: 1.5rem;">⚠️</span>
-                    </div>
-                    <div>
-                        <div style="font-weight: 700; color: #991b1b; font-size: 1rem;">High-Confidence Deepfake Detected</div>
-                        <div style="color: #b91c1c; font-size: 0.85rem;">Face manipulation + voice cloning + identity mismatch. Recommended action: Terminate interview, flag candidate.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slide-number">23</div>
 </section>
 
 <!-- Slide 25: Continuous Verification -->
