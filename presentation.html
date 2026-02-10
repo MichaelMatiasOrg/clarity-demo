@@ -1795,21 +1795,45 @@ function revealAnswer() {
 </section>
 
 <!-- Slide 25: Two Pillars Intro -->
-<section class="slide slide-title" style="position: relative; overflow: hidden;">
-    <!-- Subtle geometric accents -->
-    <div style="position: absolute; top: -60px; left: -60px; width: 200px; height: 200px; border: 2px solid rgba(97, 243, 147, 0.08); border-radius: 50%; pointer-events: none;"></div>
-    <div style="position: absolute; bottom: -60px; right: -60px; width: 200px; height: 200px; border: 2px solid rgba(10, 22, 40, 0.06); border-radius: 50%; pointer-events: none;"></div>
+<section class="slide" style="position: relative; overflow: hidden;">
+    <!-- Background geometric accents -->
+    <div style="position: absolute; top: -100px; left: -100px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(97, 243, 147, 0.08) 0%, transparent 70%); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -100px; right: -100px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(10, 22, 40, 0.06) 0%, transparent 70%); pointer-events: none;"></div>
     
-    <h2 style="font-size: 2.8rem;">Clarity is built on <span class="accent">two pillars</span></h2>
-    
-    <div style="display: flex; justify-content: center; gap: 80px; margin-top: 60px;">
-        <div style="text-align: center;">
-            <div style="width: 70px; height: 70px; background: var(--accent); color: var(--text-primary); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; margin: 0 auto 20px;">A</div>
-            <h3 style="font-size: 1.4rem; margin: 0; color: var(--text-primary);">Deep Workflow<br>Integration</h3>
-        </div>
-        <div style="text-align: center;">
-            <div style="width: 70px; height: 70px; background: var(--text-primary); color: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; margin: 0 auto 20px;">B</div>
-            <h3 style="font-size: 1.4rem; margin: 0; color: var(--text-primary);">Deep Security<br>in Background</h3>
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+        <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 12px;">Security tools fail when they create friction</p>
+        <h2 style="font-size: 2.8rem; margin-bottom: 50px;">Clarity is built on <span class="accent">two pillars</span></h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <!-- Pillar A -->
+            <div style="background: white; border-radius: 24px; padding: 40px 35px; box-shadow: 0 10px 40px rgba(97, 243, 147, 0.15); border: 2px solid var(--accent); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent);"></div>
+                <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent) 0%, #4ade80 100%); color: var(--text-primary); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; margin: 0 auto 20px; box-shadow: 0 8px 25px rgba(97, 243, 147, 0.4);">A</div>
+                <h3 style="font-size: 1.5rem; margin: 0 0 15px; color: var(--text-primary);">Deep Workflow Integration</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    Works inside the tools you already use. Zero friction for recruiters and hiring managers.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 12px; margin-top: 25px; opacity: 0.7;">
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-surface); padding: 4px 10px; border-radius: 4px;">Greenhouse</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-surface); padding: 4px 10px; border-radius: 4px;">Okta</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-surface); padding: 4px 10px; border-radius: 4px;">Zoom</span>
+                </div>
+            </div>
+            
+            <!-- Pillar B -->
+            <div style="background: white; border-radius: 24px; padding: 40px 35px; box-shadow: 0 10px 40px rgba(10, 22, 40, 0.1); border: 2px solid var(--text-primary); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--text-primary);"></div>
+                <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--text-primary) 0%, #1e3a5f 100%); color: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; margin: 0 auto 20px; box-shadow: 0 8px 25px rgba(10, 22, 40, 0.3);">B</div>
+                <h3 style="font-size: 1.5rem; margin: 0 0 15px; color: var(--text-primary);">Deep Security Visibility</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    Full visibility for your security team. SIEM integration, real-time alerts, threat correlation.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 12px; margin-top: 25px; opacity: 0.7;">
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-surface); padding: 4px 10px; border-radius: 4px;">Splunk</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-surface); padding: 4px 10px; border-radius: 4px;">Sentinel</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-surface); padding: 4px 10px; border-radius: 4px;">Slack</span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="slide-number">25</div>
