@@ -52,6 +52,7 @@ When adding a company logo:
 2. **Use CDN URLs** — e.g., `https://website-media.deel.com/logo_xxx.svg`
 3. **Never invent SVG paths** — if you can't find it, ask or use a placeholder with clear "LOGO NEEDED" text
 4. **Verify before committing** — check the logo renders correctly
+5. **CONSISTENCY** — if the logo appears elsewhere (screenshots, mockups), match it exactly
 
 ## Presentation Style
 
