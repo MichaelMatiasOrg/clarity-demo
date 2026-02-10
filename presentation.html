@@ -2651,9 +2651,16 @@ let isPlaying = false;
 let isPaused = false;
 let currentNarrationIndex = 0;
 let narrationTimeout = null;
-let speechUtterance = null;
+let currentAudio = null;
 let playbackSpeed = 1;
 let subtitlesEnabled = true;
+
+// Preload audio files
+const audioFiles = {};
+for (let i = 0; i < 32; i++) {
+    audioFiles[i] = new Audio(`audio/narration/slide-${i}.mp3`);
+    audioFiles[i].preload = 'auto';
+}
 
 // Elements
 const overlay = document.getElementById('autoplay-overlay');
@@ -2754,11 +2761,9 @@ function setSpeed(speed) {
     // Hide menu
     speedMenu.classList.remove('visible');
     
-    // If currently speaking, update the rate
-    if (speechUtterance && window.speechSynthesis.speaking) {
-        // Can't change rate mid-speech, so we restart the current slide
-        window.speechSynthesis.cancel();
-        playCurrentSlide();
+    // If currently playing, update the rate
+    if (currentAudio && !currentAudio.paused) {
+        currentAudio.playbackRate = playbackSpeed;
     }
 }
 
@@ -2882,48 +2887,43 @@ function playCurrentSlide() {
     // Update subtitles
     updateSubtitles(narration.text);
     
-    // Speak narration
-    if ('speechSynthesis' in window) {
-        // Cancel any ongoing speech
-        window.speechSynthesis.cancel();
+    // Play pre-generated audio
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+    
+    currentAudio = audioFiles[currentNarrationIndex];
+    if (currentAudio) {
+        currentAudio.playbackRate = playbackSpeed;
+        currentAudio.currentTime = 0;
         
-        speechUtterance = new SpeechSynthesisUtterance(narration.text);
-        speechUtterance.rate = 0.95 * playbackSpeed; // Apply speed multiplier
-        speechUtterance.pitch = 1;
-        speechUtterance.volume = 1;
-        
-        // Try to use a good voice
-        const voices = window.speechSynthesis.getVoices();
-        const preferredVoice = voices.find(v => 
-            v.name.includes('Daniel') || 
-            v.name.includes('Samantha') || 
-            v.name.includes('Google US English') ||
-            v.name.includes('Microsoft David') ||
-            (v.lang.startsWith('en') && v.localService)
-        );
-        if (preferredVoice) {
-            speechUtterance.voice = preferredVoice;
-        }
-        
-        speechUtterance.onend = () => {
+        currentAudio.onended = () => {
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
-                // Pause between slides adjusted for speed
-                narrationTimeout = setTimeout(playCurrentSlide, 400 / playbackSpeed);
+                // Brief pause between slides
+                narrationTimeout = setTimeout(playCurrentSlide, 300 / playbackSpeed);
             }
         };
         
-        speechUtterance.onerror = () => {
-            // Fallback on error
+        currentAudio.onerror = () => {
+            // Fallback on error - use duration timing
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
-                narrationTimeout = setTimeout(playCurrentSlide, (narration.duration / playbackSpeed));
+                narrationTimeout = setTimeout(playCurrentSlide, narration.duration / playbackSpeed);
             }
         };
         
-        window.speechSynthesis.speak(speechUtterance);
+        currentAudio.play().catch(err => {
+            console.log('Audio play failed:', err);
+            // Fallback
+            if (!isPaused && isPlaying) {
+                currentNarrationIndex++;
+                narrationTimeout = setTimeout(playCurrentSlide, narration.duration / playbackSpeed);
+            }
+        });
     } else {
-        // Fallback: just use duration timing (adjusted for speed)
+        // Fallback: just use duration timing
         narrationTimeout = setTimeout(() => {
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
@@ -2940,8 +2940,8 @@ function togglePause() {
         pauseIcon.style.display = 'block';
         playIcon.style.display = 'none';
         
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.resume();
+        if (currentAudio) {
+            currentAudio.play();
         }
     } else {
         // Pause
@@ -2949,8 +2949,8 @@ function togglePause() {
         pauseIcon.style.display = 'none';
         playIcon.style.display = 'block';
         
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.pause();
+        if (currentAudio) {
+            currentAudio.pause();
         }
         
         clearTimeout(narrationTimeout);
@@ -2962,9 +2962,10 @@ function stopPresentation() {
     isPaused = false;
     currentNarrationIndex = 0;
     
-    // Stop speech
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
+    // Stop audio
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
     }
     
     clearTimeout(narrationTimeout);
@@ -2994,21 +2995,12 @@ function stopPresentation() {
     // Stay on current slide (don't jump back to start)
 }
 
-// Cancel any ongoing speech on page load/refresh
-if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-    
-    // Also cancel on page unload
-    window.addEventListener('beforeunload', () => {
-        window.speechSynthesis.cancel();
-    });
-    
-    // Load voices (they load async)
-    window.speechSynthesis.getVoices();
-    window.speechSynthesis.onvoiceschanged = () => {
-        window.speechSynthesis.getVoices();
-    };
-}
+// Stop any playing audio on page unload
+window.addEventListener('beforeunload', () => {
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+});
 </script>
 
 </body>
