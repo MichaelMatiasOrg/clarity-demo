@@ -2152,103 +2152,30 @@ function revealAnswer() {
 </section>
 
 <!-- Slide Indicator -->
-<div id="slide-indicator">1 / 31</div>
+<div id="slide-indicator">1 / 34</div>
 
 <!-- Navigation Hint -->
 <div id="nav-hint"><kbd>←</kbd> <kbd>→</kbd> or <kbd>↑</kbd> <kbd>↓</kbd> to navigate</div>
 
-<!-- Narration Panel Toggle -->
-<button id="narration-toggle" title="Speaker Notes (N)">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-        <polyline points="14 2 14 8 20 8"></polyline>
-        <line x1="16" y1="13" x2="8" y2="13"></line>
-        <line x1="16" y1="17" x2="8" y2="17"></line>
-        <polyline points="10 9 9 9 8 9"></polyline>
-    </svg>
-</button>
-
-<!-- Narration Panel -->
-<div id="narration-panel">
-    <div id="narration-panel-header">
-        <h3>Speaker Notes</h3>
-        <span class="slide-badge">Slide <span id="narration-slide-num">1</span></span>
-        <button id="narration-panel-close" title="Close (N or Esc)">×</button>
-    </div>
-    <div id="narration-panel-content">
-        <p class="narration-text" id="narration-text"></p>
-    </div>
-    <div id="narration-panel-footer">
-        <span><kbd>N</kbd> Toggle panel</span>
-        <span><kbd>←</kbd> <kbd>→</kbd> Navigate slides</span>
-        <span><kbd>Esc</kbd> Close</span>
-    </div>
-</div>
+<!-- Narration UI is injected by narration-engine.js -->
 
 
-
-<!-- Start Presentation Button -->
-<button id="start-presentation-btn" onclick="startPresentation()" title="Watch narrated presentation">
-    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z"/></svg>
-    Watch Presentation
-</button>
-
-<!-- Autoplay Overlay -->
-<div id="autoplay-overlay">
-    <div id="play-button-container">
-        <h2>Ready to watch?</h2>
-        <button id="play-button" onclick="startPresentation()">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <p>~4 minutes • Auto-narrated presentation</p>
-        <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.5;">Press Escape to close</p>
-    </div>
-</div>
-
-<!-- Progress Bar -->
-<div id="presentation-progress">
-    <div id="presentation-progress-bar"></div>
-</div>
-
-<!-- Subtitles -->
-<div id="subtitles">
-    <span id="subtitles-text"></span>
-</div>
-
-<!-- Control Bar -->
-<div id="presentation-controls">
-    <button id="pause-btn" onclick="togglePause()" title="Pause/Resume">
-        <svg id="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-        <svg id="play-icon" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-    </button>
-    
-    <button id="subtitle-toggle" class="active" onclick="toggleSubtitles()" title="Toggle Subtitles">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm-6-4h8v2h-8z"/></svg>
-    </button>
-    
-    <span class="slide-info"><span id="current-slide-num">1</span> / <span id="total-slides-num">31</span></span>
-    
-    <div id="speed-selector">
-        <button id="speed-btn" onclick="toggleSpeedMenu()">1x</button>
-        <div id="speed-menu">
-            <button onclick="setSpeed(0.75)">0.75x</button>
-            <button onclick="setSpeed(1)" class="active">1x</button>
-            <button onclick="setSpeed(1.25)">1.25x</button>
-            <button onclick="setSpeed(1.5)">1.5x</button>
-            <button onclick="setSpeed(2)">2x</button>
-        </div>
-    </div>
-    
-    <button id="stop-btn" onclick="stopPresentation()" title="Stop">
-        <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
-    </button>
-</div>
-
-
-
+<!-- Navigation -->
 <script src="js/navigation.js"></script>
-<script src="js/autoplay.js"></script>
-<script src="js/narration-panel.js"></script>
+
+<!-- Narration Engine -->
+<link rel="stylesheet" href="narration-engine.css">
+<script src="clarity-narration-data.js"></script>
+<script src="narration-engine.js"></script>
+<script>
+new NarrationEngine({
+    data: window.NarrationData,
+    slideSelector: '.slide',
+    slideIdAttribute: 'data-slide-id'
+});
+</script>
+
+<!-- Developer Mode -->
 <script src="js/dev-mode.js"></script>
 
 </body>
