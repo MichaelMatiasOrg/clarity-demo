@@ -2816,8 +2816,8 @@ function playCurrentSlide() {
         currentAudio.onended = () => {
             if (!isPaused && isPlaying) {
                 currentNarrationIndex++;
-                // Brief pause between slides
-                narrationTimeout = setTimeout(playCurrentSlide, 300 / playbackSpeed);
+                // Minimal pause for fluid transitions
+                narrationTimeout = setTimeout(playCurrentSlide, 50);
             }
         };
         
