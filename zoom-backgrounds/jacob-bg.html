@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Clarity Zoom Background - Jacob</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      width: 1920px;
+      height: 1080px;
+      background: linear-gradient(135deg, #0a1628 0%, #0f2240 50%, #0a1628 100%);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    /* Subtle geometric pattern overlay */
+    .pattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(97, 243, 147, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(97, 243, 147, 0.02) 0%, transparent 35%),
+        radial-gradient(circle at 50% 50%, rgba(97, 243, 147, 0.01) 0%, transparent 50%);
+    }
+    
+    /* Subtle grid lines */
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(97, 243, 147, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(97, 243, 147, 0.02) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    
+    /* Floating geometric accents */
+    .accent {
+      position: absolute;
+      opacity: 0.08;
+    }
+    
+    .accent-1 {
+      top: 100px;
+      left: 120px;
+      width: 200px;
+      height: 200px;
+      border: 2px solid #61F393;
+      transform: rotate(45deg);
+    }
+    
+    .accent-2 {
+      bottom: 150px;
+      left: 200px;
+      width: 120px;
+      height: 120px;
+      border: 2px solid #61F393;
+      border-radius: 50%;
+    }
+    
+    .accent-3 {
+      top: 200px;
+      right: 150px;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, transparent 50%, rgba(97, 243, 147, 0.15) 50%);
+    }
+    
+    .accent-4 {
+      bottom: 250px;
+      right: 250px;
+      width: 150px;
+      height: 150px;
+      border: 1px solid #61F393;
+      transform: rotate(15deg);
+    }
+    
+    /* Logo container - bottom right */
+    .logo-container {
+      position: absolute;
+      bottom: 60px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .logo-container svg {
+      width: 180px;
+      height: auto;
+      opacity: 0.9;
+    }
+    
+    /* Subtle corner accent */
+    .corner-accent {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 400px;
+      height: 300px;
+      background: linear-gradient(135deg, transparent 60%, rgba(97, 243, 147, 0.05) 100%);
+    }
+    
+    /* Top left subtle branding */
+    .top-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 200px;
+      background: linear-gradient(225deg, transparent 70%, rgba(97, 243, 147, 0.03) 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="pattern"></div>
+  <div class="grid"></div>
+  
+  <!-- Geometric accents -->
+  <div class="accent accent-1"></div>
+  <div class="accent accent-2"></div>
+  <div class="accent accent-3"></div>
+  <div class="accent accent-4"></div>
+  
+  <!-- Corner accents -->
+  <div class="corner-accent"></div>
+  <div class="top-accent"></div>
+  
+  <!-- Clarity Logo -->
+  <div class="logo-container">
+    <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="white"/>
+      <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="white"/>
+      <path d="M45.2367 28.0492L45.2344 28.0469V28.0492H45.2367Z" fill="white"/>
+      <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="white"/>
+      <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="white"/>
+      <path d="M10.3906 28.0508L10.393 28.0531V28.0508H10.3906Z" fill="white"/>
+      <path d="M220.945 59.9998H215.473L221.686 46.6045L209.203 19.5859H214.618L224.422 41.2464L234.17 19.5859H239.642L220.945 59.9998Z" fill="white"/>
+      <path d="M202.716 48.3729C197.7 48.3729 193.995 45.5798 193.995 39.6517V24.0903H187.953V19.5872H193.995V11.6641H198.897V19.5872H207.106V24.0903H198.897V39.0247C198.897 42.6727 200.493 43.8698 203.628 43.8698C204.825 43.8698 206.194 43.6988 207.106 43.2998V47.6888C205.909 48.0879 204.483 48.3729 202.716 48.3729Z" fill="white"/>
+      <path d="M182.253 11.9463C180.258 11.9463 178.719 10.4643 178.719 8.46926C178.719 6.58822 180.258 4.99219 182.253 4.99219C184.248 4.99219 185.673 6.58822 185.673 8.46926C185.673 10.4643 184.248 11.9463 182.253 11.9463ZM179.745 48.0851V19.5845H184.647V48.0851H179.745Z" fill="white"/>
+      <path d="M161.148 48.0864V19.5858H166.051V25.1149C167.134 21.4668 170.782 19.3008 174.031 19.3008C174.772 19.3008 175.513 19.3578 176.254 19.5288V24.6019C175.342 24.2029 174.544 24.1459 173.575 24.1459C169.984 24.1459 166.051 27.281 166.051 33.9501V48.0864H161.148Z" fill="white"/>
+      <path d="M139.262 48.6563C131.282 48.6563 125.297 41.9871 125.297 33.836C125.297 25.6848 131.282 19.0156 139.262 19.0156C143.594 19.0156 147.413 21.2387 149.294 23.9747V19.5856H154.197V48.0863H149.294V43.6972C147.413 46.4332 143.594 48.6563 139.262 48.6563ZM140.003 44.1532C145.703 44.1532 149.693 39.5931 149.693 33.836C149.693 28.0788 145.703 23.5187 140.003 23.5187C134.246 23.5187 130.256 28.0788 130.256 33.836C130.256 39.5931 134.246 44.1532 140.003 44.1532Z" fill="white"/>
+      <path d="M115.609 48.0869V5.33594H120.511V48.0869H115.609Z" fill="white"/>
+      <path d="M93.732 48.7686C82.1037 48.7686 72.8125 39.5344 72.8125 27.8491C72.8125 16.1639 82.1037 6.92969 93.732 6.92969C101.484 6.92969 107.982 10.7488 111.63 16.7339L107.184 19.413C104.391 14.8529 99.6601 11.9458 93.732 11.9458C84.8968 11.9458 78.1706 18.957 78.1706 27.8491C78.1706 36.7413 84.8968 43.7525 93.732 43.7525C99.6601 43.7525 104.391 40.8454 107.184 36.2853L111.63 38.9644C107.982 44.9495 101.484 48.7686 93.732 48.7686Z" fill="white"/>
+    </svg>
+  </div>
+</body>
+</html>
