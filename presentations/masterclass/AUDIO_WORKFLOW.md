@@ -31,8 +31,19 @@ Genie creates SCRIPT.md with natural spoken text for each slide:
 ### Step 3: Review Script
 Michael reviews SCRIPT.md and provides feedback. Iterate until approved.
 
-### Step 4: Generate Audio
-Genie runs each script through ElevenLabs:
+### Step 4: Sync & Generate Audio
+Run the sync script to update narration-data.js and generate audio:
+
+```bash
+# Sync scripts only (update narration-data.js from SCRIPT.md)
+./sync-scripts.sh
+
+# Sync AND regenerate audio files
+./sync-scripts.sh --generate-audio
+```
+
+**Important:** SCRIPT.md is the single source of truth. Never edit narration-data.js text directly!
+
 - **Voice:** Chad (WQcQveC0hbQNvI69FWyU)
 - **Model:** eleven_multilingual_v2
 - **Output:** MP3 files in `audio/` folder
@@ -41,14 +52,10 @@ Genie runs each script through ElevenLabs:
 Genie commits audio files to git:
 ```
 audio/
-├── 01-intro.mp3
-├── 02-vero-hook.mp3
-├── 03-vero-target.mp3
+├── 01-intro.mp3 (human-readable name)
+├── slide-0.mp3  (presentation uses this)
 └── ...
 ```
-
-### Step 6: Update narration-data.js
-Map slide IDs to audio files so the presentation can play them.
 
 ## Voice Settings
 - **Voice ID:** WQcQveC0hbQNvI69FWyU (Chad)
