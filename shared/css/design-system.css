@@ -97,6 +97,23 @@
     color: var(--accent);
 }
 
+#nav-panel a.nav-home {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+#nav-panel a.nav-home:hover {
+    opacity: 0.9;
+    border-left: none;
+    padding-left: 0;
+}
+
 /* ========== RESET & BASE ========== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 

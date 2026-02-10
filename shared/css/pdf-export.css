@@ -1,0 +1,97 @@
+/* PDF Export Styles
+   Reusable CSS for the PDF download button and capture progress overlay.
+   Override CSS custom properties to theme for different presentations. */
+
+/* ========== Download Button ========== */
+#pdf-download-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    background: var(--narration-bg, rgba(10, 22, 40, 0.85));
+    color: var(--narration-text, white);
+    border: 1px solid var(--narration-border, rgba(255,255,255,0.1));
+    padding: 10px 16px;
+    border-radius: 24px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: 'Manrope', sans-serif;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+#pdf-download-btn:hover {
+    background: rgba(10, 22, 40, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+}
+#pdf-download-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--narration-accent, #61F393);
+}
+#pdf-download-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ========== Progress Overlay ========== */
+#pdf-progress-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 22, 40, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+#pdf-progress-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#pdf-progress-container {
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+#pdf-progress-container h3 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    font-family: 'Manrope', sans-serif;
+}
+#pdf-progress-status {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+    margin: 0 0 24px 0;
+    font-family: 'Manrope', sans-serif;
+}
+
+/* Progress Bar */
+#pdf-progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+#pdf-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #61F393, #4ade80);
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.2s ease;
+}

@@ -24,6 +24,7 @@
         <a href="#section-impact" data-section="impact">The Impact</a>
         <a href="#section-solution" data-section="solution">The Solution</a>
         <a href="#section-close" data-section="close">Close</a>
+        <a href="../../" class="nav-home"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: -2px; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/></svg>All Presentations</a>
     </div>
 </div>
 
@@ -2160,6 +2161,18 @@ new NarrationEngine({
 <script>
 document.getElementById('version-badge').textContent =
     'v' + document.querySelector('meta[name="presentation-version"]').content;
+</script>
+
+<!-- PDF Export -->
+<link rel="stylesheet" href="../../shared/css/pdf-export.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="../../shared/js/pdf-export.js"></script>
+<script>
+new PdfExporter({
+    slideSelector: '.slide',
+    filename: 'Clarity-Masterclass-Hiring-Identity-Fraud.pdf'
+});
 </script>
 
 </body>
