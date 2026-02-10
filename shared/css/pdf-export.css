@@ -1,5 +1,5 @@
 /* PDF Export Styles
-   Reusable CSS for the PDF download button and capture progress overlay.
+   Reusable CSS for the PDF download button and print-to-PDF output.
    Override CSS custom properties to theme for different presentations. */
 
 /* ========== Download Button ========== */
@@ -32,59 +32,82 @@
     pointer-events: none;
 }
 
-/* ========== Progress Overlay ========== */
-#pdf-progress-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(10, 22, 40, 0.92);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10001;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(6px);
-}
-#pdf-progress-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
+/* ========== Print / PDF Output ========== */
+@media print {
+    @page {
+        size: landscape;
+        margin: 0;
+    }
 
-#pdf-progress-container {
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-}
-#pdf-progress-container h3 {
-    color: white;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin: 0 0 8px 0;
-    font-family: 'Manrope', sans-serif;
-}
-#pdf-progress-status {
-    color: rgba(255,255,255,0.6);
-    font-size: 0.95rem;
-    margin: 0 0 24px 0;
-    font-family: 'Manrope', sans-serif;
-}
+    /* Force backgrounds and colors to print */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
 
-/* Progress Bar */
-#pdf-progress-bar-track {
-    width: 100%;
-    height: 6px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 3px;
-    overflow: hidden;
-}
-#pdf-progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #61F393, #4ade80);
-    width: 0%;
-    border-radius: 3px;
-    transition: width 0.2s ease;
+    /* Disable scroll-snap and let content flow naturally */
+    html, body {
+        overflow: visible !important;
+        height: auto !important;
+        scroll-snap-type: none !important;
+    }
+
+    /* Each slide = one page */
+    .slide {
+        height: 100vh !important;
+        break-after: page;
+        overflow: hidden !important;
+        break-inside: avoid;
+    }
+    .slide:last-of-type {
+        break-after: auto;
+    }
+
+    /* Hide all UI chrome */
+    #slide-indicator,
+    #nav-hint,
+    .version-badge,
+    #bottom-toolbar,
+    #nav-menu,
+    #presentation-controls,
+    #presentation-progress,
+    #narration-panel,
+    #subtitles,
+    #autoplay-overlay,
+    #narration-toggle,
+    #start-presentation-btn,
+    #pdf-download-btn,
+    #pdf-progress-overlay,
+    #subtitle-bar,
+    audio {
+        display: none !important;
+    }
+
+    /* Freeze all animations — instant final state */
+    *, *::before, *::after {
+        animation-duration: 0s !important;
+        animation-delay: 0s !important;
+        animation-fill-mode: forwards !important;
+        transition: none !important;
+    }
+
+    /* Force visibility on elements that start at opacity: 0
+       and rely on animations to become visible */
+    .touchpoint,
+    .stage-card,
+    .vero-section,
+    .bypass-stamp,
+    .old-stat,
+    .new-stat,
+    .lifecycle-check-1,
+    .lifecycle-check-2,
+    .lifecycle-check-3,
+    .lifecycle-check-4,
+    .verified-badge,
+    [class*="fade-in-up"],
+    .fade-in-up {
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }
