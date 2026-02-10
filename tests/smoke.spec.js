@@ -9,9 +9,9 @@ test.describe('Core Pages Load', () => {
     await expect(page).toHaveTitle(/Clarity/i);
   });
 
-  test('main presentation loads', async ({ page }) => {
-    const response = await page.goto('/presentation.html');
-    expect(response.status()).toBe(200);
+  test('presentation.html redirects to masterclass', async ({ page }) => {
+    await page.goto('/presentation.html');
+    await page.waitForURL('**/presentations/masterclass/**');
     await expect(page.locator('.slide').first()).toBeVisible();
   });
 
@@ -30,13 +30,6 @@ test.describe('Core Pages Load', () => {
 
 test.describe('Presentation Functionality', () => {
 
-  test('presentation has multiple slides', async ({ page }) => {
-    await page.goto('/presentation.html');
-    const slides = page.locator('.slide');
-    const count = await slides.count();
-    expect(count).toBeGreaterThan(5);
-  });
-
   test('masterclass has multiple slides', async ({ page }) => {
     await page.goto('/presentations/masterclass/');
     const slides = page.locator('.slide');
@@ -45,7 +38,8 @@ test.describe('Presentation Functionality', () => {
   });
 
   test('keyboard navigation works', async ({ page }) => {
-    await page.goto('/presentation.html');
+    await page.goto('/presentations/masterclass/');
+    await expect(page.locator('.slide').first()).toBeVisible();
     const initialY = await page.evaluate(() => window.scrollY);
     await page.keyboard.press('ArrowRight');
     await page.waitForTimeout(600);
@@ -75,10 +69,10 @@ test.describe('No Console Errors', () => {
     page.on('console', msg => {
       if (msg.type() === 'error') errors.push(msg.text());
     });
-    
-    await page.goto('/presentation.html');
+
+    await page.goto('/presentations/masterclass/');
     await page.waitForTimeout(1000);
-    
+
     const critical = errors.filter(e => !e.includes('favicon') && !e.includes('404'));
     expect(critical).toHaveLength(0);
   });

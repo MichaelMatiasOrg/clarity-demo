@@ -3,21 +3,6 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Assets Load', () => {
 
-  test('all images on main presentation load', async ({ page }) => {
-    const failed = [];
-    page.on('response', r => {
-      if (r.request().resourceType() === 'image' && !r.ok()) {
-        failed.push({ url: r.url(), status: r.status() });
-      }
-    });
-
-    await page.goto('/presentation.html');
-    await page.waitForLoadState('networkidle');
-    
-    if (failed.length) console.log('Failed images:', failed);
-    expect(failed).toHaveLength(0);
-  });
-
   test('all images on masterclass load', async ({ page }) => {
     const failed = [];
     page.on('response', r => {
@@ -27,13 +12,13 @@ test.describe('Assets Load', () => {
     });
 
     await page.goto('/presentations/masterclass/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     if (failed.length) console.log('Failed images:', failed);
     expect(failed).toHaveLength(0);
   });
 
-  test('CSS files load on presentation', async ({ page }) => {
+  test('CSS files load on masterclass', async ({ page }) => {
     const failed = [];
     page.on('response', r => {
       if (r.request().resourceType() === 'stylesheet' && !r.ok()) {
@@ -41,12 +26,12 @@ test.describe('Assets Load', () => {
       }
     });
 
-    await page.goto('/presentation.html');
-    await page.waitForLoadState('networkidle');
+    await page.goto('/presentations/masterclass/');
+    await page.waitForLoadState('load');
     expect(failed).toHaveLength(0);
   });
 
-  test('JS files load on presentation', async ({ page }) => {
+  test('JS files load on masterclass', async ({ page }) => {
     const failed = [];
     page.on('response', r => {
       if (r.request().resourceType() === 'script' && !r.ok()) {
@@ -54,8 +39,8 @@ test.describe('Assets Load', () => {
       }
     });
 
-    await page.goto('/presentation.html');
-    await page.waitForLoadState('networkidle');
+    await page.goto('/presentations/masterclass/');
+    await page.waitForLoadState('load');
     expect(failed).toHaveLength(0);
   });
 
@@ -63,16 +48,14 @@ test.describe('Assets Load', () => {
 
 test.describe('Mockups Load', () => {
 
-  test('shared mockups accessible', async ({ page }) => {
-    const response = await page.goto('/shared/mockups/');
-    // Either 200 or directory listing
-    expect([200, 403]).toContain(response.status());
+  test('shared mockup accessible', async ({ page }) => {
+    const response = await page.goto('/shared/mockups/pre-interview.html');
+    expect(response.status()).toBe(200);
   });
 
-  test('masterclass mockups load', async ({ page }) => {
-    // Try a known mockup
-    const response = await page.goto('/presentations/masterclass/mockups/');
-    expect([200, 403]).toContain(response.status());
+  test('masterclass mockup accessible', async ({ page }) => {
+    const response = await page.goto('/presentations/masterclass/mockups/marcus-chen-resume.html');
+    expect(response.status()).toBe(200);
   });
 
 });
