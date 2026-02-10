@@ -514,6 +514,63 @@
             border-radius: 2px;
             opacity: 0.5;
         }
+        
+        /* ========== ANIMATIONS ========== */
+        
+        /* Slow rotating orbital ring */
+        @keyframes orbit-rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        @keyframes orbit-rotate-reverse {
+            from { transform: translate(-50%, -50%) rotate(360deg); }
+            to { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+        
+        /* Subtle pulse for center hub */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 10px 40px rgba(10, 22, 40, 0.3), 0 0 0 0 rgba(97, 243, 147, 0); }
+            50% { box-shadow: 0 10px 40px rgba(10, 22, 40, 0.3), 0 0 30px 10px rgba(97, 243, 147, 0.15); }
+        }
+        
+        /* Fade in and slide up */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Animated orbital rings */
+        .orbit-outer {
+            animation: orbit-rotate 60s linear infinite;
+        }
+        .orbit-inner {
+            animation: orbit-rotate-reverse 45s linear infinite;
+        }
+        
+        /* Pulsing center hub */
+        .center-hub {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        /* Touchpoints fade in with delay */
+        .touchpoint {
+            opacity: 0;
+            animation: fade-in-up 0.6s ease-out forwards;
+        }
+        .touchpoint-1 { animation-delay: 0.2s; }
+        .touchpoint-2 { animation-delay: 0.4s; }
+        .touchpoint-3 { animation-delay: 0.6s; }
+        .touchpoint-4 { animation-delay: 0.8s; }
+        
+        /* Arrow path animation */
+        @keyframes dash-flow {
+            to { stroke-dashoffset: -20; }
+        }
+        .flow-arrow {
+            stroke-dasharray: 10 10;
+            animation: dash-flow 1s linear infinite;
+        }
     </style>
 </head>
 <body>
@@ -1343,20 +1400,20 @@
         <!-- Orbital Lifecycle Visualization -->
         <div style="position: relative; width: 600px; height: 500px; margin: 0 auto;">
             
-            <!-- Outer orbital ring -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; height: 450px; border: 2px dashed rgba(97, 243, 147, 0.3); border-radius: 50%;"></div>
+            <!-- Outer orbital ring - ANIMATED -->
+            <div class="orbit-outer" style="position: absolute; top: 50%; left: 50%; width: 450px; height: 450px; border: 2px dashed rgba(97, 243, 147, 0.3); border-radius: 50%;"></div>
             
-            <!-- Inner orbital ring -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; border: 2px dashed rgba(10, 22, 40, 0.1); border-radius: 50%;"></div>
+            <!-- Inner orbital ring - ANIMATED reverse -->
+            <div class="orbit-inner" style="position: absolute; top: 50%; left: 50%; width: 300px; height: 300px; border: 2px dashed rgba(10, 22, 40, 0.15); border-radius: 50%;"></div>
             
-            <!-- Center: Employee/Identity Hub -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: var(--text-primary); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(10, 22, 40, 0.3); z-index: 10;">
+            <!-- Center: Employee/Identity Hub - ANIMATED pulse -->
+            <div class="center-hub" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: var(--text-primary); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
                 <span style="font-size: 2.5rem; filter: grayscale(1) brightness(10);">👤</span>
                 <span style="color: white; font-size: 0.7rem; font-weight: 600; margin-top: 4px;">EMPLOYEE</span>
             </div>
             
             <!-- ONBOARDING - Top position (The Front Door - Prominent) -->
-            <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); z-index: 5;">
+            <div class="touchpoint touchpoint-1" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); z-index: 5;">
                 <div style="background: linear-gradient(135deg, var(--accent) 0%, #4ade80 100%); border-radius: 16px; padding: 20px 25px; text-align: center; box-shadow: 0 12px 40px rgba(97, 243, 147, 0.35); position: relative;">
                     <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--text-primary); color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">🚪 The Front Door</div>
                     <div style="width: 50px; height: 50px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 8px auto 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
@@ -1370,7 +1427,7 @@
             </div>
             
             <!-- MFA Resets - Right position -->
-            <div style="position: absolute; top: 50%; right: -20px; transform: translateY(-50%); z-index: 5;">
+            <div class="touchpoint touchpoint-2" style="position: absolute; top: 50%; right: -20px; transform: translateY(-50%); z-index: 5;">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <div style="width: 40px; height: 2px; background: linear-gradient(to right, transparent, var(--text-primary)); opacity: 0.3;"></div>
                     <div style="background: white; border-radius: 14px; padding: 16px 20px; text-align: center; box-shadow: 0 6px 25px rgba(0,0,0,0.08); border: 2px solid var(--border);">
@@ -1384,7 +1441,7 @@
             </div>
             
             <!-- Privileged Access - Bottom position -->
-            <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); z-index: 5;">
+            <div class="touchpoint touchpoint-3" style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); z-index: 5;">
                 <!-- Arrow up to center -->
                 <div style="width: 2px; height: 40px; background: linear-gradient(to top, var(--text-primary), transparent); margin: 0 auto; opacity: 0.3;"></div>
                 <div style="background: white; border-radius: 14px; padding: 16px 20px; text-align: center; box-shadow: 0 6px 25px rgba(0,0,0,0.08); border: 2px solid var(--border);">
@@ -1397,7 +1454,7 @@
             </div>
             
             <!-- Periodic Checks - Left position -->
-            <div style="position: absolute; top: 50%; left: -20px; transform: translateY(-50%); z-index: 5;">
+            <div class="touchpoint touchpoint-4" style="position: absolute; top: 50%; left: -20px; transform: translateY(-50%); z-index: 5;">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <div style="background: white; border-radius: 14px; padding: 16px 20px; text-align: center; box-shadow: 0 6px 25px rgba(0,0,0,0.08); border: 2px solid var(--border);">
                         <div style="width: 40px; height: 40px; background: var(--text-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
@@ -1410,18 +1467,13 @@
                 </div>
             </div>
             
-            <!-- Orbital flow arrows (clockwise) -->
+            <!-- Orbital flow arrows (clockwise) - ANIMATED -->
             <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;" viewBox="0 0 600 500">
                 <!-- Clockwise arrow indicators on the outer orbit -->
-                <path d="M 450 100 Q 520 180, 520 250" fill="none" stroke="rgba(97, 243, 147, 0.4)" stroke-width="2" marker-end="url(#arrowhead)"/>
-                <path d="M 520 300 Q 480 420, 370 450" fill="none" stroke="rgba(97, 243, 147, 0.4)" stroke-width="2" marker-end="url(#arrowhead)"/>
-                <path d="M 230 450 Q 120 400, 80 280" fill="none" stroke="rgba(97, 243, 147, 0.4)" stroke-width="2" marker-end="url(#arrowhead)"/>
-                <path d="M 80 220 Q 120 100, 250 50" fill="none" stroke="rgba(97, 243, 147, 0.4)" stroke-width="2" marker-end="url(#arrowhead)"/>
-                <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" fill="rgba(97, 243, 147, 0.6)"/>
-                    </marker>
-                </defs>
+                <path class="flow-arrow" d="M 450 100 Q 520 180, 520 250" fill="none" stroke="rgba(97, 243, 147, 0.5)" stroke-width="2"/>
+                <path class="flow-arrow" d="M 520 300 Q 480 420, 370 450" fill="none" stroke="rgba(97, 243, 147, 0.5)" stroke-width="2"/>
+                <path class="flow-arrow" d="M 230 450 Q 120 400, 80 280" fill="none" stroke="rgba(97, 243, 147, 0.5)" stroke-width="2"/>
+                <path class="flow-arrow" d="M 80 220 Q 120 100, 250 50" fill="none" stroke="rgba(97, 243, 147, 0.5)" stroke-width="2"/>
             </svg>
         </div>
         
