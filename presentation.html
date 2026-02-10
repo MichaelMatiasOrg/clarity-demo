@@ -3430,6 +3430,36 @@ window.addEventListener('beforeunload', () => {
         tooltip.style.display = 'block';
     }
     
+    // Build rich context for copying
+    function buildElementContext(el) {
+        const devId = el.dataset.devId;
+        const slideMatch = devId.match(/^s(\d+)/);
+        const slideNum = slideMatch ? slideMatch[1] : '?';
+        const tag = el.tagName.toLowerCase();
+        const classes = el.className ? `.${el.className.split(' ').slice(0, 3).join('.')}` : '';
+        const textPreview = el.textContent?.trim().substring(0, 100).replace(/\s+/g, ' ') || '';
+        const existingId = el.id ? `#${el.id}` : '';
+        
+        // Get computed styles that might be relevant
+        const styles = window.getComputedStyle(el);
+        const fontSize = styles.fontSize;
+        
+        // Build the context prompt
+        const context = `[Element: ${devId} | Slide ${slideNum}]
+
+CONTEXT FOR GENIE:
+- Element: <${tag}${existingId}${classes}>
+- Text preview: "${textPreview}${textPreview.length >= 100 ? '...' : ''}"
+- Font size: ${fontSize}
+- File: clarity-demo/presentation.html
+
+I selected this element using Dev Mode on the Clarity presentation. Help me improve or modify it based on my request.
+
+---
+`;
+        return { context, devId };
+    }
+    
     // Handle click to copy ID
     function handleDevClick(e) {
         if (!devModeEnabled || !highlightedEl) return;
@@ -3437,15 +3467,10 @@ window.addEventListener('beforeunload', () => {
         // Don't interfere with the toggle button
         if (e.target.id === 'dev-mode-toggle') return;
         
-        const devId = highlightedEl.dataset.devId;
-        const slideMatch = devId.match(/^s(\d+)/);
-        const slideNum = slideMatch ? slideMatch[1] : '?';
-        
-        // Build context string
-        const context = `[Element: ${devId} | Slide ${slideNum}]`;
+        const { context, devId } = buildElementContext(highlightedEl);
         
         navigator.clipboard.writeText(context).then(() => {
-            showToast(`✓ Copied: ${devId}`);
+            showToast(`✓ Copied with context: ${devId}`);
         });
         
         e.preventDefault();
@@ -3473,12 +3498,9 @@ window.addEventListener('beforeunload', () => {
         
         // C: Copy current element (if hovering)
         if (e.key === 'c' && highlightedEl && !e.metaKey && !e.ctrlKey) {
-            const devId = highlightedEl.dataset.devId;
-            const slideMatch = devId.match(/^s(\d+)/);
-            const slideNum = slideMatch ? slideMatch[1] : '?';
-            const context = `[Element: ${devId} | Slide ${slideNum}]`;
+            const { context, devId } = buildElementContext(highlightedEl);
             navigator.clipboard.writeText(context).then(() => {
-                showToast(`✓ Copied: ${devId}`);
+                showToast(`✓ Copied with context: ${devId}`);
             });
             e.preventDefault();
             return;
