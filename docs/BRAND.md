@@ -1,98 +1,182 @@
 # Clarity Brand Guidelines
 
-*Last updated: 2026-02-10*
+*Source of truth for all Clarity branding. Last updated: 2026-02-11*
 
-## Visual Identity
+---
 
-### Colors
-- **Primary Background:** Light blue-gray (`#F0F4F8`)
-- **Card Background:** White (`#FFFFFF`)
-- **Primary Text:** Navy/Black (`#0a1628`)
-- **Secondary Text:** Slate (`#64748B`)
-- **Accent/Success:** Clarity Green (`#61F393`)
-- **Accent Muted:** Light green (`#E8FFF0`)
-- **Danger/Alert:** Red (`#EF4444`)
-- **Danger Muted:** Light red (`#FEE2E2`)
-- **Border:** Light gray (`#E2E8F0`)
+## Logo
 
-### Typography
-- **Font Family:** Manrope (weights: 400, 500, 600, 700, 800)
-- **Headings:** Bold/Extra-bold, navy text
-- **Body:** Regular weight, secondary text color
+### Official Logo Files
+- **White version (dark bg):** `https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846e27_Clarity%20Logo%20white.svg`
+- **Dark version (light bg):** `https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg`
+- **Local copies:** `shared/brand/clarity-logo.svg`, `shared/brand/clarity-logo-white.svg`
 
-### Logo
-- Use official Clarity 4-pointed star logo
-- Dark version on light backgrounds
-- Light version on dark backgrounds
-- Geometric shapes can be used as subtle background accents
+### Logo Anatomy
+The Clarity logo consists of:
+1. **Icon:** Four-pointed star/sparkle shape (arrows pointing outward)
+2. **Wordmark:** "Clarity" text
+
+### Logo Variations
+| Variant | Icon Color | Text Color | Use Case |
+|---------|------------|------------|----------|
+| White | White | White | Dark backgrounds, nav bar |
+| Color | `#61F393` | Dark | Light backgrounds |
+| Monochrome dark | Dark | Dark | Light backgrounds, print |
+
+---
+
+## Colors
+
+### Primary Palette
+| Name | Hex | Usage |
+|------|-----|-------|
+| **Clarity Green** | `#61F393` | Primary accent, CTAs, icon |
+| **Navy** | `#0a1628` | Primary text, dark backgrounds |
+| **White** | `#FFFFFF` | Backgrounds, text on dark |
+
+### Extended Palette
+| Name | Hex | Usage |
+|------|-----|-------|
+| **Light Background** | `#F0F4F8` | Page backgrounds (light theme) |
+| **Card Background** | `#FFFFFF` | Cards, panels |
+| **Secondary Text** | `#64748B` | Muted text, labels |
+| **Accent Muted** | `#E8FFF0` | Light green tints |
+| **Danger** | `#EF4444` | Alerts, errors |
+| **Danger Muted** | `#FEE2E2` | Light red tints |
+| **Border** | `#E2E8F0` | Subtle borders |
+
+### ⚠️ DO NOT USE
+| Wrong Color | Hex | Why |
+|-------------|-----|-----|
+| Teal | `#00d4aa` | Often confused with Clarity green |
+| Teal gradient | `#00d4aa → #00b892` | Clarity uses flat colors, no gradients |
+
+---
+
+## Typography
+
+### Font Family
+**Primary:** Manrope (weights: 400, 500, 600, 700, 800)
+
+### Font Import
+```html
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+```
+
+### ⚠️ DO NOT USE
+- Inter (commonly mistaken substitute)
+- System fonts without fallback
+
+---
+
+## Buttons
+
+### Primary CTA
+- Background: `#61F393` (Clarity Green)
+- Text: Dark (`#0a1628`)
+- Border radius: 8px
+- Arrow icon suffix optional (→)
+
+### Secondary Button
+- Background: Transparent
+- Border: 1px solid white or green
+- Text: White or green
+
+---
 
 ## Design Principles
 
 ### DO ✓
 - Light theme preferred (soft blue-gray backgrounds)
 - Clean, minimalistic layouts
+- Flat colors (no gradients on brand elements)
 - Geometric accents (brand logo shapes as subtle elements)
 - Subtle shadows and borders
 - Professional, enterprise-grade aesthetic
-- Rounded corners (8px for cards, 16px for larger elements, 20px for buttons/badges)
-- Use inline SVGs for company logos (avoid external services like Clearbit)
+- Rounded corners (8px cards, 16px larger elements, 20px buttons)
+- Use inline SVGs for company logos
+- Maintain high contrast (white text on navy)
+- Keep plenty of whitespace
 
 ### DON'T ✗
-- **NO emojis in presentations** — diminishes maturity and brand
-- **NO standard/generic icons** — use custom or no icons
-- No dark/navy theme backgrounds (unless specifically appropriate)
+- **NO emojis in presentations** — diminishes maturity
+- **NO generic icons** — use custom or none
+- **NO gradients** on brand green
+- No dark theme unless specifically appropriate
 - No busy or cluttered layouts
-- No overly dramatic animations
-- No text-only logo placeholders — use actual logos
-- **NEVER create fake/invented SVG logos** — always fetch the real logo from the company's website
+- No text-only logo placeholders
+- **NEVER invent fake SVG logos** — fetch the real one or use "LOGO NEEDED" placeholder
 
-## Logo Sourcing Checklist
-When adding a company logo:
-1. **ALWAYS fetch from official source** — curl the company's website and grep for logo URLs
-2. **Use CDN URLs** — e.g., `https://website-media.deel.com/logo_xxx.svg`
-3. **Never invent SVG paths** — if you can't find it, ask or use a placeholder with clear "LOGO NEEDED" text
-4. **Verify before committing** — check the logo renders correctly
-5. **CONSISTENCY** — if the logo appears elsewhere (screenshots, mockups), match it exactly
+---
 
 ## Presentation Style
 
 ### Structure
-- Always lead with WHY → WHAT → HOW
+Always: **WHY → WHAT → HOW**
 - Story-first approach
 - Clean intros before details
-- Spotlight one thing at a time, don't overwhelm
+- Spotlight one thing at a time
 
 ### Slides
 - One key message per slide
 - Visual hierarchy matters
-- Show comparisons visually (crossed-out old values, etc.)
+- Show comparisons visually (~~$240K~~ → $4.99M)
 - Always cite sources for statistics
 
 ### Screenshots & Mockups
-- Must look pixel-perfect realistic
-- Match actual UI of platforms (LinkedIn, Zoom, etc.)
-- Use proper fonts, spacing, colors from the real platforms
-- Rounded corners to feel polished/product-like
+- Pixel-perfect realistic
+- Match actual UI of platforms
+- Proper fonts, spacing, colors
+- Rounded corners for polish
 
-## Icons & Visual Elements
+---
 
-Instead of emojis, use:
-- Geometric shapes from brand
-- Simple line icons (if needed)
-- Numbers in styled containers
-- Color-coded indicators (green/red dots, accent bars)
-- Or simply no icons — let typography carry the message
+## Logo Sourcing Checklist
+When adding a company logo:
+1. **ALWAYS fetch from official source** — `curl` the company's website
+2. **Use CDN URLs** when available
+3. **Never invent SVG paths**
+4. **Verify before committing** — check it renders
+5. **Match existing usage** — consistency matters
 
-## Examples of Brand-Appropriate Alternatives
+---
+
+## Visual Elements (Instead of Emojis)
 
 | Instead of | Use |
 |------------|-----|
-| 🔍 | Accent-colored dot or number, or nothing |
-| 📄 | Styled container with number or letter |
-| 🎥 | Geometric accent or clean label |
-| 🔒 | Icon-free with color indicator |
+| 🔍 | Accent-colored dot, number, or nothing |
+| 📄 | Styled container with number |
 | ✅ / ❌ | Green/red accent bars or dots |
 
 ---
 
-*This document should be updated as new brand decisions are made.*
+## Taglines
+
+- **Primary:** "Never Hire a Bad-Actor"
+- **Secondary:** "Protecting your organization from hiring fraudsters"
+- **CTA:** "Get Clarity" / "Request a Demo"
+
+---
+
+## Quick Reference
+
+```css
+/* Clarity Brand Colors */
+--clarity-green: #61F393;
+--clarity-navy: #0a1628;
+--clarity-white: #FFFFFF;
+--clarity-bg: #F0F4F8;
+
+/* Typography */
+--font-primary: 'Manrope', sans-serif;
+```
+
+---
+
+## Resources
+
+- **Website:** https://getclarity.ai
+- **Assets CDN:** cdn.prod.website-files.com/68ca65f64a04c90f13846d37/
+- **Local assets:** `shared/brand/`
+- **Live brand page:** `brand.html`
