@@ -113,9 +113,9 @@
         <div>
             <!-- Vero Financial Logo - matches screenshot -->
             <div class="flex-center-gap" style="margin-bottom: 20px;">
-                <img src="assets/vero/vero-logo.svg" alt="Vero" style="height: 56px; width: auto;">
-                <div style="font-size: 1.5rem; color: var(--text-primary); letter-spacing: -0.3px;">
-                    <span style="font-weight: 700;">Vero</span><span style="font-weight: 400;">Financial</span>
+                <img src="../../shared/logos/vero-financial.png" alt="Vero Financial" style="height: 50px; width: auto;">
+                <div style="font-size: 1.5rem; letter-spacing: -0.3px;">
+                    <span style="font-weight: 700; background: linear-gradient(135deg, #9333ea 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Vero</span><span style="font-weight: 400; color: #6b7280;">Financial</span>
                 </div>
             </div>
             <p class="subtitle" style="margin-top: 20px; line-height: 1.8;">
@@ -625,51 +625,89 @@ function revealAnswer() {
 </section>
 
 <!-- Slide 11: Every Stage Bypassed -->
-<section class="slide" data-slide-id="every-stage">
+<section class="slide" id="every-stage-slide" data-slide-id="every-stage">
+    <script>
+        (function() {
+            var slide = document.getElementById('every-stage-slide');
+            if (!slide) return;
+            var revealTimeouts = [];
+
+            function resetCards() {
+                revealTimeouts.forEach(function(t) { clearTimeout(t); });
+                revealTimeouts = [];
+                slide.querySelectorAll('.stage-card').forEach(function(card) { card.classList.remove('revealed'); });
+            }
+
+            function revealCards() {
+                resetCards();
+                var cards = slide.querySelectorAll('.stage-card');
+                cards.forEach(function(card, i) {
+                    var delay = i < cards.length - 1 ? i * 600 : (i - 1) * 600 + 900;
+                    revealTimeouts.push(setTimeout(function() { card.classList.add('revealed'); }, delay));
+                });
+            }
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        revealCards();
+                    } else {
+                        resetCards();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(slide);
+        })();
+    </script>
     <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
         <h2 style="font-size: 2.6rem; margin-bottom: 16px;">Every stage of the hiring process<br>can be <span class="danger">bypassed</span>.</h2>
         <p class="subtitle" style="margin-bottom: 60px;">Here's what Marcus used at each step:</p>
-        
+
         <!-- Horizontal funnel with bypasses -->
         <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
             <!-- Sourcing -->
-            <div style="background: white; border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); text-align: center; position: relative;">
+            <div class="stage-card" data-stage="1" style="background: white; border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); text-align: center; position: relative;">
+                <div class="bypass-stamp">BYPASSED</div>
                 <div style="width: 32px; height: 32px; background: var(--text-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 700; font-size: 0.9rem;">1</div>
                 <p style="font-weight: 700; margin: 0 0 8px; color: var(--text-primary);">Sourcing</p>
                 <div style="height: 1px; background: var(--border); margin: 12px 0;"></div>
                 <p style="font-size: 0.8rem; color: var(--danger); margin: 0; font-weight: 600;">AI-generated profile</p>
                 <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 4px 0 0;">500+ fake connections</p>
             </div>
-            
+
             <!-- Resume -->
-            <div style="background: white; border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); text-align: center; position: relative;">
+            <div class="stage-card" data-stage="2" style="background: white; border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); text-align: center; position: relative;">
+                <div class="bypass-stamp">BYPASSED</div>
                 <div style="width: 32px; height: 32px; background: var(--text-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 700; font-size: 0.9rem;">2</div>
                 <p style="font-weight: 700; margin: 0 0 8px; color: var(--text-primary);">Resume</p>
                 <div style="height: 1px; background: var(--border); margin: 12px 0;"></div>
                 <p style="font-size: 0.8rem; color: var(--danger); margin: 0; font-weight: 600;">Tailored by AI</p>
                 <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 4px 0 0;">Perfect JD match</p>
             </div>
-            
+
             <!-- Interview -->
-            <div style="background: white; border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); text-align: center; position: relative;">
+            <div class="stage-card" data-stage="3" style="background: white; border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); text-align: center; position: relative;">
+                <div class="bypass-stamp">BYPASSED</div>
                 <div style="width: 32px; height: 32px; background: var(--text-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 700; font-size: 0.9rem;">3</div>
                 <p style="font-weight: 700; margin: 0 0 8px; color: var(--text-primary);">Interview</p>
                 <div style="height: 1px; background: var(--border); margin: 12px 0;"></div>
                 <p style="font-size: 0.8rem; color: var(--danger); margin: 0; font-weight: 600;">Real-time deepfake</p>
                 <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 4px 0 0;">Face + voice clone</p>
             </div>
-            
+
             <!-- Background -->
-            <div style="background: white; border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); text-align: center; position: relative;">
+            <div class="stage-card" data-stage="4" style="background: white; border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border); text-align: center; position: relative;">
+                <div class="bypass-stamp">BYPASSED</div>
                 <div style="width: 32px; height: 32px; background: var(--text-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 700; font-size: 0.9rem;">4</div>
                 <p style="font-weight: 700; margin: 0 0 8px; color: var(--text-primary);">Background</p>
                 <div style="height: 1px; background: var(--border); margin: 12px 0;"></div>
                 <p style="font-size: 0.8rem; color: var(--danger); margin: 0; font-weight: 600;">Synthetic identity</p>
                 <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 4px 0 0;">No history = clean</p>
             </div>
-            
+
             <!-- Offer - The Result -->
-            <div style="background: var(--text-primary); border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); text-align: center; position: relative;">
+            <div class="stage-card stage-final" data-stage="5" style="background: var(--text-primary); border-radius: 16px; padding: 24px 20px; width: 170px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); text-align: center; position: relative;">
                 <div style="width: 32px; height: 32px; background: var(--accent); color: var(--text-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 700; font-size: 1rem;">✓</div>
                 <p style="font-weight: 700; margin: 0 0 8px; color: white;">Offer Accepted</p>
                 <div style="height: 1px; background: rgba(255,255,255,0.2); margin: 12px 0;"></div>
@@ -764,15 +802,7 @@ function revealAnswer() {
     <div class="slide-number">16</div>
 </section>
 
-<section class="slide slide-title" data-slide-id="globelife-punchline" style="background: #0a1628;">
-    <h1 style="color: white; font-size: 4rem; line-height: 1.3;">
-        One in four candidates.<br><br>
-        <span style="color: #EF4444;">At a company in this room.</span>
-    </h1>
-    <div class="slide-number" style="color: rgba(255,255,255,0.3);">17</div>
-</section>
-
-<!-- Slide 18: This Already Happened - THE THREAT SECTION STARTS HERE -->
+<!-- Slide 17: This Already Happened - THE THREAT SECTION STARTS HERE -->
 <section id="section-threat" class="slide" data-slide-id="already-happening">
     <!-- Background accent -->
     <div style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, transparent 70%); pointer-events: none;"></div>
