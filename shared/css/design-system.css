@@ -164,8 +164,9 @@ body { -ms-overflow-style: none; scrollbar-width: none; }
 
 #nav-hint {
     position: fixed;
-    bottom: 30px;
-    right: 40px;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
     background: rgba(10, 22, 40, 0.6);
     color: white;
     padding: 6px 14px;
@@ -643,7 +644,35 @@ h3 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    background: rgba(15, 23, 42, 0.95);
+    padding: 6px 10px;
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+/* Button ordering inside toolbar */
+#bottom-toolbar #start-presentation-btn { order: 1; }
+#bottom-toolbar #pdf-download-btn { order: 2; }
+#bottom-toolbar #narration-toggle { order: 3; }
+#bottom-toolbar #dev-mode-toggle { order: 4; }
+/* Shared styles for toolbar children */
+#bottom-toolbar > button {
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    border: none !important;
+}
+/* Dev mode toggle — override inline styles for toolbar context */
+#bottom-toolbar #dev-mode-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    font-size: 1.2rem !important;
+}
+#bottom-toolbar #dev-mode-toggle:hover {
+    background: rgba(255,255,255,0.1) !important;
 }
 
 /* === Version Badge === */
