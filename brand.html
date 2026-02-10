@@ -505,13 +505,154 @@
             text-decoration: line-through;
             opacity: 0.6;
         }
+
+        /* Personality traits */
+        .traits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .trait {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .trait .word {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .trait .desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Flow steps */
+        .flow {
+            display: flex;
+            gap: 0;
+            margin-bottom: 16px;
+        }
+
+        .flow-step {
+            flex: 1;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .flow-step:first-child { border-radius: 12px 0 0 12px; }
+        .flow-step:last-child { border-radius: 0 12px 12px 0; }
+
+        .flow-step .num {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin-bottom: 6px;
+        }
+
+        .flow-step .label {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .flow-step .desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            color: var(--border);
+            padding: 0 2px;
+        }
+
+        /* Timing table */
+        .timing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        .timing-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .timing-card .value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--green);
+            margin-bottom: 4px;
+        }
+
+        .timing-card .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .timing-card .desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Headline examples */
+        .example-good {
+            border-left: 3px solid var(--green);
+            padding: 10px 16px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: var(--card);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-bad {
+            border-left: 3px solid var(--danger);
+            padding: 10px 16px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            background: var(--card);
+            border-radius: 0 8px 8px 0;
+            opacity: 0.7;
+        }
+
+        /* Mission statement */
+        .mission {
+            background: var(--navy);
+            color: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.7;
+        }
     </style>
 </head>
 <body>
 
 <div class="header">
     <div class="header-top">
-        <img src="assets/branding/clarity-logo.svg" alt="Clarity" style="height: 30px;">
+        <img src="shared/brand/clarity-logo.svg" alt="Clarity" style="height: 30px;">
         <a href="index.html">Back to presentations</a>
     </div>
     <h1>Brand Guidelines</h1>
@@ -520,6 +661,34 @@
 
 <div class="content">
 
+    <!-- Brand Identity -->
+    <section>
+        <h2>Brand Identity</h2>
+        <div class="mission">
+            Clarity protects organizations from hiring fraud through AI-powered identity verification across the entire employee lifecycle.
+        </div>
+
+        <h3>Brand Personality</h3>
+        <div class="traits">
+            <div class="trait">
+                <div class="word">Professional</div>
+                <div class="desc">Enterprise-grade, trustworthy</div>
+            </div>
+            <div class="trait">
+                <div class="word">Intelligent</div>
+                <div class="desc">AI-powered, cutting-edge</div>
+            </div>
+            <div class="trait">
+                <div class="word">Protective</div>
+                <div class="desc">Security-focused, vigilant</div>
+            </div>
+            <div class="trait">
+                <div class="word">Clear</div>
+                <div class="desc">Simple, transparent, no-nonsense</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Logo -->
     <section>
         <h2>Logo</h2>
@@ -527,20 +696,20 @@
 
         <div class="logo-grid">
             <div class="logo-card dark">
-                <img src="assets/branding/clarity-logo-white.svg" alt="Clarity white logo">
+                <img src="shared/brand/clarity-logo-white.svg" alt="Clarity white logo">
                 <span class="label">White on dark</span>
             </div>
             <div class="logo-card light">
-                <img src="assets/branding/clarity-logo.svg" alt="Clarity dark logo">
+                <img src="shared/brand/clarity-logo.svg" alt="Clarity dark logo">
                 <span class="label">Color on light</span>
             </div>
         </div>
 
         <div class="logo-files">
             <strong>Files:</strong>
-            <code>assets/branding/clarity-logo-white.svg</code> (dark backgrounds) &nbsp;
-            <code>assets/branding/clarity-logo.svg</code> (light backgrounds) &nbsp;
-            <code>assets/branding/clarity-logo-website.svg</code> (website version)
+            <code>shared/brand/clarity-logo-white.svg</code> (dark backgrounds) &nbsp;
+            <code>shared/brand/clarity-logo.svg</code> (light backgrounds) &nbsp;
+            <code>shared/brand/clarity-logo-website.svg</code> (website version)
         </div>
     </section>
 
@@ -786,7 +955,7 @@
                 </tr>
                 <tr>
                     <td class="avoid">Text-only logo placeholders</td>
-                    <td>Real SVG logos from <code style="font-size: 0.8rem;">/logos/</code></td>
+                    <td>Real SVG logos from <code style="font-size: 0.8rem;">shared/logos/</code></td>
                 </tr>
                 <tr>
                     <td class="avoid">Invented SVG paths</td>
@@ -828,6 +997,203 @@
                     <li>Use flashy or dramatic animations</li>
                     <li>Use gradients on the green accent color</li>
                     <li>Use dark theme unless specifically appropriate</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presentation Structure -->
+    <section>
+        <h2>Presentation Structure</h2>
+        <p class="subtitle">Every presentation follows: WHY (the problem) &rarr; WHAT (the solution) &rarr; HOW (the details).</p>
+
+        <div class="flow">
+            <div class="flow-step">
+                <div class="num">Step 1</div>
+                <div class="label">WHY</div>
+                <div class="desc">Start with the problem or motivation</div>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+                <div class="num">Step 2</div>
+                <div class="label">WHAT</div>
+                <div class="desc">Show the solution with visuals</div>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+                <div class="num">Step 3</div>
+                <div class="label">HOW</div>
+                <div class="desc">Explain the technical details</div>
+            </div>
+        </div>
+
+        <h3>Slide Types</h3>
+        <div class="rules-grid">
+            <div class="rules-card do" style="border-top-color: var(--navy);">
+                <h3>Hero Slides</h3>
+                <ul>
+                    <li>Large headline, minimal text</li>
+                    <li>Subtle geometric background accents</li>
+                    <li>Green accent on key words</li>
+                </ul>
+            </div>
+            <div class="rules-card do" style="border-top-color: var(--navy);">
+                <h3>Content Slides</h3>
+                <ul>
+                    <li>Clear hierarchy with cards/boxes</li>
+                    <li>Custom SVG icons, not stock</li>
+                    <li>One key message per slide</li>
+                </ul>
+            </div>
+        </div>
+        <div class="rules-grid" style="margin-top: 14px;">
+            <div class="rules-card do" style="border-top-color: var(--navy);">
+                <h3>Data / Stats Slides</h3>
+                <ul>
+                    <li>Large numbers with context</li>
+                    <li>Citations for credibility</li>
+                    <li>Comparisons: <del>old</del> &rarr; new</li>
+                </ul>
+            </div>
+            <div class="rules-card do" style="border-top-color: var(--navy);">
+                <h3>Mockup Slides</h3>
+                <ul>
+                    <li>Pixel-perfect, photorealistic</li>
+                    <li>Realistic data, not placeholder text</li>
+                    <li>Match real platform UIs (LinkedIn, Zoom)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animation Guidelines -->
+    <section>
+        <h2>Animation Guidelines</h2>
+        <p class="subtitle">Animations should enhance comprehension, not attract attention to themselves.</p>
+
+        <h3>Principles</h3>
+        <div class="traits">
+            <div class="trait">
+                <div class="word">Subtle</div>
+                <div class="desc">Enhance, not distract</div>
+            </div>
+            <div class="trait">
+                <div class="word">Purposeful</div>
+                <div class="desc">Communicate something</div>
+            </div>
+            <div class="trait">
+                <div class="word">Smooth</div>
+                <div class="desc">Ease-in-out timing</div>
+            </div>
+            <div class="trait">
+                <div class="word">Restrained</div>
+                <div class="desc">No flashy effects</div>
+            </div>
+        </div>
+
+        <h3>Recommended Types</h3>
+        <div class="rules-grid">
+            <div class="rules-card do">
+                <h3>Use</h3>
+                <ul>
+                    <li>Scanning/sweep effects for detection features</li>
+                    <li>Gentle pulse for live indicators</li>
+                    <li>Flow animations for process diagrams</li>
+                    <li>Fade transitions between states</li>
+                    <li>Rotating rings for continuous processes</li>
+                    <li>Staggered entrance for lists/cards</li>
+                </ul>
+            </div>
+            <div class="rules-card dont">
+                <h3>Avoid</h3>
+                <ul>
+                    <li>Bouncing or shaking effects</li>
+                    <li>Fast or erratic movement</li>
+                    <li>Multiple competing animations</li>
+                    <li>Animations without purpose</li>
+                    <li>Particle effects or confetti (except landing)</li>
+                    <li>3D transforms or perspective shifts</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 20px;">Timing</h3>
+        <div class="timing-grid">
+            <div class="timing-card">
+                <div class="value">2-3s</div>
+                <div class="label">Subtle loops</div>
+                <div class="desc">Rotating rings, pulsing indicators</div>
+            </div>
+            <div class="timing-card">
+                <div class="value">0.3-0.5s</div>
+                <div class="label">Transitions</div>
+                <div class="desc">State changes, hover effects</div>
+            </div>
+            <div class="timing-card">
+                <div class="value">0.1-0.2s</div>
+                <div class="label">Stagger delay</div>
+                <div class="desc">Sequential card/list entrance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voice & Tone -->
+    <section>
+        <h2>Voice & Tone</h2>
+        <p class="subtitle">Direct, confident, clear. Enterprise audience — no fluff, no hype.</p>
+
+        <h3>Writing Style</h3>
+        <div class="traits">
+            <div class="trait">
+                <div class="word">Direct</div>
+                <div class="desc">Get to the point</div>
+            </div>
+            <div class="trait">
+                <div class="word">Confident</div>
+                <div class="desc">We know our stuff</div>
+            </div>
+            <div class="trait">
+                <div class="word">Clear</div>
+                <div class="desc">No jargon without explanation</div>
+            </div>
+            <div class="trait">
+                <div class="word">Professional</div>
+                <div class="desc">Enterprise audience</div>
+            </div>
+        </div>
+
+        <h3>Headline Examples</h3>
+        <div class="example-good">"Catch deepfakes before they catch you"</div>
+        <div class="example-good">"One platform. Complete protection."</div>
+        <div class="example-bad">"Our AI-Powered Solution for Identity Verification"</div>
+        <div class="example-bad">"Welcome to Clarity's Amazing Platform!"</div>
+        <p class="subtitle" style="margin-top: 12px;">Headlines should be action-oriented, benefit-focused, and concise (5-8 words ideal).</p>
+    </section>
+
+    <!-- Imagery & Mockups -->
+    <section>
+        <h2>Imagery & Mockups</h2>
+        <div class="rules-grid">
+            <div class="rules-card do">
+                <h3>Do</h3>
+                <ul>
+                    <li>Use pixel-perfect, photorealistic mockups</li>
+                    <li>Show realistic data (not "Lorem ipsum")</li>
+                    <li>Include subtle UI details (status bars, proper spacing)</li>
+                    <li>Match the Clarity color palette</li>
+                    <li>Match real platform UIs (LinkedIn, Zoom, etc.)</li>
+                    <li>Use proper fonts and spacing from real platforms</li>
+                </ul>
+            </div>
+            <div class="rules-card dont">
+                <h3>Do Not</h3>
+                <ul>
+                    <li>Use obviously fake or placeholder content</li>
+                    <li>Show buggy or incomplete UI</li>
+                    <li>Mix different design systems in one mockup</li>
+                    <li>Invent company logos — fetch real ones</li>
+                    <li>Use low-resolution screenshots</li>
+                    <li>Include unpolished or draft-quality mockups</li>
                 </ul>
             </div>
         </div>
