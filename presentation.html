@@ -1612,25 +1612,133 @@ function revealAnswer() {
     <div class="slide-number">21</div>
 </section>
 
-<!-- Slide 24: Real-Time Deepfake Detection -->
-<section class="slide">
-    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto;">
-        <div class="demo-frame" style="transform: scale(1.05); transform-origin: center left;">
-            <img src="screenshot-deepfake.png" alt="Deepfake Detection" style="width: 100%; display: block;">
+<!-- Slide 24: Real-Time Deepfake Detection - Enterprise Dashboard -->
+<section class="slide" style="background: #0a1628; padding: 30px;">
+    <style>
+        .detection-dashboard { max-width: 1300px; margin: 0 auto; }
+        .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .live-badge { background: #ef4444; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 6px; animation: pulse-red 1.5s infinite; }
+        @keyframes pulse-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .detection-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+        .video-analysis { background: #111827; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .video-header { background: rgba(239,68,68,0.15); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(239,68,68,0.3); }
+        .video-feed { position: relative; aspect-ratio: 16/10; background: linear-gradient(135deg, #1f2937 0%, #111827 100%); display: flex; align-items: center; justify-content: center; }
+        .face-mesh { position: absolute; inset: 15%; border: 2px solid rgba(239,68,68,0.6); border-radius: 50% 50% 45% 45%; }
+        .face-mesh::before { content: ''; position: absolute; inset: 10px; border: 1px dashed rgba(239,68,68,0.4); border-radius: inherit; }
+        .mesh-point { position: absolute; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; }
+        .anomaly-zone { position: absolute; border: 2px solid #ef4444; background: rgba(239,68,68,0.1); border-radius: 4px; animation: pulse-red 2s infinite; }
+        .signal-panels { display: flex; flex-direction: column; gap: 12px; }
+        .signal-panel { background: #111827; border-radius: 12px; padding: 14px; border: 1px solid rgba(255,255,255,0.08); }
+        .signal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .signal-title { color: rgba(255,255,255,0.6); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        .signal-score { font-size: 1.4rem; font-weight: 700; }
+        .signal-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+        .signal-fill { height: 100%; border-radius: 2px; }
+        .evidence-trail { background: #111827; border-radius: 12px; padding: 14px; border: 1px solid rgba(255,255,255,0.08); margin-top: 12px; }
+        .evidence-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.75rem; }
+        .evidence-item:last-child { border-bottom: none; }
+        .evidence-time { color: rgba(255,255,255,0.4); font-family: monospace; min-width: 70px; }
+        .integration-badges { display: flex; gap: 10px; margin-top: 16px; }
+        .int-badge { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 8px; font-size: 0.7rem; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 6px; }
+    </style>
+    
+    <div class="detection-dashboard">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 24px; filter: brightness(0) invert(1);">
+                <span style="color: white; font-weight: 600;">Interview Security Monitor</span>
+                <span style="color: rgba(255,255,255,0.4); font-size: 0.85rem;">Marcus Chen — Technical Interview Round 2</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="live-badge"><span style="width: 8px; height: 8px; background: white; border-radius: 50%;"></span> THREAT DETECTED</div>
+                <span style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Duration: 23:41</span>
+            </div>
         </div>
-        <div>
-            <div style="width: 50px; height: 50px; background: var(--danger); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">2</div>
-            <h2 style="font-size: 2rem;">Mid-interview,<br>real-time alert</h2>
-            <p class="subtitle" style="margin-top: 20px; line-height: 1.7; font-size: 1rem;">
-                23 minutes into the video call:<br><br>
-                • Face manipulation detected<br>
-                • Voice/video sync mismatch<br>
-                • Biometric doesn't match application<br><br>
-                <strong style="color: var(--danger);">Interviewer notified immediately.</strong>
-            </p>
+        
+        <!-- Main Grid -->
+        <div class="detection-grid">
+            <!-- Video Analysis Panel -->
+            <div class="video-analysis">
+                <div class="video-header">
+                    <span style="color: #ef4444; font-weight: 600; font-size: 0.85rem;">⚠️ Deepfake Detected — Confidence: 94.7%</span>
+                    <span style="color: rgba(255,255,255,0.5); font-size: 0.75rem;">FaceForensics++ • EfficientNet-B4</span>
+                </div>
+                <div class="video-feed">
+                    <!-- Simulated face with mesh overlay -->
+                    <div style="width: 120px; height: 140px; background: linear-gradient(180deg, #374151 0%, #1f2937 100%); border-radius: 50% 50% 45% 45%; position: relative;">
+                        <div style="position: absolute; top: 35%; left: 25%; width: 15px; height: 8px; background: #1f2937; border-radius: 50%;"></div>
+                        <div style="position: absolute; top: 35%; right: 25%; width: 15px; height: 8px; background: #1f2937; border-radius: 50%;"></div>
+                        <div style="position: absolute; bottom: 30%; left: 50%; transform: translateX(-50%); width: 20px; height: 10px; background: #1f2937; border-radius: 0 0 10px 10px;"></div>
+                    </div>
+                    <!-- Face mesh overlay -->
+                    <div class="face-mesh">
+                        <div class="mesh-point" style="top: 20%; left: 30%;"></div>
+                        <div class="mesh-point" style="top: 20%; right: 30%;"></div>
+                        <div class="mesh-point" style="top: 45%; left: 15%;"></div>
+                        <div class="mesh-point" style="top: 45%; right: 15%;"></div>
+                        <div class="mesh-point" style="bottom: 25%; left: 50%; transform: translateX(-50%);"></div>
+                    </div>
+                    <!-- Anomaly zones -->
+                    <div class="anomaly-zone" style="top: 28%; left: 32%; width: 36%; height: 18%; font-size: 0.6rem; color: #ef4444; padding: 2px 4px;">Boundary artifacts</div>
+                    <div class="anomaly-zone" style="bottom: 35%; left: 38%; width: 24%; height: 12%;"></div>
+                    <!-- Labels -->
+                    <div style="position: absolute; bottom: 10px; left: 10px; color: rgba(255,255,255,0.5); font-size: 0.7rem;">68 facial landmarks tracked</div>
+                    <div style="position: absolute; bottom: 10px; right: 10px; color: #ef4444; font-size: 0.7rem;">● REC 23:41</div>
+                </div>
+            </div>
+            
+            <!-- Signal Panels -->
+            <div class="signal-panels">
+                <!-- Facial Analysis -->
+                <div class="signal-panel">
+                    <div class="signal-header">
+                        <span class="signal-title">Facial Artifact Detection</span>
+                        <span class="signal-score" style="color: #ef4444;">94.7%</span>
+                    </div>
+                    <div class="signal-bar"><div class="signal-fill" style="width: 94.7%; background: #ef4444;"></div></div>
+                    <div style="margin-top: 8px; font-size: 0.7rem; color: rgba(255,255,255,0.5);">GAN artifacts • Boundary inconsistencies • Temporal flicker</div>
+                </div>
+                
+                <!-- Voice Biometrics -->
+                <div class="signal-panel">
+                    <div class="signal-header">
+                        <span class="signal-title">Voice Biometric Match</span>
+                        <span class="signal-score" style="color: #f59e0b;">23%</span>
+                    </div>
+                    <div class="signal-bar"><div class="signal-fill" style="width: 23%; background: #f59e0b;"></div></div>
+                    <div style="margin-top: 8px; font-size: 0.7rem; color: rgba(255,255,255,0.5);">Voice print mismatch vs. phone screen recording</div>
+                </div>
+                
+                <!-- Behavioral Analysis -->
+                <div class="signal-panel">
+                    <div class="signal-header">
+                        <span class="signal-title">Behavioral Consistency</span>
+                        <span class="signal-score" style="color: #f59e0b;">41%</span>
+                    </div>
+                    <div class="signal-bar"><div class="signal-fill" style="width: 41%; background: #f59e0b;"></div></div>
+                    <div style="margin-top: 8px; font-size: 0.7rem; color: rgba(255,255,255,0.5);">Unnatural eye movement • Audio-visual desync</div>
+                </div>
+                
+                <!-- Evidence Trail -->
+                <div class="evidence-trail">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Detection Timeline</div>
+                    <div class="evidence-item"><span class="evidence-time">23:14:02</span><span style="color: #f59e0b;">⚡</span><span style="color: rgba(255,255,255,0.7);">Voice biometric anomaly detected</span></div>
+                    <div class="evidence-item"><span class="evidence-time">23:14:18</span><span style="color: #ef4444;">⚠️</span><span style="color: rgba(255,255,255,0.7);">Facial boundary artifacts identified</span></div>
+                    <div class="evidence-item"><span class="evidence-time">23:14:22</span><span style="color: #ef4444;">🚨</span><span style="color: rgba(255,255,255,0.7);">High-confidence deepfake confirmed</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Integration Badges -->
+        <div class="integration-badges">
+            <div class="int-badge"><span style="color: #61F393;">✓</span> Alert sent to Splunk SIEM</div>
+            <div class="int-badge"><span style="color: #61F393;">✓</span> Slack #security-alerts notified</div>
+            <div class="int-badge"><span style="color: #61F393;">✓</span> Incident #SEC-4521 created</div>
+            <div class="int-badge" style="margin-left: auto; background: rgba(97,243,147,0.1); border-color: rgba(97,243,147,0.3);"><span style="color: #61F393;">📋</span> Evidence package ready for export</div>
         </div>
     </div>
-    <div class="slide-number">22</div>
+    <div class="slide-number" style="color: rgba(255,255,255,0.3);">22</div>
 </section>
 
 <!-- Slide 22b: Detection Analysis Report -->
