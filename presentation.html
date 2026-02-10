@@ -3549,16 +3549,16 @@ const narrationScript = [
   { id: "closing", text: "Your people are your greatest asset. Make sure they're actually your people.", duration: 5000 }
 ];
 
-// Build slide index lookup from IDs
-const slideIdToIndex = {};
+// Build slide index lookup from IDs (window. for global access)
+window.slideIdToIndex = {};
 document.querySelectorAll('.slide[data-slide-id]').forEach((slide, idx) => {
-  slideIdToIndex[slide.dataset.slideId] = idx;
+  window.slideIdToIndex[slide.dataset.slideId] = idx;
 });
 
 // Helper: get slide index from narration entry
 function getSlideIndex(narration) {
   if (narration.id) {
-    const idx = slideIdToIndex[narration.id];
+    const idx = window.slideIdToIndex[narration.id];
     if (idx !== undefined) return idx;
     console.warn(`Slide ID not found: ${narration.id}`);
   }
@@ -4036,10 +4036,10 @@ window.addEventListener('beforeunload', () => {
     
     // Build a map of slide index to narration text
     const slideNarrationMap = {};
-    if (typeof narrationScript !== 'undefined' && typeof slideIdToIndex !== 'undefined') {
+    if (typeof narrationScript !== 'undefined' && window.slideIdToIndex) {
         narrationScript.forEach(item => {
             if (item.id) {
-                const idx = slideIdToIndex[item.id];
+                const idx = window.slideIdToIndex[item.id];
                 if (idx !== undefined) {
                     slideNarrationMap[idx] = item.text;
                 }
