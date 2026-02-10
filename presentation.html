@@ -3219,14 +3219,38 @@ window.addEventListener('beforeunload', () => {
             return;
         }
         
-        // Find closest element with dev ID or create one
-        let target = el.closest('[data-dev-id]') || el;
+        // Find the most specific meaningful element (prefer smaller, specific elements)
+        let target = el;
+        
+        // Skip very small text nodes and go up to meaningful parent if needed
+        const skipTags = ['BR', 'SPAN', 'STYLE', 'SCRIPT'];
+        if (skipTags.includes(target.tagName) && target.parentElement) {
+            target = target.parentElement;
+        }
+        
+        // Don't select the whole slide/section unless that's all there is
+        const meaningfulTags = ['H1', 'H2', 'H3', 'H4', 'P', 'BUTTON', 'A', 'IMG', 'DIV', 'LI', 'UL', 'INPUT'];
+        if (target.classList.contains('slide') || target.tagName === 'SECTION') {
+            // Try to find a more specific child at this point
+            const children = target.querySelectorAll('h1, h2, h3, h4, p, button, a, img, div, li');
+            for (const child of children) {
+                const rect = child.getBoundingClientRect();
+                if (e.clientX >= rect.left && e.clientX <= rect.right && 
+                    e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                    target = child;
+                    break;
+                }
+            }
+        }
+        
+        // Generate ID if not present
         if (!target.dataset.devId) {
-            // Generate an ID on the fly for untracked elements
             const slide = target.closest('.slide');
             const slideNum = slide ? Array.from(document.querySelectorAll('.slide')).indexOf(slide) + 1 : 0;
             const tag = target.tagName.toLowerCase();
-            target.dataset.devId = `s${slideNum}-${tag}-dynamic`;
+            const text = target.textContent?.trim().substring(0, 15).replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase() || '';
+            const uniqueId = Math.random().toString(36).substring(2, 6);
+            target.dataset.devId = `s${slideNum}-${tag}${text ? '-' + text : ''}-${uniqueId}`;
         }
         
         highlightedEl = target;
