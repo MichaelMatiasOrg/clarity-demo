@@ -22,6 +22,12 @@ Open any presentation's `index.html` in a browser. No build step required.
 - `presentation.html` — Redirect to `presentations/masterclass/` (preserves old URL)
 - Append `?dev=1` for dev mode (press **D** on landing page to toggle)
 
+## Git Workflow
+
+- **Always use feature branches** — never commit directly to `main`
+- Create a branch, do the work, then pull latest `main` and merge locally before pushing
+- A pre-push hook runs Playwright tests before allowing push
+
 ## File Structure
 
 ```
