@@ -263,3 +263,65 @@ If it can happen to a security company, it can happen to anyone.
 **Status:** [x] Approved
 
 ---
+
+### Slide 19: epidemic
+**Core message:** The scale is staggering and accelerating  
+**Duration:** ~12 seconds  
+**Script:**
+```
+The numbers are staggering.
+
+Amazon alone has blocked eighteen hundred suspected North Korean applicants. Infiltrations are up two hundred twenty percent in just twelve months.
+
+And by 2028, Gartner predicts one in four candidate profiles will be fake.
+
+This isn't slowing down. It's accelerating.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 20: hr-attack-surface
+**Core message:** HR/hiring is the new attack vector  
+**Duration:** ~10 seconds  
+**Script:**
+```
+HR is the new attack surface.
+
+You've secured your perimeter. Firewalls. Encryption. EDR. SIEM.
+
+But your employees? That's the vulnerability. And every open role is an invitation.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 21: bad-hire-cost
+**Core message:** The cost of a bad hire is massive  
+**Duration:** ~12 seconds  
+**Script:**
+```
+What happens when a bad hire gets through?
+
+On average, two hundred forty thousand dollars. That's recruiting, onboarding, salary, severance, replacement.
+
+And it takes six months to detect. Six months of access. Six months of trust.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 22: malicious
+**Core message:** Malicious insiders are 20x worse  
+**Duration:** ~12 seconds  
+**Script:**
+```
+But that's just incompetence. What if they're malicious?
+
+An insider threat doesn't cost two hundred forty thousand. It costs five million.
+
+And it doesn't take six months to detect. It takes nearly ten months. Ten months of damage before you even know.
+```
+**Status:** [x] Approved
+
+---
