@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity - Asset Library</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F0F4F8;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #0a1628;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header .logo img { height: 44px; }
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 30px;
+            color: #0a1628;
+        }
+        .header p {
+            color: #64748B;
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #64748B;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #0a1628; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Category sections */
+        .category {
+            margin-bottom: 50px;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #61F393 0%, #4ade80 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .category-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: #0a1628;
+            fill: none;
+        }
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .category-count {
+            font-size: 0.8rem;
+            color: #64748B;
+            background: #e2e8f0;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: auto;
+        }
+
+        /* Asset grid */
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .asset-grid.wide {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        .asset-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(10, 22, 40, 0.06);
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .asset-card:hover {
+            border-color: #61F393;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(10, 22, 40, 0.1);
+        }
+
+        /* Image preview */
+        .asset-preview {
+            width: 100%;
+            height: 140px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .asset-preview img {
+            max-width: 90%;
+            max-height: 120px;
+            object-fit: contain;
+        }
+        .asset-preview.logo-preview {
+            height: 100px;
+            padding: 20px;
+        }
+        .asset-preview.logo-preview img {
+            max-height: 50px;
+        }
+
+        /* Placeholder for non-visual assets */
+        .asset-preview .placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+        }
+        .asset-preview .placeholder svg {
+            width: 32px;
+            height: 32px;
+            stroke: #94a3b8;
+            fill: none;
+        }
+        .asset-preview .placeholder span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .asset-info {
+            padding: 12px 14px;
+        }
+        .asset-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0a1628;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .asset-path {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 3px;
+            font-family: monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                Back to Home
+            </a>
+            <div class="logo">
+                <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity">
+            </div>
+            <h1>Asset Library</h1>
+            <p>Shared assets grouped by type for quick reference</p>
+        </div>
+
+        <!-- Product UI Mockups -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <span class="category-title">Product UI Mockups</span>
+                <span class="category-count">4 files</span>
+            </div>
+            <div class="asset-grid wide">
+                <a href="mockup-pre-interview.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="screenshot-pre-interview.png" alt="Pre-Interview Alert">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Pre-Interview Alert</div>
+                        <div class="asset-path">mockup-pre-interview.html</div>
+                    </div>
+                </a>
+                <a href="mockup-deepfake-alert.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="screenshot-deepfake.png" alt="Deepfake Alert">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Deepfake Detection Alert</div>
+                        <div class="asset-path">mockup-deepfake-alert.html</div>
+                    </div>
+                </a>
+                <a href="mockup-continuous-verify.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="screenshot-continuous.png" alt="Continuous Verification">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Continuous Verification</div>
+                        <div class="asset-path">mockup-continuous-verify.html</div>
+                    </div>
+                </a>
+                <a href="mockup-employee-dashboard.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="screenshot-dashboard.png" alt="Employee Dashboard">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Employee Dashboard</div>
+                        <div class="asset-path">mockup-employee-dashboard.html</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Product Screenshots -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <span class="category-title">Product Screenshots</span>
+                <span class="category-count">4 files</span>
+            </div>
+            <div class="asset-grid wide">
+                <a href="screenshot-pre-interview.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="screenshot-pre-interview.png" alt="Pre-Interview Screenshot">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Pre-Interview Screenshot</div>
+                        <div class="asset-path">screenshot-pre-interview.png</div>
+                    </div>
+                </a>
+                <a href="screenshot-deepfake.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="screenshot-deepfake.png" alt="Deepfake Screenshot">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Deepfake Detection Screenshot</div>
+                        <div class="asset-path">screenshot-deepfake.png</div>
+                    </div>
+                </a>
+                <a href="screenshot-dashboard.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="screenshot-dashboard.png" alt="Dashboard Screenshot">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Dashboard Screenshot</div>
+                        <div class="asset-path">screenshot-dashboard.png</div>
+                    </div>
+                </a>
+                <a href="screenshot-continuous.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="screenshot-continuous.png" alt="Continuous Verification Screenshot">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Continuous Verification Screenshot</div>
+                        <div class="asset-path">screenshot-continuous.png</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Marcus Chen - Synthetic Identity Assets -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                </div>
+                <span class="category-title">Marcus Chen — Synthetic Identity</span>
+                <span class="category-count">11 files</span>
+            </div>
+            <div class="asset-grid">
+                <a href="marcus-chen-headshot.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="marcus-chen-headshot.png" alt="Marcus Chen Headshot">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Headshot (Primary)</div>
+                        <div class="asset-path">marcus-chen-headshot.png</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-casual.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="marcus-chen-casual.png" alt="Marcus Chen Casual">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Casual Photo</div>
+                        <div class="asset-path">marcus-chen-casual.png</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-office.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="marcus-chen-office.png" alt="Marcus Chen Office">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Office Photo</div>
+                        <div class="asset-path">marcus-chen-office.png</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-conference.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="marcus-chen-conference.png" alt="Marcus Chen Conference">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Conference Photo</div>
+                        <div class="asset-path">marcus-chen-conference.png</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-zoom.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="marcus-chen-zoom.png" alt="Marcus Chen Zoom">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Zoom Call Photo</div>
+                        <div class="asset-path">marcus-chen-zoom.png</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-github.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="marcus-chen-github.png" alt="Marcus Chen GitHub">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">GitHub Avatar</div>
+                        <div class="asset-path">marcus-chen-github.png</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-resume.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Resume</div>
+                        <div class="asset-path">marcus-chen-resume.html</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-linkedin.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">LinkedIn Profile</div>
+                        <div class="asset-path">marcus-chen-linkedin.html</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-offer-letter.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Offer Letter</div>
+                        <div class="asset-path">marcus-chen-offer-letter.html</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-paystub.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Pay Stub</div>
+                        <div class="asset-path">marcus-chen-paystub.html</div>
+                    </div>
+                </a>
+                <a href="marcus-chen-background-check.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Background Check</div>
+                        <div class="asset-path">marcus-chen-background-check.html</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Vero Financial (Fictional Company) -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <span class="category-title">Vero Financial — Target Company</span>
+                <span class="category-count">4 files</span>
+            </div>
+            <div class="asset-grid wide">
+                <a href="vero-careers-page.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="vero-careers-screenshot.png" alt="Vero Careers Page">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Careers Page</div>
+                        <div class="asset-path">vero-careers-page.html</div>
+                    </div>
+                </a>
+                <a href="vero-financial-website.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="vero-financial-screenshot.png" alt="Vero Financial Website">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Corporate Website</div>
+                        <div class="asset-path">vero-financial-website.html</div>
+                    </div>
+                </a>
+                <a href="vero-careers-screenshot.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="vero-careers-screenshot.png" alt="Careers Screenshot">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Careers Screenshot</div>
+                        <div class="asset-path">vero-careers-screenshot.png</div>
+                    </div>
+                </a>
+                <a href="vero-financial-screenshot.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="vero-financial-screenshot.png" alt="Financial Website Screenshot">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Website Screenshot</div>
+                        <div class="asset-path">vero-financial-screenshot.png</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Clarity Branding -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                </div>
+                <span class="category-title">Clarity Branding</span>
+                <span class="category-count">4 files</span>
+            </div>
+            <div class="asset-grid">
+                <a href="clarity-logo.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview">
+                        <img src="clarity-logo.svg" alt="Clarity Logo">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Logo (Dark)</div>
+                        <div class="asset-path">clarity-logo.svg</div>
+                    </div>
+                </a>
+                <a href="clarity-logo-white.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview" style="background: #0a1628;">
+                        <img src="clarity-logo-white.svg" alt="Clarity Logo White">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Logo (White)</div>
+                        <div class="asset-path">clarity-logo-white.svg</div>
+                    </div>
+                </a>
+                <a href="clarity-logo-website.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview">
+                        <img src="clarity-logo-website.svg" alt="Clarity Logo Website">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Logo (Website)</div>
+                        <div class="asset-path">clarity-logo-website.svg</div>
+                    </div>
+                </a>
+                <a href="favicon.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview">
+                        <img src="favicon.svg" alt="Favicon">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Favicon</div>
+                        <div class="asset-path">favicon.svg</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Integration Logos -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"/></svg>
+                </div>
+                <span class="category-title">Integration Logos</span>
+                <span class="category-count">22 files</span>
+            </div>
+            <div class="asset-grid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));">
+                <a href="logos/greenhouse.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/greenhouse.svg" alt="Greenhouse"></div>
+                    <div class="asset-info"><div class="asset-name">Greenhouse</div><div class="asset-path">logos/greenhouse.svg</div></div>
+                </a>
+                <a href="logos/ashby.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/ashby.svg" alt="Ashby"></div>
+                    <div class="asset-info"><div class="asset-name">Ashby</div><div class="asset-path">logos/ashby.svg</div></div>
+                </a>
+                <a href="logos/icims.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/icims.svg" alt="iCIMS"></div>
+                    <div class="asset-info"><div class="asset-name">iCIMS</div><div class="asset-path">logos/icims.svg</div></div>
+                </a>
+                <a href="logos/lever.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/lever.svg" alt="Lever"></div>
+                    <div class="asset-info"><div class="asset-name">Lever</div><div class="asset-path">logos/lever.svg</div></div>
+                </a>
+                <a href="logos/workday.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/workday.svg" alt="Workday"></div>
+                    <div class="asset-info"><div class="asset-name">Workday</div><div class="asset-path">logos/workday.svg</div></div>
+                </a>
+                <a href="logos/okta.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/okta.svg" alt="Okta"></div>
+                    <div class="asset-info"><div class="asset-name">Okta</div><div class="asset-path">logos/okta.svg</div></div>
+                </a>
+                <a href="logos/azure-ad.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/azure-ad.svg" alt="Azure AD"></div>
+                    <div class="asset-info"><div class="asset-name">Azure AD</div><div class="asset-path">logos/azure-ad.svg</div></div>
+                </a>
+                <a href="logos/zoom.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/zoom.svg" alt="Zoom"></div>
+                    <div class="asset-info"><div class="asset-name">Zoom</div><div class="asset-path">logos/zoom.svg</div></div>
+                </a>
+                <a href="logos/teams.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/teams.svg" alt="Microsoft Teams"></div>
+                    <div class="asset-info"><div class="asset-name">Microsoft Teams</div><div class="asset-path">logos/teams.svg</div></div>
+                </a>
+                <a href="logos/slack.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/slack.svg" alt="Slack"></div>
+                    <div class="asset-info"><div class="asset-name">Slack</div><div class="asset-path">logos/slack.svg</div></div>
+                </a>
+                <a href="logos/checkr.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/checkr.svg" alt="Checkr"></div>
+                    <div class="asset-info"><div class="asset-name">Checkr</div><div class="asset-path">logos/checkr.svg</div></div>
+                </a>
+                <a href="logos/hireright.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/hireright.svg" alt="HireRight"></div>
+                    <div class="asset-info"><div class="asset-name">HireRight</div><div class="asset-path">logos/hireright.svg</div></div>
+                </a>
+                <a href="logos/persona.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/persona.svg" alt="Persona"></div>
+                    <div class="asset-info"><div class="asset-name">Persona</div><div class="asset-path">logos/persona.svg</div></div>
+                </a>
+                <a href="logos/onfido.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/onfido.svg" alt="Onfido"></div>
+                    <div class="asset-info"><div class="asset-name">Onfido</div><div class="asset-path">logos/onfido.svg</div></div>
+                </a>
+                <a href="logos/plaid.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/plaid.svg" alt="Plaid"></div>
+                    <div class="asset-info"><div class="asset-name">Plaid</div><div class="asset-path">logos/plaid.svg</div></div>
+                </a>
+                <a href="logos/stripe.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/stripe.svg" alt="Stripe"></div>
+                    <div class="asset-info"><div class="asset-name">Stripe</div><div class="asset-path">logos/stripe.svg</div></div>
+                </a>
+                <a href="logos/splunk.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/splunk.svg" alt="Splunk"></div>
+                    <div class="asset-info"><div class="asset-name">Splunk</div><div class="asset-path">logos/splunk.svg</div></div>
+                </a>
+                <a href="logos/crowdstrike.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/crowdstrike.svg" alt="CrowdStrike"></div>
+                    <div class="asset-info"><div class="asset-name">CrowdStrike</div><div class="asset-path">logos/crowdstrike.svg</div></div>
+                </a>
+                <a href="logos/elastic.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/elastic.svg" alt="Elastic"></div>
+                    <div class="asset-info"><div class="asset-name">Elastic</div><div class="asset-path">logos/elastic.svg</div></div>
+                </a>
+                <a href="logos/sentinel.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/sentinel.svg" alt="Sentinel"></div>
+                    <div class="asset-info"><div class="asset-name">Sentinel</div><div class="asset-path">logos/sentinel.svg</div></div>
+                </a>
+                <a href="logos/servicenow.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/servicenow.svg" alt="ServiceNow"></div>
+                    <div class="asset-info"><div class="asset-name">ServiceNow</div><div class="asset-path">logos/servicenow.svg</div></div>
+                </a>
+                <a href="logos/jira.svg" class="asset-card" target="_blank">
+                    <div class="asset-preview logo-preview"><img src="logos/jira.svg" alt="Jira"></div>
+                    <div class="asset-info"><div class="asset-name">Jira</div><div class="asset-path">logos/jira.svg</div></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Audio Narration -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+                </div>
+                <span class="category-title">Slide Narration Audio</span>
+                <span class="category-count">34 files</span>
+            </div>
+            <div class="asset-grid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));">
+                <div class="asset-card" id="audio-0">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                            <span>MP3</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Slide 0</div>
+                        <div class="asset-path">audio/narration/slide-0.mp3</div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                (function() {
+                    var grid = document.querySelector('#audio-0').parentElement;
+                    var template = grid.children[0];
+                    grid.innerHTML = '';
+                    for (var i = 0; i <= 33; i++) {
+                        var card = document.createElement('div');
+                        card.className = 'asset-card audio-card';
+                        card.style.cursor = 'pointer';
+                        card.setAttribute('data-slide', i);
+                        card.innerHTML =
+                            '<div class="asset-preview">' +
+                                '<div class="placeholder">' +
+                                    '<svg viewBox="0 0 24 24" style="stroke:#94a3b8;fill:none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>' +
+                                    '<span>MP3</span>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="asset-info">' +
+                                '<div class="asset-name">Slide ' + i + '</div>' +
+                                '<div class="asset-path">audio/narration/slide-' + i + '.mp3</div>' +
+                            '</div>';
+                        card.addEventListener('click', (function(idx) {
+                            return function() {
+                                var existing = document.getElementById('audio-player-active');
+                                if (existing) { existing.pause(); existing.remove(); }
+                                var cards = document.querySelectorAll('.audio-card');
+                                cards.forEach(function(c) { c.style.borderColor = 'transparent'; });
+                                this.style.borderColor = '#61F393';
+                                var audio = document.createElement('audio');
+                                audio.id = 'audio-player-active';
+                                audio.src = 'audio/narration/slide-' + idx + '.mp3';
+                                audio.style.display = 'none';
+                                document.body.appendChild(audio);
+                                audio.play();
+                                var self = this;
+                                audio.onended = function() { self.style.borderColor = 'transparent'; audio.remove(); };
+                            };
+                        })(i));
+                        grid.appendChild(card);
+                    }
+                })();
+            </script>
+        </section>
+
+        <!-- Voice Quiz Audio -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                </div>
+                <span class="category-title">Voice Quiz Samples</span>
+                <span class="category-count">3 files</span>
+            </div>
+            <div class="asset-grid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));">
+                <div class="asset-card audio-card" style="cursor:pointer" onclick="var e=document.getElementById('audio-player-active');if(e){e.pause();e.remove()}document.querySelectorAll('.audio-card').forEach(function(c){c.style.borderColor='transparent'});this.style.borderColor='#61F393';var a=document.createElement('audio');a.id='audio-player-active';a.src='audio/voice-a.opus';document.body.appendChild(a);a.play();var s=this;a.onended=function(){s.style.borderColor='transparent';a.remove()}">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24" style="stroke:#94a3b8;fill:none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>OPUS</span>
+                        </div>
+                    </div>
+                    <div class="asset-info"><div class="asset-name">Voice A</div><div class="asset-path">audio/voice-a.opus</div></div>
+                </div>
+                <div class="asset-card audio-card" style="cursor:pointer" onclick="var e=document.getElementById('audio-player-active');if(e){e.pause();e.remove()}document.querySelectorAll('.audio-card').forEach(function(c){c.style.borderColor='transparent'});this.style.borderColor='#61F393';var a=document.createElement('audio');a.id='audio-player-active';a.src='audio/voice-b.opus';document.body.appendChild(a);a.play();var s=this;a.onended=function(){s.style.borderColor='transparent';a.remove()}">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24" style="stroke:#94a3b8;fill:none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>OPUS</span>
+                        </div>
+                    </div>
+                    <div class="asset-info"><div class="asset-name">Voice B</div><div class="asset-path">audio/voice-b.opus</div></div>
+                </div>
+                <div class="asset-card audio-card" style="cursor:pointer" onclick="var e=document.getElementById('audio-player-active');if(e){e.pause();e.remove()}document.querySelectorAll('.audio-card').forEach(function(c){c.style.borderColor='transparent'});this.style.borderColor='#61F393';var a=document.createElement('audio');a.id='audio-player-active';a.src='audio/voice-c.opus';document.body.appendChild(a);a.play();var s=this;a.onended=function(){s.style.borderColor='transparent';a.remove()}">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24" style="stroke:#94a3b8;fill:none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>OPUS</span>
+                        </div>
+                    </div>
+                    <div class="asset-info"><div class="asset-name">Voice C</div><div class="asset-path">audio/voice-c.opus</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Miscellaneous -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+                </div>
+                <span class="category-title">Miscellaneous</span>
+                <span class="category-count">5 files</span>
+            </div>
+            <div class="asset-grid">
+                <a href="logo-comparison.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="logo-comparison.png" alt="Logo Comparison">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Logo Comparison</div>
+                        <div class="asset-path">logo-comparison.png</div>
+                    </div>
+                </a>
+                <a href="our-saved-logo.png" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <img src="our-saved-logo.png" alt="Saved Logo">
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Saved Logo</div>
+                        <div class="asset-path">our-saved-logo.png</div>
+                    </div>
+                </a>
+                <a href="logo-preview.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Logo Preview</div>
+                        <div class="asset-path">logo-preview.html</div>
+                    </div>
+                </a>
+                <a href="logo-only.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Logo Only</div>
+                        <div class="asset-path">logo-only.html</div>
+                    </div>
+                </a>
+                <a href="logo-comparison.html" class="asset-card" target="_blank">
+                    <div class="asset-preview">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Logo Comparison</div>
+                        <div class="asset-path">logo-comparison.html</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <p class="footer">© 2025 Clarity</p>
+    </div>
+</body>
+</html>
