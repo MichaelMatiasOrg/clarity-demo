@@ -2,7 +2,7 @@
 ## Guidepoint CISO Event
 
 > **Voice:** Chad (ElevenLabs)  
-> **Status:** Slides 1-6 APPROVED  
+> **Status:** Acts 1-3 APPROVED (Slides 1-22), Act 4 in progress  
 > **Last updated:** 2026-02-11
 
 ---
@@ -259,6 +259,21 @@ And it's not just Globe Life.
 This is happening to companies around the world. North Korean operatives have infiltrated over three hundred US companies. KnowBe4 — a security company — hired one who started loading malware on day one.
 
 If it can happen to a security company, it can happen to anyone.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 18: fortune-500
+**Core message:** Fortune 500 CISOs are dealing with this now  
+**Duration:** ~12 seconds  
+**Script:**
+```
+This is Charles Carmakal, CTO of Mandiant.
+
+He's talked to dozens of Fortune 500 CISOs. Almost every one has admitted they had a North Korean IT worker problem.
+
+Dozens. Fortune 500. Already compromised.
 ```
 **Status:** [x] Approved
 
