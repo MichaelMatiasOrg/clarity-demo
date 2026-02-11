@@ -325,3 +325,20 @@ And it doesn't take six months to detect. It takes nearly ten months. Ten months
 **Status:** [x] Approved
 
 ---
+
+## ACT 4: THE SOLUTION (Clarity)
+
+### Slide 23: clarity-intro
+**Core message:** Introducing Clarity  
+**Duration:** ~10 seconds  
+**Script:**
+```
+This is why we built Clarity.
+
+End-to-end identity validation for the entire employee lifecycle. From the first resume to their last day on the job.
+
+Know who you're hiring. And know it's still them.
+```
+**Status:** [x] Approved
+
+---
