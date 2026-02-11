@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer Letter - Marcus Chen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #f5f5f5;
+            padding: 40px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .letter {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px 70px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-height: 1000px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #1a56db;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1a56db 0%, #3b82f6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+        }
+        .company-name {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a56db;
+        }
+        .company-tagline {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11px;
+            color: #666;
+            letter-spacing: 1px;
+        }
+        .company-info {
+            text-align: right;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11px;
+            color: #666;
+            line-height: 1.5;
+        }
+        .date {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .recipient {
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .subject {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #1a56db;
+        }
+        .salutation {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .body p {
+            font-size: 14px;
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+        .details-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
+        }
+        .details-table td {
+            padding: 10px 0;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .details-table td:first-child {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 600;
+            width: 180px;
+            color: #444;
+        }
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #1a56db;
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+        .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+        .closing {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        .signature-block {
+            margin-top: 40px;
+        }
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 28px;
+            color: #1a365d;
+            margin-bottom: 5px;
+        }
+        .signer-name {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .signer-title {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 12px;
+            color: #666;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10px;
+            color: #999;
+            text-align: center;
+        }
+        .acceptance {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .acceptance-title {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .signature-line {
+            display: flex;
+            gap: 60px;
+            margin-top: 30px;
+        }
+        .sig-field {
+            flex: 1;
+        }
+        .sig-line {
+            border-bottom: 1px solid #333;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+        .sig-label {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="letter">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">V</div>
+                <div>
+                    <div class="company-name">Vero Financial</div>
+                    <div class="company-tagline">SECURE PAYMENT INFRASTRUCTURE</div>
+                </div>
+            </div>
+            <div class="company-info">
+                548 Market Street, Suite 400<br>
+                San Francisco, CA 94104<br>
+                www.verofinancial.com
+            </div>
+        </div>
+
+        <div class="date">February 7, 2026</div>
+
+        <div class="recipient">
+            Marcus Wei Chen<br>
+            2847 Marina Blvd<br>
+            San Francisco, CA 94123
+        </div>
+
+        <div class="subject">RE: Offer of Employment — Senior Software Engineer, Infrastructure</div>
+
+        <div class="salutation">Dear Marcus,</div>
+
+        <div class="body">
+            <p>
+                On behalf of Vero Financial, I am thrilled to extend this offer of employment for the position of <strong>Senior Software Engineer, Infrastructure</strong>. Your technical expertise, particularly your experience building secure payment systems at Stripe and Plaid, made a strong impression on our entire interview panel.
+            </p>
+
+            <p>
+                We believe your background in Kubernetes orchestration, compliance automation, and high-availability infrastructure will be instrumental as we scale our payment processing platform. Below are the details of our offer:
+            </p>
+
+            <table class="details-table">
+                <tr>
+                    <td>Position:</td>
+                    <td>Senior Software Engineer, Infrastructure</td>
+                </tr>
+                <tr>
+                    <td>Department:</td>
+                    <td>Platform Engineering</td>
+                </tr>
+                <tr>
+                    <td>Reports To:</td>
+                    <td>David Kim, VP of Engineering</td>
+                </tr>
+                <tr>
+                    <td>Start Date:</td>
+                    <td>February 24, 2026</td>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td>San Francisco, CA (Hybrid - 3 days in office)</td>
+                </tr>
+            </table>
+
+            <div class="highlight-box">
+                <p><strong>Compensation Package:</strong></p>
+                <p>Base Salary: $245,000 per year, paid semi-monthly</p>
+                <p>Signing Bonus: $30,000 (paid with first paycheck)</p>
+                <p>Equity: 45,000 stock options, vesting over 4 years with 1-year cliff</p>
+                <p>Annual Bonus Target: 15% of base salary</p>
+            </div>
+
+            <p>
+                <strong>Benefits:</strong> You will be eligible for our comprehensive benefits package including medical, dental, and vision insurance (100% employee premium covered), 401(k) with 4% company match, unlimited PTO, $2,500 annual learning stipend, and home office setup allowance.
+            </p>
+
+            <p>
+                This offer is contingent upon successful completion of a background check and verification of your eligibility to work in the United States. This letter is not a contract of employment and does not guarantee employment for any specific duration.
+            </p>
+
+            <p>
+                Please indicate your acceptance by signing below and returning this letter by <strong>February 12, 2026</strong>. If you have any questions, please don't hesitate to reach out to me directly or to our People team at people@verofinancial.com.
+            </p>
+
+            <p>
+                Marcus, we are genuinely excited about the prospect of you joining our team. Your experience is exactly what we need as we build the next generation of payment infrastructure.
+            </p>
+        </div>
+
+        <div class="closing">
+            Warm regards,
+        </div>
+
+        <div class="signature-block">
+            <div class="signature">Sarah Martinez</div>
+            <div class="signer-name">Sarah Martinez</div>
+            <div class="signer-title">Chief Executive Officer, Vero Financial</div>
+        </div>
+
+        <div class="acceptance">
+            <div class="acceptance-title">ACCEPTANCE OF OFFER</div>
+            <p style="font-size: 13px;">I accept this offer of employment and agree to the terms outlined above.</p>
+            <div class="signature-line">
+                <div class="sig-field">
+                    <div class="sig-line"></div>
+                    <div class="sig-label">Signature</div>
+                </div>
+                <div class="sig-field">
+                    <div class="sig-line"></div>
+                    <div class="sig-label">Date</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Vero Financial, Inc. | Confidential | This offer letter contains proprietary information
+        </div>
+    </div>
+    <script src="../../../shared/js/dev-mode.js"></script>
+</body>
+</html>

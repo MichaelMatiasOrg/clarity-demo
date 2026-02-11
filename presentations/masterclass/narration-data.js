@@ -10,8 +10,8 @@ window.NarrationData = {
     audioPathPattern: "audio/slide-{index}.mp3",
     voice: {
       provider: "elevenlabs",
-      id: "JBFqnCBsd6RMkjVDRZzb",
-      name: "George",
+      id: "WQcQveC0hbQNvI69FWyU",
+      name: "Chad",
       model: "eleven_multilingual_v2",
       settings: { stability: 0.5, similarity_boost: 0.75, style: 0.3, use_speaker_boost: true }
     }
@@ -24,7 +24,7 @@ window.NarrationData = {
     { id: "intro", audioIndex: 0, text: "I'm Michael Matias, Co-Founder and CEO of Clarity. In cybersecurity, we're used to thinking about breaking into companies through software. Vulnerabilities. Exploits. Zero-days. Today, I want to talk about a different threat: breaking in through the front door.", duration: 15000 },
     { id: "vero-hook", audioIndex: 1, text: "Last night, I wanted to test how easy this really is. I picked a target: Vero Financial. Let me show you how I got in.", duration: 8000 },
     { id: "vero-target", audioIndex: 2, text: "Vero Financial. Four point two billion dollars processed annually. One hundred eighty platform customers. A mature security perimeter. Regular penetration tests. They do everything right. Except for one thing.", duration: 12000 },
-    { id: "entry-point", audioIndex: 3, text: "They're hiring. Six open roles. One stands out: Senior Software Engineer, Platform. Hiring isn't doing anything wrong. It's just an opportunity. This is my way in.", duration: 10000 },
+    { id: "entry-point", audioIndex: 3, text: "They're hiring. Six open roles. One stands out: Staff Software Engineer, Platform. Hiring isn't doing anything wrong. It's just an opportunity. This is my way in.", duration: 10000 },
     { id: "why-role", audioIndex: 4, text: "Why this role? Production access to systems processing billions in transactions. Customer data. Account numbers. Transaction history. Vault access. API keys. The keys to the kingdom. One hire. Complete access.", duration: 12000 },
     { id: "meet-marcus", audioIndex: 5, text: "So I created the perfect candidate. Meet Marcus Chen. Senior Software Engineer. Seven years of experience. Stripe. Plaid. UC Berkeley. Built in minutes. Tailored for this exact role.", duration: 10000 },
     { id: "linkedin", audioIndex: 6, text: "LinkedIn profile. Five hundred connections. Endorsements from former colleagues. Work history at companies that won't respond to verification requests. All fake. All built in an afternoon.", duration: 12000 },
@@ -56,14 +56,14 @@ window.NarrationData = {
     { id: "during-interview", audioIndex: 23, text: "After the interview, Clarity analyzes the recording. Face manipulation detected. Voice doesn't match lip movements. Identity doesn't match the application. Flagged for expert review — a human confirms before any action is taken.", duration: 12000 },
     { id: "continuous", audioIndex: 24, text: "Security doesn't stop at hire. Clarity continuously verifies your employees. Periodic biometric checks. Voice pattern consistency. Day ninety, day three hundred — confirm it's still the same person you hired.", duration: 10000 },
 
-    // === Act 4: Two Pillars (slides 26-29) ===
+    // === Act 4: Lifecycle & Two Pillars (slides 26-33) ===
     { id: "lifecycle", audioIndex: 29, text: "Here's the thing most companies miss. Identity verification isn't a hiring problem. It's a lifecycle problem. Onboarding. MFA resets. Privileged access. Sensitive transactions. Every one of these moments is a vulnerability. You need one system that knows your employee — and can verify them at every critical moment. That's Clarity.", duration: 15000 },
+    { id: "architecture", audioIndex: 39, text: "Clarity is built to integrate with enterprise systems. Identity validation triggers flow in from ServiceNow, Workday, Okta — wherever access decisions happen. We validate the identity, then orchestrate the response back into your stack. Real-time. API-first. Zero workflow disruption.", duration: 14000 },
     { id: "two-pillars", audioIndex: 25, text: "You're asking two things. Will this integrate with my workflow — or add another tool to manage? And can it actually detect these threats? Let me show you.", duration: 8000 },
     { id: "integrations", audioIndex: 27, text: "Clarity integrates with the tools your teams already use. Greenhouse, Lever, Workday for recruiting. Okta, ServiceNow for security and IT. No new workflows to learn. No friction for recruiters. No disruption for candidates.", duration: 12000 },
-    { id: "fraud-detection", audioIndex: 28, text: "Pillar B. Full visibility for your security team. SIEM integration. Real-time alerts. Threat correlation. No blind spots.", duration: 8000 },
+    { id: "fraud-detection", audioIndex: 28, text: "Pillar B. Advanced fraud detection. Four layers working together. Deepfake detection catches face swaps and synthetic video. Voice analysis flags cloning and audio-visual mismatches. Biometric matching verifies it's the same person. And identity signals cross-reference patterns across our threat database. No blind spots.", duration: 14000 },
 
-    // === Act 5: Lifecycle & Close (slides 33-37) ===
-    { id: "architecture", audioIndex: 39, text: "Clarity is built to integrate with enterprise systems. Identity validation triggers flow in from ServiceNow, Workday, Okta — wherever access decisions happen. We validate the identity, then orchestrate the response back into your stack. Real-time. API-first. Zero workflow disruption.", duration: 14000 },
+    // === Act 5: Comparison & Close (slides 34-37) ===
     { id: "vs-traditional", audioIndex: 40, text: "Traditional background checks look for bad records. Criminal history. Employment disputes. But fake identities don't have bad records — they're clean by design. IDV platforms verify documents at a single point in time. But what about the interview? What about day ninety? Clarity takes a different approach. We verify the human, not just the paperwork. And we do it continuously.", duration: 18000 },
     { id: "social-proof", audioIndex: 32, text: "Clarity protects hiring at scale for industry leaders like Deel — verifying candidates across 150 countries.", duration: 8000 },
     { id: "threat-intel", audioIndex: 41, text: "And with Clarity's threat intelligence, you can check your entire candidate pipeline against known threat actor patterns — in minutes. Over a thousand DPRK-linked identities in our database. Free to use.", duration: 10000 },

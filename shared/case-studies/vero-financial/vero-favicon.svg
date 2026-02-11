@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="veroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9333ea"/>
+      <stop offset="100%" style="stop-color:#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer V shape -->
+  <path d="M4 8L16 28L22 16L20 12L16 20L8 8H4Z" fill="url(#veroGrad)"/>
+  <!-- Inner V cutout effect -->
+  <path d="M8 8L16 22L18 18L12 8H8Z" fill="white"/>
+  <!-- Checkmark swoosh -->
+  <path d="M18 8L16 12L24 12L28 4L24 4L22 8H18Z" fill="url(#veroGrad)"/>
+</svg>
