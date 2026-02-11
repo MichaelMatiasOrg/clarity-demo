@@ -184,3 +184,65 @@ Every single stage of your hiring process — bypassed.
 ---
 
 *Remaining slides to be scripted.*
+
+---
+
+## ACT 2: THE PROOF (GlobeLife)
+
+### Slide 13: proof-transition
+**Core message:** Transition from demo to real-world evidence  
+**Duration:** ~5 seconds  
+**Script:**
+```
+That was Marcus Chen — a demonstration.
+
+But this isn't hypothetical. It's happening all around us.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 14: globelife-intro
+**Core message:** Real POC with real data  
+**Duration:** ~8 seconds  
+**Script:**
+```
+Globe Life — one of our partners here today — asked us to review twenty-eight candidate resumes from their pipeline.
+
+Real candidates. Real applications.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 15: globelife-results
+**Core message:** 25% high-risk is shocking  
+**Duration:** ~10 seconds  
+**Script:**
+```
+Twenty-eight resumes. Seven came back high risk. Five medium risk.
+
+That's twenty-five percent of their pipeline with serious fraud indicators.
+
+One in four.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 16: globelife-findings
+**Core message:** These are fabricated people  
+**Duration:** ~12 seconds  
+**Script:**
+```
+What did we find?
+
+Synthetic identity patterns. Burner phones. Employment history that doesn't match any database. Zero digital footprint. Email addresses created days before applying.
+
+These aren't bad candidates. These are fabricated people.
+```
+**Status:** [x] Approved
+
+---
+
+*Act 3 scripts to follow.*

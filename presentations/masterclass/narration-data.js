@@ -34,7 +34,13 @@ window.NarrationData = {
     { id: "background-check", audioIndex: 8, text: "Background check? All clear. Traditional checks look for bad records. Criminal history. Employment disputes. They don't verify the identity actually exists. And fake identities don't have bad records.", duration: 12000 },
     { id: "every-stage", audioIndex: 11, text: "Let's recap what Marcus can do. Fake identity that passes screening. Deepfake video for interviews. Cloned voice that sounds authentic. Background check comes back clean. Every single stage of your hiring process — bypassed.", duration: 15000 },
 
-    // === Act 2: The Scale (slides 12-19) ===
+    // === Act 2: The Proof - GlobeLife (slides 13-16) ===
+    { id: "proof-transition", audioIndex: 34, text: "That was Marcus Chen — a demonstration. But this isn't hypothetical. It's happening all around us.", duration: 5000 },
+    { id: "globelife-intro", audioIndex: 35, text: "Globe Life — one of our partners here today — asked us to review twenty-eight candidate resumes from their pipeline. Real candidates. Real applications.", duration: 8000 },
+    { id: "globelife-results", audioIndex: 36, text: "Twenty-eight resumes. Seven came back high risk. Five medium risk. That's twenty-five percent of their pipeline with serious fraud indicators. One in four.", duration: 10000 },
+    { id: "globelife-findings", audioIndex: 37, text: "What did we find? Synthetic identity patterns. Burner phones. Employment history that doesn't match any database. Zero digital footprint. Email addresses created days before applying. These aren't bad candidates. These are fabricated people.", duration: 12000 },
+
+    // === Act 3: The Scale (slides 17+) ===
     { id: "already-happening", text: "This isn't hypothetical. It's already happening — and even a leading security company got duped.", duration: 6000 },
     { id: "the-question", audioIndex: 12, text: "So here's my question. How would you have caught him?", duration: 4000 },
     { id: "scale", audioIndex: 13, text: "This was one target, one hour of work. Now imagine threat actors doing this at scale, automated, against hundreds of companies.", duration: 8000 },
