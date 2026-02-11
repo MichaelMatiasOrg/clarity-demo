@@ -1,0 +1,190 @@
+/* ========== MASTERCLASS MOBILE-FIRST OVERRIDES ========== */
+/* This file contains aggressive mobile overrides for inline-styled elements */
+
+@media (max-width: 768px) {
+    /* FORCE hide nav menu on mobile */
+    #nav-menu {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    
+    /* Slides base */
+    .slide {
+        padding: 30px 20px !important;
+        min-height: 100vh;
+        height: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* ========== IDENTITY LIFECYCLE SLIDE ========== */
+    [data-slide-id="identity-lifecycle"] {
+        padding: 24px 16px !important;
+    }
+    
+    /* Header adjustments */
+    [data-slide-id="identity-lifecycle"] h1 {
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:first-child p {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Lifecycle flow container - FORCE vertical on mobile */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        padding: 0 !important;
+    }
+    
+    /* Hide connecting line */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="position: absolute"] {
+        display: none !important;
+    }
+    
+    /* Hide arrows between stages */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="font-size: 1.5rem"] {
+        display: none !important;
+    }
+    
+    /* Stage items - horizontal card layout */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="text-align: center"][style*="position: relative"] {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 16px !important;
+        text-align: left !important;
+        background: white;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    
+    /* Stage circle icons - smaller */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div > div[style*="width: 100px"][style*="height: 100px"] {
+        width: 56px !important;
+        height: 56px !important;
+        min-width: 56px !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Stage circle icons - inner SVGs */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div > div[style*="width: 100px"] svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+    
+    /* Stage text */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div h3 {
+        font-size: 1rem !important;
+        margin: 0 0 2px !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div p {
+        font-size: 0.8rem !important;
+        margin: 0 !important;
+    }
+    
+    /* Summary bar at bottom - FORCE vertical stack */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(3) {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+        flex-direction: column !important;
+        padding: 16px !important;
+        margin-top: 24px !important;
+    }
+    
+    /* Hide dividers in summary bar */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(3) > div[style*="width: 1px"] {
+        display: none !important;
+    }
+    
+    /* Summary bar items */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(3) > div[style*="text-align: center"] {
+        text-align: left !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(3) > div > div:first-child {
+        font-size: 0.65rem !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(3) > div > div:last-child {
+        font-size: 0.8rem !important;
+    }
+    
+    /* Discussion prompt */
+    [data-slide-id="identity-lifecycle"] > div > div:last-child p {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Slide number */
+    .slide-number {
+        bottom: 12px !important;
+        right: 16px !important;
+        font-size: 0.7rem !important;
+    }
+    
+    /* Hide decorative elements */
+    .slide > svg[style*="position: absolute"] {
+        display: none !important;
+    }
+    
+    /* ========== INTRO HERO SLIDE ========== */
+    [data-slide-id="intro"] h1 {
+        font-size: 2rem !important;
+    }
+    
+    [data-slide-id="intro"] p[style*="letter-spacing"] {
+        font-size: 0.85rem !important;
+        letter-spacing: 1.5px !important;
+    }
+    
+    /* ========== VERO HOOK SLIDE ========== */
+    [data-slide-id="vero-hook"] h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    /* ========== TWO COLUMN LAYOUTS ========== */
+    .two-col {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    
+    /* ========== CARD GRIDS ========== */
+    .card-grid,
+    [style*="grid-template-columns: repeat(2"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .slide {
+        padding: 20px 14px !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] h1 {
+        font-size: 1.3rem !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(3) {
+        grid-template-columns: 1fr !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div > div[style*="width: 100px"] {
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div > div[style*="width: 100px"] svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
