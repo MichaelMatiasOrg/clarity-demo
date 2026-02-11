@@ -220,19 +220,15 @@
         }
 
         .company-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1rem;
-            color: white;
+            height: 36px;
+            width: auto;
         }
 
-        .company-name { font-size: 1.15rem; font-weight: 700; }
+        .company-name {
+            font-size: 1.15rem;
+        }
+        .company-name .vero { font-weight: 700; background: linear-gradient(135deg, #9333ea 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .company-name .financial { font-weight: 400; color: #6b7280; }
 
         .company-subtitle {
             font-size: 0.78rem;
@@ -824,8 +820,8 @@
         <div class="left-panel">
             <div class="company-header">
                 <div class="company-logo-row">
-                    <div class="company-icon">VF</div>
-                    <span class="company-name">Vero Financial</span>
+                    <img class="company-icon" src="../../shared/case-studies/vero-financial/vero-logo.png" alt="Vero Financial">
+                    <span class="company-name"><span class="vero">Vero</span><span class="financial">Financial</span></span>
                 </div>
                 <div class="company-subtitle">Open positions &middot; careers.verofinancial.com</div>
             </div>
