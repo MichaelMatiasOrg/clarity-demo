@@ -213,15 +213,17 @@
         const fontSize = styles.fontSize;
 
         const currentPath = window.location.pathname.replace(/^\//, '') || 'index.html';
+const pageTitle = document.title || 'this page';
 const context = `[Element: ${devId} | Slide ${slideNum}]
 
 CONTEXT FOR GENIE:
 - Element: <${tag}${existingId}${classes}>
 - Text preview: "${textPreview}${textPreview.length >= 100 ? '...' : ''}"
 - Font size: ${fontSize}
-- File: clarity-demo/${currentPath}
+- File: ${currentPath}
+- URL: ${window.location.href}
 
-I selected this element using Dev Mode on the Clarity presentation. Help me improve or modify it based on my request.
+I selected this element using Dev Mode on "${pageTitle}". Help me improve or modify it based on my request.
 
 ---
 `;
