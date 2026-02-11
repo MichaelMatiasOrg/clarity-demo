@@ -1075,6 +1075,179 @@ function revealAnswer() {
     <div class="slide-number">22</div>
 </section>
 
+<!-- Slide: What It Takes to Solve This -->
+<section class="slide" data-slide-id="two-pillars" id="whats-needed-slide">
+    <style>
+        /* Signal flow animation */
+        @keyframes signal-flow-in {
+            0% { transform: translateX(0); opacity: 0.7; }
+            80% { opacity: 1; }
+            100% { transform: translateX(var(--flow-x)); opacity: 0; }
+        }
+        @keyframes funnel-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(97, 243, 147, 0.1), 0 8px 32px rgba(10, 22, 40, 0.08); }
+            50% { box-shadow: 0 0 50px rgba(97, 243, 147, 0.25), 0 8px 32px rgba(10, 22, 40, 0.08); }
+        }
+        @keyframes result-emerge {
+            0%, 60% { opacity: 0; transform: translateX(-8px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes signal-dot {
+            0% { left: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+        .wn-signal-track { position: relative; height: 2px; background: rgba(245, 158, 11, 0.15); border-radius: 1px; overflow: hidden; }
+        .wn-signal-track::after {
+            content: ''; position: absolute; top: -2px; width: 6px; height: 6px; border-radius: 50%;
+            background: #F59E0B; animation: signal-dot 2s ease-in-out infinite;
+        }
+        .wn-signal-track:nth-child(2)::after { animation-delay: 0.5s; }
+        .wn-signal-track:nth-child(3)::after { animation-delay: 1.0s; }
+        .wn-signal-track:nth-child(4)::after { animation-delay: 1.5s; }
+        .wn-signal-track:nth-child(5)::after { animation-delay: 0.3s; }
+        .wn-signal-track:nth-child(6)::after { animation-delay: 0.8s; }
+        @keyframes output-dot {
+            0% { left: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+        .wn-output-track { position: relative; height: 2px; background: rgba(97, 243, 147, 0.2); border-radius: 1px; overflow: hidden; }
+        .wn-output-track::after {
+            content: ''; position: absolute; top: -2px; width: 6px; height: 6px; border-radius: 50%;
+            background: #61F393; animation: output-dot 2.5s ease-in-out infinite;
+        }
+        .wn-output-track:nth-child(2)::after { animation-delay: 0.8s; }
+        .wn-output-track:nth-child(3)::after { animation-delay: 1.6s; }
+    </style>
+
+    <div style="max-width: 1120px; margin: 0 auto; text-align: center; padding: 0 20px;">
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">The problem is clear. So what does a solution actually require?</p>
+        <h2 style="font-size: 2.4rem; margin-bottom: 36px;">What It <span class="accent">Takes</span> to Solve This</h2>
+
+        <!-- Main 3-column flow diagram -->
+        <div style="display: grid; grid-template-columns: 240px 1fr 200px 1fr 240px; align-items: center; gap: 0;">
+
+            <!-- Column 1: Enterprise Integrations with real logos -->
+            <div style="text-align: center;">
+                <div style="font-size: 0.68rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;">Integrations</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <img src="../../shared/logos/greenhouse.svg" alt="Greenhouse" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    </div>
+                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <img src="../../shared/logos/okta.svg" alt="Okta" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    </div>
+                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <img src="../../shared/logos/workday.svg" alt="Workday" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    </div>
+                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <img src="../../shared/logos/splunk.svg" alt="Splunk" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    </div>
+                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <img src="../../shared/logos/servicenow.svg" alt="ServiceNow" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    </div>
+                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <img src="../../shared/logos/zoom.svg" alt="Zoom" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    </div>
+                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <img src="../../shared/logos/lever.svg" alt="Lever" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    </div>
+                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <img src="../../shared/logos/slack.svg" alt="Slack" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    </div>
+                </div>
+                <p style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 10px; line-height: 1.4;">HR, Security, IDP, SIEM, Comms</p>
+            </div>
+
+            <!-- Animated signal tracks: integrations → signals engine -->
+            <div style="display: flex; flex-direction: column; gap: 12px; padding: 0 8px;">
+                <div class="wn-signal-track"></div>
+                <div class="wn-signal-track"></div>
+                <div class="wn-signal-track"></div>
+                <div class="wn-signal-track"></div>
+                <div class="wn-signal-track"></div>
+                <div class="wn-signal-track"></div>
+            </div>
+
+            <!-- Column 2: Center — Signal Fusion Engine -->
+            <div style="text-align: center;">
+                <div style="background: white; border-radius: 20px; padding: 24px 20px; border: 2px solid #F59E0B; box-shadow: 0 0 30px rgba(245, 158, 11, 0.1), 0 8px 32px rgba(10, 22, 40, 0.08); animation: funnel-pulse 3s ease-in-out infinite; position: relative;">
+                    <div style="font-size: 0.62rem; font-weight: 800; color: #B45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">Noisy Signals</div>
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite;"></div>
+                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Deepfake Detection</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite 0.3s;"></div>
+                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Voice Biometrics</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite 0.6s;"></div>
+                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Doc Verification</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite 0.9s;"></div>
+                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Identity Cross-Ref</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite 1.2s;"></div>
+                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Behavioral Analysis</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; font-size: 0.6rem; color: #B45309; opacity: 0.7; font-style: italic;">Each alone: high false-positive rate</div>
+                </div>
+            </div>
+
+            <!-- Animated output tracks: signals → actionable insight -->
+            <div style="display: flex; flex-direction: column; gap: 20px; padding: 0 8px;">
+                <div class="wn-output-track"></div>
+                <div class="wn-output-track"></div>
+                <div class="wn-output-track"></div>
+            </div>
+
+            <!-- Column 3: Actionable Insight output -->
+            <div style="text-align: center;">
+                <div style="font-size: 0.68rem; font-weight: 800; color: #166534; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;">Actionable Insight</div>
+                <div style="background: white; border-radius: 16px; padding: 20px; border: 2px solid var(--accent); box-shadow: 0 8px 30px rgba(97, 243, 147, 0.15);">
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px; background: #F0FDF4; border-radius: 10px; padding: 10px 14px; border: 1px solid rgba(97, 243, 147, 0.25);">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
+                            <div style="text-align: left;">
+                                <div style="font-size: 0.8rem; font-weight: 800; color: #166534;">PASS <span style="color: #94a3b8; font-weight: 400;">/</span> <span style="color: #DC2626;">FAIL</span></div>
+                                <div style="font-size: 0.6rem; color: #64748B;">Clear binary verdict</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px; background: #F0FDF4; border-radius: 10px; padding: 10px 14px; border: 1px solid rgba(97, 243, 147, 0.25);">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
+                            <div style="text-align: left;">
+                                <div style="font-size: 0.8rem; font-weight: 800; color: #166534;">Risk Score</div>
+                                <div style="font-size: 0.6rem; color: #64748B;">Composite confidence level</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px; background: #F0FDF4; border-radius: 10px; padding: 10px 14px; border: 1px solid rgba(97, 243, 147, 0.25);">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
+                            <div style="text-align: left;">
+                                <div style="font-size: 0.8rem; font-weight: 800; color: #166534;">Workflow Action</div>
+                                <div style="font-size: 0.6rem; color: #64748B;">Pushed into your tools</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 32px; line-height: 1.6;">
+            You need an end-to-end player that connects all three. <span style="color: var(--accent); font-weight: 700;">That's where Clarity comes in.</span>
+        </p>
+    </div>
+    <div class="slide-number">23</div>
+</section>
+
 <!-- Slide 18: The Solution - Clarity -->
 <section class="slide slide-title" data-slide-id="clarity-intro">
     <div style="margin-bottom: 40px;">
@@ -1796,108 +1969,6 @@ function revealAnswer() {
         </div>
     </div>
     <div class="slide-number">33</div>
-</section>
-
-<!-- Slide 26: What's Needed to Actually Solve This -->
-<section class="slide" data-slide-id="two-pillars">
-    <!-- Background geometric accents -->
-    <div style="position: absolute; top: -100px; left: -100px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(97, 243, 147, 0.08) 0%, transparent 70%); pointer-events: none;"></div>
-    <div style="position: absolute; bottom: -80px; right: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(10, 22, 40, 0.05) 0%, transparent 70%); pointer-events: none;"></div>
-
-    <div style="max-width: 1060px; margin: 0 auto; text-align: center;">
-        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">The problem is clear. So what does a solution actually require?</p>
-        <h2 style="font-size: 2.4rem; margin-bottom: 40px;">What It <span class="accent">Takes</span> to Solve This</h2>
-
-        <div style="display: flex; gap: 20px; align-items: stretch;">
-
-            <!-- Layer 1: Enterprise Integrations -->
-            <div style="flex: 1; background: white; border-radius: 20px; padding: 28px 24px; box-shadow: 0 4px 20px rgba(10, 22, 40, 0.06); border: 1px solid rgba(10, 22, 40, 0.08); position: relative; overflow: hidden; display: flex; flex-direction: column;">
-                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent);"></div>
-                <div style="width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent) 0%, #4ade80 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; box-shadow: 0 4px 15px rgba(97, 243, 147, 0.3);">
-                    <span style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary);">1</span>
-                </div>
-                <h3 style="font-size: 1.15rem; margin: 0 0 8px; color: var(--text-primary);">Enterprise Integrations</h3>
-                <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.55; margin: 0 0 18px;">Must plug into the systems you already run. No rip-and-replace.</p>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: auto;">
-                    <span class="tag" style="font-size: 0.7rem; padding: 4px 10px;">ATS</span>
-                    <span class="tag" style="font-size: 0.7rem; padding: 4px 10px;">IDP</span>
-                    <span class="tag" style="font-size: 0.7rem; padding: 4px 10px;">HRIS</span>
-                    <span class="tag" style="font-size: 0.7rem; padding: 4px 10px;">SIEM</span>
-                    <span class="tag" style="font-size: 0.7rem; padding: 4px 10px;">Comms</span>
-                </div>
-            </div>
-
-            <!-- Arrow 1→2 -->
-            <div style="display: flex; align-items: center; flex-shrink: 0; color: #CBD5E1;">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-            </div>
-
-            <!-- Layer 2: Many Signals, All Noisy -->
-            <div style="flex: 1; background: white; border-radius: 20px; padding: 28px 24px; box-shadow: 0 4px 20px rgba(10, 22, 40, 0.06); border: 1px solid rgba(10, 22, 40, 0.08); position: relative; overflow: hidden; display: flex; flex-direction: column;">
-                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #F59E0B;"></div>
-                <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25);">
-                    <span style="font-size: 1.1rem; font-weight: 800; color: white;">2</span>
-                </div>
-                <h3 style="font-size: 1.15rem; margin: 0 0 8px; color: var(--text-primary);">Many Signals, All Noisy</h3>
-                <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.55; margin: 0 0 18px;">Each signal alone is noisy, high false-positive. No single check is definitive.</p>
-                <div style="display: flex; flex-direction: column; gap: 5px; margin-top: auto;">
-                    <div style="display: flex; align-items: center; gap: 8px; background: #FFFBEB; border-radius: 8px; padding: 5px 10px; border: 1px solid rgba(245, 158, 11, 0.12);">
-                        <span style="font-size: 0.7rem; font-weight: 700; color: #92400E;">Deepfake Detection</span>
-                        <span style="margin-left: auto; font-size: 0.6rem; color: #B45309; opacity: 0.7;">~noisy</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; background: #FFFBEB; border-radius: 8px; padding: 5px 10px; border: 1px solid rgba(245, 158, 11, 0.12);">
-                        <span style="font-size: 0.7rem; font-weight: 700; color: #92400E;">Voice Biometrics</span>
-                        <span style="margin-left: auto; font-size: 0.6rem; color: #B45309; opacity: 0.7;">~noisy</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; background: #FFFBEB; border-radius: 8px; padding: 5px 10px; border: 1px solid rgba(245, 158, 11, 0.12);">
-                        <span style="font-size: 0.7rem; font-weight: 700; color: #92400E;">Document Verification</span>
-                        <span style="margin-left: auto; font-size: 0.6rem; color: #B45309; opacity: 0.7;">~noisy</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; background: #FFFBEB; border-radius: 8px; padding: 5px 10px; border: 1px solid rgba(245, 158, 11, 0.12);">
-                        <span style="font-size: 0.7rem; font-weight: 700; color: #92400E;">Identity Cross-Ref</span>
-                        <span style="margin-left: auto; font-size: 0.6rem; color: #B45309; opacity: 0.7;">~noisy</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Arrow 2→3 -->
-            <div style="display: flex; align-items: center; flex-shrink: 0; color: #CBD5E1;">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-            </div>
-
-            <!-- Layer 3: Actionable Insight -->
-            <div style="flex: 1; background: white; border-radius: 20px; padding: 28px 24px; box-shadow: 0 8px 30px rgba(97, 243, 147, 0.12); border: 2px solid var(--accent); position: relative; overflow: hidden; display: flex; flex-direction: column;">
-                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent);"></div>
-                <div style="width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent) 0%, #34d399 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; box-shadow: 0 4px 15px rgba(97, 243, 147, 0.35);">
-                    <span style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary);">3</span>
-                </div>
-                <h3 style="font-size: 1.15rem; margin: 0 0 8px; color: var(--text-primary);">Actionable Insight</h3>
-                <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.55; margin: 0 0 18px;">Fuse the signals into a clear verdict, then push it into the workflow.</p>
-                <div style="display: flex; flex-direction: column; gap: 5px; margin-top: auto;">
-                    <div style="display: flex; align-items: center; gap: 8px; background: #F0FDF4; border-radius: 8px; padding: 6px 12px; border: 1px solid rgba(97, 243, 147, 0.2);">
-                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
-                        <span style="font-size: 0.72rem; font-weight: 700; color: #166534;">PASS</span>
-                        <span style="font-size: 0.65rem; color: #64748B;">/ </span>
-                        <span style="font-size: 0.72rem; font-weight: 700; color: #DC2626;">FAIL</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; background: #F0FDF4; border-radius: 8px; padding: 6px 12px; border: 1px solid rgba(97, 243, 147, 0.2);">
-                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
-                        <span style="font-size: 0.72rem; font-weight: 700; color: #166534;">Risk Score</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; background: #F0FDF4; border-radius: 8px; padding: 6px 12px; border: 1px solid rgba(97, 243, 147, 0.2);">
-                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
-                        <span style="font-size: 0.72rem; font-weight: 700; color: #166534;">Workflow Action</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 30px; line-height: 1.6;">
-            You need an end-to-end player that connects all three. <span style="color: var(--accent); font-weight: 700;">That's where Clarity comes in.</span>
-        </p>
-    </div>
-    <div class="slide-number">30</div>
 </section>
 
 <!-- Slide 27: Pillar A Spotlight -->
