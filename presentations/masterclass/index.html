@@ -1868,55 +1868,55 @@ function revealAnswer() {
             0%, 100% { box-shadow: 0 0 60px rgba(97, 243, 147, 0.15), 0 8px 24px rgba(10, 22, 40, 0.05), 0 2px 6px rgba(10, 22, 40, 0.03); }
             50% { box-shadow: 0 0 80px rgba(97, 243, 147, 0.22), 0 8px 24px rgba(10, 22, 40, 0.05), 0 2px 6px rgba(10, 22, 40, 0.03); }
         }
-        .arch-diagram { position: relative; width: 920px; height: 640px; background: white; border-radius: 20px; box-shadow: 0 4px 24px rgba(10,22,40,0.06), 0 1px 3px rgba(10,22,40,0.03); overflow: hidden; margin: 0 auto; }
+        .arch-diagram { position: relative; width: 920px; height: 540px; background: white; border-radius: 20px; box-shadow: 0 4px 24px rgba(10,22,40,0.06), 0 1px 3px rgba(10,22,40,0.03); overflow: hidden; margin: 0 auto; }
         .arch-diagram::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(10,22,40,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(10,22,40,0.018) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
         .arch-diagram::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 10% 50%, rgba(97,243,147,0.04) 0%, transparent 50%), radial-gradient(ellipse at 90% 40%, rgba(59,130,246,0.03) 0%, transparent 50%), radial-gradient(ellipse at 50% 95%, rgba(61,217,235,0.04) 0%, transparent 40%); pointer-events: none; }
         .arch-zone { position: absolute; border-radius: 14px; z-index: 1; }
-        .arch-zone-hire { left: 12px; top: 52px; width: 172px; height: 310px; background: linear-gradient(180deg, rgba(97,243,147,0.035) 0%, rgba(97,243,147,0.01) 100%); border: 1px solid rgba(97,243,147,0.08); }
-        .arch-zone-life { right: 12px; top: 52px; width: 172px; height: 310px; background: linear-gradient(180deg, rgba(59,130,246,0.03) 0%, rgba(59,130,246,0.008) 100%); border: 1px solid rgba(59,130,246,0.06); }
-        .arch-zone-alert { right: 12px; top: 372px; width: 172px; height: 78px; background: linear-gradient(180deg, rgba(239,68,68,0.025) 0%, rgba(239,68,68,0.008) 100%); border: 1px solid rgba(239,68,68,0.06); }
-        .arch-col { position: absolute; top: 22px; font-size: 0.58rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; z-index: 2; }
+        .arch-zone-hire { left: 12px; top: 38px; width: 194px; height: 270px; background: linear-gradient(180deg, rgba(97,243,147,0.035) 0%, rgba(97,243,147,0.01) 100%); border: 1px solid rgba(97,243,147,0.08); }
+        .arch-zone-life { right: 12px; top: 38px; width: 194px; height: 270px; background: linear-gradient(180deg, rgba(59,130,246,0.03) 0%, rgba(59,130,246,0.008) 100%); border: 1px solid rgba(59,130,246,0.06); }
+        .arch-zone-alert { right: 12px; top: 298px; width: 194px; height: 82px; background: linear-gradient(180deg, rgba(239,68,68,0.025) 0%, rgba(239,68,68,0.008) 100%); border: 1px solid rgba(239,68,68,0.06); }
+        .arch-col { position: absolute; top: 18px; font-size: 0.72rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; z-index: 2; }
         .arch-col-l { left: 38px; }
         .arch-col-c { left: 50%; transform: translateX(-50%); color: #64748B; }
         .arch-col-r { right: 36px; }
-        .arch-card { position: absolute; width: 126px; height: 60px; background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(10,22,40,0.04), 0 4px 12px rgba(10,22,40,0.03); border: 1px solid rgba(10,22,40,0.04); display: flex; align-items: center; justify-content: center; padding: 10px; z-index: 3; }
-        .arch-card img { max-height: 22px; max-width: 82px; object-fit: contain; }
-        .arch-center { position: absolute; width: 150px; height: 150px; background: linear-gradient(180deg, #fff 0%, #f8fdf9 100%); border: 2px solid #61F393; border-radius: 20px; box-shadow: 0 0 60px rgba(97,243,147,0.15), 0 8px 24px rgba(10,22,40,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; left: 50%; top: 120px; transform: translateX(-50%); z-index: 4; animation: arch-pulse-glow 4s ease-in-out infinite; }
-        .arch-center svg { width: 34px; height: 34px; }
-        .arch-center .arch-lbl { font-size: 0.65rem; font-weight: 700; color: #64748B; letter-spacing: 0.3px; }
-        .arch-badge { position: absolute; font-size: 0.48rem; font-weight: 700; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.8px; z-index: 5; }
-        .arch-badge-in { top: 60px; left: 200px; color: #0ea5e9; background: #f0f9ff; border: 1px solid rgba(14,165,233,0.15); }
-        .arch-badge-out { top: 60px; right: 200px; color: #64748B; background: #F0F4F8; border: 1px solid #E2E8F0; }
-        .arch-alert-pill { position: absolute; font-size: 0.48rem; font-weight: 700; color: #EF4444; background: #FEF2F2; padding: 2px 8px; border-radius: 7px; text-transform: uppercase; letter-spacing: 0.8px; border: 1px solid rgba(239,68,68,0.1); z-index: 5; top: 380px; right: 200px; }
+        .arch-card { position: absolute; width: 158px; height: 72px; background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(10,22,40,0.04), 0 4px 12px rgba(10,22,40,0.03); border: 1px solid rgba(10,22,40,0.04); display: flex; align-items: center; justify-content: center; padding: 12px; z-index: 3; }
+        .arch-card img { max-height: 28px; max-width: 100px; object-fit: contain; }
+        .arch-center { position: absolute; width: 200px; height: 200px; background: linear-gradient(180deg, #fff 0%, #f8fdf9 100%); border: 2px solid #61F393; border-radius: 24px; box-shadow: 0 0 60px rgba(97,243,147,0.15), 0 8px 24px rgba(10,22,40,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; left: 50%; top: 82px; transform: translateX(-50%); z-index: 4; animation: arch-pulse-glow 4s ease-in-out infinite; }
+        .arch-center svg { width: 42px; height: 42px; }
+        .arch-center .arch-lbl { font-size: 0.75rem; font-weight: 700; color: #64748B; letter-spacing: 0.3px; }
+        .arch-badge { position: absolute; font-size: 0.58rem; font-weight: 700; padding: 3px 9px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.8px; z-index: 5; }
+        .arch-badge-in { top: 42px; left: 215px; color: #0ea5e9; background: #f0f9ff; border: 1px solid rgba(14,165,233,0.15); }
+        .arch-badge-out { top: 42px; right: 215px; color: #64748B; background: #F0F4F8; border: 1px solid #E2E8F0; }
+        .arch-alert-pill { position: absolute; font-size: 0.58rem; font-weight: 700; color: #EF4444; background: #FEF2F2; padding: 3px 10px; border-radius: 7px; text-transform: uppercase; letter-spacing: 0.8px; border: 1px solid rgba(239,68,68,0.1); z-index: 5; top: 302px; right: 215px; }
         .arch-conn { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
         .arch-conn svg { width: 100%; height: 100%; }
-        .arch-l-out { stroke: #E2E8F0; stroke-width: 1.5; fill: none; }
-        .arch-l-in { stroke: rgba(61,217,235,0.35); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
-        .arch-l-alert { stroke: rgba(239,68,68,0.25); stroke-width: 1.5; fill: none; }
-        .arch-l-up { stroke: rgba(61,217,235,0.3); stroke-width: 2; stroke-dasharray: 6 5; fill: none; }
-        .arch-d-green { fill: #61F393; r: 3; }
-        .arch-d-teal { fill: #3DD9EB; r: 2.5; }
-        .arch-d-red { fill: #EF4444; r: 2.5; opacity: 0.6; }
+        .arch-l-out { stroke: #E2E8F0; stroke-width: 2.5; fill: none; }
+        .arch-l-in { stroke: rgba(61,217,235,0.35); stroke-width: 2.5; stroke-dasharray: 6 5; fill: none; }
+        .arch-l-alert { stroke: rgba(239,68,68,0.25); stroke-width: 2.5; fill: none; }
+        .arch-l-up { stroke: rgba(61,217,235,0.3); stroke-width: 3; stroke-dasharray: 7 6; fill: none; }
+        .arch-d-green { fill: #61F393; r: 4; }
+        .arch-d-teal { fill: #3DD9EB; r: 3.5; }
+        .arch-d-red { fill: #EF4444; r: 3.5; opacity: 0.6; }
         .arch-a-out { fill: #CBD5E1; }
         .arch-a-in { fill: rgba(61,217,235,0.5); }
         .arch-a-alert { fill: rgba(239,68,68,0.35); }
-        .arch-ongoing { position: absolute; bottom: 14px; left: 20px; right: 20px; border-radius: 14px; background: linear-gradient(180deg, rgba(61,217,235,0.03) 0%, rgba(61,217,235,0.008) 100%); border: 1px solid rgba(61,217,235,0.1); padding: 12px 18px 14px; z-index: 3; }
-        .arch-ongoing-hdr { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
-        .arch-ongoing-icon { width: 20px; height: 20px; border-radius: 5px; background: linear-gradient(135deg, #3DD9EB, #0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: white; flex-shrink: 0; }
-        .arch-ongoing-label { font-size: 0.58rem; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 1.5px; }
-        .arch-ongoing-src { margin-left: auto; font-size: 0.54rem; color: #94a3b8; font-weight: 500; }
+        .arch-ongoing { position: absolute; top: 410px; left: 18px; right: 18px; border-radius: 14px; background: linear-gradient(180deg, rgba(61,217,235,0.03) 0%, rgba(61,217,235,0.008) 100%); border: 1px solid rgba(61,217,235,0.1); padding: 10px 16px 10px; z-index: 3; }
+        .arch-ongoing-hdr { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; }
+        .arch-ongoing-icon { width: 22px; height: 22px; border-radius: 6px; background: linear-gradient(135deg, #3DD9EB, #0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: white; flex-shrink: 0; }
+        .arch-ongoing-label { font-size: 0.64rem; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 1.5px; }
+        .arch-ongoing-src { margin-left: auto; font-size: 0.58rem; color: #94a3b8; font-weight: 500; }
         .arch-ongoing-body { display: flex; align-items: stretch; gap: 8px; }
-        .arch-ongoing-body .arch-card { position: static; flex-shrink: 0; width: 96px; height: 46px; border-radius: 9px; }
+        .arch-ongoing-body .arch-card { position: static; flex-shrink: 0; width: 110px; height: 52px; border-radius: 10px; }
         .arch-ongoing-chev { flex-shrink: 0; align-self: center; color: #CBD5E1; }
         .arch-triggers { display: flex; gap: 7px; flex: 1; }
-        .arch-trig { flex: 1; background: white; border-radius: 9px; padding: 8px 10px; border-left: 3px solid #CBD5E1; box-shadow: 0 1px 3px rgba(10,22,40,0.03); border-top: 1px solid rgba(10,22,40,0.03); border-right: 1px solid rgba(10,22,40,0.03); border-bottom: 1px solid rgba(10,22,40,0.03); }
-        .arch-trig-t { font-size: 0.62rem; font-weight: 700; color: #0a1628; margin-bottom: 1px; }
-        .arch-trig-d { font-size: 0.52rem; color: #94a3b8; line-height: 1.3; }
+        .arch-trig { flex: 1; background: white; border-radius: 9px; padding: 7px 10px; border-left: 3px solid #CBD5E1; box-shadow: 0 1px 3px rgba(10,22,40,0.03); border-top: 1px solid rgba(10,22,40,0.03); border-right: 1px solid rgba(10,22,40,0.03); border-bottom: 1px solid rgba(10,22,40,0.03); }
+        .arch-trig-t { font-size: 0.68rem; font-weight: 700; color: #0a1628; margin-bottom: 1px; }
+        .arch-trig-d { font-size: 0.56rem; color: #94a3b8; line-height: 1.3; }
         .arch-trig.red { border-left-color: #EF4444; }
         .arch-trig.amber { border-left-color: #F59E0B; }
         .arch-trig.purple { border-left-color: #8B5CF6; }
         .arch-trig.blue { border-left-color: #3B82F6; }
-        .arch-reval { position: absolute; bottom: 165px; left: 50%; transform: translateX(-50%) rotate(-90deg); font-size: 0.46rem; font-weight: 700; color: #0ea5e9; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; z-index: 5; opacity: 0.6; }
+        .arch-reval { position: absolute; top: 382px; left: 50%; transform: translateX(-50%) rotate(-90deg); font-size: 0.52rem; font-weight: 700; color: #0ea5e9; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; z-index: 5; opacity: 0.6; }
     </style>
 
     <div style="text-align: center; width: 100%;">
@@ -1940,61 +1940,61 @@ function revealAnswer() {
             <div class="arch-badge arch-badge-out">results out</div>
 
             <div class="arch-conn">
-                <svg viewBox="0 0 920 640" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 920 540" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <marker id="ao" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" class="arch-a-out"/></marker>
-                        <marker id="ai" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto"><path d="M7,0 L0,2.5 L7,5" class="arch-a-in"/></marker>
-                        <marker id="aa" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" class="arch-a-alert"/></marker>
+                        <marker id="ao" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" class="arch-a-out"/></marker>
+                        <marker id="ai" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><path d="M10,0 L0,3.5 L10,7" class="arch-a-in"/></marker>
+                        <marker id="aa" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" class="arch-a-alert"/></marker>
                     </defs>
 
                     <!-- Hiring to Clarity -->
-                    <path d="M 160,120 C 250,120 290,180 375,180" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 188,102 C 275,102 315,127 360,127" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#ap1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite"/></circle>
-                    <path id="ap1" d="M 160,120 C 250,120 290,180 375,180" fill="none" style="display:none"/>
+                    <path id="ap1" d="M 188,102 C 275,102 315,127 360,127" fill="none" style="display:none"/>
 
-                    <path d="M 160,200 C 250,200 290,200 375,200" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 188,182 C 275,182 315,182 360,182" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#ap2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/></circle>
-                    <path id="ap2" d="M 160,200 C 250,200 290,200 375,200" fill="none" style="display:none"/>
+                    <path id="ap2" d="M 188,182 C 275,182 315,182 360,182" fill="none" style="display:none"/>
 
-                    <path d="M 160,280 C 250,280 290,224 375,224" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 188,262 C 275,262 315,237 360,237" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#ap3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite"/></circle>
-                    <path id="ap3" d="M 160,280 C 250,280 290,224 375,224" fill="none" style="display:none"/>
+                    <path id="ap3" d="M 188,262 C 275,262 315,237 360,237" fill="none" style="display:none"/>
 
                     <!-- Clarity to Enterprise (results) -->
-                    <path d="M 545,180 C 630,180 670,120 760,120" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 560,127 C 645,127 690,102 732,102" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.3s" repeatCount="indefinite"><mpath href="#ap4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.3s" repeatCount="indefinite"/></circle>
-                    <path id="ap4" d="M 545,180 C 630,180 670,120 760,120" fill="none" style="display:none"/>
+                    <path id="ap4" d="M 560,127 C 645,127 690,102 732,102" fill="none" style="display:none"/>
 
-                    <path d="M 545,200 C 630,200 680,200 760,200" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 560,182 C 645,182 690,182 732,182" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#ap5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.6s" repeatCount="indefinite"/></circle>
-                    <path id="ap5" d="M 545,200 C 630,200 680,200 760,200" fill="none" style="display:none"/>
+                    <path id="ap5" d="M 560,182 C 645,182 690,182 732,182" fill="none" style="display:none"/>
 
-                    <path d="M 545,222 C 630,222 670,280 760,280" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 560,237 C 645,237 690,262 732,262" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.9s" repeatCount="indefinite"><mpath href="#ap6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.9s" repeatCount="indefinite"/></circle>
-                    <path id="ap6" d="M 545,222 C 630,222 670,280 760,280" fill="none" style="display:none"/>
+                    <path id="ap6" d="M 560,237 C 645,237 690,262 732,262" fill="none" style="display:none"/>
 
                     <!-- Enterprise to Clarity (triggers, dashed) -->
-                    <path d="M 760,130 C 680,130 640,188 545,188" class="arch-l-in" marker-end="url(#ai)"/>
+                    <path d="M 732,112 C 660,112 610,140 560,140" class="arch-l-in" marker-end="url(#ai)"/>
                     <circle class="arch-d-teal"><animateMotion dur="3.4s" repeatCount="indefinite"><mpath href="#ap7"/></animateMotion><animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.4s" repeatCount="indefinite"/></circle>
-                    <path id="ap7" d="M 760,130 C 680,130 640,188 545,188" fill="none" style="display:none"/>
+                    <path id="ap7" d="M 732,112 C 660,112 610,140 560,140" fill="none" style="display:none"/>
 
-                    <path d="M 760,210 C 680,210 640,208 545,208" class="arch-l-in" marker-end="url(#ai)"/>
+                    <path d="M 732,192 C 660,192 610,192 560,192" class="arch-l-in" marker-end="url(#ai)"/>
                     <circle class="arch-d-teal"><animateMotion dur="3.7s" repeatCount="indefinite"><mpath href="#ap8"/></animateMotion><animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.7s" repeatCount="indefinite"/></circle>
-                    <path id="ap8" d="M 760,210 C 680,210 640,208 545,208" fill="none" style="display:none"/>
+                    <path id="ap8" d="M 732,192 C 660,192 610,192 560,192" fill="none" style="display:none"/>
 
-                    <path d="M 760,290 C 680,290 640,230 545,230" class="arch-l-in" marker-end="url(#ai)"/>
+                    <path d="M 732,272 C 660,272 610,246 560,246" class="arch-l-in" marker-end="url(#ai)"/>
                     <circle class="arch-d-teal"><animateMotion dur="4.0s" repeatCount="indefinite"><mpath href="#ap9"/></animateMotion><animate attributeName="opacity" values="0;0.7;0.7;0" dur="4.0s" repeatCount="indefinite"/></circle>
-                    <path id="ap9" d="M 760,290 C 680,290 640,230 545,230" fill="none" style="display:none"/>
+                    <path id="ap9" d="M 732,272 C 660,272 610,246 560,246" fill="none" style="display:none"/>
 
                     <!-- Clarity to Splunk (alerts) -->
-                    <path d="M 500,270 C 500,340 590,405 760,405" class="arch-l-alert" marker-end="url(#aa)"/>
+                    <path d="M 510,282 C 510,316 620,340 732,340" class="arch-l-alert" marker-end="url(#aa)"/>
                     <circle class="arch-d-red"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#ap10"/></animateMotion><animate attributeName="opacity" values="0;0.6;0.6;0" dur="2.8s" repeatCount="indefinite"/></circle>
-                    <path id="ap10" d="M 500,270 C 500,340 590,405 760,405" fill="none" style="display:none"/>
+                    <path id="ap10" d="M 510,282 C 510,316 620,340 732,340" fill="none" style="display:none"/>
 
                     <!-- Ongoing to Clarity (vertical upward) -->
-                    <path d="M 460,495 C 460,440 460,340 460,272" class="arch-l-up" marker-end="url(#ai)"/>
-                    <circle class="arch-d-teal" r="3.5"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#ap11"/></animateMotion><animate attributeName="opacity" values="0;0.8;0.8;0" dur="3s" repeatCount="indefinite"/></circle>
-                    <path id="ap11" d="M 460,495 C 460,440 460,340 460,272" fill="none" style="display:none"/>
+                    <path d="M 460,408 C 460,380 460,330 460,284" class="arch-l-up" marker-end="url(#ai)"/>
+                    <circle class="arch-d-teal" r="4"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#ap11"/></animateMotion><animate attributeName="opacity" values="0;0.8;0.8;0" dur="3s" repeatCount="indefinite"/></circle>
+                    <path id="ap11" d="M 460,408 C 460,380 460,330 460,284" fill="none" style="display:none"/>
                 </svg>
             </div>
 
@@ -2008,14 +2008,14 @@ function revealAnswer() {
                 <span class="arch-lbl">Validation Engine</span>
             </div>
 
-            <div class="arch-card" style="left: 34px; top: 88px;"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse"></div>
-            <div class="arch-card" style="left: 34px; top: 168px;"><img src="../../shared/logos/lever.svg" alt="Lever"></div>
-            <div class="arch-card" style="left: 34px; top: 248px;"><img src="../../shared/logos/ashby.svg" alt="Ashby"></div>
+            <div class="arch-card" style="left: 30px; top: 66px;"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse"></div>
+            <div class="arch-card" style="left: 30px; top: 146px;"><img src="../../shared/logos/lever.svg" alt="Lever"></div>
+            <div class="arch-card" style="left: 30px; top: 226px;"><img src="../../shared/logos/ashby.svg" alt="Ashby"></div>
 
-            <div class="arch-card" style="right: 34px; top: 88px;"><img src="../../shared/logos/workday.svg" alt="Workday"></div>
-            <div class="arch-card" style="right: 34px; top: 168px;"><img src="../../shared/logos/okta.svg" alt="Okta"></div>
-            <div class="arch-card" style="right: 34px; top: 248px;"><img src="../../shared/logos/microsoft-entra-id.svg" alt="Entra ID"></div>
-            <div class="arch-card" style="right: 34px; top: 380px;"><img src="../../shared/logos/splunk.svg" alt="Splunk"></div>
+            <div class="arch-card" style="right: 30px; top: 66px;"><img src="../../shared/logos/workday.svg" alt="Workday"></div>
+            <div class="arch-card" style="right: 30px; top: 146px;"><img src="../../shared/logos/okta.svg" alt="Okta"></div>
+            <div class="arch-card" style="right: 30px; top: 226px;"><img src="../../shared/logos/microsoft-entra-id.svg" alt="Entra ID"></div>
+            <div class="arch-card" style="right: 30px; top: 304px;"><img src="../../shared/logos/splunk.svg" alt="Splunk"></div>
 
             <div class="arch-alert-pill">alerts</div>
             <div class="arch-reval">re-validates</div>
