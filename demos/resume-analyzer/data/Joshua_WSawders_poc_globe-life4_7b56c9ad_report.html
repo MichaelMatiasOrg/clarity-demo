@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Risk Report - 7b56c9ad-c6e2-4880-9d1b-30303caa64ec</title>
+    <style>
+        :root { --primary-color: #1e3a5f; --secondary-color: #2563eb; --success-color: #16a34a; --warning-color: #d97706; --danger-color: #dc2626; --border-color: #e5e7eb; --bg-light: #f9fafb; --text-primary: #111827; --text-secondary: #6b7280; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: var(--text-primary); background-color: #fff; max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        header { border-bottom: 3px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: var(--primary-color); font-size: 28px; margin-bottom: 10px; }
+        .report-meta { display: flex; gap: 30px; color: var(--text-secondary); font-size: 14px; }
+        h2 { color: var(--primary-color); font-size: 20px; margin-top: 30px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--border-color); }
+        h3 { color: var(--text-primary); font-size: 16px; margin-top: 20px; margin-bottom: 10px; }
+        section { margin-bottom: 25px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        th, td { padding: 12px 15px; text-align: left; border: 1px solid var(--border-color); }
+        th { background-color: var(--bg-light); font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--bg-light); }
+        .executive-summary { background: linear-gradient(135deg, var(--bg-light) 0%, #fff 100%); border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 15px; }
+        .summary-item { display: flex; flex-direction: column; }
+        .summary-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+        .summary-value { font-size: 18px; font-weight: 600; }
+        .risk-badge, .recommendation-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 14px; }
+        .risk-low { background-color: #dcfce7; color: var(--success-color); }
+        .risk-medium { background-color: #fef3c7; color: var(--warning-color); }
+        .risk-high { background-color: #fee2e2; color: var(--danger-color); }
+        .rec-approve { background-color: #dcfce7; color: var(--success-color); }
+        .rec-review { background-color: #fef3c7; color: var(--warning-color); }
+        .rec-reject, .rec-escalate { background-color: #fee2e2; color: var(--danger-color); }
+        .summary-text { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
+        .status-match { color: var(--success-color); font-weight: 600; }
+        .status-mismatch { color: var(--danger-color); font-weight: 600; }
+        .status-anomaly { color: var(--warning-color); font-weight: 600; }
+        .chain-of-thought { background-color: var(--bg-light); border-left: 4px solid var(--secondary-color); padding: 20px; margin: 15px 0; }
+        .chain-of-thought h4 { color: var(--secondary-color); margin-bottom: 10px; }
+        .chain-of-thought p { margin-bottom: 10px; color: var(--text-secondary); }
+        .red-flag { background-color: #fef2f2; border-left: 4px solid var(--danger-color); padding: 15px; margin: 10px 0; }
+        .note { background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 12px 15px; margin: 15px 0; font-size: 14px; color: #1e40af; }
+        ul { margin: 10px 0 10px 20px; }
+        li { margin-bottom: 5px; }
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-secondary); font-size: 12px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Candidate Risk Report</h1>
+        <div class="report-meta">
+            <span><strong>Person ID:</strong> 7b56c9ad-c6e2-4880-9d1b-30303caa64ec</span>
+            <span><strong>Candidate:</strong> Joshua W. Sawders</span>
+            <span><strong>Generated:</strong> 2026-02-08</span>
+        </div>
+    </header>
+
+    <section id="executive-summary">
+        <h2>Executive Summary</h2>
+        <div class="executive-summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Candidate</span>
+                    <span class="summary-value">Joshua W. Sawders</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Risk Level</span>
+                    <span class="risk-badge risk-high">HIGH</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-reject">REJECT</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p>Multiple critical red flags: PIPL returned NULL (no identity records), VoIP phone on Sinch Voice (failed HLR), Trust Elephant explicitly declines (42/1000 - one of lowest scores possible), email shows "email_enumeration" and "name_typo" characteristics, phone is landline/VoIP type with no history. MaxMind flags both phone (VoIP) and email (first seen) as raising risk score. This profile exhibits classic synthetic identity fraud patterns.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="linkedin-summary">
+        <h2>1. LinkedIn Profile Summary</h2>
+        <p class="note">No LinkedIn data available for this candidate.</p>
+    </section>
+
+    <section id="cv-summary">
+        <h2>2. CV/Resume Summary</h2>
+        <table>
+            <tr><th>Attribute</th><th>Value</th></tr>
+            <tr><td>Full Name</td><td>Joshua W. Sawders</td></tr>
+            <tr><td>Phone</td><td>+1 928-435-0502</td></tr>
+            <tr><td>Email</td><td>joshuasawders07@gmail.com</td></tr>
+            <tr><td>CV Address</td><td>1623 Caraquet Dr Spring, TX 77386</td></tr>
+            <tr><td>Phone Location</td><td>Arizona (928 area code)</td></tr>
+            <tr><td>Estimated Age</td><td>~46-48 years (HS 1996)</td></tr>
+            <tr><td>Languages</td><td>English and Spanish</td></tr>
+        </table>
+
+        <h3>Employment History (from CV)</h3>
+        <table>
+            <tr><th>Organization</th><th>Title</th><th>Period</th></tr>
+            <tr><td>NextGen Healthcare</td><td>Healthcare Customer Service</td><td>June 2022 - March 2025</td></tr>
+            <tr><td>Performance Foodservice</td><td>Customer Service Representative</td><td>May 2017 - December 2020</td></tr>
+            <tr><td>Harris Computer Systems</td><td>Sales & Service Representative</td><td>July 2012 - February 2015</td></tr>
+        </table>
+
+        <h3>Education (from CV)</h3>
+        <table>
+            <tr><th>Institution</th><th>Type</th><th>Year</th></tr>
+            <tr><td>Mojave High School</td><td>High School Diploma</td><td>July 1996</td></tr>
+        </table>
+
+        <h3>Skills (from CV)</h3>
+        <p>CRM software proficiency, customer relationship management, problem-solving, critical thinking, POS systems, cash handling, data entry, administrative tasks, team leadership capabilities</p>
+    </section>
+
+    <section id="enrichment-data">
+        <h2>3. Enrichment Data Summary</h2>
+
+        <h3>Email Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Email Address</td><td>joshuasawders07@gmail.com</td><td class="status-anomaly">Valid but Suspicious</td></tr>
+            <tr><td>Is Disposable</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Free Mail</td><td>Yes (Gmail)</td><td class="status-anomaly">Neutral</td></tr>
+            <tr><td>Email Age (AtData)</td><td>First seen: 2025-06-30</td><td class="status-anomaly">~8 months</td></tr>
+            <tr><td>Trust Elephant Email Score</td><td>436/1000</td><td class="status-anomaly">Below Average</td></tr>
+            <tr><td>Email Pattern</td><td>{First Name}{Last Name Typo}{Year-2D}</td><td class="status-mismatch">Enumeration + Typo Detected</td></tr>
+            <tr><td>Username Characteristics</td><td>email_enumeration, name_typo</td><td class="status-mismatch">Fraud Indicators</td></tr>
+            <tr><td>MaxMind First Seen</td><td>2026-02-04</td><td class="status-mismatch">Brand New</td></tr>
+            <tr><td>Email Velocity (AtData)</td><td>0</td><td class="status-mismatch">Zero Activity</td></tr>
+        </table>
+
+        <h3>Phone Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Phone Number</td><td>+1 928-435-0502</td><td class="status-mismatch">VoIP - High Risk</td></tr>
+            <tr><td>HLR Valid</td><td>No</td><td class="status-mismatch">Failed Verification</td></tr>
+            <tr><td>Is Mobile</td><td>No (Landline/VoIP)</td><td class="status-mismatch">Not Mobile</td></tr>
+            <tr><td>Is VoIP</td><td>Yes</td><td class="status-mismatch">High Risk</td></tr>
+            <tr><td>HLR Status</td><td>voip</td><td class="status-mismatch">Confirmed VoIP</td></tr>
+            <tr><td>Carrier</td><td>Sinch Voice</td><td class="status-mismatch">VoIP Provider</td></tr>
+            <tr><td>Phone Age</td><td>0 days</td><td class="status-mismatch">No History</td></tr>
+            <tr><td>Trust Elephant Phone Score</td><td>220/1000</td><td class="status-mismatch">Very Poor</td></tr>
+            <tr><td>Data Sources</td><td>0</td><td class="status-mismatch">No History</td></tr>
+        </table>
+
+        <h3>Risk Scores</h3>
+        <table>
+            <tr><th>Vendor</th><th>Score Type</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>MaxMind minFraud</td><td>Risk Score</td><td>2.08</td><td class="status-mismatch">Elevated Risk</td></tr>
+            <tr><td>MaxMind</td><td>Risk Reasons</td><td>PHONE (2.1x), EMAIL_FIRST_SEEN (2x)</td><td class="status-mismatch">Multiple Flags</td></tr>
+            <tr><td>Trust Elephant</td><td>Overall Score</td><td>42/1000</td><td class="status-mismatch">Extremely Poor</td></tr>
+            <tr><td>Trust Elephant</td><td>Decision</td><td>Decline</td><td class="status-mismatch">Rejected</td></tr>
+        </table>
+
+        <h3>Person Data (PIPL)</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>PIPL Data</td><td>NULL - No records found</td><td class="status-mismatch">No Identity Data</td></tr>
+            <tr><td>Names Found</td><td>None</td><td class="status-mismatch">Cannot Verify Identity</td></tr>
+        </table>
+    </section>
+
+    <section id="cross-source">
+        <h2>4. Cross-Source Comparison &amp; Discrepancy Analysis</h2>
+
+        <h3>Name Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Name</th><th>Match</th></tr>
+            <tr><td>Application</td><td>Joshua W. Sawders</td><td>--</td></tr>
+            <tr><td>CV</td><td>Joshua W. Sawders</td><td class="status-match">Match</td></tr>
+            <tr><td>PIPL</td><td>Not Found</td><td class="status-mismatch">No Data</td></tr>
+            <tr><td>Email</td><td>joshuasawders07 (typo detected)</td><td class="status-mismatch">Suspicious Pattern</td></tr>
+        </table>
+
+        <h3>Location Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Location</th><th>Match</th></tr>
+            <tr><td>CV Address</td><td>Spring, TX 77386</td><td>--</td></tr>
+            <tr><td>Phone HLR</td><td>Arizona (928 area code)</td><td class="status-mismatch">State Mismatch</td></tr>
+            <tr><td>PIPL Address</td><td>Not Available</td><td class="status-mismatch">Cannot Verify</td></tr>
+        </table>
+        <p class="note"><strong>Location Analysis:</strong> CV claims Texas address (Spring, TX) but phone area code (928) is Arizona. This geographic inconsistency cannot be explained by relocation as the phone is a VoIP with zero history - not a retained personal mobile number.</p>
+
+        <h3>Employment Verification Status</h3>
+        <table>
+            <tr><th>Employer (from CV)</th><th>Period</th><th>PIPL Verification</th><th>Status</th></tr>
+            <tr><td>NextGen Healthcare</td><td>June 2022 - March 2025</td><td>No PIPL data</td><td class="status-mismatch">Unverifiable</td></tr>
+            <tr><td>Performance Foodservice</td><td>May 2017 - December 2020</td><td>No PIPL data</td><td class="status-mismatch">Unverifiable</td></tr>
+            <tr><td>Harris Computer Systems</td><td>July 2012 - February 2015</td><td>No PIPL data</td><td class="status-mismatch">Unverifiable</td></tr>
+        </table>
+        <p class="note"><strong>Employment Analysis:</strong> CV claims 13+ years of customer service employment across 3 companies. However, with PIPL returning NULL, none of this employment history can be verified. A person with 13+ years of employment would typically have some digital footprint in person data aggregators. The complete absence of PIPL data despite claimed extensive work history is a significant red flag.</p>
+
+        <h3>Timeline Analysis</h3>
+        <table>
+            <tr><th>Event</th><th>Date</th><th>Implied Age</th><th>Assessment</th></tr>
+            <tr><td>High School Graduation</td><td>July 1996</td><td>~18 years old</td><td>Birth year ~1978</td></tr>
+            <tr><td>Current Age (2026)</td><td>--</td><td>~46-48 years</td><td>Cannot verify DOB</td></tr>
+            <tr><td>First Job Listed</td><td>July 2012</td><td>~34 years old</td><td class="status-anomaly">16-year gap after HS</td></tr>
+        </table>
+        <p class="note"><strong>Timeline Gap:</strong> CV shows 16-year gap between high school (1996) and first employment (2012). This is unusual and unexplained. A person this age (mid-40s) with 13+ years of professional employment should have extensive digital footprint, yet PIPL shows nothing.</p>
+    </section>
+
+    <section id="red-flags">
+        <h2>6. Red Flags Identified</h2>
+        <div class="red-flag">
+            <strong>VoIP Phone (Sinch Voice):</strong> Phone is identified as a VoIP number from Sinch Voice that failed HLR verification. Sinch Voice is commonly used for anonymous/temporary phone numbers associated with fraud.
+        </div>
+        <div class="red-flag">
+            <strong>Email Enumeration Pattern:</strong> Trust Elephant flagged the email as having "email_enumeration" characteristic - the pattern {FirstName}{LastName}{Year} is commonly auto-generated for fraudulent accounts.
+        </div>
+        <div class="red-flag">
+            <strong>Name Typo in Email:</strong> Trust Elephant detected a "name_typo" characteristic in the email, suggesting the name may have been intentionally or automatically misspelled.
+        </div>
+        <div class="red-flag">
+            <strong>No PIPL Identity Records:</strong> PIPL returned NULL - no person records found. This is a critical indicator that "Joshua W. Sawders" does not exist as a verifiable identity.
+        </div>
+        <div class="red-flag">
+            <strong>Extremely Low Trust Score:</strong> Trust Elephant score of 42/1000 is one of the lowest possible scores, with explicit "decline" decision.
+        </div>
+        <div class="red-flag">
+            <strong>Zero Phone History:</strong> Phone has 0 days of age, 0 data sources, and 0 velocity - indicating it was created immediately before this application.
+        </div>
+        <div class="red-flag">
+            <strong>Zero Email Activity:</strong> AtData shows 0 velocity on email, meaning no activity history despite existing for ~8 months.
+        </div>
+        <div class="red-flag">
+            <strong>MaxMind Multiple Risk Multipliers:</strong> Both phone (2.1x) and email first seen (2x) raised the MaxMind risk score, resulting in elevated 2.08 risk.
+        </div>
+        <div class="red-flag">
+            <strong>CV-Phone Location Mismatch:</strong> CV claims Texas address (Spring, TX 77386) but phone area code (928) is from Arizona. This geographic inconsistency with a VoIP phone strengthens fraud indicators.
+        </div>
+        <div class="red-flag">
+            <strong>16-Year Employment Gap:</strong> CV shows high school graduation in 1996 but first employment in 2012 - a 16-year unexplained gap. This timeline is suspicious for someone claiming customer service professional background.
+        </div>
+        <div class="red-flag">
+            <strong>Unverifiable Employment Claims:</strong> CV claims 13+ years of employment across 3 companies, yet PIPL has zero records. Legitimate long-term employment creates digital footprints in data aggregators.
+        </div>
+    </section>
+
+    <section id="legitimacy">
+        <h2>7. Legitimacy Indicators</h2>
+        <table>
+            <tr><th>Category</th><th>Evidence</th><th>Strength</th></tr>
+            <tr><td colspan="3" class="status-mismatch">No legitimacy indicators found. All signals point to synthetic/fraudulent identity.</td></tr>
+        </table>
+    </section>
+
+    <section id="chain-of-thought">
+        <h2>8. Chain of Thought Reasoning</h2>
+
+        <div class="chain-of-thought">
+            <h4>Step 1: Identity Verification</h4>
+            <p>PIPL returned no data - complete failure to verify identity. "Joshua W. Sawders" does not exist in any data aggregator system, strongly suggesting a fabricated name.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 2: Phone Analysis</h4>
+            <p>Phone is a VoIP number from Sinch Voice that failed HLR verification. It has zero history (0 days, 0 sources). VoIP numbers from providers like Sinch are commonly used for fraud because they can be obtained anonymously and disposed of quickly.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 3: Email Analysis</h4>
+            <p>Email shows multiple fraud indicators: enumeration pattern (auto-generated format), name typo characteristic, zero activity velocity, brand new in MaxMind network. This pattern is consistent with programmatically generated email accounts for fraud.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 4: Vendor Risk Assessment</h4>
+            <p>Trust Elephant explicitly declines with 42/1000 (near minimum). MaxMind shows elevated risk (2.08) with multiple risk multipliers flagged. Both vendors independently identify this as high-risk.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 5: Pattern Recognition</h4>
+            <p>This profile exhibits classic synthetic identity fraud patterns: fabricated name (no PIPL data), anonymous VoIP phone, auto-generated email pattern, zero digital footprint, and vendor decline decisions. All indicators align with fraudulent activity.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 6: CV Analysis</h4>
+            <p>CV provides detailed employment history: NextGen Healthcare (2022-2025), Performance Foodservice (2017-2020), Harris Computer Systems (2012-2015). Claims ~13 years of customer service experience. Education: Mojave High School 1996, implying age ~46-48. Address: Spring, TX 77386. However, phone is Arizona area code (928) - a state mismatch that cannot be explained by the VoIP phone having zero history.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 7: CV-Enrichment Cross-Reference</h4>
+            <p>Critical finding: Despite CV claiming 13+ years of employment across multiple companies, PIPL has ZERO records for this person. A legitimate mid-40s professional with this employment history would have extensive digital footprint. The complete absence of PIPL data despite detailed CV employment claims strongly suggests the CV is fabricated. Additionally, 16-year gap between HS graduation (1996) and first listed job (2012) is unexplained.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 8: Conclusion</h4>
+            <p>This is almost certainly a synthetic identity or fraud attempt. The CV provides seemingly legitimate employment history that CANNOT be verified anywhere in data aggregator systems. A person with claimed 13+ years of professional employment would have digital traces. The combination of null PIPL, VoIP phone, enumeration email pattern, CV-phone location mismatch, unexplained timeline gaps, and vendor declines creates overwhelming evidence that both the identity and CV are fabricated.</p>
+        </div>
+    </section>
+
+    <section id="final-assessment">
+        <h2>9. Final Risk Assessment</h2>
+        <table>
+            <tr><th>Dimension</th><th>Assessment</th><th>Confidence</th></tr>
+            <tr><td>Identity Authenticity</td><td class="status-mismatch">Almost Certainly Synthetic</td><td>Very High</td></tr>
+            <tr><td>Timeline Consistency</td><td class="status-mismatch">No Data Available</td><td>N/A</td></tr>
+            <tr><td>Digital Footprint</td><td class="status-mismatch">Non-Existent</td><td>Very High</td></tr>
+            <tr><td>Fraud Indicators</td><td class="status-mismatch">Multiple Critical Flags</td><td>Very High</td></tr>
+        </table>
+
+        <div class="executive-summary" style="margin-top: 20px;">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Overall Risk Level</span>
+                    <span class="risk-badge risk-high">HIGH</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-reject">REJECT</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p><strong>Reasoning:</strong> This profile presents the strongest evidence of synthetic identity fraud in the batch. Null PIPL data, VoIP phone from Sinch Voice, email with enumeration and typo patterns, Trust Elephant score of 42/1000 with explicit decline, and zero digital footprint across all sources. CV analysis adds additional red flags: claims 13+ years of employment that cannot be verified anywhere, 16-year unexplained gap in employment history, and Texas address with Arizona VoIP phone. There is no credible evidence this is a real person. Both the identity and CV appear to be fabricated. This application should be rejected and flagged for potential fraud.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="verification-recommendations">
+        <h2>Verification Recommendations</h2>
+        <ul>
+            <li>Do not proceed with this application under any circumstances</li>
+            <li>Flag this application as potential fraud</li>
+            <li>Report to fraud monitoring systems if applicable</li>
+            <li>Do not contact the applicant as it may alert fraudsters</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Report generated using automated enrichment analysis. Human review recommended for final decisions.</p>
+    </footer>
+</body>
+</html>

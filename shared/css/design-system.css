@@ -653,6 +653,12 @@ h3 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
     backdrop-filter: blur(12px);
     box-shadow: 0 4px 24px rgba(0,0,0,0.25);
     border: 1px solid rgba(255,255,255,0.08);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+#bottom-toolbar.toolbar-hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 /* Button ordering inside toolbar */
 #bottom-toolbar #start-presentation-btn { order: 1; }

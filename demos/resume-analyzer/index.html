@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity - Resume Risk Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a1628;
+            --accent: #61F393;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --success: #10B981;
+            --bg: #F0F4F8;
+            --card-bg: #ffffff;
+            --text-primary: #0a1628;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: var(--primary);
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo svg { height: 32px; }
+        .logo span { color: white; font-weight: 700; font-size: 1.3rem; }
+        
+        .header-tag {
+            background: rgba(97, 243, 147, 0.15);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .header-back {
+            font-size: 0.85rem;
+            color: #64748B;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .header-back:hover { color: white; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Upload Section */
+        .upload-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .upload-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        
+        .upload-section h1 span { color: var(--accent); }
+        
+        .upload-section .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+        
+        .upload-zone {
+            background: var(--card-bg);
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            padding: 60px 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--accent);
+            background: rgba(97, 243, 147, 0.05);
+        }
+        
+        .upload-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), #4ade80);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        
+        .upload-icon svg { width: 40px; height: 40px; stroke: var(--primary); }
+        
+        .upload-zone h3 { font-size: 1.3rem; margin-bottom: 8px; }
+        .upload-zone p { color: var(--text-secondary); font-size: 0.95rem; }
+        .upload-zone input[type="file"] { display: none; }
+        .supported-formats { margin-top: 20px; font-size: 0.8rem; color: var(--text-secondary); }
+        
+        /* Hidden states */
+        .hidden { display: none !important; }
+        
+        /* ==================== */
+        /* PHASE 1: CV DISPLAY  */
+        /* ==================== */
+        .phase-cv-display {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cv-window {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transform: scale(0.9) translateY(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .cv-window.visible {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        
+        .cv-toolbar {
+            background: var(--primary);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cv-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .cv-dot.red { background: #EF4444; }
+        .cv-dot.yellow { background: #F59E0B; }
+        .cv-dot.green { background: #10B981; }
+        
+        .cv-filename {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            margin-left: auto;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+        
+        .cv-body {
+            padding: 32px;
+            min-height: 500px;
+        }
+        
+        /* CV Content Sections */
+        .cv-section {
+            margin-bottom: 28px;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.4s ease;
+            position: relative;
+            padding: 16px;
+            margin: -16px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+        
+        .cv-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .cv-section.scanning {
+            background: rgba(97, 243, 147, 0.1);
+            box-shadow: inset 0 0 0 2px var(--accent);
+        }
+        
+        .cv-section.scanned-pass {
+            background: rgba(16, 185, 129, 0.08);
+            box-shadow: inset 0 0 0 2px var(--success);
+        }
+        
+        .cv-section.scanned-warn {
+            background: rgba(245, 158, 11, 0.08);
+            box-shadow: inset 0 0 0 2px var(--warning);
+        }
+        
+        .cv-section.scanned-fail {
+            background: rgba(239, 68, 68, 0.08);
+            box-shadow: inset 0 0 0 2px var(--danger);
+        }
+        
+        .cv-section-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s;
+        }
+        
+        .cv-section.scanned-pass .cv-section-badge,
+        .cv-section.scanned-warn .cv-section-badge,
+        .cv-section.scanned-fail .cv-section-badge {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .cv-section.scanned-pass .cv-section-badge { background: var(--success); color: white; }
+        .cv-section.scanned-warn .cv-section-badge { background: var(--warning); color: white; }
+        .cv-section.scanned-fail .cv-section-badge { background: var(--danger); color: white; }
+        
+        .cv-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+        
+        .cv-contact {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .cv-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .cv-contact-item svg { width: 16px; height: 16px; }
+        
+        .cv-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .cv-job {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cv-job:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .cv-job-title { font-weight: 700; font-size: 1rem; }
+        .cv-job-company { color: var(--text-secondary); font-size: 0.9rem; }
+        .cv-job-period { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+        
+        .cv-education-item { margin-bottom: 8px; }
+        .cv-education-school { font-weight: 600; }
+        .cv-education-degree { color: var(--text-secondary); font-size: 0.9rem; }
+        
+        /* Phase indicator */
+        .phase-indicator {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .phase-indicator strong { color: var(--accent); }
+        
+        /* Scanning status bar */
+        .scan-status {
+            background: white;
+            border-radius: 10px;
+            padding: 16px 24px;
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s;
+        }
+        
+        .scan-status.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scan-status-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 1s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .scan-status-icon svg { width: 20px; height: 20px; stroke: var(--primary); }
+        
+        .scan-status-text { flex: 1; }
+        .scan-status-title { font-weight: 700; font-size: 0.95rem; }
+        .scan-status-detail { font-size: 0.8rem; color: var(--text-secondary); }
+        
+        /* ==================== */
+        /* PHASE 3: SPLIT VIEW  */
+        /* ==================== */
+        .phase-split-view {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        @media (max-width: 900px) {
+            .phase-split-view { grid-template-columns: 1fr; }
+        }
+        
+        .split-cv {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transform: translateX(-20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .split-cv.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .split-cv .cv-body {
+            padding: 24px;
+            max-height: 600px;
+            overflow-y: auto;
+            font-size: 0.9em;
+        }
+        
+        .split-analysis {
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+        }
+        
+        .split-analysis.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Analysis Panel */
+        .analysis-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .analysis-header {
+            background: var(--bg);
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .analysis-header h3 {
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        
+        .analysis-header svg { width: 18px; height: 18px; color: var(--text-secondary); }
+        
+        .check-list { padding: 8px 0; }
+        
+        .check-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s;
+        }
+        
+        .check-row:last-child { border-bottom: none; }
+        .check-row.visible { opacity: 1; transform: translateX(0); }
+        
+        .check-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .check-icon svg { width: 14px; height: 14px; }
+        
+        .check-icon.pass { background: var(--success); color: white; }
+        .check-icon.warn { background: var(--warning); color: white; }
+        .check-icon.fail { background: var(--danger); color: white; }
+        
+        .check-content { flex: 1; }
+        .check-label { font-weight: 600; font-size: 0.85rem; }
+        .check-value { font-size: 0.8rem; color: var(--text-secondary); }
+        
+        .check-status {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .check-status.pass { background: #D1FAE5; color: var(--success); }
+        .check-status.warn { background: #FEF3C7; color: var(--warning); }
+        .check-status.fail { background: #FEE2E2; color: var(--danger); }
+        
+        /* Risk Summary */
+        .risk-summary {
+            text-align: center;
+            padding: 24px;
+        }
+        
+        .risk-badge {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        
+        .risk-badge.high { background: #FEE2E2; color: var(--danger); }
+        .risk-badge.medium { background: #FEF3C7; color: var(--warning); }
+        .risk-badge.low { background: #D1FAE5; color: var(--success); }
+        
+        .risk-recommendation {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .risk-recommendation.reject { background: var(--danger); color: white; }
+        .risk-recommendation.review { background: var(--warning); color: white; }
+        .risk-recommendation.approve { background: var(--success); color: white; }
+        .risk-recommendation.escalate { background: #7C3AED; color: white; }
+        
+        .risk-summary p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Red Flags */
+        .red-flag {
+            background: #FEF2F2;
+            border-left: 4px solid var(--danger);
+            padding: 14px 16px;
+            margin: 12px 16px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .red-flag-title {
+            color: var(--danger);
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+        
+        .red-flag-text {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .btn-primary { background: var(--accent); color: var(--primary); }
+        .btn-primary:hover { background: #4ade80; }
+        .btn-secondary { background: white; color: var(--text-primary); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: var(--bg); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/>
+                <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/>
+                <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/>
+                <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/>
+            </svg>
+            <span>Clarity</span>
+        </div>
+        <div class="header-tag">Resume Risk Analyzer</div>
+        <a href="../../index.html" class="header-back">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            Back to Hub
+        </a>
+    </header>
+
+    <div class="container">
+        <!-- UPLOAD SECTION -->
+        <section class="upload-section" id="uploadSection">
+            <h1>Analyze <span>Resume Risk</span></h1>
+            <p class="subtitle">Upload a candidate's resume for instant identity verification and fraud detection.</p>
+            
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                </div>
+                <h3>Drop resume here or click to upload</h3>
+                <p>We'll analyze identity signals, verify employment, and detect fraud indicators.</p>
+                <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg">
+                <p class="supported-formats">Supported: PDF, DOC, DOCX, TXT, PNG, JPG</p>
+            </div>
+        </section>
+
+        <!-- PHASE 1: CV DISPLAY -->
+        <section class="phase-cv-display hidden" id="phase1">
+            <div class="cv-window" id="cvWindow">
+                <div class="cv-toolbar">
+                    <div class="cv-dot red"></div>
+                    <div class="cv-dot yellow"></div>
+                    <div class="cv-dot green"></div>
+                    <span class="cv-filename" id="cvFilename">resume.pdf</span>
+                </div>
+                <div class="cv-body" id="cvBody">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            
+            <div class="scan-status" id="scanStatus">
+                <div class="scan-status-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                </div>
+                <div class="scan-status-text">
+                    <div class="scan-status-title" id="scanStatusTitle">Parsing resume...</div>
+                    <div class="scan-status-detail" id="scanStatusDetail">Extracting candidate information</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 3: SPLIT VIEW -->
+        <section class="phase-split-view hidden" id="phase3">
+            <div class="split-cv" id="splitCv">
+                <div class="cv-toolbar">
+                    <div class="cv-dot red"></div>
+                    <div class="cv-dot yellow"></div>
+                    <div class="cv-dot green"></div>
+                    <span class="cv-filename" id="splitFilename">resume.pdf</span>
+                </div>
+                <div class="cv-body" id="splitCvBody">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            
+            <div class="split-analysis" id="splitAnalysis">
+                <!-- Risk Summary -->
+                <div class="analysis-card">
+                    <div class="risk-summary" id="riskSummary">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Verification Checks -->
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        <h3>Verification Results</h3>
+                    </div>
+                    <div class="check-list" id="checkList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Red Flags -->
+                <div class="analysis-card" id="redFlagsCard" style="display: none;">
+                    <div class="analysis-header">
+                        <svg fill="none" stroke="var(--danger)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        <h3>Red Flags Detected</h3>
+                    </div>
+                    <div id="redFlagsList"></div>
+                </div>
+                
+                <div class="actions">
+                    <button class="btn btn-secondary" onclick="resetAnalyzer()">Analyze Another</button>
+                    <button class="btn btn-primary" onclick="window.print()">Export Report</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="reports.js"></script>
+    <script>
+        // DOM Elements
+        const uploadSection = document.getElementById('uploadSection');
+        const phase1 = document.getElementById('phase1');
+        const phase3 = document.getElementById('phase3');
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        
+        let currentMatch = null;
+
+        // File upload handling
+        uploadZone.addEventListener('click', () => fileInput.click());
+        
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+        
+        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+        
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) handleFile(e.target.files[0]);
+        });
+
+        function handleFile(file) {
+            currentMatch = findMatchingReport(file.name);
+            startPhase1(file.name, currentMatch);
+        }
+
+        function findMatchingReport(filename) {
+            const normalized = filename.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/resume|pdf|doc|docx|txt|png|jpg|jpeg/g, '');
+            
+            for (const key in REPORT_DATA) {
+                const reportNormalized = key.toLowerCase().replace(/[^a-z0-9]/g, '');
+                if (normalized.includes(reportNormalized) || reportNormalized.includes(normalized)) {
+                    return REPORT_DATA[key];
+                }
+            }
+            
+            const parts = filename.toLowerCase().split(/[_\-\s\.]+/);
+            for (const key in REPORT_DATA) {
+                const keyParts = key.toLowerCase().split(/[_\-\s]+/);
+                const matchCount = parts.filter(p => keyParts.some(kp => kp.includes(p) || p.includes(kp))).length;
+                if (matchCount >= 2) return REPORT_DATA[key];
+            }
+            
+            return null;
+        }
+
+        // ========== PHASE 1: CV DISPLAY ==========
+        function startPhase1(filename, match) {
+            uploadSection.classList.add('hidden');
+            phase1.classList.remove('hidden');
+            phase3.classList.add('hidden');
+            
+            document.getElementById('cvFilename').textContent = filename;
+            
+            // Build CV content
+            const cvBody = document.getElementById('cvBody');
+            cvBody.innerHTML = buildCvHtml(match);
+            
+            // Animate window appearing
+            setTimeout(() => {
+                document.getElementById('cvWindow').classList.add('visible');
+            }, 100);
+            
+            // Animate sections appearing one by one
+            const sections = cvBody.querySelectorAll('.cv-section');
+            sections.forEach((section, i) => {
+                setTimeout(() => section.classList.add('visible'), 400 + (i * 200));
+            });
+            
+            // Show scan status
+            setTimeout(() => {
+                document.getElementById('scanStatus').classList.add('visible');
+            }, 400 + (sections.length * 200) + 300);
+            
+            // Start Phase 2 (scanning) after CV is shown
+            setTimeout(() => {
+                startPhase2(match);
+            }, 400 + (sections.length * 200) + 800);
+        }
+
+        function buildCvHtml(match) {
+            if (!match) {
+                return `
+                    <div class="cv-section" data-section="header">
+                        <span class="cv-section-badge">—</span>
+                        <div class="cv-name">Unknown Candidate</div>
+                        <div class="cv-contact">
+                            <div class="cv-contact-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                No email provided
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cv-section" data-section="employment">
+                        <span class="cv-section-badge">—</span>
+                        <div class="cv-section-title">Experience</div>
+                        <p style="color: var(--text-secondary);">No employment data available</p>
+                    </div>
+                `;
+            }
+            
+            let html = `
+                <div class="cv-section" data-section="header">
+                    <span class="cv-section-badge">Verified</span>
+                    <div class="cv-name">${match.name}</div>
+                    <div class="cv-contact">
+                        <div class="cv-contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            ${match.email}
+                        </div>
+                        <div class="cv-contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            ${match.phone}
+                        </div>
+                        <div class="cv-contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            ${match.location}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            if (match.employment && match.employment.length > 0) {
+                html += `
+                    <div class="cv-section" data-section="employment">
+                        <span class="cv-section-badge">Verified</span>
+                        <div class="cv-section-title">Experience</div>
+                        ${match.employment.map(emp => `
+                            <div class="cv-job">
+                                <div class="cv-job-title">${emp.title}</div>
+                                <div class="cv-job-company">${emp.company}</div>
+                                <div class="cv-job-period">${emp.period}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            html += `
+                <div class="cv-section" data-section="identity">
+                    <span class="cv-section-badge">Verified</span>
+                    <div class="cv-section-title">Identity Verification</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.9rem;">
+                        <div><strong>Person ID:</strong> ${match.personId}</div>
+                        <div><strong>Trust Score:</strong> ${match.trustScore}/1000</div>
+                        <div><strong>PIPL Match:</strong> ${match.piplMatch}</div>
+                        <div><strong>Phone Carrier:</strong> ${match.carrier}</div>
+                    </div>
+                </div>
+            `;
+            
+            return html;
+        }
+
+        // ========== PHASE 2: SCANNING ==========
+        function startPhase2(match) {
+            const sections = document.querySelectorAll('#cvBody .cv-section');
+            const statusTitle = document.getElementById('scanStatusTitle');
+            const statusDetail = document.getElementById('scanStatusDetail');
+            
+            const scanSequence = [
+                { section: 'header', title: 'Verifying identity...', detail: 'Checking PIPL database', result: match ? (match.piplMatch === 'NULL' || match.piplMatch.includes('MISMATCH') ? 'fail' : 'pass') : 'warn' },
+                { section: 'employment', title: 'Verifying employment...', detail: 'Cross-referencing records', result: match ? (match.employment?.length > 0 ? 'pass' : 'warn') : 'warn' },
+                { section: 'identity', title: 'Analyzing trust signals...', detail: 'Calculating fraud risk', result: match ? (match.trustScore < 200 ? 'fail' : match.trustScore < 500 ? 'warn' : 'pass') : 'warn' }
+            ];
+            
+            let delay = 0;
+            scanSequence.forEach((scan, i) => {
+                // Start scanning
+                setTimeout(() => {
+                    statusTitle.textContent = scan.title;
+                    statusDetail.textContent = scan.detail;
+                    
+                    sections.forEach(s => s.classList.remove('scanning'));
+                    const section = document.querySelector(`[data-section="${scan.section}"]`);
+                    if (section) section.classList.add('scanning');
+                }, delay);
+                
+                // Complete scan
+                setTimeout(() => {
+                    const section = document.querySelector(`[data-section="${scan.section}"]`);
+                    if (section) {
+                        section.classList.remove('scanning');
+                        section.classList.add(`scanned-${scan.result}`);
+                        section.querySelector('.cv-section-badge').textContent = 
+                            scan.result === 'pass' ? '✓ Verified' : 
+                            scan.result === 'fail' ? '✗ Failed' : '⚠ Review';
+                    }
+                }, delay + 1200);
+                
+                delay += 1500;
+            });
+            
+            // Transition to Phase 3
+            setTimeout(() => {
+                statusTitle.textContent = 'Analysis complete!';
+                statusDetail.textContent = 'Generating detailed report...';
+            }, delay);
+            
+            setTimeout(() => {
+                startPhase3(match);
+            }, delay + 1000);
+        }
+
+        // ========== PHASE 3: SPLIT VIEW ==========
+        function startPhase3(match) {
+            phase1.classList.add('hidden');
+            phase3.classList.remove('hidden');
+            
+            // Set filename
+            document.getElementById('splitFilename').textContent = document.getElementById('cvFilename').textContent;
+            
+            // Build CV (smaller version)
+            document.getElementById('splitCvBody').innerHTML = buildCvHtml(match);
+            document.querySelectorAll('#splitCvBody .cv-section').forEach(s => s.classList.add('visible'));
+            
+            // Mark sections with results
+            if (match) {
+                const headerSection = document.querySelector('#splitCvBody [data-section="header"]');
+                const empSection = document.querySelector('#splitCvBody [data-section="employment"]');
+                const idSection = document.querySelector('#splitCvBody [data-section="identity"]');
+                
+                if (headerSection) {
+                    const result = match.piplMatch === 'NULL' || match.piplMatch.includes('MISMATCH') ? 'fail' : 'pass';
+                    headerSection.classList.add(`scanned-${result}`);
+                    headerSection.querySelector('.cv-section-badge').textContent = result === 'pass' ? '✓ Verified' : '✗ Failed';
+                }
+                if (empSection) {
+                    const result = match.employment?.length > 0 ? 'pass' : 'warn';
+                    empSection.classList.add(`scanned-${result}`);
+                    empSection.querySelector('.cv-section-badge').textContent = result === 'pass' ? '✓ Verified' : '⚠ Review';
+                }
+                if (idSection) {
+                    const result = match.trustScore < 200 ? 'fail' : match.trustScore < 500 ? 'warn' : 'pass';
+                    idSection.classList.add(`scanned-${result}`);
+                    idSection.querySelector('.cv-section-badge').textContent = result === 'pass' ? '✓ Verified' : result === 'fail' ? '✗ Failed' : '⚠ Review';
+                }
+            }
+            
+            // Animate CV appearing
+            setTimeout(() => document.getElementById('splitCv').classList.add('visible'), 100);
+            setTimeout(() => document.getElementById('splitAnalysis').classList.add('visible'), 300);
+            
+            // Build risk summary
+            buildRiskSummary(match);
+            
+            // Build check list
+            buildCheckList(match);
+            
+            // Build red flags
+            buildRedFlags(match);
+        }
+
+        function buildRiskSummary(match) {
+            const container = document.getElementById('riskSummary');
+            if (!match) {
+                container.innerHTML = `
+                    <div class="risk-badge medium">UNKNOWN</div>
+                    <div class="risk-recommendation review">REVIEW</div>
+                    <p>No matching candidate data found. Manual review required.</p>
+                `;
+                return;
+            }
+            
+            const riskClass = match.risk.toLowerCase();
+            const recClass = match.recommendation.toLowerCase();
+            
+            container.innerHTML = `
+                <div class="risk-badge ${riskClass}">${match.risk} Risk</div>
+                <div class="risk-recommendation ${recClass}">${match.recommendation}</div>
+                <p>${match.summary}</p>
+            `;
+        }
+
+        function buildCheckList(match) {
+            const container = document.getElementById('checkList');
+            
+            const checks = [
+                {
+                    label: 'Identity (PIPL)',
+                    getValue: m => m ? (m.piplMatch === 'NULL' ? 'No records found' : `Match: ${m.piplMatch}`) : 'N/A',
+                    getStatus: m => m ? (m.piplMatch === 'NULL' || m.piplMatch.includes('MISMATCH') ? 'fail' : 'pass') : 'warn'
+                },
+                {
+                    label: 'Email History',
+                    getValue: m => m ? `${m.emailAge} history` : 'N/A',
+                    getStatus: m => m ? (m.emailAge === '0 days' ? 'fail' : m.emailStatus === 'warn' ? 'warn' : 'pass') : 'warn'
+                },
+                {
+                    label: 'Phone Verification',
+                    getValue: m => m ? `${m.carrier}${m.isVoip ? ' (VoIP)' : ''}` : 'N/A',
+                    getStatus: m => m ? (m.isVoip ? 'fail' : m.phoneStatus === 'warn' ? 'warn' : 'pass') : 'warn'
+                },
+                {
+                    label: 'Trust Score',
+                    getValue: m => m ? `${m.trustScore}/1000` : 'N/A',
+                    getStatus: m => m ? (m.trustScore < 200 ? 'fail' : m.trustScore < 500 ? 'warn' : 'pass') : 'warn'
+                },
+                {
+                    label: 'Employment',
+                    getValue: m => m?.employment?.length ? `${m.employment.length} positions` : 'No data',
+                    getStatus: m => m?.employment?.length ? 'pass' : 'warn'
+                }
+            ];
+            
+            container.innerHTML = checks.map(check => {
+                const status = check.getStatus(match);
+                const value = check.getValue(match);
+                return `
+                    <div class="check-row">
+                        <div class="check-icon ${status}">
+                            ${status === 'pass' ? '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>' :
+                              status === 'fail' ? '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>' :
+                              '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/></svg>'}
+                        </div>
+                        <div class="check-content">
+                            <div class="check-label">${check.label}</div>
+                            <div class="check-value">${value}</div>
+                        </div>
+                        <div class="check-status ${status}">${status === 'pass' ? 'Passed' : status === 'fail' ? 'Failed' : 'Review'}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Animate rows
+            const rows = container.querySelectorAll('.check-row');
+            rows.forEach((row, i) => {
+                setTimeout(() => row.classList.add('visible'), 500 + (i * 100));
+            });
+        }
+
+        function buildRedFlags(match) {
+            const card = document.getElementById('redFlagsCard');
+            const list = document.getElementById('redFlagsList');
+            
+            if (!match || !match.redFlags || match.redFlags.length === 0) {
+                card.style.display = 'none';
+                return;
+            }
+            
+            card.style.display = 'block';
+            list.innerHTML = match.redFlags.map(flag => `
+                <div class="red-flag">
+                    <div class="red-flag-title">${flag.title}</div>
+                    <div class="red-flag-text">${flag.description}</div>
+                </div>
+            `).join('');
+        }
+
+        function resetAnalyzer() {
+            uploadSection.classList.remove('hidden');
+            phase1.classList.add('hidden');
+            phase3.classList.add('hidden');
+            
+            // Reset states
+            document.getElementById('cvWindow').classList.remove('visible');
+            document.getElementById('scanStatus').classList.remove('visible');
+            document.getElementById('splitCv').classList.remove('visible');
+            document.getElementById('splitAnalysis').classList.remove('visible');
+            
+            fileInput.value = '';
+            currentMatch = null;
+        }
+    </script>
+    <script src="../../shared/js/dev-mode.js"></script>
+</body>
+</html>

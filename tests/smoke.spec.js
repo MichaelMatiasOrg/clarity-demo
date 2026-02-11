@@ -44,7 +44,7 @@ test.describe('Presentation Functionality', () => {
     await page.goto('/presentations/masterclass/', { waitUntil: 'domcontentloaded' });
     const slides = page.locator('.slide');
     const count = await slides.count();
-    expect(count).toBe(37);
+    expect(count).toBe(42);
   });
 
   test('every slide has a data-slide-id', async ({ page }) => {

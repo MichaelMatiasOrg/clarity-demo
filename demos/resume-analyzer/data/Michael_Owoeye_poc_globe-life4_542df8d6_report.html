@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Risk Report - 542df8d6-4adf-47c8-a96e-304476665ff4</title>
+    <style>
+        :root { --primary-color: #1e3a5f; --secondary-color: #2563eb; --success-color: #16a34a; --warning-color: #d97706; --danger-color: #dc2626; --border-color: #e5e7eb; --bg-light: #f9fafb; --text-primary: #111827; --text-secondary: #6b7280; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: var(--text-primary); background-color: #fff; max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        header { border-bottom: 3px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: var(--primary-color); font-size: 28px; margin-bottom: 10px; }
+        .report-meta { display: flex; gap: 30px; color: var(--text-secondary); font-size: 14px; flex-wrap: wrap; }
+        h2 { color: var(--primary-color); font-size: 20px; margin-top: 30px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--border-color); }
+        h3 { color: var(--text-primary); font-size: 16px; margin-top: 20px; margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        th, td { padding: 12px 15px; text-align: left; border: 1px solid var(--border-color); }
+        th { background-color: var(--bg-light); font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--bg-light); }
+        .executive-summary { background: linear-gradient(135deg, var(--bg-light) 0%, #fff 100%); border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 15px; }
+        .summary-item { display: flex; flex-direction: column; }
+        .summary-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; }
+        .summary-value { font-size: 18px; font-weight: 600; }
+        .risk-badge, .recommendation-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 14px; }
+        .risk-low { background-color: #dcfce7; color: var(--success-color); }
+        .risk-medium { background-color: #fef3c7; color: var(--warning-color); }
+        .risk-high { background-color: #fee2e2; color: var(--danger-color); }
+        .rec-approve { background-color: #dcfce7; color: var(--success-color); }
+        .rec-review { background-color: #fef3c7; color: var(--warning-color); }
+        .summary-text { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
+        .status-match { color: var(--success-color); font-weight: 600; }
+        .status-mismatch { color: var(--danger-color); font-weight: 600; }
+        .status-anomaly { color: var(--warning-color); font-weight: 600; }
+        .chain-of-thought { background-color: var(--bg-light); border-left: 4px solid var(--secondary-color); padding: 20px; margin: 15px 0; }
+        .chain-of-thought h4 { color: var(--secondary-color); margin-bottom: 10px; }
+        .chain-of-thought p { color: var(--text-secondary); }
+        .red-flag { background-color: #fef2f2; border-left: 4px solid var(--danger-color); padding: 15px; margin: 10px 0; }
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-secondary); font-size: 12px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Candidate Risk Report</h1>
+        <div class="report-meta">
+            <span><strong>Person ID:</strong> 542df8d6-4adf-47c8-a96e-304476665ff4</span>
+            <span><strong>Candidate:</strong> Michael Owoeye</span>
+            <span><strong>Generated:</strong> 2026-02-08</span>
+        </div>
+    </header>
+
+    <section id="executive-summary">
+        <h2>Executive Summary</h2>
+        <div class="executive-summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Candidate</span>
+                    <span class="summary-value">Michael Owoeye</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Risk Level</span>
+                    <span class="risk-badge risk-medium">MEDIUM</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-review">REVIEW</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p>Michael Owoeye presents a medium-risk profile due to several concerning factors: NO PIPL person data found, very new email (first seen October 2025 - only 4 months old), email shows enumeration pattern, and elevated MaxMind risk score (5.54) with 22x multiplier for recent email risk. Trust Elephant score 516 with "approve" decision provides some confidence, but thin identity data requires manual review.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv-summary">
+        <h2>2. CV/Resume Summary</h2>
+        <table>
+            <tr><th>Attribute</th><th>Value</th></tr>
+            <tr><td>Full Name</td><td>Michael Owoeye</td></tr>
+            <tr><td>Phone</td><td>346-552-4545</td></tr>
+            <tr><td>Email</td><td>mowoeye07@gmail.com</td></tr>
+            <tr><td>Location</td><td>Houston, TX 77077 (from CV)</td></tr>
+        </table>
+
+        <h3>Employment History (From CV)</h3>
+        <table>
+            <tr><th>Organization</th><th>Title</th><th>Period</th></tr>
+            <tr><td>Alignment Health</td><td>Sr. Customer Service Associate</td><td>Dec 2022 - Present</td></tr>
+            <tr><td>Optum Inc</td><td>Sr. Customer Service Advocate</td><td>May 2019 - Dec 2022</td></tr>
+            <tr><td>Beyond Finance</td><td>Sr. Customer Service Rep</td><td>Jun 2018 - Apr 2019</td></tr>
+        </table>
+
+        <h3>Education (From CV)</h3>
+        <table>
+            <tr><th>Institution</th><th>Degree</th><th>Period</th></tr>
+            <tr><td>Texas Southern University</td><td>BS Business Administration</td><td>Graduated May 2018</td></tr>
+        </table>
+
+        <h3>CV Data Analysis</h3>
+        <div class="legitimacy-indicator">
+            <strong>CV provides employment history not available in enrichment</strong>
+            <p>CV shows 6+ years of continuous customer service employment at reputable companies (Alignment Health, Optum, Beyond Finance). BS in Business Administration from Texas Southern University (2018). This employment history partially mitigates the concern about no PIPL data. Location (Houston, TX 77077) consistent with Texas phone registration.</p>
+        </div>
+    </section>
+
+    <section id="enrichment-data">
+        <h2>3. Enrichment Data Summary</h2>
+
+        <h3>Email Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Email Address</td><td>mowoeye07@gmail.com</td><td class="status-match">Valid</td></tr>
+            <tr><td>Is Disposable</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>First Seen (MaxMind)</td><td>2025-10-12</td><td class="status-mismatch">Very New (4 months)</td></tr>
+            <tr><td>Email Age (Trust Elephant)</td><td>28 days (1 month)</td><td class="status-mismatch">Very New</td></tr>
+            <tr><td>AtData First Seen</td><td>2025-02-26</td><td class="status-anomaly">Recent</td></tr>
+            <tr><td>Username Pattern</td><td>email_enumeration detected</td><td class="status-anomaly">Concern</td></tr>
+        </table>
+
+        <h3>Phone Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Phone Number</td><td>+1 346-552-4545</td><td class="status-match">Valid</td></tr>
+            <tr><td>HLR Valid</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Mobile</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is VoIP</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>Current Network</td><td>T-Mobile</td><td class="status-match">Major Carrier</td></tr>
+            <tr><td>Phone Age</td><td>70 months (5.8 years)</td><td class="status-match">Established</td></tr>
+            <tr><td>Is Ported</td><td>Yes (from Verizon)</td><td class="status-anomaly">Note</td></tr>
+            <tr><td>Location</td><td>Texas</td><td class="status-match">Valid</td></tr>
+        </table>
+
+        <h3>Risk Scores</h3>
+        <table>
+            <tr><th>Vendor</th><th>Score Type</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>MaxMind minFraud</td><td>Risk Score</td><td>5.54</td><td class="status-anomaly">Elevated</td></tr>
+            <tr><td>MaxMind</td><td>MAX_RECENT_EMAIL multiplier</td><td>22x</td><td class="status-mismatch">High Risk Signal</td></tr>
+            <tr><td>MaxMind</td><td>EMAIL_ACTIVITY multiplier</td><td>2x</td><td class="status-anomaly">Elevated</td></tr>
+            <tr><td>Trust Elephant</td><td>Trust Score</td><td>516/1000</td><td class="status-anomaly">Moderate</td></tr>
+            <tr><td>Trust Elephant</td><td>Decision</td><td>Approve</td><td class="status-match">Approved</td></tr>
+            <tr><td>Trust Elephant</td><td>Email Score</td><td>656</td><td class="status-anomaly">Moderate</td></tr>
+            <tr><td>Trust Elephant</td><td>Phone Score</td><td>650</td><td class="status-anomaly">Moderate</td></tr>
+        </table>
+
+        <h3>Person Data (PIPL)</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>PIPL Data</td><td>NULL - No person data found</td><td class="status-mismatch">Major Gap</td></tr>
+        </table>
+    </section>
+
+    <section id="cross-source">
+        <h2>4. Cross-Source Comparison</h2>
+
+        <h3>Data Availability</h3>
+        <table>
+            <tr><th>Source</th><th>Data Available</th><th>Status</th></tr>
+            <tr><td>PIPL</td><td>No</td><td class="status-mismatch">No Data</td></tr>
+            <tr><td>LinkedIn</td><td>No</td><td class="status-anomaly">Not Available</td></tr>
+            <tr><td>Email Verification</td><td>Yes</td><td class="status-match">Available</td></tr>
+            <tr><td>Phone Verification</td><td>Yes</td><td class="status-match">Available</td></tr>
+        </table>
+    </section>
+
+    <section id="enrichment-combination">
+        <h2>5. Enrichment Combination Analysis</h2>
+
+        <h3>Digital Footprint Assessment</h3>
+        <table>
+            <tr><th>Indicator</th><th>Finding</th><th>Weight</th></tr>
+            <tr><td>Email Longevity</td><td>4 months old</td><td class="status-mismatch">-20 (Concern)</td></tr>
+            <tr><td>Phone Longevity</td><td>5.8 years</td><td class="status-match">+15 (Positive)</td></tr>
+            <tr><td>PIPL Identity Data</td><td>None found</td><td class="status-mismatch">-25 (Major Concern)</td></tr>
+            <tr><td>Data Sources</td><td>Email: 1 source, Phone: 1 source</td><td class="status-anomaly">-10 (Limited)</td></tr>
+        </table>
+
+        <h3>Identity Theft Risk Indicators</h3>
+        <table>
+            <tr><th>Indicator</th><th>Status</th><th>Notes</th></tr>
+            <tr><td>Age Consistency</td><td class="status-anomaly">Unknown</td><td>No DOB data available</td></tr>
+            <tr><td>Identity Depth</td><td class="status-mismatch">Very Thin</td><td>No PIPL, no LinkedIn, new email</td></tr>
+            <tr><td>Email Enumeration</td><td class="status-anomaly">Detected</td><td>Pattern suggests automated creation</td></tr>
+            <tr><td>Synthetic Identity Risk</td><td class="status-anomaly">Cannot Rule Out</td><td>Insufficient data to verify</td></tr>
+        </table>
+    </section>
+
+    <section id="red-flags">
+        <h2>6. Red Flags Identified</h2>
+        <div class="red-flag">
+            <strong>Red Flag 1: No PIPL Person Data</strong>
+            <p>PIPL search returned null - no person record found matching this identity. This is unusual for a real person with any digital history in the US.</p>
+        </div>
+        <div class="red-flag">
+            <strong>Red Flag 2: Very New Email Address</strong>
+            <p>Email mowoeye07@gmail.com was first seen by MaxMind in October 2025 (4 months ago) and Trust Elephant shows only 28 days of age. New emails are higher risk for fraud.</p>
+        </div>
+        <div class="red-flag">
+            <strong>Red Flag 3: Email Enumeration Pattern</strong>
+            <p>Trust Elephant detected "email_enumeration" characteristic in username pattern, suggesting potential automated account creation.</p>
+        </div>
+        <div class="red-flag">
+            <strong>Red Flag 4: High MaxMind Risk Multiplier</strong>
+            <p>MAX_RECENT_EMAIL multiplier of 22x indicates significant risk signals from recent email activity patterns across the minFraud network.</p>
+        </div>
+    </section>
+
+    <section id="legitimacy">
+        <h2>7. Legitimacy Indicators</h2>
+        <table>
+            <tr><th>Category</th><th>Evidence</th><th>Strength</th></tr>
+            <tr><td>Phone Establishment</td><td>5.8 years on T-Mobile, valid mobile</td><td class="status-match">Moderate-Strong</td></tr>
+            <tr><td>Email Validity</td><td>Valid Gmail, not disposable</td><td class="status-anomaly">Weak (very new)</td></tr>
+            <tr><td>Trust Elephant Approval</td><td>Approved despite moderate score</td><td class="status-anomaly">Weak-Moderate</td></tr>
+            <tr><td>Carrier Type</td><td>T-Mobile (not VoIP)</td><td class="status-match">Positive</td></tr>
+        </table>
+    </section>
+
+    <section id="chain-of-thought">
+        <h2>8. Chain of Thought Reasoning</h2>
+
+        <div class="chain-of-thought">
+            <h4>Step 1: Identity Verification with CV</h4>
+            <p>PIPL returned no person data, but CV provides substantial identity information: 6+ years employment at Alignment Health, Optum, and Beyond Finance. BS Business Administration from Texas Southern University (2018). While PIPL gap remains concerning, CV shows verifiable employment timeline that can be confirmed through employer references.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 2: Email Analysis</h4>
+            <p>Email mowoeye07@gmail.com is valid but extremely new (4 months). MaxMind first saw it October 2025. Email enumeration pattern detected. The 22x MAX_RECENT_EMAIL multiplier suggests this email has been associated with risky transactions recently.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 3: Phone Analysis</h4>
+            <p>Phone shows 5.8 years of history which is positive. However, it was ported from Verizon to T-Mobile and has very low velocity (0) which might indicate limited use or dormancy.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 4: Risk Score Evaluation</h4>
+            <p>MaxMind 5.54 is elevated (typical low-risk is under 1). Trust Elephant 516 is moderate - they still approved but this is significantly lower than legitimate candidates who score 800+.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 5: Conclusion</h4>
+            <p>The combination of no PIPL data, new email with enumeration pattern, elevated MaxMind score with 22x email risk multiplier, and moderate Trust Elephant score creates a medium-risk profile. The phone history is the only strong positive indicator. Manual review is required.</p>
+        </div>
+    </section>
+
+    <section id="final-assessment">
+        <h2>9. Final Risk Assessment</h2>
+        <table>
+            <tr><th>Dimension</th><th>Assessment</th><th>Confidence</th></tr>
+            <tr><td>Identity Authenticity</td><td class="status-anomaly">Unverifiable</td><td>Low</td></tr>
+            <tr><td>Timeline Consistency</td><td class="status-anomaly">Unknown</td><td>Low</td></tr>
+            <tr><td>Digital Footprint</td><td class="status-mismatch">Very Thin</td><td>Medium</td></tr>
+            <tr><td>Fraud Indicators</td><td class="status-anomaly">Some Present</td><td>Medium</td></tr>
+        </table>
+
+        <div class="executive-summary" style="margin-top: 20px;">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Overall Risk Level</span>
+                    <span class="risk-badge risk-medium">MEDIUM</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-review">REVIEW</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p><strong>Reasoning:</strong> Candidate cannot be fully verified due to absence of PIPL data, very new email with concerning patterns, and elevated risk scores. The established phone history is the only strong positive. Manual verification of identity documents and employment history is required before approval.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="verification-recommendations">
+        <h2>Verification Recommendations</h2>
+        <p><strong>Required before approval:</strong> (1) Request government-issued ID to verify identity, (2) Verify employment history through direct contact with employers, (3) Request proof of address, (4) Consider video interview to confirm identity. The thin digital footprint warrants additional due diligence.</p>
+    </section>
+
+    <footer>
+        <p>Report generated using automated enrichment analysis. Human review recommended for final decisions.</p>
+    </footer>
+</body>
+</html>

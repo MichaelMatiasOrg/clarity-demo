@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Risk Report - ec6e881d-d8a6-400e-b3d2-2ae79d70174c</title>
+    <style>
+        :root {
+            --primary-color: #1e3a5f;
+            --secondary-color: #2563eb;
+            --success-color: #16a34a;
+            --warning-color: #d97706;
+            --danger-color: #dc2626;
+            --border-color: #e5e7eb;
+            --bg-light: #f9fafb;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .report-meta {
+            display: flex;
+            gap: 30px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .report-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-light);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #fff 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .summary-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .summary-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .risk-badge, .recommendation-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .risk-low {
+            background-color: #dcfce7;
+            color: var(--success-color);
+        }
+
+        .risk-medium {
+            background-color: #fef3c7;
+            color: var(--warning-color);
+        }
+
+        .risk-high {
+            background-color: #fee2e2;
+            color: var(--danger-color);
+        }
+
+        .rec-approve {
+            background-color: #dcfce7;
+            color: var(--success-color);
+        }
+
+        .rec-review {
+            background-color: #fef3c7;
+            color: var(--warning-color);
+        }
+
+        .rec-reject, .rec-escalate {
+            background-color: #fee2e2;
+            color: var(--danger-color);
+        }
+
+        .summary-text {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .status-match {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .status-mismatch {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+
+        .status-anomaly {
+            color: var(--warning-color);
+            font-weight: 600;
+        }
+
+        .chain-of-thought {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .chain-of-thought h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .chain-of-thought p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .red-flag {
+            background-color: #fef2f2;
+            border-left: 4px solid var(--danger-color);
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .legitimacy-indicator {
+            background-color: #f0fdf4;
+            border-left: 4px solid var(--success-color);
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .note {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 12px 15px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #1e40af;
+        }
+
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            .executive-summary {
+                background: var(--bg-light) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Candidate Risk Report</h1>
+        <div class="report-meta">
+            <span><strong>Person ID:</strong> ec6e881d-d8a6-400e-b3d2-2ae79d70174c</span>
+            <span><strong>Candidate:</strong> Kennedy Simon</span>
+            <span><strong>Generated:</strong> 2026-02-08</span>
+        </div>
+    </header>
+
+    <section id="executive-summary">
+        <h2>Executive Summary</h2>
+        <div class="executive-summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Candidate</span>
+                    <span class="summary-value">Kennedy Simon</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Risk Level</span>
+                    <span class="risk-badge risk-low">LOW</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-approve">APPROVE</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p>Kennedy Simon presents a low-risk profile with valid email and phone verification. Trust Elephant score of 966 with "approve" decision. Email has been active since 2018 with good longevity. Phone is a verified mobile on AT&T carrier with established history since 2014. PIPL records confirm name and location in Grand Prairie, TX.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv-summary">
+        <h2>2. CV/Resume Summary</h2>
+        <table>
+            <tr><th>Attribute</th><th>Value</th></tr>
+            <tr><td>Full Name</td><td>Kennedy Simon</td></tr>
+            <tr><td>Phone</td><td>214-878-3610</td></tr>
+            <tr><td>Email</td><td>kennedynsimon@gmail.com</td></tr>
+            <tr><td>Location</td><td>McKinney, Texas (CV) / Grand Prairie, Texas (Enrichment)</td></tr>
+        </table>
+
+        <h3>Employment History (CV)</h3>
+        <table>
+            <tr><th>Organization</th><th>Title</th><th>Period</th></tr>
+            <tr><td>Bleu Grace Designs, LLC</td><td>Marketing Coordinator Intern</td><td>Apr 2024 - Present</td></tr>
+            <tr><td>Liberty Mutual Insurance</td><td>Worker's Compensation Claims Specialist I</td><td>Jun 2020 - Mar 2024</td></tr>
+        </table>
+
+        <h3>Education (CV)</h3>
+        <table>
+            <tr><th>Institution</th><th>Degree</th><th>Period</th></tr>
+            <tr><td>University of North Texas</td><td>BS Psychology (Social Work focus), Minor: Social Sciences</td><td>Graduated</td></tr>
+        </table>
+
+        <h3>Certifications (CV)</h3>
+        <table>
+            <tr><th>Certification</th><th>States</th></tr>
+            <tr><td>Licensed Claims Adjuster</td><td>AZ, CO, OK, MS, TX</td></tr>
+        </table>
+    </section>
+
+    <section id="enrichment-data">
+        <h2>3. Enrichment Data Summary</h2>
+
+        <h3>Email Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Email Address</td><td>kennedynsimon@gmail.com</td><td class="status-match">Valid</td></tr>
+            <tr><td>Is Disposable</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Free Email</td><td>Yes (Gmail)</td><td>Neutral</td></tr>
+            <tr><td>First Seen (MaxMind)</td><td>2018-02-03</td><td class="status-match">Established</td></tr>
+            <tr><td>Email Age (Trust Elephant)</td><td>66 months (5.5 years)</td><td class="status-match">Good Longevity</td></tr>
+            <tr><td>AtData First Seen</td><td>2019-04-01</td><td class="status-match">Consistent</td></tr>
+        </table>
+
+        <h3>Phone Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Phone Number</td><td>+1 214-878-3610</td><td class="status-match">Valid</td></tr>
+            <tr><td>HLR Valid</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Mobile</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is VoIP</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>Current Network</td><td>Cingular Wireless (AT&T)</td><td class="status-match">Major Carrier</td></tr>
+            <tr><td>Phone Age (Trust Elephant)</td><td>127 months (10.5 years)</td><td class="status-match">Excellent Longevity</td></tr>
+            <tr><td>Location</td><td>Texas</td><td class="status-match">Matches Profile</td></tr>
+        </table>
+
+        <h3>Risk Scores</h3>
+        <table>
+            <tr><th>Vendor</th><th>Score Type</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>MaxMind minFraud</td><td>Risk Score</td><td>0.51</td><td class="status-match">Very Low Risk</td></tr>
+            <tr><td>Trust Elephant</td><td>Trust Score</td><td>966/1000</td><td class="status-match">High Trust</td></tr>
+            <tr><td>Trust Elephant</td><td>Decision</td><td>Approve</td><td class="status-match">Approved</td></tr>
+            <tr><td>Trust Elephant</td><td>Email Score</td><td>798</td><td class="status-match">Good</td></tr>
+            <tr><td>Trust Elephant</td><td>Phone Score</td><td>883</td><td class="status-match">Excellent</td></tr>
+        </table>
+
+        <h3>Person Data (PIPL)</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Match Confidence</td><td>0.42</td><td class="status-anomaly">Partial Match</td></tr>
+            <tr><td>Name</td><td>Kennedy Simon</td><td class="status-match">Confirmed</td></tr>
+            <tr><td>Name Valid Since</td><td>2021-02-16</td><td class="status-match">Recent</td></tr>
+            <tr><td>Phone</td><td>214-878-3610</td><td class="status-match">Matches</td></tr>
+            <tr><td>Location</td><td>Grand Prairie, TX 75050</td><td class="status-match">Confirmed</td></tr>
+        </table>
+    </section>
+
+    <section id="cross-source">
+        <h2>4. Cross-Source Comparison &amp; Discrepancy Analysis</h2>
+
+        <h3>Name Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Name</th><th>Match</th></tr>
+            <tr><td>Enrichment Input</td><td>Kennedy Simon</td><td class="status-match">Match</td></tr>
+            <tr><td>PIPL</td><td>Kennedy Simon</td><td class="status-match">Match</td></tr>
+        </table>
+
+        <h3>Location Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Location</th><th>Match</th></tr>
+            <tr><td>PIPL</td><td>Grand Prairie, TX</td><td class="status-match">Match</td></tr>
+            <tr><td>Phone Location (Neutrino)</td><td>Texas</td><td class="status-match">Match</td></tr>
+        </table>
+
+        <h3>Employment Timeline Consistency</h3>
+        <table>
+            <tr><th>Period</th><th>CV</th><th>LinkedIn</th><th>Status</th></tr>
+            <tr><td colspan="4">No LinkedIn data available for comparison</td></tr>
+        </table>
+
+        <h3>Education Timeline Consistency</h3>
+        <table>
+            <tr><th>Period</th><th>CV</th><th>LinkedIn</th><th>Status</th></tr>
+            <tr><td colspan="4">No LinkedIn data available for comparison</td></tr>
+        </table>
+    </section>
+
+    <section id="enrichment-combination">
+        <h2>5. Enrichment Combination Analysis</h2>
+
+        <h3>Digital Footprint Assessment</h3>
+        <table>
+            <tr><th>Indicator</th><th>Finding</th><th>Weight</th></tr>
+            <tr><td>Email Longevity</td><td>5.5+ years active</td><td>+15 (Positive)</td></tr>
+            <tr><td>Phone Longevity</td><td>10+ years established</td><td>+20 (Strong Positive)</td></tr>
+            <tr><td>Number of Data Sources</td><td>Email: 2 sources, Phone: 7 sources</td><td>+10 (Positive)</td></tr>
+            <tr><td>Social Media Accounts</td><td>None detected</td><td>0 (Neutral)</td></tr>
+        </table>
+
+        <h3>Geographic Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Location</th><th>Status</th></tr>
+            <tr><td>PIPL Address</td><td>Grand Prairie, TX</td><td class="status-match">Match</td></tr>
+            <tr><td>Phone Registration</td><td>Texas</td><td class="status-match">Match</td></tr>
+        </table>
+
+        <h3>Identity Theft Risk Indicators</h3>
+        <table>
+            <tr><th>Indicator</th><th>Status</th><th>Notes</th></tr>
+            <tr><td>Age Consistency</td><td class="status-anomaly">Unknown</td><td>No DOB in PIPL data</td></tr>
+            <tr><td>Name Variations</td><td class="status-match">None</td><td>Single consistent name</td></tr>
+            <tr><td>Phone Owner History</td><td class="status-match">5 owners</td><td>Multiple owners but phone aged 10+ years</td></tr>
+            <tr><td>Synthetic Identity Markers</td><td class="status-match">None Detected</td><td>No indicators of fabricated identity</td></tr>
+        </table>
+    </section>
+
+    <section id="red-flags">
+        <h2>6. Red Flags Identified</h2>
+        <div class="legitimacy-indicator">
+            <strong>No significant red flags identified.</strong>
+            <p>Minor notes: PIPL match confidence at 0.42 (partial), and MaxMind noted transaction reports on email address (multiplier 10x) but overall risk remained very low at 0.51.</p>
+        </div>
+    </section>
+
+    <section id="legitimacy">
+        <h2>7. Legitimacy Indicators</h2>
+        <table>
+            <tr><th>Category</th><th>Evidence</th><th>Strength</th></tr>
+            <tr><td>Email Establishment</td><td>First seen 2018, active 66+ months</td><td class="status-match">Strong</td></tr>
+            <tr><td>Phone Establishment</td><td>Mobile on AT&T, 127 months history</td><td class="status-match">Very Strong</td></tr>
+            <tr><td>Geographic Stability</td><td>Consistent Texas location</td><td class="status-match">Strong</td></tr>
+            <tr><td>Carrier Type</td><td>Major carrier (AT&T), not VoIP</td><td class="status-match">Strong</td></tr>
+            <tr><td>Trust Score</td><td>966/1000 with approve decision</td><td class="status-match">Very Strong</td></tr>
+        </table>
+    </section>
+
+    <section id="chain-of-thought">
+        <h2>8. Chain of Thought Reasoning</h2>
+
+        <div class="chain-of-thought">
+            <h4>Step 1: Identity Verification</h4>
+            <p>PIPL confirms Kennedy Simon as a real person with the name valid since 2021. The match confidence of 0.42 is partial but the phone number matches exactly. No date of birth available for age verification.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 2: Contact Information Analysis</h4>
+            <p>Email kennedynsimon@gmail.com is valid (Neutrino), not disposable, and has been active since 2018. Phone 214-878-3610 is a valid mobile on AT&T/Cingular network in Texas. Both contact methods show excellent longevity.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 3: CV Employment Analysis</h4>
+            <p>CV shows professional employment at Liberty Mutual Insurance (Jun 2020 - Mar 2024) as Worker's Compensation Claims Specialist, demonstrating relevant insurance industry experience. Currently at Bleu Grace Designs as Marketing Coordinator Intern. Holds Licensed Claims Adjuster certification in 5 states (AZ, CO, OK, MS, TX). BS in Psychology from University of North Texas. Timeline consistent with email first seen 2018 and PIPL records from 2021.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 4: Cross-Source Validation</h4>
+            <p>Name matches across input and PIPL. Location (Texas/Grand Prairie) consistent between PIPL address and phone registration. No LinkedIn data available for employment verification.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 5: Risk Score Evaluation</h4>
+            <p>MaxMind risk score 0.51 is very low. Trust Elephant score 966/1000 is excellent with automatic approval. Email score 798 and phone score 883 both indicate high trustworthiness.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 6: Conclusion</h4>
+            <p>Kennedy Simon appears to be a legitimate individual based on the convergence of positive indicators: long-established phone (10+ years), established email (5+ years), consistent geography, valid mobile phone on major carrier, and high trust scores. The partial PIPL match (0.42) is the only minor concern but is offset by the exact phone match and other positive signals.</p>
+        </div>
+    </section>
+
+    <section id="final-assessment">
+        <h2>9. Final Risk Assessment</h2>
+        <table>
+            <tr><th>Dimension</th><th>Assessment</th><th>Confidence</th></tr>
+            <tr><td>Identity Authenticity</td><td class="status-match">Likely Authentic</td><td>Medium-High</td></tr>
+            <tr><td>Timeline Consistency</td><td class="status-match">Consistent</td><td>High</td></tr>
+            <tr><td>Digital Footprint</td><td class="status-match">Well Established</td><td>High</td></tr>
+            <tr><td>Fraud Indicators</td><td class="status-match">None Detected</td><td>High</td></tr>
+        </table>
+
+        <div class="executive-summary" style="margin-top: 20px;">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Overall Risk Level</span>
+                    <span class="risk-badge risk-low">LOW</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-approve">APPROVE</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p><strong>Reasoning:</strong> Candidate demonstrates strong legitimacy indicators including long-established phone and email accounts, consistent geographic data, valid mobile phone on major carrier, and high trust scores from multiple vendors. No significant fraud indicators detected.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="verification-recommendations">
+        <h2>Verification Recommendations</h2>
+        <p>While the candidate presents a low-risk profile, consider the following for due diligence: (1) Verify employment history directly as no LinkedIn or PIPL job data is available, (2) Confirm identity documents match the name Kennedy Simon, (3) Standard background check for roles requiring high trust.</p>
+    </section>
+
+    <footer>
+        <p>Report generated using automated enrichment analysis. Human review recommended for final decisions.</p>
+    </footer>
+</body>
+</html>
