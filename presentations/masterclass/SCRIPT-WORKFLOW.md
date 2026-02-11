@@ -119,3 +119,25 @@ They don't verify the identity actually exists. And fake identities don't have b
 - Screenshots: `assets/vero/`
 - Brand guidelines: `../../docs/BRAND.md`
 - Vero website repo: `~/clawd/repos/verofintech-demo/`
+
+## Important: Visual Changes
+
+**When script changes require visual updates, always provide Claude Code prompts for Michael.**
+
+Format:
+```
+**Claude Code Prompt:**
+
+**File:** `path/to/file.html`
+
+**Slide:** `data-slide-id="slide-name"`
+
+**Change:** [Describe what to change]
+
+**Details:** [Specific implementation notes]
+```
+
+For assets (images, logos):
+1. Genie finds and downloads the assets first
+2. Commit them to the repo
+3. Claude Code prompt references the local paths
