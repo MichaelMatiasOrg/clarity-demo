@@ -40,7 +40,7 @@ test.describe('Core Pages Load', () => {
 
 test.describe('Presentation Functionality', () => {
 
-  test('masterclass has exactly 37 slides', async ({ page }) => {
+  test('masterclass has exactly 41 slides', async ({ page }) => {
     await page.goto('/presentations/masterclass/', { waitUntil: 'domcontentloaded' });
     const slides = page.locator('.slide');
     const count = await slides.count();
