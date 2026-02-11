@@ -424,6 +424,9 @@ class NarrationEngine {
         if (this.subtitlesEnabled) this.subtitlesContainer.classList.add('active');
         this.startBtn.classList.add('hidden');
 
+        // Dock controls into bottom toolbar
+        this._dockControls(true);
+
         // Hide nav hint if present
         const navHint = document.getElementById('nav-hint');
         if (navHint) navHint.style.display = 'none';
@@ -736,13 +739,13 @@ class NarrationEngine {
     }
 
     _dockControls(dock) {
-        if (!this.controls || !this.isPlaying) return;
-        const footer = document.getElementById('narration-panel-footer');
-        if (!footer) return;
+        if (!this.controls) return;
+        const bottomToolbar = document.getElementById('bottom-toolbar');
+        if (!bottomToolbar) return;
 
         if (dock) {
             this.controls.classList.add('docked');
-            footer.prepend(this.controls);
+            bottomToolbar.prepend(this.controls);
         } else {
             this.controls.classList.remove('docked');
             document.body.appendChild(this.controls);
