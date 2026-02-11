@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity Generator — Clarity Demo</title>
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #0a1628;
@@ -39,7 +39,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 32px;
+            padding: 14px 32px;
             border-bottom: 1px solid var(--border);
             flex-shrink: 0;
         }
@@ -50,10 +50,7 @@
             gap: 16px;
         }
 
-        .header-logo {
-            height: 28px;
-            opacity: 0.9;
-        }
+        .header-logo { height: 28px; opacity: 0.9; }
 
         .header-divider {
             width: 1px;
@@ -66,7 +63,6 @@
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text-muted);
-            letter-spacing: 0.02em;
         }
 
         .header-back {
@@ -79,9 +75,120 @@
             transition: color 0.2s;
         }
 
-        .header-back:hover {
-            color: var(--text-white);
+        .header-back:hover { color: var(--text-white); }
+
+        /* ── Attack Timeline ── */
+        .attack-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding: 12px 32px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 22, 40, 0.5);
+            flex-shrink: 0;
         }
+
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            transition: color 0.3s;
+        }
+
+        .timeline-step .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid var(--text-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .timeline-step.active {
+            color: var(--danger);
+        }
+
+        .timeline-step.active .step-num {
+            border-color: var(--danger);
+            background: var(--danger);
+            color: white;
+        }
+
+        .timeline-step.done {
+            color: var(--accent);
+        }
+
+        .timeline-step.done .step-num {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        .timeline-connector {
+            width: 60px;
+            height: 1px;
+            background: var(--text-dim);
+            margin: 0 12px;
+            opacity: 0.3;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-connector.active::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            height: 100%;
+            width: 100%;
+            background: var(--danger);
+            animation: connectorFill 0.4s ease forwards;
+        }
+
+        .timeline-connector.done::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            height: 100%; width: 100%;
+            background: var(--accent);
+        }
+
+        @keyframes connectorFill {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Timer */
+        .attack-timer {
+            position: absolute;
+            right: 32px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            display: none;
+        }
+
+        .attack-timer.running {
+            display: block;
+            color: var(--danger);
+        }
+
+        .attack-timer.finished {
+            display: block;
+            color: var(--accent);
+        }
+
+        .attack-timeline { position: relative; }
 
         /* ── Main Layout ── */
         .main {
@@ -90,7 +197,7 @@
             overflow: hidden;
         }
 
-        /* ── Left Panel: Job Listings ── */
+        /* ── Left Panel ── */
         .left-panel {
             width: 380px;
             flex-shrink: 0;
@@ -101,7 +208,7 @@
         }
 
         .company-header {
-            padding: 28px 28px 20px;
+            padding: 24px 24px 16px;
             border-bottom: 1px solid var(--border);
         }
 
@@ -125,21 +232,18 @@
             color: white;
         }
 
-        .company-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
+        .company-name { font-size: 1.15rem; font-weight: 700; }
 
         .company-subtitle {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-dim);
             margin-top: 4px;
             padding-left: 52px;
         }
 
         .jobs-label {
-            padding: 16px 28px 8px;
-            font-size: 0.7rem;
+            padding: 14px 24px 8px;
+            font-size: 0.68rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -147,19 +251,19 @@
         }
 
         .job-list {
-            padding: 0 16px 16px;
+            padding: 0 14px 14px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         .job-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 20px;
+            border-radius: 10px;
+            padding: 14px 18px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
             position: relative;
         }
 
@@ -176,31 +280,20 @@
         .job-card.active::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 50%;
+            left: 0; top: 50%;
             transform: translateY(-50%);
-            width: 3px;
-            height: 60%;
+            width: 3px; height: 60%;
             background: var(--danger);
             border-radius: 0 2px 2px 0;
         }
 
-        .job-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .job-team {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
+        .job-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 3px; }
+        .job-team { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px; }
 
         .job-meta {
             display: flex;
             gap: 12px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             color: var(--text-dim);
         }
 
@@ -210,44 +303,55 @@
             gap: 4px;
         }
 
-        /* ── Right Panel: Phases ── */
+        /* Job requirements (shown during scan) */
+        .job-requirements {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: none;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .job-card.active .job-requirements {
+            display: flex;
+        }
+
+        .req-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(239, 68, 68, 0.08);
+            color: var(--text-dim);
+            border: 1px solid rgba(239, 68, 68, 0.1);
+            transition: all 0.3s;
+        }
+
+        .req-tag.extracted {
+            background: var(--danger-dim);
+            color: var(--danger);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        /* ── Right Panel ── */
         .right-panel {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 32px;
+            padding: 28px;
             position: relative;
             overflow-y: auto;
         }
 
-        .phase {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 32px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .phase.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* ── Phase: Placeholder ── */
-        .placeholder {
-            text-align: center;
-            color: var(--text-dim);
-        }
+        /* Placeholder */
+        .placeholder { text-align: center; color: var(--text-dim); }
 
         .placeholder-icon {
-            width: 80px;
-            height: 80px;
-            border: 2px dashed rgba(255, 255, 255, 0.1);
+            width: 80px; height: 80px;
+            border: 2px dashed rgba(255, 255, 255, 0.08);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -256,607 +360,221 @@
         }
 
         .placeholder-icon svg {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             stroke: var(--text-dim);
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .placeholder h3 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--text-muted);
         }
 
-        .placeholder p {
-            font-size: 0.85rem;
-        }
+        .placeholder p { font-size: 0.85rem; }
 
-        /* ── Phase 1: Requirements ── */
-        .req-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px 36px;
-            width: 100%;
-            max-width: 520px;
-        }
-
-        .req-card-header {
-            margin-bottom: 24px;
-        }
-
-        .req-card-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .req-card-sub {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            display: flex;
-            gap: 16px;
-        }
-
-        .req-card-sub span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .req-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .req-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            opacity: 0;
-            transform: translateY(8px);
-            transition: all 0.35s ease;
-        }
-
-        .req-row.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .req-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .req-icon svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--text-muted);
-            fill: none;
-        }
-
-        .req-label {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-white);
-            margin-bottom: 2px;
-        }
-
-        .req-text {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            line-height: 1.4;
-        }
-
-        .req-footer {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.8rem;
-            color: var(--danger);
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .req-footer.visible {
-            opacity: 1;
-        }
-
-        .req-footer-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--danger);
-            animation: pulse-dot 1.2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.8); }
-        }
-
-        /* ── Phase 2: Matching ── */
-        .matching-container {
-            width: 100%;
-            max-width: 680px;
-        }
-
-        .matching-progress {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .matching-dots {
-            display: flex;
-            gap: 6px;
-        }
-
-        .matching-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: background 0.3s;
-        }
-
-        .matching-dot.done {
-            background: var(--accent);
-        }
-
-        .matching-dot.active {
-            background: var(--danger);
-            animation: pulse-dot 1s ease-in-out infinite;
-        }
-
-        .matching-label {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .matching-workspace {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            min-height: 200px;
-            margin-bottom: 24px;
-        }
-
-        /* Left: requirement */
-        .match-req {
-            flex: 1;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            opacity: 0;
-            transform: translateX(-12px);
-            transition: all 0.3s ease;
-        }
-
-        .match-req.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .match-req-header {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 12px;
-        }
-
-        .match-req-icon {
-            width: 32px;
-            height: 32px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .match-req-icon svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--text-muted);
-            fill: none;
-        }
-
-        .match-req-label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .match-req-text {
-            font-size: 0.78rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        /* Arrow */
-        .match-arrow {
-            display: flex;
-            align-items: center;
-            padding-top: 60px;
-            flex-shrink: 0;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .match-arrow.visible {
-            opacity: 1;
-        }
-
-        .match-arrow svg {
-            width: 48px;
-            height: 24px;
-        }
-
-        .match-arrow .arrow-line {
-            stroke: var(--danger);
-            stroke-width: 2;
-            stroke-dasharray: 6 4;
-            animation: dash-flow 0.6s linear infinite;
-        }
-
-        .match-arrow .arrow-head {
-            fill: var(--danger);
-        }
-
-        @keyframes dash-flow {
-            to { stroke-dashoffset: -10; }
-        }
-
-        /* Right: crafted */
-        .match-crafted {
-            flex: 1;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            opacity: 0;
-            transform: translateX(12px);
-            transition: all 0.3s ease;
-        }
-
-        .match-crafted.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .match-crafted-header {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--danger);
-            margin-bottom: 12px;
-        }
-
-        .match-narrative {
-            font-size: 0.82rem;
-            font-style: italic;
-            color: var(--danger);
-            line-height: 1.6;
-            margin-bottom: 16px;
-            min-height: 2.4em;
-        }
-
-        .match-narrative .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: var(--danger);
-            margin-left: 1px;
-            vertical-align: text-bottom;
-            animation: blink 0.6s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        .match-piece {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1.5px dashed rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 14px 16px;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 0.4s ease;
-        }
-
-        .match-piece.visible {
-            opacity: 1;
-            transform: scale(1);
-            border-style: solid;
-            border-color: rgba(97, 243, 147, 0.3);
-            background: rgba(97, 243, 147, 0.04);
-        }
-
-        .match-piece-label {
-            font-size: 0.82rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .match-piece-detail {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            margin-bottom: 2px;
-        }
-
-        .match-piece-period {
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            opacity: 0.7;
-        }
-
-        .match-piece-type {
-            display: inline-block;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-bottom: 8px;
-        }
-
-        .match-piece-type.experience { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-        .match-piece-type.certification { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-        .match-piece-type.education { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
-
-        /* Crafted tray */
-        .match-tray {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            min-height: 34px;
-        }
-
-        .match-tray-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-right: 4px;
-        }
-
-        .tray-pill {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            padding: 5px 12px;
-            border-radius: 20px;
-            background: rgba(97, 243, 147, 0.08);
-            border: 1px solid rgba(97, 243, 147, 0.2);
-            color: var(--accent);
-            opacity: 0;
-            transform: scale(0.7);
-            transition: all 0.35s ease;
-        }
-
-        .tray-pill.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .tray-pill svg {
-            width: 12px;
-            height: 12px;
-            stroke: var(--accent);
-            fill: none;
-        }
-
-        /* ── Phase 3: Assembly ── */
-        .assembly-container {
-            width: 100%;
-            max-width: 640px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .assembly-avatar-wrap {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .assembly-avatar-canvas {
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            display: block;
-        }
-
-        .assembly-avatar-ring {
+        /* Scanning overlay */
+        .scan-overlay {
             position: absolute;
-            inset: -6px;
-            border: 2px solid transparent;
-            border-radius: 50%;
-            transition: border-color 0.5s;
-        }
-
-        .assembly-avatar-ring.ready {
-            border-color: var(--accent);
-            animation: pulse-ring 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse-ring {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.06); opacity: 0.6; }
-        }
-
-        .assembly-name {
-            font-size: 1.3rem;
-            font-weight: 800;
-            text-align: center;
-            min-height: 1.4em;
-            margin-bottom: 4px;
-        }
-
-        .assembly-headline {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-align: center;
-            min-height: 1.2em;
-            margin-bottom: 24px;
-        }
-
-        .assembly-name .cursor,
-        .assembly-headline .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: var(--text-white);
-            margin-left: 1px;
-            vertical-align: text-bottom;
-            animation: blink 0.6s step-end infinite;
-        }
-
-        .assembly-headline .cursor {
-            background: var(--text-muted);
-        }
-
-        .assembly-status {
+            inset: 0;
+            background: rgba(10, 22, 40, 0.95);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 24px;
+            justify-content: center;
+            z-index: 10;
             opacity: 0;
-            transition: opacity 0.5s;
+            pointer-events: none;
+            transition: opacity 0.3s;
         }
 
-        .assembly-status.visible {
+        .scan-overlay.active {
             opacity: 1;
+            pointer-events: auto;
         }
 
-        .assembly-status svg {
-            width: 16px;
-            height: 16px;
+        .scan-ring-outer {
+            width: 100px; height: 100px;
+            position: relative;
+            margin-bottom: 28px;
         }
 
-        /* CV Document (Phase 3) */
+        .scan-ring {
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            border-top-color: var(--danger);
+            border-right-color: var(--danger);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        .scan-ring-inner {
+            position: absolute;
+            inset: 12px;
+            border: 1.5px solid transparent;
+            border-bottom-color: rgba(239, 68, 68, 0.4);
+            border-left-color: rgba(239, 68, 68, 0.4);
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite reverse;
+        }
+
+        .scan-crosshair {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px; height: 12px;
+        }
+
+        .scan-crosshair::before,
+        .scan-crosshair::after {
+            content: '';
+            position: absolute;
+            background: var(--danger);
+        }
+
+        .scan-crosshair::before {
+            width: 12px; height: 1.5px;
+            top: 50%; left: 0;
+            transform: translateY(-50%);
+        }
+
+        .scan-crosshair::after {
+            width: 1.5px; height: 12px;
+            left: 50%; top: 0;
+            transform: translateX(-50%);
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .scan-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--danger);
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .scan-detail {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            height: 20px;
+        }
+
+        /* CV Document */
         .cv-doc {
             background: #ffffff;
             color: #1a1a2e;
             width: 100%;
+            max-width: 640px;
             border-radius: 8px;
             box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
             padding: 36px 40px;
+            display: none;
             position: relative;
-            opacity: 0;
-            transform: translateY(24px);
-            transition: all 0.5s ease;
         }
 
-        .cv-doc.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .cv-watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-35deg);
-            font-size: 4rem;
-            font-weight: 800;
-            color: rgba(239, 68, 68, 0.06);
-            white-space: nowrap;
-            pointer-events: none;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
+        .cv-doc.visible { display: block; }
 
         .cv-header {
             display: flex;
             align-items: center;
             gap: 18px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             opacity: 0;
-            transition: opacity 0.4s;
         }
 
-        .cv-header.visible { opacity: 1; }
+        .cv-header.animate-in { animation: fadeIn 0.4s ease forwards; }
 
         .cv-avatar {
-            width: 52px;
-            height: 52px;
+            width: 64px; height: 64px;
             border-radius: 50%;
+            flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
+            background: #e2e8f0;
+        }
+
+        .cv-avatar img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Avatar generation animation */
+        .cv-avatar .avatar-gen {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #e2e8f0 100%);
+            background-size: 200% 200%;
+            animation: shimmer 1.2s ease-in-out infinite;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: white;
-            flex-shrink: 0;
         }
 
-        .cv-name {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #0a1628;
-            line-height: 1.2;
+        .cv-avatar .avatar-gen svg {
+            width: 28px; height: 28px;
+            stroke: #94a3b8;
+            fill: none;
         }
+
+        .cv-avatar .avatar-gen.done {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+
+        .cv-name { font-size: 1.45rem; font-weight: 800; color: #0a1628; line-height: 1.2; }
 
         .cv-contact {
             font-size: 0.7rem;
             color: #64748b;
-            margin-top: 3px;
+            margin-top: 4px;
             display: flex;
             flex-wrap: wrap;
             gap: 4px 14px;
         }
 
-        .cv-headline-text {
-            font-size: 0.9rem;
+        .cv-headline {
+            font-size: 0.92rem;
             font-weight: 600;
             color: #3B82F6;
             margin-bottom: 18px;
             padding-bottom: 14px;
             border-bottom: 2px solid #f1f5f9;
+            min-height: 1.4em;
             opacity: 0;
-            transition: opacity 0.3s;
+            font-family: 'JetBrains Mono', 'Manrope', monospace;
         }
 
-        .cv-headline-text.visible { opacity: 1; }
+        .cv-headline.animate-in { opacity: 1; }
 
-        .cv-section {
-            margin-bottom: 18px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .cv-headline .cursor {
+            display: inline-block;
+            width: 2px; height: 1em;
+            background: #3B82F6;
+            margin-left: 1px;
+            vertical-align: text-bottom;
+            animation: blink 0.5s step-end infinite;
         }
 
-        .cv-section.visible { opacity: 1; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* CV sections */
+        .cv-section { margin-bottom: 18px; opacity: 0; }
+        .cv-section.animate-in { animation: fadeIn 0.4s ease forwards; }
 
         .cv-section-title {
             font-size: 0.68rem;
@@ -864,33 +582,54 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: #94a3b8;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .cv-summary {
             font-size: 0.82rem;
-            line-height: 1.6;
+            line-height: 1.65;
             color: #334155;
+        }
+
+        .cv-summary .keyword {
+            color: #059669;
+            font-weight: 600;
         }
 
         .cv-exp-item {
             margin-bottom: 14px;
             padding-left: 14px;
             border-left: 2px solid #e2e8f0;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .cv-exp-item.animate-in { animation: slideInLeft 0.4s ease forwards; }
+
+        @keyframes slideInLeft {
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .cv-exp-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             margin-bottom: 3px;
         }
 
-        .cv-exp-company {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #0a1628;
+        .cv-exp-company-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
+        .cv-exp-logo {
+            height: 16px;
+            width: auto;
+            opacity: 0.7;
+        }
+
+        .cv-exp-company { font-size: 0.88rem; font-weight: 700; color: #0a1628; }
 
         .cv-exp-period {
             font-size: 0.72rem;
@@ -900,20 +639,17 @@
             margin-left: 12px;
         }
 
-        .cv-exp-title-text {
+        .cv-exp-title {
             font-size: 0.78rem;
             color: #64748b;
             font-weight: 500;
             margin-bottom: 6px;
         }
 
-        .cv-exp-bullets {
-            list-style: none;
-            padding: 0;
-        }
+        .cv-exp-bullets { list-style: none; padding: 0; }
 
         .cv-exp-bullets li {
-            font-size: 0.75rem;
+            font-size: 0.76rem;
             color: #475569;
             line-height: 1.55;
             padding-left: 14px;
@@ -924,28 +660,26 @@
         .cv-exp-bullets li::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 8px;
-            width: 4px;
-            height: 4px;
+            left: 0; top: 8px;
+            width: 4px; height: 4px;
             border-radius: 50%;
             background: #cbd5e1;
         }
 
-        .cv-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
+        .cv-skills { display: flex; flex-wrap: wrap; gap: 6px; }
 
         .cv-skill-tag {
             font-size: 0.72rem;
             font-weight: 600;
             padding: 4px 10px;
-            border-radius: 6px;
+            border-radius: 5px;
             background: #f1f5f9;
             color: #475569;
+            opacity: 0;
+            transform: scale(0.7);
         }
+
+        .cv-skill-tag.animate-in { animation: popIn 0.15s ease forwards; }
 
         .cv-skill-tag.matched {
             background: #ecfdf5;
@@ -953,124 +687,97 @@
             border: 1px solid #a7f3d0;
         }
 
+        @keyframes popIn { to { opacity: 1; transform: scale(1); } }
+
         .cv-edu {
             font-size: 0.82rem;
             color: #334155;
             line-height: 1.5;
         }
 
-        .cv-edu strong {
-            font-weight: 700;
-            color: #0a1628;
-        }
+        .cv-edu strong { font-weight: 700; color: #0a1628; }
 
         .cv-certs {
-            margin-top: 8px;
+            margin-top: 6px;
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 5px;
         }
 
         .cv-cert-tag {
             font-size: 0.68rem;
             font-weight: 500;
-            padding: 3px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
             background: #fef3c7;
             color: #92400e;
         }
 
-        /* ── Continue Prompt ── */
-        .continue-prompt {
+        .cv-watermark {
             position: absolute;
-            bottom: 24px;
-            right: 32px;
-            display: flex;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-35deg);
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: rgba(239, 68, 68, 0.05);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Match score badge */
+        .match-badge {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-radius: 8px;
+            padding: 6px 12px;
+            display: none;
             align-items: center;
-            gap: 8px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-dim);
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 10px 18px;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(8px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            z-index: 20;
+            gap: 6px;
         }
 
-        .continue-prompt.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
+        .match-badge.visible { display: flex; }
 
-        .continue-prompt:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-muted);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .continue-prompt kbd {
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.65rem;
+        .match-score {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
             font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
+            color: #059669;
         }
 
-        .continue-prompt svg {
-            width: 14px;
-            height: 14px;
-            stroke: currentColor;
-            fill: none;
-        }
-
-        /* Autoplay badge */
-        .autoplay-badge {
-            font-size: 0.7rem;
+        .match-label {
+            font-size: 0.65rem;
             font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: var(--accent-dim);
-            color: var(--accent);
-            border: 1px solid rgba(97, 243, 147, 0.2);
-            opacity: 0;
-            transition: opacity 0.2s;
-            pointer-events: none;
+            color: #059669;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
-        .autoplay-badge.visible {
-            opacity: 1;
+        /* Generation helpers */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── Warning Banner ── */
+        /* Warning banner */
         .warning-banner {
-            padding: 10px 32px;
+            padding: 8px 32px;
             background: var(--danger-dim);
-            border-top: 1px solid rgba(239, 68, 68, 0.2);
+            border-top: 1px solid rgba(239, 68, 68, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--danger);
             font-weight: 500;
             flex-shrink: 0;
         }
 
-        .warning-banner svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-        }
+        .warning-banner svg { width: 12px; height: 12px; flex-shrink: 0; }
     </style>
 </head>
 <body>
@@ -1081,18 +788,39 @@
             <div class="header-divider"></div>
             <span class="header-title">Identity Generator</span>
         </div>
-        <div style="display:flex;align-items:center;gap:14px;">
-            <div class="autoplay-badge" id="autoplayBadge">AUTOPLAY</div>
-            <a href="../../index.html" class="header-back">
-                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-                Back to Hub
-            </a>
-        </div>
+        <a href="../../index.html" class="header-back">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            Back to Hub
+        </a>
     </header>
+
+    <!-- Attack Timeline -->
+    <div class="attack-timeline">
+        <div class="timeline-step" id="step-recon">
+            <span class="step-num">1</span>
+            <span>Target</span>
+        </div>
+        <div class="timeline-connector" id="conn-1"></div>
+        <div class="timeline-step" id="step-scan">
+            <span class="step-num">2</span>
+            <span>Extract</span>
+        </div>
+        <div class="timeline-connector" id="conn-2"></div>
+        <div class="timeline-step" id="step-gen">
+            <span class="step-num">3</span>
+            <span>Generate</span>
+        </div>
+        <div class="timeline-connector" id="conn-3"></div>
+        <div class="timeline-step" id="step-ready">
+            <span class="step-num">4</span>
+            <span>Deploy</span>
+        </div>
+        <div class="attack-timer" id="attackTimer">0.0s</div>
+    </div>
 
     <!-- Main content -->
     <div class="main">
-        <!-- Left: Job Listings -->
+        <!-- Left: Target Company -->
         <div class="left-panel">
             <div class="company-header">
                 <div class="company-logo-row">
@@ -1105,125 +833,62 @@
             <div class="job-list" id="jobList"></div>
         </div>
 
-        <!-- Right: Phase panels -->
-        <div class="right-panel">
-            <!-- Continue prompt (floating) -->
-            <div class="continue-prompt" id="continuePrompt">
-                <svg viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-                <span>Continue</span>
-                <kbd>Space</kbd>
-            </div>
-            <!-- Phase: Placeholder -->
-            <div class="phase active" id="phasePlaceholder">
-                <div class="placeholder">
-                    <div class="placeholder-icon">
-                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-                        </svg>
-                    </div>
-                    <h3>Select a position to target</h3>
-                    <p>Click a job listing to watch a synthetic identity assemble in real-time</p>
+        <!-- Right: CV Display -->
+        <div class="right-panel" id="rightPanel">
+            <div class="placeholder" id="placeholder">
+                <div class="placeholder-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+                    </svg>
                 </div>
+                <h3>Select a target role</h3>
+                <p>Click a job listing to watch a synthetic identity build in real time</p>
             </div>
 
-            <!-- Phase 1: Requirements -->
-            <div class="phase" id="phaseRequirements">
-                <div class="req-card">
-                    <div class="req-card-header">
-                        <div class="req-card-title" id="reqTitle"></div>
-                        <div class="req-card-sub" id="reqSub"></div>
-                    </div>
-                    <div class="req-list" id="reqList"></div>
-                    <div class="req-footer" id="reqFooter">
-                        <div class="req-footer-dot"></div>
-                        <span>Analyzing attack surface...</span>
-                    </div>
+            <div class="scan-overlay" id="scanOverlay">
+                <div class="scan-ring-outer">
+                    <div class="scan-ring"></div>
+                    <div class="scan-ring-inner"></div>
+                    <div class="scan-crosshair"></div>
                 </div>
+                <div class="scan-label" id="scanLabel">Extracting requirements...</div>
+                <div class="scan-detail" id="scanDetail"></div>
             </div>
 
-            <!-- Phase 2: Matching -->
-            <div class="phase" id="phaseMatching">
-                <div class="matching-container">
-                    <div class="matching-progress">
-                        <div class="matching-dots" id="matchDots"></div>
-                        <div class="matching-label" id="matchLabel"></div>
-                    </div>
-                    <div class="matching-workspace">
-                        <div class="match-req" id="matchReq">
-                            <div class="match-req-header">Requirement</div>
-                            <div class="match-req-icon" id="matchReqIcon"></div>
-                            <div class="match-req-label" id="matchReqLabel"></div>
-                            <div class="match-req-text" id="matchReqText"></div>
-                        </div>
-                        <div class="match-arrow" id="matchArrow">
-                            <svg viewBox="0 0 48 24">
-                                <line class="arrow-line" x1="0" y1="12" x2="38" y2="12"/>
-                                <polygon class="arrow-head" points="36,6 48,12 36,18"/>
-                            </svg>
-                        </div>
-                        <div class="match-crafted" id="matchCrafted">
-                            <div class="match-crafted-header">Crafted Response</div>
-                            <div class="match-narrative" id="matchNarrative"></div>
-                            <div class="match-piece" id="matchPiece">
-                                <div class="match-piece-type" id="matchPieceType"></div>
-                                <div class="match-piece-label" id="matchPieceLabel"></div>
-                                <div class="match-piece-detail" id="matchPieceDetail"></div>
-                                <div class="match-piece-period" id="matchPiecePeriod"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="match-tray">
-                        <span class="match-tray-label">Crafted:</span>
-                        <div id="matchTray"></div>
+            <div class="cv-doc" id="cvDoc">
+                <div class="cv-watermark">SYNTHETIC</div>
+                <div class="match-badge" id="matchBadge">
+                    <span class="match-score" id="matchScore">0%</span>
+                    <span class="match-label">match</span>
+                </div>
+                <div class="cv-header" id="cvHeader">
+                    <div class="cv-avatar" id="cvAvatar"></div>
+                    <div>
+                        <div class="cv-name" id="cvName"></div>
+                        <div class="cv-contact" id="cvContact"></div>
                     </div>
                 </div>
-            </div>
+                <div class="cv-headline" id="cvHeadline"></div>
 
-            <!-- Phase 3: Assembly -->
-            <div class="phase" id="phaseAssembly">
-                <div class="assembly-container">
-                    <div class="assembly-avatar-wrap">
-                        <canvas class="assembly-avatar-canvas" id="avatarCanvas" width="176" height="176"></canvas>
-                        <div class="assembly-avatar-ring" id="avatarRing"></div>
-                    </div>
-                    <div class="assembly-name" id="assemblyName"></div>
-                    <div class="assembly-headline" id="assemblyHeadline"></div>
-                    <div class="assembly-status" id="assemblyStatus">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <span>Identity Ready</span>
-                    </div>
-                    <div class="cv-doc" id="cvDoc">
-                        <div class="cv-watermark">SYNTHETIC</div>
-                        <div class="cv-header" id="cvHeader">
-                            <div class="cv-avatar" id="cvAvatar"></div>
-                            <div>
-                                <div class="cv-name" id="cvName"></div>
-                                <div class="cv-contact" id="cvContact"></div>
-                            </div>
-                        </div>
-                        <div class="cv-headline-text" id="cvHeadline"></div>
+                <div class="cv-section" id="cvSummarySection">
+                    <div class="cv-section-title">Professional Summary</div>
+                    <div class="cv-summary" id="cvSummary"></div>
+                </div>
 
-                        <div class="cv-section" id="cvSummarySection">
-                            <div class="cv-section-title">Professional Summary</div>
-                            <div class="cv-summary" id="cvSummary"></div>
-                        </div>
+                <div class="cv-section" id="cvExpSection">
+                    <div class="cv-section-title">Experience</div>
+                    <div id="cvExperience"></div>
+                </div>
 
-                        <div class="cv-section" id="cvExpSection">
-                            <div class="cv-section-title">Experience</div>
-                            <div id="cvExperience"></div>
-                        </div>
+                <div class="cv-section" id="cvSkillsSection">
+                    <div class="cv-section-title">Skills</div>
+                    <div class="cv-skills" id="cvSkills"></div>
+                </div>
 
-                        <div class="cv-section" id="cvSkillsSection">
-                            <div class="cv-section-title">Skills</div>
-                            <div class="cv-skills" id="cvSkills"></div>
-                        </div>
-
-                        <div class="cv-section" id="cvEduSection">
-                            <div class="cv-section-title">Education & Certifications</div>
-                            <div class="cv-edu" id="cvEdu"></div>
-                            <div class="cv-certs" id="cvCerts"></div>
-                        </div>
-                    </div>
+                <div class="cv-section" id="cvEduSection">
+                    <div class="cv-section-title">Education & Certifications</div>
+                    <div class="cv-edu" id="cvEdu"></div>
+                    <div class="cv-certs" id="cvCerts"></div>
                 </div>
             </div>
         </div>
@@ -1239,71 +904,69 @@
     <script>
     (function() {
         let generationId = 0;
-        let autoplay = false;
-        let continueResolve = null;
+        let activeJobId = null;
+        let timerInterval = null;
+        let timerStart = 0;
 
-        // ── Autoplay toggle (A key) ──
-        const autoplayBadge = document.getElementById('autoplayBadge');
-        function setAutoplay(on) {
-            autoplay = on;
-            autoplayBadge.classList.toggle('visible', on);
-            // If turning on autoplay while waiting, immediately continue
-            if (on && continueResolve) {
-                continueResolve();
-                continueResolve = null;
-            }
-        }
-
-        // ── Wait for user to press Space / Right Arrow / click continue ──
-        const continuePrompt = document.getElementById('continuePrompt');
-
-        function waitForUser(genId) {
-            if (autoplay) return Promise.resolve();
-            return new Promise(resolve => {
-                continueResolve = resolve;
-                continuePrompt.classList.add('visible');
-            });
-        }
-
-        function dismissContinue() {
-            continuePrompt.classList.remove('visible');
-            if (continueResolve) {
-                continueResolve();
-                continueResolve = null;
-            }
-        }
-
-        // Keyboard listener
-        document.addEventListener('keydown', e => {
-            if (e.key === 'a' || e.key === 'A') {
-                e.preventDefault();
-                setAutoplay(!autoplay);
-                return;
-            }
-            if (e.key === ' ' || e.key === 'ArrowRight') {
-                e.preventDefault();
-                dismissContinue();
-            }
-        });
-
-        // Click on continue prompt
-        continuePrompt.addEventListener('click', dismissContinue);
-
-        // ── Icon SVG map ──
-        const ICONS = {
-            cloud: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg>',
-            container: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>',
-            shield: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>',
-            dollar: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
-            users: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>',
-            code: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>',
-            lock: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>',
-            chart: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>',
-            education: '<svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15v-3.75m0 0h10.5"/></svg>'
+        // Logo map for experience companies
+        const LOGO_MAP = {
+            stripe: '../../shared/logos/stripe.svg',
+            plaid: '../../shared/logos/plaid.svg',
+            crowdstrike: '../../shared/logos/crowdstrike.svg',
+            okta: '../../shared/logos/okta.svg',
+            splunk: '../../shared/logos/splunk.svg',
+            jira: '../../shared/logos/jira.svg',
+            elastic: '../../shared/logos/elastic.svg'
         };
 
-        function getIcon(name) {
-            return ICONS[name] || ICONS.code;
+        // ── Timer ──
+        const timerEl = document.getElementById('attackTimer');
+
+        function startTimer() {
+            timerStart = performance.now();
+            timerEl.className = 'attack-timer running';
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                const elapsed = ((performance.now() - timerStart) / 1000).toFixed(1);
+                timerEl.textContent = elapsed + 's';
+            }, 100);
+        }
+
+        function stopTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            const elapsed = ((performance.now() - timerStart) / 1000).toFixed(1);
+            timerEl.textContent = elapsed + 's';
+            timerEl.className = 'attack-timer finished';
+        }
+
+        // ── Timeline ──
+        function resetTimeline() {
+            ['step-recon', 'step-scan', 'step-gen', 'step-ready'].forEach(id => {
+                document.getElementById(id).className = 'timeline-step';
+            });
+            ['conn-1', 'conn-2', 'conn-3'].forEach(id => {
+                document.getElementById(id).className = 'timeline-connector';
+            });
+            timerEl.className = 'attack-timer';
+        }
+
+        function setTimelineStep(stepNum) {
+            const steps = ['step-recon', 'step-scan', 'step-gen', 'step-ready'];
+            const conns = ['conn-1', 'conn-2', 'conn-3'];
+
+            steps.forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (i + 1 < stepNum) el.className = 'timeline-step done';
+                else if (i + 1 === stepNum) el.className = 'timeline-step active';
+                else el.className = 'timeline-step';
+            });
+
+            conns.forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (i + 1 < stepNum) el.className = 'timeline-connector done';
+                else if (i + 1 === stepNum) el.className = 'timeline-connector active';
+                else el.className = 'timeline-connector';
+            });
         }
 
         // ── Render job listings ──
@@ -1312,6 +975,10 @@
             const card = document.createElement('div');
             card.className = 'job-card';
             card.dataset.jobId = job.id;
+            const reqTags = (job.requirements || []).map(r => {
+                const label = typeof r === 'string' ? r : r.label;
+                return '<span class="req-tag" data-req="' + label + '">' + label + '</span>';
+            }).join('');
             card.innerHTML = `
                 <div class="job-title">${job.title}</div>
                 <div class="job-team">${job.team}</div>
@@ -1325,456 +992,220 @@
                         ${job.posted}
                     </span>
                 </div>
+                <div class="job-requirements">${reqTags}</div>
             `;
             card.addEventListener('click', () => selectJob(job.id));
             jobList.appendChild(card);
         });
 
-        // ── Phase management ──
-        function showPhase(id) {
-            document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
-
-        // ── Select a job ──
-        async function selectJob(jobId) {
+        // ── Select job ──
+        function selectJob(jobId) {
+            if (activeJobId === jobId) return;
+            activeJobId = jobId;
             generationId++;
-            const genId = generationId;
+            const thisGen = generationId;
 
-            // Dismiss any pending continue prompt
-            continuePrompt.classList.remove('visible');
-            if (continueResolve) {
-                continueResolve();
-                continueResolve = null;
-            }
-
-            // Update active card styling
             document.querySelectorAll('.job-card').forEach(c => c.classList.remove('active'));
-            const card = document.querySelector(`[data-job-id="${jobId}"]`);
-            if (card) card.classList.add('active');
+            document.querySelector(`[data-job-id="${jobId}"]`).classList.add('active');
 
-            const job = window.JOB_LISTINGS.find(j => j.id === jobId);
+            // Reset requirement tag highlights
+            document.querySelectorAll('.req-tag').forEach(t => t.classList.remove('extracted'));
+
+            generateCV(jobId, thisGen);
+        }
+
+        // ── Main generation sequence ──
+        async function generateCV(jobId, genId) {
             const identity = window.IDENTITIES[jobId];
-            if (!job || !identity) return;
+            const job = window.JOB_LISTINGS.find(j => j.id === jobId);
+            if (!identity || !job) return;
 
-            // Phase 1: Requirements
-            await runPhase1(job, genId);
-            if (genId !== generationId) return;
-
-            // Wait for user before Phase 2
-            await waitForUser(genId);
-            if (genId !== generationId) return;
-
-            // Phase 2: Matching
-            await runPhase2(job, identity, genId);
-            if (genId !== generationId) return;
-
-            // Wait for user before Phase 3
-            await waitForUser(genId);
-            if (genId !== generationId) return;
-
-            // Phase 3: Assembly
-            await runPhase3(identity, genId);
-        }
-
-        // ── Phase 1: Show job requirements ──
-        async function runPhase1(job, genId) {
-            const title = document.getElementById('reqTitle');
-            const sub = document.getElementById('reqSub');
-            const list = document.getElementById('reqList');
-            const footer = document.getElementById('reqFooter');
-
-            // Reset
-            title.textContent = job.title;
-            sub.innerHTML = `<span>${job.team}</span><span>${job.salary}</span>`;
-            list.innerHTML = '';
-            footer.classList.remove('visible');
-
-            // Build requirement rows
-            job.requirements.forEach(req => {
-                const row = document.createElement('div');
-                row.className = 'req-row';
-                row.innerHTML = `
-                    <div class="req-icon">${getIcon(req.icon)}</div>
-                    <div>
-                        <div class="req-label">${req.label}</div>
-                        <div class="req-text">${req.text}</div>
-                    </div>
-                `;
-                list.appendChild(row);
-            });
-
-            showPhase('phaseRequirements');
-            await delay(200);
-            if (genId !== generationId) return;
-
-            // Stagger fade-in
-            const rows = list.querySelectorAll('.req-row');
-            for (let i = 0; i < rows.length; i++) {
-                if (genId !== generationId) return;
-                rows[i].classList.add('visible');
-                await delay(150);
-            }
-
-            if (genId !== generationId) return;
-            footer.classList.add('visible');
-            await delay(1200);
-        }
-
-        // ── Phase 2: Requirement-by-requirement matching ──
-        async function runPhase2(job, identity, genId) {
-            const dots = document.getElementById('matchDots');
-            const label = document.getElementById('matchLabel');
-            const trayEl = document.getElementById('matchTray');
-
-            // Reset
-            dots.innerHTML = '';
-            trayEl.innerHTML = '';
-            job.requirements.forEach(() => {
-                const dot = document.createElement('div');
-                dot.className = 'matching-dot';
-                dots.appendChild(dot);
-            });
-
-            showPhase('phaseMatching');
-            await delay(300);
-            if (genId !== generationId) return;
-
-            const allDots = dots.querySelectorAll('.matching-dot');
-
-            for (let i = 0; i < identity.craftedPieces.length; i++) {
-                if (genId !== generationId) return;
-
-                const piece = identity.craftedPieces[i];
-                const req = job.requirements[i];
-
-                // Update progress
-                allDots.forEach((d, idx) => {
-                    d.classList.remove('active');
-                    if (idx < i) d.classList.add('done');
-                });
-                allDots[i].classList.add('active');
-                label.textContent = `Matching requirement ${i + 1} of ${job.requirements.length}`;
-
-                // Reset workspace elements
-                const matchReq = document.getElementById('matchReq');
-                const matchArrow = document.getElementById('matchArrow');
-                const matchCrafted = document.getElementById('matchCrafted');
-                const matchNarrative = document.getElementById('matchNarrative');
-                const matchPiece = document.getElementById('matchPiece');
-
-                matchReq.classList.remove('visible');
-                matchArrow.classList.remove('visible');
-                matchCrafted.classList.remove('visible');
-                matchPiece.classList.remove('visible');
-                matchNarrative.innerHTML = '';
-
-                // Fill requirement info
-                document.getElementById('matchReqIcon').innerHTML = getIcon(req.icon);
-                document.getElementById('matchReqLabel').textContent = req.label;
-                document.getElementById('matchReqText').textContent = req.text;
-
-                // Fill crafted piece info
-                document.getElementById('matchPieceType').textContent = piece.craftedItem.type;
-                document.getElementById('matchPieceType').className = 'match-piece-type ' + piece.craftedItem.type;
-                document.getElementById('matchPieceLabel').textContent = piece.craftedItem.label;
-                document.getElementById('matchPieceDetail').textContent = piece.craftedItem.detail;
-                document.getElementById('matchPiecePeriod').textContent = piece.craftedItem.period;
-
-                // Step 1: Requirement appears (0.3s)
-                matchReq.classList.add('visible');
-                await delay(300);
-                if (genId !== generationId) return;
-
-                // Step 2: Arrow animates in
-                matchArrow.classList.add('visible');
-                await delay(200);
-                if (genId !== generationId) return;
-
-                // Step 3: Crafted panel appears, narrative typewriters
-                matchCrafted.classList.add('visible');
-                await delay(100);
-                if (genId !== generationId) return;
-
-                await typewriter(matchNarrative, piece.narrative, 14, genId);
-                if (genId !== generationId) return;
-
-                // Step 4: Crafted piece materializes
-                matchPiece.classList.add('visible');
-                await delay(500);
-                if (genId !== generationId) return;
-
-                // Step 5: Pill appears in tray
-                const pill = document.createElement('div');
-                pill.className = 'tray-pill';
-                pill.innerHTML = `<svg viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> ${req.label}`;
-                trayEl.appendChild(pill);
-                await delay(50);
-                if (genId !== generationId) return;
-                pill.classList.add('visible');
-
-                // Mark dot done
-                allDots[i].classList.remove('active');
-                allDots[i].classList.add('done');
-
-                await delay(300);
-                if (genId !== generationId) return;
-
-                // Wait for user before next requirement (except after last)
-                if (i < identity.craftedPieces.length - 1) {
-                    await waitForUser(genId);
-                    if (genId !== generationId) return;
-                }
-            }
-        }
-
-        // ── Phase 3: Identity assembly ──
-        async function runPhase3(identity, genId) {
-            const canvas = document.getElementById('avatarCanvas');
-            const ctx = canvas.getContext('2d');
-            const ring = document.getElementById('avatarRing');
-            const nameEl = document.getElementById('assemblyName');
-            const headlineEl = document.getElementById('assemblyHeadline');
-            const statusEl = document.getElementById('assemblyStatus');
+            const placeholder = document.getElementById('placeholder');
+            const scanOverlay = document.getElementById('scanOverlay');
             const cvDoc = document.getElementById('cvDoc');
+            const matchBadge = document.getElementById('matchBadge');
 
             // Reset
-            ring.classList.remove('ready');
-            nameEl.innerHTML = '';
-            headlineEl.innerHTML = '';
-            statusEl.classList.remove('visible');
+            placeholder.style.display = 'none';
             cvDoc.classList.remove('visible');
+            matchBadge.classList.remove('visible');
             resetCV();
+            resetTimeline();
 
-            showPhase('phaseAssembly');
-            await delay(200);
-            if (genId !== generationId) return;
-
-            // Step 1: Canvas noise → avatar (~2.5s)
-            await animateAvatar(canvas, ctx, identity, genId);
-            if (genId !== generationId) return;
-
-            // Step 2: Name typewriter
-            await typewriter(nameEl, identity.name, 30, genId);
-            if (genId !== generationId) return;
-
-            // Step 3: Headline typewriter
-            await typewriter(headlineEl, identity.headline, 16, genId);
-            if (genId !== generationId) return;
-
-            // Green ring + status
-            ring.classList.add('ready');
-            statusEl.classList.add('visible');
+            // ── Step 1: Target selected ──
+            setTimelineStep(1);
+            startTimer();
             await delay(400);
             if (genId !== generationId) return;
 
-            // Step 4: CV document slides up with populated content
-            populateCV(identity);
-            cvDoc.classList.add('visible');
-            await delay(200);
-            if (genId !== generationId) return;
+            // ── Step 2: Extract requirements ──
+            setTimelineStep(2);
+            scanOverlay.classList.add('active');
+            document.getElementById('scanLabel').textContent = 'Extracting requirements...';
 
-            // Stagger sections visible
-            const sections = ['cvHeader', 'cvHeadline', 'cvSummarySection', 'cvExpSection', 'cvSkillsSection', 'cvEduSection'];
-            for (const id of sections) {
+            // Highlight requirement tags one by one
+            const reqTags = document.querySelectorAll(`[data-job-id="${jobId}"] .req-tag`);
+            for (let i = 0; i < reqTags.length; i++) {
                 if (genId !== generationId) return;
-                document.getElementById(id).classList.add('visible');
+                const tag = reqTags[i];
+                tag.classList.add('extracted');
+                document.getElementById('scanDetail').textContent = tag.dataset.req;
                 await delay(200);
             }
-        }
 
-        // ── Canvas avatar noise animation ──
-        // If identity has an avatar image, noise resolves into the photo.
-        // Otherwise falls back to solid color + initials.
-        function animateAvatar(canvas, ctx, identity, genId) {
-            return new Promise(resolve => {
-                const w = canvas.width;
-                const h = canvas.height;
-                const cx = w / 2;
-                const cy = h / 2;
-                const radius = w / 2;
-                const duration = 2500;
+            if (genId !== generationId) return;
+            document.getElementById('scanLabel').textContent = 'Building identity...';
+            document.getElementById('scanDetail').textContent = job.requirements.length + ' requirements matched';
+            await delay(600);
+            if (genId !== generationId) return;
 
-                // Try to load avatar image
-                let avatarImg = null;
-                let avatarData = null;
+            scanOverlay.classList.remove('active');
 
-                function startAnimation() {
-                    const start = performance.now();
+            // ── Step 3: Generate CV ──
+            setTimelineStep(3);
+            cvDoc.classList.add('visible');
 
-                    // Parse fallback color
-                    const hex = identity.color;
-                    const cr = parseInt(hex.slice(1, 3), 16);
-                    const cg = parseInt(hex.slice(3, 5), 16);
-                    const cb = parseInt(hex.slice(5, 7), 16);
-
-                    function frame(now) {
-                        if (genId !== generationId) { resolve(); return; }
-
-                        const elapsed = now - start;
-                        const progress = Math.min(elapsed / duration, 1);
-
-                        const imgData = ctx.createImageData(w, h);
-                        const d = imgData.data;
-
-                        for (let y = 0; y < h; y++) {
-                            for (let x = 0; x < w; x++) {
-                                const idx = (y * w + x) * 4;
-                                const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
-
-                                if (dist > radius) {
-                                    d[idx] = 10; d[idx+1] = 22; d[idx+2] = 40; d[idx+3] = 255;
-                                    continue;
-                                }
-
-                                // Target pixel: from avatar image or solid color
-                                let tr, tg, tb;
-                                if (avatarData) {
-                                    const ai = idx;
-                                    tr = avatarData[ai];
-                                    tg = avatarData[ai + 1];
-                                    tb = avatarData[ai + 2];
-                                } else {
-                                    tr = cr; tg = cg; tb = cb;
-                                }
-
-                                // Blend from random noise to target
-                                const noise = 1 - progress;
-                                const nr = Math.random() * 255;
-                                const ng = Math.random() * 255;
-                                const nb = Math.random() * 255;
-
-                                d[idx]     = Math.round(tr * progress + nr * noise);
-                                d[idx + 1] = Math.round(tg * progress + ng * noise);
-                                d[idx + 2] = Math.round(tb * progress + nb * noise);
-                                d[idx + 3] = 255;
-                            }
-                        }
-
-                        ctx.putImageData(imgData, 0, 0);
-
-                        // Draw initials only if no avatar image
-                        if (!avatarData && progress > 0.6) {
-                            const alpha = (progress - 0.6) / 0.4;
-                            ctx.save();
-                            ctx.globalAlpha = alpha;
-                            ctx.fillStyle = '#fff';
-                            ctx.font = `bold ${w * 0.28}px Manrope, sans-serif`;
-                            ctx.textAlign = 'center';
-                            ctx.textBaseline = 'middle';
-                            ctx.fillText(identity.initials, cx, cy);
-                            ctx.restore();
-                        }
-
-                        if (progress < 1) {
-                            requestAnimationFrame(frame);
-                        } else {
-                            resolve();
-                        }
-                    }
-
-                    requestAnimationFrame(frame);
-                }
-
-                if (identity.avatar) {
-                    avatarImg = new Image();
-                    avatarImg.onload = function() {
-                        // Draw the image scaled to canvas, then extract pixel data
-                        const tmpCanvas = document.createElement('canvas');
-                        tmpCanvas.width = w;
-                        tmpCanvas.height = h;
-                        const tmpCtx = tmpCanvas.getContext('2d');
-                        // Draw image covering the canvas (center crop)
-                        const scale = Math.max(w / avatarImg.width, h / avatarImg.height);
-                        const sw = avatarImg.width * scale;
-                        const sh = avatarImg.height * scale;
-                        tmpCtx.drawImage(avatarImg, (w - sw) / 2, (h - sh) / 2, sw, sh);
-                        avatarData = tmpCtx.getImageData(0, 0, w, h).data;
-                        startAnimation();
-                    };
-                    avatarImg.onerror = function() {
-                        // Fall back to color if image fails to load
-                        startAnimation();
-                    };
-                    avatarImg.src = identity.avatar;
-                } else {
-                    startAnimation();
-                }
-            });
-        }
-
-        // ── Populate CV document (no animations, instant fill) ──
-        function populateCV(identity) {
+            // 3a: Header with photo
+            const cvHeader = document.getElementById('cvHeader');
             const cvAvatar = document.getElementById('cvAvatar');
+            const cvName = document.getElementById('cvName');
+            const cvContact = document.getElementById('cvContact');
+
+            // Show avatar with generation animation, then reveal photo
             if (identity.avatar) {
-                cvAvatar.textContent = '';
-                cvAvatar.style.background = `url(${identity.avatar}) center/cover`;
+                cvAvatar.innerHTML = '<div class="avatar-gen"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg></div><img src="' + identity.avatar + '" alt="" style="opacity:0;transition:opacity 0.4s">';
             } else {
                 cvAvatar.style.background = identity.color;
-                cvAvatar.textContent = identity.initials;
+                cvAvatar.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-weight:800;font-size:1.3rem;color:white">' + identity.initials + '</div>';
             }
 
-            document.getElementById('cvName').textContent = identity.name;
-            document.getElementById('cvContact').innerHTML = `
+            cvName.textContent = identity.name;
+            cvContact.innerHTML = `
                 <span>${identity.email}</span>
                 <span>${identity.phone}</span>
                 <span>${identity.location}</span>
             `;
+            cvHeader.classList.add('animate-in');
+            await delay(300);
+            if (genId !== generationId) return;
 
-            document.getElementById('cvHeadline').textContent = identity.headline;
+            // Reveal photo
+            if (identity.avatar) {
+                const genOverlay = cvAvatar.querySelector('.avatar-gen');
+                const img = cvAvatar.querySelector('img');
+                if (genOverlay) genOverlay.classList.add('done');
+                if (img) img.style.opacity = '1';
+            }
+            await delay(200);
+            if (genId !== generationId) return;
 
-            document.getElementById('cvSummary').textContent = identity.summary;
+            // 3b: Headline typewriter
+            const cvHeadline = document.getElementById('cvHeadline');
+            cvHeadline.classList.add('animate-in');
+            await typewriter(cvHeadline, identity.headline, 15, genId);
+            if (genId !== generationId) return;
 
-            const cvExp = document.getElementById('cvExperience');
-            cvExp.innerHTML = '';
-            identity.experience.forEach(exp => {
+            // 3c: Summary
+            const cvSummarySection = document.getElementById('cvSummarySection');
+            const cvSummary = document.getElementById('cvSummary');
+            cvSummarySection.classList.add('animate-in');
+            await typewriterHTML(cvSummary, identity.summary, identity.keywords, 6, genId);
+            if (genId !== generationId) return;
+
+            // 3d: Experience
+            const cvExpSection = document.getElementById('cvExpSection');
+            const cvExperience = document.getElementById('cvExperience');
+            cvExpSection.classList.add('animate-in');
+            await delay(80);
+            if (genId !== generationId) return;
+
+            for (const exp of identity.experience) {
+                if (genId !== generationId) return;
                 const item = document.createElement('div');
                 item.className = 'cv-exp-item';
+
+                const logoHtml = exp.logo && LOGO_MAP[exp.logo]
+                    ? '<img class="cv-exp-logo" src="' + LOGO_MAP[exp.logo] + '" alt="">'
+                    : '';
+
                 item.innerHTML = `
                     <div class="cv-exp-header">
-                        <span class="cv-exp-company">${exp.company}</span>
+                        <div class="cv-exp-company-row">
+                            ${logoHtml}
+                            <span class="cv-exp-company">${exp.company}</span>
+                        </div>
                         <span class="cv-exp-period">${exp.period}</span>
                     </div>
-                    <div class="cv-exp-title-text">${exp.title}</div>
+                    <div class="cv-exp-title">${exp.title}</div>
                     <ul class="cv-exp-bullets">
-                        ${exp.bullets.map(b => `<li>${b}</li>`).join('')}
+                        ${exp.bullets.map(b => '<li>' + b + '</li>').join('')}
                     </ul>
                 `;
-                cvExp.appendChild(item);
-            });
+                cvExperience.appendChild(item);
+                await delay(40);
+                if (genId !== generationId) return;
+                item.classList.add('animate-in');
+                await delay(350);
+                if (genId !== generationId) return;
+            }
 
+            // 3e: Skills
+            const cvSkillsSection = document.getElementById('cvSkillsSection');
             const cvSkills = document.getElementById('cvSkills');
-            cvSkills.innerHTML = '';
-            identity.skills.forEach(skill => {
+            cvSkillsSection.classList.add('animate-in');
+
+            let matchCount = 0;
+            const totalSkills = identity.skills.length;
+
+            for (const skill of identity.skills) {
+                if (genId !== generationId) return;
                 const tag = document.createElement('span');
                 tag.className = 'cv-skill-tag' + (skill.matched ? ' matched' : '');
                 tag.textContent = skill.name;
                 cvSkills.appendChild(tag);
-            });
+                await delay(15);
+                if (genId !== generationId) return;
+                tag.classList.add('animate-in');
+                if (skill.matched) matchCount++;
+                await delay(60);
+                if (genId !== generationId) return;
+            }
 
-            document.getElementById('cvEdu').innerHTML = `
+            // Show match score
+            const score = Math.round((matchCount / totalSkills) * 100);
+            const matchScoreEl = document.getElementById('matchScore');
+            matchBadge.classList.add('visible');
+            // Animate score counting up
+            for (let i = 0; i <= score; i += 3) {
+                if (genId !== generationId) return;
+                matchScoreEl.textContent = Math.min(i, score) + '%';
+                await delay(15);
+            }
+            matchScoreEl.textContent = score + '%';
+
+            // 3f: Education
+            const cvEduSection = document.getElementById('cvEduSection');
+            const cvEdu = document.getElementById('cvEdu');
+            const cvCerts = document.getElementById('cvCerts');
+
+            cvEdu.innerHTML = `
                 <strong>${identity.education.degree}</strong><br>
                 ${identity.education.school} &middot; ${identity.education.year}
             `;
-
-            document.getElementById('cvCerts').innerHTML = identity.certifications
-                .map(c => `<span class="cv-cert-tag">${c}</span>`)
+            cvCerts.innerHTML = identity.certifications
+                .map(c => '<span class="cv-cert-tag">' + c + '</span>')
                 .join('');
+            cvEduSection.classList.add('animate-in');
+
+            await delay(200);
+            if (genId !== generationId) return;
+
+            // ── Step 4: Ready to deploy ──
+            setTimelineStep(4);
+            stopTimer();
         }
 
-        function resetCV() {
-            document.querySelectorAll('#cvDoc .visible').forEach(el => el.classList.remove('visible'));
-            document.getElementById('cvExperience').innerHTML = '';
-            document.getElementById('cvSkills').innerHTML = '';
-            document.getElementById('cvEdu').innerHTML = '';
-            document.getElementById('cvCerts').innerHTML = '';
-            document.getElementById('cvSummary').textContent = '';
-            document.getElementById('cvName').textContent = '';
-            document.getElementById('cvContact').innerHTML = '';
-            document.getElementById('cvHeadline').textContent = '';
-        }
-
-        // ── Animation helpers ──
+        // ── Helpers ──
         function delay(ms) {
             return new Promise(r => setTimeout(r, ms));
         }
@@ -1790,8 +1221,44 @@
             if (genId !== generationId) return;
             el.textContent = text;
         }
+
+        async function typewriterHTML(el, text, keywords, charDelay, genId) {
+            el.textContent = '';
+            let result = '';
+            for (let i = 0; i < text.length; i++) {
+                if (genId !== generationId) return;
+                result += text[i];
+                if (i % 3 === 0 || i === text.length - 1) {
+                    el.textContent = result;
+                    await delay(charDelay);
+                }
+            }
+            if (genId !== generationId) return;
+            let highlighted = text;
+            keywords.forEach(kw => {
+                const regex = new RegExp('(' + escapeRegex(kw) + ')', 'gi');
+                highlighted = highlighted.replace(regex, '<span class="keyword">$1</span>');
+            });
+            el.innerHTML = highlighted;
+        }
+
+        function escapeRegex(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function resetCV() {
+            document.querySelectorAll('.animate-in').forEach(el => el.classList.remove('animate-in'));
+            document.getElementById('cvHeadline').textContent = '';
+            document.getElementById('cvHeadline').classList.remove('animate-in');
+            document.getElementById('cvSummary').textContent = '';
+            document.getElementById('cvExperience').innerHTML = '';
+            document.getElementById('cvSkills').innerHTML = '';
+            document.getElementById('cvEdu').innerHTML = '';
+            document.getElementById('cvCerts').innerHTML = '';
+            document.getElementById('cvAvatar').innerHTML = '';
+            document.getElementById('cvAvatar').style.background = '';
+        }
     })();
     </script>
-    <script src="../../shared/js/dev-mode.js"></script>
 </body>
 </html>
