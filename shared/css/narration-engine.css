@@ -142,14 +142,15 @@
 #presentation-controls.active {
     display: flex;
 }
-/* When docked inside the narration panel footer */
+/* When docked inside the bottom toolbar */
 #presentation-controls.docked {
     position: static;
-    background: none;
+    background: var(--narration-bg-solid);
     box-shadow: none;
-    backdrop-filter: none;
-    padding: 0;
-    border-radius: 0;
+    backdrop-filter: blur(10px);
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-right: 8px;
 }
 #presentation-controls button {
     background: none;
