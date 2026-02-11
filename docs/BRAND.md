@@ -17,11 +17,17 @@ The Clarity logo consists of:
 2. **Wordmark:** "Clarity" text
 
 ### Logo Variations
-| Variant | Icon Color | Text Color | Use Case |
-|---------|------------|------------|----------|
-| White | White | White | Dark backgrounds, nav bar |
-| Color | `#61F393` | Dark | Light backgrounds |
-| Monochrome dark | Dark | Dark | Light backgrounds, print |
+| Variant | Icon Color | Text Color | Use Case | File |
+|---------|------------|------------|----------|------|
+| White | White | White | Dark backgrounds, nav bar | `clarity-logo-white.svg` |
+| Dark (default) | Dark | Dark | Light backgrounds, print | `clarity-logo.svg` |
+| Green+White | Green | White | Hero sections on dark | `clarity-logo-green-white.svg` |
+
+### ⚠️ ALWAYS USE OFFICIAL LOGO FILES
+- **NEVER create your own SVG approximation** of the logo
+- **NEVER use a simple star shape** as a substitute
+- **Always reference files from `shared/brand/`**
+- The logo has a specific 4-arrow design — generic stars are NOT acceptable
 
 ---
 
