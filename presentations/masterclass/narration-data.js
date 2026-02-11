@@ -55,7 +55,7 @@ window.NarrationData = {
     { id: "pipeline", audioIndex: 19, text: "This is why we built Clarity — end-to-end protection built into your existing hiring flow. Watch as candidates move through your pipeline. Legitimate hires proceed, threats get caught and blocked. No workflow changes required.", duration: 16000 },
     { id: "command-center", audioIndex: 22, text: "Mid-interview, real-time alerts. 23 minutes in, we detect face manipulation, voice sync mismatch, and biometric anomalies. Interviewer notified immediately.", duration: 11000 },
     { id: "pre-interview", audioIndex: 21, text: "Before the interview even starts, Clarity flags synthetic identities, AI-generated photos, unverifiable employment. Blocked before wasting interviewer time.", duration: 9000 },
-    { id: "during-interview", audioIndex: 23, text: "Here's how we detected it. Face analysis shows swap artifacts. Voice analysis catches cloning signatures. Identity match confirms it's not the same person. High-confidence deepfake — interview terminated.", duration: 16000 },
+    { id: "during-interview", audioIndex: 23, text: "After the interview, Clarity analyzes the recording in minutes. Face analysis detects GAN artifacts. Voice-face sync shows lip movements don't match speech. Identity match confirms it's not the same person. Flagged for expert review — a human confirms before any action is taken.", duration: 16000 },
     { id: "continuous", audioIndex: 24, text: "Day 90 — still the same person. Hired employees are continuously verified. Periodic biometric checks, voice pattern consistency, confirm it's still them — not a replacement.", duration: 12000 },
 
     // === Act 4: Two Pillars (slides 26-29) ===
