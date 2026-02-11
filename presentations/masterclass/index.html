@@ -1344,11 +1344,11 @@ function revealAnswer() {
             92% { opacity: 1; }
             100% { left: 100%; opacity: 0; transform: translateY(0); }
         }
-        .tp-chaotic-track { position: relative; height: 2px; background: rgba(245, 158, 11, 0.12); border-radius: 1px; overflow: visible; }
+        .tp-chaotic-track { position: relative; height: 3px; background: rgba(245, 158, 11, 0.15); border-radius: 1.5px; overflow: visible; }
         .tp-chaotic-track::after {
             content: ''; position: absolute; top: 50%;
-            width: var(--sz, 6px); height: var(--sz, 6px);
-            margin-top: calc(var(--sz, 6px) / -2);
+            width: var(--sz, 7px); height: var(--sz, 7px);
+            margin-top: calc(var(--sz, 7px) / -2);
             border-radius: 50%; background: #F59E0B;
             animation: tp-chaotic var(--spd, 2s) ease-in-out var(--del, 0s) infinite;
         }
@@ -1360,10 +1360,10 @@ function revealAnswer() {
             90% { opacity: 0.9; transform: translateY(0); }
             100% { left: 100%; opacity: 0; transform: translateY(0); }
         }
-        .tp-converge-track { position: relative; height: 2px; background: rgba(245, 158, 11, 0.1); border-radius: 1px; overflow: visible; }
+        .tp-converge-track { position: relative; height: 3px; background: rgba(245, 158, 11, 0.13); border-radius: 1.5px; overflow: visible; }
         .tp-converge-track::after {
             content: ''; position: absolute; top: -3px;
-            width: 7px; height: 7px; border-radius: 50%;
+            width: 9px; height: 9px; border-radius: 50%;
             background: linear-gradient(135deg, #F59E0B, #61F393);
             animation: tp-converge var(--spd, 1.8s) ease-in-out var(--del, 0s) infinite;
         }
@@ -1378,12 +1378,12 @@ function revealAnswer() {
             to { transform: rotate(360deg); }
         }
         .tp-hub {
-            width: 80px; height: 80px; background: white; border-radius: 50%;
+            width: 96px; height: 96px; background: white; border-radius: 50%;
             border: 2.5px solid #61F393; display: flex; align-items: center; justify-content: center;
             position: relative; animation: tp-hub-glow 3s ease-in-out infinite; margin: 0 auto;
         }
         .tp-hub-ring {
-            position: absolute; inset: -10px; border: 2px dashed rgba(97,243,147,0.4);
+            position: absolute; inset: -12px; border: 2.5px dashed rgba(97,243,147,0.4);
             border-radius: 50%; animation: tp-hub-spin 8s linear infinite;
         }
 
@@ -1394,10 +1394,10 @@ function revealAnswer() {
             90% { opacity: 1; }
             100% { left: 100%; opacity: 0; }
         }
-        .tp-clean-track { position: relative; height: 2px; background: rgba(97,243,147,0.18); border-radius: 1px; overflow: hidden; }
+        .tp-clean-track { position: relative; height: 3px; background: rgba(97,243,147,0.22); border-radius: 1.5px; overflow: hidden; }
         .tp-clean-track::after {
             content: ''; position: absolute; top: -3px;
-            width: 7px; height: 7px; border-radius: 50%; background: #61F393;
+            width: 9px; height: 9px; border-radius: 50%; background: #61F393;
             animation: tp-clean 2.2s ease-in-out var(--del, 0s) infinite;
         }
 
@@ -1415,46 +1415,46 @@ function revealAnswer() {
     </style>
 
     <div style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 0 20px;">
-        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">The problem is clear. So what does a solution actually require?</p>
-        <h2 style="font-size: 2.4rem; margin-bottom: 24px;">What It <span class="accent">Takes</span> to Solve This</h2>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 6px;">The problem is clear. So what does a solution actually require?</p>
+        <h2 style="font-size: 2.4rem; margin-bottom: 16px;">What It <span class="accent">Takes</span> to Solve This</h2>
 
         <!-- 7-column flow: Integrations | chaotic | Signals | converge | HUB | clean | Insights -->
-        <div style="display: grid; grid-template-columns: 170px 1fr 150px 1fr 90px 1fr 240px; align-items: center; gap: 0;">
+        <div style="display: grid; grid-template-columns: 190px 1fr 170px 1fr 110px 1fr 250px; align-items: center; gap: 0;">
 
             <!-- Col 1: Enterprise Integrations -->
             <div style="text-align: center;">
                 <div style="font-size: 0.68rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;">Integrations</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
-                        <img src="../../shared/logos/greenhouse.svg" alt="Greenhouse" style="max-height: 18px; max-width: 70px; object-fit: contain;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div style="background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 52px;">
+                        <img src="../../shared/logos/greenhouse.svg" alt="Greenhouse" style="max-height: 22px; max-width: 80px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
-                        <img src="../../shared/logos/okta.svg" alt="Okta" style="max-height: 18px; max-width: 70px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 52px;">
+                        <img src="../../shared/logos/okta.svg" alt="Okta" style="max-height: 22px; max-width: 80px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
-                        <img src="../../shared/logos/workday.svg" alt="Workday" style="max-height: 18px; max-width: 70px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 52px;">
+                        <img src="../../shared/logos/workday.svg" alt="Workday" style="max-height: 22px; max-width: 80px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
-                        <img src="../../shared/logos/splunk.svg" alt="Splunk" style="max-height: 18px; max-width: 70px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 52px;">
+                        <img src="../../shared/logos/splunk.svg" alt="Splunk" style="max-height: 22px; max-width: 80px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
-                        <img src="../../shared/logos/servicenow.svg" alt="ServiceNow" style="max-height: 18px; max-width: 70px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 52px;">
+                        <img src="../../shared/logos/servicenow.svg" alt="ServiceNow" style="max-height: 22px; max-width: 80px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
-                        <img src="../../shared/logos/zoom.svg" alt="Zoom" style="max-height: 18px; max-width: 70px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 52px;">
+                        <img src="../../shared/logos/zoom.svg" alt="Zoom" style="max-height: 22px; max-width: 80px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
-                        <img src="../../shared/logos/lever.svg" alt="Lever" style="max-height: 18px; max-width: 70px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 52px;">
+                        <img src="../../shared/logos/lever.svg" alt="Lever" style="max-height: 22px; max-width: 80px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
-                        <img src="../../shared/logos/slack.svg" alt="Slack" style="max-height: 18px; max-width: 70px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 52px;">
+                        <img src="../../shared/logos/slack.svg" alt="Slack" style="max-height: 22px; max-width: 80px; object-fit: contain;">
                     </div>
                 </div>
                 <p style="font-size: 0.68rem; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">HR, Security, IDP, SIEM, Comms</p>
             </div>
 
             <!-- Col 2: Chaotic input tracks (varied speed/size/wobble) -->
-            <div style="display: flex; flex-direction: column; gap: 10px; padding: 0 6px; overflow: visible;">
+            <div style="display: flex; flex-direction: column; gap: 14px; padding: 0 6px; overflow: visible;">
                 <div class="tp-chaotic-track" style="--sz:8px; --spd:1.6s; --del:0s; --wb:4px;"></div>
                 <div class="tp-chaotic-track" style="--sz:6px; --spd:2.2s; --del:0.35s; --wb:-3px;"></div>
                 <div class="tp-chaotic-track" style="--sz:9px; --spd:1.4s; --del:0.7s; --wb:5px;"></div>
@@ -1465,28 +1465,28 @@ function revealAnswer() {
 
             <!-- Col 3: Noisy Signals box -->
             <div style="text-align: center;">
-                <div style="background: white; border-radius: 18px; padding: 20px 16px; border: 2px solid #F59E0B; animation: tp-amber-pulse 3s ease-in-out infinite; position: relative;">
-                    <div style="font-size: 0.6rem; font-weight: 800; color: #B45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Noisy Signals</div>
-                    <div style="display: flex; flex-direction: column; gap: 5px;">
-                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                <div style="background: white; border-radius: 18px; padding: 26px 20px; border: 2px solid #F59E0B; animation: tp-amber-pulse 3s ease-in-out infinite; position: relative;">
+                    <div style="font-size: 0.64rem; font-weight: 800; color: #B45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">Noisy Signals</div>
+                    <div style="display: flex; flex-direction: column; gap: 7px;">
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 7px 10px; border: 1px solid rgba(245,158,11,0.15);">
                             <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
-                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Deepfake Detection</span>
+                            <span style="font-size: 0.66rem; font-weight: 700; color: #92400E;">Deepfake Detection</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 7px 10px; border: 1px solid rgba(245,158,11,0.15);">
                             <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
-                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Voice Biometrics</span>
+                            <span style="font-size: 0.66rem; font-weight: 700; color: #92400E;">Voice Biometrics</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 7px 10px; border: 1px solid rgba(245,158,11,0.15);">
                             <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
-                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Doc Verification</span>
+                            <span style="font-size: 0.66rem; font-weight: 700; color: #92400E;">Doc Verification</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 7px 10px; border: 1px solid rgba(245,158,11,0.15);">
                             <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
-                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Identity Cross-Ref</span>
+                            <span style="font-size: 0.66rem; font-weight: 700; color: #92400E;">Identity Cross-Ref</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 7px 10px; border: 1px solid rgba(245,158,11,0.15);">
                             <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
-                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Behavioral Analysis</span>
+                            <span style="font-size: 0.66rem; font-weight: 700; color: #92400E;">Behavioral Analysis</span>
                         </div>
                     </div>
                     <div style="margin-top: 10px; font-size: 0.55rem; color: #B45309; opacity: 0.7; font-style: italic;">Each alone: high false-positive rate</div>
@@ -1494,28 +1494,28 @@ function revealAnswer() {
             </div>
 
             <!-- Col 4: Converge tracks (amber→green, Y-shift toward center) -->
-            <div style="display: flex; flex-direction: column; gap: 18px; padding: 0 6px; overflow: visible;">
-                <div class="tp-converge-track" style="--cy:-12px; --spd:1.6s; --del:0.1s;"></div>
+            <div style="display: flex; flex-direction: column; gap: 28px; padding: 0 6px; overflow: visible;">
+                <div class="tp-converge-track" style="--cy:-18px; --spd:1.6s; --del:0.1s;"></div>
                 <div class="tp-converge-track" style="--cy:0px; --spd:1.8s; --del:0.5s;"></div>
-                <div class="tp-converge-track" style="--cy:12px; --spd:1.6s; --del:0.9s;"></div>
+                <div class="tp-converge-track" style="--cy:18px; --spd:1.6s; --del:0.9s;"></div>
             </div>
 
             <!-- Col 5: Clarity AI Hub (larger, more prominent) -->
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <div class="tp-hub">
                     <div class="tp-hub-ring"></div>
-                    <svg viewBox="0 0 60 60" fill="none" style="width: 34px; height: 34px; position: relative; z-index: 1;">
+                    <svg viewBox="0 0 60 60" fill="none" style="width: 42px; height: 42px; position: relative; z-index: 1;">
                         <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/>
                         <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/>
                         <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/>
                         <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/>
                     </svg>
                 </div>
-                <div style="font-size: 0.58rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin-top: 8px;">AI Engine</div>
+                <div style="font-size: 0.64rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin-top: 10px;">AI Engine</div>
             </div>
 
             <!-- Col 6: Clean output tracks (uniform green) -->
-            <div style="display: flex; flex-direction: column; gap: 18px; padding: 0 6px;">
+            <div style="display: flex; flex-direction: column; gap: 28px; padding: 0 6px;">
                 <div class="tp-clean-track" style="--del:0s;"></div>
                 <div class="tp-clean-track" style="--del:0.73s;"></div>
                 <div class="tp-clean-track" style="--del:1.47s;"></div>
@@ -1524,46 +1524,46 @@ function revealAnswer() {
             <!-- Col 7: Actionable Insight output (hero — the payoff) -->
             <div style="text-align: center;">
                 <div style="font-size: 0.72rem; font-weight: 800; color: #166534; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;">Actionable Insight</div>
-                <div style="background: white; border-radius: 18px; padding: 16px; border: 2px solid var(--accent); animation: tp-insight-glow 3s ease-in-out infinite;">
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="background: white; border-radius: 18px; padding: 18px; border: 2px solid var(--accent); animation: tp-insight-glow 3s ease-in-out infinite;">
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
 
                         <!-- Card 1: Clear Verdict -->
-                        <div style="background: linear-gradient(135deg, #FEF2F2, #FEE2E2); border-radius: 12px; padding: 12px 14px; border: 1px solid rgba(239,68,68,0.2);">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="flex-shrink: 0;">
+                        <div style="background: linear-gradient(135deg, #FEF2F2, #FEE2E2); border-radius: 12px; padding: 14px 16px; border: 1px solid rgba(239,68,68,0.2);">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <svg width="36" height="36" viewBox="0 0 32 32" fill="none" style="flex-shrink: 0;">
                                     <circle cx="16" cy="16" r="16" fill="rgba(239,68,68,0.12)"/>
                                     <path d="M16 10V18" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"/>
                                     <circle cx="16" cy="21.5" r="1.5" fill="#DC2626"/>
                                 </svg>
                                 <div style="text-align: left;">
-                                    <div style="font-size: 0.85rem; font-weight: 800; color: #DC2626;">HIGH RISK</div>
-                                    <div style="font-size: 0.55rem; color: #64748B; margin-top: 1px;">Clear binary verdict</div>
+                                    <div style="font-size: 0.9rem; font-weight: 800; color: #DC2626;">HIGH RISK</div>
+                                    <div style="font-size: 0.58rem; color: #64748B; margin-top: 2px;">Clear binary verdict</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card 2: Risk Score with circular gauge -->
-                        <div style="background: #F0FDF4; border-radius: 12px; padding: 12px 14px; border: 1px solid rgba(97,243,147,0.25);">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <svg width="42" height="42" viewBox="0 0 42 42" style="flex-shrink: 0;">
+                        <div style="background: #F0FDF4; border-radius: 12px; padding: 14px 16px; border: 1px solid rgba(97,243,147,0.25);">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <svg width="46" height="46" viewBox="0 0 42 42" style="flex-shrink: 0;">
                                     <circle cx="21" cy="21" r="17" stroke="#E2E8F0" stroke-width="3" fill="none"/>
                                     <circle cx="21" cy="21" r="17" stroke="#EF4444" stroke-width="3" fill="none" stroke-dasharray="100.5 6.3" stroke-linecap="round" transform="rotate(-90 21 21)"/>
                                     <text x="21" y="24" text-anchor="middle" font-size="13" font-weight="800" fill="#DC2626" font-family="Manrope, sans-serif">94</text>
                                 </svg>
                                 <div style="text-align: left;">
-                                    <div style="font-size: 0.75rem; font-weight: 800; color: #166534;">Risk Score</div>
-                                    <div style="font-size: 0.55rem; color: #64748B; margin-top: 1px;">Composite confidence score</div>
+                                    <div style="font-size: 0.8rem; font-weight: 800; color: #166534;">Risk Score</div>
+                                    <div style="font-size: 0.58rem; color: #64748B; margin-top: 2px;">Composite confidence score</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card 3: Automated Actions -->
-                        <div style="background: #F0FDF4; border-radius: 12px; padding: 12px 14px; border: 1px solid rgba(97,243,147,0.25);">
-                            <div style="font-size: 0.68rem; font-weight: 800; color: #166534; margin-bottom: 6px; text-align: left;">Automated Actions</div>
-                            <div style="display: flex; flex-direction: column; gap: 3px; text-align: left;">
-                                <div style="font-size: 0.58rem; color: #334155; font-family: 'Menlo', 'Courier New', monospace;">&#8594; Escalated to Security Team</div>
-                                <div style="font-size: 0.58rem; color: #334155; font-family: 'Menlo', 'Courier New', monospace;">&#8594; Slack #hiring-security</div>
-                                <div style="font-size: 0.58rem; color: #334155; font-family: 'Menlo', 'Courier New', monospace;">&#8594; SNOW ticket #INC-4821</div>
+                        <div style="background: #F0FDF4; border-radius: 12px; padding: 14px 16px; border: 1px solid rgba(97,243,147,0.25);">
+                            <div style="font-size: 0.72rem; font-weight: 800; color: #166534; margin-bottom: 8px; text-align: left;">Automated Actions</div>
+                            <div style="display: flex; flex-direction: column; gap: 5px; text-align: left;">
+                                <div style="font-size: 0.62rem; color: #334155; font-family: 'Menlo', 'Courier New', monospace;">&#8594; Escalated to Security Team</div>
+                                <div style="font-size: 0.62rem; color: #334155; font-family: 'Menlo', 'Courier New', monospace;">&#8594; Slack #hiring-security</div>
+                                <div style="font-size: 0.62rem; color: #334155; font-family: 'Menlo', 'Courier New', monospace;">&#8594; SNOW ticket #INC-4821</div>
                             </div>
                         </div>
 
@@ -1573,7 +1573,7 @@ function revealAnswer() {
 
         </div>
 
-        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 24px; line-height: 1.6;">
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 18px; line-height: 1.6;">
             You need an end-to-end player that connects all three. <span style="color: var(--accent); font-weight: 700;">That's where Clarity comes in.</span>
         </p>
     </div>
