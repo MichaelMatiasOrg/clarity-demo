@@ -1333,161 +1333,212 @@ function revealAnswer() {
 
 <section class="slide" data-slide-id="two-pillars" id="whats-needed-slide">
     <style>
-        /* Signal flow animation */
-        @keyframes signal-flow-in {
-            0% { transform: translateX(0); opacity: 0.7; }
-            80% { opacity: 1; }
-            100% { transform: translateX(var(--flow-x)); opacity: 0; }
+        /* === Chaotic input dots — varied speed, size, wobble === */
+        @keyframes tp-chaotic {
+            0% { left: 0%; opacity: 0; transform: translateY(0); }
+            8% { opacity: 1; }
+            20% { transform: translateY(var(--wb, 3px)); }
+            40% { transform: translateY(calc(var(--wb, 3px) * -0.7)); }
+            60% { transform: translateY(var(--wb, 3px)); }
+            80% { transform: translateY(calc(var(--wb, 3px) * -0.5)); }
+            92% { opacity: 1; }
+            100% { left: 100%; opacity: 0; transform: translateY(0); }
         }
-        @keyframes funnel-pulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(97, 243, 147, 0.1), 0 8px 32px rgba(10, 22, 40, 0.08); }
-            50% { box-shadow: 0 0 50px rgba(97, 243, 147, 0.25), 0 8px 32px rgba(10, 22, 40, 0.08); }
+        .tp-chaotic-track { position: relative; height: 2px; background: rgba(245, 158, 11, 0.12); border-radius: 1px; overflow: visible; }
+        .tp-chaotic-track::after {
+            content: ''; position: absolute; top: 50%;
+            width: var(--sz, 6px); height: var(--sz, 6px);
+            margin-top: calc(var(--sz, 6px) / -2);
+            border-radius: 50%; background: #F59E0B;
+            animation: tp-chaotic var(--spd, 2s) ease-in-out var(--del, 0s) infinite;
         }
-        @keyframes result-emerge {
-            0%, 60% { opacity: 0; transform: translateX(-8px); }
-            100% { opacity: 1; transform: translateX(0); }
+
+        /* === Converge dots — amber shifting toward center Y === */
+        @keyframes tp-converge {
+            0% { left: 0%; opacity: 0; transform: translateY(var(--cy, 0px)); }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; transform: translateY(0); }
+            100% { left: 100%; opacity: 0; transform: translateY(0); }
         }
-        @keyframes signal-dot {
+        .tp-converge-track { position: relative; height: 2px; background: rgba(245, 158, 11, 0.1); border-radius: 1px; overflow: visible; }
+        .tp-converge-track::after {
+            content: ''; position: absolute; top: -3px;
+            width: 7px; height: 7px; border-radius: 50%;
+            background: linear-gradient(135deg, #F59E0B, #61F393);
+            animation: tp-converge var(--spd, 1.8s) ease-in-out var(--del, 0s) infinite;
+        }
+
+        /* === Clarity Hub — glow + spin ring === */
+        @keyframes tp-hub-glow {
+            0%, 100% { box-shadow: 0 0 12px rgba(97,243,147,0.2); }
+            50% { box-shadow: 0 0 28px rgba(97,243,147,0.45), 0 0 50px rgba(97,243,147,0.1); }
+        }
+        @keyframes tp-hub-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .tp-hub {
+            width: 64px; height: 64px; background: white; border-radius: 50%;
+            border: 2px solid #61F393; display: flex; align-items: center; justify-content: center;
+            position: relative; animation: tp-hub-glow 3s ease-in-out infinite; margin: 0 auto;
+        }
+        .tp-hub-ring {
+            position: absolute; inset: -7px; border: 2px dashed rgba(97,243,147,0.35);
+            border-radius: 50%; animation: tp-hub-spin 8s linear infinite;
+        }
+
+        /* === Clean output dots — uniform green === */
+        @keyframes tp-clean {
             0% { left: 0%; opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { left: 100%; opacity: 0; }
         }
-        .wn-signal-track { position: relative; height: 2px; background: rgba(245, 158, 11, 0.15); border-radius: 1px; overflow: hidden; }
-        .wn-signal-track::after {
-            content: ''; position: absolute; top: -2px; width: 6px; height: 6px; border-radius: 50%;
-            background: #F59E0B; animation: signal-dot 2s ease-in-out infinite;
+        .tp-clean-track { position: relative; height: 2px; background: rgba(97,243,147,0.18); border-radius: 1px; overflow: hidden; }
+        .tp-clean-track::after {
+            content: ''; position: absolute; top: -3px;
+            width: 7px; height: 7px; border-radius: 50%; background: #61F393;
+            animation: tp-clean 2.2s ease-in-out var(--del, 0s) infinite;
         }
-        .wn-signal-track:nth-child(2)::after { animation-delay: 0.5s; }
-        .wn-signal-track:nth-child(3)::after { animation-delay: 1.0s; }
-        .wn-signal-track:nth-child(4)::after { animation-delay: 1.5s; }
-        .wn-signal-track:nth-child(5)::after { animation-delay: 0.3s; }
-        .wn-signal-track:nth-child(6)::after { animation-delay: 0.8s; }
-        @keyframes output-dot {
-            0% { left: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { left: 100%; opacity: 0; }
+
+        /* === Noisy Signals amber pulse === */
+        @keyframes tp-amber-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(245,158,11,0.08), 0 4px 20px rgba(10,22,40,0.06); }
+            50% { box-shadow: 0 0 35px rgba(245,158,11,0.18), 0 4px 20px rgba(10,22,40,0.06); }
         }
-        .wn-output-track { position: relative; height: 2px; background: rgba(97, 243, 147, 0.2); border-radius: 1px; overflow: hidden; }
-        .wn-output-track::after {
-            content: ''; position: absolute; top: -2px; width: 6px; height: 6px; border-radius: 50%;
-            background: #61F393; animation: output-dot 2.5s ease-in-out infinite;
-        }
-        .wn-output-track:nth-child(2)::after { animation-delay: 0.8s; }
-        .wn-output-track:nth-child(3)::after { animation-delay: 1.6s; }
     </style>
 
-    <div style="max-width: 1120px; margin: 0 auto; text-align: center; padding: 0 20px;">
+    <div style="max-width: 1180px; margin: 0 auto; text-align: center; padding: 0 20px;">
         <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">The problem is clear. So what does a solution actually require?</p>
         <h2 style="font-size: 2.4rem; margin-bottom: 36px;">What It <span class="accent">Takes</span> to Solve This</h2>
 
-        <!-- Main 3-column flow diagram -->
-        <div style="display: grid; grid-template-columns: 240px 1fr 200px 1fr 240px; align-items: center; gap: 0;">
+        <!-- 7-column flow: Integrations | chaotic | Signals | converge | HUB | clean | Insights -->
+        <div style="display: grid; grid-template-columns: 180px 1fr 155px 1fr 76px 1fr 190px; align-items: center; gap: 0;">
 
-            <!-- Column 1: Enterprise Integrations with real logos -->
+            <!-- Col 1: Enterprise Integrations -->
             <div style="text-align: center;">
                 <div style="font-size: 0.68rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;">Integrations</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
-                        <img src="../../shared/logos/greenhouse.svg" alt="Greenhouse" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
+                        <img src="../../shared/logos/greenhouse.svg" alt="Greenhouse" style="max-height: 18px; max-width: 70px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
-                        <img src="../../shared/logos/okta.svg" alt="Okta" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
+                        <img src="../../shared/logos/okta.svg" alt="Okta" style="max-height: 18px; max-width: 70px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
-                        <img src="../../shared/logos/workday.svg" alt="Workday" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
+                        <img src="../../shared/logos/workday.svg" alt="Workday" style="max-height: 18px; max-width: 70px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
-                        <img src="../../shared/logos/splunk.svg" alt="Splunk" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
+                        <img src="../../shared/logos/splunk.svg" alt="Splunk" style="max-height: 18px; max-width: 70px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
-                        <img src="../../shared/logos/servicenow.svg" alt="ServiceNow" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
+                        <img src="../../shared/logos/servicenow.svg" alt="ServiceNow" style="max-height: 18px; max-width: 70px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
-                        <img src="../../shared/logos/zoom.svg" alt="Zoom" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
+                        <img src="../../shared/logos/zoom.svg" alt="Zoom" style="max-height: 18px; max-width: 70px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
-                        <img src="../../shared/logos/lever.svg" alt="Lever" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
+                        <img src="../../shared/logos/lever.svg" alt="Lever" style="max-height: 18px; max-width: 70px; object-fit: contain;">
                     </div>
-                    <div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 48px;">
-                        <img src="../../shared/logos/slack.svg" alt="Slack" style="max-height: 22px; max-width: 80px; object-fit: contain;">
+                    <div style="background: white; border-radius: 10px; padding: 8px; box-shadow: 0 2px 8px rgba(10,22,40,0.05); border: 1px solid rgba(10,22,40,0.06); display: flex; align-items: center; justify-content: center; height: 42px;">
+                        <img src="../../shared/logos/slack.svg" alt="Slack" style="max-height: 18px; max-width: 70px; object-fit: contain;">
                     </div>
                 </div>
-                <p style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 10px; line-height: 1.4;">HR, Security, IDP, SIEM, Comms</p>
+                <p style="font-size: 0.68rem; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">HR, Security, IDP, SIEM, Comms</p>
             </div>
 
-            <!-- Animated signal tracks: integrations → signals engine -->
-            <div style="display: flex; flex-direction: column; gap: 12px; padding: 0 8px;">
-                <div class="wn-signal-track"></div>
-                <div class="wn-signal-track"></div>
-                <div class="wn-signal-track"></div>
-                <div class="wn-signal-track"></div>
-                <div class="wn-signal-track"></div>
-                <div class="wn-signal-track"></div>
+            <!-- Col 2: Chaotic input tracks (varied speed/size/wobble) -->
+            <div style="display: flex; flex-direction: column; gap: 10px; padding: 0 6px; overflow: visible;">
+                <div class="tp-chaotic-track" style="--sz:8px; --spd:1.6s; --del:0s; --wb:4px;"></div>
+                <div class="tp-chaotic-track" style="--sz:6px; --spd:2.2s; --del:0.35s; --wb:-3px;"></div>
+                <div class="tp-chaotic-track" style="--sz:9px; --spd:1.4s; --del:0.7s; --wb:5px;"></div>
+                <div class="tp-chaotic-track" style="--sz:7px; --spd:2.5s; --del:0.15s; --wb:-4px;"></div>
+                <div class="tp-chaotic-track" style="--sz:10px; --spd:1.8s; --del:0.55s; --wb:3px;"></div>
+                <div class="tp-chaotic-track" style="--sz:6px; --spd:2.0s; --del:0.9s; --wb:-5px;"></div>
             </div>
 
-            <!-- Column 2: Center — Signal Fusion Engine -->
+            <!-- Col 3: Noisy Signals box -->
             <div style="text-align: center;">
-                <div style="background: white; border-radius: 20px; padding: 24px 20px; border: 2px solid #F59E0B; box-shadow: 0 0 30px rgba(245, 158, 11, 0.1), 0 8px 32px rgba(10, 22, 40, 0.08); animation: funnel-pulse 3s ease-in-out infinite; position: relative;">
-                    <div style="font-size: 0.62rem; font-weight: 800; color: #B45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">Noisy Signals</div>
-                    <div style="display: flex; flex-direction: column; gap: 6px;">
-                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite;"></div>
-                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Deepfake Detection</span>
+                <div style="background: white; border-radius: 18px; padding: 20px 16px; border: 2px solid #F59E0B; animation: tp-amber-pulse 3s ease-in-out infinite; position: relative;">
+                    <div style="font-size: 0.6rem; font-weight: 800; color: #B45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Noisy Signals</div>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
+                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Deepfake Detection</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite 0.3s;"></div>
-                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Voice Biometrics</span>
+                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
+                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Voice Biometrics</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite 0.6s;"></div>
-                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Doc Verification</span>
+                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
+                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Doc Verification</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite 0.9s;"></div>
-                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Identity Cross-Ref</span>
+                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
+                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Identity Cross-Ref</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 6px; background: #FFFBEB; border-radius: 8px; padding: 6px 10px; border: 1px solid rgba(245, 158, 11, 0.15);">
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; animation: pulse-glow 2s infinite 1.2s;"></div>
-                            <span style="font-size: 0.68rem; font-weight: 700; color: #92400E;">Behavioral Analysis</span>
+                        <div style="display: flex; align-items: center; gap: 5px; background: #FFFBEB; border-radius: 7px; padding: 5px 8px; border: 1px solid rgba(245,158,11,0.15);">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #F59E0B; flex-shrink: 0;"></div>
+                            <span style="font-size: 0.62rem; font-weight: 700; color: #92400E;">Behavioral Analysis</span>
                         </div>
                     </div>
-                    <div style="margin-top: 12px; font-size: 0.6rem; color: #B45309; opacity: 0.7; font-style: italic;">Each alone: high false-positive rate</div>
+                    <div style="margin-top: 10px; font-size: 0.55rem; color: #B45309; opacity: 0.7; font-style: italic;">Each alone: high false-positive rate</div>
                 </div>
             </div>
 
-            <!-- Animated output tracks: signals → actionable insight -->
-            <div style="display: flex; flex-direction: column; gap: 20px; padding: 0 8px;">
-                <div class="wn-output-track"></div>
-                <div class="wn-output-track"></div>
-                <div class="wn-output-track"></div>
+            <!-- Col 4: Converge tracks (amber→green, Y-shift toward center) -->
+            <div style="display: flex; flex-direction: column; gap: 18px; padding: 0 6px; overflow: visible;">
+                <div class="tp-converge-track" style="--cy:-12px; --spd:1.6s; --del:0.1s;"></div>
+                <div class="tp-converge-track" style="--cy:0px; --spd:1.8s; --del:0.5s;"></div>
+                <div class="tp-converge-track" style="--cy:12px; --spd:1.6s; --del:0.9s;"></div>
             </div>
 
-            <!-- Column 3: Actionable Insight output -->
+            <!-- Col 5: Clarity AI Hub -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="tp-hub">
+                    <div class="tp-hub-ring"></div>
+                    <svg viewBox="0 0 60 60" fill="none" style="width: 26px; height: 26px; position: relative; z-index: 1;">
+                        <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/>
+                        <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/>
+                        <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/>
+                        <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/>
+                    </svg>
+                </div>
+                <div style="font-size: 0.52rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin-top: 8px;">AI Engine</div>
+            </div>
+
+            <!-- Col 6: Clean output tracks (uniform green) -->
+            <div style="display: flex; flex-direction: column; gap: 18px; padding: 0 6px;">
+                <div class="tp-clean-track" style="--del:0s;"></div>
+                <div class="tp-clean-track" style="--del:0.73s;"></div>
+                <div class="tp-clean-track" style="--del:1.47s;"></div>
+            </div>
+
+            <!-- Col 7: Actionable Insight output -->
             <div style="text-align: center;">
                 <div style="font-size: 0.68rem; font-weight: 800; color: #166534; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;">Actionable Insight</div>
-                <div style="background: white; border-radius: 16px; padding: 20px; border: 2px solid var(--accent); box-shadow: 0 8px 30px rgba(97, 243, 147, 0.15);">
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <div style="display: flex; align-items: center; gap: 10px; background: #F0FDF4; border-radius: 10px; padding: 10px 14px; border: 1px solid rgba(97, 243, 147, 0.25);">
+                <div style="background: white; border-radius: 16px; padding: 18px; border: 2px solid var(--accent); box-shadow: 0 8px 30px rgba(97,243,147,0.15);">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px; background: #F0FDF4; border-radius: 10px; padding: 9px 12px; border: 1px solid rgba(97,243,147,0.25);">
                             <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
                             <div style="text-align: left;">
-                                <div style="font-size: 0.8rem; font-weight: 800; color: #166534;">PASS <span style="color: #94a3b8; font-weight: 400;">/</span> <span style="color: #DC2626;">FAIL</span></div>
-                                <div style="font-size: 0.6rem; color: #64748B;">Clear binary verdict</div>
+                                <div style="font-size: 0.75rem; font-weight: 800; color: #166534;">PASS <span style="color: #94a3b8; font-weight: 400;">/</span> <span style="color: #DC2626;">FAIL</span></div>
+                                <div style="font-size: 0.55rem; color: #64748B;">Clear binary verdict</div>
                             </div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 10px; background: #F0FDF4; border-radius: 10px; padding: 10px 14px; border: 1px solid rgba(97, 243, 147, 0.25);">
+                        <div style="display: flex; align-items: center; gap: 8px; background: #F0FDF4; border-radius: 10px; padding: 9px 12px; border: 1px solid rgba(97,243,147,0.25);">
                             <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
                             <div style="text-align: left;">
-                                <div style="font-size: 0.8rem; font-weight: 800; color: #166534;">Risk Score</div>
-                                <div style="font-size: 0.6rem; color: #64748B;">Composite confidence level</div>
+                                <div style="font-size: 0.75rem; font-weight: 800; color: #166534;">Risk Score</div>
+                                <div style="font-size: 0.55rem; color: #64748B;">Composite confidence level</div>
                             </div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 10px; background: #F0FDF4; border-radius: 10px; padding: 10px 14px; border: 1px solid rgba(97, 243, 147, 0.25);">
+                        <div style="display: flex; align-items: center; gap: 8px; background: #F0FDF4; border-radius: 10px; padding: 9px 12px; border: 1px solid rgba(97,243,147,0.25);">
                             <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0;"></div>
                             <div style="text-align: left;">
-                                <div style="font-size: 0.8rem; font-weight: 800; color: #166534;">Workflow Action</div>
-                                <div style="font-size: 0.6rem; color: #64748B;">Pushed into your tools</div>
+                                <div style="font-size: 0.75rem; font-weight: 800; color: #166534;">Workflow Action</div>
+                                <div style="font-size: 0.55rem; color: #64748B;">Pushed into your tools</div>
                             </div>
                         </div>
                     </div>
