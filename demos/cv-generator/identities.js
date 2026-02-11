@@ -7,6 +7,7 @@ window.IDENTITIES = {
         name: "Marcus Wei Chen",
         initials: "MC",
         color: "#3B82F6",
+        avatar: "../../presentations/masterclass/assets/marcus-chen/headshot.png",
         headline: "Senior Software Engineer — Platform Infrastructure",
         location: "San Francisco, CA",
         email: "m.chen.dev@protonmail.com",

@@ -980,6 +980,77 @@
             color: #92400e;
         }
 
+        /* ── Continue Prompt ── */
+        .continue-prompt {
+            position: absolute;
+            bottom: 24px;
+            right: 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 18px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .continue-prompt.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .continue-prompt:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-muted);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .continue-prompt kbd {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+
+        .continue-prompt svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        /* Autoplay badge */
+        .autoplay-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid rgba(97, 243, 147, 0.2);
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+
+        .autoplay-badge.visible {
+            opacity: 1;
+        }
+
         /* ── Warning Banner ── */
         .warning-banner {
             padding: 10px 32px;
@@ -1010,10 +1081,13 @@
             <div class="header-divider"></div>
             <span class="header-title">Identity Generator</span>
         </div>
-        <a href="../../index.html" class="header-back">
-            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-            Back to Hub
-        </a>
+        <div style="display:flex;align-items:center;gap:14px;">
+            <div class="autoplay-badge" id="autoplayBadge">AUTOPLAY</div>
+            <a href="../../index.html" class="header-back">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                Back to Hub
+            </a>
+        </div>
     </header>
 
     <!-- Main content -->
@@ -1033,6 +1107,12 @@
 
         <!-- Right: Phase panels -->
         <div class="right-panel">
+            <!-- Continue prompt (floating) -->
+            <div class="continue-prompt" id="continuePrompt">
+                <svg viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                <span>Continue</span>
+                <kbd>Space</kbd>
+            </div>
             <!-- Phase: Placeholder -->
             <div class="phase active" id="phasePlaceholder">
                 <div class="placeholder">
@@ -1159,6 +1239,55 @@
     <script>
     (function() {
         let generationId = 0;
+        let autoplay = false;
+        let continueResolve = null;
+
+        // ── Autoplay toggle (A key) ──
+        const autoplayBadge = document.getElementById('autoplayBadge');
+        function setAutoplay(on) {
+            autoplay = on;
+            autoplayBadge.classList.toggle('visible', on);
+            // If turning on autoplay while waiting, immediately continue
+            if (on && continueResolve) {
+                continueResolve();
+                continueResolve = null;
+            }
+        }
+
+        // ── Wait for user to press Space / Right Arrow / click continue ──
+        const continuePrompt = document.getElementById('continuePrompt');
+
+        function waitForUser(genId) {
+            if (autoplay) return Promise.resolve();
+            return new Promise(resolve => {
+                continueResolve = resolve;
+                continuePrompt.classList.add('visible');
+            });
+        }
+
+        function dismissContinue() {
+            continuePrompt.classList.remove('visible');
+            if (continueResolve) {
+                continueResolve();
+                continueResolve = null;
+            }
+        }
+
+        // Keyboard listener
+        document.addEventListener('keydown', e => {
+            if (e.key === 'a' || e.key === 'A') {
+                e.preventDefault();
+                setAutoplay(!autoplay);
+                return;
+            }
+            if (e.key === ' ' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                dismissContinue();
+            }
+        });
+
+        // Click on continue prompt
+        continuePrompt.addEventListener('click', dismissContinue);
 
         // ── Icon SVG map ──
         const ICONS = {
@@ -1212,6 +1341,13 @@
             generationId++;
             const genId = generationId;
 
+            // Dismiss any pending continue prompt
+            continuePrompt.classList.remove('visible');
+            if (continueResolve) {
+                continueResolve();
+                continueResolve = null;
+            }
+
             // Update active card styling
             document.querySelectorAll('.job-card').forEach(c => c.classList.remove('active'));
             const card = document.querySelector(`[data-job-id="${jobId}"]`);
@@ -1225,8 +1361,16 @@
             await runPhase1(job, genId);
             if (genId !== generationId) return;
 
+            // Wait for user before Phase 2
+            await waitForUser(genId);
+            if (genId !== generationId) return;
+
             // Phase 2: Matching
             await runPhase2(job, identity, genId);
+            if (genId !== generationId) return;
+
+            // Wait for user before Phase 3
+            await waitForUser(genId);
             if (genId !== generationId) return;
 
             // Phase 3: Assembly
@@ -1373,11 +1517,15 @@
                 allDots[i].classList.remove('active');
                 allDots[i].classList.add('done');
 
-                await delay(400);
+                await delay(300);
                 if (genId !== generationId) return;
-            }
 
-            await delay(300);
+                // Wait for user before next requirement (except after last)
+                if (i < identity.craftedPieces.length - 1) {
+                    await waitForUser(genId);
+                    if (genId !== generationId) return;
+                }
+            }
         }
 
         // ── Phase 3: Identity assembly ──
@@ -1436,85 +1584,135 @@
         }
 
         // ── Canvas avatar noise animation ──
+        // If identity has an avatar image, noise resolves into the photo.
+        // Otherwise falls back to solid color + initials.
         function animateAvatar(canvas, ctx, identity, genId) {
             return new Promise(resolve => {
                 const w = canvas.width;
                 const h = canvas.height;
+                const cx = w / 2;
+                const cy = h / 2;
+                const radius = w / 2;
                 const duration = 2500;
-                const start = performance.now();
 
-                // Parse identity color to RGB
-                const hex = identity.color;
-                const r = parseInt(hex.slice(1, 3), 16);
-                const g = parseInt(hex.slice(3, 5), 16);
-                const b = parseInt(hex.slice(5, 7), 16);
+                // Try to load avatar image
+                let avatarImg = null;
+                let avatarData = null;
 
-                function frame(now) {
-                    if (genId !== generationId) { resolve(); return; }
+                function startAnimation() {
+                    const start = performance.now();
 
-                    const elapsed = now - start;
-                    const progress = Math.min(elapsed / duration, 1);
+                    // Parse fallback color
+                    const hex = identity.color;
+                    const cr = parseInt(hex.slice(1, 3), 16);
+                    const cg = parseInt(hex.slice(3, 5), 16);
+                    const cb = parseInt(hex.slice(5, 7), 16);
 
-                    const imgData = ctx.createImageData(w, h);
-                    const d = imgData.data;
-                    const cx = w / 2;
-                    const cy = h / 2;
-                    const radius = w / 2;
+                    function frame(now) {
+                        if (genId !== generationId) { resolve(); return; }
 
-                    for (let y = 0; y < h; y++) {
-                        for (let x = 0; x < w; x++) {
-                            const idx = (y * w + x) * 4;
-                            const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
 
-                            if (dist > radius) {
-                                d[idx] = 10; d[idx+1] = 22; d[idx+2] = 40; d[idx+3] = 255;
-                                continue;
+                        const imgData = ctx.createImageData(w, h);
+                        const d = imgData.data;
+
+                        for (let y = 0; y < h; y++) {
+                            for (let x = 0; x < w; x++) {
+                                const idx = (y * w + x) * 4;
+                                const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+
+                                if (dist > radius) {
+                                    d[idx] = 10; d[idx+1] = 22; d[idx+2] = 40; d[idx+3] = 255;
+                                    continue;
+                                }
+
+                                // Target pixel: from avatar image or solid color
+                                let tr, tg, tb;
+                                if (avatarData) {
+                                    const ai = idx;
+                                    tr = avatarData[ai];
+                                    tg = avatarData[ai + 1];
+                                    tb = avatarData[ai + 2];
+                                } else {
+                                    tr = cr; tg = cg; tb = cb;
+                                }
+
+                                // Blend from random noise to target
+                                const noise = 1 - progress;
+                                const nr = Math.random() * 255;
+                                const ng = Math.random() * 255;
+                                const nb = Math.random() * 255;
+
+                                d[idx]     = Math.round(tr * progress + nr * noise);
+                                d[idx + 1] = Math.round(tg * progress + ng * noise);
+                                d[idx + 2] = Math.round(tb * progress + nb * noise);
+                                d[idx + 3] = 255;
                             }
+                        }
 
-                            // Blend from random noise to solid color
-                            const noise = 1 - progress;
-                            const nr = Math.random() * 255;
-                            const ng = Math.random() * 255;
-                            const nb = Math.random() * 255;
+                        ctx.putImageData(imgData, 0, 0);
 
-                            d[idx]   = Math.round(r * progress + nr * noise);
-                            d[idx+1] = Math.round(g * progress + ng * noise);
-                            d[idx+2] = Math.round(b * progress + nb * noise);
-                            d[idx+3] = 255;
+                        // Draw initials only if no avatar image
+                        if (!avatarData && progress > 0.6) {
+                            const alpha = (progress - 0.6) / 0.4;
+                            ctx.save();
+                            ctx.globalAlpha = alpha;
+                            ctx.fillStyle = '#fff';
+                            ctx.font = `bold ${w * 0.28}px Manrope, sans-serif`;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'middle';
+                            ctx.fillText(identity.initials, cx, cy);
+                            ctx.restore();
+                        }
+
+                        if (progress < 1) {
+                            requestAnimationFrame(frame);
+                        } else {
+                            resolve();
                         }
                     }
 
-                    ctx.putImageData(imgData, 0, 0);
-
-                    // Draw initials when mostly resolved
-                    if (progress > 0.6) {
-                        const alpha = (progress - 0.6) / 0.4;
-                        ctx.save();
-                        ctx.globalAlpha = alpha;
-                        ctx.fillStyle = '#fff';
-                        ctx.font = `bold ${w * 0.28}px Manrope, sans-serif`;
-                        ctx.textAlign = 'center';
-                        ctx.textBaseline = 'middle';
-                        ctx.fillText(identity.initials, cx, cy);
-                        ctx.restore();
-                    }
-
-                    if (progress < 1) {
-                        requestAnimationFrame(frame);
-                    } else {
-                        resolve();
-                    }
+                    requestAnimationFrame(frame);
                 }
 
-                requestAnimationFrame(frame);
+                if (identity.avatar) {
+                    avatarImg = new Image();
+                    avatarImg.onload = function() {
+                        // Draw the image scaled to canvas, then extract pixel data
+                        const tmpCanvas = document.createElement('canvas');
+                        tmpCanvas.width = w;
+                        tmpCanvas.height = h;
+                        const tmpCtx = tmpCanvas.getContext('2d');
+                        // Draw image covering the canvas (center crop)
+                        const scale = Math.max(w / avatarImg.width, h / avatarImg.height);
+                        const sw = avatarImg.width * scale;
+                        const sh = avatarImg.height * scale;
+                        tmpCtx.drawImage(avatarImg, (w - sw) / 2, (h - sh) / 2, sw, sh);
+                        avatarData = tmpCtx.getImageData(0, 0, w, h).data;
+                        startAnimation();
+                    };
+                    avatarImg.onerror = function() {
+                        // Fall back to color if image fails to load
+                        startAnimation();
+                    };
+                    avatarImg.src = identity.avatar;
+                } else {
+                    startAnimation();
+                }
             });
         }
 
         // ── Populate CV document (no animations, instant fill) ──
         function populateCV(identity) {
             const cvAvatar = document.getElementById('cvAvatar');
-            cvAvatar.style.background = identity.color;
-            cvAvatar.textContent = identity.initials;
+            if (identity.avatar) {
+                cvAvatar.textContent = '';
+                cvAvatar.style.background = `url(${identity.avatar}) center/cover`;
+            } else {
+                cvAvatar.style.background = identity.color;
+                cvAvatar.textContent = identity.initials;
+            }
 
             document.getElementById('cvName').textContent = identity.name;
             document.getElementById('cvContact').innerHTML = `
