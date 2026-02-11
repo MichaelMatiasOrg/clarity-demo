@@ -874,47 +874,39 @@ function revealAnswer() {
 </section>
 
 <!-- Slide 14: The Proof - Fortune 500 Quote with Article -->
+<!-- Option A: Quote-focused -->
 <section id="section-impact" class="slide" data-slide-id="fortune-500">
-    <div style="max-width: 1100px; margin: 0 auto;">
-        <p class="subtitle text-center" style="margin-bottom: 30px;">Think it won't happen to you?</p>
-        
-        <div style="position: relative;">
-            <!-- Article mockup - blurred/dimmed background -->
-            <div style="background: white; border-radius: 12px; padding: 30px 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); opacity: 0.4; filter: blur(1px);">
-                <!-- Axios header -->
-                <div class="flex-center-gap" style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #e5e5e5;">
-                    <div style="font-size: 1.8rem; font-weight: 900; color: #000; letter-spacing: -1px;">axios</div>
-                    <span style="color: #666; font-size: 0.85rem;">|</span>
-                    <span style="color: #666; font-size: 0.85rem;">Technology</span>
-                    <span style="color: #666; font-size: 0.85rem;">•</span>
-                    <span style="color: #666; font-size: 0.85rem;">August 19, 2025</span>
-                </div>
-                <h2 style="font-size: 1.8rem; color: #000; margin-bottom: 16px; line-height: 1.3;">North Korea's IT worker fraud has fooled nearly every Fortune 500 firm</h2>
-                <p style="color: #666; font-size: 1rem; line-height: 1.6;">Security researchers who have been tracking the scheme for years say the scale of the infiltration is staggering...</p>
-                <p style="color: #666; font-size: 1rem; line-height: 1.6; margin-top: 12px;">████████████████████████████████████████████████</p>
-                <p style="color: #666; font-size: 1rem; line-height: 1.6; margin-top: 12px;">████████████████████████████████████</p>
-            </div>
-            
-            <!-- Magnifying glass spotlight with quote -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px;">
-                <!-- Glass circle effect -->
-                <div style="background: white; border-radius: 20px; padding: 40px 50px; box-shadow: 0 25px 80px rgba(0,0,0,0.25), 0 0 0 8px rgba(97, 243, 147, 0.3); position: relative;">
-                    <!-- Magnifying glass handle hint -->
-                    <div style="position: absolute; top: -20px; right: -20px; width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(97, 243, 147, 0.4);">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="#0a1628" stroke-width="2.5"/><path d="M21 21l-4.35-4.35" stroke="#0a1628" stroke-width="2.5" stroke-linecap="round"/></svg>
-                    </div>
-                    
-                    <p style="font-size: 1.8rem; line-height: 1.5; color: var(--text-primary); font-weight: 500; margin: 0;">
-                        "We have yet to meet a Fortune 500 company that <span style="color: var(--danger); font-weight: 700;">hasn't</span> inadvertently hired a North Korean IT worker."
-                    </p>
-                    <p style="font-size: 1rem; color: var(--text-secondary); margin-top: 20px;">
-                        — Security Researchers, <strong>Axios</strong> • August 2025
-                    </p>
+    <div style="max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; min-height: 60vh;">
+        <div style="background: white; border-radius: 16px; padding: 50px 60px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border-left: 5px solid var(--danger); width: 100%;">
+            <p style="font-size: 1.7rem; line-height: 1.6; color: var(--text-primary); font-weight: 500; margin: 0;">
+                "Almost every CISO of a Fortune 500 company that I've spoken to — I'll just characterize as <span style="color: var(--danger); font-weight: 700;">dozens</span> — have admitted that they had a North Korean IT worker problem."
+            </p>
+            <div style="margin-top: 30px; display: flex; align-items: center; gap: 16px;">
+                <div style="width: 48px; height: 48px; background: var(--bg-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--text-secondary); font-size: 1.1rem;">CC</div>
+                <div>
+                    <p style="font-weight: 600; color: var(--text-primary); margin: 0;">Charles Carmakal</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 2px 0 0 0;">CTO, Mandiant Consulting &middot; <em>The Register</em>, July 2025</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="slide-number">18</div>
+</section>
+
+<!-- Option B: Stat-focused (delete one after preview) -->
+<section class="slide" data-slide-id="fortune-500-alt" style="text-align: center;">
+    <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-size: 5rem; font-weight: 800; margin-bottom: 16px;"><span style="color: var(--danger);">Hundreds</span></h2>
+        <p class="subtitle" style="font-size: 1.4rem; max-width: 650px; margin: 0 auto 40px;">of Fortune 500 organizations have hired North Korean IT workers</p>
+        <div style="background: white; border-radius: 12px; padding: 28px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: inline-flex; align-items: center; gap: 16px;">
+            <div style="width: 44px; height: 44px; background: var(--bg-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--text-secondary); font-size: 1rem;">CC</div>
+            <div style="text-align: left;">
+                <p style="font-weight: 600; color: var(--text-primary); margin: 0;">Charles Carmakal</p>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 2px 0 0 0;">CTO, Mandiant Consulting &middot; <em>CyberScoop</em>, April 2025 (RSAC)</p>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">18b</div>
 </section>
 
 <section class="slide" data-slide-id="epidemic">
@@ -926,9 +918,9 @@ function revealAnswer() {
             <p class="text-secondary-sm" style="margin-top: 12px;">— Gartner</p>
         </div>
         <div class="card text-center">
-            <h3 style="font-size: 4rem; font-weight: 800; margin-bottom: 12px;">300+</h3>
-            <p class="text-secondary">US companies unknowingly hired North Korean IT workers</p>
-            <p class="text-secondary-sm" style="margin-top: 12px;">— DOJ, 2024</p>
+            <h3 style="font-size: 4rem; font-weight: 800; margin-bottom: 12px;">1,800</h3>
+            <p class="text-secondary">suspected NK applicants blocked by Amazon alone</p>
+            <p class="text-secondary-sm" style="margin-top: 12px;">— Dark Reading, Dec 2025</p>
         </div>
         <div class="card text-center">
             <h3 style="font-size: 4rem; font-weight: 800; margin-bottom: 12px;">220%</h3>
