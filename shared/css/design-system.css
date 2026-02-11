@@ -706,3 +706,268 @@ h3 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
     opacity: 0.85;
 }
 
+/* ========== RESPONSIVE STYLES ========== */
+
+/* Tablet and below */
+@media (max-width: 1024px) {
+    .slide {
+        padding: 50px 60px;
+    }
+    
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.4rem; }
+    h3 { font-size: 1.6rem; }
+    
+    .subtitle { font-size: 1.2rem; }
+    .quote { font-size: 2.2rem; }
+    
+    .two-col {
+        gap: 40px;
+    }
+    
+    .card {
+        padding: 30px;
+    }
+    
+    .card-grid {
+        gap: 20px;
+    }
+    
+    .emphasis-box {
+        padding: 40px;
+    }
+    
+    .accent-line-top { left: 60px; }
+    .accent-line-bottom { right: 60px; }
+}
+
+/* Mobile landscape and small tablets */
+@media (max-width: 768px) {
+    .slide {
+        padding: 40px 30px;
+        min-height: 100vh;
+        height: auto;
+    }
+    
+    h1 { font-size: 2.2rem; margin-bottom: 16px; }
+    h2 { font-size: 1.8rem; margin-bottom: 14px; }
+    h3 { font-size: 1.3rem; margin-bottom: 12px; }
+    
+    .subtitle { font-size: 1rem; }
+    .quote { font-size: 1.6rem; }
+    .quote::before { font-size: 5rem; top: -30px; left: -20px; }
+    
+    .reveal-text { font-size: 1.6rem; }
+    
+    /* Stack two columns */
+    .two-col {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card {
+        padding: 24px;
+    }
+    
+    .badge {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+    
+    .emphasis-box {
+        padding: 30px 24px;
+    }
+    
+    .emphasis-box h2 {
+        font-size: 1.6rem;
+    }
+    
+    .demo-frame {
+        border-radius: 8px;
+    }
+    
+    .profile-card {
+        max-width: 100%;
+    }
+    
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+    }
+    
+    .check-list li {
+        font-size: 1rem;
+        padding: 12px 0;
+    }
+    
+    .stat-card {
+        padding: 20px 24px;
+    }
+    
+    /* Accent decorations */
+    .accent-shape { width: 80px; height: 80px; }
+    .accent-line { width: 120px; }
+    .accent-line-top { top: 50px; left: 30px; }
+    .accent-line-bottom { bottom: 50px; right: 30px; }
+    
+    .slide::after {
+        width: 250px;
+        height: 250px;
+        top: -125px;
+        right: -125px;
+    }
+    
+    .slide-title h1::after {
+        width: 60px;
+        height: 3px;
+        bottom: -14px;
+    }
+    
+    .slide-number {
+        bottom: 20px;
+        right: 30px;
+        font-size: 0.75rem;
+    }
+    
+    /* Nav menu - hide on mobile or make it a hamburger-style */
+    #nav-menu {
+        display: none;
+    }
+    
+    /* Bottom toolbar adjustments */
+    #bottom-toolbar {
+        bottom: 15px;
+        right: 15px;
+        padding: 5px 8px;
+        border-radius: 12px;
+    }
+    
+    #bottom-toolbar > button {
+        transform: scale(0.9);
+    }
+    
+    /* Dividers in funnel progress */
+    .divider, .divider-accent {
+        width: 15px;
+    }
+    
+    .badge-muted, .badge-success {
+        padding: 4px 10px;
+        font-size: 0.65rem;
+    }
+    
+    /* Stat values */
+    .stat-glow {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .slide {
+        padding: 30px 20px;
+    }
+    
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+    
+    .subtitle { font-size: 0.9rem; }
+    .quote { font-size: 1.3rem; max-width: 100%; }
+    .quote::before { font-size: 4rem; top: -20px; left: -10px; }
+    
+    .reveal-text { font-size: 1.3rem; }
+    
+    .card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    
+    .badge {
+        padding: 5px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .emphasis-box {
+        padding: 24px 20px;
+        border-radius: 14px;
+    }
+    
+    .profile-body {
+        padding: 0 20px 24px;
+    }
+    
+    .profile-name {
+        font-size: 1.3rem;
+    }
+    
+    .accent-shape { display: none; }
+    .accent-line { display: none; }
+    
+    .slide::after { display: none; }
+    .slide::before { opacity: 0.5; }
+    
+    /* Funnel badges - stack or hide on very small screens */
+    .badge-muted, .badge-success {
+        padding: 3px 8px;
+        font-size: 0.55rem;
+    }
+    
+    .divider, .divider-accent {
+        width: 8px;
+    }
+    
+    .stat-card {
+        padding: 16px 20px;
+    }
+    
+    .check-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
+
+/* Height-based adjustments for landscape mobile */
+@media (max-height: 600px) and (max-width: 900px) {
+    .slide {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    
+    h1 { font-size: 2rem; margin-bottom: 12px; }
+    h2 { font-size: 1.6rem; }
+    
+    .card { padding: 20px; }
+    .emphasis-box { padding: 24px; }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger tap targets */
+    .badge, .badge-muted, .badge-success {
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    #nav-panel a {
+        padding: 14px 0;
+        min-height: 48px;
+    }
+    
+    /* Remove hover effects that don't make sense on touch */
+    .card:hover {
+        transform: none;
+    }
+    
+    .card:active {
+        transform: scale(0.98);
+    }
+}
+

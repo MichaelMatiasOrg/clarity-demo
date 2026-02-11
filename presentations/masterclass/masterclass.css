@@ -393,3 +393,443 @@
     0% { transform: translateY(-100%); }
     100% { transform: translateY(100%); }
 }
+
+/* ========== MASTERCLASS MOBILE RESPONSIVE ========== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    /* Vero stats row */
+    .vero-stats-row {
+        gap: 16px;
+    }
+    
+    .vero-stats-row .stat-value {
+        font-size: 1.8rem;
+    }
+    
+    .vero-stats-row .stat-card {
+        max-width: none;
+    }
+    
+    .vero-security-bar {
+        gap: 20px;
+        padding: 14px 24px;
+        font-size: 0.8rem;
+    }
+    
+    /* Interview cards layout */
+    [data-slide-id="interview-deepfake"] .two-col {
+        gap: 30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Identity lifecycle slide */
+    [data-slide-id="identity-lifecycle"] {
+        padding: 30px 20px !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] .badge {
+        margin-bottom: 12px !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] h1 {
+        font-size: 1.6rem !important;
+    }
+    
+    /* Lifecycle flow - vertical stack on mobile */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) {
+        flex-direction: column !important;
+        gap: 20px !important;
+        padding: 0 !important;
+    }
+    
+    /* Lifecycle stages */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="text-align: center"] {
+        flex-direction: row !important;
+        align-items: center;
+        gap: 16px;
+        text-align: left !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="text-align: center"] > div[style*="width: 100px"] {
+        width: 60px !important;
+        height: 60px !important;
+        margin: 0 !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="text-align: center"] > div[style*="width: 100px"] svg {
+        width: 28px;
+        height: 28px;
+    }
+    
+    /* Hide horizontal arrows */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="font-size: 1.5rem"] {
+        display: none !important;
+    }
+    
+    /* Hide connecting line */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="position: absolute"] {
+        display: none !important;
+    }
+    
+    /* Lifecycle summary bar - stack items */
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(3) {
+        flex-direction: column !important;
+        gap: 16px !important;
+        padding: 20px !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(3) > div[style*="width: 1px"] {
+        display: none !important;
+    }
+    
+    /* Vero target slide */
+    .vero-stats-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .vero-stats-row .stat-card {
+        max-width: 100%;
+    }
+    
+    .vero-stats-row .stat-value {
+        font-size: 2rem;
+    }
+    
+    .vero-security-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 16px 20px;
+        font-size: 0.85rem;
+    }
+    
+    /* Why this role - 2x2 grid becomes single column */
+    [data-slide-id="why-role"] > div > div:last-of-type[style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Interview deepfake slide */
+    [data-slide-id="interview-deepfake"] .two-col {
+        gap: 24px;
+    }
+    
+    .interview-cards {
+        gap: 10px !important;
+    }
+    
+    .interview-cards > div {
+        padding: 12px 14px !important;
+    }
+    
+    .interview-cards > div > div:first-child {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    .deepfake-panel {
+        padding: 16px 14px !important;
+    }
+    
+    .deepfake-panel > div {
+        flex-direction: column !important;
+        gap: 16px;
+    }
+    
+    .deepfake-panel > div > div[style*="flex: 0 0 90px"] {
+        flex: none !important;
+    }
+    
+    .deepfake-panel > div > div[style*="flex: 1"] svg {
+        display: none;
+    }
+    
+    /* LinkedIn profile card */
+    [data-slide-id="linkedin"] .two-col > div:last-child {
+        max-width: 100%;
+    }
+    
+    /* Hiring funnel progress - bottom of slides */
+    [data-slide-id] > div[style*="position: absolute"][style*="bottom: 50px"] {
+        bottom: 20px !important;
+        transform: translateX(-50%) scale(0.85);
+    }
+    
+    /* Voice quiz audio players */
+    [data-slide-id="voice-quiz"] > div > div[style*="display: flex"][style*="gap: 30px"] {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    
+    .voice-option {
+        min-width: 100% !important;
+        padding: 20px 24px !important;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    /* Identity lifecycle */
+    [data-slide-id="identity-lifecycle"] h1 {
+        font-size: 1.4rem !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="text-align: center"] > div[style*="width: 100px"] {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="text-align: center"] h3 {
+        font-size: 0.95rem !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:nth-child(2) > div[style*="text-align: center"] p {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Discussion prompt */
+    [data-slide-id="identity-lifecycle"] > div > div:last-child {
+        margin-top: 24px !important;
+    }
+    
+    [data-slide-id="identity-lifecycle"] > div > div:last-child p {
+        font-size: 1rem !important;
+    }
+    
+    /* Intro hero slide */
+    [data-slide-id="intro"] h1 {
+        font-size: 2.4rem !important;
+    }
+    
+    [data-slide-id="intro"] p[style*="letter-spacing: 3px"] {
+        font-size: 0.9rem !important;
+        letter-spacing: 2px !important;
+    }
+    
+    /* Vero hook */
+    [data-slide-id="vero-hook"] h1 {
+        font-size: 1.6rem !important;
+    }
+    
+    /* Stats */
+    .vero-stats-row .stat-value {
+        font-size: 1.6rem;
+    }
+    
+    /* Interview cards text */
+    .interview-cards > div p[style*="font-weight: 600"] {
+        font-size: 0.9rem !important;
+    }
+    
+    .interview-cards > div p[class*="text-secondary"] {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Deepfake text sizes */
+    .deepfake-panel span[style*="font-size: 0.7rem"] {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Hide funnel progress on very small screens */
+    [data-slide-id] > div[style*="position: absolute"][style*="bottom: 50px"] {
+        display: none !important;
+    }
+    
+    /* Resume logos */
+    [data-slide-id="resume"] img[style*="width: 24px"] {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    /* Marcus intro */
+    [data-slide-id="meet-marcus"] h1 {
+        font-size: 2rem !important;
+    }
+    
+    [data-slide-id="meet-marcus"] .subtitle {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Two pillars slide - 7 column grid */
+    [data-slide-id="two-pillars"] > div > div[style*="grid-template-columns: 190px"] {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    
+    /* Hide animated tracks on mobile */
+    .tp-chaotic-track,
+    .tp-converge-track,
+    .tp-clean-track {
+        display: none !important;
+    }
+    
+    /* Chaos grid - make 3 columns instead of 6 */
+    [data-slide-id="usefulness-chaos-grid"] > div > div > div[style*="grid-template-columns: repeat(6"] {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+    }
+    
+    /* Problems row - stack on mobile */
+    [data-slide-id="usefulness-chaos-grid"] > div > div[style*="display: flex"][style*="gap: 24px"] {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    [data-slide-id="usefulness-chaos-grid"] > div > div[style*="display: flex"][style*="gap: 24px"] > div {
+        flex: 1 1 140px !important;
+        max-width: 160px;
+    }
+    
+    /* Every stage slide - horizontal funnel becomes vertical */
+    [data-slide-id="every-stage"] > div > div[style*="display: flex"][style*="gap: 16px"] {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: center;
+    }
+    
+    .stage-card {
+        width: 100% !important;
+        max-width: 280px !important;
+    }
+    
+    /* Epidemic stats - single column */
+    [data-slide-id="epidemic"] > div[style*="display: grid"][style*="repeat(3"] {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    /* Pipeline/gauntlet slide */
+    .gauntlet-slide .gauntlet-container {
+        padding: 0 10px;
+    }
+    
+    /* Clarity checks row */
+    .gauntlet-slide .check-station-1,
+    .gauntlet-slide .check-station-2,
+    .gauntlet-slide .check-station-3 {
+        min-width: 100px !important;
+        padding: 12px 10px !important;
+    }
+    
+    .gauntlet-slide .check-station-1 div[style*="font-size: 0.85rem"],
+    .gauntlet-slide .check-station-2 div[style*="font-size: 0.85rem"],
+    .gauntlet-slide .check-station-3 div[style*="font-size: 0.85rem"] {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Pipeline track - simplify for mobile */
+    [data-slide-id="pipeline"] > div > div > div[style*="display: flex"][style*="gap: 15px"] {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+    
+    [data-slide-id="pipeline"] > div > div > div[style*="display: flex"] > div[style*="min-width: 110px"] {
+        min-width: 80px !important;
+        padding: 10px 12px !important;
+        font-size: 0.7rem !important;
+    }
+    
+    /* Hide candidate dots animation on mobile */
+    .candidate-dot,
+    .threat-dot {
+        display: none !important;
+    }
+    
+    /* Lifecycle container */
+    .lifecycle-container {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .lifecycle-orbit > div {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    /* Already happening slide - 2x2 grid becomes single column */
+    [data-slide-id="already-happening"] > div > div[style*="display: grid"][style*="repeat(2"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Fortune 500 quote slide */
+    [data-slide-id="fortune-500"] > div {
+        flex-direction: column !important;
+        gap: 30px !important;
+        text-align: center;
+    }
+    
+    [data-slide-id="fortune-500"] > div > div:first-child {
+        width: 100% !important;
+    }
+    
+    [data-slide-id="fortune-500"] p[style*="font-size: 1.65rem"] {
+        font-size: 1.2rem !important;
+    }
+    
+    /* Bad hire cost / malicious slides - 2 column to single */
+    [data-slide-id="bad-hire-cost"] > div > div[style*="display: grid"][style*="1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    [data-slide-id="malicious"] > div > div[style*="display: grid"][style*="1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Globe Life results - stack stat boxes */
+    [data-slide-id="globelife-results"] > div > div[style*="display: flex"][style*="gap: 24px"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    [data-slide-id="globelife-results"] > div > div[style*="display: flex"] > div[style*="min-width: 180px"] {
+        min-width: 100% !important;
+        max-width: 200px;
+    }
+    
+    /* Globe Life findings - single column */
+    [data-slide-id="globelife-findings"] > div > div[style*="display: grid"][style*="repeat(2"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Command center screenshot */
+    [data-slide-id="command-center"] .demo-frame img {
+        max-height: 50vh !important;
+    }
+    
+    /* Pre-interview / during-interview drill-down slides */
+    [data-slide-id="pre-interview"] > div,
+    [data-slide-id="during-interview"] > div {
+        grid-template-columns: 1fr !important;
+    }
+    
+    [data-slide-id="pre-interview"] .demo-frame,
+    [data-slide-id="during-interview"] .demo-frame {
+        transform: none !important;
+    }
+    
+    /* Integration logos wrap */
+    [data-slide-id="pre-interview"] > div > div:last-child > div:last-child {
+        gap: 6px !important;
+    }
+    
+    [data-slide-id="pre-interview"] > div > div:last-child > div:last-child > div {
+        padding: 6px 10px !important;
+    }
+}
+
+/* Extra small mobile adjustments */
+@media (max-width: 380px) {
+    /* Chaos grid - 2 columns on very small screens */
+    [data-slide-id="usefulness-chaos-grid"] > div > div > div[style*="grid-template-columns: repeat(6"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Hide some content for clarity */
+    .lifecycle-container {
+        display: none !important;
+    }
+}
