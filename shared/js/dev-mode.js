@@ -53,8 +53,15 @@
         btn.addEventListener('mouseleave', () => btn.style.opacity = devModeEnabled ? '1' : '0.7');
         btn.addEventListener('click', toggleDevMode);
         const toolbar = document.getElementById('bottom-toolbar');
-        if (toolbar) toolbar.appendChild(btn);
-        else document.body.appendChild(btn);
+        if (toolbar) {
+            toolbar.appendChild(btn);
+        } else {
+            btn.style.position = 'fixed';
+            btn.style.bottom = '20px';
+            btn.style.right = '20px';
+            btn.style.zIndex = '9990';
+            document.body.appendChild(btn);
+        }
         return btn;
     }
 

@@ -205,5 +205,6 @@
     // Create shared bottom toolbar for utility buttons (speaker notes, dev mode, PDF, etc.)
     const toolbar = document.createElement('div');
     toolbar.id = 'bottom-toolbar';
+    toolbar.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9990; display: flex; gap: 8px; align-items: center;';
     document.body.appendChild(toolbar);
 })();
