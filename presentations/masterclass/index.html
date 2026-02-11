@@ -413,7 +413,7 @@
                 <strong style="color: var(--danger);">Using a real-time deepfake the entire time.</strong>
             </p>
             <!-- Interview rounds -->
-            <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="interview-cards" style="display: flex; flex-direction: column; gap: 12px;">
                 <div class="flex-center-gap" style="background: white; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--border);">
                     <div style="width: 36px; height: 36px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center;">✓</div>
                     <div>
@@ -445,18 +445,20 @@
             </div>
         </div>
         <!-- What they see vs What's real -->
-        <div>
+        <div class="deepfake-right">
             <!-- What interviewers see -->
             <div style="margin-bottom: 20px;">
-                <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 10px; padding-left: 2px; border-left: 2px solid var(--border); padding-left: 10px;">What interviewers see</div>
+                <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 10px; border-left: 2px solid var(--border); padding-left: 10px;">What interviewers see</div>
                 <div style="background: #242424; border-radius: 12px; overflow: hidden;">
                     <div style="position: relative;">
                         <img src="assets/marcus-chen/zoom.png" alt="Marcus on Zoom" style="width: 100%; display: block;">
+                        <div class="zoom-scan-line"></div>
                         <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.7); padding: 4px 10px; border-radius: 4px;">
                             <span style="color: white; font-size: 0.75rem;">Marcus Chen</span>
                         </div>
-                        <div style="position: absolute; top: 8px; right: 8px; background: #2d7d2d; padding: 3px 8px; border-radius: 4px;">
-                            <span style="color: white; font-size: 0.65rem; font-weight: 600;">HD Video</span>
+                        <div style="position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 4px; display: flex; align-items: center;">
+                            <span class="live-dot"></span>
+                            <span style="color: white; font-size: 0.65rem; font-weight: 600;">LIVE</span>
                         </div>
                     </div>
                 </div>
@@ -464,26 +466,33 @@
 
             <!-- What's really happening -->
             <div>
-                <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--danger); margin-bottom: 10px; padding-left: 2px; border-left: 2px solid var(--danger); padding-left: 10px;">What's actually happening</div>
-                <div style="background: #1a1a1a; border-radius: 12px; padding: 20px; border: 2px solid var(--danger);">
-                    <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--danger); margin-bottom: 10px; border-left: 2px solid var(--danger); padding-left: 10px;">What's actually happening</div>
+                <div class="deepfake-panel" style="background: #1a1a1a; border-radius: 12px; padding: 24px 20px; border: 2px solid var(--danger);">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
                         <!-- Anonymous attacker -->
-                        <div class="text-center">
-                            <div style="width: 64px; height: 64px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-                                <span style="font-size: 1.8rem;">?</span>
+                        <div class="text-center" style="flex: 0 0 90px;">
+                            <div class="deepfake-question" style="width: 72px; height: 72px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+                                <span style="font-size: 2rem; color: #aaa;">?</span>
                             </div>
-                            <span style="color: #888; font-size: 0.7rem;">Real person</span>
+                            <span style="color: #999; font-size: 0.7rem; font-weight: 500;">Real person</span>
                         </div>
                         <!-- Arrow with deepfake label -->
-                        <div style="flex: 1; text-align: center;">
-                            <div style="background: var(--danger); color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; display: inline-block; margin-bottom: 8px;">DEEPFAKE</div>
-                            <div style="color: #666; font-size: 1.5rem;">→</div>
-                            <div style="color: #888; font-size: 0.65rem;">Real-time face swap<br>+ voice clone</div>
+                        <div style="flex: 1; text-align: center; padding: 0 8px;">
+                            <div class="deepfake-badge" style="background: var(--danger); color: white; padding: 6px 14px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; display: inline-block; margin-bottom: 10px;">DEEPFAKE</div>
+                            <svg width="100%" height="20" viewBox="0 0 120 20" preserveAspectRatio="none" style="display: block;">
+                                <defs>
+                                    <marker id="df-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#ef4444"/>
+                                    </marker>
+                                </defs>
+                                <line x1="8" y1="10" x2="108" y2="10" stroke="#ef4444" stroke-width="2" stroke-dasharray="10 10" marker-end="url(#df-arrow)" class="flow-arrow"/>
+                            </svg>
+                            <div style="color: #888; font-size: 0.6rem; margin-top: 6px;">Real-time face swap + voice clone</div>
                         </div>
                         <!-- Marcus output -->
-                        <div class="text-center">
-                            <img src="assets/marcus-chen/headshot.png" alt="Marcus" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--danger); margin-bottom: 8px;">
-                            <span style="color: #888; font-size: 0.7rem;">"Marcus Chen"</span>
+                        <div class="text-center" style="flex: 0 0 90px;">
+                            <img src="assets/marcus-chen/headshot.png" alt="Marcus" style="width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--danger); display: block; margin: 0 auto 8px;">
+                            <span style="color: #999; font-size: 0.7rem; font-weight: 500;">"Marcus Chen"</span>
                         </div>
                     </div>
                 </div>
