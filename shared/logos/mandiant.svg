@@ -1,0 +1,13 @@
+<svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mandiant by Google — M icon in Google brand colors -->
+  <!-- Green: left ascending stroke -->
+  <path d="M2,36 L11,4 L15,10 L8,36 Z" fill="#34A853"/>
+  <!-- Red: left peak descending to center valley -->
+  <path d="M11,4 L20,24 L20,18 L15,10 Z" fill="#EA4335"/>
+  <!-- Yellow: center valley ascending to right peak -->
+  <path d="M20,24 L29,4 L25,10 L20,18 Z" fill="#FBBC04"/>
+  <!-- Blue: right peak descending to bottom-right -->
+  <path d="M29,4 L38,36 L32,36 L25,10 Z" fill="#4285F4"/>
+  <!-- Mandiant wordmark -->
+  <text x="48" y="30" font-family="'Google Sans', 'Product Sans', Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#5F6368">Mandiant</text>
+</svg>
