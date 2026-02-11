@@ -42,13 +42,11 @@ window.NarrationData = {
 
     // === Act 3: The Scale (slides 17+) ===
     { id: "already-happening", audioIndex: 38, text: "And it's not just Globe Life. This is happening to companies around the world. North Korean operatives have infiltrated over three hundred US companies. KnowBe4 — a security company — hired one who started loading malware on day one. If it can happen to a security company, it can happen to anyone.", duration: 15000 },
-    { id: "the-question", audioIndex: 12, text: "So here's my question. How would you have caught him?", duration: 4000 },
-    { id: "scale", audioIndex: 13, text: "This was one target, one hour of work. Now imagine threat actors doing this at scale, automated, against hundreds of companies.", duration: 8000 },
     { id: "fortune-500", audioIndex: 14, text: "This is Charles Carmakal, CTO of Mandiant. He's talked to dozens of Fortune 500 CISOs. Almost every one has admitted they had a North Korean IT worker problem. Dozens. Fortune 500. Already compromised.", duration: 12000 },
     { id: "epidemic", audioIndex: 15, text: "The numbers are staggering. Amazon alone has blocked eighteen hundred suspected North Korean applicants. Infiltrations are up two hundred twenty percent in just twelve months. And by 2028, Gartner predicts one in four candidate profiles will be fake. This isn't slowing down. It's accelerating.", duration: 12000 },
     { id: "hr-attack-surface", audioIndex: 18, text: "HR is the new attack surface. You've secured your perimeter. Firewalls. Encryption. EDR. SIEM. But your employees? That's the vulnerability. And every open role is an invitation.", duration: 10000 },
     { id: "bad-hire-cost", audioIndex: 16, text: "What happens when a bad hire gets through? On average, two hundred forty thousand dollars. That's recruiting, onboarding, salary, severance, replacement. And it takes six months to detect. Six months of access. Six months of trust.", duration: 12000 },
-    { id: "malicious", audioIndex: 17, text: "But that's just incompetence. What if they're malicious? An insider threat doesn't cost two hundred forty thousand. It costs five million. And it doesn't take six months to detect. It takes nearly ten months. Ten months of damage before you even know.", duration: 12000 },
+    { id: "malicious", audioIndex: 17, text: "But that's just incompetence. What if they're malicious? An insider threat doesn't cost two hundred forty thousand. It costs five million. And it doesn't take six months to detect. It takes nearly ten months. Ten months of damage before you even know.", duration: 12000 }, origin/main
 
     // === Act 3: The Solution (slides 20-25) ===
     { id: "clarity-intro", audioIndex: 20, text: "This is why we built Clarity. End-to-end identity validation for the entire employee lifecycle. From the first resume to their last day on the job. Know who you're hiring. And know it's still them.", duration: 10000 },
