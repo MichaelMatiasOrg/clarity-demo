@@ -207,4 +207,12 @@
     toolbar.id = 'bottom-toolbar';
     toolbar.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9990; display: flex; gap: 8px; align-items: center;';
     document.body.appendChild(toolbar);
+
+    // Auto-hide toolbar after 3s of no mouse movement
+    let toolbarHideTimeout = setTimeout(function() { toolbar.classList.add('toolbar-hidden'); }, 3000);
+    document.addEventListener('mousemove', function() {
+        toolbar.classList.remove('toolbar-hidden');
+        clearTimeout(toolbarHideTimeout);
+        toolbarHideTimeout = setTimeout(function() { toolbar.classList.add('toolbar-hidden'); }, 3000);
+    });
 })();
