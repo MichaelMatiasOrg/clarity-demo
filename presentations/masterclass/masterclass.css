@@ -381,3 +381,15 @@
     margin-right: 5px;
     animation: live-dot-pulse 1.5s ease-in-out infinite;
 }
+
+/* Red glow on Marcus deepfake headshot */
+@keyframes dfk-red-glow {
+    0%, 100% { box-shadow: 0 0 12px rgba(239, 68, 68, 0.3); }
+    50% { box-shadow: 0 0 24px rgba(239, 68, 68, 0.55); }
+}
+
+/* Scan sweep over Marcus deepfake headshot */
+@keyframes dfk-scan-sweep {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}

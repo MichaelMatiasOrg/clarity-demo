@@ -164,7 +164,7 @@
     <div class="two-col">
         <div class="demo-frame" style="max-height: 500px; overflow: hidden;">
             <a href="https://matiasmichael.github.io/verofintech-demo/careers.html#" target="_blank" style="display: block; cursor: pointer;">
-                <img src="assets/vero/careers-screenshot.jpg" alt="Vero Financial Careers" style="width: 100%; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 30px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                <img src="assets/vero/job-details-screenshot.png" alt="Vero Financial Job Details" style="width: 100%; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 30px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
             </a>
         </div>
         <div>
@@ -172,7 +172,7 @@
             <h2>They're hiring.</h2>
             <p class="subtitle" style="margin-top: 20px;">
                 6 open roles. One stands out:<br><br>
-                <strong style="font-size: 1.4rem;">Staff Software Engineer,<br>Platform</strong>
+                <strong style="font-size: 1.4rem;">Senior Software Engineer,<br>Platform</strong>
             </p>
             <p class="subtitle" style="margin-top: 20px; opacity: 0.7;">
                 San Francisco, CA. Full-time.
@@ -469,16 +469,19 @@
                 <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--danger); margin-bottom: 10px; border-left: 2px solid var(--danger); padding-left: 10px;">What's actually happening</div>
                 <div class="deepfake-panel" style="background: #1a1a1a; border-radius: 12px; padding: 24px 20px; border: 2px solid var(--danger);">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <!-- Anonymous attacker -->
+                        <!-- Hooded attacker -->
                         <div class="text-center" style="flex: 0 0 90px;">
-                            <div class="deepfake-question" style="width: 72px; height: 72px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
-                                <span style="font-size: 2rem; color: #aaa;">?</span>
-                            </div>
-                            <span style="color: #999; font-size: 0.7rem; font-weight: 500;">Real person</span>
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 80px; height: 80px; margin: 0 auto 8px; display: block;">
+                                <circle cx="32" cy="32" r="30" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+                                <path d="M32 12C22 12 16 22 16 30C16 34 18 38 20 40V52H44V40C46 38 48 34 48 30C48 22 42 12 32 12Z" fill="#333"/>
+                                <ellipse cx="32" cy="26" rx="10" ry="11" fill="#1a1a1a"/>
+                                <path d="M26 28C26 28 28 32 32 32C36 32 38 28 38 28" stroke="#444" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            <span style="color: #999; font-size: 0.7rem; font-weight: 500;">Unknown operator</span>
                         </div>
                         <!-- Arrow with deepfake label -->
                         <div style="flex: 1; text-align: center; padding: 0 8px;">
-                            <div class="deepfake-badge" style="background: var(--danger); color: white; padding: 6px 14px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; display: inline-block; margin-bottom: 10px;">DEEPFAKE</div>
+                            <div class="deepfake-badge" style="background: var(--danger); color: white; padding: 6px 14px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">DEEPFAKE</div>
                             <svg width="100%" height="20" viewBox="0 0 120 20" preserveAspectRatio="none" style="display: block;">
                                 <defs>
                                     <marker id="df-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -489,9 +492,15 @@
                             </svg>
                             <div style="color: #888; font-size: 0.6rem; margin-top: 6px;">Real-time face swap + voice clone</div>
                         </div>
-                        <!-- Marcus output -->
+                        <!-- Marcus output with red glow -->
                         <div class="text-center" style="flex: 0 0 90px;">
-                            <img src="assets/marcus-chen/headshot.png" alt="Marcus" style="width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--danger); display: block; margin: 0 auto 8px;">
+                            <div style="position: relative; width: 80px; height: 80px; margin: 0 auto 8px;">
+                                <img src="assets/marcus-chen/headshot.png" alt="Marcus" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--danger); animation: dfk-red-glow 3s ease-in-out infinite;">
+                                <div style="position: absolute; inset: 0; border-radius: 50%; overflow: hidden; pointer-events: none;">
+                                    <div style="position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(239,68,68,0.07) 3px, rgba(239,68,68,0.07) 4px); mix-blend-mode: screen;"></div>
+                                    <div style="position: absolute; left: 0; right: 0; height: 50%; background: linear-gradient(180deg, rgba(239,68,68,0.15), transparent); animation: dfk-scan-sweep 2.5s linear infinite;"></div>
+                                </div>
+                            </div>
                             <span style="color: #999; font-size: 0.7rem; font-weight: 500;">"Marcus Chen"</span>
                         </div>
                     </div>
@@ -1697,7 +1706,7 @@ function revealAnswer() {
                 </div>
                 <div class="text-center" style="padding: 20px 15px; background: var(--bg-surface); border-radius: 12px;">
                     <p style="font-size: 0.7rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Identity</p>
-                    <p style="font-size: 0.85rem; color: var(--text-primary); font-weight: 600; margin-bottom: 6px;">Okta, Azure AD</p>
+                    <p style="font-size: 0.85rem; color: var(--text-primary); font-weight: 600; margin-bottom: 6px;">Azure AD</p>
                     <p class="stat-label">MFA resets, access requests</p>
                 </div>
             </div>
@@ -1878,55 +1887,55 @@ function revealAnswer() {
             0%, 100% { box-shadow: 0 0 60px rgba(97, 243, 147, 0.15), 0 8px 24px rgba(10, 22, 40, 0.05), 0 2px 6px rgba(10, 22, 40, 0.03); }
             50% { box-shadow: 0 0 80px rgba(97, 243, 147, 0.22), 0 8px 24px rgba(10, 22, 40, 0.05), 0 2px 6px rgba(10, 22, 40, 0.03); }
         }
-        .arch-diagram { position: relative; width: 920px; height: 640px; background: white; border-radius: 20px; box-shadow: 0 4px 24px rgba(10,22,40,0.06), 0 1px 3px rgba(10,22,40,0.03); overflow: hidden; margin: 0 auto; }
+        .arch-diagram { position: relative; width: 920px; height: 540px; background: white; border-radius: 20px; box-shadow: 0 4px 24px rgba(10,22,40,0.06), 0 1px 3px rgba(10,22,40,0.03); overflow: hidden; margin: 0 auto; }
         .arch-diagram::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(10,22,40,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(10,22,40,0.018) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
         .arch-diagram::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 10% 50%, rgba(97,243,147,0.04) 0%, transparent 50%), radial-gradient(ellipse at 90% 40%, rgba(59,130,246,0.03) 0%, transparent 50%), radial-gradient(ellipse at 50% 95%, rgba(61,217,235,0.04) 0%, transparent 40%); pointer-events: none; }
         .arch-zone { position: absolute; border-radius: 14px; z-index: 1; }
-        .arch-zone-hire { left: 12px; top: 52px; width: 172px; height: 310px; background: linear-gradient(180deg, rgba(97,243,147,0.035) 0%, rgba(97,243,147,0.01) 100%); border: 1px solid rgba(97,243,147,0.08); }
-        .arch-zone-life { right: 12px; top: 52px; width: 172px; height: 310px; background: linear-gradient(180deg, rgba(59,130,246,0.03) 0%, rgba(59,130,246,0.008) 100%); border: 1px solid rgba(59,130,246,0.06); }
-        .arch-zone-alert { right: 12px; top: 372px; width: 172px; height: 78px; background: linear-gradient(180deg, rgba(239,68,68,0.025) 0%, rgba(239,68,68,0.008) 100%); border: 1px solid rgba(239,68,68,0.06); }
-        .arch-col { position: absolute; top: 22px; font-size: 0.58rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; z-index: 2; }
+        .arch-zone-hire { left: 12px; top: 38px; width: 194px; height: 270px; background: linear-gradient(180deg, rgba(97,243,147,0.035) 0%, rgba(97,243,147,0.01) 100%); border: 1px solid rgba(97,243,147,0.08); }
+        .arch-zone-life { right: 12px; top: 38px; width: 194px; height: 270px; background: linear-gradient(180deg, rgba(59,130,246,0.03) 0%, rgba(59,130,246,0.008) 100%); border: 1px solid rgba(59,130,246,0.06); }
+        .arch-zone-alert { right: 12px; top: 298px; width: 194px; height: 82px; background: linear-gradient(180deg, rgba(239,68,68,0.025) 0%, rgba(239,68,68,0.008) 100%); border: 1px solid rgba(239,68,68,0.06); }
+        .arch-col { position: absolute; top: 18px; font-size: 0.72rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; z-index: 2; }
         .arch-col-l { left: 38px; }
         .arch-col-c { left: 50%; transform: translateX(-50%); color: #64748B; }
         .arch-col-r { right: 36px; }
-        .arch-card { position: absolute; width: 126px; height: 60px; background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(10,22,40,0.04), 0 4px 12px rgba(10,22,40,0.03); border: 1px solid rgba(10,22,40,0.04); display: flex; align-items: center; justify-content: center; padding: 10px; z-index: 3; }
-        .arch-card img { max-height: 22px; max-width: 82px; object-fit: contain; }
-        .arch-center { position: absolute; width: 150px; height: 150px; background: linear-gradient(180deg, #fff 0%, #f8fdf9 100%); border: 2px solid #61F393; border-radius: 20px; box-shadow: 0 0 60px rgba(97,243,147,0.15), 0 8px 24px rgba(10,22,40,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; left: 50%; top: 120px; transform: translateX(-50%); z-index: 4; animation: arch-pulse-glow 4s ease-in-out infinite; }
-        .arch-center svg { width: 34px; height: 34px; }
-        .arch-center .arch-lbl { font-size: 0.65rem; font-weight: 700; color: #64748B; letter-spacing: 0.3px; }
-        .arch-badge { position: absolute; font-size: 0.48rem; font-weight: 700; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.8px; z-index: 5; }
-        .arch-badge-in { top: 60px; left: 200px; color: #0ea5e9; background: #f0f9ff; border: 1px solid rgba(14,165,233,0.15); }
-        .arch-badge-out { top: 60px; right: 200px; color: #64748B; background: #F0F4F8; border: 1px solid #E2E8F0; }
-        .arch-alert-pill { position: absolute; font-size: 0.48rem; font-weight: 700; color: #EF4444; background: #FEF2F2; padding: 2px 8px; border-radius: 7px; text-transform: uppercase; letter-spacing: 0.8px; border: 1px solid rgba(239,68,68,0.1); z-index: 5; top: 380px; right: 200px; }
+        .arch-card { position: absolute; width: 158px; height: 72px; background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(10,22,40,0.04), 0 4px 12px rgba(10,22,40,0.03); border: 1px solid rgba(10,22,40,0.04); display: flex; align-items: center; justify-content: center; padding: 12px; z-index: 3; }
+        .arch-card img { max-height: 28px; max-width: 100px; object-fit: contain; }
+        .arch-center { position: absolute; width: 200px; height: 200px; background: linear-gradient(180deg, #fff 0%, #f8fdf9 100%); border: 2px solid #61F393; border-radius: 24px; box-shadow: 0 0 60px rgba(97,243,147,0.15), 0 8px 24px rgba(10,22,40,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; left: 50%; top: 82px; transform: translateX(-50%); z-index: 4; animation: arch-pulse-glow 4s ease-in-out infinite; }
+        .arch-center svg { width: 42px; height: 42px; }
+        .arch-center .arch-lbl { font-size: 0.75rem; font-weight: 700; color: #64748B; letter-spacing: 0.3px; }
+        .arch-badge { position: absolute; font-size: 0.58rem; font-weight: 700; padding: 3px 9px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.8px; z-index: 5; }
+        .arch-badge-in { top: 42px; left: 215px; color: #0ea5e9; background: #f0f9ff; border: 1px solid rgba(14,165,233,0.15); }
+        .arch-badge-out { top: 42px; right: 215px; color: #64748B; background: #F0F4F8; border: 1px solid #E2E8F0; }
+        .arch-alert-pill { position: absolute; font-size: 0.58rem; font-weight: 700; color: #EF4444; background: #FEF2F2; padding: 3px 10px; border-radius: 7px; text-transform: uppercase; letter-spacing: 0.8px; border: 1px solid rgba(239,68,68,0.1); z-index: 5; top: 302px; right: 215px; }
         .arch-conn { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
         .arch-conn svg { width: 100%; height: 100%; }
-        .arch-l-out { stroke: #E2E8F0; stroke-width: 1.5; fill: none; }
-        .arch-l-in { stroke: rgba(61,217,235,0.35); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
-        .arch-l-alert { stroke: rgba(239,68,68,0.25); stroke-width: 1.5; fill: none; }
-        .arch-l-up { stroke: rgba(61,217,235,0.3); stroke-width: 2; stroke-dasharray: 6 5; fill: none; }
-        .arch-d-green { fill: #61F393; r: 3; }
-        .arch-d-teal { fill: #3DD9EB; r: 2.5; }
-        .arch-d-red { fill: #EF4444; r: 2.5; opacity: 0.6; }
+        .arch-l-out { stroke: #E2E8F0; stroke-width: 2.5; fill: none; }
+        .arch-l-in { stroke: rgba(61,217,235,0.35); stroke-width: 2.5; stroke-dasharray: 6 5; fill: none; }
+        .arch-l-alert { stroke: rgba(239,68,68,0.25); stroke-width: 2.5; fill: none; }
+        .arch-l-up { stroke: rgba(61,217,235,0.3); stroke-width: 3; stroke-dasharray: 7 6; fill: none; }
+        .arch-d-green { fill: #61F393; r: 4; }
+        .arch-d-teal { fill: #3DD9EB; r: 3.5; }
+        .arch-d-red { fill: #EF4444; r: 3.5; opacity: 0.6; }
         .arch-a-out { fill: #CBD5E1; }
         .arch-a-in { fill: rgba(61,217,235,0.5); }
         .arch-a-alert { fill: rgba(239,68,68,0.35); }
-        .arch-ongoing { position: absolute; bottom: 14px; left: 20px; right: 20px; border-radius: 14px; background: linear-gradient(180deg, rgba(61,217,235,0.03) 0%, rgba(61,217,235,0.008) 100%); border: 1px solid rgba(61,217,235,0.1); padding: 12px 18px 14px; z-index: 3; }
-        .arch-ongoing-hdr { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
-        .arch-ongoing-icon { width: 20px; height: 20px; border-radius: 5px; background: linear-gradient(135deg, #3DD9EB, #0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: white; flex-shrink: 0; }
-        .arch-ongoing-label { font-size: 0.58rem; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 1.5px; }
-        .arch-ongoing-src { margin-left: auto; font-size: 0.54rem; color: #94a3b8; font-weight: 500; }
+        .arch-ongoing { position: absolute; top: 410px; left: 18px; right: 18px; border-radius: 14px; background: linear-gradient(180deg, rgba(61,217,235,0.03) 0%, rgba(61,217,235,0.008) 100%); border: 1px solid rgba(61,217,235,0.1); padding: 10px 16px 10px; z-index: 3; }
+        .arch-ongoing-hdr { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; }
+        .arch-ongoing-icon { width: 22px; height: 22px; border-radius: 6px; background: linear-gradient(135deg, #3DD9EB, #0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: white; flex-shrink: 0; }
+        .arch-ongoing-label { font-size: 0.64rem; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 1.5px; }
+        .arch-ongoing-src { margin-left: auto; font-size: 0.58rem; color: #94a3b8; font-weight: 500; }
         .arch-ongoing-body { display: flex; align-items: stretch; gap: 8px; }
-        .arch-ongoing-body .arch-card { position: static; flex-shrink: 0; width: 96px; height: 46px; border-radius: 9px; }
+        .arch-ongoing-body .arch-card { position: static; flex-shrink: 0; width: 110px; height: 52px; border-radius: 10px; }
         .arch-ongoing-chev { flex-shrink: 0; align-self: center; color: #CBD5E1; }
         .arch-triggers { display: flex; gap: 7px; flex: 1; }
-        .arch-trig { flex: 1; background: white; border-radius: 9px; padding: 8px 10px; border-left: 3px solid #CBD5E1; box-shadow: 0 1px 3px rgba(10,22,40,0.03); border-top: 1px solid rgba(10,22,40,0.03); border-right: 1px solid rgba(10,22,40,0.03); border-bottom: 1px solid rgba(10,22,40,0.03); }
-        .arch-trig-t { font-size: 0.62rem; font-weight: 700; color: #0a1628; margin-bottom: 1px; }
-        .arch-trig-d { font-size: 0.52rem; color: #94a3b8; line-height: 1.3; }
+        .arch-trig { flex: 1; background: white; border-radius: 9px; padding: 7px 10px; border-left: 3px solid #CBD5E1; box-shadow: 0 1px 3px rgba(10,22,40,0.03); border-top: 1px solid rgba(10,22,40,0.03); border-right: 1px solid rgba(10,22,40,0.03); border-bottom: 1px solid rgba(10,22,40,0.03); }
+        .arch-trig-t { font-size: 0.68rem; font-weight: 700; color: #0a1628; margin-bottom: 1px; }
+        .arch-trig-d { font-size: 0.56rem; color: #94a3b8; line-height: 1.3; }
         .arch-trig.red { border-left-color: #EF4444; }
         .arch-trig.amber { border-left-color: #F59E0B; }
         .arch-trig.purple { border-left-color: #8B5CF6; }
         .arch-trig.blue { border-left-color: #3B82F6; }
-        .arch-reval { position: absolute; bottom: 165px; left: 50%; transform: translateX(-50%) rotate(-90deg); font-size: 0.46rem; font-weight: 700; color: #0ea5e9; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; z-index: 5; opacity: 0.6; }
+        .arch-reval { position: absolute; top: 382px; left: 50%; transform: translateX(-50%) rotate(-90deg); font-size: 0.52rem; font-weight: 700; color: #0ea5e9; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; z-index: 5; opacity: 0.6; }
     </style>
 
     <div style="text-align: center; width: 100%;">
@@ -1950,61 +1959,61 @@ function revealAnswer() {
             <div class="arch-badge arch-badge-out">results out</div>
 
             <div class="arch-conn">
-                <svg viewBox="0 0 920 640" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 920 540" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <marker id="ao" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" class="arch-a-out"/></marker>
-                        <marker id="ai" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto"><path d="M7,0 L0,2.5 L7,5" class="arch-a-in"/></marker>
-                        <marker id="aa" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" class="arch-a-alert"/></marker>
+                        <marker id="ao" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" class="arch-a-out"/></marker>
+                        <marker id="ai" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><path d="M10,0 L0,3.5 L10,7" class="arch-a-in"/></marker>
+                        <marker id="aa" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" class="arch-a-alert"/></marker>
                     </defs>
 
                     <!-- Hiring to Clarity -->
-                    <path d="M 160,120 C 250,120 290,180 375,180" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 188,102 C 275,102 315,127 360,127" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#ap1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite"/></circle>
-                    <path id="ap1" d="M 160,120 C 250,120 290,180 375,180" fill="none" style="display:none"/>
+                    <path id="ap1" d="M 188,102 C 275,102 315,127 360,127" fill="none" style="display:none"/>
 
-                    <path d="M 160,200 C 250,200 290,200 375,200" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 188,182 C 275,182 315,182 360,182" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#ap2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/></circle>
-                    <path id="ap2" d="M 160,200 C 250,200 290,200 375,200" fill="none" style="display:none"/>
+                    <path id="ap2" d="M 188,182 C 275,182 315,182 360,182" fill="none" style="display:none"/>
 
-                    <path d="M 160,280 C 250,280 290,224 375,224" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 188,262 C 275,262 315,237 360,237" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#ap3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite"/></circle>
-                    <path id="ap3" d="M 160,280 C 250,280 290,224 375,224" fill="none" style="display:none"/>
+                    <path id="ap3" d="M 188,262 C 275,262 315,237 360,237" fill="none" style="display:none"/>
 
                     <!-- Clarity to Enterprise (results) -->
-                    <path d="M 545,180 C 630,180 670,120 760,120" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 560,127 C 645,127 690,102 732,102" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.3s" repeatCount="indefinite"><mpath href="#ap4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.3s" repeatCount="indefinite"/></circle>
-                    <path id="ap4" d="M 545,180 C 630,180 670,120 760,120" fill="none" style="display:none"/>
+                    <path id="ap4" d="M 560,127 C 645,127 690,102 732,102" fill="none" style="display:none"/>
 
-                    <path d="M 545,200 C 630,200 680,200 760,200" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 560,182 C 645,182 690,182 732,182" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#ap5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.6s" repeatCount="indefinite"/></circle>
-                    <path id="ap5" d="M 545,200 C 630,200 680,200 760,200" fill="none" style="display:none"/>
+                    <path id="ap5" d="M 560,182 C 645,182 690,182 732,182" fill="none" style="display:none"/>
 
-                    <path d="M 545,222 C 630,222 670,280 760,280" class="arch-l-out" marker-end="url(#ao)"/>
+                    <path d="M 560,237 C 645,237 690,262 732,262" class="arch-l-out" marker-end="url(#ao)"/>
                     <circle class="arch-d-green"><animateMotion dur="2.9s" repeatCount="indefinite"><mpath href="#ap6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.9s" repeatCount="indefinite"/></circle>
-                    <path id="ap6" d="M 545,222 C 630,222 670,280 760,280" fill="none" style="display:none"/>
+                    <path id="ap6" d="M 560,237 C 645,237 690,262 732,262" fill="none" style="display:none"/>
 
                     <!-- Enterprise to Clarity (triggers, dashed) -->
-                    <path d="M 760,130 C 680,130 640,188 545,188" class="arch-l-in" marker-end="url(#ai)"/>
+                    <path d="M 732,112 C 660,112 610,140 560,140" class="arch-l-in" marker-end="url(#ai)"/>
                     <circle class="arch-d-teal"><animateMotion dur="3.4s" repeatCount="indefinite"><mpath href="#ap7"/></animateMotion><animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.4s" repeatCount="indefinite"/></circle>
-                    <path id="ap7" d="M 760,130 C 680,130 640,188 545,188" fill="none" style="display:none"/>
+                    <path id="ap7" d="M 732,112 C 660,112 610,140 560,140" fill="none" style="display:none"/>
 
-                    <path d="M 760,210 C 680,210 640,208 545,208" class="arch-l-in" marker-end="url(#ai)"/>
+                    <path d="M 732,192 C 660,192 610,192 560,192" class="arch-l-in" marker-end="url(#ai)"/>
                     <circle class="arch-d-teal"><animateMotion dur="3.7s" repeatCount="indefinite"><mpath href="#ap8"/></animateMotion><animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.7s" repeatCount="indefinite"/></circle>
-                    <path id="ap8" d="M 760,210 C 680,210 640,208 545,208" fill="none" style="display:none"/>
+                    <path id="ap8" d="M 732,192 C 660,192 610,192 560,192" fill="none" style="display:none"/>
 
-                    <path d="M 760,290 C 680,290 640,230 545,230" class="arch-l-in" marker-end="url(#ai)"/>
+                    <path d="M 732,272 C 660,272 610,246 560,246" class="arch-l-in" marker-end="url(#ai)"/>
                     <circle class="arch-d-teal"><animateMotion dur="4.0s" repeatCount="indefinite"><mpath href="#ap9"/></animateMotion><animate attributeName="opacity" values="0;0.7;0.7;0" dur="4.0s" repeatCount="indefinite"/></circle>
-                    <path id="ap9" d="M 760,290 C 680,290 640,230 545,230" fill="none" style="display:none"/>
+                    <path id="ap9" d="M 732,272 C 660,272 610,246 560,246" fill="none" style="display:none"/>
 
                     <!-- Clarity to Splunk (alerts) -->
-                    <path d="M 500,270 C 500,340 590,405 760,405" class="arch-l-alert" marker-end="url(#aa)"/>
+                    <path d="M 510,282 C 510,316 620,340 732,340" class="arch-l-alert" marker-end="url(#aa)"/>
                     <circle class="arch-d-red"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#ap10"/></animateMotion><animate attributeName="opacity" values="0;0.6;0.6;0" dur="2.8s" repeatCount="indefinite"/></circle>
-                    <path id="ap10" d="M 500,270 C 500,340 590,405 760,405" fill="none" style="display:none"/>
+                    <path id="ap10" d="M 510,282 C 510,316 620,340 732,340" fill="none" style="display:none"/>
 
                     <!-- Ongoing to Clarity (vertical upward) -->
-                    <path d="M 460,495 C 460,440 460,340 460,272" class="arch-l-up" marker-end="url(#ai)"/>
-                    <circle class="arch-d-teal" r="3.5"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#ap11"/></animateMotion><animate attributeName="opacity" values="0;0.8;0.8;0" dur="3s" repeatCount="indefinite"/></circle>
-                    <path id="ap11" d="M 460,495 C 460,440 460,340 460,272" fill="none" style="display:none"/>
+                    <path d="M 460,408 C 460,380 460,330 460,284" class="arch-l-up" marker-end="url(#ai)"/>
+                    <circle class="arch-d-teal" r="4"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#ap11"/></animateMotion><animate attributeName="opacity" values="0;0.8;0.8;0" dur="3s" repeatCount="indefinite"/></circle>
+                    <path id="ap11" d="M 460,408 C 460,380 460,330 460,284" fill="none" style="display:none"/>
                 </svg>
             </div>
 
@@ -2018,14 +2027,14 @@ function revealAnswer() {
                 <span class="arch-lbl">Validation Engine</span>
             </div>
 
-            <div class="arch-card" style="left: 34px; top: 88px;"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse"></div>
-            <div class="arch-card" style="left: 34px; top: 168px;"><img src="../../shared/logos/lever.svg" alt="Lever"></div>
-            <div class="arch-card" style="left: 34px; top: 248px;"><img src="../../shared/logos/ashby.svg" alt="Ashby"></div>
+            <div class="arch-card" style="left: 30px; top: 66px;"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse"></div>
+            <div class="arch-card" style="left: 30px; top: 146px;"><img src="../../shared/logos/lever.svg" alt="Lever"></div>
+            <div class="arch-card" style="left: 30px; top: 226px;"><img src="../../shared/logos/ashby.svg" alt="Ashby"></div>
 
-            <div class="arch-card" style="right: 34px; top: 88px;"><img src="../../shared/logos/workday.svg" alt="Workday"></div>
-            <div class="arch-card" style="right: 34px; top: 168px;"><img src="../../shared/logos/okta.svg" alt="Okta"></div>
-            <div class="arch-card" style="right: 34px; top: 248px;"><img src="../../shared/logos/microsoft-entra-id.svg" alt="Entra ID"></div>
-            <div class="arch-card" style="right: 34px; top: 380px;"><img src="../../shared/logos/splunk.svg" alt="Splunk"></div>
+            <div class="arch-card" style="right: 30px; top: 66px;"><img src="../../shared/logos/workday.svg" alt="Workday"></div>
+            <div class="arch-card" style="right: 30px; top: 146px;"><img src="../../shared/logos/okta.svg" alt="Okta"></div>
+            <div class="arch-card" style="right: 30px; top: 226px;"><img src="../../shared/logos/microsoft-entra-id.svg" alt="Entra ID"></div>
+            <div class="arch-card" style="right: 30px; top: 304px;"><img src="../../shared/logos/splunk.svg" alt="Splunk"></div>
 
             <div class="arch-alert-pill">alerts</div>
             <div class="arch-reval">re-validates</div>
@@ -2052,122 +2061,7 @@ function revealAnswer() {
     <div class="slide-number">33</div>
 </section>
 
-<!-- Slide 31: Customer Validation - Deel -->
-<section id="section-close" class="slide" data-slide-id="social-proof">
-    <!-- Background accent -->
-    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(97, 243, 147, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
-    
-    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <p class="subtitle" style="margin-bottom: 12px;">Trusted by industry leaders</p>
-        <h2 style="margin-bottom: 50px;">Protecting hiring at scale</h2>
-        
-        <!-- Deel Feature Card -->
-        <div style="background: white; border-radius: 24px; padding: 50px; box-shadow: 0 10px 50px rgba(0,0,0,0.08); border: 1px solid var(--border); margin-bottom: 40px;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 60px;">
-                <!-- Deel Logo -->
-                <div class="text-center">
-                    <img src="https://website-media.deel.com/logo_revamp_164ddaed0c.svg" alt="Deel" style="height: 48px;">
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 8px;">Global HR Platform</p>
-                </div>
-                
-                <!-- Divider -->
-                <div style="width: 1px; height: 80px; background: var(--border);"></div>
-                
-                <!-- Stats -->
-                <div style="text-align: left;">
-                    <div style="margin-bottom: 20px;">
-                        <div style="font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1;">1M+</div>
-                        <div style="font-size: 1rem; color: var(--text-secondary);">candidates screened annually</div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; color: var(--text-primary); font-size: 0.95rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#61F393" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="#61F393" stroke-width="2"/></svg>
-                        <span>Clarity protects their entire hiring pipeline</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <p style="font-size: 1.2rem; color: var(--text-primary); max-width: 600px; margin: 0 auto;">
-            <em>"When you're hiring across 150 countries, you need to know every candidate is who they claim to be."</em>
-        </p>
-    </div>
-    <div class="slide-number">34</div>
-</section>
-
-<!-- Threat Intel Slide -->
-<section class="slide" data-slide-id="threat-intel" style="background: #F0F4F8;">
-    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <!-- Badge -->
-        <span class="badge" style="background: #0a1628; color: white; margin-bottom: 16px;">Free Tool</span>
-
-        <!-- Headline -->
-        <h2 style="font-size: 2.4rem; margin-bottom: 8px;">Check your pipeline against <span class="accent">known threat actors</span></h2>
-        <p class="subtitle" style="margin-bottom: 30px;">1,000+ DPRK-linked identities in our database</p>
-
-        <!-- Screenshot -->
-        <div style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 20px 60px rgba(10,22,40,0.12); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-            <img src="../../shared/screenshots/threat-intel-homepage.png" alt="Clarity Threat Intelligence"
-                 style="width: 100%; border-radius: 10px; object-fit: cover; object-position: left top; max-height: 350px;">
-        </div>
-
-        <!-- URL CTA -->
-        <a href="https://claritythreatintelligence.ai" style="display: inline-flex; align-items: center; gap: 12px; background: #0a1628; color: white; padding: 18px 36px; border-radius: 50px; font-size: 1.2rem; font-weight: 700; text-decoration: none; box-shadow: 0 8px 30px rgba(10,22,40,0.2);">
-            <span>claritythreatintelligence.ai</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-
-        <!-- Supporting text -->
-        <p style="margin-top: 24px; color: var(--text-secondary); font-size: 0.95rem;">
-            Email lookup &bull; Phone lookup &bull; Works with your ATS
-        </p>
-    </div>
-    <div class="slide-number">35</div>
-</section>
-
-<!-- Closing Slide -->
-<section class="slide" data-slide-id="closing" style="background: var(--text-primary);">
-    <!-- Subtle geometric accent -->
-    <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; opacity: 0.03;" viewBox="0 0 60 60" fill="none">
-        <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="white"/>
-        <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="white"/>
-        <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
-        <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
-    </svg>
-    
-    <div class="text-center" style="position: relative; z-index: 1;">
-        <svg width="140" height="36" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="height: 52px; width: auto; margin-bottom: 50px;">
-<path d="M23.0627 10.008L18.8453 0.46579L16.1663 6.60634H16.165L19.2924 13.7763L26.4613 16.9042L26.4675 16.9017L32.6034 14.2235L23.0602 10.0055L23.0627 10.008Z" fill="white"/>
-<path d="M23.1401 23.799L32.6816 19.5816L26.5415 16.9026L19.372 20.03L16.2444 27.1989H16.2432L16.2456 27.205L18.9236 33.341L23.1413 23.7977L23.1401 23.799Z" fill="white"/>
-<path d="M9.38277 23.8004L13.5292 33.3426L16.1632 27.202H16.1644L13.0896 20.032L6.04126 16.9042L6.03517 16.9066L0 19.5824L9.38277 23.8004Z" fill="#61F393"/>
-<path d="M9.38367 10.009L0 14.2251L6.03775 16.9042L13.0877 13.7768L16.1632 6.60788H16.1644L16.162 6.60169L13.531 0.465775L9.38367 10.009Z" fill="#61F393"/>
-<path d="M129.061 35.5342H125.86L129.495 27.7247L122.191 11.9725H125.36L131.096 24.6008L136.798 11.9725H140L129.061 35.5342Z" fill="white"/>
-<path d="M118.522 28.6851C115.58 28.6851 113.407 27.0591 113.407 23.6081V14.5491H109.863V11.9276H113.407V7.3152H116.282V11.9276H121.096V14.5491H116.282V23.2431C116.282 25.3668 117.218 26.0636 119.057 26.0636C119.759 26.0636 120.561 25.9641 121.096 25.7318V28.2869C120.394 28.5192 119.558 28.6851 118.522 28.6851Z" fill="white"/>
-<path d="M106.472 7.54718C105.293 7.54718 104.384 6.68032 104.384 5.51339C104.384 4.41315 105.293 3.47961 106.472 3.47961C107.651 3.47961 108.493 4.41315 108.493 5.51339C108.493 6.68032 107.651 7.54718 106.472 7.54718ZM104.99 28.6852V12.0148H107.887V28.6852H104.99Z" fill="white"/>
-<path d="M94.2471 28.6852V11.867H97.0923V15.1297C97.7208 12.977 99.8382 11.6988 101.724 11.6988C102.154 11.6988 102.584 11.7324 103.014 11.8334V14.827C102.485 14.5915 102.022 14.5579 101.459 14.5579C99.375 14.5579 97.0923 16.4079 97.0923 20.3433V28.6852H94.2471Z" fill="white"/>
-<path d="M81.3598 28.9591C76.6692 28.9591 73.1514 25.0756 73.1514 20.329C73.1514 15.5824 76.6692 11.6988 81.3598 11.6988C83.906 11.6988 86.1508 12.9933 87.2564 14.5866V12.0307H90.1377V28.6272H87.2564V26.0713C86.1508 27.6646 83.906 28.9591 81.3598 28.9591ZM81.7953 26.3369C85.1457 26.3369 87.4909 23.6815 87.4909 20.329C87.4909 16.9765 85.1457 14.3211 81.7953 14.3211C78.4114 14.3211 76.0662 16.9765 76.0662 20.329C76.0662 23.6815 78.4114 26.3369 81.7953 26.3369Z" fill="white"/>
-<path d="M67.6709 28.6852V3.47961H70.4106V28.6852H67.6709Z" fill="white"/>
-<path d="M54.7206 28.9593C47.9087 28.9593 42.4658 23.5776 42.4658 16.7675C42.4658 9.95732 47.9087 4.57565 54.7206 4.57565C59.2619 4.57565 63.0685 6.8014 65.2056 10.2895L62.601 11.8509C60.9648 9.19326 58.1933 7.49903 54.7206 7.49903C49.5449 7.49903 45.6046 11.5851 45.6046 16.7675C45.6046 21.9498 49.5449 26.0359 54.7206 26.0359C58.1933 26.0359 60.9648 24.3417 62.601 21.684L65.2056 23.2454C63.0685 26.7335 59.2619 28.9593 54.7206 28.9593Z" fill="white"/>
-</svg>
-        
-        <!-- Contact info - clean and simple -->
-        <div style="color: rgba(255,255,255,0.9); margin-bottom: 12px;">
-            <span style="font-size: 1.2rem; font-weight: 600;">Michael Matias</span>
-            <span style="color: rgba(255,255,255,0.4); margin: 0 12px;">|</span>
-            <span style="font-size: 1.1rem;">michael@getclarity.ai</span>
-            <span style="color: rgba(255,255,255,0.4); margin: 0 12px;">|</span>
-            <span style="font-size: 1.1rem;">(650) 437-6332</span>
-        </div>
-        
-        <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem; margin-top: 40px;">
-            getclarity.ai
-        </p>
-    </div>
-    <div class="slide-number" style="color: rgba(255,255,255,0.3);">36</div>
-</section>
-
-<!-- === APPENDIX === -->
-
-<!-- Appendix: Competitive Differentiation -->
+<!-- Competitive Differentiation -->
 <section class="slide" data-slide-id="vs-traditional">
     <div style="max-width: 1000px; margin: 0 auto;">
         <h2 class="text-center" style="margin-bottom: 8px;">Why existing solutions fall short</h2>
@@ -2272,7 +2166,120 @@ function revealAnswer() {
             </div>
         </div>
     </div>
-    <div class="slide-number" style="color: var(--text-secondary); font-size: 0.7rem;">Appendix</div>
+    <div class="slide-number">34</div>
+</section>
+
+<!-- Customer Validation - Deel -->
+<section id="section-close" class="slide" data-slide-id="social-proof">
+    <!-- Background accent -->
+    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(97, 243, 147, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
+    
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <p class="subtitle" style="margin-bottom: 12px;">Trusted by industry leaders</p>
+        <h2 style="margin-bottom: 50px;">Protecting hiring at scale</h2>
+        
+        <!-- Deel Feature Card -->
+        <div style="background: white; border-radius: 24px; padding: 50px; box-shadow: 0 10px 50px rgba(0,0,0,0.08); border: 1px solid var(--border); margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 60px;">
+                <!-- Deel Logo -->
+                <div class="text-center">
+                    <img src="../../shared/logos/deel.svg" alt="Deel" style="height: 48px;">
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 8px;">Global HR Platform</p>
+                </div>
+                
+                <!-- Divider -->
+                <div style="width: 1px; height: 80px; background: var(--border);"></div>
+                
+                <!-- Stats -->
+                <div style="text-align: left;">
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1;">1M+</div>
+                        <div style="font-size: 1rem; color: var(--text-secondary);">candidates screened annually</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; color: var(--text-primary); font-size: 0.95rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#61F393" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="#61F393" stroke-width="2"/></svg>
+                        <span>Clarity protects their entire hiring pipeline</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <p style="font-size: 1.2rem; color: var(--text-primary); max-width: 600px; margin: 0 auto;">
+            <em>"When you're hiring across 150 countries, you need to know every candidate is who they claim to be."</em>
+        </p>
+    </div>
+    <div class="slide-number">35</div>
+</section>
+
+<!-- Threat Intel Slide -->
+<section class="slide" data-slide-id="threat-intel" style="background: #F0F4F8;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <!-- Badge -->
+        <span class="badge" style="background: #0a1628; color: white; margin-bottom: 16px;">Free Tool</span>
+
+        <!-- Headline -->
+        <h2 style="font-size: 2.4rem; margin-bottom: 8px;">Check your pipeline against <span class="accent">known threat actors</span></h2>
+        <p class="subtitle" style="margin-bottom: 30px;">1,000+ DPRK-linked identities in our database</p>
+
+        <!-- Screenshot -->
+        <div style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 20px 60px rgba(10,22,40,0.12); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <img src="../../shared/screenshots/threat-intel-homepage.png" alt="Clarity Threat Intelligence"
+                 style="width: 100%; border-radius: 10px; object-fit: cover; object-position: left top; max-height: 350px;">
+        </div>
+
+        <!-- URL CTA -->
+        <a href="https://claritythreatintelligence.ai" style="display: inline-flex; align-items: center; gap: 12px; background: #0a1628; color: white; padding: 18px 36px; border-radius: 50px; font-size: 1.2rem; font-weight: 700; text-decoration: none; box-shadow: 0 8px 30px rgba(10,22,40,0.2);">
+            <span>claritythreatintelligence.ai</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <!-- Supporting text -->
+        <p style="margin-top: 24px; color: var(--text-secondary); font-size: 0.95rem;">
+            Email lookup &bull; Phone lookup &bull; Works with your ATS
+        </p>
+    </div>
+    <div class="slide-number">36</div>
+</section>
+
+<!-- Closing Slide -->
+<section class="slide" data-slide-id="closing" style="background: var(--text-primary);">
+    <!-- Subtle geometric accent -->
+    <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; opacity: 0.03;" viewBox="0 0 60 60" fill="none">
+        <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="white"/>
+        <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="white"/>
+        <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+        <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+    </svg>
+    
+    <div class="text-center" style="position: relative; z-index: 1;">
+        <svg width="140" height="36" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="height: 52px; width: auto; margin-bottom: 50px;">
+<path d="M23.0627 10.008L18.8453 0.46579L16.1663 6.60634H16.165L19.2924 13.7763L26.4613 16.9042L26.4675 16.9017L32.6034 14.2235L23.0602 10.0055L23.0627 10.008Z" fill="white"/>
+<path d="M23.1401 23.799L32.6816 19.5816L26.5415 16.9026L19.372 20.03L16.2444 27.1989H16.2432L16.2456 27.205L18.9236 33.341L23.1413 23.7977L23.1401 23.799Z" fill="white"/>
+<path d="M9.38277 23.8004L13.5292 33.3426L16.1632 27.202H16.1644L13.0896 20.032L6.04126 16.9042L6.03517 16.9066L0 19.5824L9.38277 23.8004Z" fill="#61F393"/>
+<path d="M9.38367 10.009L0 14.2251L6.03775 16.9042L13.0877 13.7768L16.1632 6.60788H16.1644L16.162 6.60169L13.531 0.465775L9.38367 10.009Z" fill="#61F393"/>
+<path d="M129.061 35.5342H125.86L129.495 27.7247L122.191 11.9725H125.36L131.096 24.6008L136.798 11.9725H140L129.061 35.5342Z" fill="white"/>
+<path d="M118.522 28.6851C115.58 28.6851 113.407 27.0591 113.407 23.6081V14.5491H109.863V11.9276H113.407V7.3152H116.282V11.9276H121.096V14.5491H116.282V23.2431C116.282 25.3668 117.218 26.0636 119.057 26.0636C119.759 26.0636 120.561 25.9641 121.096 25.7318V28.2869C120.394 28.5192 119.558 28.6851 118.522 28.6851Z" fill="white"/>
+<path d="M106.472 7.54718C105.293 7.54718 104.384 6.68032 104.384 5.51339C104.384 4.41315 105.293 3.47961 106.472 3.47961C107.651 3.47961 108.493 4.41315 108.493 5.51339C108.493 6.68032 107.651 7.54718 106.472 7.54718ZM104.99 28.6852V12.0148H107.887V28.6852H104.99Z" fill="white"/>
+<path d="M94.2471 28.6852V11.867H97.0923V15.1297C97.7208 12.977 99.8382 11.6988 101.724 11.6988C102.154 11.6988 102.584 11.7324 103.014 11.8334V14.827C102.485 14.5915 102.022 14.5579 101.459 14.5579C99.375 14.5579 97.0923 16.4079 97.0923 20.3433V28.6852H94.2471Z" fill="white"/>
+<path d="M81.3598 28.9591C76.6692 28.9591 73.1514 25.0756 73.1514 20.329C73.1514 15.5824 76.6692 11.6988 81.3598 11.6988C83.906 11.6988 86.1508 12.9933 87.2564 14.5866V12.0307H90.1377V28.6272H87.2564V26.0713C86.1508 27.6646 83.906 28.9591 81.3598 28.9591ZM81.7953 26.3369C85.1457 26.3369 87.4909 23.6815 87.4909 20.329C87.4909 16.9765 85.1457 14.3211 81.7953 14.3211C78.4114 14.3211 76.0662 16.9765 76.0662 20.329C76.0662 23.6815 78.4114 26.3369 81.7953 26.3369Z" fill="white"/>
+<path d="M67.6709 28.6852V3.47961H70.4106V28.6852H67.6709Z" fill="white"/>
+<path d="M54.7206 28.9593C47.9087 28.9593 42.4658 23.5776 42.4658 16.7675C42.4658 9.95732 47.9087 4.57565 54.7206 4.57565C59.2619 4.57565 63.0685 6.8014 65.2056 10.2895L62.601 11.8509C60.9648 9.19326 58.1933 7.49903 54.7206 7.49903C49.5449 7.49903 45.6046 11.5851 45.6046 16.7675C45.6046 21.9498 49.5449 26.0359 54.7206 26.0359C58.1933 26.0359 60.9648 24.3417 62.601 21.684L65.2056 23.2454C63.0685 26.7335 59.2619 28.9593 54.7206 28.9593Z" fill="white"/>
+</svg>
+        
+        <!-- Contact info - clean and simple -->
+        <div style="color: rgba(255,255,255,0.9); margin-bottom: 12px;">
+            <span style="font-size: 1.2rem; font-weight: 600;">Michael Matias</span>
+            <span style="color: rgba(255,255,255,0.4); margin: 0 12px;">|</span>
+            <span style="font-size: 1.1rem;">michael@getclarity.ai</span>
+            <span style="color: rgba(255,255,255,0.4); margin: 0 12px;">|</span>
+            <span style="font-size: 1.1rem;">(650) 437-6332</span>
+        </div>
+        
+        <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem; margin-top: 40px;">
+            getclarity.ai
+        </p>
+    </div>
+    <div class="slide-number" style="color: rgba(255,255,255,0.3);">37</div>
 </section>
 
 <!-- Slide Indicator -->
