@@ -246,3 +246,20 @@ These aren't bad candidates. These are fabricated people.
 ---
 
 *Act 3 scripts to follow.*
+
+## ACT 3: THE THREAT
+
+### Slide 17: already-happening
+**Core message:** This is a global problem  
+**Duration:** ~15 seconds  
+**Script:**
+```
+And it's not just Globe Life.
+
+This is happening to companies around the world. North Korean operatives have infiltrated over three hundred US companies. KnowBe4 — a security company — hired one who started loading malware on day one.
+
+If it can happen to a security company, it can happen to anyone.
+```
+**Status:** [x] Approved
+
+---

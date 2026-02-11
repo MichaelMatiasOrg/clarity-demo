@@ -41,7 +41,7 @@ window.NarrationData = {
     { id: "globelife-findings", audioIndex: 37, text: "What did we find? Synthetic identity patterns. Burner phones. Employment history that doesn't match any database. Zero digital footprint. Email addresses created days before applying. These aren't bad candidates. These are fabricated people.", duration: 12000 },
 
     // === Act 3: The Scale (slides 17+) ===
-    { id: "already-happening", text: "This isn't hypothetical. It's already happening — and even a leading security company got duped.", duration: 6000 },
+    { id: "already-happening", audioIndex: 38, text: "And it's not just Globe Life. This is happening to companies around the world. North Korean operatives have infiltrated over three hundred US companies. KnowBe4 — a security company — hired one who started loading malware on day one. If it can happen to a security company, it can happen to anyone.", duration: 15000 },
     { id: "the-question", audioIndex: 12, text: "So here's my question. How would you have caught him?", duration: 4000 },
     { id: "scale", audioIndex: 13, text: "This was one target, one hour of work. Now imagine threat actors doing this at scale, automated, against hundreds of companies.", duration: 8000 },
     { id: "fortune-500", audioIndex: 14, text: "This isn't theoretical. Fortune 500 CISOs are telling us this is happening right now.", duration: 5000 },
