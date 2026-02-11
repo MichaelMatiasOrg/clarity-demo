@@ -212,13 +212,14 @@
         const styles = window.getComputedStyle(el);
         const fontSize = styles.fontSize;
 
-        const context = `[Element: ${devId} | Slide ${slideNum}]
+        const currentPath = window.location.pathname.replace(/^\//, '') || 'index.html';
+const context = `[Element: ${devId} | Slide ${slideNum}]
 
 CONTEXT FOR GENIE:
 - Element: <${tag}${existingId}${classes}>
 - Text preview: "${textPreview}${textPreview.length >= 100 ? '...' : ''}"
 - Font size: ${fontSize}
-- File: clarity-demo/presentation.html
+- File: clarity-demo/${currentPath}
 
 I selected this element using Dev Mode on the Clarity presentation. Help me improve or modify it based on my request.
 
