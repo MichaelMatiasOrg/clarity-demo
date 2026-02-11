@@ -42,8 +42,6 @@ window.NarrationData = {
 
     // === Act 3: The Scale (slides 17+) ===
     { id: "already-happening", audioIndex: 38, text: "And it's not just Globe Life. This is happening to companies around the world. North Korean operatives have infiltrated over three hundred US companies. KnowBe4 — a security company — hired one who started loading malware on day one. If it can happen to a security company, it can happen to anyone.", duration: 15000 },
-    { id: "the-question", audioIndex: 12, text: "So here's my question. How would you have caught him?", duration: 4000 },
-    { id: "scale", audioIndex: 13, text: "This was one target, one hour of work. Now imagine threat actors doing this at scale, automated, against hundreds of companies.", duration: 8000 },
     { id: "fortune-500", audioIndex: 14, text: "This isn't theoretical. Fortune 500 CISOs are telling us this is happening right now.", duration: 5000 },
     { id: "epidemic", audioIndex: 15, text: "The hiring fraud epidemic is real. Billions lost, and most companies have zero detection capabilities.", duration: 7000 },
     { id: "hr-attack-surface", audioIndex: 18, text: "This is the new attack surface. Your perimeter is secure, but your employees — that's the vulnerability.", duration: 6000 },
