@@ -98,8 +98,7 @@
     height: 16px;
 }
 #start-presentation-btn.hidden {
-    opacity: 0;
-    pointer-events: none;
+    display: none;
 }
 
 /* ========== Progress Bar ========== */
@@ -142,15 +141,14 @@
 #presentation-controls.active {
     display: flex;
 }
-/* When docked inside the bottom toolbar */
+/* When docked inside the narration panel footer */
 #presentation-controls.docked {
     position: static;
-    background: var(--narration-bg-solid);
+    background: none;
     box-shadow: none;
-    backdrop-filter: blur(10px);
-    padding: 8px 12px;
-    border-radius: 10px;
-    margin-right: 8px;
+    backdrop-filter: none;
+    padding: 0;
+    border-radius: 0;
 }
 #presentation-controls button {
     background: none;
