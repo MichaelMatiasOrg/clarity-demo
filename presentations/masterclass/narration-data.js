@@ -59,14 +59,14 @@ window.NarrationData = {
     // === Act 4: Two Pillars (slides 26-29) ===
     { id: "lifecycle", audioIndex: 29, text: "Here's the thing most companies miss. Identity verification isn't a hiring problem. It's a lifecycle problem. Onboarding. MFA resets. Privileged access. Sensitive transactions. Every one of these moments is a vulnerability. You need one system that knows your employee — and can verify them at every critical moment. That's Clarity.", duration: 15000 },
     { id: "two-pillars", audioIndex: 25, text: "You're asking two things. Will this integrate with my workflow — or add another tool to manage? And can it actually detect these threats? Let me show you.", duration: 8000 },
-    { id: "two-pillars", audioIndex: 26, text: "You're asking two things. Will this integrate with my workflow — or add another tool to manage? And can it actually detect these threats? Let me show you.", duration: 8000 },
     { id: "integrations", audioIndex: 27, text: "Clarity integrates with the tools your teams already use. Greenhouse, Lever, Workday for recruiting. Okta, ServiceNow for security and IT. No new workflows to learn. No friction for recruiters. No disruption for candidates.", duration: 12000 },
     { id: "fraud-detection", audioIndex: 28, text: "Pillar B. Full visibility for your security team. SIEM integration. Real-time alerts. Threat correlation. No blind spots.", duration: 8000 },
 
-    // === Act 5: Lifecycle & Close (slides 30-34) ===
-    { id: "architecture", text: "Here's how it all fits together. Candidates flow in from your hiring pipeline — Greenhouse, Lever, Workday. Clarity sits in the middle, validating every identity. Alerts flow out to your security stack — Okta, Splunk, ServiceNow. API-first, real-time, zero workflow disruption.", duration: 14000 },
-    { id: "vs-traditional", audioIndex: 31, text: "Every hire verified. Every identity trusted. That's Clarity.", duration: 4000 },
+    // === Act 5: Lifecycle & Close (slides 33-37) ===
+    { id: "architecture", text: "Clarity is built to integrate with enterprise systems. Identity validation triggers flow in from ServiceNow, Workday, Okta — wherever access decisions happen. We validate the identity, then orchestrate the response back into your stack. Real-time. API-first. Zero workflow disruption.", duration: 14000 },
+    { id: "vs-traditional", text: "Traditional background checks look for bad records. Criminal history. Employment disputes. But fake identities don't have bad records — they're clean by design. IDV platforms verify documents at a single point in time. But what about the interview? What about day ninety? Clarity takes a different approach. We verify the human, not just the paperwork. And we do it continuously.", duration: 18000 },
     { id: "social-proof", audioIndex: 32, text: "Clarity protects hiring at scale for industry leaders like Deel — verifying candidates across 150 countries.", duration: 8000 },
+    { id: "threat-intel", text: "And with Clarity's threat intelligence, you can check your entire candidate pipeline against known threat actor patterns — in minutes. Over a thousand DPRK-linked identities in our database. Free to use.", duration: 10000 },
     { id: "closing", audioIndex: 33, text: "Your people are your greatest asset. Make sure they're actually your people.", duration: 5000 }
   ],
 
