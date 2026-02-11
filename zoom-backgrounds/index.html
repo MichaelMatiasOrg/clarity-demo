@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity – Zoom Backgrounds</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #F0F4F8;
+            --bg-white: #ffffff;
+            --text-primary: #0a1628;
+            --text-secondary: #64748B;
+            --accent: #61F393;
+            --accent-dark: #166534;
+            --border: rgba(10, 22, 40, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .logo img {
+            height: 32px;
+        }
+        
+        .back-link {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--accent-dark);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Category tabs */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: var(--text-secondary);
+        }
+        
+        .category-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        
+        .category-btn.active {
+            background: var(--text-primary);
+            color: white;
+            border-color: var(--text-primary);
+        }
+        
+        /* Gallery grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .bg-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(10, 22, 40, 0.06);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .bg-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(10, 22, 40, 0.1);
+        }
+        
+        .bg-preview {
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bg-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .bg-preview .placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .bg-info {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .bg-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .bg-category {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        
+        .download-btn {
+            background: var(--accent);
+            color: var(--text-primary);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        
+        .download-btn:hover {
+            background: #4ade80;
+            transform: scale(1.02);
+        }
+        
+        .download-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            opacity: 0.4;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        /* Tips section */
+        .tips {
+            margin-top: 60px;
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+        }
+        
+        .tips h2 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tips ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+        
+        .tips li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .tips li::before {
+            content: '✓';
+            color: var(--accent-dark);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            .tips ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="../shared/brand/clarity-logo.svg" alt="Clarity">
+            </div>
+            <a href="../" class="back-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Home
+            </a>
+        </header>
+        
+        <!-- Hero -->
+        <div class="hero">
+            <h1>Zoom <span>Backgrounds</span></h1>
+            <p class="subtitle">Professional virtual backgrounds for your video calls. Download and use in Zoom, Teams, or Meet.</p>
+        </div>
+        
+        <!-- Category filters -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="branded">Branded</button>
+            <button class="category-btn" data-category="minimal">Minimal</button>
+            <button class="category-btn" data-category="gradient">Gradient</button>
+            <button class="category-btn" data-category="office">Office</button>
+        </div>
+        
+        <!-- Gallery -->
+        <div class="gallery" id="gallery">
+            <!-- Backgrounds will be loaded here -->
+        </div>
+        
+        <!-- Empty state (shown when no backgrounds) -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <h3>No backgrounds yet</h3>
+            <p>Check back soon for approved Zoom backgrounds.</p>
+        </div>
+        
+        <!-- Tips -->
+        <div class="tips">
+            <h2>
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Tips for best results
+            </h2>
+            <ul>
+                <li>Use good lighting on your face</li>
+                <li>Sit at least 2 feet from your background</li>
+                <li>Avoid wearing green if using green screen</li>
+                <li>Close unnecessary apps for better performance</li>
+                <li>Test your background before important calls</li>
+                <li>Keep your camera at eye level</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Background data - add your approved backgrounds here
+        const backgrounds = [
+            // Example format:
+            // {
+            //     name: "Clarity Branded",
+            //     category: "branded",
+            //     image: "images/clarity-branded-1.jpg",
+            //     download: "images/clarity-branded-1.jpg"
+            // },
+        ];
+        
+        const gallery = document.getElementById('gallery');
+        const emptyState = document.getElementById('empty-state');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        
+        function renderGallery(filter = 'all') {
+            const filtered = filter === 'all' 
+                ? backgrounds 
+                : backgrounds.filter(bg => bg.category === filter);
+            
+            if (filtered.length === 0) {
+                gallery.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            gallery.innerHTML = filtered.map(bg => `
+                <div class="bg-card" data-category="${bg.category}">
+                    <div class="bg-preview">
+                        ${bg.image 
+                            ? `<img src="${bg.image}" alt="${bg.name}">` 
+                            : `<div class="placeholder">Preview</div>`
+                        }
+                    </div>
+                    <div class="bg-info">
+                        <div>
+                            <div class="bg-name">${bg.name}</div>
+                            <div class="bg-category">${bg.category.charAt(0).toUpperCase() + bg.category.slice(1)}</div>
+                        </div>
+                        <a href="${bg.download}" download class="download-btn">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                            Download
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Category filter
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderGallery(btn.dataset.category);
+            });
+        });
+        
+        // Initial render
+        renderGallery();
+    </script>
+</body>
+</html>
