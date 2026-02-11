@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vero Financial - Modern Banking Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: white; }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover { color: white; }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            color: white;
+        }
+        
+        .hero {
+            padding: 120px 60px;
+            text-align: center;
+            background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15), transparent 60%);
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(to right, white, rgba(255,255,255,0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+        
+        .hero .btn { padding: 14px 28px; font-size: 1rem; }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        
+        .features {
+            padding: 80px 60px;
+            background: #0a0f1a;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 30px;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .careers-banner {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            padding: 60px;
+            text-align: center;
+            margin: 60px;
+            border-radius: 20px;
+        }
+        
+        .careers-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        
+        .careers-banner p {
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+        
+        .careers-banner .btn {
+            background: white;
+            color: #3b82f6;
+        }
+        
+        footer {
+            padding: 40px 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">V</div>
+            Vero Financial
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Platform</a></li>
+            <li><a href="#">Solutions</a></li>
+            <li><a href="#">Developers</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Company</a></li>
+            <li><a href="#" style="color: #60a5fa;">Careers ✨</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="#" class="btn btn-ghost">Sign In</a>
+            <a href="#" class="btn btn-primary">Get Started</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <span class="hero-badge">🚀 Series B - $45M raised</span>
+        <h1>Modern Banking<br>Infrastructure</h1>
+        <p>APIs and tools that let fintech companies build, launch, and scale financial products faster than ever.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Start Building →</a>
+            <a href="#" class="btn btn-ghost">View Documentation</a>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-number">$12B+</div>
+            <div class="stat-label">Transaction Volume</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Enterprise Clients</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">99.99%</div>
+            <div class="stat-label">Uptime SLA</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">50ms</div>
+            <div class="stat-label">Avg Response Time</div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <h2>Built for Scale</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏦</div>
+                <h3>Ledger API</h3>
+                <p>Double-entry accounting built for modern fintech. Handle millions of transactions with confidence.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Card Issuing</h3>
+                <p>Launch virtual and physical cards in days, not months. Full control over authorization logic.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>KYC/AML</h3>
+                <p>Automated compliance workflows that scale with your business. Stay ahead of regulations.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="careers-banner">
+        <h2>We're Hiring!</h2>
+        <p>Join our team and help build the future of financial infrastructure.</p>
+        <a href="#" class="btn">View Open Roles (12)</a>
+    </section>
+    
+    <footer>
+        <div>© 2026 Vero Financial, Inc. All rights reserved.</div>
+        <div class="trust-badges">
+            <span class="trust-badge">🔒 SOC 2 Type II</span>
+            <span class="trust-badge">✓ PCI DSS</span>
+            <span class="trust-badge">🇪🇺 GDPR Compliant</span>
+        </div>
+    </footer>
+    <script src="../../../shared/js/dev-mode.js"></script>
+</body>
+</html>
