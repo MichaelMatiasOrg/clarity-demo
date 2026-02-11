@@ -40,11 +40,11 @@ test.describe('Core Pages Load', () => {
 
 test.describe('Presentation Functionality', () => {
 
-  test('masterclass has exactly 40 slides', async ({ page }) => {
+  test('masterclass has exactly 39 slides', async ({ page }) => {
     await page.goto('/presentations/masterclass/', { waitUntil: 'domcontentloaded' });
     const slides = page.locator('.slide');
     const count = await slides.count();
-    expect(count).toBe(40);
+    expect(count).toBe(39);
   });
 
   test('every slide has a data-slide-id', async ({ page }) => {
