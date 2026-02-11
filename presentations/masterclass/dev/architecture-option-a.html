@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Option A — Clarity Integration Flow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F0F4F8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .diagram {
+            position: relative;
+            width: 960px;
+            height: 740px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(10, 22, 40, 0.06), 0 1px 3px rgba(10, 22, 40, 0.03);
+            overflow: hidden;
+        }
+
+        /* Subtle grid background */
+        .diagram::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(10, 22, 40, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(10, 22, 40, 0.018) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+        }
+
+        /* Radial gradient accents */
+        .diagram::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(ellipse at 10% 50%, rgba(97, 243, 147, 0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 40%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 95%, rgba(61, 217, 235, 0.04) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        /* ── Zone backgrounds ── */
+        .zone {
+            position: absolute;
+            border-radius: 16px;
+            z-index: 1;
+        }
+        .zone-hiring {
+            left: 14px;
+            top: 65px;
+            width: 185px;
+            height: 345px;
+            background: linear-gradient(180deg, rgba(97, 243, 147, 0.035) 0%, rgba(97, 243, 147, 0.01) 100%);
+            border: 1px solid rgba(97, 243, 147, 0.08);
+        }
+        .zone-lifecycle {
+            right: 14px;
+            top: 65px;
+            width: 185px;
+            height: 345px;
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.03) 0%, rgba(59, 130, 246, 0.008) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.06);
+        }
+        .zone-alerts {
+            right: 14px;
+            top: 420px;
+            width: 185px;
+            height: 90px;
+            background: linear-gradient(180deg, rgba(239, 68, 68, 0.025) 0%, rgba(239, 68, 68, 0.008) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.06);
+        }
+
+        /* ── Column headers ── */
+        .col-header {
+            position: absolute;
+            top: 28px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+        .col-header.left { left: 46px; }
+        .col-header.center { left: 50%; transform: translateX(-50%); color: #64748B; }
+        .col-header.right { right: 44px; }
+
+        /* ── Logo cards ── */
+        .logo-card {
+            position: absolute;
+            width: 135px;
+            height: 68px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 1px 3px rgba(10, 22, 40, 0.04), 0 4px 12px rgba(10, 22, 40, 0.03);
+            border: 1px solid rgba(10, 22, 40, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            z-index: 3;
+            transition: box-shadow 0.2s ease;
+        }
+        .logo-card img {
+            max-height: 26px;
+            max-width: 88px;
+            object-fit: contain;
+        }
+
+        /* ── Clarity center node ── */
+        .clarity-node {
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fdf9 100%);
+            border: 2px solid #61F393;
+            border-radius: 22px;
+            box-shadow:
+                0 0 60px rgba(97, 243, 147, 0.15),
+                0 8px 24px rgba(10, 22, 40, 0.05),
+                0 2px 6px rgba(10, 22, 40, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            left: 50%;
+            top: 150px;
+            transform: translateX(-50%);
+            z-index: 4;
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 60px rgba(97, 243, 147, 0.15), 0 8px 24px rgba(10, 22, 40, 0.05), 0 2px 6px rgba(10, 22, 40, 0.03); }
+            50% { box-shadow: 0 0 80px rgba(97, 243, 147, 0.22), 0 8px 24px rgba(10, 22, 40, 0.05), 0 2px 6px rgba(10, 22, 40, 0.03); }
+        }
+        .clarity-node svg { width: 38px; height: 38px; }
+        .clarity-node .label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #64748B;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── Card positions — left column ── */
+        .card-greenhouse { left: 38px; top: 100px; }
+        .card-lever { left: 38px; top: 196px; }
+        .card-ashby { left: 38px; top: 292px; }
+
+        /* ── Card positions — right column ── */
+        .card-workday { right: 38px; top: 100px; }
+        .card-okta { right: 38px; top: 196px; }
+        .card-entra { right: 38px; top: 292px; }
+        .card-splunk { right: 38px; top: 434px; }
+
+        /* ── SVG connections layer ── */
+        .connections {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .connections svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Line styles */
+        .conn-out {
+            stroke: #E2E8F0;
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .conn-in {
+            stroke: rgba(61, 217, 235, 0.35);
+            stroke-width: 1.5;
+            stroke-dasharray: 5 4;
+            fill: none;
+        }
+        .conn-alert {
+            stroke: rgba(239, 68, 68, 0.25);
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .conn-ongoing {
+            stroke: rgba(61, 217, 235, 0.3);
+            stroke-width: 2;
+            stroke-dasharray: 6 5;
+            fill: none;
+        }
+
+        /* Animated dots */
+        .dot-green { fill: #61F393; r: 3.5; }
+        .dot-teal { fill: #3DD9EB; r: 3; }
+        .dot-red { fill: #EF4444; r: 3; opacity: 0.6; }
+
+        /* Arrow markers */
+        .arrow-out { fill: #CBD5E1; }
+        .arrow-in { fill: rgba(61, 217, 235, 0.5); }
+        .arrow-alert { fill: rgba(239, 68, 68, 0.35); }
+
+        /* ── Flow direction labels ── */
+        .flow-badge {
+            position: absolute;
+            font-size: 0.5rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            z-index: 5;
+        }
+        .flow-badge.results {
+            top: 74px;
+            right: 218px;
+            color: #64748B;
+            background: #F0F4F8;
+            border: 1px solid #E2E8F0;
+        }
+        .flow-badge.triggers-in {
+            top: 74px;
+            left: 218px;
+            color: #0ea5e9;
+            background: #f0f9ff;
+            border: 1px solid rgba(14, 165, 233, 0.15);
+        }
+
+        /* ── Alert pill ── */
+        .alert-pill {
+            position: absolute;
+            font-size: 0.52rem;
+            font-weight: 700;
+            color: #EF4444;
+            background: #FEF2F2;
+            padding: 3px 10px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border: 1px solid rgba(239, 68, 68, 0.1);
+            z-index: 5;
+        }
+
+        /* ── Ongoing triggers section ── */
+        .ongoing-section {
+            position: absolute;
+            bottom: 18px;
+            left: 24px;
+            right: 24px;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(61, 217, 235, 0.03) 0%, rgba(61, 217, 235, 0.008) 100%);
+            border: 1px solid rgba(61, 217, 235, 0.1);
+            padding: 16px 22px 18px;
+            z-index: 3;
+        }
+        .ongoing-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .ongoing-header .ongoing-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #3DD9EB, #0ea5e9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        .ongoing-header .ongoing-label {
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .ongoing-header .ongoing-source {
+            margin-left: auto;
+            font-size: 0.58rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .ongoing-content {
+            display: flex;
+            align-items: stretch;
+            gap: 10px;
+        }
+        .ongoing-content .logo-card {
+            position: static;
+            flex-shrink: 0;
+            width: 105px;
+            height: 52px;
+            border-radius: 10px;
+        }
+        .ongoing-chevron {
+            flex-shrink: 0;
+            align-self: center;
+            color: #CBD5E1;
+        }
+        .trigger-cards {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+        }
+        .trigger-card {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 10px 12px;
+            border-left: 3px solid #CBD5E1;
+            box-shadow: 0 1px 3px rgba(10, 22, 40, 0.03);
+            border-top: 1px solid rgba(10, 22, 40, 0.03);
+            border-right: 1px solid rgba(10, 22, 40, 0.03);
+            border-bottom: 1px solid rgba(10, 22, 40, 0.03);
+        }
+        .trigger-card .trigger-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #0a1628;
+            margin-bottom: 2px;
+        }
+        .trigger-card .trigger-desc {
+            font-size: 0.58rem;
+            color: #94a3b8;
+            line-height: 1.35;
+        }
+        .trigger-card.red { border-left-color: #EF4444; }
+        .trigger-card.amber { border-left-color: #F59E0B; }
+        .trigger-card.purple { border-left-color: #8B5CF6; }
+        .trigger-card.blue { border-left-color: #3B82F6; }
+
+        /* ── Re-validation label ── */
+        .reval-label {
+            position: absolute;
+            bottom: 190px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-90deg);
+            font-size: 0.5rem;
+            font-weight: 700;
+            color: #0ea5e9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            z-index: 5;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="diagram">
+        <!-- Zone backgrounds -->
+        <div class="zone zone-hiring"></div>
+        <div class="zone zone-lifecycle"></div>
+        <div class="zone zone-alerts"></div>
+
+        <!-- Column Headers -->
+        <div class="col-header left">Hiring Triggers</div>
+        <div class="col-header center">Clarity</div>
+        <div class="col-header right">Identity Lifecycle</div>
+
+        <!-- Flow direction badges -->
+        <div class="flow-badge triggers-in">candidates in</div>
+        <div class="flow-badge results">results out</div>
+
+        <!-- SVG Connections -->
+        <div class="connections">
+            <svg viewBox="0 0 960 740" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="arr-out" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+                        <path d="M0,0 L7,2.5 L0,5" class="arrow-out"/>
+                    </marker>
+                    <marker id="arr-in" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                        <path d="M7,0 L0,2.5 L7,5" class="arrow-in"/>
+                    </marker>
+                    <marker id="arr-alert" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+                        <path d="M0,0 L7,2.5 L0,5" class="arrow-alert"/>
+                    </marker>
+                </defs>
+
+                <!-- ═══ HIRING TRIGGERS → Clarity ═══ -->
+                <path d="M 173,134 C 260,134 310,210 393,210" class="conn-out" marker-end="url(#arr-out)"/>
+                <circle class="dot-green">
+                    <animateMotion dur="2.2s" repeatCount="indefinite">
+                        <mpath href="#path-gh"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-gh" d="M 173,134 C 260,134 310,210 393,210" fill="none" style="display:none"/>
+
+                <path d="M 173,230 C 270,230 310,237 393,237" class="conn-out" marker-end="url(#arr-out)"/>
+                <circle class="dot-green">
+                    <animateMotion dur="2.5s" repeatCount="indefinite">
+                        <mpath href="#path-lv"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-lv" d="M 173,230 C 270,230 310,237 393,237" fill="none" style="display:none"/>
+
+                <path d="M 173,326 C 260,326 310,264 393,264" class="conn-out" marker-end="url(#arr-out)"/>
+                <circle class="dot-green">
+                    <animateMotion dur="2.8s" repeatCount="indefinite">
+                        <mpath href="#path-ash"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-ash" d="M 173,326 C 260,326 310,264 393,264" fill="none" style="display:none"/>
+
+                <!-- ═══ Clarity → IDENTITY LIFECYCLE (results out) ═══ -->
+                <path d="M 567,210 C 650,210 700,134 787,134" class="conn-out" marker-end="url(#arr-out)"/>
+                <circle class="dot-green">
+                    <animateMotion dur="2.3s" repeatCount="indefinite">
+                        <mpath href="#path-wd"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.3s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-wd" d="M 567,210 C 650,210 700,134 787,134" fill="none" style="display:none"/>
+
+                <path d="M 567,235 C 660,235 710,230 787,230" class="conn-out" marker-end="url(#arr-out)"/>
+                <circle class="dot-green">
+                    <animateMotion dur="2.6s" repeatCount="indefinite">
+                        <mpath href="#path-ok"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.6s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-ok" d="M 567,235 C 660,235 710,230 787,230" fill="none" style="display:none"/>
+
+                <path d="M 567,262 C 650,262 700,326 787,326" class="conn-out" marker-end="url(#arr-out)"/>
+                <circle class="dot-green">
+                    <animateMotion dur="2.9s" repeatCount="indefinite">
+                        <mpath href="#path-en"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.9s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-en" d="M 567,262 C 650,262 700,326 787,326" fill="none" style="display:none"/>
+
+                <!-- ═══ Enterprise → Clarity (ongoing triggers, dashed return) ═══ -->
+                <path d="M 787,144 C 710,144 660,218 567,218" class="conn-in" marker-end="url(#arr-in)"/>
+                <circle class="dot-teal">
+                    <animateMotion dur="3.4s" repeatCount="indefinite">
+                        <mpath href="#path-wd-in"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.4s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-wd-in" d="M 787,144 C 710,144 660,218 567,218" fill="none" style="display:none"/>
+
+                <path d="M 787,240 C 710,240 660,243 567,243" class="conn-in" marker-end="url(#arr-in)"/>
+                <circle class="dot-teal">
+                    <animateMotion dur="3.7s" repeatCount="indefinite">
+                        <mpath href="#path-ok-in"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.7s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-ok-in" d="M 787,240 C 710,240 660,243 567,243" fill="none" style="display:none"/>
+
+                <path d="M 787,336 C 710,336 660,270 567,270" class="conn-in" marker-end="url(#arr-in)"/>
+                <circle class="dot-teal">
+                    <animateMotion dur="4.0s" repeatCount="indefinite">
+                        <mpath href="#path-en-in"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;0.7;0.7;0" dur="4.0s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-en-in" d="M 787,336 C 710,336 660,270 567,270" fill="none" style="display:none"/>
+
+                <!-- ═══ Clarity → Splunk (alerts) ═══ -->
+                <path d="M 530,320 C 530,390 620,468 787,468" class="conn-alert" marker-end="url(#arr-alert)"/>
+                <circle class="dot-red">
+                    <animateMotion dur="2.8s" repeatCount="indefinite">
+                        <mpath href="#path-sp"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;0.6;0.6;0" dur="2.8s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-sp" d="M 530,320 C 530,390 620,468 787,468" fill="none" style="display:none"/>
+
+                <!-- ═══ Ongoing triggers → Clarity (vertical upward) ═══ -->
+                <path d="M 480,575 C 480,510 480,400 480,322" class="conn-ongoing" marker-end="url(#arr-in)"/>
+                <circle class="dot-teal" r="4">
+                    <animateMotion dur="3s" repeatCount="indefinite">
+                        <mpath href="#path-up"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;0.8;0.8;0" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <path id="path-up" d="M 480,575 C 480,510 480,400 480,322" fill="none" style="display:none"/>
+            </svg>
+        </div>
+
+        <!-- Clarity Center Node -->
+        <div class="clarity-node">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#61F393"/>
+                <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#61F393"/>
+                <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+                <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+            </svg>
+            <span class="label">Validation Engine</span>
+        </div>
+
+        <!-- Left Column: Hiring Triggers -->
+        <div class="logo-card card-greenhouse">
+            <img src="../../../shared/logos/greenhouse.svg" alt="Greenhouse">
+        </div>
+        <div class="logo-card card-lever">
+            <img src="../../../shared/logos/lever.svg" alt="Lever">
+        </div>
+        <div class="logo-card card-ashby">
+            <img src="../../../shared/logos/ashby.svg" alt="Ashby">
+        </div>
+
+        <!-- Right Column: Identity Lifecycle -->
+        <div class="logo-card card-workday">
+            <img src="../../../shared/logos/workday.svg" alt="Workday">
+        </div>
+        <div class="logo-card card-okta">
+            <img src="../../../shared/logos/okta.svg" alt="Okta">
+        </div>
+        <div class="logo-card card-entra">
+            <img src="../../../shared/logos/microsoft-entra-id.svg" alt="Entra ID">
+        </div>
+        <div class="logo-card card-splunk">
+            <img src="../../../shared/logos/splunk.svg" alt="Splunk">
+        </div>
+
+        <!-- Alert label -->
+        <div class="alert-pill" style="top: 430px; right: 220px;">alerts</div>
+
+        <!-- Vertical re-validation label -->
+        <div class="reval-label">re-validates</div>
+
+        <!-- Ongoing Triggers Section -->
+        <div class="ongoing-section">
+            <div class="ongoing-header">
+                <div class="ongoing-icon">&#8634;</div>
+                <span class="ongoing-label">Ongoing Triggers</span>
+                <span class="ongoing-source">via Okta &middot; Workday &middot; ServiceNow</span>
+            </div>
+            <div class="ongoing-content">
+                <div class="logo-card">
+                    <img src="../../../shared/logos/servicenow.svg" alt="ServiceNow">
+                </div>
+                <svg class="ongoing-chevron" width="18" height="18" fill="none" stroke="#CBD5E1" viewBox="0 0 24 24" style="flex-shrink: 0; align-self: center;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+                </svg>
+                <div class="trigger-cards">
+                    <div class="trigger-card red">
+                        <div class="trigger-title">MFA Reset</div>
+                        <div class="trigger-desc">Password or factor change</div>
+                    </div>
+                    <div class="trigger-card amber">
+                        <div class="trigger-title">Access Request</div>
+                        <div class="trigger-desc">New system or data access</div>
+                    </div>
+                    <div class="trigger-card purple">
+                        <div class="trigger-title">Privilege Escalation</div>
+                        <div class="trigger-desc">Admin or elevated rights</div>
+                    </div>
+                    <div class="trigger-card blue">
+                        <div class="trigger-title">Role Transfer</div>
+                        <div class="trigger-desc">Department or role change</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

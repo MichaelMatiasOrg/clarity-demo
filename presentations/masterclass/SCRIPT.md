@@ -2,7 +2,7 @@
 ## Guidepoint CISO Event
 
 > **Voice:** Chad (ElevenLabs)  
-> **Status:** Acts 1-3 APPROVED (Slides 1-22), Act 4 in progress  
+> **Status:** Acts 1-4 APPROVED (Slides 1-31), remaining slides in progress  
 > **Last updated:** 2026-02-11
 
 ---
@@ -353,6 +353,132 @@ This is why we built Clarity.
 End-to-end identity validation for the entire employee lifecycle. From the first resume to their last day on the job.
 
 Know who you're hiring. And know it's still them.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 24: pipeline
+**Core message:** See Clarity in action — threats blocked, legitimate hires proceed  
+**Duration:** ~12 seconds  
+**Script:**
+```
+This is Clarity in action.
+
+Candidates flow through your existing pipeline — Greenhouse, Lever, Workday. Clarity validates every identity at every stage.
+
+Legitimate hires proceed. Threats get caught and blocked. No workflow changes required.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 25: command-center
+**Core message:** Single dashboard for all identity risk  
+**Duration:** ~10 seconds  
+**Script:**
+```
+This is what your security team sees.
+
+The Clarity Command Center. Every candidate, every employee, every identity risk — in one place.
+
+Let me show you what happens at each stage.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 26: pre-interview
+**Core message:** Catch fakes before they even get an interview  
+**Duration:** ~10 seconds  
+**Script:**
+```
+Before the interview even starts, Clarity flags the risk.
+
+Synthetic identity patterns. AI-generated photos. Unverifiable employment history.
+
+Marcus gets blocked before he wastes a single minute of interviewer time.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 27: during-interview
+**Core message:** Post-interview analysis catches what humans miss  
+**Duration:** ~12 seconds  
+**Script:**
+```
+After the interview, Clarity analyzes the recording.
+
+Face manipulation detected. Voice doesn't match lip movements. Identity doesn't match the application.
+
+Flagged for expert review — a human confirms before any action is taken.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 28: continuous
+**Core message:** Security doesn't stop at hire  
+**Duration:** ~10 seconds  
+**Script:**
+```
+Security doesn't stop at hire.
+
+Clarity continuously verifies your employees. Periodic biometric checks. Voice pattern consistency.
+
+Day ninety, day three hundred — confirm it's still the same person you hired.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 29: lifecycle
+**Core message:** Identity verification is a lifecycle problem  
+**Duration:** ~15 seconds  
+**Script:**
+```
+Here's the thing most companies miss.
+
+Identity verification isn't a hiring problem. It's a lifecycle problem.
+
+Onboarding. MFA resets. Privileged access. Sensitive transactions. Every one of these moments is a vulnerability.
+
+You need one system that knows your employee — and can verify them at every critical moment.
+
+That's Clarity.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 30: two-pillars
+**Core message:** Two questions CISOs are asking  
+**Duration:** ~8 seconds  
+**Script:**
+```
+You're asking two things.
+
+Will this integrate with my workflow — or add another tool to manage?
+
+And can it actually detect these threats?
+
+Let me show you.
+```
+**Status:** [x] Approved
+
+---
+
+### Slide 31: integrations
+**Core message:** Answer to question 1 — fits into existing workflow  
+**Duration:** ~12 seconds  
+**Script:**
+```
+Clarity integrates with the tools your teams already use.
+
+Greenhouse, Lever, Workday for recruiting. Okta, ServiceNow for security and IT.
+
+No new workflows to learn. No friction for recruiters. No disruption for candidates.
 ```
 **Status:** [x] Approved
 

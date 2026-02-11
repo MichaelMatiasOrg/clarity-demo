@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity - Interview Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #f0f4f8;
+            padding: 10px;
+        }
+        .dashboard {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(10, 22, 40, 0.08);
+            overflow: hidden;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        /* ─── Header ─── */
+        .header {
+            background: #0a1628;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-logo { height: 22px; width: auto; }
+        .header-sep { color: #475569; font-size: 0.7rem; }
+        .header-title { color: rgba(255,255,255,0.9); font-size: 0.78rem; font-weight: 600; }
+        .header-badge {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(239,68,68,0.15);
+            padding: 6px 14px;
+            border-radius: 8px;
+        }
+        .header-badge-dot {
+            width: 7px;
+            height: 7px;
+            background: #ef4444;
+            border-radius: 50%;
+        }
+        .header-badge-text {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fca5a5;
+        }
+
+        /* ─── Main Grid ─── */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            min-height: 300px;
+        }
+
+        /* ─── Left: Recording ─── */
+        .recording-panel {
+            padding: 20px;
+            background: #f8fafc;
+            border-right: 1px solid #e2e8f0;
+        }
+        .video-wrap {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .video-wrap img {
+            width: 100%;
+            display: block;
+            filter: brightness(0.85);
+        }
+        .video-border {
+            position: absolute;
+            inset: 0;
+            border: 2.5px solid #ef4444;
+            border-radius: 10px;
+            opacity: 0.7;
+        }
+        .play-btn {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-btn-circle {
+            width: 52px;
+            height: 52px;
+            background: rgba(255,255,255,0.92);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.18);
+        }
+        .name-tag {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.65);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.68rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+        .timeline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(0,0,0,0.2);
+        }
+        .timeline-progress {
+            width: 65%;
+            height: 100%;
+            background: #ef4444;
+        }
+        .recording-meta {
+            margin-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .recording-title {
+            font-size: 0.78rem;
+            color: #0a1628;
+            font-weight: 700;
+        }
+        .recording-sub {
+            font-size: 0.68rem;
+            color: #64748b;
+            margin-top: 3px;
+        }
+        .recording-speed {
+            font-size: 0.65rem;
+            color: #61F393;
+            font-weight: 700;
+        }
+
+        /* ─── Right: Analysis ─── */
+        .analysis-panel {
+            padding: 20px;
+        }
+
+        /* Score */
+        .score-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+        .score-ring {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+        }
+        .score-ring svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        .score-value {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .score-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ef4444;
+            line-height: 1;
+        }
+        .score-max {
+            font-size: 0.55rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .score-label-sub {
+            font-size: 0.68rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .score-label-main {
+            font-size: 0.9rem;
+            color: #ef4444;
+            font-weight: 800;
+            margin-top: 3px;
+        }
+        .score-label-detail {
+            font-size: 0.65rem;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        /* Signals */
+        .signals {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .signal {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 10px;
+        }
+        .signal-critical { background: #fef2f2; }
+        .signal-warning { background: #fff7ed; }
+        .signal-caution { background: #fefce8; }
+        .signal-icon {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .signal-icon-critical { background: #fee2e2; }
+        .signal-icon-warning { background: #fef3c7; }
+        .signal-icon-caution { background: #fef9c3; }
+        .signal-body { flex: 1; min-width: 0; }
+        .signal-name { font-size: 0.78rem; color: #0a1628; font-weight: 600; }
+        .signal-desc { font-size: 0.64rem; color: #64748b; margin-top: 2px; }
+        .signal-score { font-size: 0.78rem; font-weight: 800; }
+        .signal-score-critical { color: #ef4444; }
+        .signal-score-warning { color: #d97706; }
+        .signal-score-caution { color: #ca8a04; }
+
+        /* Actions */
+        .actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+        }
+        .btn-primary {
+            flex: 1;
+            background: #0a1628;
+            color: white;
+            border: none;
+            padding: 11px 16px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-secondary {
+            background: white;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+            padding: 11px 16px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* Footer */
+        .footer {
+            background: #f8fafc;
+            padding: 12px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #e2e8f0;
+        }
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-dot {
+            width: 7px;
+            height: 7px;
+            background: #f59e0b;
+            border-radius: 50%;
+        }
+        .footer-text {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .footer-link {
+            font-size: 0.65rem;
+            color: #3b82f6;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <img class="header-logo" src="../brand/clarity-logo-white.svg" alt="Clarity">
+                <span class="header-sep">|</span>
+                <span class="header-title">Interview Analysis</span>
+            </div>
+            <div class="header-badge">
+                <div class="header-badge-dot"></div>
+                <span class="header-badge-text">Deepfake Detected</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-grid">
+            <!-- Left: Recording -->
+            <div class="recording-panel">
+                <div class="video-wrap">
+                    <img src="../../presentations/masterclass/assets/marcus-chen/zoom.png" alt="Interview Recording">
+                    <div class="video-border"></div>
+                    <div class="play-btn">
+                        <div class="play-btn-circle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#0a1628"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="name-tag">Marcus Chen</div>
+                    <div class="timeline"><div class="timeline-progress"></div></div>
+                </div>
+                <div class="recording-meta">
+                    <div>
+                        <div class="recording-title">Technical Interview</div>
+                        <div class="recording-sub">Feb 10, 2026 &middot; 47 min</div>
+                    </div>
+                    <div class="recording-speed">Analyzed in 3m</div>
+                </div>
+            </div>
+
+            <!-- Right: Analysis -->
+            <div class="analysis-panel">
+                <!-- Score -->
+                <div class="score-row">
+                    <div class="score-ring">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" fill="none" stroke="#fee2e2" stroke-width="7"/>
+                            <circle cx="50" cy="50" r="40" fill="none" stroke="#ef4444" stroke-width="7" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="15.1"/>
+                        </svg>
+                        <div class="score-value">
+                            <span class="score-number">94</span>
+                            <span class="score-max">/100</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="score-label-sub">Deepfake Probability</div>
+                        <div class="score-label-main">Critical Risk</div>
+                        <div class="score-label-detail">3 identity signals flagged</div>
+                    </div>
+                </div>
+
+                <!-- Risk Signals -->
+                <div class="signals">
+                    <div class="signal signal-critical">
+                        <div class="signal-icon signal-icon-critical">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
+                        <div class="signal-body">
+                            <div class="signal-name">Face Manipulation</div>
+                            <div class="signal-desc">GAN artifacts in facial region</div>
+                        </div>
+                        <span class="signal-score signal-score-critical">96%</span>
+                    </div>
+                    <div class="signal signal-warning">
+                        <div class="signal-icon signal-icon-warning">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                        </div>
+                        <div class="signal-body">
+                            <div class="signal-name">Voice-Face Sync</div>
+                            <div class="signal-desc">Lip movement doesn't match audio</div>
+                        </div>
+                        <span class="signal-score signal-score-warning">89%</span>
+                    </div>
+                    <div class="signal signal-caution">
+                        <div class="signal-icon signal-icon-caution">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <div class="signal-body">
+                            <div class="signal-name">Identity Mismatch</div>
+                            <div class="signal-desc">Face doesn't match application photo</div>
+                        </div>
+                        <span class="signal-score signal-score-caution">23%</span>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="actions">
+                    <button class="btn-primary">Review Full Report</button>
+                    <button class="btn-secondary">Dismiss</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-left">
+                <div class="footer-dot"></div>
+                <span class="footer-text">Flagged for expert review &middot; Assigned to Security Team &middot; SLA: 4h</span>
+            </div>
+            <a class="footer-link" href="#">View Forensic Details &rarr;</a>
+        </div>
+    </div>
+</body>
+</html>
