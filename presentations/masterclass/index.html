@@ -1377,6 +1377,97 @@ function revealAnswer() {
     <div class="slide-number">24</div>
 </section>
 
+<!-- Slide 24b: The Infrastructure Layer (Usefulness Problem) -->
+<section class="slide" data-slide-id="usefulness-problem" style="background: #F0F4F8; padding: 50px 60px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 50px;">
+            <span class="badge" style="margin-bottom: 16px;">How We Think About It</span>
+            <h2 style="font-size: 2.6rem; margin: 0; color: var(--text-primary);">This is not an integration problem.<br>This is not a signals problem.</h2>
+            <p style="font-size: 1.8rem; margin-top: 16px; color: var(--accent); font-weight: 700;">This is a usefulness problem.</p>
+        </div>
+        
+        <!-- Three Layer Architecture -->
+        <div style="display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 0 auto;">
+            
+            <!-- Layer 1: Integrations (Top) -->
+            <div style="background: white; border-radius: 16px; padding: 20px 30px; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Layer 1</div>
+                        <h3 style="margin: 0; font-size: 1.2rem; color: var(--text-primary);">Integrations</h3>
+                        <p style="margin: 4px 0 0; font-size: 0.9rem; color: var(--text-secondary);">HRIS, ATS, Identity Providers, Triggers</p>
+                    </div>
+                    <div style="display: flex; gap: 16px; opacity: 0.6;">
+                        <img src="../../shared/logos/okta.svg" alt="Okta" style="height: 24px; width: auto;">
+                        <img src="../../shared/logos/workday.svg" alt="Workday" style="height: 24px; width: auto;">
+                        <img src="../../shared/logos/servicenow.svg" alt="ServiceNow" style="height: 24px; width: auto;">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Arrow down -->
+            <div style="text-align: center; color: var(--border); font-size: 1.5rem;">↓</div>
+            
+            <!-- Layer 2: Signals (Middle) - Highlighted as problematic -->
+            <div style="background: white; border-radius: 16px; padding: 24px 30px; border: 2px solid #fbbf24; box-shadow: 0 4px 20px rgba(251, 191, 36, 0.15);">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 30px;">
+                    <div style="flex: 1;">
+                        <div style="font-size: 0.7rem; color: #b45309; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Layer 2</div>
+                        <h3 style="margin: 0; font-size: 1.2rem; color: var(--text-primary);">Signals</h3>
+                        <p style="margin: 4px 0 0; font-size: 0.9rem; color: var(--text-secondary);">Deepfake detection, biometrics, IDV, resume screening, social media...</p>
+                    </div>
+                    <div style="text-align: right; flex-shrink: 0;">
+                        <div style="display: inline-flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end;">
+                            <span style="background: #fef3c7; color: #92400e; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Commodity</span>
+                            <span style="background: #fef3c7; color: #92400e; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Weak</span>
+                            <span style="background: #fef3c7; color: #92400e; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Inconclusive</span>
+                        </div>
+                        <p style="margin: 8px 0 0; font-size: 0.85rem; color: #b45309; font-weight: 600;">>10% false positive rate individually</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Arrow down -->
+            <div style="text-align: center; color: var(--accent); font-size: 1.5rem;">↓</div>
+            
+            <!-- Layer 3: Clarity Infrastructure (Bottom) - The hero -->
+            <div style="background: linear-gradient(135deg, var(--text-primary) 0%, #1e3a5f 100%); border-radius: 16px; padding: 28px 30px; color: white; box-shadow: 0 8px 30px rgba(10, 22, 40, 0.3);">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 30px;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <svg width="28" height="28" viewBox="0 0 60 60" fill="none">
+                                <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#61F393"/>
+                                <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#61F393"/>
+                                <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+                                <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+                            </svg>
+                            <h3 style="margin: 0; font-size: 1.3rem; font-weight: 700;">Clarity Infrastructure Layer</h3>
+                        </div>
+                        <p style="margin: 0; font-size: 1rem; opacity: 0.9;">AI ensemble that turns weak signals into <strong>actionable enterprise assessments</strong></p>
+                    </div>
+                    <div style="text-align: right; flex-shrink: 0;">
+                        <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+                            <span style="background: rgba(97, 243, 147, 0.2); color: #61F393; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">High-risk escalation</span>
+                            <span style="background: rgba(97, 243, 147, 0.2); color: #61F393; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">Unified assessment</span>
+                            <span style="background: rgba(97, 243, 147, 0.2); color: #61F393; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">Enterprise-ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom callout -->
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="font-size: 1.1rem; color: var(--text-secondary); margin: 0;">
+                Without the infrastructure layer, you'd need <strong style="color: var(--text-primary);">30+ vendors</strong> — and still get <strong style="color: var(--danger);">unusable results</strong>.
+            </p>
+        </div>
+    </div>
+    
+    <div class="slide-number">24b</div>
+</section>
+
 <!-- Slide 19: End-to-End Protection Flow (Animated Gauntlet) -->
 <section id="section-solution" class="slide gauntlet-slide" data-slide-id="pipeline">
     
