@@ -135,6 +135,55 @@
         display: none !important;
     }
     
+    /* ========== VERO TARGET SLIDE ========== */
+    [data-slide-id="vero-target"] {
+        padding: 24px 16px !important;
+        text-align: center;
+    }
+    
+    /* Vero logo and name */
+    [data-slide-id="vero-target"] a[style*="display: flex"][style*="gap: 16px"] {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    [data-slide-id="vero-target"] a div[style*="font-size: 2rem"] {
+        font-size: 1.4rem !important;
+    }
+    
+    /* Subtitle */
+    [data-slide-id="vero-target"] .subtitle {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Stats row - force single column */
+    .vero-stats-row {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .vero-stats-row .stat-card {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    .vero-stats-row .stat-value {
+        font-size: 1.8rem !important;
+    }
+    
+    /* Security bar - force vertical stack */
+    .vero-security-bar {
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 14px 16px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Demo frame / screenshot */
+    [data-slide-id="vero-target"] .demo-frame {
+        max-height: 200px !important;
+    }
+    
     /* ========== INTRO HERO SLIDE ========== */
     [data-slide-id="intro"] h1 {
         font-size: 2rem !important;
