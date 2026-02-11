@@ -1293,104 +1293,124 @@ function revealAnswer() {
     <div style="display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto;">
         <!-- Left: Text -->
         <div>
-            <p style="color: var(--text-primary); font-size: 0.9rem; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; opacity: 0.7;">↳ What you're seeing</p>
+            <p style="color: var(--text-primary); font-size: 0.9rem; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; opacity: 0.7;">↳ Post-Interview Analysis</p>
             <div style="width: 50px; height: 50px; background: var(--danger); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">2</div>
-            <h2 style="font-size: 2rem;">During the interview,<br>in real-time</h2>
+            <h2 style="font-size: 2rem;">After the interview,<br>Clarity analyzes</h2>
             <p class="subtitle" style="margin-top: 20px; line-height: 1.7; font-size: 1rem;">
-                Marcus joins the video call. Clarity detects:<br><br>
-                • Face swap with boundary artifacts<br>
-                • Voice cloning with audio-visual desync<br>
-                • Identity mismatch vs application photos<br><br>
-                <strong style="color: var(--danger);">Interview paused. Security team notified.</strong>
+                The recording is analyzed automatically. Clarity flags:<br><br>
+                • GAN artifacts in the facial region<br>
+                • Audio-visual desync in speech patterns<br>
+                • Identity mismatch vs application photo<br><br>
+                <strong style="color: var(--danger);">Flagged for expert review. No false positives.</strong>
             </p>
         </div>
-        
-        <!-- Right: Product Screenshot - Professional Dashboard -->
+
+        <!-- Right: Product Mockup - Post-Interview Analysis Report -->
         <div class="demo-frame" style="transform: scale(1.02); transform-origin: center right;">
-            <!-- Clarity Interview Security Dashboard - Enterprise Style -->
             <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
-                <!-- App Header with Navigation -->
+                <!-- App Header -->
                 <div style="background: #0f172a; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center;">
                     <div style="display: flex; align-items: center; gap: 30px;">
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity" style="height: 22px; width: auto;">
-                        </div>
+                        <img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity" style="height: 22px; width: auto;">
                         <nav style="display: flex; gap: 24px;">
-                            <span style="color: #64748b; font-size: 0.8rem; cursor: pointer;">Dashboard</span>
-                            <span style="color: #64748b; font-size: 0.8rem; cursor: pointer;">Candidates</span>
-                            <span style="color: white; font-size: 0.8rem; font-weight: 600; border-bottom: 2px solid #61F393; padding-bottom: 2px;">Interviews</span>
-                            <span style="color: #64748b; font-size: 0.8rem; cursor: pointer;">Reports</span>
+                            <span style="color: #64748b; font-size: 0.8rem;">Dashboard</span>
+                            <span style="color: #64748b; font-size: 0.8rem;">Candidates</span>
+                            <span style="color: white; font-size: 0.8rem; font-weight: 600; border-bottom: 2px solid #61F393; padding-bottom: 2px;">Analysis</span>
+                            <span style="color: #64748b; font-size: 0.8rem;">Reports</span>
                         </nav>
                     </div>
-                    <div class="flex-center-gap">
-                        <div style="background: #ef4444; color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 6px; animation: pulse 1.5s infinite;">
-                            <span style="width: 8px; height: 8px; background: white; border-radius: 50%;"></span>
-                            LIVE THREAT
-                        </div>
+                    <div style="background: #1e293b; color: #94a3b8; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 600;">
+                        Analysis Complete
                     </div>
                 </div>
-                
+
                 <!-- Alert Banner -->
-                <div style="background: linear-gradient(90deg, #fef2f2 0%, #fee2e2 100%); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #fecaca;">
+                <div style="background: linear-gradient(90deg, #fffbeb 0%, #fef3c7 100%); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #fde68a;">
                     <div class="flex-center-gap">
-                        <div style="width: 36px; height: 36px; background: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <span style="color: white; font-size: 1.1rem;">!</span>
+                        <div style="width: 36px; height: 36px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                         </div>
                         <div>
-                            <div style="color: #991b1b; font-weight: 700; font-size: 0.9rem;">High-Confidence Deepfake Detected</div>
-                            <div style="color: #b91c1c; font-size: 0.75rem;">Multiple fraud signals confirmed — Interview automatically paused</div>
+                            <div style="color: #92400e; font-weight: 700; font-size: 0.9rem;">Interview Analysis Complete</div>
+                            <div style="color: #a16207; font-size: 0.75rem;">High-risk signals detected — Expert review recommended</div>
                         </div>
                     </div>
-                    <button style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Review & Block</button>
+                    <div style="display: flex; gap: 8px;">
+                        <button style="background: white; color: #374151; border: 1px solid #d1d5db; padding: 7px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Assign to Me</button>
+                        <button style="background: #0f172a; color: white; border: none; padding: 7px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">View Full Report</button>
+                    </div>
                 </div>
-                
+
                 <!-- Main Content Grid -->
                 <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 0; min-height: 280px;">
-                    <!-- Left: Video Feed with Real Photo -->
+                    <!-- Left: Interview Recording -->
                     <div style="padding: 20px; background: #f8fafc; border-right: 1px solid #e2e8f0;">
-                        <div style="position: relative; border-radius: 8px; overflow: hidden; border: 3px solid #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.2);">
-                            <img src="assets/marcus-chen/zoom.png" alt="Video Feed" style="width: 100%; display: block; filter: brightness(0.95);">
-                            <!-- Overlay indicators -->
-                            <div style="position: absolute; top: 10px; left: 10px; background: rgba(239,68,68,0.95); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.65rem; font-weight: 700;">! ANOMALY DETECTED</div>
-                            <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.6rem;">Marcus Chen • Technical Interview</div>
-                            <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(239,68,68,0.9); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.6rem;">● REC 23:41</div>
+                        <div style="position: relative; border-radius: 8px; overflow: hidden; border: 2px solid #e2e8f0;">
+                            <img src="assets/marcus-chen/zoom.png" alt="Interview Recording" style="width: 100%; display: block; filter: brightness(0.85);">
+                            <!-- Play button overlay -->
+                            <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(0,0,0,0.2);">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0f172a"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.6rem;">Marcus Chen</div>
+                            <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.6rem;">47:12</div>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <div style="font-size: 0.75rem; color: #374151; font-weight: 600;">Technical Interview</div>
+                            <div style="font-size: 0.65rem; color: #64748b; margin-top: 2px;">Recorded Feb 10, 2026 &middot; 47 min</div>
+                            <div style="font-size: 0.65rem; color: #61F393; font-weight: 600; margin-top: 6px;">Analysis completed in 3 minutes</div>
                         </div>
                     </div>
-                    
+
                     <!-- Right: Analysis Panel -->
                     <div style="padding: 20px;">
-                        <!-- Risk Score Card -->
-                        <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                        <!-- Risk Score + Signals -->
+                        <div style="display: flex; gap: 16px; margin-bottom: 12px;">
                             <div style="flex: 1; background: linear-gradient(135deg, #dc2626, #b91c1c); border-radius: 10px; padding: 16px; text-align: center; color: white;">
                                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 4px;">Risk Score</div>
                                 <div style="font-size: 2.2rem; font-weight: 800; line-height: 1;">94</div>
                                 <div style="font-size: 0.6rem; opacity: 0.7;">/100</div>
                             </div>
                             <div style="flex: 2;">
-                                <div style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Detection Summary</div>
-                                <div style="display: flex; flex-direction: column; gap: 6px;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
-                                        <span style="font-size: 0.75rem; color: #374151;">Face Manipulation</span>
-                                        <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">96%</span>
+                                <div style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Identity Risk Signals</div>
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <div style="padding: 6px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="font-size: 0.75rem; color: #374151;">Face Manipulation</span>
+                                            <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">96%</span>
+                                        </div>
+                                        <div style="font-size: 0.6rem; color: #64748b; margin-top: 2px;">GAN artifacts detected in facial region, inconsistent lighting on face vs background</div>
                                     </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
-                                        <span style="font-size: 0.75rem; color: #374151;">Voice Cloning</span>
-                                        <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">89%</span>
+                                    <div style="padding: 6px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="font-size: 0.75rem; color: #374151;">Voice-Face Sync</span>
+                                            <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">89%</span>
+                                        </div>
+                                        <div style="font-size: 0.6rem; color: #64748b; margin-top: 2px;">Audio-visual desync detected, lip movements don't match speech patterns</div>
                                     </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
-                                        <span style="font-size: 0.75rem; color: #374151;">Identity Match</span>
-                                        <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">23%</span>
+                                    <div style="padding: 6px 10px; background: #fef2f2; border-radius: 6px; border-left: 3px solid #ef4444;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="font-size: 0.75rem; color: #374151;">Identity Match</span>
+                                            <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626;">23%</span>
+                                        </div>
+                                        <div style="font-size: 0.6rem; color: #64748b; margin-top: 2px;">Face doesn't match photo ID submitted during application</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Action Status -->
-                        <div style="background: #0f172a; border-radius: 8px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
+                        <!-- Action Status Bar -->
+                        <div style="background: #0f172a; border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between;">
                             <div style="display: flex; align-items: center; gap: 8px;">
-                                <span style="color: #61F393;">✓</span>
-                                <span style="color: white; font-size: 0.75rem;">Interview paused • Slack alert sent • Incident created</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+                                <span style="color: white; font-size: 0.72rem;">Flagged for Expert Review</span>
                             </div>
-                            <span style="color: #64748b; font-size: 0.65rem;">2 sec ago</span>
+                            <span style="color: #64748b; font-size: 0.62rem;">Assigned to: Security Team &middot; SLA: 4 hours</span>
+                        </div>
+                        <!-- Explainability link -->
+                        <div style="margin-top: 8px; text-align: right;">
+                            <span style="font-size: 0.62rem; color: #64748b;">Full forensic analysis available &middot; </span>
+                            <span style="font-size: 0.62rem; color: #3b82f6; font-weight: 600; cursor: pointer;">View Explainability Report &rarr;</span>
                         </div>
                     </div>
                 </div>
