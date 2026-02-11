@@ -1460,7 +1460,7 @@ function revealAnswer() {
                     <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Zoom</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 10px 16px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
-                    <img src="../../shared/logos/microsoft-teams.svg" alt="Teams" style="height: 20px;">
+                    <img src="../../shared/logos/teams.svg" alt="Teams" style="height: 20px;">
                     <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Teams</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 10px 16px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
@@ -1729,10 +1729,6 @@ function revealAnswer() {
                     0%, 100% { opacity: 0.3; transform: translateY(0); }
                     50% { opacity: 0.6; transform: translateY(16px); }
                 }
-                @keyframes iconPulse {
-                    0%, 100% { transform: scale(1); }
-                    50% { transform: scale(1.08); }
-                }
                 @keyframes iconWave {
                     0%, 100% { opacity: 0.15; }
                     50% { opacity: 0.4; }
@@ -1743,7 +1739,6 @@ function revealAnswer() {
                 }
                 .icon-card-animated:nth-child(1) .icon-scan-line { animation: iconScan 2s ease-in-out infinite; }
                 .icon-card-animated:nth-child(2) .icon-wave { animation: iconWave 1.5s ease-in-out infinite; }
-                .icon-card-animated:nth-child(3) { animation: iconPulse 2.5s ease-in-out infinite; }
                 .icon-card-animated:nth-child(4) .icon-orbit { animation: iconOrbit 8s linear infinite; transform-origin: 20px 20px; }
             </style>
             
