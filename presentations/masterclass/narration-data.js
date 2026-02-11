@@ -65,7 +65,6 @@ window.NarrationData = {
 
     // === Act 5: Lifecycle & Close (slides 30-34) ===
     { id: "architecture", text: "Here's how it all fits together. Candidates flow in from your hiring pipeline — Greenhouse, Lever, Workday. Clarity sits in the middle, validating every identity. Alerts flow out to your security stack — Okta, Splunk, ServiceNow. API-first, real-time, zero workflow disruption.", duration: 14000 },
-    { id: "alerts", audioIndex: 30, text: "Your people are your greatest asset. Make sure they're really your people.", duration: 5000 },
     { id: "vs-traditional", audioIndex: 31, text: "Every hire verified. Every identity trusted. That's Clarity.", duration: 4000 },
     { id: "social-proof", audioIndex: 32, text: "Clarity protects hiring at scale for industry leaders like Deel — verifying candidates across 150 countries.", duration: 8000 },
     { id: "closing", audioIndex: 33, text: "Your people are your greatest asset. Make sure they're actually your people.", duration: 5000 }
