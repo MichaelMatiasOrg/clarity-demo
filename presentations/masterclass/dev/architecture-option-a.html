@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Option A — Clarity Integration Flow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F0F4F8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .diagram {
+            position: relative;
+            width: 960px;
+            height: 620px;
+        }
+
+        /* Column headers */
+        .col-header {
+            position: absolute;
+            top: 0;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .col-header.left { left: 60px; }
+        .col-header.center { left: 50%; transform: translateX(-50%); }
+        .col-header.right { right: 40px; }
+
+        /* Logo cards */
+        .logo-card {
+            position: absolute;
+            width: 130px;
+            height: 72px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+        .logo-card img {
+            max-height: 28px;
+            max-width: 90px;
+            object-fit: contain;
+        }
+
+        /* Clarity center node */
+        .clarity-node {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: white;
+            border: 2px solid #61F393;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(97, 243, 147, 0.2), 0 4px 16px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            left: 50%;
+            top: 140px;
+            transform: translateX(-50%);
+        }
+        .clarity-node svg { width: 40px; height: 40px; }
+        .clarity-node .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748B;
+        }
+
+        /* Positions — left column */
+        .card-greenhouse { left: 30px; top: 150px; }
+        .card-lever { left: 30px; top: 250px; }
+
+        /* Positions — right column */
+        .card-workday { right: 30px; top: 120px; }
+        .card-okta { right: 30px; top: 220px; }
+        .card-splunk { right: 30px; top: 350px; }
+
+        /* SVG connections layer */
+        .connections {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+        .connections svg {
+            width: 100%;
+            height: 100%;
+        }
+        .conn-line {
+            stroke: #E2E8F0;
+            stroke-width: 2;
+            fill: none;
+        }
+        .conn-alert {
+            stroke: rgba(239, 68, 68, 0.3);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Animated dots */
+        .dot-green {
+            fill: #61F393;
+            r: 4;
+        }
+        .dot-red {
+            fill: #EF4444;
+            r: 4;
+            opacity: 0.7;
+        }
+
+        /* Arrowhead markers */
+        .arrow-gray { fill: #E2E8F0; }
+        .arrow-red { fill: rgba(239, 68, 68, 0.4); }
+
+        /* Continuous verification box */
+        .continuous-box {
+            position: absolute;
+            bottom: 20px;
+            left: 120px;
+            right: 120px;
+            border: 2px dashed #CBD5E1;
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .continuous-box .box-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .continuous-box .box-label span {
+            font-size: 1rem;
+            margin-right: 6px;
+        }
+        .continuous-box .logo-card {
+            position: static;
+            flex-shrink: 0;
+        }
+        .continuous-box .desc {
+            font-size: 0.8rem;
+            color: #64748B;
+            line-height: 1.5;
+        }
+
+        /* Loopback arrow from ServiceNow to Clarity */
+        .loopback-label {
+            position: absolute;
+            bottom: 128px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #64748B;
+            background: #F0F4F8;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="diagram">
+        <!-- Column Headers -->
+        <div class="col-header left">Hiring Sources</div>
+        <div class="col-header center">Clarity</div>
+        <div class="col-header right">Enterprise Systems</div>
+
+        <!-- SVG Connections -->
+        <div class="connections">
+            <svg viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6" class="arrow-gray"/>
+                    </marker>
+                    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6" class="arrow-red"/>
+                    </marker>
+                </defs>
+
+                <!-- Greenhouse → Clarity -->
+                <line x1="160" y1="186" x2="380" y2="220" class="conn-line" marker-end="url(#arrow-gray)"/>
+                <circle class="dot-green">
+                    <animate attributeName="cx" values="160;380" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="186;220" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Lever → Clarity -->
+                <line x1="160" y1="286" x2="380" y2="250" class="conn-line" marker-end="url(#arrow-gray)"/>
+                <circle class="dot-green">
+                    <animate attributeName="cx" values="160;380" dur="2.3s" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="286;250" dur="2.3s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.3s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Clarity → Workday -->
+                <line x1="580" y1="190" x2="800" y2="156" class="conn-line" marker-end="url(#arrow-gray)"/>
+                <circle class="dot-green">
+                    <animate attributeName="cx" values="580;800" dur="2.1s" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="190;156" dur="2.1s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.1s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Clarity → Okta -->
+                <line x1="580" y1="240" x2="800" y2="256" class="conn-line" marker-end="url(#arrow-gray)"/>
+                <circle class="dot-green">
+                    <animate attributeName="cx" values="580;800" dur="2.4s" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="240;256" dur="2.4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.4s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Clarity → Splunk (alert line) -->
+                <path d="M 500 320 L 500 386 L 800 386" class="conn-alert" marker-end="url(#arrow-red)" fill="none"/>
+                <circle class="dot-red">
+                    <animate attributeName="cx" values="500;500;800" dur="2.5s" keyTimes="0;0.4;1" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="320;386;386" dur="2.5s" keyTimes="0;0.4;1" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Loopback: ServiceNow → Clarity (dashed curve) -->
+                <path d="M 400 530 Q 380 460 480 370" class="conn-line" stroke-dasharray="6 4" marker-end="url(#arrow-gray)" fill="none"/>
+                <circle class="dot-green">
+                    <animateMotion dur="2.8s" repeatCount="indefinite">
+                        <mpath href="#loopPath"/>
+                    </animateMotion>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite"/>
+                </circle>
+                <path id="loopPath" d="M 400 530 Q 380 460 480 370" fill="none" style="display:none"/>
+            </svg>
+        </div>
+
+        <!-- Clarity Center Node -->
+        <div class="clarity-node">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#61F393"/>
+                <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#61F393"/>
+                <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+                <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+            </svg>
+            <span class="label">Validation Engine</span>
+        </div>
+
+        <!-- Left Column: Hiring Sources -->
+        <div class="logo-card card-greenhouse">
+            <img src="../../../shared/logos/greenhouse.svg" alt="Greenhouse">
+        </div>
+        <div class="logo-card card-lever">
+            <img src="../../../shared/logos/lever.svg" alt="Lever">
+        </div>
+
+        <!-- Right Column: Enterprise Systems -->
+        <div class="logo-card card-workday">
+            <img src="../../../shared/logos/workday.svg" alt="Workday">
+        </div>
+        <div class="logo-card card-okta">
+            <img src="../../../shared/logos/okta.svg" alt="Okta">
+        </div>
+        <div class="logo-card card-splunk">
+            <img src="../../../shared/logos/splunk.svg" alt="Splunk">
+        </div>
+
+        <!-- Alert label -->
+        <div style="position: absolute; top: 368px; left: 540px; font-size: 0.6rem; font-weight: 600; color: #EF4444; background: #FEF2F2; padding: 3px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px;">alerts</div>
+
+        <!-- Loopback label -->
+        <div class="loopback-label">triggers re-validation</div>
+
+        <!-- Continuous Verification Box -->
+        <div class="continuous-box">
+            <div class="box-label"><span>&#8634;</span> Continuous Verification</div>
+            <div class="logo-card">
+                <img src="../../../shared/logos/servicenow.svg" alt="ServiceNow">
+            </div>
+            <div class="desc">
+                MFA resets, access requests, and privilege changes<br>trigger automatic re-validation through Clarity.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
