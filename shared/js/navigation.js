@@ -77,6 +77,7 @@
         restartAnimations(slides[currentSlide]);
         slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
         updateIndicator();
+        if (typeof updateActiveSection === 'function') updateActiveSection();
         setTimeout(() => { keyboardNavigating = false; }, 600);
     }
     window.goToSlide = goToSlide;
@@ -116,6 +117,7 @@
         scrollTimeout = setTimeout(() => {
             currentSlide = getCurrentSlideFromScroll();
             updateIndicator();
+            updateActiveSection();
         }, 100);
     });
 
@@ -148,7 +150,7 @@
     currentSlide = getCurrentSlideFromScroll();
     updateIndicator();
 
-    // Section navigation
+    // Section navigation — map each slide index to its section
     const sectionIds = ['section-attack', 'section-threat', 'section-impact', 'section-solution', 'section-close'];
     const navLinks = document.querySelectorAll('#nav-panel a[data-section]');
 
@@ -163,9 +165,23 @@
         });
     });
 
-    let currentActiveSection = 'section-attack';
+    // Build a per-slide section map: for each slide, find which section it belongs to
+    // by looking at which section-* anchor is at or before it in DOM order
+    const slideSectionMap = [];
+    let activeSectionId = sectionIds[0]; // default to first section
+    slides.forEach(slide => {
+        // Check if this slide IS a section start
+        const slideId = slide.id;
+        if (slideId && sectionIds.indexOf(slideId) !== -1) {
+            activeSectionId = slideId;
+        }
+        slideSectionMap.push(activeSectionId);
+    });
+
+    let currentActiveSection = '';
 
     function setActiveNav(sectionId) {
+        if (currentActiveSection === sectionId) return;
         currentActiveSection = sectionId;
         navLinks.forEach(link => {
             const linkSection = link.getAttribute('href').substring(1);
@@ -177,25 +193,14 @@
         });
     }
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-                setActiveNav(entry.target.id);
-            }
-        });
-    }, {
-        threshold: 0.5,
-        rootMargin: '0px'
-    });
-
-    sectionIds.forEach(id => {
-        const section = document.getElementById(id);
-        if (section) {
-            sectionObserver.observe(section);
+    function updateActiveSection() {
+        var idx = getCurrentSlideFromScroll();
+        if (idx >= 0 && idx < slideSectionMap.length) {
+            setActiveNav(slideSectionMap[idx]);
         }
-    });
+    }
 
-    setActiveNav('section-attack');
+    updateActiveSection();
 
     // Create shared bottom toolbar for utility buttons (speaker notes, dev mode, PDF, etc.)
     const toolbar = document.createElement('div');
