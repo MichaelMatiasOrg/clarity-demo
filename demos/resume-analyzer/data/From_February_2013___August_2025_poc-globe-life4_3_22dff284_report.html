@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Risk Report - 22dff284-24e1-44e2-a991-6e18957c5240</title>
+    <style>
+        :root { --primary-color: #1e3a5f; --secondary-color: #2563eb; --success-color: #16a34a; --warning-color: #d97706; --danger-color: #dc2626; --border-color: #e5e7eb; --bg-light: #f9fafb; --text-primary: #111827; --text-secondary: #6b7280; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: var(--text-primary); background-color: #fff; max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        header { border-bottom: 3px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: var(--primary-color); font-size: 28px; margin-bottom: 10px; }
+        .report-meta { display: flex; gap: 30px; color: var(--text-secondary); font-size: 14px; }
+        h2 { color: var(--primary-color); font-size: 20px; margin-top: 30px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--border-color); }
+        h3 { color: var(--text-primary); font-size: 16px; margin-top: 20px; margin-bottom: 10px; }
+        section { margin-bottom: 25px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        th, td { padding: 12px 15px; text-align: left; border: 1px solid var(--border-color); }
+        th { background-color: var(--bg-light); font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--bg-light); }
+        .executive-summary { background: linear-gradient(135deg, var(--bg-light) 0%, #fff 100%); border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 15px; }
+        .summary-item { display: flex; flex-direction: column; }
+        .summary-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+        .summary-value { font-size: 18px; font-weight: 600; }
+        .risk-badge, .recommendation-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 14px; }
+        .risk-low { background-color: #dcfce7; color: var(--success-color); }
+        .risk-medium { background-color: #fef3c7; color: var(--warning-color); }
+        .risk-high { background-color: #fee2e2; color: var(--danger-color); }
+        .rec-approve { background-color: #dcfce7; color: var(--success-color); }
+        .rec-review { background-color: #fef3c7; color: var(--warning-color); }
+        .rec-reject, .rec-escalate { background-color: #fee2e2; color: var(--danger-color); }
+        .summary-text { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
+        .status-match { color: var(--success-color); font-weight: 600; }
+        .status-mismatch { color: var(--danger-color); font-weight: 600; }
+        .status-anomaly { color: var(--warning-color); font-weight: 600; }
+        .chain-of-thought { background-color: var(--bg-light); border-left: 4px solid var(--secondary-color); padding: 20px; margin: 15px 0; }
+        .chain-of-thought h4 { color: var(--secondary-color); margin-bottom: 10px; }
+        .chain-of-thought p { margin-bottom: 10px; color: var(--text-secondary); }
+        .red-flag { background-color: #fef2f2; border-left: 4px solid var(--danger-color); padding: 15px; margin: 10px 0; }
+        .note { background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 12px 15px; margin: 15px 0; font-size: 14px; color: #1e40af; }
+        ul { margin: 10px 0 10px 20px; }
+        li { margin-bottom: 5px; }
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-secondary); font-size: 12px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Candidate Risk Report</h1>
+        <div class="report-meta">
+            <span><strong>Person ID:</strong> 22dff284-24e1-44e2-a991-6e18957c5240</span>
+            <span><strong>Candidate:</strong> Juanita Felix (Application: From February 2013 - August 2025)</span>
+            <span><strong>Generated:</strong> 2026-02-08</span>
+        </div>
+    </header>
+
+    <section id="executive-summary">
+        <h2>Executive Summary</h2>
+        <div class="executive-summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Candidate</span>
+                    <span class="summary-value">Juanita Felix</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Risk Level</span>
+                    <span class="risk-badge risk-medium">MEDIUM</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-review">REVIEW</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p>Application submitted with date range "From February 2013 - August 2025" instead of name. PIPL identifies actual candidate as Juanita Felix with 1.0 perfect match and Texas address. Phone is new (84 days/~3 months) on Metro PCS but phone number matches PIPL. Email is new with low trust score (265/1000). MaxMind flags phone as VoIP. Despite perfect PIPL match, the anomalous application name and new phone/email warrant verification.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="linkedin-summary">
+        <h2>1. LinkedIn Profile Summary</h2>
+        <p class="note">No LinkedIn data available for this candidate.</p>
+    </section>
+
+    <section id="cv-summary">
+        <h2>2. CV/Resume Summary</h2>
+        <table>
+            <tr><th>Attribute</th><th>Value</th></tr>
+            <tr><td>Application Name</td><td>From February 2013 - August 2025 (ANOMALY - copied from job duration)</td></tr>
+            <tr><td>CV Name</td><td>Juanita Felix</td></tr>
+            <tr><td>Actual Name (PIPL)</td><td>Juanita Felix</td></tr>
+            <tr><td>Phone</td><td>+1 956-751-8072</td></tr>
+            <tr><td>Email</td><td>juanita1168f@gmail.com</td></tr>
+            <tr><td>CV Address</td><td>307 Irene Dr, Zapata, TX</td></tr>
+            <tr><td>PIPL Location</td><td>San Ygnacio, Texas 78067</td></tr>
+        </table>
+
+        <h3>Employment History (from CV)</h3>
+        <table>
+            <tr><th>Organization</th><th>Title</th><th>Period</th></tr>
+            <tr><td>Texas Health & Human Services</td><td>Interviewer II - Food Stamps</td><td>Feb 2013 - Aug 2025 (12+ years)</td></tr>
+            <tr><td>Child Protective Services (CPS)</td><td>Assistant To CPS Case Worker</td><td>Apr 2012 - Feb 2013</td></tr>
+            <tr><td>H-E-B Grocery</td><td>H-E-B Partner</td><td>Jan 2008 - Apr 2012</td></tr>
+        </table>
+
+        <h3>Skills (from CV)</h3>
+        <table>
+            <tr><th>Skill</th></tr>
+            <tr><td>Bilingual - Fluent in Spanish and English</td></tr>
+            <tr><td>Time Management Under Pressure</td></tr>
+            <tr><td>Customer Service with Empathy</td></tr>
+            <tr><td>Basic Data Entry & Office Software Proficiency</td></tr>
+        </table>
+
+        <h3>Professional Reference (from CV)</h3>
+        <table>
+            <tr><th>Name</th><th>Title</th><th>Phone</th></tr>
+            <tr><td>Elizabeth Lira</td><td>Texas Health & Human Services Manager</td><td>956-334-3621</td></tr>
+        </table>
+    </section>
+
+    <section id="enrichment-data">
+        <h2>3. Enrichment Data Summary</h2>
+
+        <h3>Email Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Email Address</td><td>juanita1168f@gmail.com</td><td class="status-match">Valid</td></tr>
+            <tr><td>Is Disposable</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Free Mail</td><td>Yes (Gmail)</td><td class="status-anomaly">Neutral</td></tr>
+            <tr><td>Email Age (AtData)</td><td>First seen: 2024-08-29</td><td class="status-anomaly">~1.5 years</td></tr>
+            <tr><td>Trust Elephant Email Score</td><td>265/1000</td><td class="status-mismatch">Poor</td></tr>
+            <tr><td>Email Pattern</td><td>{First Name}{Digits}{Last Name Initials}</td><td class="status-match">Matches Name</td></tr>
+            <tr><td>MaxMind First Seen</td><td>2025-11-13</td><td class="status-anomaly">Recent</td></tr>
+        </table>
+
+        <h3>Phone Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Phone Number</td><td>+1 956-751-8072</td><td class="status-match">Valid</td></tr>
+            <tr><td>HLR Valid</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Mobile</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is VoIP (MaxMind)</td><td>Yes</td><td class="status-anomaly">Concern</td></tr>
+            <tr><td>Carrier</td><td>Metro PCS (ported from Cingular)</td><td class="status-anomaly">Budget Carrier</td></tr>
+            <tr><td>Phone Age</td><td>84 days (~3 months)</td><td class="status-mismatch">Very New</td></tr>
+            <tr><td>Trust Elephant Phone Score</td><td>669/1000</td><td class="status-anomaly">Moderate</td></tr>
+            <tr><td>Number of Owners</td><td>1</td><td class="status-match">Single Owner</td></tr>
+        </table>
+
+        <h3>Risk Scores</h3>
+        <table>
+            <tr><th>Vendor</th><th>Score Type</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>MaxMind minFraud</td><td>Risk Score</td><td>0.27</td><td class="status-match">Low Risk</td></tr>
+            <tr><td>Trust Elephant</td><td>Overall Score</td><td>298/1000</td><td class="status-mismatch">Below Average</td></tr>
+            <tr><td>Trust Elephant</td><td>Decision</td><td>Review</td><td class="status-anomaly">Requires Review</td></tr>
+        </table>
+
+        <h3>Person Data (PIPL)</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Match Confidence</td><td>1.00</td><td class="status-match">Perfect Match</td></tr>
+            <tr><td>Full Name</td><td>Juanita Felix</td><td class="status-match">Identified</td></tr>
+            <tr><td>Phone Confirmed</td><td>956-751-8072 (mobile)</td><td class="status-match">Exact Match</td></tr>
+            <tr><td>Address</td><td>San Ygnacio, Texas 78067</td><td class="status-match">Verified</td></tr>
+            <tr><td>PIPL First Seen</td><td>2025-11-12</td><td class="status-anomaly">Very Recent Entry</td></tr>
+        </table>
+    </section>
+
+    <section id="cross-source">
+        <h2>4. Cross-Source Comparison &amp; Discrepancy Analysis</h2>
+
+        <h3>Name Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Name</th><th>Match</th></tr>
+            <tr><td>Application</td><td>From February 2013 - August 2025</td><td class="status-mismatch">NOT A NAME (job duration copied)</td></tr>
+            <tr><td>CV</td><td>Juanita Felix</td><td class="status-match">Confirms Identity</td></tr>
+            <tr><td>PIPL</td><td>Juanita Felix</td><td class="status-match">Matches CV</td></tr>
+            <tr><td>Email</td><td>juanita...f (juanita + felix initial)</td><td class="status-match">Matches CV/PIPL</td></tr>
+        </table>
+
+        <h3>Location Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Location</th><th>Match</th></tr>
+            <tr><td>CV Address</td><td>307 Irene Dr, Zapata, TX</td><td class="status-match">Zapata County</td></tr>
+            <tr><td>Phone HLR</td><td>Texas (956 area code - South TX)</td><td class="status-match">Match</td></tr>
+            <tr><td>PIPL Address</td><td>San Ygnacio, TX 78067</td><td class="status-match">Same County (Zapata)</td></tr>
+        </table>
+
+        <h3>Employment Verification</h3>
+        <p class="note"><strong>SIGNIFICANT:</strong> CV shows 17+ years of continuous employment (2008-2025) including 12+ years at Texas Health & Human Services (state government). Government employment is highly verifiable. The application name anomaly is clearly explained: "From February 2013 - August 2025" was the duration of the HHSC job that was accidentally copied to the name field. This dramatically increases confidence in the applicant's legitimacy.</p>
+    </section>
+
+    <section id="red-flags">
+        <h2>6. Red Flags Identified</h2>
+        <div class="red-flag">
+            <strong>Application Name Anomaly:</strong> Application was submitted with "From February 2013 - August 2025" as the name instead of an actual person name. This appears to be content from a CV/resume field incorrectly placed in the name field.
+        </div>
+        <div class="red-flag">
+            <strong>Very New Phone:</strong> Phone is only 84 days old (~3 months) with limited history. New phone numbers are higher risk.
+        </div>
+        <div class="red-flag">
+            <strong>MaxMind VoIP Flag:</strong> MaxMind identifies this phone as VoIP, which conflicts with HLR showing it as mobile. This discrepancy needs clarification.
+        </div>
+        <div class="red-flag">
+            <strong>Very Low Email Trust Score:</strong> Email score of 265/1000 indicates limited trust in the email address despite being valid.
+        </div>
+        <div class="red-flag">
+            <strong>Recent PIPL Entry:</strong> PIPL record was only created 2025-11-12, suggesting this identity has very limited digital history.
+        </div>
+    </section>
+
+    <section id="legitimacy">
+        <h2>7. Legitimacy Indicators</h2>
+        <table>
+            <tr><th>Category</th><th>Evidence</th><th>Strength</th></tr>
+            <tr><td>PIPL Match</td><td>1.0 perfect confidence</td><td class="status-match">Excellent</td></tr>
+            <tr><td>Phone-PIPL Match</td><td>Exact phone number match</td><td class="status-match">Strong</td></tr>
+            <tr><td>Location Consistency</td><td>Texas across all sources</td><td class="status-match">Strong</td></tr>
+            <tr><td>Email Pattern</td><td>Contains "juanita" and "f" for Felix</td><td class="status-match">Moderate</td></tr>
+            <tr><td>Single Phone Owner</td><td>Only 1 owner in history</td><td class="status-match">Good</td></tr>
+        </table>
+    </section>
+
+    <section id="chain-of-thought">
+        <h2>8. Chain of Thought Reasoning</h2>
+
+        <div class="chain-of-thought">
+            <h4>Step 1: Identity Verification</h4>
+            <p>The application name is clearly erroneous - "From February 2013 - August 2025" is a date range, not a name. PIPL identifies the actual person as Juanita Felix with a perfect 1.0 match confidence, and the phone number matches exactly.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 2: Contact Information Analysis</h4>
+            <p>Phone is very new (84 days) which is a concern, but it's the only owner and it matches PIPL exactly. Email pattern "juanita1168f" contains the first name and last initial. Both contact points are new but consistent with the PIPL-identified name.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 3: Digital Footprint Assessment</h4>
+            <p>This person has a very limited digital footprint - PIPL record from Nov 2025, phone only 3 months old, email about 1.5 years old. This could indicate a younger person, recent immigrant, or someone establishing new digital presence.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 4: Risk Evaluation</h4>
+            <p>The perfect PIPL match is a strong positive signal that this is a real person. Trust Elephant recommends review (298/1000) primarily due to new email/phone. The application name error appears to be a data entry mistake rather than fraud indicator.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 4a: CV Analysis</h4>
+            <p>CV provides CRITICAL verification: 17+ years of continuous employment in Texas including 12+ years at Texas Health & Human Services (state government) as an Interviewer II determining SNAP eligibility. Previous roles include CPS (Child Protective Services) assistant and H-E-B grocery store. The application name anomaly is now explained - "From February 2013 - August 2025" is the exact date range of the HHSC job listed on the CV, clearly copy-pasted incorrectly. CV also provides a professional reference (Elizabeth Lira, HHSC Manager, 956-334-3621). The South Texas location (Zapata County) and bilingual skills are consistent with the border region demographic. This CV transforms the risk assessment significantly.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 5: Conclusion</h4>
+            <p>CV definitively confirms this is Juanita Felix with extensive verifiable government employment. The application name error is explained by copy-paste from CV. The "new phone" concern is offset by 17+ years of documented work history. The limited PIPL digital footprint may reflect a person who prioritizes privacy or has limited social media presence - not uncommon for government workers. With CV verification, this candidate shifts toward approval.</p>
+        </div>
+    </section>
+
+    <section id="final-assessment">
+        <h2>9. Final Risk Assessment</h2>
+        <table>
+            <tr><th>Dimension</th><th>Assessment</th><th>Confidence</th></tr>
+            <tr><td>Identity Authenticity</td><td class="status-match">Likely Authentic (PIPL verified)</td><td>Medium-High</td></tr>
+            <tr><td>Timeline Consistency</td><td class="status-anomaly">Limited Data</td><td>Low</td></tr>
+            <tr><td>Digital Footprint</td><td class="status-anomaly">Very New/Limited</td><td>Medium</td></tr>
+            <tr><td>Fraud Indicators</td><td class="status-anomaly">Form Error Only</td><td>Medium</td></tr>
+        </table>
+
+        <div class="executive-summary" style="margin-top: 20px;">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Overall Risk Level</span>
+                    <span class="risk-badge risk-medium">MEDIUM</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-review">REVIEW</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p><strong>Reasoning:</strong> The perfect PIPL match identifies this as Juanita Felix with verified phone and Texas address. The application name anomaly appears to be a data entry error. However, the very new phone, limited digital footprint, and low trust scores warrant identity verification before approval.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="verification-recommendations">
+        <h2>Verification Recommendations</h2>
+        <ul>
+            <li>Verify legal name is "Juanita Felix" via government ID</li>
+            <li>Confirm phone ownership via SMS verification</li>
+            <li>Verify Texas address through documentation</li>
+            <li>Clarify why application name field contains a date range</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Report generated using automated enrichment analysis. Human review recommended for final decisions.</p>
+    </footer>
+</body>
+</html>

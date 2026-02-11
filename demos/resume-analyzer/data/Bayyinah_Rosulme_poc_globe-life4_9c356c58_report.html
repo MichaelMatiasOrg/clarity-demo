@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Risk Report - 9c356c58-e89e-408b-9f81-1ae065988f6d</title>
+    <style>
+        :root { --primary-color: #1e3a5f; --secondary-color: #2563eb; --success-color: #16a34a; --warning-color: #d97706; --danger-color: #dc2626; --border-color: #e5e7eb; --bg-light: #f9fafb; --text-primary: #111827; --text-secondary: #6b7280; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: var(--text-primary); background-color: #fff; max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        header { border-bottom: 3px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: var(--primary-color); font-size: 28px; margin-bottom: 10px; }
+        .report-meta { display: flex; gap: 30px; color: var(--text-secondary); font-size: 14px; }
+        h2 { color: var(--primary-color); font-size: 20px; margin-top: 30px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--border-color); }
+        h3 { color: var(--text-primary); font-size: 16px; margin-top: 20px; margin-bottom: 10px; }
+        section { margin-bottom: 25px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        th, td { padding: 12px 15px; text-align: left; border: 1px solid var(--border-color); }
+        th { background-color: var(--bg-light); font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--bg-light); }
+        .executive-summary { background: linear-gradient(135deg, var(--bg-light) 0%, #fff 100%); border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 15px; }
+        .summary-item { display: flex; flex-direction: column; }
+        .summary-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+        .summary-value { font-size: 18px; font-weight: 600; }
+        .risk-badge, .recommendation-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 14px; }
+        .risk-low { background-color: #dcfce7; color: var(--success-color); }
+        .risk-medium { background-color: #fef3c7; color: var(--warning-color); }
+        .risk-high { background-color: #fee2e2; color: var(--danger-color); }
+        .rec-approve { background-color: #dcfce7; color: var(--success-color); }
+        .rec-review { background-color: #fef3c7; color: var(--warning-color); }
+        .rec-reject, .rec-escalate { background-color: #fee2e2; color: var(--danger-color); }
+        .summary-text { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
+        .status-match { color: var(--success-color); font-weight: 600; }
+        .status-mismatch { color: var(--danger-color); font-weight: 600; }
+        .status-anomaly { color: var(--warning-color); font-weight: 600; }
+        .chain-of-thought { background-color: var(--bg-light); border-left: 4px solid var(--secondary-color); padding: 20px; margin: 15px 0; }
+        .chain-of-thought h4 { color: var(--secondary-color); margin-bottom: 10px; }
+        .chain-of-thought p { margin-bottom: 10px; color: var(--text-secondary); }
+        .red-flag { background-color: #fef2f2; border-left: 4px solid var(--danger-color); padding: 15px; margin: 10px 0; }
+        .legitimacy-indicator { background-color: #f0fdf4; border-left: 4px solid var(--success-color); padding: 15px; margin: 10px 0; }
+        .note { background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 12px 15px; margin: 15px 0; font-size: 14px; color: #1e40af; }
+        ul { margin: 10px 0 10px 20px; }
+        li { margin-bottom: 5px; }
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-secondary); font-size: 12px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Candidate Risk Report</h1>
+        <div class="report-meta">
+            <span><strong>Person ID:</strong> 9c356c58-e89e-408b-9f81-1ae065988f6d</span>
+            <span><strong>Candidate:</strong> Bayyinah Rosulme</span>
+            <span><strong>Generated:</strong> 2026-02-08</span>
+        </div>
+    </header>
+
+    <section id="executive-summary">
+        <h2>Executive Summary</h2>
+        <div class="executive-summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Candidate</span>
+                    <span class="summary-value">Bayyinah Rosulme</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Risk Level</span>
+                    <span class="risk-badge risk-medium">MEDIUM</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-review">REVIEW</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p>Mixed signals present: PIPL confirms partial identity (B Rosulme, phone match, Maryland location) but email has low trust score. CV provides 8-year employment history (2017-2025) with career progression and LinkedIn profile. Phone is legitimate mobile on T-Mobile with good history (3+ years, 824/1000 score). CV location (Charlotte, NC) conflicts with enrichment data (Maryland) - possible relocation. Trust Elephant recommends review. Name partial match ("B Rosulme" vs "Bayyinah Rosulme") and location discrepancy warrant verification.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="linkedin-summary">
+        <h2>1. LinkedIn Profile Summary</h2>
+        <p class="note">No LinkedIn data available for this candidate.</p>
+    </section>
+
+    <section id="cv-summary">
+        <h2>2. CV/Resume Summary</h2>
+        <table>
+            <tr><th>Attribute</th><th>Value</th></tr>
+            <tr><td>Full Name</td><td>Bayyinah Rosulme</td></tr>
+            <tr><td>Phone</td><td>+1 240-597-6267</td></tr>
+            <tr><td>Email</td><td>rosulmebayyinah@gmail.com</td></tr>
+            <tr><td>Location (CV)</td><td>Charlotte, NC</td></tr>
+            <tr><td>Location (Enrichment)</td><td>Olney, Maryland</td></tr>
+            <tr><td>LinkedIn</td><td>www.linkedin.com/in/bayyinah-rosulme</td></tr>
+        </table>
+
+        <h3>Employment History (CV)</h3>
+        <table>
+            <tr><th>Organization</th><th>Title</th><th>Period</th></tr>
+            <tr><td>Cardinal Financial</td><td>Project Coordinator</td><td>2024 - Present</td></tr>
+            <tr><td>Host International Inc.</td><td>Assistant Manager</td><td>2021 - 2024</td></tr>
+            <tr><td>DHT</td><td>Administrative Assistant</td><td>2017 - 2021</td></tr>
+        </table>
+
+        <h3>Education (CV)</h3>
+        <table>
+            <tr><th>Institution</th><th>Degree</th><th>Period</th></tr>
+            <tr><td>Florida Atlantic University</td><td>BA in Business Administration & Hospitality Management</td><td>Not specified</td></tr>
+        </table>
+
+        <h3>Certifications (CV)</h3>
+        <table>
+            <tr><th>Certification</th></tr>
+            <tr><td>Google Project Management Certification</td></tr>
+        </table>
+    </section>
+
+    <section id="enrichment-data">
+        <h2>3. Enrichment Data Summary</h2>
+
+        <h3>Email Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Email Address</td><td>rosulmebayyinah@gmail.com</td><td class="status-match">Valid</td></tr>
+            <tr><td>Is Disposable</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Free Mail</td><td>Yes (Gmail)</td><td class="status-anomaly">Neutral</td></tr>
+            <tr><td>Email Age (AtData)</td><td>First seen: 2024-09-15</td><td class="status-anomaly">~16 months old</td></tr>
+            <tr><td>Trust Elephant Email Score</td><td>152/1000</td><td class="status-mismatch">Very Low</td></tr>
+            <tr><td>Email Pattern</td><td>{Last Name}{First Name}</td><td class="status-match">Matches Candidate Name</td></tr>
+            <tr><td>MaxMind First Seen</td><td>2024-10-02</td><td class="status-anomaly">Somewhat Recent</td></tr>
+        </table>
+
+        <h3>Phone Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Phone Number</td><td>+1 240-597-6267</td><td class="status-match">Valid</td></tr>
+            <tr><td>HLR Valid</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Mobile</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is VoIP (MaxMind)</td><td>Yes</td><td class="status-anomaly">Conflicting Signal</td></tr>
+            <tr><td>Is VoIP (Neutrino)</td><td>No (Mobile)</td><td class="status-match">Good</td></tr>
+            <tr><td>Carrier</td><td>T-Mobile (ported from Cingular)</td><td class="status-match">Legitimate Carrier</td></tr>
+            <tr><td>Phone Age</td><td>1,216 days (~3.3 years)</td><td class="status-match">Good History</td></tr>
+            <tr><td>Trust Elephant Phone Score</td><td>824/1000</td><td class="status-match">Good</td></tr>
+            <tr><td>Number of Owners</td><td>2</td><td class="status-match">Normal</td></tr>
+        </table>
+
+        <h3>Risk Scores</h3>
+        <table>
+            <tr><th>Vendor</th><th>Score Type</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>MaxMind minFraud</td><td>Risk Score</td><td>0.40</td><td class="status-match">Low Risk</td></tr>
+            <tr><td>Trust Elephant</td><td>Overall Score</td><td>395/1000</td><td class="status-anomaly">Below Average</td></tr>
+            <tr><td>Trust Elephant</td><td>Decision</td><td>Review</td><td class="status-anomaly">Requires Review</td></tr>
+        </table>
+
+        <h3>Person Data (PIPL)</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Match Confidence</td><td>0.77</td><td class="status-match">Good Match</td></tr>
+            <tr><td>Name Found</td><td>B Rosulme</td><td class="status-anomaly">Partial Match</td></tr>
+            <tr><td>Phone Match</td><td>240-597-6267 (mobile)</td><td class="status-match">Phone Confirmed</td></tr>
+            <tr><td>Location</td><td>Olney, Maryland 20832</td><td class="status-match">Location Confirmed</td></tr>
+            <tr><td>First Seen</td><td>2022-10-07</td><td class="status-match">Established Record</td></tr>
+        </table>
+    </section>
+
+    <section id="cross-source">
+        <h2>4. Cross-Source Comparison &amp; Discrepancy Analysis</h2>
+
+        <h3>Name Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Name</th><th>Match</th></tr>
+            <tr><td>CV</td><td>Bayyinah Rosulme</td><td>--</td></tr>
+            <tr><td>Application</td><td>Bayyinah Rosulme</td><td class="status-match">Match</td></tr>
+            <tr><td>PIPL</td><td>B Rosulme</td><td class="status-anomaly">Partial (Initial Only)</td></tr>
+            <tr><td>Email Pattern</td><td>rosulmebayyinah</td><td class="status-match">Full Name Match</td></tr>
+        </table>
+
+        <h3>Location Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Location</th><th>Match</th></tr>
+            <tr><td>CV</td><td>Charlotte, NC</td><td class="status-mismatch">MISMATCH</td></tr>
+            <tr><td>Phone HLR</td><td>Maryland</td><td class="status-match">Match with PIPL</td></tr>
+            <tr><td>PIPL Address</td><td>Olney, Maryland 20832</td><td class="status-match">Match with Phone</td></tr>
+        </table>
+
+        <h3>Employment Timeline Consistency</h3>
+        <table>
+            <tr><th>Period</th><th>CV</th><th>PIPL</th><th>Status</th></tr>
+            <tr><td>2024 - Present</td><td>Project Coordinator at Cardinal Financial</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+            <tr><td>2021 - 2024</td><td>Assistant Manager at Host International Inc.</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+            <tr><td>2017 - 2021</td><td>Administrative Assistant at DHT</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+        </table>
+
+        <h3>Education Timeline Consistency</h3>
+        <table>
+            <tr><th>Period</th><th>CV</th><th>PIPL</th><th>Status</th></tr>
+            <tr><td>Not specified</td><td>BA Business Admin & Hospitality, Florida Atlantic University</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+        </table>
+    </section>
+
+    <section id="enrichment-combination">
+        <h2>5. Enrichment Combination Analysis</h2>
+
+        <h3>Digital Footprint Assessment</h3>
+        <table>
+            <tr><th>Indicator</th><th>Finding</th><th>Weight</th></tr>
+            <tr><td>Email Age</td><td>~16 months</td><td class="status-anomaly">Moderate</td></tr>
+            <tr><td>Phone Age</td><td>3+ years</td><td class="status-match">Good</td></tr>
+            <tr><td>PIPL Record Age</td><td>Since Oct 2022</td><td class="status-match">Established</td></tr>
+            <tr><td>Email Activity (AtData)</td><td>Velocity: 10, Popularity: 7</td><td class="status-match">Active</td></tr>
+            <tr><td>Phone Data Sources</td><td>2</td><td class="status-anomaly">Limited</td></tr>
+        </table>
+
+        <h3>Identity Theft Risk Indicators</h3>
+        <table>
+            <tr><th>Indicator</th><th>Status</th><th>Notes</th></tr>
+            <tr><td>Name Partial Match</td><td class="status-anomaly">Moderate</td><td>PIPL shows "B Rosulme" - first initial only</td></tr>
+            <tr><td>VoIP Conflict</td><td class="status-anomaly">Unclear</td><td>MaxMind says VoIP, Neutrino says mobile</td></tr>
+            <tr><td>New Email + Established Phone</td><td class="status-anomaly">Minor Concern</td><td>Email newer than phone record</td></tr>
+        </table>
+    </section>
+
+    <section id="red-flags">
+        <h2>6. Red Flags Identified</h2>
+        <div class="red-flag">
+            <strong>Very Low Email Trust Score:</strong> Trust Elephant email score of 152/1000 indicates significant concerns about the email address despite being valid.
+        </div>
+        <div class="red-flag">
+            <strong>Partial Name Match:</strong> PIPL only shows "B Rosulme" rather than full first name "Bayyinah", suggesting limited identity documentation.
+        </div>
+        <div class="red-flag">
+            <strong>VoIP Conflict:</strong> MaxMind flags the phone as VoIP while Neutrino HLR shows it as a valid mobile - this discrepancy needs clarification.
+        </div>
+        <div class="red-flag">
+            <strong>CV Location Mismatch:</strong> CV shows Charlotte, NC but all enrichment data (PIPL, phone HLR) shows Maryland. This geographic discrepancy needs explanation - could be recent relocation.
+        </div>
+    </section>
+
+    <section id="legitimacy">
+        <h2>7. Legitimacy Indicators</h2>
+        <table>
+            <tr><th>Category</th><th>Evidence</th><th>Strength</th></tr>
+            <tr><td>PIPL Match</td><td>0.77 confidence with phone and address confirmed</td><td class="status-match">Strong</td></tr>
+            <tr><td>Phone Carrier</td><td>T-Mobile (legitimate carrier)</td><td class="status-match">Strong</td></tr>
+            <tr><td>Phone Age</td><td>3+ years established</td><td class="status-match">Strong</td></tr>
+            <tr><td>Location Consistency</td><td>Maryland across all sources</td><td class="status-match">Strong</td></tr>
+            <tr><td>Phone Trust Score</td><td>824/1000</td><td class="status-match">Good</td></tr>
+            <tr><td>Email Activity</td><td>High velocity (10) and popularity (7)</td><td class="status-match">Moderate</td></tr>
+            <tr><td>LinkedIn Profile</td><td>linkedin.com/in/bayyinah-rosulme</td><td class="status-match">Strong</td></tr>
+            <tr><td>CV Employment History</td><td>8 years (2017-2025), 3 positions</td><td class="status-match">Strong</td></tr>
+            <tr><td>US Education</td><td>Florida Atlantic University</td><td class="status-match">Verifiable</td></tr>
+        </table>
+    </section>
+
+    <section id="chain-of-thought">
+        <h2>8. Chain of Thought Reasoning</h2>
+
+        <div class="chain-of-thought">
+            <h4>Step 1: Identity Verification</h4>
+            <p>PIPL found a matching record with 0.77 confidence showing "B Rosulme" at the same phone number and Maryland address. The partial first name match (initial only) is not ideal but the last name, phone, and location all match, providing reasonable identity confirmation.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 2: Contact Information Analysis</h4>
+            <p>Phone shows strong legitimacy: valid HLR, mobile type, T-Mobile carrier, 3+ year history, and 824/1000 trust score. Email is weaker: very low trust score (152/1000) despite being a valid Gmail with some activity history. The email username pattern "rosulmebayyinah" (LastNameFirstName) matches the application name.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 3: Timeline Reconstruction</h4>
+            <p>CV shows 8 years of experience with employment from 2017-2025. PIPL record dates to October 2022, phone has 3+ year history with T-Mobile, email dates to September 2024. Timeline is plausible - employment history (2017-2025) aligns with a professional career. CV shows Charlotte, NC but enrichment shows Maryland - could indicate recent relocation. LinkedIn profile exists (linkedin.com/in/bayyinah-rosulme) which adds credibility.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 4: Cross-Source Validation</h4>
+            <p>Geographic consistency is strong - Maryland location confirmed across phone HLR and PIPL. Phone number matches between application and PIPL. Name partially matches (initial vs full name). Email pattern matches full name.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 5: Risk Score Evaluation</h4>
+            <p>MaxMind shows low fraud risk (0.40). Trust Elephant recommends "review" with moderate score (395/1000). The gap between phone score (824) and email score (152) creates the imbalance driving the review recommendation. Overall risk is manageable with verification.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 6: CV Analysis</h4>
+            <p>CV provides detailed 8-year employment history with 3 positions showing career progression from Administrative Assistant to Project Coordinator. Education from Florida Atlantic University (Florida) and Google certification adds credibility. LinkedIn profile reference (linkedin.com/in/bayyinah-rosulme) provides additional verification avenue. Location discrepancy: CV shows Charlotte, NC but enrichment shows Maryland - this could indicate recent relocation or employment transition.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 7: Conclusion</h4>
+            <p>This appears to be a real person with established phone and address history in PIPL, professional employment history on CV, and LinkedIn presence. The partial name match (B vs Bayyinah) and location discrepancy (NC vs MD) warrant verification, but the strong phone credentials, employment timeline, and LinkedIn profile provide reasonable confidence. The CV location (Charlotte, NC) vs enrichment (Maryland) could indicate recent relocation. Recommend proceeding with identity verification.</p>
+        </div>
+    </section>
+
+    <section id="final-assessment">
+        <h2>9. Final Risk Assessment</h2>
+        <table>
+            <tr><th>Dimension</th><th>Assessment</th><th>Confidence</th></tr>
+            <tr><td>Identity Authenticity</td><td class="status-anomaly">Likely Authentic</td><td>Medium</td></tr>
+            <tr><td>Timeline Consistency</td><td class="status-match">Consistent</td><td>Medium</td></tr>
+            <tr><td>Digital Footprint</td><td class="status-anomaly">Moderate</td><td>Medium</td></tr>
+            <tr><td>Fraud Indicators</td><td class="status-match">Few Present</td><td>Medium</td></tr>
+        </table>
+
+        <div class="executive-summary" style="margin-top: 20px;">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Overall Risk Level</span>
+                    <span class="risk-badge risk-medium">MEDIUM</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-review">REVIEW</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p><strong>Reasoning:</strong> The candidate shows legitimate indicators (PIPL match, established phone, consistent location) balanced against concerns (new email with low trust score, partial name match). This profile is likely authentic but warrants verification of full legal name and clarification of phone/VoIP status before final approval.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="verification-recommendations">
+        <h2>Verification Recommendations</h2>
+        <ul>
+            <li>Verify full legal name matches "Bayyinah Rosulme" via government ID</li>
+            <li>Confirm phone ownership through SMS/callback verification</li>
+            <li>Request secondary email with longer history if available</li>
+            <li>Verify Maryland address through utility bill or other documentation</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Report generated using automated enrichment analysis. Human review recommended for final decisions.</p>
+    </footer>
+</body>
+</html>

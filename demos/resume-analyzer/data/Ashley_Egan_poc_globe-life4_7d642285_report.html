@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Risk Report - 7d642285-baca-4232-a1bd-29376aa52138</title>
+    <style>
+        :root {
+            --primary-color: #1e3a5f;
+            --secondary-color: #2563eb;
+            --success-color: #16a34a;
+            --warning-color: #d97706;
+            --danger-color: #dc2626;
+            --border-color: #e5e7eb;
+            --bg-light: #f9fafb;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .report-meta {
+            display: flex;
+            gap: 30px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .report-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-light);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #fff 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .summary-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .summary-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .risk-badge, .recommendation-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .risk-low {
+            background-color: #dcfce7;
+            color: var(--success-color);
+        }
+
+        .risk-medium {
+            background-color: #fef3c7;
+            color: var(--warning-color);
+        }
+
+        .risk-high {
+            background-color: #fee2e2;
+            color: var(--danger-color);
+        }
+
+        .rec-approve {
+            background-color: #dcfce7;
+            color: var(--success-color);
+        }
+
+        .rec-review {
+            background-color: #fef3c7;
+            color: var(--warning-color);
+        }
+
+        .rec-reject, .rec-escalate {
+            background-color: #fee2e2;
+            color: var(--danger-color);
+        }
+
+        .summary-text {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .status-match {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .status-mismatch {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+
+        .status-anomaly {
+            color: var(--warning-color);
+            font-weight: 600;
+        }
+
+        .chain-of-thought {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .chain-of-thought h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .chain-of-thought p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .red-flag {
+            background-color: #fef2f2;
+            border-left: 4px solid var(--danger-color);
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .legitimacy-indicator {
+            background-color: #f0fdf4;
+            border-left: 4px solid var(--success-color);
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .note {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 12px 15px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #1e40af;
+        }
+
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            .executive-summary {
+                background: var(--bg-light) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Candidate Risk Report</h1>
+        <div class="report-meta">
+            <span><strong>Person ID:</strong> 7d642285-baca-4232-a1bd-29376aa52138</span>
+            <span><strong>Candidate:</strong> Ashley Egan</span>
+            <span><strong>Generated:</strong> 2026-02-08</span>
+        </div>
+    </header>
+
+    <section id="executive-summary">
+        <h2>Executive Summary</h2>
+        <div class="executive-summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Candidate</span>
+                    <span class="summary-value">Ashley Egan</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Risk Level</span>
+                    <span class="risk-badge risk-medium">MEDIUM</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-review">REVIEW</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p>Candidate shows mixed signals: strong phone validation (940/1000 Trust Elephant score, mobile carrier Verizon with 17+ year history) but concerning email patterns (brand new email with zero digital footprint, email enumeration pattern in username). CV provides detailed employment history (2014-2025) with 6 positions including military CDC roles suggesting military family connection. Geographic consistency is strong - CV shows Texas locations matching phone/PIPL data. PIPL data is sparse with low match confidence (0.42). Trust Elephant recommends review. Email first seen in MaxMind network today raises concerns, though CV employment data adds credibility to identity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="linkedin-summary">
+        <h2>1. LinkedIn Profile Summary</h2>
+        <p class="note">No LinkedIn data available for this candidate.</p>
+    </section>
+
+    <section id="cv-summary">
+        <h2>2. CV/Resume Summary</h2>
+        <table>
+            <tr><th>Attribute</th><th>Value</th></tr>
+            <tr><td>Full Name</td><td>Ashley Egan</td></tr>
+            <tr><td>Phone</td><td>+1 903-262-0404</td></tr>
+            <tr><td>Email</td><td>ashleyraugust11@gmail.com</td></tr>
+            <tr><td>Location</td><td>Ben Wheeler, TX 75754</td></tr>
+        </table>
+
+        <h3>Employment History (CV)</h3>
+        <table>
+            <tr><th>Organization</th><th>Title</th><th>Period</th></tr>
+            <tr><td>Brookshires</td><td>Cashier</td><td>March 2025 - Present</td></tr>
+            <tr><td>Child Development Center NASNI-Coronado, CA</td><td>CYP Assistant</td><td>July 2023 - January 2025</td></tr>
+            <tr><td>CDC Great Lakes, IL</td><td>CYP Assistant</td><td>August 2022 - April 2023</td></tr>
+            <tr><td>Peltier Subaru, Tyler, TX</td><td>Title Clerk</td><td>July 2018 - April 2022</td></tr>
+            <tr><td>Argon Medical Devices, Athens, TX</td><td>Inspector/Packer</td><td>March 2017 - July 2018</td></tr>
+            <tr><td>The Forge, Ben Wheeler, TX</td><td>Waitress/Server</td><td>July 2014 - September 2015</td></tr>
+        </table>
+
+        <h3>Education (CV)</h3>
+        <table>
+            <tr><th>Institution</th><th>Degree</th><th>Period</th></tr>
+            <tr><td>Van High School, Van, TX</td><td>High School Diploma</td><td>October 2006 - May 2008</td></tr>
+        </table>
+    </section>
+
+    <section id="enrichment-data">
+        <h2>3. Enrichment Data Summary</h2>
+
+        <h3>Email Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Email Address</td><td>ashleyraugust11@gmail.com</td><td class="status-match">Valid</td></tr>
+            <tr><td>Is Disposable</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Free Mail</td><td>Yes (Gmail)</td><td class="status-anomaly">Neutral</td></tr>
+            <tr><td>Email Age (AtData)</td><td>First seen: now</td><td class="status-mismatch">Brand New - Concern</td></tr>
+            <tr><td>Trust Elephant Email Score</td><td>444/1000</td><td class="status-anomaly">Below Average</td></tr>
+            <tr><td>Email Pattern</td><td>{First Name}{Suffix}{Year-2D}</td><td class="status-anomaly">Enumeration Pattern Detected</td></tr>
+            <tr><td>MaxMind First Seen</td><td>2026-02-04</td><td class="status-mismatch">Very Recent - Concern</td></tr>
+        </table>
+
+        <h3>Phone Verification</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Phone Number</td><td>+1 903-262-0404</td><td class="status-match">Valid</td></tr>
+            <tr><td>HLR Valid</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is Mobile</td><td>Yes</td><td class="status-match">Good</td></tr>
+            <tr><td>Is VoIP</td><td>No</td><td class="status-match">Good</td></tr>
+            <tr><td>Carrier</td><td>Verizon (ported from Cingular)</td><td class="status-match">Legitimate Carrier</td></tr>
+            <tr><td>Phone Age</td><td>6,351 days (~17 years)</td><td class="status-match">Excellent History</td></tr>
+            <tr><td>Trust Elephant Phone Score</td><td>940/1000</td><td class="status-match">Excellent</td></tr>
+            <tr><td>Number of Owners</td><td>5</td><td class="status-anomaly">Multiple Owners</td></tr>
+        </table>
+
+        <h3>Risk Scores</h3>
+        <table>
+            <tr><th>Vendor</th><th>Score Type</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>MaxMind minFraud</td><td>Risk Score</td><td>0.80</td><td class="status-match">Very Low Risk</td></tr>
+            <tr><td>Trust Elephant</td><td>Overall Score</td><td>232/1000</td><td class="status-anomaly">Below Average</td></tr>
+            <tr><td>Trust Elephant</td><td>Decision</td><td>Review</td><td class="status-anomaly">Requires Review</td></tr>
+        </table>
+
+        <h3>Person Data (PIPL)</h3>
+        <table>
+            <tr><th>Field</th><th>Value</th><th>Assessment</th></tr>
+            <tr><td>Match Confidence</td><td>0.42</td><td class="status-mismatch">Low Confidence</td></tr>
+            <tr><td>Names Found</td><td>None</td><td class="status-mismatch">No Name Records</td></tr>
+            <tr><td>Phone Match</td><td>903-262-0404 (mobile)</td><td class="status-match">Phone Confirmed</td></tr>
+            <tr><td>Location</td><td>Texas, United States</td><td class="status-match">Location Confirmed</td></tr>
+            <tr><td>Jobs Found</td><td>None</td><td class="status-anomaly">No Employment Data</td></tr>
+            <tr><td>Education Found</td><td>None</td><td class="status-anomaly">No Education Data</td></tr>
+        </table>
+    </section>
+
+    <section id="cross-source">
+        <h2>4. Cross-Source Comparison &amp; Discrepancy Analysis</h2>
+
+        <h3>Name Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Name</th><th>Match</th></tr>
+            <tr><td>CV</td><td>Ashley Egan</td><td>--</td></tr>
+            <tr><td>Application</td><td>Ashley Egan</td><td class="status-match">Match</td></tr>
+            <tr><td>PIPL</td><td>Not Found</td><td class="status-mismatch">No Data</td></tr>
+        </table>
+
+        <h3>Location Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Location</th><th>Match</th></tr>
+            <tr><td>CV</td><td>Ben Wheeler, TX 75754</td><td>--</td></tr>
+            <tr><td>Phone Location (Neutrino)</td><td>Texas</td><td class="status-match">Match</td></tr>
+            <tr><td>PIPL Address</td><td>Texas, United States</td><td class="status-match">Match</td></tr>
+        </table>
+
+        <h3>Employment Timeline Consistency</h3>
+        <table>
+            <tr><th>Period</th><th>CV</th><th>PIPL</th><th>Status</th></tr>
+            <tr><td>March 2025 - Present</td><td>Cashier at Brookshires</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+            <tr><td>July 2023 - Jan 2025</td><td>CYP Assistant at CDC NASNI-Coronado, CA</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+            <tr><td>Aug 2022 - April 2023</td><td>CYP Assistant at CDC Great Lakes, IL</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+            <tr><td>July 2018 - April 2022</td><td>Title Clerk at Peltier Subaru, Tyler, TX</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+            <tr><td>March 2017 - July 2018</td><td>Inspector/Packer at Argon Medical Devices, Athens, TX</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+            <tr><td>July 2014 - Sept 2015</td><td>Waitress/Server at The Forge, Ben Wheeler, TX</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+        </table>
+
+        <h3>Education Timeline Consistency</h3>
+        <table>
+            <tr><th>Period</th><th>CV</th><th>PIPL</th><th>Status</th></tr>
+            <tr><td>Oct 2006 - May 2008</td><td>High School Diploma, Van High School, Van, TX</td><td>No Data</td><td class="status-anomaly">Cannot Verify</td></tr>
+        </table>
+    </section>
+
+    <section id="enrichment-combination">
+        <h2>5. Enrichment Combination Analysis</h2>
+
+        <h3>Digital Footprint Assessment</h3>
+        <table>
+            <tr><th>Indicator</th><th>Finding</th><th>Weight</th></tr>
+            <tr><td>Email Age</td><td>Brand new (first seen today)</td><td class="status-mismatch">High Risk Factor</td></tr>
+            <tr><td>Phone Age</td><td>17+ years established</td><td class="status-match">Strong Positive</td></tr>
+            <tr><td>Social Accounts (Email)</td><td>0</td><td class="status-mismatch">Concern</td></tr>
+            <tr><td>Social Accounts (Phone)</td><td>1</td><td class="status-match">Some Presence</td></tr>
+            <tr><td>Data Sources (Phone)</td><td>36</td><td class="status-match">Well Documented</td></tr>
+            <tr><td>Data Sources (Email)</td><td>0</td><td class="status-mismatch">No History</td></tr>
+        </table>
+
+        <h3>Geographic Consistency</h3>
+        <table>
+            <tr><th>Source</th><th>Location</th><th>Status</th></tr>
+            <tr><td>Phone HLR</td><td>Texas</td><td class="status-match">Consistent</td></tr>
+            <tr><td>PIPL Address</td><td>Texas</td><td class="status-match">Consistent</td></tr>
+        </table>
+
+        <h3>Identity Theft Risk Indicators</h3>
+        <table>
+            <tr><th>Indicator</th><th>Status</th><th>Notes</th></tr>
+            <tr><td>Phone-Name Mismatch</td><td class="status-anomaly">Possible</td><td>Phone has 5 owners historically; PIPL shows no name match</td></tr>
+            <tr><td>New Email + Old Phone</td><td class="status-anomaly">Suspicious Pattern</td><td>Brand new email paired with 17-year-old phone number</td></tr>
+            <tr><td>Sparse Digital Footprint</td><td class="status-anomaly">Concern</td><td>Low PIPL match, no employment/education records</td></tr>
+        </table>
+    </section>
+
+    <section id="red-flags">
+        <h2>6. Red Flags Identified</h2>
+        <div class="red-flag">
+            <strong>Brand New Email Address:</strong> Email was first seen in MaxMind network on 2026-02-04 and AtData shows it as first seen "now". Zero email activity history is highly unusual for a legitimate applicant.
+        </div>
+        <div class="red-flag">
+            <strong>Email Enumeration Pattern:</strong> Trust Elephant detected "email_enumeration" characteristic in the username pattern ({First Name}{Suffix}{Year-2D}), which is commonly associated with auto-generated or fraudulent accounts.
+        </div>
+        <div class="red-flag">
+            <strong>Low PIPL Match Confidence:</strong> Only 0.42 match confidence with no name records found. This suggests the identity may be newly created or synthetic.
+        </div>
+        <div class="red-flag">
+            <strong>Mismatched Identity Signals:</strong> The phone number has a 17-year history with 5 different owners, while the email has zero history. This pattern could indicate using someone else's phone number.
+        </div>
+    </section>
+
+    <section id="legitimacy">
+        <h2>7. Legitimacy Indicators</h2>
+        <table>
+            <tr><th>Category</th><th>Evidence</th><th>Strength</th></tr>
+            <tr><td>Phone Carrier</td><td>Verizon (legitimate major carrier)</td><td class="status-match">Strong</td></tr>
+            <tr><td>Phone Type</td><td>Mobile (not VoIP)</td><td class="status-match">Strong</td></tr>
+            <tr><td>Phone Age</td><td>6,351 days (~17 years)</td><td class="status-match">Strong</td></tr>
+            <tr><td>Phone Trust Score</td><td>940/1000</td><td class="status-match">Excellent</td></tr>
+            <tr><td>Geographic Consistency</td><td>Texas across all sources</td><td class="status-match">Strong</td></tr>
+            <tr><td>Email Validity</td><td>Valid, deliverable Gmail</td><td class="status-match">Moderate</td></tr>
+        </table>
+    </section>
+
+    <section id="chain-of-thought">
+        <h2>8. Chain of Thought Reasoning</h2>
+
+        <div class="chain-of-thought">
+            <h4>Step 1: Identity Verification</h4>
+            <p>The candidate name "Ashley Egan" could not be verified through PIPL - no name records were found despite having phone data. The low match confidence (0.42) suggests this identity may not be well-established in data aggregator systems.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 2: Contact Information Analysis</h4>
+            <p>Phone verification is strong: valid mobile on Verizon network with 17+ years of history and excellent trust scores. However, email verification raises concerns: brand new email with zero digital footprint, no social accounts, and enumeration patterns detected in the username structure.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 3: Timeline Reconstruction</h4>
+            <p>CV provides detailed employment timeline spanning 2014-2025 with 6 positions showing career progression from waitress to childcare professional. Employment history shows work in Texas (Ben Wheeler, Tyler, Athens), Illinois (Great Lakes), and California (Coronado) - indicating military family connection (CDC positions are typically on military bases). Education shows high school graduation in 2008, which aligns with adult working age by 2014. However, PIPL has no employment data to verify these claims.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 4: Cross-Source Validation</h4>
+            <p>Geographic consistency is the only strong cross-source validation available - Texas location matches across phone HLR and PIPL records. Name and employment/education could not be validated across sources.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 5: Risk Score Evaluation</h4>
+            <p>Mixed signals from vendors: MaxMind shows very low fraud risk (0.80), but Trust Elephant's overall score is below average (232/1000) with a "review" decision. The contrast between excellent phone scores and poor email scores creates an unbalanced risk profile.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 6: CV Analysis</h4>
+            <p>CV provides substantial employment history (2014-2025) with logical career progression. Work at military Child Development Centers (CDC NASNI-Coronado, CDC Great Lakes) suggests military spouse/family status, which could explain geographic mobility. Texas locations (Ben Wheeler, Tyler, Athens) are consistent with PIPL/phone data. High school graduation in 2008 suggests current age around 34-36, which is consistent with career timeline. The CV adds credibility to the identity but cannot be verified against PIPL data.</p>
+        </div>
+
+        <div class="chain-of-thought">
+            <h4>Step 7: Conclusion</h4>
+            <p>The combination of a brand new email with an established phone number creates a suspicious pattern. However, the CV provides substantial employment history that shows logical career progression and geographic consistency with Texas-based enrichment data. The military CDC positions could explain lack of traditional employment verification. While the phone credentials are excellent, the complete absence of email history and name records in PIPL raises identity concerns. This could be a legitimate person (possibly military spouse) using a new email, or potentially someone using another person's phone credentials. Recommend verification of identity through additional documentation and military affiliation confirmation.</p>
+        </div>
+    </section>
+
+    <section id="final-assessment">
+        <h2>9. Final Risk Assessment</h2>
+        <table>
+            <tr><th>Dimension</th><th>Assessment</th><th>Confidence</th></tr>
+            <tr><td>Identity Authenticity</td><td class="status-anomaly">Uncertain</td><td>Low</td></tr>
+            <tr><td>Timeline Consistency</td><td class="status-anomaly">Unable to Verify</td><td>N/A</td></tr>
+            <tr><td>Digital Footprint</td><td class="status-anomaly">Inconsistent</td><td>Medium</td></tr>
+            <tr><td>Fraud Indicators</td><td class="status-anomaly">Some Present</td><td>Medium</td></tr>
+        </table>
+
+        <div class="executive-summary" style="margin-top: 20px;">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-label">Overall Risk Level</span>
+                    <span class="risk-badge risk-medium">MEDIUM</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Final Recommendation</span>
+                    <span class="recommendation-badge rec-review">REVIEW</span>
+                </div>
+            </div>
+            <div class="summary-text">
+                <p><strong>Reasoning:</strong> The significant disparity between phone verification (excellent) and email verification (poor/new) combined with sparse PIPL data and no verifiable employment history creates an inconsistent profile. While not definitively fraudulent, the pattern of a brand new email with enumeration characteristics paired with an old phone number that has had multiple owners warrants additional identity verification before proceeding.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="verification-recommendations">
+        <h2>Verification Recommendations</h2>
+        <ul>
+            <li>Request government-issued photo ID to verify identity</li>
+            <li>Verify phone ownership through callback or SMS verification</li>
+            <li>Request proof of employment history (pay stubs, offer letters)</li>
+            <li>Consider requesting an alternative email address with established history</li>
+            <li>Conduct live video interview to confirm identity matches documentation</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Report generated using automated enrichment analysis. Human review recommended for final decisions.</p>
+    </footer>
+</body>
+</html>
