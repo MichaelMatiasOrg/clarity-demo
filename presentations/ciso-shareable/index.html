@@ -12,25 +12,25 @@
         :root {
             --navy: #0a1628;
             --navy-light: #0f1f3a;
-            --navy-card: #132040;
+            --navy-card: #FFFFFF;
             --green: #61F393;
-            --green-dim: rgba(97,243,147,0.15);
+            --green-dim: rgba(97,243,147,0.08);
             --red: #EF4444;
-            --red-dim: rgba(239,68,68,0.12);
-            --text: #FFFFFF;
-            --text-muted: #94a3b8;
-            --border: rgba(255,255,255,0.08);
+            --red-dim: #FEE2E2;
+            --text: #0a1628;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
             --font: 'Manrope', sans-serif;
         }
 
-        html, body { height: 100%; overflow: hidden; background: var(--navy); color: var(--text); font-family: var(--font); }
+        html, body { height: 100%; overflow: hidden; background: #F0F4F8; color: var(--text); font-family: var(--font); }
 
         /* NAV BAR */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             height: 56px; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 32px; background: rgba(10,22,40,0.92); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+            padding: 0 32px; background: rgba(10,22,40,0.95); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         .navbar a.logo { display: flex; align-items: center; text-decoration: none; }
         .navbar a.logo svg { height: 28px; width: auto; }
@@ -41,6 +41,9 @@
             padding: 4px 10px; border-radius: 6px; cursor: pointer; font-family: var(--font); font-size: 0.75rem;
         }
         .navbar button:hover { border-color: var(--green); color: var(--green); }
+        .navbar .controls { color: #94a3b8; }
+        .navbar button { color: #94a3b8; border-color: rgba(255,255,255,0.15); }
+        .navbar .slide-counter { color: #94a3b8; }
 
         /* SLIDES */
         .deck { position: relative; width: 100%; height: 100%; padding-top: 56px; }
@@ -72,6 +75,7 @@
             border-radius: 12px; padding: 28px; position: relative;
         }
         .info-card h3 { margin-bottom: 10px; }
+        .info-card { box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
         .info-card p, .info-card li { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
         .info-card .num {
             display: inline-flex; align-items: center; justify-content: center;
@@ -84,18 +88,18 @@
 
         /* STAT CARD */
         .stat-card {
-            background: var(--navy-card); border: 1px solid var(--border);
-            border-radius: 12px; padding: 24px 28px;
+            background: #FFFFFF; border: 1px solid var(--border);
+            border-radius: 12px; padding: 24px 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
         }
         .stat-card .stat-value { font-size: 1.6rem; font-weight: 800; color: var(--green); margin-bottom: 6px; }
         .stat-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
-        .stat-card .source { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 8px; }
+        .stat-card .source { font-size: 0.75rem; color: #94a3b8; margin-top: 8px; }
 
         /* TIMELINE */
         .timeline { display: flex; align-items: flex-start; gap: 0; margin-top: 40px; position: relative; }
         .timeline::before {
             content: ''; position: absolute; top: 18px; left: 24px; right: 24px;
-            height: 3px; background: linear-gradient(90deg, var(--green), var(--red));
+            height: 3px; background: linear-gradient(90deg, var(--green), var(--navy));
         }
         .timeline-item { flex: 1; text-align: center; position: relative; }
         .timeline-item .dot {
@@ -112,16 +116,16 @@
         .lifecycle-stage .circle {
             width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--green);
             display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
-            background: var(--navy-card);
+            background: #FFFFFF;
         }
         .lifecycle-arrow { color: var(--green); font-size: 1.5rem; margin-top: -30px; }
 
         /* INTEGRATION LOGOS */
         .logo-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 12px; }
         .logo-row .logo-chip {
-            background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+            background: #FFFFFF; border: 1px solid var(--border);
             border-radius: 10px; padding: 10px 18px; display: flex; align-items: center; gap: 10px;
-            font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+            font-size: 0.85rem; font-weight: 500; color: var(--text-muted); box-shadow: 0 1px 3px rgba(0,0,0,0.06);
         }
         .logo-row .logo-chip img, .logo-row .logo-chip svg { height: 22px; width: auto; }
 
@@ -146,15 +150,15 @@
         /* QUOTE */
         .quote-block {
             border-left: 3px solid var(--green); padding: 20px 28px;
-            background: var(--green-dim); border-radius: 0 12px 12px 0;
-            margin-top: 24px;
+            background: #FFFFFF; border-radius: 0 12px 12px 0;
+            margin-top: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
         }
-        .quote-block p { font-size: 1rem; font-style: italic; color: rgba(255,255,255,0.9); line-height: 1.6; }
+        .quote-block p { font-size: 1rem; font-style: italic; color: var(--text); line-height: 1.6; }
         .quote-block .attribution { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; font-style: normal; font-weight: 600; }
 
         /* RED ACCENT CARD */
-        .red-card { border-left: 3px solid var(--red); background: var(--red-dim); }
-        .red-card h3 { color: #fca5a5; }
+        .red-card { border-left: 3px solid var(--red); background: #FEE2E2; }
+        .red-card h3 { color: var(--red); }
 
         /* MISC */
         .max-w { max-width: 1100px; margin: 0 auto; width: 100%; }
@@ -165,7 +169,7 @@
         .mt-32 { margin-top: 32px; }
 
         /* Keyboard hints */
-        kbd { background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-family: var(--font); }
+        kbd { background: rgba(0,0,0,0.06); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-family: var(--font); }
     </style>
 </head>
 <body>
@@ -223,17 +227,17 @@
                 <p>COVID shifts the world to remote work. Physical verification disappears.</p>
             </div>
             <div class="timeline-item">
-                <div class="dot" style="background: #4ade80; color: var(--navy);">2</div>
+                <div class="dot" style="background: var(--green); color: var(--navy);">2</div>
                 <div class="year">2022</div>
                 <p>Bait-and-switch candidates. One person interviews, another shows up. Poly-employment surges.</p>
             </div>
             <div class="timeline-item">
-                <div class="dot" style="background: #facc15; color: var(--navy);">3</div>
+                <div class="dot" style="background: var(--navy); color: white;">3</div>
                 <div class="year">2024</div>
                 <p>AI-powered deepfakes in live interviews. A Hong Kong firm loses $25M to a deepfake CFO.</p>
             </div>
             <div class="timeline-item">
-                <div class="dot" style="background: #f97316; color: var(--navy);">4</div>
+                <div class="dot" style="background: var(--navy); color: white;">4</div>
                 <div class="year">2025</div>
                 <p>Nation-state operatives (DPRK) systematically infiltrate Fortune 500 companies.</p>
             </div>
@@ -254,17 +258,17 @@
 
         <div class="card-grid cols-3" style="margin-top: 28px;">
             <div class="stat-card">
-                <div class="stat-value">1 in 4</div>
+                <div class="stat-value" style="color: var(--red);">1 in 4</div>
                 <p>candidate profiles will be fake by 2028</p>
                 <div class="source">Gartner, 2024</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">1,800+</div>
+                <div class="stat-value" style="color: var(--red);">1,800+</div>
                 <p>suspected North Korean applicants blocked by Amazon in 2025</p>
                 <div class="source">Amazon, 2025</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">300+</div>
+                <div class="stat-value" style="color: var(--red);">300+</div>
                 <p>US companies unknowingly hired North Korean IT workers</p>
                 <div class="source">US Department of Justice</div>
             </div>
@@ -276,7 +280,7 @@
                 <div class="attribution">Charles Carmakal, CTO — Mandiant / Google Cloud</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">220%</div>
+                <div class="stat-value" style="color: var(--red);">220%</div>
                 <p>increase in North Korean infiltration attempts in the last 12 months</p>
                 <div class="source">Fortune, 2025</div>
             </div>
@@ -309,7 +313,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 32px; padding: 20px 28px; background: var(--green-dim); border-radius: 12px; border-left: 3px solid var(--green);">
+        <div style="margin-top: 32px; padding: 20px 28px; background: #E8FFF0; border-radius: 12px; border-left: 3px solid var(--green);">
             <h3 style="color: var(--green); font-size: 1rem;">You need a holistic approach — not another point solution.</h3>
         </div>
     </div>
@@ -326,7 +330,7 @@
             <div>
                 <h3 style="color: var(--green); margin-bottom: 16px;">What We Found</h3>
                 <div class="info-card" style="margin-bottom: 16px;">
-                    <p>Clarity correctly identified every fraudulent profile — <strong style="color: white;">using resume analysis alone</strong>, before any interview took place.</p>
+                    <p>Clarity correctly identified every fraudulent profile — <strong style="color: var(--navy);">using resume analysis alone</strong>, before any interview took place.</p>
                 </div>
                 <h3 style="margin-top: 24px; margin-bottom: 12px;">Evidence Detected</h3>
                 <ul style="list-style: none; padding: 0;">
@@ -349,12 +353,12 @@
                 </ul>
             </div>
             <div>
-                <div class="info-card" style="background: var(--green-dim); border-color: rgba(97,243,147,0.2);">
+                <div class="info-card" style="background: #E8FFF0; border-color: rgba(97,243,147,0.3);">
                     <h3 style="color: var(--green); margin-bottom: 12px;">Key Insight</h3>
-                    <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.7;">
-                        Many of these signals are <strong style="color: white;">completely invisible to human reviewers</strong>. No recruiter checks whether an email address was created three days ago, or whether a phone number routes through a VoIP relay.
+                    <p style="color: var(--text); font-size: 1.05rem; line-height: 1.7;">
+                        Many of these signals are <strong style="color: var(--navy);">completely invisible to human reviewers</strong>. No recruiter checks whether an email address was created three days ago, or whether a phone number routes through a VoIP relay.
                     </p>
-                    <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.7; margin-top: 16px;">
+                    <p style="color: var(--text); font-size: 1.05rem; line-height: 1.7; margin-top: 16px;">
                         Clarity automates what humans can't do at scale — and catches what humans can't see at all.
                     </p>
                 </div>
@@ -404,7 +408,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 40px; padding: 20px 28px; background: var(--green-dim); border-radius: 12px; border-left: 3px solid var(--green);">
+        <div style="margin-top: 40px; padding: 20px 28px; background: #E8FFF0; border-radius: 12px; border-left: 3px solid var(--green);">
             <h3 style="color: var(--green); font-size: 1rem;">Enter once through the gate, then verify continuously.</h3>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">A bad actor who passes the hiring check doesn't stop being a threat. Identity assurance must persist.</p>
         </div>
@@ -444,9 +448,9 @@
                 <h3>Expert Human Review</h3>
                 <p>Every inconclusive or flagged case is reviewed by trained analysts. No automated rejections — bias-compliant by design.</p>
             </div>
-            <div class="info-card" style="border-color: rgba(97,243,147,0.3); background: var(--green-dim);">
+            <div class="info-card" style="border-color: rgba(97,243,147,0.3); background: #E8FFF0;">
                 <h3 style="color: var(--green);">Multi-Signal Correlation</h3>
-                <p style="color: rgba(255,255,255,0.85);">No single check is definitive. Clarity stitches all signals together for a holistic identity confidence score.</p>
+                <p style="color: var(--text);">No single check is definitive. Clarity stitches all signals together for a holistic identity confidence score.</p>
             </div>
         </div>
     </div>
@@ -498,7 +502,7 @@
         <div class="badge">Threat Intelligence</div>
         <h2 style="font-size: 2.6rem;">Know What's In Your Pipeline</h2>
         <p style="color: var(--text-muted); max-width: 640px; margin-top: 12px; font-size: 1.05rem; line-height: 1.7;">
-            Clarity maintains a database of <strong style="color: white;">10,000+ known DPRK-associated email addresses</strong> and identity markers. Cross-reference your candidate pipeline or existing employee base instantly.
+            Clarity maintains a database of <strong style="color: var(--navy);">10,000+ known DPRK-associated email addresses</strong> and identity markers. Cross-reference your candidate pipeline or existing employee base instantly.
         </p>
 
         <div class="card-grid cols-3" style="margin-top: 40px; max-width: 900px;">
@@ -584,9 +588,9 @@
             </div>
         </div>
 
-        <div class="info-card" style="margin-top: 20px; border-color: rgba(97,243,147,0.2); background: var(--green-dim);">
+        <div class="info-card" style="margin-top: 20px; border-color: rgba(97,243,147,0.3); background: #E8FFF0;">
             <h3 style="color: var(--green);">Series A — $17M</h3>
-            <p style="color: rgba(255,255,255,0.85);">Backed by Bessemer Venture Partners and Monta Vista Capital. Building the category-defining platform for employee identity security.</p>
+            <p style="color: var(--text);">Backed by Bessemer Venture Partners and Monta Vista Capital. Building the category-defining platform for employee identity security.</p>
         </div>
     </div>
 </section>
