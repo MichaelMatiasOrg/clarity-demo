@@ -92,6 +92,9 @@ The Clarity logo consists of:
 
 ## Design Principles
 
+### Navigation
+- **Every page must link back to the homepage** — logo in nav should always be an `<a href="index.html">` link
+
 ### DO ✓
 - Light theme preferred (soft blue-gray backgrounds)
 - Clean, minimalistic layouts
