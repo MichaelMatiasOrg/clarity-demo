@@ -34,24 +34,67 @@
         }
         .navbar a.logo { display: flex; align-items: center; text-decoration: none; }
         .navbar a.logo svg { height: 28px; width: auto; }
-        .navbar .controls { display: flex; align-items: center; gap: 16px; font-size: 0.8rem; color: var(--text-muted); }
-        .navbar .slide-counter { font-variant-numeric: tabular-nums; }
+        .navbar .controls { display: flex; align-items: center; gap: 16px; font-size: 0.8rem; color: #94a3b8; }
+        .navbar .slide-counter { font-variant-numeric: tabular-nums; color: #94a3b8; }
         .navbar button {
-            background: none; border: 1px solid var(--border); color: var(--text-muted);
+            background: none; border: 1px solid rgba(255,255,255,0.15); color: #94a3b8;
             padding: 4px 10px; border-radius: 6px; cursor: pointer; font-family: var(--font); font-size: 0.75rem;
+            transition: all 0.2s;
         }
         .navbar button:hover { border-color: var(--green); color: var(--green); }
-        .navbar .controls { color: #94a3b8; }
-        .navbar button { color: #94a3b8; border-color: rgba(255,255,255,0.15); }
-        .navbar .slide-counter { color: #94a3b8; }
 
         /* SLIDES */
         .deck { position: relative; width: 100%; height: 100%; padding-top: 56px; }
         .slide {
-            display: none; width: 100%; height: 100%; padding: 60px 80px;
+            position: absolute; top: 56px; left: 0; right: 0; bottom: 0;
+            padding: 60px 80px;
             flex-direction: column; justify-content: center; overflow-y: auto;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .slide.active { display: flex; }
+        .slide.active { opacity: 1; visibility: visible; display: flex; }
+        .slide:not(.active) { display: flex; }
+
+        /* GEOMETRIC DECORATIONS — Clarity star shape */
+        .geo-star {
+            position: absolute; pointer-events: none; z-index: 0;
+        }
+
+        /* ENTRY ANIMATIONS */
+        .slide .anim-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .slide.active .anim-up { opacity: 1; transform: translateY(0); }
+        .slide.active .anim-up.d1 { transition-delay: 0.1s; }
+        .slide.active .anim-up.d2 { transition-delay: 0.2s; }
+        .slide.active .anim-up.d3 { transition-delay: 0.3s; }
+        .slide.active .anim-up.d4 { transition-delay: 0.4s; }
+        .slide.active .anim-up.d5 { transition-delay: 0.5s; }
+        .slide.active .anim-up.d6 { transition-delay: 0.6s; }
+        .slide.active .anim-up.d7 { transition-delay: 0.7s; }
+        .slide.active .anim-up.d8 { transition-delay: 0.8s; }
+        .slide.active .anim-up.d9 { transition-delay: 0.9s; }
+
+        .slide .anim-fade {
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+        .slide.active .anim-fade { opacity: 1; }
+        .slide.active .anim-fade.d2 { transition-delay: 0.2s; }
+        .slide.active .anim-fade.d3 { transition-delay: 0.3s; }
+        .slide.active .anim-fade.d4 { transition-delay: 0.4s; }
+
+        .slide .anim-scale {
+            opacity: 0; transform: scale(0.85);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .slide.active .anim-scale { opacity: 1; transform: scale(1); }
+        .slide.active .anim-scale.d1 { transition-delay: 0.15s; }
+        .slide.active .anim-scale.d2 { transition-delay: 0.3s; }
+        .slide.active .anim-scale.d3 { transition-delay: 0.45s; }
+        .slide.active .anim-scale.d4 { transition-delay: 0.6s; }
+        .slide.active .anim-scale.d5 { transition-delay: 0.75s; }
 
         /* TYPOGRAPHY */
         h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
@@ -62,8 +105,25 @@
             display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
             letter-spacing: 0.08em; color: var(--green); background: var(--green-dim);
             padding: 6px 14px; border-radius: 20px; margin-bottom: 20px;
+            position: relative; overflow: hidden;
+        }
+        .badge::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(97,243,147,0.15), transparent);
+            animation: badge-shine 3s ease-in-out infinite;
+        }
+        @keyframes badge-shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
         }
         .section-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 16px; }
+
+        /* ACCENT BAR */
+        .accent-bar {
+            width: 48px; height: 4px; border-radius: 2px;
+            background: linear-gradient(90deg, var(--green), rgba(97,243,147,0.3));
+            margin-bottom: 20px;
+        }
 
         /* CARDS */
         .card-grid { display: grid; gap: 20px; margin-top: 32px; }
@@ -72,15 +132,21 @@
         .card-grid.cols-5 { grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
         .info-card {
             background: var(--navy-card); border: 1px solid var(--border);
-            border-radius: 12px; padding: 28px; position: relative;
+            border-radius: 14px; padding: 28px; position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.06);
         }
         .info-card h3 { margin-bottom: 10px; }
-        .info-card { box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
         .info-card p, .info-card li { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
         .info-card .num {
             display: inline-flex; align-items: center; justify-content: center;
-            width: 32px; height: 32px; border-radius: 50%; font-weight: 700; font-size: 0.85rem;
-            background: var(--green); color: var(--navy); margin-bottom: 14px;
+            width: 36px; height: 36px; border-radius: 50%; font-weight: 700; font-size: 0.85rem;
+            background: linear-gradient(135deg, var(--green), #4AE07A); color: var(--navy); margin-bottom: 14px;
+            box-shadow: 0 4px 12px rgba(97,243,147,0.3);
         }
         .info-card ul { list-style: none; padding: 0; }
         .info-card ul li { padding: 6px 0; padding-left: 18px; position: relative; }
@@ -89,90 +155,211 @@
         /* STAT CARD */
         .stat-card {
             background: #FFFFFF; border: 1px solid var(--border);
-            border-radius: 12px; padding: 24px 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border-radius: 14px; padding: 28px 28px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; overflow: hidden;
         }
-        .stat-card .stat-value { font-size: 1.6rem; font-weight: 800; color: var(--green); margin-bottom: 6px; }
-        .stat-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
-        .stat-card .source { font-size: 0.75rem; color: #94a3b8; margin-top: 8px; }
+        .stat-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--green), rgba(97,243,147,0.2));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .stat-card:hover::before { opacity: 1; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.06); }
+        .stat-card .stat-value {
+            font-size: 2.4rem; font-weight: 800; margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--green), #4AE07A);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .stat-value.red-val {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+        .stat-card .source { font-size: 0.75rem; color: #94a3b8; margin-top: 10px; }
 
         /* TIMELINE */
         .timeline { display: flex; align-items: flex-start; gap: 0; margin-top: 40px; position: relative; }
         .timeline::before {
             content: ''; position: absolute; top: 18px; left: 24px; right: 24px;
-            height: 3px; background: linear-gradient(90deg, var(--green), var(--navy));
+            height: 3px; background: linear-gradient(90deg, var(--green), var(--navy), var(--red));
+            border-radius: 2px;
         }
         .timeline-item { flex: 1; text-align: center; position: relative; }
         .timeline-item .dot {
-            width: 36px; height: 36px; border-radius: 50%; margin: 0 auto 16px;
+            width: 38px; height: 38px; border-radius: 50%; margin: 0 auto 16px;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.7rem; font-weight: 800; position: relative; z-index: 1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .slide.active .timeline-item .dot {
+            animation: dot-pop 0.5s ease forwards;
+        }
+        .slide.active .timeline-item:nth-child(1) .dot { animation-delay: 0.2s; }
+        .slide.active .timeline-item:nth-child(2) .dot { animation-delay: 0.35s; }
+        .slide.active .timeline-item:nth-child(3) .dot { animation-delay: 0.5s; }
+        .slide.active .timeline-item:nth-child(4) .dot { animation-delay: 0.65s; }
+        .slide.active .timeline-item:nth-child(5) .dot { animation-delay: 0.8s; }
+        @keyframes dot-pop {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
         .timeline-item .year { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
         .timeline-item p { font-size: 0.82rem; color: var(--text-muted); padding: 0 8px; line-height: 1.5; }
 
         /* LIFECYCLE */
-        .lifecycle { display: flex; align-items: center; gap: 12px; margin-top: 36px; }
+        .lifecycle { display: flex; align-items: center; gap: 12px; margin-top: 36px; position: relative; }
         .lifecycle-stage { flex: 1; text-align: center; }
         .lifecycle-stage .circle {
-            width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--green);
+            width: 88px; height: 88px; border-radius: 50%; border: 3px solid var(--green);
             display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
             background: #FFFFFF;
+            box-shadow: 0 4px 20px rgba(97, 243, 147, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .lifecycle-arrow { color: var(--green); font-size: 1.5rem; margin-top: -30px; }
+        .lifecycle-stage .circle:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 30px rgba(97, 243, 147, 0.35);
+        }
+        .lifecycle-arrow {
+            color: var(--green); font-size: 1.5rem; margin-top: -30px;
+            animation: arrow-pulse 2s ease-in-out infinite;
+        }
+        @keyframes arrow-pulse {
+            0%, 100% { opacity: 0.5; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(4px); }
+        }
+
+        /* Animated connector line for lifecycle */
+        .lifecycle-connector {
+            position: absolute; top: 44px; left: 10%; right: 10%; height: 3px; z-index: 0;
+            overflow: hidden;
+        }
+        .lifecycle-connector::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%;
+            background: linear-gradient(90deg, var(--green), rgba(97,243,147,0.3), var(--green));
+            background-size: 200% 100%;
+            animation: connector-flow 3s linear infinite;
+        }
+        @keyframes connector-flow {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
 
         /* INTEGRATION LOGOS */
         .logo-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 12px; }
         .logo-row .logo-chip {
             background: #FFFFFF; border: 1px solid var(--border);
-            border-radius: 10px; padding: 10px 18px; display: flex; align-items: center; gap: 10px;
-            font-size: 0.85rem; font-weight: 500; color: var(--text-muted); box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border-radius: 10px; padding: 12px 20px; display: flex; align-items: center; gap: 10px;
+            font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
         }
-        .logo-row .logo-chip img, .logo-row .logo-chip svg { height: 22px; width: auto; }
+        .logo-row .logo-chip:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border-color: rgba(97,243,147,0.4);
+        }
+        .logo-row .logo-chip img, .logo-row .logo-chip svg { height: 22px; width: auto; transition: transform 0.2s; }
+        .logo-row .logo-chip:hover img { transform: scale(1.1); }
 
         /* CTA */
         .cta-btn {
             display: inline-flex; align-items: center; gap: 8px;
-            background: var(--green); color: var(--navy); font-family: var(--font);
+            background: linear-gradient(135deg, var(--green), #4AE07A); color: var(--navy); font-family: var(--font);
             font-weight: 700; font-size: 1rem; padding: 14px 32px;
             border-radius: 12px; border: none; cursor: pointer; text-decoration: none;
-            margin-top: 24px; transition: transform 0.15s;
+            margin-top: 24px; transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(97,243,147,0.3);
         }
-        .cta-btn:hover { transform: translateY(-2px); }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(97,243,147,0.4); }
         .cta-outline {
             display: inline-flex; align-items: center; gap: 8px;
             background: transparent; color: var(--green); font-family: var(--font);
             font-weight: 600; font-size: 0.95rem; padding: 12px 28px;
             border-radius: 12px; border: 1px solid var(--green); cursor: pointer; text-decoration: none;
-            margin-top: 12px; transition: all 0.15s;
+            margin-top: 12px; transition: all 0.2s;
         }
-        .cta-outline:hover { background: var(--green-dim); }
+        .cta-outline:hover { background: var(--green-dim); transform: translateY(-1px); }
 
         /* QUOTE */
         .quote-block {
-            border-left: 3px solid var(--green); padding: 20px 28px;
-            background: #FFFFFF; border-radius: 0 12px 12px 0;
-            margin-top: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--green); padding: 24px 32px;
+            background: #FFFFFF; border-radius: 0 14px 14px 0;
+            margin-top: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.03);
+            position: relative;
         }
-        .quote-block p { font-size: 1rem; font-style: italic; color: var(--text); line-height: 1.6; }
-        .quote-block .attribution { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; font-style: normal; font-weight: 600; }
+        .quote-block .quote-mark {
+            position: absolute; top: -10px; left: 20px;
+            font-size: 5rem; line-height: 1; font-family: Georgia, serif;
+            color: rgba(97,243,147,0.15); font-weight: 700; pointer-events: none;
+        }
+        .quote-block p { font-size: 1.05rem; font-style: italic; color: var(--text); line-height: 1.7; position: relative; z-index: 1; }
+        .quote-block .attribution { font-size: 0.82rem; color: var(--text-muted); margin-top: 12px; font-style: normal; font-weight: 600; position: relative; z-index: 1; }
 
         /* RED ACCENT CARD */
-        .red-card { border-left: 3px solid var(--red); background: #FEE2E2; }
+        .red-card { border-left: 3px solid var(--red); background: linear-gradient(135deg, #FEE2E2, #FFF5F5); }
         .red-card h3 { color: var(--red); }
 
         /* MISC */
-        .max-w { max-width: 1100px; margin: 0 auto; width: 100%; }
+        .max-w { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
         .center { text-align: center; }
         .mt-16 { margin-top: 16px; }
         .mt-24 { margin-top: 24px; }
         .mt-32 { margin-top: 32px; }
 
-        /* Keyboard hints */
         kbd { background: rgba(0,0,0,0.06); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-family: var(--font); }
+
+        /* Floating star animation */
+        @keyframes float-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .geo-star.spin { animation: float-rotate 80s linear infinite; }
+        .geo-star.spin-reverse { animation: float-rotate 60s linear infinite reverse; }
+
+        /* Subtle gradient overlay on some slides */
+        .slide-gradient::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 80% 20%, rgba(97,243,147,0.04) 0%, transparent 60%);
+            pointer-events: none; z-index: 0;
+        }
+
+        /* Green highlight card */
+        .green-card { border-color: rgba(97,243,147,0.3); background: linear-gradient(135deg, #E8FFF0, #F0FFF6); }
+        .green-card h3 { color: var(--green); }
+
+        /* Stat value pop animation */
+        .slide .stat-pop {
+            opacity: 0; transform: scale(0.5);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .slide.active .stat-pop { opacity: 1; transform: scale(1); }
+        .slide.active .stat-pop.d1 { transition-delay: 0.2s; }
+        .slide.active .stat-pop.d2 { transition-delay: 0.4s; }
+        .slide.active .stat-pop.d3 { transition-delay: 0.6s; }
     </style>
 </head>
 <body>
+
+<!-- Clarity star SVG template (reused as decorations) -->
+<svg style="display:none;">
+    <defs>
+        <symbol id="clarity-star" viewBox="0 0 60 60">
+            <path d="M39.4833 16.2804L32.3475 0L27.8146 10.4767H27.8125L33.1041 22.7097L45.2339 28.0464L45.2444 28.0422L55.6263 23.4727L39.4791 16.2762L39.4833 16.2804Z" fill="#0a1628"/>
+            <path d="M39.4812 39.8149L55.6242 32.6184L45.236 28.0469L33.1062 33.3835L27.8146 45.6165H27.8125L27.8167 45.6271L32.3475 56.0975L39.4833 39.8128L39.4812 39.8149Z" fill="#0a1628"/>
+            <path d="M16.1472 39.8206L23.283 56.1011L27.8159 45.6244H27.818L22.5264 33.3913L10.3967 28.0547L10.3862 28.0589L0 32.6241L16.1472 39.8206Z" fill="#61F393"/>
+            <path d="M16.1451 16.2847L0 23.4791L10.3883 28.0506L22.5181 22.714L27.8096 10.4809H27.8117L27.8076 10.4704L23.2809 0L16.1451 16.2847Z" fill="#61F393"/>
+        </symbol>
+    </defs>
+</svg>
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -200,49 +387,59 @@
 <div class="deck">
 
 <!-- ==================== SLIDE 1: TITLE ==================== -->
-<section class="slide active" data-slide="1">
+<section class="slide active slide-gradient" data-slide="1">
+    <!-- Decorative stars -->
+    <svg class="geo-star spin" style="top: 60px; right: 80px; width: 120px; height: 120px; opacity: 0.06;"><use href="#clarity-star"/></svg>
+    <svg class="geo-star spin-reverse" style="bottom: 100px; left: 60px; width: 80px; height: 80px; opacity: 0.04;"><use href="#clarity-star"/></svg>
+    <!-- Subtle circles -->
+    <div style="position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; border: 2px solid rgba(97,243,147,0.08); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -100px; left: -100px; width: 350px; height: 350px; border: 2px solid rgba(10,22,40,0.04); border-radius: 50%; pointer-events: none;"></div>
+
     <div class="max-w center" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-        <div class="badge">Employee Identity Security</div>
-        <h1 style="font-size: 3.5rem; margin-top: 16px;">Protecting Your Organization<br>from Hiring Fraud</h1>
-        <p class="subtitle" style="max-width: 640px; margin-top: 20px;">
+        <div class="badge anim-up">Employee Identity Security</div>
+        <h1 class="anim-up d1" style="font-size: 3.5rem; margin-top: 16px;">Protecting Your Organization<br>from Hiring Fraud</h1>
+        <p class="subtitle anim-up d2" style="max-width: 640px; margin-top: 20px;">
             How sophisticated threat actors are infiltrating enterprises through the hiring process — and how to stop them.
         </p>
-        <div style="margin-top: 48px; opacity: 0.4; font-size: 0.8rem; color: var(--text-muted);">
+        <div class="anim-up d3" style="margin-top: 48px; opacity: 0.4; font-size: 0.8rem; color: var(--text-muted);">
             <kbd>&larr;</kbd> <kbd>&rarr;</kbd> Navigate &nbsp;&middot;&nbsp; <kbd>F</kbd> Fullscreen
         </div>
     </div>
 </section>
 
 <!-- ==================== SLIDE 2: THE EVOLVING THREAT ==================== -->
-<section class="slide" data-slide="2">
-    <div class="max-w">
-        <div class="section-label">The Threat Landscape</div>
-        <h2>An Evolving, Escalating Threat</h2>
-        <p style="color: var(--text-muted); max-width: 700px;">Hiring fraud has evolved from resume padding to nation-state espionage in just five years.</p>
+<section class="slide slide-gradient" data-slide="2">
+    <svg class="geo-star" style="top: 40px; right: 60px; width: 100px; height: 100px; opacity: 0.05; transform: rotate(15deg);"><use href="#clarity-star"/></svg>
 
-        <div class="timeline">
+    <div class="max-w">
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">The Threat Landscape</div>
+        <h2 class="anim-up d1">An Evolving, Escalating Threat</h2>
+        <p class="anim-up d2" style="color: var(--text-muted); max-width: 700px;">Hiring fraud has evolved from resume padding to nation-state espionage in just five years.</p>
+
+        <div class="timeline anim-fade d3">
             <div class="timeline-item">
-                <div class="dot" style="background: var(--green); color: var(--navy);">1</div>
+                <div class="dot" style="background: linear-gradient(135deg, var(--green), #4AE07A); color: var(--navy);">1</div>
                 <div class="year">2020</div>
                 <p>COVID shifts the world to remote work. Physical verification disappears.</p>
             </div>
             <div class="timeline-item">
-                <div class="dot" style="background: var(--green); color: var(--navy);">2</div>
+                <div class="dot" style="background: linear-gradient(135deg, var(--green), #4AE07A); color: var(--navy);">2</div>
                 <div class="year">2022</div>
                 <p>Bait-and-switch candidates. One person interviews, another shows up. Poly-employment surges.</p>
             </div>
             <div class="timeline-item">
-                <div class="dot" style="background: var(--navy); color: white;">3</div>
+                <div class="dot" style="background: linear-gradient(135deg, var(--navy), #1a2d4a); color: white;">3</div>
                 <div class="year">2024</div>
                 <p>AI-powered deepfakes in live interviews. A Hong Kong firm loses $25M to a deepfake CFO.</p>
             </div>
             <div class="timeline-item">
-                <div class="dot" style="background: var(--navy); color: white;">4</div>
+                <div class="dot" style="background: linear-gradient(135deg, var(--navy), #1a2d4a); color: white;">4</div>
                 <div class="year">2025</div>
                 <p>Nation-state operatives (DPRK) systematically infiltrate Fortune 500 companies.</p>
             </div>
             <div class="timeline-item">
-                <div class="dot" style="background: var(--red); color: white;">5</div>
+                <div class="dot" style="background: linear-gradient(135deg, var(--red), #DC2626); color: white;">5</div>
                 <div class="year">2026</div>
                 <p>Sophisticated, automated, at scale. Synthetic identities generated in minutes.</p>
             </div>
@@ -251,36 +448,40 @@
 </section>
 
 <!-- ==================== SLIDE 3: SCALE OF THE PROBLEM ==================== -->
-<section class="slide" data-slide="3">
+<section class="slide slide-gradient" data-slide="3">
+    <svg class="geo-star spin-reverse" style="bottom: 60px; right: 40px; width: 90px; height: 90px; opacity: 0.04;"><use href="#clarity-star"/></svg>
+
     <div class="max-w">
-        <div class="section-label">By the Numbers</div>
-        <h2>The Scale of the Problem</h2>
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">By the Numbers</div>
+        <h2 class="anim-up d1">The Scale of the Problem</h2>
 
         <div class="card-grid cols-3" style="margin-top: 28px;">
-            <div class="stat-card">
-                <div class="stat-value" style="color: var(--red);">1 in 4</div>
+            <div class="stat-card anim-scale d1">
+                <div class="stat-value red-val stat-pop d1">1 in 4</div>
                 <p>candidate profiles will be fake by 2028</p>
                 <div class="source">Gartner, 2024</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value" style="color: var(--red);">1,800+</div>
+            <div class="stat-card anim-scale d2">
+                <div class="stat-value red-val stat-pop d2">1,800+</div>
                 <p>suspected North Korean applicants blocked by Amazon in 2025</p>
                 <div class="source">Amazon, 2025</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value" style="color: var(--red);">300+</div>
+            <div class="stat-card anim-scale d3">
+                <div class="stat-value red-val stat-pop d3">300+</div>
                 <p>US companies unknowingly hired North Korean IT workers</p>
                 <div class="source">US Department of Justice</div>
             </div>
         </div>
 
         <div class="card-grid cols-2" style="margin-top: 20px;">
-            <div class="quote-block">
+            <div class="quote-block anim-up d4">
+                <div class="quote-mark">&ldquo;</div>
                 <p>"Almost every Fortune 500 CISO I've spoken to — dozens — have admitted they had a North Korean IT worker problem."</p>
                 <div class="attribution">Charles Carmakal, CTO — Mandiant / Google Cloud</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value" style="color: var(--red);">220%</div>
+            <div class="stat-card anim-scale d4">
+                <div class="stat-value red-val" style="font-size: 3rem;">220%</div>
                 <p>increase in North Korean infiltration attempts in the last 12 months</p>
                 <div class="source">Fortune, 2025</div>
             </div>
@@ -290,70 +491,76 @@
 
 <!-- ==================== SLIDE 4: WHY CURRENT SOLUTIONS FALL SHORT ==================== -->
 <section class="slide" data-slide="4">
+    <svg class="geo-star" style="top: 50px; left: 40px; width: 70px; height: 70px; opacity: 0.04; transform: rotate(-20deg);"><use href="#clarity-star"/></svg>
+
     <div class="max-w">
-        <div class="section-label">The Gap</div>
-        <h2>Why Current Solutions Fall Short</h2>
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">The Gap</div>
+        <h2 class="anim-up d1">Why Current Solutions Fall Short</h2>
 
         <div class="card-grid cols-2" style="margin-top: 28px;">
-            <div class="info-card red-card">
+            <div class="info-card red-card anim-up d2">
                 <h3>Background Checks</h3>
                 <p>Miss synthetic identities entirely. A fabricated persona has no criminal record — they were "born yesterday."</p>
             </div>
-            <div class="info-card red-card">
+            <div class="info-card red-card anim-up d3">
                 <h3>IDV Alone</h3>
                 <p>10%+ inconclusive rates at scale. For a 4,000-person company, that means 400 false positives overwhelming your team.</p>
             </div>
-            <div class="info-card red-card">
+            <div class="info-card red-card anim-up d4">
                 <h3>Deepfake Detection Alone</h3>
                 <p>Caps at ~80% accuracy. No vendor on the market exceeds this threshold. That's 1 in 5 slipping through.</p>
             </div>
-            <div class="info-card red-card">
+            <div class="info-card red-card anim-up d5">
                 <h3>Point Solutions</h3>
                 <p>Once attackers learn your single-check process, they engineer around it. Static defenses don't work against adaptive threats.</p>
             </div>
         </div>
 
-        <div style="margin-top: 32px; padding: 20px 28px; background: #E8FFF0; border-radius: 12px; border-left: 3px solid var(--green);">
+        <div class="anim-up d6" style="margin-top: 32px; padding: 20px 28px; background: linear-gradient(135deg, #E8FFF0, #F0FFF6); border-radius: 12px; border-left: 4px solid var(--green); box-shadow: 0 2px 12px rgba(97,243,147,0.1);">
             <h3 style="color: var(--green); font-size: 1rem;">You need a holistic approach — not another point solution.</h3>
         </div>
     </div>
 </section>
 
 <!-- ==================== SLIDE 5: CASE STUDY ==================== -->
-<section class="slide" data-slide="5">
+<section class="slide slide-gradient" data-slide="5">
+    <svg class="geo-star spin" style="top: 60px; right: 50px; width: 110px; height: 110px; opacity: 0.05;"><use href="#clarity-star"/></svg>
+
     <div class="max-w">
-        <div class="section-label">Proof</div>
-        <h2>Case Study: Fortune 500 Insurance Company</h2>
-        <p style="color: var(--text-muted); max-width: 700px; margin-top: 8px;">A Fortune 500 insurance company tested Clarity against their active hiring pipeline — including intentionally seeded fraudulent candidates.</p>
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">Proof</div>
+        <h2 class="anim-up d1">Case Study: Fortune 500 Insurance Company</h2>
+        <p class="anim-up d2" style="color: var(--text-muted); max-width: 700px; margin-top: 8px;">A Fortune 500 insurance company tested Clarity against their active hiring pipeline — including intentionally seeded fraudulent candidates.</p>
 
         <div class="two-col" style="margin-top: 36px;">
             <div>
-                <h3 style="color: var(--green); margin-bottom: 16px;">What We Found</h3>
-                <div class="info-card" style="margin-bottom: 16px;">
+                <h3 class="anim-up d3" style="color: var(--green); margin-bottom: 16px;">What We Found</h3>
+                <div class="info-card anim-up d3" style="margin-bottom: 16px;">
                     <p>Clarity correctly identified every fraudulent profile — <strong style="color: var(--navy);">using resume analysis alone</strong>, before any interview took place.</p>
                 </div>
-                <h3 style="margin-top: 24px; margin-bottom: 12px;">Evidence Detected</h3>
+                <h3 class="anim-up d4" style="margin-top: 24px; margin-bottom: 12px;">Evidence Detected</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 8px 0; padding-left: 20px; position: relative; color: var(--text-muted); font-size: 0.92rem;">
-                        <span style="position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50; background: var(--green);"></span>
+                    <li class="anim-up d4" style="padding: 8px 0; padding-left: 20px; position: relative; color: var(--text-muted); font-size: 0.92rem;">
+                        <span style="position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--green);"></span>
                         VoIP and burner phone numbers
                     </li>
-                    <li style="padding: 8px 0; padding-left: 20px; position: relative; color: var(--text-muted); font-size: 0.92rem;">
+                    <li class="anim-up d5" style="padding: 8px 0; padding-left: 20px; position: relative; color: var(--text-muted); font-size: 0.92rem;">
                         <span style="position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--green);"></span>
                         Zero-day email histories (accounts created days before applying)
                     </li>
-                    <li style="padding: 8px 0; padding-left: 20px; position: relative; color: var(--text-muted); font-size: 0.92rem;">
+                    <li class="anim-up d6" style="padding: 8px 0; padding-left: 20px; position: relative; color: var(--text-muted); font-size: 0.92rem;">
                         <span style="position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--green);"></span>
                         Employment history mismatches and inconsistencies
                     </li>
-                    <li style="padding: 8px 0; padding-left: 20px; position: relative; color: var(--text-muted); font-size: 0.92rem;">
+                    <li class="anim-up d7" style="padding: 8px 0; padding-left: 20px; position: relative; color: var(--text-muted); font-size: 0.92rem;">
                         <span style="position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--green);"></span>
                         Fabricated digital footprints
                     </li>
                 </ul>
             </div>
             <div>
-                <div class="info-card" style="background: #E8FFF0; border-color: rgba(97,243,147,0.3);">
+                <div class="info-card green-card anim-up d4">
                     <h3 style="color: var(--green); margin-bottom: 12px;">Key Insight</h3>
                     <p style="color: var(--text); font-size: 1.05rem; line-height: 1.7;">
                         Many of these signals are <strong style="color: var(--navy);">completely invisible to human reviewers</strong>. No recruiter checks whether an email address was created three days ago, or whether a phone number routes through a VoIP relay.
@@ -368,15 +575,20 @@
 </section>
 
 <!-- ==================== SLIDE 6: EMPLOYEE IDENTITY LIFECYCLE ==================== -->
-<section class="slide" data-slide="6">
-    <div class="max-w">
-        <div class="section-label">Beyond Hiring</div>
-        <h2>The Employee Identity Lifecycle</h2>
-        <p style="color: var(--text-muted); max-width: 700px;">Identity verification isn't a one-time gate. It's a continuous process across the entire employee journey.</p>
+<section class="slide slide-gradient" data-slide="6">
+    <svg class="geo-star spin-reverse" style="top: 40px; left: 50px; width: 80px; height: 80px; opacity: 0.04;"><use href="#clarity-star"/></svg>
+    <svg class="geo-star" style="bottom: 50px; right: 70px; width: 60px; height: 60px; opacity: 0.03; transform: rotate(45deg);"><use href="#clarity-star"/></svg>
 
-        <div class="lifecycle">
+    <div class="max-w">
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">Beyond Hiring</div>
+        <h2 class="anim-up d1">The Employee Identity Lifecycle</h2>
+        <p class="anim-up d2" style="color: var(--text-muted); max-width: 700px;">Identity verification isn't a one-time gate. It's a continuous process across the entire employee journey.</p>
+
+        <div class="lifecycle anim-fade d3">
+            <div class="lifecycle-connector"></div>
             <div class="lifecycle-stage">
-                <div class="circle">
+                <div class="circle anim-scale d1">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
                 </div>
                 <h3>Pre-Hire</h3>
@@ -384,7 +596,7 @@
             </div>
             <div class="lifecycle-arrow">&rarr;</div>
             <div class="lifecycle-stage">
-                <div class="circle">
+                <div class="circle anim-scale d2">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 10.5-3.5 3.5-2-2"/></svg>
                 </div>
                 <h3>Onboarding</h3>
@@ -392,7 +604,7 @@
             </div>
             <div class="lifecycle-arrow">&rarr;</div>
             <div class="lifecycle-stage">
-                <div class="circle">
+                <div class="circle anim-scale d3">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
                 </div>
                 <h3>Ongoing</h3>
@@ -400,7 +612,7 @@
             </div>
             <div class="lifecycle-arrow">&rarr;</div>
             <div class="lifecycle-stage">
-                <div class="circle">
+                <div class="circle anim-scale d4">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
                 </div>
                 <h3>Continuous</h3>
@@ -408,7 +620,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 40px; padding: 20px 28px; background: #E8FFF0; border-radius: 12px; border-left: 3px solid var(--green);">
+        <div class="anim-up d5" style="margin-top: 40px; padding: 20px 28px; background: linear-gradient(135deg, #E8FFF0, #F0FFF6); border-radius: 12px; border-left: 4px solid var(--green); box-shadow: 0 2px 12px rgba(97,243,147,0.1);">
             <h3 style="color: var(--green); font-size: 1rem;">Enter once through the gate, then verify continuously.</h3>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">A bad actor who passes the hiring check doesn't stop being a threat. Identity assurance must persist.</p>
         </div>
@@ -417,38 +629,41 @@
 
 <!-- ==================== SLIDE 7: HOW CLARITY WORKS ==================== -->
 <section class="slide" data-slide="7">
+    <svg class="geo-star spin" style="bottom: 40px; left: 30px; width: 100px; height: 100px; opacity: 0.04;"><use href="#clarity-star"/></svg>
+
     <div class="max-w">
-        <div class="section-label">The Solution</div>
-        <h2>How Clarity Works</h2>
-        <p style="color: var(--text-muted); max-width: 700px;">No single signal is trusted alone. Clarity correlates multiple layers of verification for high-confidence decisions.</p>
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">The Solution</div>
+        <h2 class="anim-up d1">How Clarity Works</h2>
+        <p class="anim-up d2" style="color: var(--text-muted); max-width: 700px;">No single signal is trusted alone. Clarity correlates multiple layers of verification for high-confidence decisions.</p>
 
         <div class="card-grid cols-3" style="margin-top: 28px;">
-            <div class="info-card">
+            <div class="info-card anim-up d2">
                 <div class="num">1</div>
                 <h3>Deepfake Detection</h3>
                 <p>Real-time video and audio analysis during live interviews. Detects face-swaps, lip-sync anomalies, and synthetic voices.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d3">
                 <div class="num">2</div>
                 <h3>Cross-Biometric Validation</h3>
                 <p>Is the person in interview 3 the same one from interview 1? Continuous biometric matching across all touchpoints.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d4">
                 <div class="num">3</div>
                 <h3>Identity Signal Analysis</h3>
                 <p>Digital footprint, device intelligence, social profile correlation, email and phone number provenance.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d5">
                 <div class="num">4</div>
                 <h3>Document Verification + Liveness</h3>
                 <p>Government ID validation with live selfie matching. Anti-spoofing checks ensure a real person is present.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d6">
                 <div class="num">5</div>
                 <h3>Expert Human Review</h3>
                 <p>Every inconclusive or flagged case is reviewed by trained analysts. No automated rejections — bias-compliant by design.</p>
             </div>
-            <div class="info-card" style="border-color: rgba(97,243,147,0.3); background: #E8FFF0;">
+            <div class="info-card green-card anim-up d7">
                 <h3 style="color: var(--green);">Multi-Signal Correlation</h3>
                 <p style="color: var(--text);">No single check is definitive. Clarity stitches all signals together for a holistic identity confidence score.</p>
             </div>
@@ -457,35 +672,38 @@
 </section>
 
 <!-- ==================== SLIDE 8: ENTERPRISE INTEGRATION ==================== -->
-<section class="slide" data-slide="8">
+<section class="slide slide-gradient" data-slide="8">
+    <svg class="geo-star" style="top: 50px; right: 40px; width: 90px; height: 90px; opacity: 0.05; transform: rotate(30deg);"><use href="#clarity-star"/></svg>
+
     <div class="max-w">
-        <div class="section-label">Integration</div>
-        <h2>Fits Into Your Existing Stack</h2>
-        <p style="color: var(--text-muted); max-width: 700px;">Clarity integrates with the tools your teams already use. Deploys in days, not months.</p>
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">Integration</div>
+        <h2 class="anim-up d1">Fits Into Your Existing Stack</h2>
+        <p class="anim-up d2" style="color: var(--text-muted); max-width: 700px;">Clarity integrates with the tools your teams already use. Deploys in days, not months.</p>
 
         <div style="margin-top: 32px;">
-            <h3 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">HR / ATS</h3>
-            <div class="logo-row">
+            <h3 class="anim-up d2" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">HR / ATS</h3>
+            <div class="logo-row anim-up d3">
                 <div class="logo-chip"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse"> Greenhouse</div>
                 <div class="logo-chip"><img src="../../shared/logos/workday.svg" alt="Workday"> Workday</div>
                 <div class="logo-chip"><img src="../../shared/logos/ashby.svg" alt="Ashby"> Ashby</div>
                 <div class="logo-chip"><img src="../../shared/logos/lever.svg" alt="Lever"> Lever</div>
             </div>
 
-            <h3 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; margin-top: 24px;">Identity / IAM</h3>
-            <div class="logo-row">
+            <h3 class="anim-up d4" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; margin-top: 24px;">Identity / IAM</h3>
+            <div class="logo-row anim-up d4">
                 <div class="logo-chip"><img src="../../shared/logos/okta.svg" alt="Okta"> Okta</div>
                 <div class="logo-chip"><img src="../../shared/logos/azure-ad.svg" alt="Azure AD"> Azure AD</div>
             </div>
 
-            <h3 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; margin-top: 24px;">ITSM</h3>
-            <div class="logo-row">
+            <h3 class="anim-up d5" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; margin-top: 24px;">ITSM</h3>
+            <div class="logo-row anim-up d5">
                 <div class="logo-chip"><img src="../../shared/logos/servicenow.svg" alt="ServiceNow"> ServiceNow</div>
                 <div class="logo-chip"><img src="../../shared/logos/jira.svg" alt="Jira"> Jira</div>
             </div>
 
-            <h3 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; margin-top: 24px;">SIEM / Comms</h3>
-            <div class="logo-row">
+            <h3 class="anim-up d6" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; margin-top: 24px;">SIEM / Comms</h3>
+            <div class="logo-row anim-up d6">
                 <div class="logo-chip"><img src="../../shared/logos/splunk.svg" alt="Splunk"> Splunk</div>
                 <div class="logo-chip"><img src="../../shared/logos/sentinel.svg" alt="Sentinel"> Sentinel</div>
                 <div class="logo-chip"><img src="../../shared/logos/slack.svg" alt="Slack"> Slack</div>
@@ -497,64 +715,71 @@
 </section>
 
 <!-- ==================== SLIDE 9: THREAT INTELLIGENCE ==================== -->
-<section class="slide" data-slide="9">
+<section class="slide slide-gradient" data-slide="9">
+    <svg class="geo-star spin" style="top: 80px; left: 60px; width: 100px; height: 100px; opacity: 0.05;"><use href="#clarity-star"/></svg>
+    <svg class="geo-star" style="bottom: 60px; right: 80px; width: 70px; height: 70px; opacity: 0.03; transform: rotate(-25deg);"><use href="#clarity-star"/></svg>
+    <div style="position: absolute; top: -60px; left: -60px; width: 250px; height: 250px; border: 2px solid rgba(97,243,147,0.06); border-radius: 50%; pointer-events: none;"></div>
+
     <div class="max-w center" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-        <div class="badge">Threat Intelligence</div>
-        <h2 style="font-size: 2.6rem;">Know What's In Your Pipeline</h2>
-        <p style="color: var(--text-muted); max-width: 640px; margin-top: 12px; font-size: 1.05rem; line-height: 1.7;">
+        <div class="badge anim-up">Threat Intelligence</div>
+        <h2 class="anim-up d1" style="font-size: 2.6rem;">Know What's In Your Pipeline</h2>
+        <p class="anim-up d2" style="color: var(--text-muted); max-width: 640px; margin-top: 12px; font-size: 1.05rem; line-height: 1.7;">
             Clarity maintains a database of <strong style="color: var(--navy);">10,000+ known DPRK-associated email addresses</strong> and identity markers. Cross-reference your candidate pipeline or existing employee base instantly.
         </p>
 
         <div class="card-grid cols-3" style="margin-top: 40px; max-width: 900px;">
-            <div class="stat-card center">
-                <div class="stat-value">10,000+</div>
+            <div class="stat-card center anim-scale d1">
+                <div class="stat-value stat-pop d1" style="font-size: 2.8rem;">10,000+</div>
                 <p>known threat actor emails in our database</p>
             </div>
-            <div class="stat-card center">
-                <div class="stat-value">Real-Time</div>
+            <div class="stat-card center anim-scale d2">
+                <div class="stat-value stat-pop d2" style="font-size: 2.2rem;">Real-Time</div>
                 <p>cross-reference against your pipeline or workforce</p>
             </div>
-            <div class="stat-card center">
-                <div class="stat-value">Free Access</div>
+            <div class="stat-card center anim-scale d3">
+                <div class="stat-value stat-pop d3" style="font-size: 2.2rem;">Free Access</div>
                 <p>query our threat intel database at no cost</p>
             </div>
         </div>
 
-        <a href="https://claritythreatintelligence.ai" target="_blank" class="cta-btn" style="margin-top: 36px;">
+        <a href="https://claritythreatintelligence.ai" target="_blank" class="cta-btn anim-up d5" style="margin-top: 36px;">
             Query Threat Intelligence &rarr;
         </a>
-        <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 10px;">claritythreatintelligence.ai</p>
+        <p class="anim-up d6" style="color: var(--text-muted); font-size: 0.82rem; margin-top: 10px;">claritythreatintelligence.ai</p>
     </div>
 </section>
 
 <!-- ==================== SLIDE 10: REAL-WORLD USE CASES ==================== -->
 <section class="slide" data-slide="10">
+    <svg class="geo-star spin-reverse" style="top: 50px; right: 50px; width: 80px; height: 80px; opacity: 0.04;"><use href="#clarity-star"/></svg>
+
     <div class="max-w">
-        <div class="section-label">Use Cases</div>
-        <h2>Real-World Applications</h2>
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">Use Cases</div>
+        <h2 class="anim-up d1">Real-World Applications</h2>
 
         <div class="card-grid cols-3" style="margin-top: 28px;">
-            <div class="info-card">
+            <div class="info-card anim-up d2">
                 <div class="num">1</div>
                 <h3>Hiring</h3>
                 <p>Clarity's bot joins interviews for real-time deepfake detection and cross-biometric validation across interview rounds.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d3">
                 <div class="num">2</div>
                 <h3>MFA Reset</h3>
                 <p>Okta integration triggers identity verification before approving MFA resets — stopping account takeover at the source.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d4">
                 <div class="num">3</div>
                 <h3>Help Desk</h3>
                 <p>ServiceNow integration sends an IDV link directly in the ticket chat. Verify before fulfilling sensitive requests.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d5">
                 <div class="num">4</div>
                 <h3>Privileged Access</h3>
                 <p>Step-up authentication for sensitive transactions, admin escalations, or access to critical systems.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d6">
                 <div class="num">5</div>
                 <h3>Sensitive Calls</h3>
                 <p>Verify the identity of all participants before high-stakes meetings — M&A calls, board discussions, vendor negotiations.</p>
@@ -564,31 +789,34 @@
 </section>
 
 <!-- ==================== SLIDE 11: WHY CLARITY ==================== -->
-<section class="slide" data-slide="11">
+<section class="slide slide-gradient" data-slide="11">
+    <svg class="geo-star spin" style="bottom: 60px; left: 40px; width: 100px; height: 100px; opacity: 0.05;"><use href="#clarity-star"/></svg>
+
     <div class="max-w">
-        <div class="section-label">Why Clarity</div>
-        <h2>The Enterprise Standard for Employee Identity</h2>
+        <div class="accent-bar anim-up"></div>
+        <div class="section-label anim-up">Why Clarity</div>
+        <h2 class="anim-up d1">The Enterprise Standard for Employee Identity</h2>
 
         <div class="card-grid cols-2" style="margin-top: 28px;">
-            <div class="info-card">
+            <div class="info-card anim-up d2">
                 <h3 style="color: var(--green);">End-to-End</h3>
                 <p>Not just hiring. Not just deepfake detection. Clarity covers the full employee identity lifecycle — from resume to retirement.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d3">
                 <h3 style="color: var(--green);">Enterprise-Grade Compliance</h3>
                 <p>SOC 2, GDPR, EU AI Act, and NYC bias compliance (Local Law 144). Built for regulated industries.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d4">
                 <h3 style="color: var(--green);">Human-in-the-Loop</h3>
                 <p>No automated rejections. Every flagged case gets expert human review — protecting candidates from bias and your organization from liability.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card anim-up d5">
                 <h3 style="color: var(--green);">Built to Scale</h3>
                 <p>Handles 1M+ applicants per year. Whether you're hiring 50 or 50,000, Clarity scales with you.</p>
             </div>
         </div>
 
-        <div class="info-card" style="margin-top: 20px; border-color: rgba(97,243,147,0.3); background: #E8FFF0;">
+        <div class="info-card green-card anim-up d6" style="margin-top: 20px;">
             <h3 style="color: var(--green);">Series A — $17M</h3>
             <p style="color: var(--text);">Backed by Bessemer Venture Partners and Monta Vista Capital. Building the category-defining platform for employee identity security.</p>
         </div>
@@ -596,34 +824,38 @@
 </section>
 
 <!-- ==================== SLIDE 12: GET STARTED ==================== -->
-<section class="slide" data-slide="12">
+<section class="slide slide-gradient" data-slide="12">
+    <svg class="geo-star spin" style="top: 60px; right: 80px; width: 120px; height: 120px; opacity: 0.06;"><use href="#clarity-star"/></svg>
+    <svg class="geo-star spin-reverse" style="bottom: 80px; left: 60px; width: 80px; height: 80px; opacity: 0.04;"><use href="#clarity-star"/></svg>
+    <div style="position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; border: 2px solid rgba(97,243,147,0.08); border-radius: 50%; pointer-events: none;"></div>
+
     <div class="max-w center" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-        <div class="badge">Get Started</div>
-        <h2 style="font-size: 2.6rem;">Send Us Your CVs</h2>
-        <p class="subtitle" style="max-width: 600px;">Let us show you what's hiding in your pipeline. Free threat intelligence query. Free pipeline sweep POC.</p>
+        <div class="badge anim-up">Get Started</div>
+        <h2 class="anim-up d1" style="font-size: 2.6rem;">Send Us Your CVs</h2>
+        <p class="subtitle anim-up d2" style="max-width: 600px;">Let us show you what's hiding in your pipeline. Free threat intelligence query. Free pipeline sweep POC.</p>
 
         <div class="card-grid cols-3" style="margin-top: 40px; max-width: 800px;">
-            <div class="stat-card center">
-                <div class="stat-value" style="font-size: 1.3rem;">Free</div>
+            <div class="stat-card center anim-scale d1">
+                <div class="stat-value stat-pop d1" style="font-size: 2rem;">Free</div>
                 <p>Threat Intel Query</p>
             </div>
-            <div class="stat-card center">
-                <div class="stat-value" style="font-size: 1.3rem;">Free</div>
+            <div class="stat-card center anim-scale d2">
+                <div class="stat-value stat-pop d2" style="font-size: 2rem;">Free</div>
                 <p>Pipeline Sweep POC</p>
             </div>
-            <div class="stat-card center">
-                <div class="stat-value" style="font-size: 1.3rem;">Days</div>
+            <div class="stat-card center anim-scale d3">
+                <div class="stat-value stat-pop d3" style="font-size: 2rem;">Days</div>
                 <p>Time to Deploy</p>
             </div>
         </div>
 
-        <a href="mailto:michael@getclarity.ai" class="cta-btn" style="margin-top: 36px;">
+        <a href="mailto:michael@getclarity.ai" class="cta-btn anim-up d5" style="margin-top: 36px;">
             Contact Us &rarr;
         </a>
-        <a href="https://getclarity.ai" target="_blank" class="cta-outline" style="margin-top: 8px;">
+        <a href="https://getclarity.ai" target="_blank" class="cta-outline anim-up d6" style="margin-top: 8px;">
             getclarity.ai
         </a>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 24px;">michael@getclarity.ai</p>
+        <p class="anim-up d7" style="color: var(--text-muted); font-size: 0.88rem; margin-top: 24px;">michael@getclarity.ai</p>
     </div>
 </section>
 
@@ -636,10 +868,14 @@
 
     function showSlide(n) {
         if (n < 0 || n >= slides.length) return;
+        // Reset animations on outgoing slide
         slides[current].classList.remove('active');
-        current = n;
-        slides[current].classList.add('active');
-        counter.textContent = `${current + 1} / ${slides.length}`;
+        // Small delay to allow CSS transitions to reset
+        requestAnimationFrame(() => {
+            slides[n].classList.add('active');
+            current = n;
+            counter.textContent = `${current + 1} / ${slides.length}`;
+        });
     }
 
     document.addEventListener('keydown', e => {
