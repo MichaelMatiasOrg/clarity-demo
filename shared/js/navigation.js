@@ -67,6 +67,24 @@
     }
     window.restartAnimations = restartAnimations;
 
+    // Update URL hash to reflect current slide (without adding history entries)
+    function updateHash(index) {
+        const slideId = slides[index] && slides[index].getAttribute('data-slide-id');
+        if (slideId) {
+            history.replaceState(null, '', '#' + slideId);
+        }
+    }
+
+    // Find slide index by hash (data-slide-id)
+    function getSlideIndexFromHash() {
+        const hash = location.hash.slice(1);
+        if (!hash) return -1;
+        for (let i = 0; i < slides.length; i++) {
+            if (slides[i].getAttribute('data-slide-id') === hash) return i;
+        }
+        return -1;
+    }
+
     // Go to specific slide (exposed globally for autoplay)
     function goToSlide(index) {
         if (index < 0) index = 0;
@@ -77,6 +95,7 @@
         restartAnimations(slides[currentSlide]);
         slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
         updateIndicator();
+        updateHash(currentSlide);
         if (typeof updateActiveSection === 'function') updateActiveSection();
         setTimeout(() => { keyboardNavigating = false; }, 600);
     }
@@ -117,6 +136,7 @@
         scrollTimeout = setTimeout(() => {
             currentSlide = getCurrentSlideFromScroll();
             updateIndicator();
+            updateHash(currentSlide);
             updateActiveSection();
         }, 100);
     });
@@ -146,9 +166,25 @@
         document.removeEventListener('keydown', hideHint);
     }, { once: true });
 
-    // Initial indicator
-    currentSlide = getCurrentSlideFromScroll();
+    // On page load, jump to slide from URL hash (if present)
+    const hashIndex = getSlideIndexFromHash();
+    if (hashIndex >= 0) {
+        currentSlide = hashIndex;
+        slides[currentSlide].scrollIntoView();
+        restartAnimations(slides[currentSlide]);
+    } else {
+        currentSlide = getCurrentSlideFromScroll();
+    }
     updateIndicator();
+    updateHash(currentSlide);
+
+    // Handle hash changes (e.g. user edits URL or clicks a hash link)
+    window.addEventListener('hashchange', () => {
+        const idx = getSlideIndexFromHash();
+        if (idx >= 0 && idx !== currentSlide) {
+            goToSlide(idx);
+        }
+    });
 
     // Section navigation — map each slide index to its section
     const sectionIds = ['section-attack', 'section-threat', 'section-impact', 'section-solution', 'section-close'];
