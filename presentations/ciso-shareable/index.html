@@ -382,6 +382,138 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
     width: 80px;
     flex-shrink: 0;
 }
+/* ========== RESPONSIVE: TABLET (768px) ========== */
+@media (max-width: 768px) {
+    .slide { padding: 40px 40px; }
+    h1 { font-size: 2.6rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.4rem; }
+    .subtitle { font-size: 1.1rem; }
+
+    /* Grids to single column */
+    [style*="grid-template-columns: 1fr 1fr"],
+    [style*="grid-template-columns: repeat(2"],
+    [style*="grid-template-columns: repeat(3"],
+    [style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Split layouts (content + screenshot) */
+    [style*="grid-template-columns: 1.2fr"],
+    [style*="grid-template-columns: 1.1fr"],
+    [style*="grid-template-columns: 1fr 1.2fr"],
+    [style*="grid-template-columns: 1fr 1.1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Stats cards: 2 columns */
+    [style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    [style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    /* Timeline */
+    .timeline { flex-wrap: wrap; gap: 16px; }
+    .timeline-item { flex: 0 0 45%; }
+    .timeline-line { display: none; }
+
+    /* Orbit */
+    @keyframes orbitItemCounter {
+        from { transform: rotate(0deg) translateX(130px) rotate(0deg); }
+        to { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
+    }
+
+    /* Screenshots */
+    .demo-frame img { max-height: 50vh; object-fit: contain; }
+
+    /* Logo chips */
+    .logo-chip { padding: 6px 10px; font-size: 0.7rem; }
+    .logo-chip img { height: 16px; }
+
+    /* Nav */
+    #navbar { padding: 0 20px; }
+
+    /* Slide counter */
+    #slide-counter { font-size: 0.7rem; right: 20px; bottom: 16px; }
+}
+
+/* ========== RESPONSIVE: MOBILE (480px) ========== */
+@media (max-width: 480px) {
+    .slide { padding: 30px 20px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+    .subtitle { font-size: 0.95rem; }
+    .section-label { font-size: 0.7rem; }
+
+    /* All grids single column */
+    [style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Cards */
+    .card { padding: 20px; border-radius: 12px; }
+
+    /* Stats cards single column */
+    [style*="grid-template-columns: repeat(4"],
+    [style*="grid-template-columns: repeat(3"],
+    [style*="grid-template-columns: repeat(2"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Timeline vertical */
+    .timeline { flex-direction: column; align-items: stretch; }
+    .timeline-item { flex: none; text-align: left; display: flex; align-items: center; gap: 12px; }
+    .timeline-dot { margin: 0; flex-shrink: 0; width: 40px; height: 40px; font-size: 0.65rem; }
+
+    /* Pipeline scale down */
+    .pipeline-dot { width: 8px; height: 8px; margin-top: -4px; }
+
+    /* Orbit scale */
+    @keyframes orbitItemCounter {
+        from { transform: rotate(0deg) translateX(90px) rotate(0deg); }
+        to { transform: rotate(360deg) translateX(90px) rotate(-360deg); }
+    }
+    .orbit-item { width: 80px; height: 80px; margin: -40px 0 0 -40px; }
+
+    /* Screenshots */
+    .demo-frame { border-radius: 8px; }
+    .demo-frame img { max-height: 40vh; width: 100%; object-fit: contain; }
+
+    /* Logo chips */
+    .logo-chip { padding: 5px 8px; font-size: 0.65rem; gap: 5px; }
+    .logo-chip img { height: 14px; }
+
+    /* Badge */
+    .badge { padding: 6px 14px; font-size: 0.75rem; }
+
+    /* Numbered badge */
+    .num-badge { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; }
+
+    /* Nav */
+    #navbar { height: 48px; padding: 0 16px; }
+    #navbar img { height: 22px; }
+    .slide { top: 48px; }
+
+    /* Hide fullscreen button */
+    [onclick*="fullscreen"], button[title*="ullscreen"] { display: none !important; }
+
+    /* Slide counter */
+    #slide-counter { font-size: 0.65rem; right: 16px; bottom: 12px; }
+
+    /* Nav hint */
+    #nav-hint { font-size: 0.6rem; padding: 4px 10px; bottom: 12px; }
+
+    /* Integration rows */
+    .int-row-label { width: 60px; font-size: 0.6rem; }
+
+    /* Gaps */
+    [style*="gap: 40px"] { gap: 20px !important; }
+    [style*="gap: 32px"] { gap: 16px !important; }
+    [style*="gap: 24px"] { gap: 14px !important; }
+}
     </style>
 </head>
 <body>
