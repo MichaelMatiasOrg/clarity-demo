@@ -20,7 +20,7 @@
     --danger-muted: #FEE2E2;
 }
 
-/* ========== RESET ========== */
+/* ========== RESET & BASE ========== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -59,26 +59,28 @@ body {
     padding: 60px 80px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease;
     overflow: hidden;
     background: var(--bg-primary);
 }
+
 .slide.active {
     opacity: 1;
     pointer-events: auto;
 }
 
-/* Subtle radial bg on every slide */
+/* Subtle radial background patterns */
 .slide::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 20% 80%, rgba(97,243,147,0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(10,22,40,0.02) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(97,243,147,0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(10,22,40,0.03) 0%, transparent 50%);
     pointer-events: none;
 }
 
+/* Decorative circles */
 .slide::after {
     content: '';
     position: absolute;
@@ -92,8 +94,14 @@ body {
 }
 
 /* ========== IN-VIEW ANIMATIONS ========== */
-.anim { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.anim {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 .slide.active .anim { opacity: 1; transform: translateY(0); }
+
+/* Staggered animation delays */
 .slide.active .anim.d1 { transition-delay: 0.1s; }
 .slide.active .anim.d2 { transition-delay: 0.2s; }
 .slide.active .anim.d3 { transition-delay: 0.3s; }
@@ -106,12 +114,33 @@ body {
 .slide.active .anim.d10 { transition-delay: 1.0s; }
 
 /* ========== TYPOGRAPHY ========== */
-h1 { font-size: 3.6rem; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
-h2 { font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
-h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
-.subtitle { font-size: 1.3rem; color: var(--text-secondary); font-weight: 500; }
+h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.5;
+}
 .accent { color: var(--accent); }
 .danger { color: var(--danger); }
+
 .section-label {
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -119,9 +148,10 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
     opacity: 0.7;
     font-size: 0.8rem;
     margin-bottom: 12px;
+    color: var(--accent);
 }
 
-/* ========== BADGE ========== */
+/* ========== COMPONENTS ========== */
 .badge {
     display: inline-block;
     background: var(--accent-muted);
@@ -131,28 +161,62 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
     font-size: 0.85rem;
     font-weight: 600;
     border: 1px solid var(--accent);
+    margin-bottom: 16px;
 }
-.badge-danger { background: var(--danger-muted); border-color: var(--danger); }
 
-/* ========== CARDS ========== */
+.badge-danger {
+    background: var(--danger-muted);
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
 .card {
     background: var(--bg-card);
     border-radius: 16px;
     padding: 32px;
     border: 1px solid var(--border);
-    box-shadow: 0 4px 20px rgba(10,22,40,0.04);
+    box-shadow: 0 4px 20px rgba(10,22,40,0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* ========== DEMO FRAME ========== */
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(10,22,40,0.12);
+}
+
+/* ========== DEMO FRAME (with perimeter pulse) ========== */
 .demo-frame {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 15px 50px rgba(10,22,40,0.15);
     position: relative;
+    transition: transform 0.3s ease;
 }
-.demo-frame img { width: 100%; display: block; }
 
-/* ========== NUMBERED BADGE ========== */
+.demo-frame:hover {
+    transform: scale(1.02);
+}
+
+.demo-frame img {
+    width: 100%;
+    display: block;
+}
+
+/* Perimeter pulse animation (masterclass style) */
+@keyframes perimeter-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(97, 243, 147, 0.4), 0 15px 50px rgba(10,22,40,0.15);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(97, 243, 147, 0), 0 15px 50px rgba(10,22,40,0.15);
+    }
+}
+
+.demo-frame.pulse {
+    animation: perimeter-pulse 2s infinite;
+}
+
+/* ========== NUMBERED BADGES ========== */
 .num-badge {
     width: 50px;
     height: 50px;
@@ -163,10 +227,11 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
     font-size: 1.4rem;
     font-weight: 800;
     color: white;
+    background: var(--accent);
     flex-shrink: 0;
 }
 
-/* ========== LOGO CHIP ========== */
+/* ========== LOGO CHIPS ========== */
 .logo-chip {
     display: inline-flex;
     align-items: center;
@@ -178,45 +243,18 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-primary);
-}
-.logo-chip img { height: 20px; width: auto; }
-
-/* ========== SLIDE COUNTER ========== */
-#slide-counter {
-    position: fixed;
-    bottom: 24px;
-    right: 32px;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    opacity: 0.5;
-    z-index: 999;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 4px;
 }
 
-/* ========== NAV HINT ========== */
-#nav-hint {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10,22,40,0.6);
-    color: white;
-    padding: 6px 14px;
-    border-radius: 8px;
-    font-size: 0.7rem;
-    z-index: 999;
-    opacity: 0.6;
-}
-#nav-hint kbd {
-    background: rgba(255,255,255,0.2);
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin: 0 2px;
+.logo-chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* ========== CLARITY STAR (decorative) ========== */
-.clarity-star {
-    position: absolute;
-    pointer-events: none;
+.logo-chip img {
+    height: 20px;
+    width: auto;
 }
 
 /* ========== TIMELINE ========== */
@@ -227,91 +265,214 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
     position: relative;
     max-width: 1100px;
     width: 100%;
+    justify-content: space-between;
 }
+
 .timeline-line {
     position: absolute;
-    top: 25px;
+    top: 30px;
     left: 60px;
     right: 60px;
     height: 3px;
     background: var(--border);
 }
+
 .timeline-line-fill {
     height: 100%;
     background: var(--accent);
     width: 0;
-    transition: width 1.5s ease;
+    transition: width 2s ease 0.5s;
 }
-.slide.active .timeline-line-fill { width: 100%; }
+
+.slide.active .timeline-line-fill {
+    width: 100%;
+}
 
 .timeline-item {
     flex: 1;
     text-align: center;
     position: relative;
     z-index: 1;
+    max-width: 200px;
 }
+
 .timeline-dot {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     margin: 0 auto 16px;
     color: white;
     background: var(--text-primary);
+    border: 4px solid white;
+    box-shadow: 0 4px 20px rgba(10,22,40,0.1);
+    transition: all 0.3s ease;
 }
-.timeline-dot.accent-bg { background: var(--accent); color: var(--text-primary); }
-.timeline-dot.danger-bg { background: var(--danger); }
 
-/* ========== STAT POP ========== */
+.timeline-dot.accent-bg {
+    background: var(--accent);
+    color: var(--text-primary);
+    animation: timeline-pulse 2s infinite 2s;
+}
+
+.timeline-dot.danger-bg {
+    background: var(--danger);
+    animation: timeline-pulse 2s infinite 2s;
+}
+
+@keyframes timeline-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ========== STAT POP ANIMATION ========== */
 @keyframes statPop {
-    0% { transform: scale(0.5); opacity: 0; }
+    0% { transform: scale(0.3); opacity: 0; }
     70% { transform: scale(1.08); }
     100% { transform: scale(1); opacity: 1; }
 }
+
 .stat-pop {
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.3);
 }
-.slide.active .stat-pop {
-    animation: statPop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;
-}
-.slide.active .stat-pop.d1 { animation-delay: 0.2s; }
-.slide.active .stat-pop.d2 { animation-delay: 0.4s; }
-.slide.active .stat-pop.d3 { animation-delay: 0.6s; }
-.slide.active .stat-pop.d4 { animation-delay: 0.8s; }
 
-/* ========== ORBIT / LIFECYCLE ========== */
+.slide.active .stat-pop {
+    animation: statPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.slide.active .stat-pop.d1 { animation-delay: 0.3s; }
+.slide.active .stat-pop.d2 { animation-delay: 0.5s; }
+.slide.active .stat-pop.d3 { animation-delay: 0.7s; }
+.slide.active .stat-pop.d4 { animation-delay: 0.9s; }
+
+/* ========== LIFECYCLE ORBIT ========== */
 @keyframes orbitSpin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
 @keyframes orbitItemCounter {
-    from { transform: rotate(0deg) translateX(180px) rotate(0deg); }
-    to { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
-}
-.orbit-ring { animation: orbitSpin 20s linear infinite; }
-.orbit-item {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 120px; height: 120px;
-    margin: -60px 0 0 -60px;
+    from { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
 }
 
-/* ========== PIPELINE ========== */
+.orbit-container {
+    position: relative;
+    width: 450px;
+    height: 450px;
+    margin: 0 auto;
+}
+
+.orbit-ring {
+    position: absolute;
+    inset: 0;
+    border: 2px dashed rgba(97,243,147,0.3);
+    border-radius: 50%;
+    animation: orbitSpin 20s linear infinite;
+}
+
+.orbit-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(10,22,40,0.2), 0 0 30px 10px rgba(97,243,147,0.1);
+    z-index: 2;
+}
+
+.orbit-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 80px;
+    margin: -40px 0 0 -60px;
+    transform-origin: 60px 50%;
+}
+
+.orbit-card {
+    background: white;
+    border-radius: 12px;
+    padding: 12px 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 1px solid var(--border);
+    animation: orbitItemCounter 20s linear infinite;
+}
+
+/* Position orbit items */
+.orbit-item:nth-child(1) { transform: rotate(0deg) translateX(200px); }
+.orbit-item:nth-child(2) { transform: rotate(72deg) translateX(200px); }
+.orbit-item:nth-child(3) { transform: rotate(144deg) translateX(200px); }
+.orbit-item:nth-child(4) { transform: rotate(216deg) translateX(200px); }
+.orbit-item:nth-child(5) { transform: rotate(288deg) translateX(200px); }
+
+/* ========== PIPELINE/GAUNTLET ========== */
 @keyframes candidateFlow {
-    0% { left: -20px; opacity: 0; }
+    0% { left: -30px; opacity: 0; }
     5% { opacity: 1; }
-    95% { opacity: 1; }
-    100% { left: calc(100% + 20px); opacity: 0; }
+    20% { left: 15%; }
+    40% { left: 35%; }
+    60% { left: 55%; }
+    80% { left: 75%; }
+    95% { left: 90%; opacity: 1; }
+    100% { left: 105%; opacity: 0; }
 }
-@keyframes threatEject {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-80px); opacity: 0; }
+
+@keyframes threatDetection {
+    0% { left: -30px; opacity: 0; background: var(--accent); }
+    5% { opacity: 1; }
+    40% { left: 35%; background: var(--accent); }
+    45% { left: 35%; transform: translateY(-50%) scale(1.3); background: var(--danger); }
+    55% { left: 37%; transform: translateY(-100px) scale(1); background: var(--danger); opacity: 1; }
+    70% { left: 40%; transform: translateY(-150px) scale(0.8); background: var(--danger); opacity: 0.5; }
+    100% { left: 42%; transform: translateY(-200px) scale(0.5); background: var(--danger); opacity: 0; }
 }
+
+@keyframes particleBurst {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.3; transform: translate(-80px, -120px) scale(0.3); }
+    100% { opacity: 0; transform: translate(-100px, -150px) scale(0); }
+}
+
+.pipeline-track {
+    position: relative;
+    height: 80px;
+    background: linear-gradient(90deg, var(--border) 0%, var(--accent) 100%);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 40px;
+    margin: 40px 0;
+}
+
+.pipeline-stage {
+    background: white;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    z-index: 1;
+    text-align: center;
+    line-height: 1.2;
+}
+
 .pipeline-dot {
     position: absolute;
     width: 12px;
@@ -319,200 +480,210 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
     border-radius: 50%;
     top: 50%;
     margin-top: -6px;
-    animation: candidateFlow 4s linear infinite;
+    background: var(--accent);
+    opacity: 0;
 }
-.pipeline-dot.threat {
-    background: var(--danger);
-    animation: candidateFlow 4s linear infinite, threatEject 0.5s ease-out 2s forwards;
-}
-.pipeline-dot.clean { background: var(--accent); }
 
-/* ========== CHECKMARK APPEAR ========== */
+.slide.active .pipeline-dot.clean1 { animation: candidateFlow 4s linear infinite 0.5s; }
+.slide.active .pipeline-dot.clean2 { animation: candidateFlow 4s linear infinite 2s; }
+.slide.active .pipeline-dot.threat1 { animation: threatDetection 4s linear infinite 1s; }
+.slide.active .pipeline-dot.clean3 { animation: candidateFlow 4s linear infinite 3.5s; }
+.slide.active .pipeline-dot.threat2 { animation: threatDetection 4s linear infinite 4.2s; }
+
+/* ========== CHECK APPEAR ANIMATION ========== */
 @keyframes checkScale {
-    0% { transform: scale(0); }
-    70% { transform: scale(1.15); }
-    100% { transform: scale(1); }
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
 }
+
 .check-appear {
     transform: scale(0);
+    opacity: 0;
 }
-.slide.active .check-appear {
-    animation: checkScale 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
-}
-.slide.active .check-appear.cd1 { animation-delay: 0.3s; }
-.slide.active .check-appear.cd2 { animation-delay: 0.5s; }
-.slide.active .check-appear.cd3 { animation-delay: 0.7s; }
-.slide.active .check-appear.cd4 { animation-delay: 0.9s; }
-.slide.active .check-appear.cd5 { animation-delay: 1.1s; }
 
-/* ========== PULSE ========== */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+.slide.active .check-appear {
+    animation: checkScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
+
+.slide.active .check-appear.cd1 { animation-delay: 0.4s; }
+.slide.active .check-appear.cd2 { animation-delay: 0.6s; }
+.slide.active .check-appear.cd3 { animation-delay: 0.8s; }
+.slide.active .check-appear.cd4 { animation-delay: 1.0s; }
+
+/* ========== CARD REVEAL STAGGER ========== */
+.card-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide.active .card-reveal { opacity: 1; transform: translateY(0); }
+.slide.active .card-reveal.r1 { transition-delay: 0.1s; }
+.slide.active .card-reveal.r2 { transition-delay: 0.2s; }
+.slide.active .card-reveal.r3 { transition-delay: 0.3s; }
+.slide.active .card-reveal.r4 { transition-delay: 0.4s; }
 
 /* ========== DARK SLIDE ========== */
 .slide-dark {
     background: var(--text-primary) !important;
     color: white;
 }
+
 .slide-dark::before {
     background:
         radial-gradient(circle at 30% 70%, rgba(97,243,147,0.08) 0%, transparent 50%),
         radial-gradient(circle at 70% 30%, rgba(97,243,147,0.05) 0%, transparent 50%);
 }
-.slide-dark::after { border-color: rgba(97,243,147,0.15); }
-.slide-dark h1, .slide-dark h2, .slide-dark h3 { color: white; }
-.slide-dark .subtitle { color: rgba(255,255,255,0.6); }
+
+.slide-dark::after {
+    border-color: rgba(97,243,147,0.15);
+}
+
+.slide-dark h1, .slide-dark h2, .slide-dark h3 {
+    color: white;
+}
+
+.slide-dark .subtitle {
+    color: rgba(255,255,255,0.7);
+}
 
 /* ========== INTEGRATION ROWS ========== */
 .int-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
 }
+
 .int-row-label {
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
     color: var(--text-secondary);
-    width: 80px;
+    width: 90px;
     flex-shrink: 0;
 }
-/* ========== RESPONSIVE: TABLET (768px) ========== */
-@media (max-width: 768px) {
-    .slide { padding: 40px 40px; }
-    h1 { font-size: 2.6rem; }
-    h2 { font-size: 2rem; }
-    h3 { font-size: 1.4rem; }
-    .subtitle { font-size: 1.1rem; }
 
-    /* Grids to single column */
-    [style*="grid-template-columns: 1fr 1fr"],
-    [style*="grid-template-columns: repeat(2"],
-    [style*="grid-template-columns: repeat(3"],
-    [style*="grid-template-columns: repeat(4"] {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* Split layouts (content + screenshot) */
-    [style*="grid-template-columns: 1.2fr"],
-    [style*="grid-template-columns: 1.1fr"],
-    [style*="grid-template-columns: 1fr 1.2fr"],
-    [style*="grid-template-columns: 1fr 1.1fr"] {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* Stats cards: 2 columns */
-    [style*="grid-template-columns: repeat(4"] {
-        grid-template-columns: 1fr 1fr !important;
-    }
-    [style*="grid-template-columns: repeat(3"] {
-        grid-template-columns: 1fr 1fr !important;
-    }
-
-    /* Timeline */
-    .timeline { flex-wrap: wrap; gap: 16px; }
-    .timeline-item { flex: 0 0 45%; }
-    .timeline-line { display: none; }
-
-    /* Orbit */
-    @keyframes orbitItemCounter {
-        from { transform: rotate(0deg) translateX(130px) rotate(0deg); }
-        to { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
-    }
-
-    /* Screenshots */
-    .demo-frame img { max-height: 50vh; object-fit: contain; }
-
-    /* Logo chips */
-    .logo-chip { padding: 6px 10px; font-size: 0.7rem; }
-    .logo-chip img { height: 16px; }
-
-    /* Nav */
-    #navbar { padding: 0 20px; }
-
-    /* Slide counter */
-    #slide-counter { font-size: 0.7rem; right: 20px; bottom: 16px; }
+/* ========== CLARITY STAR (decorative) ========== */
+.clarity-star {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.06;
 }
 
-/* ========== RESPONSIVE: MOBILE (480px) ========== */
-@media (max-width: 480px) {
-    .slide { padding: 30px 20px; }
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.5rem; }
-    h3 { font-size: 1.2rem; }
-    .subtitle { font-size: 0.95rem; }
-    .section-label { font-size: 0.7rem; }
+.clarity-star-1 {
+    top: 80px;
+    right: 100px;
+    width: 120px;
+    height: 120px;
+    animation: float 6s ease-in-out infinite;
+}
 
-    /* All grids single column */
+.clarity-star-2 {
+    bottom: 120px;
+    left: 120px;
+    width: 80px;
+    height: 80px;
+    animation: float 4s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* ========== PULSE ANIMATION ========== */
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.02); }
+}
+
+.pulse {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+/* ========== SLIDE COUNTER ========== */
+#slide-counter {
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    z-index: 999;
+}
+
+/* ========== NAV HINT ========== */
+#nav-hint {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10,22,40,0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    z-index: 999;
+    opacity: 0.7;
+}
+
+#nav-hint kbd {
+    background: rgba(255,255,255,0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .slide { padding: 40px 30px; }
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    .subtitle { font-size: 1.1rem; }
+    
+    .timeline { flex-wrap: wrap; gap: 20px; }
+    .timeline-item { flex: 0 0 45%; }
+    .timeline-line { display: none; }
+    
+    .orbit-container { width: 320px; height: 320px; }
+    .orbit-item { width: 100px; height: 70px; margin: -35px 0 0 -50px; }
+    .orbit-item:nth-child(n) { transform: rotate(calc(var(--i) * 72deg)) translateX(140px); }
+    
     [style*="grid-template-columns"] {
         grid-template-columns: 1fr !important;
+        gap: 20px !important;
     }
+    
+    .demo-frame img { max-height: 50vh; object-fit: contain; }
+    .logo-chip { font-size: 0.7rem; padding: 6px 10px; }
+    .logo-chip img { height: 16px; }
+}
 
-    /* Cards */
-    .card { padding: 20px; border-radius: 12px; }
-
-    /* Stats cards single column */
-    [style*="grid-template-columns: repeat(4"],
-    [style*="grid-template-columns: repeat(3"],
-    [style*="grid-template-columns: repeat(2"] {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* Timeline vertical */
+@media (max-width: 480px) {
+    .slide { padding: 30px 20px; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .subtitle { font-size: 1rem; }
+    .card { padding: 20px; }
+    
     .timeline { flex-direction: column; align-items: stretch; }
-    .timeline-item { flex: none; text-align: left; display: flex; align-items: center; gap: 12px; }
-    .timeline-dot { margin: 0; flex-shrink: 0; width: 40px; height: 40px; font-size: 0.65rem; }
-
-    /* Pipeline scale down */
-    .pipeline-dot { width: 8px; height: 8px; margin-top: -4px; }
-
-    /* Orbit scale */
-    @keyframes orbitItemCounter {
-        from { transform: rotate(0deg) translateX(90px) rotate(0deg); }
-        to { transform: rotate(360deg) translateX(90px) rotate(-360deg); }
-    }
-    .orbit-item { width: 80px; height: 80px; margin: -40px 0 0 -40px; }
-
-    /* Screenshots */
-    .demo-frame { border-radius: 8px; }
-    .demo-frame img { max-height: 40vh; width: 100%; object-fit: contain; }
-
-    /* Logo chips */
-    .logo-chip { padding: 5px 8px; font-size: 0.65rem; gap: 5px; }
-    .logo-chip img { height: 14px; }
-
-    /* Badge */
-    .badge { padding: 6px 14px; font-size: 0.75rem; }
-
-    /* Numbered badge */
-    .num-badge { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; }
-
-    /* Nav */
+    .timeline-item { flex: none; display: flex; align-items: center; gap: 12px; text-align: left; }
+    .timeline-dot { margin: 0; width: 50px; height: 50px; }
+    
+    .orbit-container { width: 260px; height: 260px; }
+    .orbit-center { width: 80px; height: 80px; }
+    .orbit-item { width: 80px; height: 60px; margin: -30px 0 0 -40px; }
+    
+    .pipeline-stage { padding: 8px 12px; font-size: 0.65rem; }
+    .num-badge { width: 40px; height: 40px; font-size: 1.1rem; }
+    
     #navbar { height: 48px; padding: 0 16px; }
-    #navbar img { height: 22px; }
+    #navbar img { height: 24px; }
     .slide { top: 48px; }
-
-    /* Hide fullscreen button */
-    [onclick*="fullscreen"], button[title*="ullscreen"] { display: none !important; }
-
-    /* Slide counter */
-    #slide-counter { font-size: 0.65rem; right: 16px; bottom: 12px; }
-
-    /* Nav hint */
-    #nav-hint { font-size: 0.6rem; padding: 4px 10px; bottom: 12px; }
-
-    /* Integration rows */
-    .int-row-label { width: 60px; font-size: 0.6rem; }
-
-    /* Gaps */
-    [style*="gap: 40px"] { gap: 20px !important; }
-    [style*="gap: 32px"] { gap: 16px !important; }
-    [style*="gap: 24px"] { gap: 14px !important; }
 }
     </style>
 </head>
@@ -527,68 +698,71 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
 
 <!-- ===================== SLIDE 1: TITLE ===================== -->
 <section class="slide active" data-slide="1">
-    <!-- Decorative stars -->
-    <svg class="clarity-star" style="top: 60px; right: 80px; width: 120px; height: 120px; opacity: 0.06;" viewBox="0 0 60 60" fill="none">
+    <!-- Decorative Clarity stars -->
+    <svg class="clarity-star clarity-star-1" viewBox="0 0 60 60" fill="none">
         <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#0a1628"/>
         <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#0a1628"/>
         <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/>
         <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/>
     </svg>
-    <svg class="clarity-star" style="bottom: 100px; left: 100px; width: 80px; height: 80px; opacity: 0.04;" viewBox="0 0 60 60" fill="none">
+    <svg class="clarity-star clarity-star-2" viewBox="0 0 60 60" fill="none">
         <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/>
         <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/>
         <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#0a1628"/>
         <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#0a1628"/>
     </svg>
 
-    <div style="text-align: center; position: relative; z-index: 1;">
-        <div class="anim" style="margin-bottom: 48px;">
-            <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 56px;">
+    <div style="text-align: center; position: relative; z-index: 1; max-width: 900px;">
+        <div class="anim" style="margin-bottom: 50px;">
+            <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 60px;">
         </div>
-        <h1 class="anim d1" style="font-size: 4rem; letter-spacing: -1px;">Employee Identity Security</h1>
-        <div class="anim d2" style="width: 60px; height: 3px; background: var(--accent); margin: 20px auto;"></div>
-        <p class="anim d3 subtitle" style="font-size: 1.4rem;">Protecting Your Organization from Hiring Fraud</p>
+        <h1 class="anim d1">Employee Identity Security</h1>
+        <div class="anim d2" style="width: 80px; height: 4px; background: var(--accent); margin: 24px auto; border-radius: 2px;"></div>
+        <p class="anim d3 subtitle">Protecting your organization from hiring fraud and synthetic identities</p>
+        <div class="anim d4" style="margin-top: 40px; padding: 20px 32px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); display: inline-block;">
+            <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-right: 12px;">Trusted by</span>
+            <span style="font-weight: 700; color: var(--text-primary);">Fortune 500 companies</span>
+        </div>
     </div>
-    <div id="nav-hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Navigate &nbsp; <kbd>F</kbd> Fullscreen</div>
 </section>
 
 <!-- ===================== SLIDE 2: EVOLVING THREAT TIMELINE ===================== -->
 <section class="slide" data-slide="2">
-    <div style="max-width: 1100px; width: 100%; text-align: center;">
+    <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">The Evolving Threat</div>
-        <h2 class="anim d1" style="margin-bottom: 50px;">A threat that's been <span class="danger">accelerating</span></h2>
+        <h2 class="anim d1" style="margin-bottom: 60px;">A threat that's been <span class="danger">accelerating rapidly</span></h2>
 
         <div class="timeline">
             <div class="timeline-line"><div class="timeline-line-fill"></div></div>
 
             <div class="timeline-item anim d2">
                 <div class="timeline-dot">2020</div>
-                <h3 style="font-size: 1rem; margin-bottom: 6px;">COVID / Remote</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Remote hiring becomes universal. Identity verification goes virtual.</p>
+                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">COVID / Remote</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Remote hiring becomes universal. Identity verification goes virtual with limited oversight.</p>
             </div>
 
             <div class="timeline-item anim d3">
                 <div class="timeline-dot">2022</div>
-                <h3 style="font-size: 1rem; margin-bottom: 6px;">Bait-and-Switch</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Candidates swap identities between interview and onboarding.</p>
+                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Bait-and-Switch</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Candidates swap identities between interview and onboarding. Different person shows up for work.</p>
             </div>
 
             <div class="timeline-item anim d5">
                 <div class="timeline-dot danger-bg">2024</div>
-                <h3 style="font-size: 1rem; margin-bottom: 6px;">Deepfakes Emerge</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">$25M Hong Kong deepfake fraud. Real-time face swaps in interviews.</p>
+                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Deepfakes Emerge</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">$25M Hong Kong deepfake fraud. Real-time face swaps in video interviews become mainstream.</p>
             </div>
 
             <div class="timeline-item anim d7">
                 <div class="timeline-dot danger-bg">2025</div>
-                <h3 style="font-size: 1rem; margin-bottom: 6px;">NK Operatives</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">KnowBe4 hires NK worker. DOJ indicts 300+ infiltrations.</p>
+                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">NK Infiltration</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">KnowBe4 hires NK operative. DOJ indicts 300+ companies for infiltration incidents.</p>
             </div>
 
             <div class="timeline-item anim d9">
                 <div class="timeline-dot accent-bg">2026</div>
-                <h3 style="font-size: 1rem; margin-bottom: 6px;">Automated at Scale</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">AI enables mass-produced synthetic identities. 1 in 4 profiles fake.</p>
+                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">AI-Powered Scale</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Automated creation of synthetic identities. 1 in 4 profiles predicted to be fake by 2028.</p>
             </div>
         </div>
     </div>
@@ -596,44 +770,46 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
 
 <!-- ===================== SLIDE 3: SCALE OF THE PROBLEM ===================== -->
 <section class="slide" data-slide="3">
-    <div style="max-width: 1100px; width: 100%; text-align: center;">
+    <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">Scale of the Problem</div>
-        <h2 class="anim d1" style="margin-bottom: 50px;">The hiring fraud epidemic</h2>
+        <h2 class="anim d1" style="margin-bottom: 50px;">The hiring fraud epidemic is <span class="danger">here</span></h2>
 
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 50px;">
-            <div class="card stat-pop d1" style="text-align: center;">
-                <div style="font-size: 3.2rem; font-weight: 800; color: var(--danger); margin-bottom: 8px;">1 in 4</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">candidate profiles will be fake by 2028</p>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;">-- Gartner</p>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-bottom: 60px;">
+            <div class="card stat-pop d1" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
+                <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1 in 4</div>
+                <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">candidate profiles will be fake by 2028</p>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Gartner Research</p>
             </div>
-            <div class="card stat-pop d2" style="text-align: center;">
-                <div style="font-size: 3.2rem; font-weight: 800; color: var(--danger); margin-bottom: 8px;">1,800+</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">suspected NK applicants blocked by Amazon</p>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;">-- Dark Reading</p>
+            <div class="card stat-pop d2" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
+                <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1,800+</div>
+                <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">suspected NK applicants blocked by Amazon alone</p>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Dark Reading, 2025</p>
             </div>
-            <div class="card stat-pop d3" style="text-align: center;">
-                <div style="font-size: 3.2rem; font-weight: 800; color: var(--danger); margin-bottom: 8px;">300+</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">US companies infiltrated by NK operatives</p>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;">-- DOJ Indictment</p>
+            <div class="card stat-pop d3" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
+                <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">300+</div>
+                <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">US companies infiltrated by NK operatives</p>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— DOJ Indictment, 2025</p>
             </div>
-            <div class="card stat-pop d4" style="text-align: center;">
-                <div style="font-size: 3.2rem; font-weight: 800; color: var(--danger); margin-bottom: 8px;">220%</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">increase in NK infiltrations in 12 months</p>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;">-- Fortune, 2025</p>
+            <div class="card stat-pop d4" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
+                <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">220%</div>
+                <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">increase in NK infiltrations in 12 months</p>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Fortune, 2025</p>
             </div>
         </div>
 
-        <!-- Carmakal Quote -->
-        <div class="anim d6" style="display: flex; align-items: center; gap: 32px; background: white; border-radius: 16px; padding: 28px 36px; border-left: 4px solid var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,0.04); text-align: left; max-width: 900px; margin: 0 auto;">
-            <img src="../../shared/people/charles-carmakal.png" alt="Charles Carmakal" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border);">
+        <!-- Charles Carmakal Quote Card -->
+        <div class="anim d6" style="display: flex; align-items: center; gap: 40px; background: white; border-radius: 20px; padding: 36px 40px; border-left: 6px solid var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.08); text-align: left; max-width: 1000px; margin: 0 auto;">
+            <img src="../../shared/people/charles-carmakal.png" alt="Charles Carmakal" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
             <div style="flex: 1;">
-                <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 12px; font-style: italic; color: var(--text-primary);">
-                    "Almost every CISO of a Fortune 500 company that I've spoken to -- I'll just characterize as <span style="color: var(--danger); font-weight: 700;">dozens</span> -- have admitted that they had a North Korean IT worker problem."
+                <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 16px; font-style: italic; color: var(--text-primary); font-weight: 500;">
+                    "Almost every CISO of a Fortune 500 company that I've spoken to — I'll just characterize as <span style="color: var(--danger); font-weight: 700;">dozens</span> — have admitted that they had a North Korean IT worker problem."
                 </p>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-weight: 700; font-size: 0.85rem;">Charles Carmakal</span>
-                    <span style="color: var(--text-secondary); font-size: 0.8rem;">CTO, Mandiant</span>
-                    <img src="../../shared/logos/mandiant.png" alt="Mandiant" style="height: 18px; margin-left: 4px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">Charles Carmakal</div>
+                        <div style="color: var(--text-secondary); font-size: 0.85rem;">CTO, Mandiant</div>
+                    </div>
+                    <img src="../../shared/logos/mandiant.svg" alt="Mandiant" style="height: 24px; margin-left: 8px; opacity: 0.8;">
                 </div>
             </div>
         </div>
@@ -642,39 +818,42 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
 
 <!-- ===================== SLIDE 4: WHY CURRENT SOLUTIONS FALL SHORT ===================== -->
 <section class="slide" data-slide="4">
-    <div style="max-width: 1000px; width: 100%; text-align: center;">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
         <div class="anim section-label">The Gap</div>
         <h2 class="anim d1">Why current solutions <span class="danger">fall short</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 50px;">No single check stops a determined fraudster</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 60px;">Point solutions create blind spots. Fraudsters exploit the gaps.</p>
 
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
-            <div class="card anim d3" style="text-align: left; position: relative;">
-                <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: var(--danger-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;">
+            <div class="card card-reveal r1" style="text-align: left; position: relative; border-left: 4px solid var(--danger);">
+                <div style="position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: var(--danger-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </div>
-                <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Background Checks</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Miss synthetic identities entirely. No criminal history = "clean" result. The person may not exist.</p>
+                <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--danger);">Background Checks</h3>
+                <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">Miss synthetic identities entirely. No criminal history equals "clean" result. The person may not even exist.</p>
             </div>
-            <div class="card anim d4" style="text-align: left; position: relative;">
-                <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: var(--danger-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            
+            <div class="card card-reveal r2" style="text-align: left; position: relative; border-left: 4px solid var(--danger);">
+                <div style="position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: var(--danger-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </div>
-                <h3 style="font-size: 1.15rem; margin-bottom: 8px;">IDV Alone</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">10% inconclusive rate. Easily fooled by high-quality fake documents and AI-generated selfies.</p>
+                <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--danger);">Identity Verification Alone</h3>
+                <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">10%+ inconclusive rate. Easily defeated by high-quality fake documents and AI-generated selfies.</p>
             </div>
-            <div class="card anim d5" style="text-align: left; position: relative;">
-                <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: var(--danger-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            
+            <div class="card card-reveal r3" style="text-align: left; position: relative; border-left: 4px solid var(--danger);">
+                <div style="position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: var(--danger-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </div>
-                <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Deepfake Detection Alone</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">~80% accuracy cap with standalone tools. Attackers adapt faster than detectors evolve.</p>
+                <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--danger);">Deepfake Detection</h3>
+                <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">~80% accuracy ceiling with standalone tools. Attackers adapt faster than detection evolves.</p>
             </div>
-            <div class="card anim d6" style="text-align: left; position: relative;">
-                <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: var(--danger-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            
+            <div class="card card-reveal r4" style="text-align: left; position: relative; border-left: 4px solid var(--danger);">
+                <div style="position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: var(--danger-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </div>
-                <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Point Solutions</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Bypassed once methodology is known. No cross-signal correlation means blind spots everywhere.</p>
+                <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--danger);">Siloed Approaches</h3>
+                <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">No cross-signal correlation means attackers slip through. One methodology bypass defeats the entire system.</p>
             </div>
         </div>
     </div>
@@ -682,61 +861,67 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
 
 <!-- ===================== SLIDE 5: CASE STUDY ===================== -->
 <section class="slide" data-slide="5">
-    <div style="max-width: 1000px; width: 100%; text-align: center;">
-        <div class="anim badge" style="margin-bottom: 20px;">Case Study</div>
-        <h2 class="anim d1" style="font-size: 2.4rem;">A Fortune 500 insurance company<br>tested <span class="accent">Clarity</span> on 28 resumes</h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 50px;">Here's what we found</p>
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim badge" style="margin-bottom: 24px;">Real Case Study</div>
+        <h2 class="anim d1" style="font-size: 2.6rem; margin-bottom: 16px;">A Fortune 500 insurance company<br>tested <span class="accent">Clarity</span> on 28 resumes</h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 50px;">Here's what we discovered in their active pipeline</p>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px;">
-            <div class="card anim d3" style="border-top: 4px solid var(--danger);">
-                <div style="font-size: 3.5rem; font-weight: 800; color: var(--danger);">7</div>
-                <div style="font-weight: 600; color: var(--danger); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">High Risk</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto;">
+            <div class="card anim d3" style="border-top: 6px solid var(--danger); text-align: center; background: linear-gradient(135deg, white 0%, #fef2f2 100%);">
+                <div style="font-size: 4rem; font-weight: 800; color: var(--danger); margin-bottom: 8px; line-height: 1;">7</div>
+                <div style="font-weight: 700; color: var(--danger); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">High Risk</div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Likely fraud</div>
             </div>
-            <div class="card anim d4" style="border-top: 4px solid #F59E0B;">
-                <div style="font-size: 3.5rem; font-weight: 800; color: #F59E0B;">5</div>
-                <div style="font-weight: 600; color: #F59E0B; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Medium Risk</div>
+            <div class="card anim d4" style="border-top: 6px solid #F59E0B; text-align: center; background: linear-gradient(135deg, white 0%, #fffbeb 100%);">
+                <div style="font-size: 4rem; font-weight: 800; color: #F59E0B; margin-bottom: 8px; line-height: 1;">5</div>
+                <div style="font-weight: 700; color: #F59E0B; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Medium Risk</div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Requires review</div>
             </div>
-            <div class="card anim d5" style="border-top: 4px solid #10B981;">
-                <div style="font-size: 3.5rem; font-weight: 800; color: #10B981;">16</div>
-                <div style="font-weight: 600; color: #10B981; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Low Risk</div>
+            <div class="card anim d5" style="border-top: 6px solid #10B981; text-align: center; background: linear-gradient(135deg, white 0%, #ecfdf5 100%);">
+                <div style="font-size: 4rem; font-weight: 800; color: #10B981; margin-bottom: 8px; line-height: 1;">16</div>
+                <div style="font-weight: 700; color: #10B981; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Low Risk</div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Verified clean</div>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; text-align: left; max-width: 800px; margin: 0 auto;">
-            <div class="anim d6" style="display: flex; align-items: flex-start; gap: 14px; background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
-                <div class="check-appear cd1" style="width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: left; max-width: 900px; margin: 0 auto;">
+            <div class="anim d6" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+                <div class="check-appear cd1" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
                 <div>
-                    <div style="font-weight: 700; font-size: 0.9rem;">VoIP Burner Phones</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Disposable numbers, not real carriers</div>
+                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">VoIP Burner Phones</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Temporary numbers from virtual carriers, not real mobile providers</div>
                 </div>
             </div>
-            <div class="anim d7" style="display: flex; align-items: flex-start; gap: 14px; background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
-                <div class="check-appear cd2" style="width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+            
+            <div class="anim d7" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+                <div class="check-appear cd2" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
                 <div>
-                    <div style="font-weight: 700; font-size: 0.9rem;">Zero-Day Email Addresses</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Created days before applying</div>
+                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">Zero-Day Email Creation</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Email addresses created just days before job applications</div>
                 </div>
             </div>
-            <div class="anim d8" style="display: flex; align-items: flex-start; gap: 14px; background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
-                <div class="check-appear cd3" style="width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+            
+            <div class="anim d8" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+                <div class="check-appear cd3" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
                 <div>
-                    <div style="font-weight: 700; font-size: 0.9rem;">Employment Mismatches</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Work history contradicts employer databases</div>
+                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">Employment Mismatches</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Work history contradicts employer verification databases</div>
                 </div>
             </div>
-            <div class="anim d9" style="display: flex; align-items: flex-start; gap: 14px; background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
-                <div class="check-appear cd4" style="width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+            
+            <div class="anim d9" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+                <div class="check-appear cd4" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
                 <div>
-                    <div style="font-weight: 700; font-size: 0.9rem;">Cross-Identity Links</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Contact info linked to different identities</div>
+                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">Cross-Identity Linkage</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Contact information linked to multiple different identities</div>
                 </div>
             </div>
         </div>
@@ -745,187 +930,212 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
 
 <!-- ===================== SLIDE 6: EMPLOYEE IDENTITY LIFECYCLE ===================== -->
 <section class="slide" data-slide="6">
-    <div style="max-width: 1100px; width: 100%; text-align: center;">
-        <div class="anim section-label">The Platform</div>
+    <div style="max-width: 1200px; width: 100%; text-align: center;">
+        <div class="anim section-label">The Solution</div>
         <h2 class="anim d1">The Employee Identity <span class="accent">Lifecycle</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 60px;">Clarity verifies identity at every stage</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 60px;">Clarity verifies identity at every critical touchpoint</p>
 
-        <!-- Orbit Diagram -->
-        <div class="anim d3" style="position: relative; width: 420px; height: 420px; margin: 0 auto;">
-            <!-- Center: Clarity Logo -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90px; height: 90px; background: var(--text-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(10,22,40,0.3), 0 0 30px 10px rgba(97,243,147,0.1); animation: pulse 3s ease-in-out infinite; z-index: 2;">
-                <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 32px;">
+        <!-- Enhanced Orbit Diagram -->
+        <div class="anim d3 orbit-container">
+            <!-- Center: Clarity Logo with pulse -->
+            <div class="orbit-center pulse">
+                <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 36px;">
             </div>
 
             <!-- Orbit ring -->
-            <div style="position: absolute; inset: 0; border: 2px dashed rgba(97,243,147,0.3); border-radius: 50%;"></div>
+            <div class="orbit-ring"></div>
 
-            <!-- Rotating container -->
-            <div class="orbit-ring" style="position: absolute; inset: 0;">
-                <!-- Orbit items positioned at fixed angles -->
-                <div style="position: absolute; top: -24px; left: 50%; transform: translateX(-50%);">
-                    <div style="width: 100px; background: white; border-radius: 12px; padding: 12px 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: center; border: 1px solid var(--border);">
-                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent);">PRE-HIRE</div>
-                        <div style="font-size: 0.6rem; color: var(--text-secondary);">Screening</div>
-                    </div>
+            <!-- Orbit items positioned around the circle -->
+            <div class="orbit-item" style="--i: 0;">
+                <div class="orbit-card">
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">PRE-HIRE</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Resume Screening</div>
                 </div>
-                <div style="position: absolute; top: 50%; right: -30px; transform: translateY(-50%);">
-                    <div style="width: 100px; background: white; border-radius: 12px; padding: 12px 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: center; border: 1px solid var(--border);">
-                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent);">ONBOARDING</div>
-                        <div style="font-size: 0.6rem; color: var(--text-secondary);">Day 1</div>
-                    </div>
+            </div>
+            
+            <div class="orbit-item" style="--i: 1;">
+                <div class="orbit-card">
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">INTERVIEW</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Live Monitoring</div>
                 </div>
-                <div style="position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%);">
-                    <div style="width: 100px; background: white; border-radius: 12px; padding: 12px 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: center; border: 1px solid var(--border);">
-                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent);">MFA RESET</div>
-                        <div style="font-size: 0.6rem; color: var(--text-secondary);">Help Desk</div>
-                    </div>
+            </div>
+            
+            <div class="orbit-item" style="--i: 2;">
+                <div class="orbit-card">
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">ONBOARDING</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Day 1 Verification</div>
                 </div>
-                <div style="position: absolute; top: 15%; left: -30px;">
-                    <div style="width: 100px; background: white; border-radius: 12px; padding: 12px 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: center; border: 1px solid var(--border);">
-                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent);">CONTINUOUS</div>
-                        <div style="font-size: 0.6rem; color: var(--text-secondary);">Monitoring</div>
-                    </div>
+            </div>
+            
+            <div class="orbit-item" style="--i: 3;">
+                <div class="orbit-card">
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">MFA RESET</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Help Desk</div>
                 </div>
-                <div style="position: absolute; top: 75%; left: -30px;">
-                    <div style="width: 100px; background: white; border-radius: 12px; padding: 12px 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: center; border: 1px solid var(--border);">
-                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent);">PRIVILEGED</div>
-                        <div style="font-size: 0.6rem; color: var(--text-secondary);">Access</div>
-                    </div>
+            </div>
+            
+            <div class="orbit-item" style="--i: 4;">
+                <div class="orbit-card">
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">CONTINUOUS</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Monitoring</div>
                 </div>
             </div>
         </div>
 
-        <!-- Summary bar -->
-        <div class="anim d6" style="display: flex; justify-content: center; gap: 40px; margin-top: 60px; padding: 20px 40px; background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); max-width: 800px; margin-left: auto; margin-right: auto;">
+        <!-- Enhanced Technology Summary -->
+        <div class="anim d6" style="display: flex; justify-content: center; gap: 50px; margin-top: 70px; padding: 28px 50px; background: white; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.06); max-width: 1000px; margin-left: auto; margin-right: auto;">
             <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Biometric</div>
-                <div style="font-size: 0.85rem;">Face Match & Liveness</div>
+                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">Biometric</div>
+                <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">Face Match & Liveness</div>
             </div>
-            <div style="width: 1px; background: var(--border);"></div>
+            <div style="width: 2px; background: var(--border);"></div>
             <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Deepfake</div>
-                <div style="font-size: 0.85rem;">AI Media Detection</div>
+                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">Deepfake</div>
+                <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">AI Media Detection</div>
             </div>
-            <div style="width: 1px; background: var(--border);"></div>
+            <div style="width: 2px; background: var(--border);"></div>
             <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Document</div>
-                <div style="font-size: 0.85rem;">ID & Resume Verification</div>
+                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">Document</div>
+                <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">ID & Resume Verification</div>
             </div>
-            <div style="width: 1px; background: var(--border);"></div>
+            <div style="width: 2px; background: var(--border);"></div>
             <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Behavioral</div>
-                <div style="font-size: 0.85rem;">Anomaly Detection</div>
+                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">Behavioral</div>
+                <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">Anomaly Detection</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 7: THE PIPELINE ===================== -->
+<!-- ===================== SLIDE 7: THE PIPELINE (GAUNTLET) ===================== -->
 <section class="slide" data-slide="7">
-    <div style="max-width: 1100px; width: 100%; text-align: center;">
+    <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">How It Works</div>
         <h2 class="anim d1">The Clarity <span class="accent">Gauntlet</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 50px;">Every candidate runs through multiple checks. Threats get caught. Verified candidates proceed.</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 50px;">Every candidate runs through multiple verification layers. Threats get detected and ejected.</p>
 
-        <!-- Pipeline visualization -->
+        <!-- Enhanced Pipeline Visualization -->
         <div class="anim d3" style="position: relative; padding: 40px 0;">
-            <!-- Pipeline track -->
-            <div style="position: relative; height: 80px; background: linear-gradient(90deg, var(--border) 0%, var(--accent) 50%, var(--accent) 100%); border-radius: 40px; display: flex; align-items: center; justify-content: space-around; padding: 0 40px;">
-                <!-- Stages -->
-                <div style="background: white; border-radius: 12px; padding: 12px 18px; font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border); z-index: 1;">Resume<br>Analysis</div>
-                <div style="background: white; border-radius: 12px; padding: 12px 18px; font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border); z-index: 1;">Interview<br>Monitoring</div>
-                <div style="background: white; border-radius: 12px; padding: 12px 18px; font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border); z-index: 1;">Cross-<br>Biometric</div>
-                <div style="background: white; border-radius: 12px; padding: 12px 18px; font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border); z-index: 1;">IDV</div>
-                <div style="background: white; border-radius: 12px; padding: 12px 18px; font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border); z-index: 1;">Risk<br>Engine</div>
+            <div class="pipeline-track">
+                <!-- Pipeline stages -->
+                <div class="pipeline-stage">Resume<br>Analysis</div>
+                <div class="pipeline-stage">Interview<br>Monitoring</div>
+                <div class="pipeline-stage">Cross-<br>Verification</div>
+                <div class="pipeline-stage">Identity<br>Validation</div>
+                <div class="pipeline-stage">Risk<br>Scoring</div>
 
-                <!-- Animated dots -->
-                <div class="pipeline-dot clean" style="animation-delay: 0s;"></div>
-                <div class="pipeline-dot clean" style="animation-delay: 1.5s;"></div>
-                <div class="pipeline-dot threat" style="animation-delay: 0.8s;"></div>
-                <div class="pipeline-dot clean" style="animation-delay: 2.5s;"></div>
-                <div class="pipeline-dot threat" style="animation-delay: 3.2s;"></div>
+                <!-- Animated candidate dots -->
+                <div class="pipeline-dot clean1"></div>
+                <div class="pipeline-dot clean2"></div>
+                <div class="pipeline-dot threat1"></div>
+                <div class="pipeline-dot clean3"></div>
+                <div class="pipeline-dot threat2"></div>
             </div>
 
-            <!-- Legend -->
-            <div style="display: flex; justify-content: center; gap: 32px; margin-top: 28px;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent);"></div>
-                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Verified candidate</span>
+            <!-- Enhanced Legend with statistics -->
+            <div style="display: flex; justify-content: center; gap: 50px; margin-top: 40px; padding: 20px 40px; background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--accent);"></div>
+                    <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Verified candidates proceed</span>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--danger);"></div>
-                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Threat detected & ejected</span>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--danger);"></div>
+                    <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Threats detected & blocked</span>
                 </div>
             </div>
+        </div>
+
+        <div class="anim d6" style="margin-top: 40px; padding: 24px 32px; background: var(--accent-muted); border-radius: 16px; border: 1px solid var(--accent); max-width: 600px; margin-left: auto; margin-right: auto;">
+            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">Real-Time Processing</div>
+            <div style="font-size: 0.9rem; color: var(--text-secondary);">Each verification completes in seconds. No friction for legitimate candidates.</div>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 8: THE COMMAND CENTER ===================== -->
+<!-- ===================== SLIDE 8: COMMAND CENTER ===================== -->
 <section class="slide" data-slide="8">
-    <div style="max-width: 1100px; width: 100%; text-align: center;">
+    <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">Command Center</div>
-        <h2 class="anim d1" style="margin-bottom: 12px;">Complete visibility into your <span class="accent">hiring pipeline</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 40px;">One dashboard. Every candidate. Real-time risk scoring.</p>
+        <h2 class="anim d1" style="margin-bottom: 16px;">Complete visibility into your <span class="accent">hiring pipeline</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 50px;">One unified dashboard. Every candidate. Real-time risk assessment.</p>
 
-        <div class="anim d3 demo-frame" style="max-width: 1000px; margin: 0 auto;">
-            <img src="../../shared/screenshots/employee-dashboard.png" alt="Clarity Command Center">
+        <div class="anim d3 demo-frame pulse" style="max-width: 1100px; margin: 0 auto;">
+            <img src="../../shared/screenshots/employee-dashboard.png" alt="Clarity Employee Dashboard">
+        </div>
+
+        <div class="anim d5" style="margin-top: 40px; display: flex; justify-content: center; gap: 40px;">
+            <div style="text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">Real-Time</div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">Risk Scoring</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">Multi-Modal</div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">Verification</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">Enterprise</div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">Integration</div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- ===================== SLIDE 9: DETECTION TECHNOLOGY ===================== -->
 <section class="slide" data-slide="9">
-    <div style="display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 50px; align-items: center; max-width: 1100px; width: 100%;">
-        <!-- Left: Text -->
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1200px; width: 100%;">
+        <!-- Left: Technology Steps -->
         <div>
             <div class="anim section-label">Detection Technology</div>
-            <h2 class="anim d1" style="font-size: 2.2rem;">Multi-layered<br><span class="accent">identity verification</span></h2>
+            <h2 class="anim d1" style="font-size: 2.4rem; line-height: 1.2;">Multi-layered<br><span class="accent">identity verification</span></h2>
+            <p class="anim d2 subtitle" style="margin-top: 16px; margin-bottom: 40px;">Comprehensive analysis across multiple signal types</p>
 
-            <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 20px;">
-                <div class="anim d3" style="display: flex; align-items: flex-start; gap: 16px;">
-                    <div class="num-badge" style="background: var(--accent); color: var(--text-primary);">1</div>
+            <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 28px;">
+                <div class="anim d3" style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div class="num-badge">1</div>
                     <div>
-                        <div style="font-weight: 700; margin-bottom: 4px;">Deepfake Detection</div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary);">Real-time analysis of video feeds for synthetic media artifacts</div>
+                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 1.1rem;">Deepfake Detection</div>
+                        <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">Real-time analysis of video feeds for synthetic media artifacts and manipulation</div>
                     </div>
                 </div>
-                <div class="anim d4" style="display: flex; align-items: flex-start; gap: 16px;">
-                    <div class="num-badge" style="background: var(--accent); color: var(--text-primary);">2</div>
+                
+                <div class="anim d4" style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div class="num-badge">2</div>
                     <div>
-                        <div style="font-weight: 700; margin-bottom: 4px;">Voice Analysis</div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary);">AI voice clone detection and speaker consistency tracking</div>
+                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 1.1rem;">Voice Analysis</div>
+                        <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">AI voice clone detection and speaker consistency tracking throughout interviews</div>
                     </div>
                 </div>
-                <div class="anim d5" style="display: flex; align-items: flex-start; gap: 16px;">
-                    <div class="num-badge" style="background: var(--accent); color: var(--text-primary);">3</div>
+                
+                <div class="anim d5" style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div class="num-badge">3</div>
                     <div>
-                        <div style="font-weight: 700; margin-bottom: 4px;">Biometric Match</div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary);">Cross-reference face across resume, interview, and ID documents</div>
+                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 1.1rem;">Biometric Matching</div>
+                        <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">Cross-reference facial features across resume photos, interviews, and ID documents</div>
                     </div>
                 </div>
-                <div class="anim d6" style="display: flex; align-items: flex-start; gap: 16px;">
-                    <div class="num-badge" style="background: var(--accent); color: var(--text-primary);">4</div>
+                
+                <div class="anim d6" style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div class="num-badge">4</div>
                     <div>
-                        <div style="font-weight: 700; margin-bottom: 4px;">Identity Signals</div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary);">Phone, email, employment, and digital footprint verification</div>
+                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 1.1rem;">Identity Signals</div>
+                        <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">Phone, email, employment, and digital footprint verification with threat intelligence</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Right: Screenshot -->
+        <!-- Right: Screenshot with Platform Integrations -->
         <div class="anim d3">
-            <div class="demo-frame">
-                <img src="../../shared/screenshots/deepfake.png" alt="Deepfake Detection">
+            <div class="demo-frame" style="margin-bottom: 24px;">
+                <img src="../../shared/screenshots/deepfake.png" alt="Deepfake Detection Interface">
             </div>
-            <!-- Logo chips below -->
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; justify-content: center;">
+            
+            <!-- Platform Integration Pills -->
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
                 <div class="logo-chip"><img src="../../shared/logos/zoom.svg" alt="Zoom">Zoom</div>
-                <div class="logo-chip"><img src="../../shared/logos/teams.svg" alt="Teams">Teams</div>
-                <div class="logo-chip"><img src="../../shared/logos/google-meet.svg" alt="Google Meet">Meet</div>
-                <div class="logo-chip"><img src="../../shared/logos/slack.svg" alt="Slack">Slack</div>
+                <div class="logo-chip"><img src="../../shared/logos/teams.svg" alt="Teams">Microsoft Teams</div>
+                <div class="logo-chip"><img src="../../shared/logos/google-meet.svg" alt="Google Meet">Google Meet</div>
+                <div class="logo-chip"><img src="../../shared/logos/slack.svg" alt="Slack">Slack Huddles</div>
             </div>
         </div>
     </div>
@@ -933,72 +1143,93 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
 
 <!-- ===================== SLIDE 10: ENTERPRISE INTEGRATION ===================== -->
 <section class="slide" data-slide="10">
-    <div style="max-width: 1000px; width: 100%; text-align: center;">
-        <div class="anim section-label">Integrations</div>
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">Enterprise Ready</div>
         <h2 class="anim d1">Fits into your <span class="accent">existing stack</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 50px;">Deploys in days, not months</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 60px;">Deploy in days, not months. API-first architecture with pre-built connectors.</p>
 
-        <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+        <div style="max-width: 900px; margin: 0 auto; text-align: left;">
             <div class="int-row anim d3">
-                <div class="int-row-label">HR / ATS</div>
+                <div class="int-row-label">ATS / HR</div>
                 <div class="logo-chip"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse">Greenhouse</div>
                 <div class="logo-chip"><img src="../../shared/logos/workday.svg" alt="Workday">Workday</div>
                 <div class="logo-chip"><img src="../../shared/logos/ashby.svg" alt="Ashby">Ashby</div>
                 <div class="logo-chip"><img src="../../shared/logos/lever.svg" alt="Lever">Lever</div>
                 <div class="logo-chip"><img src="../../shared/logos/icims.svg" alt="iCIMS">iCIMS</div>
             </div>
+            
             <div class="int-row anim d4">
                 <div class="int-row-label">Identity</div>
                 <div class="logo-chip"><img src="../../shared/logos/okta.svg" alt="Okta">Okta</div>
-                <div class="logo-chip"><img src="../../shared/logos/microsoft-entra-id.svg" alt="Entra ID">Entra ID</div>
+                <div class="logo-chip"><img src="../../shared/logos/microsoft-entra-id.svg" alt="Entra ID">Microsoft Entra ID</div>
             </div>
+            
             <div class="int-row anim d5">
                 <div class="int-row-label">ITSM</div>
                 <div class="logo-chip"><img src="../../shared/logos/servicenow.svg" alt="ServiceNow">ServiceNow</div>
-                <div class="logo-chip"><img src="../../shared/logos/jira.svg" alt="Jira">Jira</div>
+                <div class="logo-chip"><img src="../../shared/logos/jira.svg" alt="Jira">Jira Service Management</div>
             </div>
+            
             <div class="int-row anim d6">
                 <div class="int-row-label">SIEM</div>
                 <div class="logo-chip"><img src="../../shared/logos/splunk.svg" alt="Splunk">Splunk</div>
-                <div class="logo-chip"><img src="../../shared/logos/sentinel.svg" alt="Sentinel">Sentinel</div>
+                <div class="logo-chip"><img src="../../shared/logos/sentinel.svg" alt="Sentinel">Microsoft Sentinel</div>
             </div>
+            
             <div class="int-row anim d7">
+                <div class="int-row-label">Background</div>
+                <div class="logo-chip"><img src="../../shared/logos/hireright.svg" alt="HireRight">HireRight</div>
+                <div class="logo-chip"><img src="../../shared/logos/checkr.svg" alt="Checkr">Checkr</div>
+            </div>
+            
+            <div class="int-row anim d8">
                 <div class="int-row-label">Comms</div>
                 <div class="logo-chip"><img src="../../shared/logos/slack.svg" alt="Slack">Slack</div>
                 <div class="logo-chip"><img src="../../shared/logos/zoom.svg" alt="Zoom">Zoom</div>
-                <div class="logo-chip"><img src="../../shared/logos/teams.svg" alt="Teams">Teams</div>
+                <div class="logo-chip"><img src="../../shared/logos/teams.svg" alt="Teams">Microsoft Teams</div>
                 <div class="logo-chip"><img src="../../shared/logos/google-meet.svg" alt="Google Meet">Google Meet</div>
             </div>
+        </div>
+        
+        <div class="anim d9" style="margin-top: 50px; padding: 28px 36px; background: white; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;">
+            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">SOC 2 Type II Compliant</div>
+            <div style="font-size: 0.9rem; color: var(--text-secondary);">Enterprise-grade security and compliance from day one</div>
         </div>
     </div>
 </section>
 
 <!-- ===================== SLIDE 11: THREAT INTELLIGENCE ===================== -->
 <section class="slide" data-slide="11">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; max-width: 1100px; width: 100%;">
-        <!-- Left: Text -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; width: 100%;">
+        <!-- Left: Text Content -->
         <div>
             <div class="anim section-label">Threat Intelligence</div>
-            <h2 class="anim d1" style="font-size: 2.2rem;">Cross-reference your pipeline <span class="accent">instantly</span></h2>
+            <h2 class="anim d1" style="font-size: 2.4rem; line-height: 1.2;">Cross-reference your pipeline <span class="accent">instantly</span></h2>
+            <p class="anim d2 subtitle" style="margin-top: 16px;">Leverage our continuously updated threat intelligence database</p>
 
-            <div class="anim d3" style="margin-top: 24px; padding: 24px; background: white; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
-                <div style="font-size: 2.8rem; font-weight: 800; color: var(--accent); margin-bottom: 8px;">10,000+</div>
-                <p style="font-size: 1rem; color: var(--text-primary); font-weight: 600;">Known DPRK-associated email addresses</p>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 8px;">Plus phone numbers, identity clusters, and behavioral signatures from confirmed threat actor campaigns.</p>
+            <div class="anim d3" style="margin-top: 32px; padding: 32px; background: white; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.06);">
+                <div style="font-size: 3.2rem; font-weight: 800; color: var(--accent); margin-bottom: 12px; line-height: 1;">10,000+</div>
+                <p style="font-size: 1.1rem; color: var(--text-primary); font-weight: 700; margin-bottom: 8px;">Known DPRK-associated identifiers</p>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Email addresses, phone numbers, identity clusters, and behavioral signatures from confirmed threat actor campaigns.</p>
             </div>
 
-            <div class="anim d5" style="margin-top: 20px;">
-                <a href="https://getclarity.ai" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--text-primary); padding: 14px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.95rem;">
-                    Explore Threat Intel Database
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div class="anim d5" style="margin-top: 32px;">
+                <a href="https://getclarity.ai/threat-intel" style="display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--text-primary); padding: 16px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1rem; transition: transform 0.2s ease;">
+                    Explore Threat Intelligence
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
 
-        <!-- Right: Screenshot -->
+        <!-- Right: Threat Intel Screenshot -->
         <div class="anim d2">
             <div class="demo-frame">
-                <img src="../../shared/screenshots/threat-intel-homepage.png" alt="Threat Intelligence Database">
+                <img src="../../shared/screenshots/threat-intel-homepage.png" alt="Clarity Threat Intelligence Database">
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <div style="font-size: 0.8rem; color: var(--text-secondary); padding: 12px 20px; background: white; border-radius: 12px; border: 1px solid var(--border);">
+                    Updated continuously with new threat indicators
+                </div>
             </div>
         </div>
     </div>
@@ -1006,86 +1237,167 @@ h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
 
 <!-- ===================== SLIDE 12: GET STARTED (CTA) ===================== -->
 <section class="slide slide-dark" data-slide="12">
-    <div style="text-align: center; position: relative; z-index: 1;">
-        <div class="anim" style="margin-bottom: 40px;">
-            <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 52px;">
+    <div style="text-align: center; position: relative; z-index: 1; max-width: 800px;">
+        <div class="anim" style="margin-bottom: 50px;">
+            <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 60px;">
         </div>
 
-        <h1 class="anim d1" style="font-size: 3.5rem; color: white; margin-bottom: 12px;">Send us your CVs</h1>
-        <div class="anim d2" style="width: 60px; height: 3px; background: var(--accent); margin: 20px auto;"></div>
-        <p class="anim d3" style="font-size: 1.2rem; color: rgba(255,255,255,0.6); margin-bottom: 50px;">See what Clarity finds in your current pipeline</p>
+        <h1 class="anim d1" style="font-size: 3.8rem; color: white; margin-bottom: 20px;">Test your pipeline</h1>
+        <div class="anim d2" style="width: 100px; height: 4px; background: var(--accent); margin: 24px auto; border-radius: 2px;"></div>
+        <p class="anim d3" style="font-size: 1.4rem; color: rgba(255,255,255,0.8); margin-bottom: 50px; line-height: 1.5;">Send us your recent CV submissions.<br>See what <span style="color: var(--accent); font-weight: 700;">Clarity</span> finds.</p>
 
-        <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; max-width: 500px; margin: 0 auto;">
-            <div class="anim d4" style="display: flex; align-items: center; gap: 16px;">
-                <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%; flex-shrink: 0;"></div>
-                <span style="color: rgba(255,255,255,0.85); font-size: 1.1rem;">Share candidate resumes for a free risk assessment</span>
-            </div>
-            <div class="anim d5" style="display: flex; align-items: center; gap: 16px;">
-                <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%; flex-shrink: 0;"></div>
-                <span style="color: rgba(255,255,255,0.85); font-size: 1.1rem;">Get results within 48 hours</span>
-            </div>
-            <div class="anim d6" style="display: flex; align-items: center; gap: 16px;">
-                <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%; flex-shrink: 0;"></div>
-                <span style="color: rgba(255,255,255,0.85); font-size: 1.1rem;">Deploy Clarity across your hiring pipeline</span>
-            </div>
-        </div>
-
-        <div class="anim d8" style="margin-top: 50px;">
-            <a href="https://getclarity.ai" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--text-primary); padding: 16px 36px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 1.1rem;">
-                Request a Demo
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <div style="display: flex; flex-direction: column; gap: 24px; align-items: center; max-width: 500px; margin: 0 auto;">
+            <a href="mailto:demo@getclarity.ai" class="anim d4" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: var(--accent); color: var(--text-primary); padding: 20px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1.1rem; width: 100%; transition: transform 0.2s ease;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+                Request Demo
+            </a>
+            
+            <a href="https://calendly.com/clarity-security/demo" class="anim d5" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: transparent; color: white; border: 2px solid white; padding: 18px 40px; border-radius: 12px; font-weight: 600; text-decoration: none; font-size: 1rem; width: 100%; transition: all 0.2s ease;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Schedule Call
             </a>
         </div>
 
-        <p class="anim d9" style="margin-top: 32px; font-size: 0.85rem; color: rgba(255,255,255,0.4);">getclarity.ai</p>
+        <div class="anim d6" style="margin-top: 50px; padding: 20px; color: rgba(255,255,255,0.6); font-size: 0.9rem;">
+            <div style="margin-bottom: 8px;">✓ Free pilot program for Fortune 500 companies</div>
+            <div style="margin-bottom: 8px;">✓ Results in 48 hours</div>
+            <div>✓ No software installation required</div>
+        </div>
     </div>
 </section>
 
 <!-- SLIDE COUNTER -->
 <div id="slide-counter">1 / 12</div>
 
+<!-- NAV HINT -->
+<div id="nav-hint">
+    <kbd>←</kbd> <kbd>→</kbd> Navigate &nbsp; <kbd>F</kbd> Fullscreen &nbsp; <kbd>ESC</kbd> Exit
+</div>
+
 <script>
-(function() {
-    const slides = document.querySelectorAll('.slide');
-    const total = slides.length;
-    let current = 0;
+// ========== PRESENTATION LOGIC ==========
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
 
-    function goTo(n) {
-        if (n < 0 || n >= total) return;
-        slides[current].classList.remove('active');
-        current = n;
-        slides[current].classList.add('active');
-        document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
+function updateSlideCounter() {
+    document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+}
+
+function showSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (n + totalSlides) % totalSlides;
+    slides[currentSlide].classList.add('active');
+    updateSlideCounter();
+    
+    // Add pulse effect to demo frames when they become active
+    setTimeout(() => {
+        const activeDemoFrames = slides[currentSlide].querySelectorAll('.demo-frame');
+        activeDemoFrames.forEach(frame => frame.classList.add('pulse'));
+    }, 500);
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+// ========== EVENT LISTENERS ==========
+document.addEventListener('keydown', (e) => {
+    switch(e.key) {
+        case 'ArrowRight':
+        case ' ':
+            e.preventDefault();
+            nextSlide();
+            break;
+        case 'ArrowLeft':
+            e.preventDefault();
+            prevSlide();
+            break;
+        case 'f':
+        case 'F':
+            e.preventDefault();
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                document.getElementById('nav-hint').style.display = 'none';
+            }
+            break;
+        case 'Escape':
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+                document.getElementById('nav-hint').style.display = 'block';
+            }
+            break;
+        case 'Home':
+            e.preventDefault();
+            showSlide(0);
+            break;
+        case 'End':
+            e.preventDefault();
+            showSlide(totalSlides - 1);
+            break;
     }
+});
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
-        else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
-        else if (e.key === 'f' || e.key === 'F') {
-            if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-            else document.exitFullscreen();
+// Touch/swipe support for mobile
+let startX = null;
+let startY = null;
+
+document.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchend', (e) => {
+    if (startX === null || startY === null) return;
+    
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    const deltaX = endX - startX;
+    const deltaY = endY - startY;
+    
+    // Only trigger if horizontal swipe is more significant than vertical
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+            prevSlide();
+        } else {
+            nextSlide();
         }
-    });
+    }
+    
+    startX = null;
+    startY = null;
+});
 
-    // Touch/swipe support
-    let touchStartX = 0;
-    document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
-    document.addEventListener('touchend', function(e) {
-        const diff = e.changedTouches[0].screenX - touchStartX;
-        if (Math.abs(diff) > 50) {
-            if (diff < 0) goTo(current + 1);
-            else goTo(current - 1);
-        }
-    });
+// Click navigation (left/right halves)
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' || e.target.closest('a')) return; // Don't interfere with links
+    
+    const rect = document.documentElement.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const centerX = rect.width / 2;
+    
+    if (clickX < centerX) {
+        prevSlide();
+    } else {
+        nextSlide();
+    }
+});
 
-    // Click navigation
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('a, button, .logo-chip')) return;
-        const x = e.clientX / window.innerWidth;
-        if (x > 0.7) goTo(current + 1);
-        else if (x < 0.3) goTo(current - 1);
-    });
-})();
+// Initialize
+updateSlideCounter();
+
+// Auto-hide nav hint after 5 seconds
+setTimeout(() => {
+    const hint = document.getElementById('nav-hint');
+    if (hint) {
+        hint.style.opacity = '0.3';
+        setTimeout(() => hint.style.display = 'none', 3000);
+    }
+}, 5000);
 </script>
 
 </body>
