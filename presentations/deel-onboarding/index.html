@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity + Deel Onboarding</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0a1628;
+            --navy-light: #0f2035;
+            --green: #61F393;
+            --white: #FFFFFF;
+            --muted: rgba(255,255,255,0.6);
+            --slide-w: 100vw;
+            --slide-h: 100vh;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* ── Nav bar ── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            height: 56px;
+            background: rgba(10, 22, 40, 0.9);
+            backdrop-filter: blur(12px);
+            display: flex; align-items: center;
+            padding: 0 32px;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .navbar a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .navbar img { height: 26px; }
+
+        /* ── Slide container ── */
+        .deck {
+            position: fixed; inset: 0;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 80px 60px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            background: radial-gradient(ellipse at 30% 20%, #0f2a45 0%, var(--navy) 60%),
+                        radial-gradient(ellipse at 80% 80%, #0a2035 0%, transparent 50%);
+            background-color: var(--navy);
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ── Gradient arc decoration ── */
+        .arc-decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .arc-tr {
+            top: -180px; right: -180px;
+            width: 600px; height: 600px;
+        }
+
+        .arc-bl {
+            bottom: -200px; left: -200px;
+            width: 500px; height: 500px;
+        }
+
+        /* ── Typography ── */
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+
+        .slide h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .slide .subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        /* ── Bullet list ── */
+        .bullet-list {
+            list-style: none;
+            text-align: left;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .bullet-list li {
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1.5;
+            padding: 14px 0;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .bullet-list li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%;
+            transform: translateY(-50%);
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--muted);
+        }
+
+        /* ── Numbered list ── */
+        .numbered-list {
+            list-style: none;
+            text-align: left;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .numbered-list li {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.6;
+            padding: 16px 0;
+            padding-left: 48px;
+            position: relative;
+        }
+
+        .numbered-list li .num {
+            position: absolute;
+            left: 0; top: 16px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        /* ── Cards / Boxes ── */
+        .flow-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border: 1.5px solid var(--green);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 160px;
+        }
+
+        .flow-box.muted {
+            border-color: rgba(255,255,255,0.25);
+        }
+
+        .flow-box.filled {
+            background: rgba(97, 243, 147, 0.1);
+            border-color: var(--green);
+        }
+
+        /* ── Reporting card mockup ── */
+        .report-card {
+            background: #fff;
+            color: #1a1a2e;
+            border-radius: 12px;
+            padding: 32px 36px;
+            max-width: 580px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            text-align: left;
+            position: relative;
+        }
+
+        .report-card .badge {
+            position: absolute;
+            left: -16px; top: 20px;
+            width: 32px; height: 32px;
+            background: #EF4444;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .report-card .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .report-card .header-row .label {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .report-card .header-row .time {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .report-card .author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .report-card .author .avatar {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .report-card .author span {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .report-card .field-label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+
+        .report-card .field-value {
+            font-size: 0.85rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        .report-card .more {
+            text-align: right;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #6366f1;
+        }
+
+        /* ── Three-column layout ── */
+        .three-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .col-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .col-group .col-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .col-group .col-items {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+            border: 2px dashed rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .col-group .col-items.green-border {
+            border-color: var(--green);
+        }
+
+        .col-group .col-items.gold-border {
+            border-color: #F59E0B;
+        }
+
+        .col-item {
+            background: rgba(255,255,255,0.06);
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .col-item.active-green {
+            border-color: var(--green);
+            background: rgba(97, 243, 147, 0.08);
+        }
+
+        /* ── Timeline ── */
+        .timeline-container {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+        }
+
+        .timeline-weeks {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            padding: 0 20px;
+        }
+
+        .timeline-weeks span {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .timeline-track {
+            position: relative;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            margin: 0 20px;
+        }
+
+        .timeline-dots {
+            position: absolute;
+            top: 50%;
+            left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .timeline-dot {
+            width: 20px; height: 20px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+            padding: 0 10px;
+        }
+
+        .timeline-labels span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .timeline-endpoints {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 0 0;
+        }
+
+        .timeline-endpoints .start {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .timeline-endpoints .end {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        /* ── Diagram boxes ── */
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            max-width: 1200px;
+        }
+
+        .diagram-row {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ── Hiring funnel ── */
+        .funnel-container {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .funnel-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            margin: 40px 0 20px;
+            padding: 0 20px;
+        }
+
+        .funnel-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 40px; right: 40px;
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .funnel-stage {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .funnel-stage .dot {
+            width: 3px; height: 24px;
+            background: rgba(255,255,255,0.3);
+            margin: 0 auto 8px;
+        }
+
+        .funnel-brackets {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            padding: 0 60px;
+        }
+
+        .funnel-label {
+            text-align: center;
+            font-weight: 600;
+            color: var(--green);
+            font-size: 1.1rem;
+        }
+
+        .funnel-features {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        /* ── IDV email mockup ── */
+        .email-mockup {
+            background: white;
+            color: #1a1a2e;
+            border-radius: 12px;
+            max-width: 520px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .email-mockup .email-body {
+            padding: 32px;
+        }
+
+        .email-mockup .email-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            text-align: right;
+        }
+
+        .email-mockup p {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+
+        .email-mockup .cta-link {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .email-mockup .email-footer {
+            background: #1f2937;
+            color: #9ca3af;
+            font-size: 0.75rem;
+            padding: 14px 32px;
+            text-align: center;
+        }
+
+        /* ── Flow diagram (slide 19) ── */
+        .flow-diagram {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+        }
+
+        .flow-diagram .placeholder-box {
+            background: rgba(255,255,255,0.04);
+            border: 1.5px dashed rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* ── Clarity star icon ── */
+        .clarity-star {
+            display: inline-block;
+        }
+
+        .clarity-star svg {
+            width: 64px; height: 64px;
+        }
+
+        .clarity-star.small svg {
+            width: 40px; height: 40px;
+        }
+
+        /* ── Slide counter ── */
+        .slide-counter {
+            position: fixed;
+            bottom: 24px; right: 32px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            z-index: 100;
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ── Keyboard hints ── */
+        .nav-hint {
+            position: fixed;
+            bottom: 24px; left: 32px;
+            display: flex; gap: 12px;
+            z-index: 100;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .nav-hint:hover { opacity: 0.7; }
+
+        .nav-hint kbd {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 5px;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            font-family: 'Manrope', sans-serif;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── Section header slides (centered big text) ── */
+        .section-header {
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 300;
+        }
+
+        .section-header h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--muted);
+            margin-top: 20px;
+            max-width: 800px;
+        }
+
+        /* ── Co-brand logos ── */
+        .co-brand {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .co-brand img {
+            height: 32px;
+        }
+
+        .co-brand .deel-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        /* ── Title slide specific ── */
+        .title-slide {
+            align-items: flex-start !important;
+            justify-content: center;
+            padding-left: 100px;
+        }
+
+        .title-slide .co-brand {
+            position: absolute;
+            top: 80px; left: 100px;
+        }
+
+        .title-slide h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-top: 40px;
+        }
+
+        .title-slide .date {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--muted);
+            margin-top: 80px;
+        }
+
+        /* ── Deepfake detection diagram ── */
+        .deepfake-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            max-width: 900px;
+        }
+
+        .video-call-mockup {
+            background: #1f2937;
+            border-radius: 12px;
+            padding: 12px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .video-call-mockup .title-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 8px;
+        }
+
+        .video-call-mockup .title-bar .dot-r { width: 10px; height: 10px; border-radius: 50%; background: #EF4444; }
+        .video-call-mockup .title-bar .dot-y { width: 10px; height: 10px; border-radius: 50%; background: #F59E0B; }
+        .video-call-mockup .title-bar .dot-g { width: 10px; height: 10px; border-radius: 50%; background: #22C55E; }
+        .video-call-mockup .title-bar .title-text { flex: 1; text-align: center; font-size: 0.8rem; color: #9ca3af; }
+
+        .video-call-mockup .call-area {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .video-call-mockup .participant {
+            flex: 1;
+            background: linear-gradient(135deg, #374151, #1f2937);
+            border-radius: 8px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .video-call-mockup .controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 8px 0;
+        }
+
+        .video-call-mockup .ctrl-btn {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .video-call-mockup .ctrl-btn.red { background: #EF4444; }
+
+        .detection-branches {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        /* ── Proxy detection diagram ── */
+        .proxy-diagram {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1100px;
+        }
+
+        .proxy-diagram .interview-col {
+            text-align: center;
+        }
+
+        .proxy-diagram .interview-col .label {
+            font-weight: 700;
+            text-decoration: underline;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        /* ── IDV flow ── */
+        .idv-flow {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1100px;
+        }
+
+        .idv-flow .arrow {
+            font-size: 1.5rem;
+            color: var(--green);
+        }
+
+        /* ── Risk analysis diagram ── */
+        .risk-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            max-width: 1200px;
+        }
+
+        .risk-top-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .risk-bottom {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        /* ── SVG connectors ── */
+        .connector-line {
+            stroke: var(--green);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        /* ── Fullscreen ── */
+        .fullscreen-active .navbar,
+        .fullscreen-active .nav-hint { display: none; }
+        .fullscreen-active .slide { padding-top: 40px; }
+
+        /* ── Phone mockup ── */
+        .phone-mockup {
+            width: 140px;
+            background: white;
+            border-radius: 24px;
+            padding: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .phone-mockup .screen {
+            background: #f3f4f6;
+            border-radius: 18px;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: #6b7280;
+            text-align: center;
+            padding: 12px;
+        }
+
+        /* LinkedIn circle */
+        .linkedin-circle {
+            width: 100px; height: 100px;
+            background: #0A66C2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        /* ── Fingerprint icon ── */
+        .fingerprint-icon {
+            width: 80px; height: 80px;
+            border: 2px solid var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .slide { padding: 70px 32px 40px; }
+            .slide h1 { font-size: 2.2rem; }
+            .slide h2 { font-size: 1.8rem; }
+            .three-cols { grid-template-columns: 1fr; }
+            .title-slide { padding-left: 32px; }
+            .title-slide .co-brand { left: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Nav bar -->
+<nav class="navbar">
+    <a href="../../index.html">
+        <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846e27_Clarity%20Logo%20white.svg" alt="Clarity">
+    </a>
+</nav>
+
+<!-- Slide deck -->
+<div class="deck" id="deck">
+
+    <!-- ══════════ SLIDE 1: Title ══════════ -->
+    <div class="slide title-slide" data-slide="1">
+        <!-- Arc decoration -->
+        <svg class="arc-decoration arc-tr" viewBox="0 0 600 600" fill="none">
+            <g opacity="0.5">
+                <circle cx="300" cy="300" r="150" stroke="url(#arcGrad)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="175" stroke="url(#arcGrad)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="200" stroke="url(#arcGrad)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="225" stroke="url(#arcGrad)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="250" stroke="url(#arcGrad)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="275" stroke="url(#arcGrad)" stroke-width="0.7"/>
+                <circle cx="300" cy="300" r="300" stroke="url(#arcGrad)" stroke-width="0.7"/>
+                <circle cx="300" cy="300" r="325" stroke="url(#arcGrad)" stroke-width="0.6"/>
+                <circle cx="300" cy="300" r="350" stroke="url(#arcGrad)" stroke-width="0.6"/>
+                <circle cx="300" cy="300" r="375" stroke="url(#arcGrad)" stroke-width="0.5"/>
+                <circle cx="300" cy="300" r="400" stroke="url(#arcGrad)" stroke-width="0.5"/>
+                <circle cx="300" cy="300" r="425" stroke="url(#arcGrad)" stroke-width="0.4"/>
+                <circle cx="300" cy="300" r="450" stroke="url(#arcGrad)" stroke-width="0.4"/>
+                <circle cx="300" cy="300" r="475" stroke="url(#arcGrad)" stroke-width="0.3"/>
+                <circle cx="300" cy="300" r="500" stroke="url(#arcGrad)" stroke-width="0.3"/>
+            </g>
+            <defs>
+                <linearGradient id="arcGrad" x1="0" y1="0" x2="600" y2="600">
+                    <stop offset="0%" stop-color="#1a6b8a"/>
+                    <stop offset="50%" stop-color="#3dd9eb"/>
+                    <stop offset="100%" stop-color="#61F393"/>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="co-brand">
+            <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846e27_Clarity%20Logo%20white.svg" alt="Clarity" style="height: 36px;">
+            <span class="deel-logo">deel.</span>
+        </div>
+
+        <h1>Clarity Onboarding</h1>
+        <div class="date">February | 2026</div>
+    </div>
+
+    <!-- ══════════ SLIDE 2: Today's Scope ══════════ -->
+    <div class="slide" data-slide="2">
+        <h2>Today's Scope</h2>
+        <ul class="bullet-list" style="margin-top: 48px;">
+            <li>Introductions</li>
+            <li>Short Clarity Demo - Product &amp; Technology</li>
+            <li>Deel's Security Process - Albert</li>
+            <li>Roadmap for integration</li>
+            <li>Next steps</li>
+            <li>Q&amp;A</li>
+        </ul>
+    </div>
+
+    <!-- ══════════ SLIDE 3: Value Prop ══════════ -->
+    <div class="slide" data-slide="3">
+        <div class="clarity-star">
+            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/>
+                <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/>
+                <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/>
+                <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/>
+            </svg>
+        </div>
+        <div style="text-align: center; margin-top: 32px;">
+            <h2 style="font-size: 2.4rem; font-weight: 400;">Clarity provides<br>an end-to-end solution to ensure<br>you <strong style="font-weight: 800;">never hire a bad-actor!</strong></h2>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 4: Hiring Funnel ══════════ -->
+    <div class="slide" data-slide="4">
+        <h2 style="font-size: 2.4rem;">Clarity's hiring protection within the funnel</h2>
+        <div class="funnel-container" style="margin-top: 40px;">
+            <!-- Timeline -->
+            <div style="display: flex; align-items: center; gap: 0; justify-content: center; position: relative; padding: 0 20px;">
+                <div style="position: absolute; top: 50%; left: 80px; right: 80px; height: 2px; background: rgba(255,255,255,0.3);"></div>
+                <div style="position: absolute; top: 50%; right: 78px; width: 0; height: 0; border-left: 8px solid rgba(255,255,255,0.3); border-top: 5px solid transparent; border-bottom: 5px solid transparent;"></div>
+                <div style="display: flex; justify-content: space-between; width: 100%; position: relative; z-index: 1;">
+                    <div style="text-align: center;"><div style="width: 2px; height: 20px; background: rgba(255,255,255,0.3); margin: 0 auto 8px;"></div><span style="font-size: 0.9rem;">Sourcing</span></div>
+                    <div style="text-align: center;"><div style="width: 2px; height: 20px; background: rgba(255,255,255,0.3); margin: 0 auto 8px;"></div><span style="font-size: 0.9rem; font-weight: 600;">1st Video<br>Call</span></div>
+                    <div style="text-align: center;"><div style="width: 2px; height: 20px; background: rgba(255,255,255,0.3); margin: 0 auto 8px;"></div><span style="font-size: 0.9rem;">...</span></div>
+                    <div style="text-align: center;"><div style="width: 2px; height: 20px; background: rgba(255,255,255,0.3); margin: 0 auto 8px;"></div><span style="font-size: 0.9rem;">...</span></div>
+                    <div style="text-align: center;"><div style="width: 2px; height: 20px; background: rgba(255,255,255,0.3); margin: 0 auto 8px;"></div><span style="font-size: 0.9rem;">...</span></div>
+                    <div style="text-align: center;"><div style="width: 2px; height: 20px; background: rgba(255,255,255,0.3); margin: 0 auto 8px;"></div><span style="font-size: 0.9rem; font-weight: 600;">Last Call</span></div>
+                    <div style="text-align: center;"><div style="width: 2px; height: 20px; background: rgba(255,255,255,0.3); margin: 0 auto 8px;"></div><span style="font-size: 0.9rem; font-weight: 600;">Offer</span></div>
+                </div>
+            </div>
+
+            <!-- Clarity Start / Finish brackets -->
+            <div style="display: flex; justify-content: space-between; padding: 32px 60px 0; align-items: flex-start;">
+                <div style="text-align: center;">
+                    <div style="color: var(--green); font-size: 1.4rem;">&#8595;</div>
+                    <div style="font-weight: 600; font-size: 1.1rem; margin-top: 4px;">Clarity<br>Start</div>
+                </div>
+                <div style="flex: 1; border-bottom: 2px dashed var(--green); margin: 20px 40px; opacity: 0.5;"></div>
+                <div style="text-align: center;">
+                    <div style="color: var(--green); font-size: 1.4rem;">&#8595;</div>
+                    <div style="font-weight: 600; font-size: 1.1rem; margin-top: 4px;">Clarity<br>Finish</div>
+                </div>
+            </div>
+
+            <!-- Features row -->
+            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 40px; flex-wrap: wrap;">
+                <div class="flow-box">Deepfake Detection</div>
+                <div class="flow-box">Cross-Biometric Validation</div>
+                <div class="flow-box" style="margin-left: 40px;">Identity Verification</div>
+                <div class="flow-box">Risk Analysis</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 5: Interview Deepfake Detection (section header) ══════════ -->
+    <div class="slide section-header" data-slide="5">
+        <h2>Clarity's Interview Deepfake Detection</h2>
+        <h3>Triggered on each interview throughout the funnel</h3>
+    </div>
+
+    <!-- ══════════ SLIDE 6: Security Agent ══════════ -->
+    <div class="slide" data-slide="6">
+        <h2 style="font-size: 2.4rem;">Clarity's Security Agent - look and feel</h2>
+        <h3 style="max-width: 800px;">Syncs and joins all Google Meet &amp; Zoom calls from first trigger to final risk<br>(end-to-end security logic)</h3>
+        <div style="display: flex; gap: 32px; margin-top: 40px; align-items: center; justify-content: center; flex-wrap: wrap;">
+            <!-- Ashby mockup placeholder -->
+            <div style="background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 12px; width: 420px; height: 260px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.9rem;">
+                [Ashby ATS Screenshot]
+            </div>
+            <!-- Deel branding placeholder -->
+            <div style="background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 12px; width: 380px; height: 260px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 2.5rem; font-weight: 800; color: rgba(255,255,255,0.3);">deel.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 7: Deepfake Detection ══════════ -->
+    <div class="slide" data-slide="7">
+        <h2 style="font-size: 2.6rem; margin-bottom: 40px;">Clarity's Deepfake Detection</h2>
+        <div class="deepfake-diagram">
+            <!-- Video call mockup -->
+            <div class="video-call-mockup">
+                <div class="title-bar">
+                    <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+                    <div class="title-text">Interview Call</div>
+                </div>
+                <div class="call-area">
+                    <div class="participant">Interviewer</div>
+                    <div class="participant">Candidate</div>
+                </div>
+                <div class="controls">
+                    <div class="ctrl-btn"><svg width="14" height="14" fill="none" stroke="white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
+                    <div class="ctrl-btn"><svg width="14" height="14" fill="none" stroke="white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
+                    <div class="ctrl-btn red"><svg width="14" height="14" fill="none" stroke="white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+                </div>
+            </div>
+
+            <!-- Branches -->
+            <div style="display: flex; gap: 32px; align-items: flex-start;">
+                <div class="flow-box">Audio deepfake<br>detection</div>
+                <div class="flow-box">Video deepfake<br>detection</div>
+            </div>
+
+            <!-- Expert reviewer -->
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <div class="clarity-star small">
+                    <svg viewBox="0 0 56 56" fill="none"><path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/><path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/><path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/><path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/></svg>
+                </div>
+                <div class="flow-box" style="border-style: dashed;">Expert Reviewer</div>
+                <span style="color: var(--green); font-size: 1.5rem;">&#8594;</span>
+                <div style="background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 12px; width: 260px; height: 160px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.8rem;">
+                    [Detection Dashboard]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 8: Deepfake Reporting ══════════ -->
+    <div class="slide" data-slide="8">
+        <h2 style="font-size: 2.4rem; margin-bottom: 48px;">Deepfake Detection Reporting Example</h2>
+        <div class="report-card">
+            <div class="badge">1</div>
+            <div class="header-row">
+                <span class="label"><strong>Feedback</strong> without Interview</span>
+                <span class="time">Today, 6:50PM</span>
+            </div>
+            <div class="author">
+                <div class="avatar">C</div>
+                <span>Clarity Security</span>
+            </div>
+            <div class="field-label">Overall Risk</div>
+            <div class="field-value">1 - Strong No</div>
+            <div class="field-label">Explainability</div>
+            <div class="field-value">Major anomalies detected within media samples of First Round Interview: Major Deepfake anomalies detected within 00:14-00:49</div>
+            <div class="field-label">Recommendation</div>
+            <div class="field-value">&mdash;</div>
+            <div class="more">More &#8744;</div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 9: Proxy Candidate Detection (section header) ══════════ -->
+    <div class="slide section-header" data-slide="9">
+        <h2>Clarity's Proxy Candidate Detection</h2>
+        <h3>Triggered behind the scenes after each interview + Offer stage</h3>
+    </div>
+
+    <!-- ══════════ SLIDE 10: Proxy Candidate Detection Detail ══════════ -->
+    <div class="slide" data-slide="10">
+        <h2 style="font-size: 2.6rem; margin-bottom: 40px;">Proxy Candidate Detection</h2>
+        <div style="display: flex; gap: 48px; align-items: flex-start; justify-content: center; flex-wrap: wrap; max-width: 1100px;">
+            <!-- Interview 1 -->
+            <div style="text-align: center;">
+                <div style="font-weight: 700; text-decoration: underline; margin-bottom: 16px;">Interview 1</div>
+                <div class="video-call-mockup" style="max-width: 300px;">
+                    <div class="title-bar">
+                        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+                        <div class="title-text">Interview Call</div>
+                    </div>
+                    <div class="call-area">
+                        <div class="participant" style="height: 100px; font-size: 0.7rem;">TA</div>
+                        <div class="participant" style="height: 100px; font-size: 0.7rem;">Candidate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interview 2 -->
+            <div style="text-align: center;">
+                <div style="font-weight: 700; text-decoration: underline; margin-bottom: 16px;">Interview 2</div>
+                <div class="video-call-mockup" style="max-width: 300px;">
+                    <div class="title-bar">
+                        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+                        <div class="title-text">Interview Call</div>
+                    </div>
+                    <div class="call-area">
+                        <div class="participant" style="height: 100px; font-size: 0.7rem;">HM</div>
+                        <div class="participant" style="height: 100px; font-size: 0.7rem;">Candidate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offer Stage / LinkedIn -->
+            <div style="text-align: center;">
+                <div style="font-weight: 700; text-decoration: underline; margin-bottom: 16px; color: var(--green);">Offer Stage</div>
+                <div style="font-size: 0.9rem; color: var(--muted); margin-bottom: 12px;">LinkedIn Photo<br>*If LinkedIn is present</div>
+                <div class="linkedin-circle">in</div>
+            </div>
+        </div>
+
+        <!-- Cross-Biometric Comparison -->
+        <div style="display: flex; align-items: center; gap: 20px; margin-top: 40px;">
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <div class="clarity-star small">
+                    <svg viewBox="0 0 56 56" fill="none"><path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/><path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/><path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/><path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/></svg>
+                </div>
+                <div class="flow-box" style="border-style: dashed;">Expert Reviewer</div>
+            </div>
+            <span style="color: var(--green); font-size: 1.5rem;">&#8594;</span>
+            <div style="text-align: center;">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
+                <div style="font-weight: 800; font-size: 1.1rem; margin-top: 8px;">Cross-Biometric<br>Comparison</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 11: Proxy Reporting ══════════ -->
+    <div class="slide" data-slide="11">
+        <h2 style="font-size: 2.4rem; margin-bottom: 48px;">Proxy Candidate Reporting Example</h2>
+        <div class="report-card">
+            <div class="badge">1</div>
+            <div class="header-row">
+                <span class="label"><strong>Feedback</strong> without Interview</span>
+                <span class="time">Today, 6:48PM</span>
+            </div>
+            <div class="author">
+                <div class="avatar">C</div>
+                <span>Clarity Security</span>
+            </div>
+            <div class="field-label">Overall Risk</div>
+            <div class="field-value">1 - Strong No</div>
+            <div class="field-label">Explainability</div>
+            <div class="field-value">Facial and voice analysis across interviews suggests the person may not be the same in each session: Suspicion on Interview 3</div>
+            <div class="field-label">Recommendation</div>
+            <div class="field-value">&mdash;</div>
+            <div class="more">More &#8744;</div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 12: Identity Verification (section header) ══════════ -->
+    <div class="slide section-header" data-slide="12">
+        <h2>Clarity's Identity Verification</h2>
+        <h3>Triggered behind the scenes at the Offer stage</h3>
+    </div>
+
+    <!-- ══════════ SLIDE 13: Candidate IDV Invitation ══════════ -->
+    <div class="slide" data-slide="13">
+        <h2 style="font-size: 2.4rem; margin-bottom: 40px;">Candidate Invitation for IDV</h2>
+        <div class="email-mockup">
+            <div class="email-body">
+                <div class="email-logo">deel.</div>
+                <p><strong>Dear Tyler,</strong></p>
+                <p>Please complete your KYC verification to continue your deel onboarding.</p>
+                <p><a class="cta-link" href="#">Start KYC Verification</a><br>This must be completed on your mobile device and takes only a few minutes.</p>
+                <p><strong>What you'll need</strong><br>
+                &bull; A government issued ID<br>
+                &bull; A quick liveness check using your camera</p>
+                <p>Please complete this within 48 hours to avoid delays.</p>
+                <p>If you experience any issues during the process, please contact deel support through the platform.</p>
+                <p>We're excited to have you onboard,<br><strong>The deel Team</strong></p>
+            </div>
+            <div class="email-footer">For additional support, please contact: support@getclarity.ai</div>
+        </div>
+        <p style="margin-top: 24px; color: var(--muted); font-size: 1rem; text-align: center;">* Clarity will share a recording of the candidate IDV experience after the call</p>
+    </div>
+
+    <!-- ══════════ SLIDE 14: Identity Verification Detail ══════════ -->
+    <div class="slide" data-slide="14">
+        <h2 style="font-size: 2.6rem; margin-bottom: 40px;">Identity Verification</h2>
+        <div style="display: flex; gap: 32px; align-items: center; justify-content: center; flex-wrap: wrap; max-width: 1100px;">
+            <!-- Phone mockups -->
+            <div style="display: flex; gap: 12px;">
+                <div class="phone-mockup">
+                    <div class="screen">ID Document<br>Front Side</div>
+                </div>
+                <div class="phone-mockup">
+                    <div class="screen">Selfie /<br>Liveness</div>
+                </div>
+            </div>
+
+            <!-- Flow -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="flow-box">Liveness check</div>
+                <div class="flow-box">Document verification</div>
+            </div>
+
+            <span style="color: var(--green); font-size: 2rem;">&#8594;</span>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="flow-box">Deepfake Detection</div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <span style="color: var(--green); font-size: 1.5rem;">&#8594;</span>
+                    <div class="flow-box">Biocompare<br>to Interviews</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expert Reviewer -->
+        <div style="margin-top: 40px; display: flex; gap: 16px; align-items: center; border-top: 2px dashed rgba(97,243,147,0.3); padding-top: 32px;">
+            <div class="clarity-star small">
+                <svg viewBox="0 0 56 56" fill="none"><path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/><path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/><path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/><path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/></svg>
+            </div>
+            <div class="flow-box" style="border-style: dashed;">Expert Reviewer</div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 15: IDV Reporting ══════════ -->
+    <div class="slide" data-slide="15">
+        <h2 style="font-size: 2.4rem; margin-bottom: 48px;">Identity Verification Reporting Example</h2>
+        <div class="report-card">
+            <div class="badge">1</div>
+            <div class="header-row">
+                <span class="label"><strong>Feedback</strong> without Interview</span>
+                <span class="time">Today, 6:45PM</span>
+            </div>
+            <div class="author">
+                <div class="avatar">C</div>
+                <span>Clarity Security</span>
+            </div>
+            <div class="field-label">Overall Risk</div>
+            <div class="field-value">1 - Strong No</div>
+            <div class="field-label">Explainability</div>
+            <div class="field-value">Inconsistencies detected in Identity Verification authenticity: Forged Document Detected</div>
+            <div class="field-label">Recommendation</div>
+            <div class="field-value">&mdash;</div>
+            <div class="more">More &#8744;</div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 16: Final Risk Analysis (section header) ══════════ -->
+    <div class="slide section-header" data-slide="16">
+        <h2>Final Risk Analysis</h2>
+        <h3>Triggered behind the scenes at the Offer stage</h3>
+    </div>
+
+    <!-- ══════════ SLIDE 17: Risk Analysis Detail ══════════ -->
+    <div class="slide" data-slide="17">
+        <h2 style="font-size: 2.6rem; margin-bottom: 48px;">Final Risk Analysis</h2>
+        <div class="risk-diagram">
+            <!-- Top row: inputs -->
+            <div class="risk-top-row">
+                <div class="flow-box">Device<br>Intelligence</div>
+                <div class="flow-box">CV Analysis</div>
+                <div class="flow-box">Deepfake<br>Detection</div>
+                <div class="flow-box">Proxy Candidate<br>Detection</div>
+                <div class="flow-box">IDV</div>
+            </div>
+
+            <!-- Connector lines (visual) -->
+            <div style="width: 60%; height: 2px; background: linear-gradient(90deg, transparent, var(--green), transparent); opacity: 0.4;"></div>
+
+            <!-- Bottom: Risk Analysis Engine + Expert Reviewer -->
+            <div class="risk-bottom">
+                <div class="flow-box filled" style="padding: 20px 36px; font-size: 1.05rem;">Risk Analysis<br>Engine</div>
+                <span style="color: var(--green); font-size: 1.5rem;">&#8596;</span>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <div class="clarity-star small">
+                        <svg viewBox="0 0 56 56" fill="none"><path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#61F393"/><path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#61F393"/><path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/><path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/></svg>
+                    </div>
+                    <div class="flow-box" style="border-style: dashed;">Expert Reviewer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 18: Risk Analysis Reporting ══════════ -->
+    <div class="slide" data-slide="18">
+        <h2 style="font-size: 2.4rem; margin-bottom: 48px;">Risk Analysis Reporting Example</h2>
+        <div class="report-card">
+            <div class="badge">1</div>
+            <div class="header-row">
+                <span class="label"><strong>Feedback</strong> without Interview</span>
+                <span class="time">Today, 6:41PM</span>
+            </div>
+            <div class="author">
+                <div class="avatar">C</div>
+                <span>Clarity Security</span>
+            </div>
+            <div class="field-label">Overall Risk</div>
+            <div class="field-value">1 - Strong No</div>
+            <div class="field-label">Explainability</div>
+            <div class="field-value" style="font-size: 0.82rem;">Fake CV Suspicion:<br>
+            1. The email account was recently established, indicating it may have been created specifically for this application<br>
+            2. The email and phone number show no prior association, which may indicate they were not used by the same person historically<br>
+            3. The phone number is associated with a VoIP service, not a traditional mobile or landline. Such numbers are often used to obscure personal identity, indicating a possible fraudulent application.</div>
+            <div class="field-label">Recommendation</div>
+            <div class="field-value">&mdash;</div>
+            <div class="more">More &#8744;</div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 19: Full Flow Diagram ══════════ -->
+    <div class="slide" data-slide="19" style="padding: 70px 40px 40px;">
+        <div class="flow-diagram">
+            <!-- Complex flowchart - simplified representation -->
+            <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 0.75rem; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 6px;"><div style="width: 16px; height: 16px; background: #92400e; border-radius: 3px;"></div> Manual verification</div>
+                <div style="display: flex; align-items: center; gap: 6px;"><div style="width: 16px; height: 16px; background: #1f2937; border-radius: 3px; border: 1px solid rgba(255,255,255,0.2);"></div> AI Auto verification</div>
+                <div style="display: flex; align-items: center; gap: 6px;"><div style="width: 16px; height: 16px; background: #1e40af; border-radius: 3px;"></div> IDV / Official docs</div>
+            </div>
+
+            <div style="display: flex; gap: 40px; max-width: 1200px; width: 100%; flex-wrap: wrap; justify-content: center;">
+                <!-- Left: All Interviews -->
+                <div style="background: rgba(255, 243, 205, 0.08); border: 1.5px solid rgba(255,243,205,0.2); border-radius: 16px; padding: 24px; flex: 1; min-width: 400px;">
+                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 16px;">All Interviews</div>
+
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 10px; padding: 16px; margin-bottom: 16px;">
+                        <div style="font-weight: 700; font-size: 0.9rem;">Security bot:</div>
+                        <div style="font-size: 0.82rem; color: var(--muted); margin-top: 4px;">*Deepfake Analysis<br>*Cross bio validation<br>*Day 2: Connection signals</div>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="color: #EF4444; font-size: 0.8rem; font-weight: 600;">Flagged</div>
+                            <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 10px 16px; font-size: 0.82rem;">Early IDV / Human expert</div>
+                            <div style="font-size: 0.75rem; color: #EF4444;">Candidate opt out</div>
+                            <div style="color: #EF4444; font-size: 0.8rem; font-weight: 600;">Flagged</div>
+                            <div style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 8px 14px; font-size: 0.82rem;">Candidate rejected</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 8px; justify-content: center;">
+                            <div style="color: #22C55E; font-size: 0.8rem; font-weight: 600;">Positive</div>
+                            <div style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 8px; padding: 10px 16px; font-size: 0.82rem;">Candidate proceeds<br>to next step</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right column -->
+                <div style="display: flex; flex-direction: column; gap: 20px; flex: 0 0 320px;">
+                    <!-- Start -->
+                    <div style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); border-radius: 10px; padding: 12px 20px; text-align: center; font-weight: 600; font-size: 0.88rem;">Start: Candidate<br>applies remotely</div>
+
+                    <!-- User consent -->
+                    <div style="background: rgba(147,197,253,0.15); border: 1px solid rgba(147,197,253,0.3); border-radius: 10px; padding: 12px 20px; text-align: center; font-size: 0.88rem;">User consent</div>
+
+                    <div style="display: flex; gap: 12px; align-items: center; justify-content: flex-end;">
+                        <div style="color: #EF4444; font-size: 0.75rem; text-align: right;">Candidate opt out<br>security checks</div>
+                        <div style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 8px 14px; font-size: 0.82rem;">Candidate rejected</div>
+                    </div>
+
+                    <!-- Offer call -->
+                    <div style="background: rgba(255,243,205,0.08); border: 1.5px solid rgba(255,243,205,0.2); border-radius: 12px; padding: 16px;">
+                        <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 10px;">Offer call</div>
+                        <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; margin-bottom: 10px;">Final risk analysis inc.<br>IDV (Offer call)</div>
+                        <div style="color: #22C55E; font-size: 0.8rem; font-weight: 600; margin-bottom: 6px;">Positive</div>
+                        <div style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); border-radius: 8px; padding: 10px 14px; font-size: 0.88rem; font-weight: 600;">Employment Decision</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 20: Implementation Timeline (section header) ══════════ -->
+    <div class="slide section-header" data-slide="20">
+        <h2>When are we implementing each component?</h2>
+    </div>
+
+    <!-- ══════════ SLIDE 21: First Integration ══════════ -->
+    <div class="slide" data-slide="21" style="padding-top: 80px;">
+        <h2 style="font-size: 2.4rem; margin-bottom: 32px;">What Will Be Integrated First?</h2>
+        <div class="three-cols">
+            <!-- SAFE Platform -->
+            <div class="col-group">
+                <div class="col-title">SAFE<br>Platform</div>
+                <div class="col-items">
+                    <div class="col-item">Dashboard View</div>
+                    <div class="col-item">Alerts Panel</div>
+                    <div class="col-item">Candidate View</div>
+                    <div class="col-item">Security &amp; Compliance DeepDives</div>
+                    <div class="col-item">SAML &amp; SCIM Support</div>
+                </div>
+            </div>
+
+            <!-- Integrations -->
+            <div class="col-group">
+                <div class="col-title">Integrations</div>
+                <div class="col-items green-border">
+                    <div class="col-item active-green"><strong>Ashby</strong> Overlay<br><span style="font-weight: 400; font-size: 0.82rem;">(Ingestion, analysis triggering and reporting)</span></div>
+                    <div class="col-item active-green"><strong>Slack</strong><br><span style="font-weight: 400; font-size: 0.82rem;">(reporting and support)</span></div>
+                    <div class="col-item active-green">Interview Security Agent</div>
+                    <div class="col-item"><strong>Coralogix</strong> SIEM Integration</div>
+                </div>
+            </div>
+
+            <!-- Security Features -->
+            <div class="col-group">
+                <div class="col-title">Security<br>Features</div>
+                <div class="col-items green-border">
+                    <div class="col-item active-green">Deepfake Detection</div>
+                    <div class="col-item">Identity Verification</div>
+                    <div class="col-item">Cross-Biometric Validation</div>
+                    <div class="col-item">Risk Analysis</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 22: Deployment 2 ══════════ -->
+    <div class="slide" data-slide="22" style="padding-top: 80px;">
+        <div style="text-align: center; margin-bottom: 32px;">
+            <h2 style="font-size: 2.4rem;">Deployment 2</h2>
+            <div style="font-size: 1.2rem; color: var(--muted); margin-top: 4px;">End of Q1</div>
+        </div>
+        <div class="three-cols">
+            <div class="col-group">
+                <div class="col-title">SAFE<br>Platform</div>
+                <div class="col-items">
+                    <div class="col-item">Dashboard View</div>
+                    <div class="col-item">Alerts Panel</div>
+                    <div class="col-item">Candidate View</div>
+                    <div class="col-item">Security &amp; Compliance DeepDives</div>
+                    <div class="col-item">SAML &amp; SCIM Support</div>
+                </div>
+            </div>
+            <div class="col-group">
+                <div class="col-title">Integrations</div>
+                <div class="col-items gold-border">
+                    <div class="col-item active-green"><strong>Ashby</strong> Overlay<br><span style="font-weight: 400; font-size: 0.82rem;">(Ingestion, analysis triggering and reporting)</span></div>
+                    <div class="col-item active-green"><strong>Slack</strong><br><span style="font-weight: 400; font-size: 0.82rem;">(reporting and support)</span></div>
+                    <div class="col-item active-green">Interview Security Agent</div>
+                    <div class="col-item active-green"><strong>Coralogix</strong> SIEM Integration</div>
+                </div>
+            </div>
+            <div class="col-group">
+                <div class="col-title">Security<br>Features</div>
+                <div class="col-items gold-border">
+                    <div class="col-item active-green">Deepfake Detection</div>
+                    <div class="col-item active-green">Identity Verification</div>
+                    <div class="col-item active-green">Cross-Biometric Validation</div>
+                    <div class="col-item active-green">Risk Analysis</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 23: Deployment 3 ══════════ -->
+    <div class="slide" data-slide="23" style="padding-top: 80px;">
+        <div style="text-align: center; margin-bottom: 32px;">
+            <h2 style="font-size: 2.4rem;">Deployment 3</h2>
+            <div style="font-size: 1.2rem; color: var(--muted); margin-top: 4px;">Q2</div>
+        </div>
+        <div class="three-cols">
+            <div class="col-group">
+                <div class="col-title">SAFE<br>Platform</div>
+                <div class="col-items green-border">
+                    <div class="col-item active-green">Dashboard View</div>
+                    <div class="col-item active-green">Alerts Panel</div>
+                    <div class="col-item active-green">Candidate View</div>
+                    <div class="col-item active-green">Security &amp; Compliance DeepDives</div>
+                    <div class="col-item active-green">SAML &amp; SCIM Support</div>
+                </div>
+            </div>
+            <div class="col-group">
+                <div class="col-title">Integrations</div>
+                <div class="col-items green-border">
+                    <div class="col-item active-green"><strong>Ashby</strong> Overlay<br><span style="font-weight: 400; font-size: 0.82rem;">(Ingestion, analysis triggering and reporting)</span></div>
+                    <div class="col-item active-green"><strong>Slack</strong><br><span style="font-weight: 400; font-size: 0.82rem;">(reporting and support)</span></div>
+                    <div class="col-item active-green">Interview Security Agent</div>
+                    <div class="col-item active-green"><strong>Coralogix</strong> SIEM Integration</div>
+                </div>
+            </div>
+            <div class="col-group">
+                <div class="col-title">Security<br>Features</div>
+                <div class="col-items green-border">
+                    <div class="col-item active-green">Deepfake Detection</div>
+                    <div class="col-item active-green">Identity Verification</div>
+                    <div class="col-item active-green">Cross-Biometric Validation</div>
+                    <div class="col-item active-green">Risk Analysis</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 24: Deployment Plan (section header) ══════════ -->
+    <div class="slide section-header" data-slide="24">
+        <h2>Deployment Plan (First Phase)</h2>
+    </div>
+
+    <!-- ══════════ SLIDE 25: Integration Success ══════════ -->
+    <div class="slide section-header" data-slide="25">
+        <h2 style="font-size: 2.6rem;">Integration Success</h2>
+        <h3 style="font-size: 1.2rem; max-width: 800px; margin-top: 48px; line-height: 1.8;">Complete and tested Ashby integration with Clarity's platform that fits the expectation of all Deel stakeholders</h3>
+    </div>
+
+    <!-- ══════════ SLIDE 26: How Will We Do It ══════════ -->
+    <div class="slide" data-slide="26">
+        <h2 style="font-size: 2.4rem; margin-bottom: 56px;">How Will We Do It?</h2>
+        <div class="timeline-container">
+            <div class="timeline-weeks">
+                <span>Week 1</span>
+                <span>Week 2</span>
+                <span>Week 3</span>
+                <span>Week 4</span>
+                <span>Week 5</span>
+            </div>
+
+            <div class="timeline-endpoints">
+                <span class="start">Kickoff</span>
+                <span class="end">Full Rollout</span>
+            </div>
+
+            <div class="timeline-track">
+                <div class="timeline-dots">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+
+            <div class="timeline-labels">
+                <span>Integration<br>Alignment</span>
+                <span>Testing</span>
+                <span>10% rollout</span>
+                <span>20% rollout</span>
+                <span>50% rollout</span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SLIDE 27: Next Steps ══════════ -->
+    <div class="slide" data-slide="27">
+        <h2 style="font-size: 2.4rem; margin-bottom: 48px;">Next steps</h2>
+        <ol class="numbered-list">
+            <li><span class="num">1.</span>Confirmation - New/Defining Current stages for Clarity triggers</li>
+            <li><span class="num">2.</span>Alignment on reporting wordings &amp; logic (Clarity will send default wording for confirmation)</li>
+            <li><span class="num">3.</span>Create a dedicated API key for Clarity service with relevant permissions (Clarity will share integration guide)</li>
+            <li><span class="num">4.</span>SCIM &amp; RBAC scoping for SAFE</li>
+        </ol>
+    </div>
+
+    <!-- ══════════ SLIDE 28: Q&A / Close ══════════ -->
+    <div class="slide title-slide" data-slide="28">
+        <svg class="arc-decoration arc-tr" viewBox="0 0 600 600" fill="none">
+            <g opacity="0.5">
+                <circle cx="300" cy="300" r="150" stroke="url(#arcGrad2)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="175" stroke="url(#arcGrad2)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="200" stroke="url(#arcGrad2)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="225" stroke="url(#arcGrad2)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="250" stroke="url(#arcGrad2)" stroke-width="0.8"/>
+                <circle cx="300" cy="300" r="275" stroke="url(#arcGrad2)" stroke-width="0.7"/>
+                <circle cx="300" cy="300" r="300" stroke="url(#arcGrad2)" stroke-width="0.7"/>
+                <circle cx="300" cy="300" r="325" stroke="url(#arcGrad2)" stroke-width="0.6"/>
+                <circle cx="300" cy="300" r="350" stroke="url(#arcGrad2)" stroke-width="0.6"/>
+                <circle cx="300" cy="300" r="375" stroke="url(#arcGrad2)" stroke-width="0.5"/>
+                <circle cx="300" cy="300" r="400" stroke="url(#arcGrad2)" stroke-width="0.5"/>
+            </g>
+            <defs>
+                <linearGradient id="arcGrad2" x1="0" y1="0" x2="600" y2="600">
+                    <stop offset="0%" stop-color="#1a6b8a"/>
+                    <stop offset="50%" stop-color="#3dd9eb"/>
+                    <stop offset="100%" stop-color="#61F393"/>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="co-brand">
+            <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846e27_Clarity%20Logo%20white.svg" alt="Clarity" style="height: 36px;">
+            <span class="deel-logo">deel.</span>
+        </div>
+
+        <h1>Questions &amp; Alignment</h1>
+    </div>
+
+</div>
+
+<!-- Slide counter -->
+<div class="slide-counter" id="counter">1 / 28</div>
+
+<!-- Navigation hints -->
+<div class="nav-hint">
+    <kbd>&larr;</kbd> <kbd>&rarr;</kbd> navigate
+    &nbsp;&nbsp;
+    <kbd>F</kbd> fullscreen
+</div>
+
+<script>
+(function() {
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+    const counter = document.getElementById('counter');
+    let current = 0;
+
+    // Show first slide
+    slides[0].classList.add('active');
+    updateCounter();
+
+    function go(n) {
+        if (n < 0 || n >= total) return;
+        slides[current].classList.remove('active');
+        current = n;
+        slides[current].classList.add('active');
+        updateCounter();
+    }
+
+    function updateCounter() {
+        counter.textContent = (current + 1) + ' / ' + total;
+    }
+
+    // Keyboard nav
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            go(current + 1);
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            go(current - 1);
+        } else if (e.key === 'Home') {
+            e.preventDefault();
+            go(0);
+        } else if (e.key === 'End') {
+            e.preventDefault();
+            go(total - 1);
+        } else if (e.key === 'f' || e.key === 'F') {
+            e.preventDefault();
+            toggleFullscreen();
+        } else if (e.key === 'Escape') {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
+        }
+    });
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) go(current + 1);
+            else go(current - 1);
+        }
+    });
+
+    // Click to advance (right half) / go back (left half)
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.navbar, .nav-hint, a, button')) return;
+        if (e.clientX > window.innerWidth * 0.5) go(current + 1);
+        else go(current - 1);
+    });
+
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().then(() => {
+                document.body.classList.add('fullscreen-active');
+            });
+        } else {
+            document.exitFullscreen().then(() => {
+                document.body.classList.remove('fullscreen-active');
+            });
+        }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            document.body.classList.remove('fullscreen-active');
+        }
+    });
+})();
+</script>
+<script src="../../shared/js/dev-mode.js"></script>
+</body>
+</html>
