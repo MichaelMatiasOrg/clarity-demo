@@ -548,29 +548,62 @@ h3 {
 @keyframes candidateFlow {
     0% { left: -30px; opacity: 0; }
     5% { opacity: 1; }
-    20% { left: 15%; }
-    40% { left: 35%; }
-    60% { left: 55%; }
-    80% { left: 75%; }
-    95% { left: 90%; opacity: 1; }
-    100% { left: 105%; opacity: 0; }
+    20% { left: calc(8%); }
+    40% { left: calc(24%); }
+    60% { left: calc(40%); }
+    80% { left: calc(56%); }
+    95% { left: calc(68%); opacity: 1; }
+    100% { left: calc(85%); opacity: 0; }
 }
 
-@keyframes threatDetection {
-    0% { left: -30px; opacity: 0; background: var(--accent); }
+@keyframes threatDotPath {
+    0% { left: -30px; opacity: 0; background: #94a3b8; }
     5% { opacity: 1; }
-    40% { left: 35%; background: var(--accent); }
-    45% { left: 35%; transform: translateY(-50%) scale(1.3); background: var(--danger); }
-    55% { left: 37%; transform: translateY(-100px) scale(1); background: var(--danger); opacity: 1; }
-    70% { left: 40%; transform: translateY(-150px) scale(0.8); background: var(--danger); opacity: 0.5; }
-    100% { left: 42%; transform: translateY(-200px) scale(0.5); background: var(--danger); opacity: 0; }
+    20% { left: calc(8%); }
+    40% { left: calc(24%); background: #94a3b8; }
+    45% { left: calc(24%); transform: translateY(-50%) scale(1.2); background: var(--danger); }
+    55% { left: calc(24%); transform: translateY(-150px) scale(1); background: var(--danger); opacity: 1; }
+    70% { left: calc(26%); transform: translateY(-200px) scale(0.8); background: var(--danger); opacity: 0.5; }
+    100% { left: calc(28%); transform: translateY(-250px) scale(0.5); background: var(--danger); opacity: 0; }
 }
 
-@keyframes particleBurst {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.3; transform: translate(-80px, -120px) scale(0.3); }
-    100% { opacity: 0; transform: translate(-100px, -150px) scale(0); }
+@keyframes blockAppear {
+    0%, 15% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    25%, 55% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    70%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+}
+
+@keyframes threatEject {
+    0%, 25% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    30% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    35% { opacity: 1; transform: translate(-50%, -80px) scale(1); }
+    50% { opacity: 0.5; transform: translate(-30%, -120px) scale(0.7); }
+    60%, 100% { opacity: 0; transform: translate(-20%, -150px) scale(0.3); }
+}
+
+@keyframes particleBurst1 {
+    0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    35% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.4; transform: translate(-80px, -100px) scale(0.5); }
+    60%, 100% { opacity: 0; transform: translate(-100px, -120px) scale(0); }
+}
+
+@keyframes particleBurst2 {
+    0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    35% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.4; transform: translate(30px, -110px) scale(0.5); }
+    60%, 100% { opacity: 0; transform: translate(50px, -130px) scale(0); }
+}
+
+@keyframes lifecycleOrbit {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes lifecycleItemOrbit {
+    0% { transform: rotate(0deg) translateX(70px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(70px) rotate(-360deg); }
 }
 
 .pipeline-track {
@@ -583,6 +616,7 @@ h3 {
     justify-content: space-around;
     padding: 0 40px;
     margin: 40px 0;
+    overflow: visible;
 }
 
 .pipeline-stage {
@@ -596,24 +630,102 @@ h3 {
     z-index: 1;
     text-align: center;
     line-height: 1.2;
+    position: relative;
 }
 
 .pipeline-dot {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     top: 50%;
-    margin-top: -6px;
-    background: var(--accent);
+    margin-top: -12px;
+    background: #94a3b8;
+    opacity: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.pipeline-dot::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+}
+
+.slide.active .pipeline-dot.clean1 { animation: candidateFlow 6s ease-in-out forwards 0.5s; }
+.slide.active .pipeline-dot.clean2 { animation: candidateFlow 6s ease-in-out forwards 1.3s; }
+.slide.active .pipeline-dot.threat1 { animation: threatDotPath 6s ease-in-out forwards 2.1s; }
+.slide.active .pipeline-dot.clean3 { animation: candidateFlow 6s ease-in-out forwards 2.9s; }
+.slide.active .pipeline-dot.threat2 { animation: threatDotPath 6s ease-in-out forwards 3.7s; }
+
+/* Threat blocking effects */
+.threat-block-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.threat-blocked-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--danger);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.slide.active .threat-blocked-badge {
+    animation: blockAppear 6s ease-out infinite 2.1s;
+}
+
+.threat-eject-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: var(--danger);
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+}
+
+.slide.active .threat-eject-dot {
+    animation: threatEject 6s ease-out infinite 2.1s;
+}
+
+.particle-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--danger);
+    border-radius: 50%;
     opacity: 0;
 }
 
-.slide.active .pipeline-dot.clean1 { animation: candidateFlow 4s linear infinite 0.5s; }
-.slide.active .pipeline-dot.clean2 { animation: candidateFlow 4s linear infinite 2s; }
-.slide.active .pipeline-dot.threat1 { animation: threatDetection 4s linear infinite 1s; }
-.slide.active .pipeline-dot.clean3 { animation: candidateFlow 4s linear infinite 3.5s; }
-.slide.active .pipeline-dot.threat2 { animation: threatDetection 4s linear infinite 4.2s; }
+.slide.active .particle-burst.p1 {
+    animation: particleBurst1 6s ease-out infinite 2.1s;
+}
+
+.slide.active .particle-burst.p2 {
+    animation: particleBurst2 6s ease-out infinite 2.1s;
+}
 
 /* ========== CHECK APPEAR ANIMATION ========== */
 @keyframes checkScale {
@@ -1550,7 +1662,7 @@ h3 {
         <!-- Right: Screenshot with Platform Integrations -->
         <div class="anim d3">
             <div class="demo-frame" style="margin-bottom: 24px;">
-                <img src="../../shared/screenshots/deepfake.png" alt="Deepfake Detection Interface">
+                <img src="../../shared/screenshots/during-interview.png" alt="Deepfake Detection Interface">
             </div>
             
             <!-- Platform Integration Pills -->
