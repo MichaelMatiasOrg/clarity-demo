@@ -770,15 +770,16 @@ h3 {
     
     /* Slides */
     .slide { 
-        padding: 40px 20px; 
+        padding: 24px 20px 40px; 
         top: 48px;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
     }
     
     /* Typography */
-    h1 { font-size: 2.4rem; margin-bottom: 16px; }
-    h2 { font-size: 1.8rem; margin-bottom: 14px; }
+    h1 { font-size: 2.2rem; margin-bottom: 12px; }
+    h2 { font-size: 1.6rem; margin-bottom: 10px; }
     h3 { font-size: 1.1rem; margin-bottom: 8px; }
     .subtitle { font-size: 1rem; }
     .section-label { font-size: 0.7rem; }
@@ -806,6 +807,15 @@ h3 {
     /* Lifecycle: Show mobile version, hide desktop orbit */
     .orbit-container { display: none; }
     .lifecycle-list { display: flex; }
+    
+    /* Reduce large margins globally on mobile */
+    [style*="margin-bottom: 60px"] { margin-bottom: 20px !important; }
+    [style*="margin-bottom: 50px"] { margin-bottom: 16px !important; }
+    [style*="margin-bottom: 40px"] { margin-bottom: 14px !important; }
+    [style*="margin-top: 60px"],
+    [style*="margin-top: 70px"] { margin-top: 20px !important; }
+    [style*="margin-top: 50px"] { margin-top: 16px !important; }
+    [style*="margin-top: 40px"] { margin-top: 14px !important; }
     
     /* Stats grid: 2x2 layout */
     [style*="grid-template-columns: repeat(4"]:not(.mobile-single-col) { 
@@ -839,10 +849,10 @@ h3 {
         gap: 20px !important;
     }
     
-    /* Case study: stack risk cards vertically but allow 2 findings per row */
+    /* Case study: keep 3 risk cards in a row — they're small */
     [style*="grid-template-columns: repeat(3"]:not(.mobile-2-col) { 
-        grid-template-columns: 1fr !important; 
-        gap: 20px !important;
+        grid-template-columns: repeat(3, 1fr) !important; 
+        gap: 12px !important;
     }
     
     /* Case study findings: 2 per row on mobile */
@@ -854,15 +864,18 @@ h3 {
     /* Case study risk numbers */
     [style*="font-size: 4rem"] { font-size: 2.6rem !important; }
     
-    /* Technology summary bar: wrap into 2x2 */
+    /* Technology summary bar: wrap into 2x2, hide dividers */
     [style*="gap: 50px"][style*="justify-content: center"]:not([style*="border-left"]) {
         flex-wrap: wrap !important;
-        gap: 20px !important;
-        padding: 20px 24px !important;
+        gap: 16px !important;
+        padding: 20px 16px !important;
     }
-    [style*="gap: 50px"][style*="justify-content: center"]:not([style*="border-left"]) > div {
-        flex: 1 1 45% !important;
-        min-width: 120px !important;
+    [style*="gap: 50px"][style*="justify-content: center"]:not([style*="border-left"]) > div[style*="width: 2px"] {
+        display: none !important;
+    }
+    [style*="gap: 50px"][style*="justify-content: center"]:not([style*="border-left"]) > div:not([style*="width: 2px"]) {
+        flex: 1 1 40% !important;
+        min-width: 130px !important;
     }
     
     /* Pipeline track: horizontal scroll */
@@ -960,13 +973,19 @@ h3 {
     .subtitle { font-size: 0.9rem; }
     .section-label { font-size: 0.65rem; }
     
-    /* All grids: single column */
+    /* Most grids: single column */
     [style*="grid-template-columns: repeat(2"],
-    [style*="grid-template-columns: repeat(3"],
     [style*="grid-template-columns: repeat(4"] {
         grid-template-columns: 1fr !important;
-        gap: 16px !important;
+        gap: 12px !important;
     }
+    /* Case study risk cards: keep 3 across, just tighter */
+    [style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+    }
+    [style*="font-size: 4rem"] { font-size: 1.8rem !important; }
+    [style*="border-top: 6px"] .card, [style*="border-top: 6px"] { padding: 12px 8px !important; }
     
     /* Cards tighter */
     .card { padding: 16px; }
