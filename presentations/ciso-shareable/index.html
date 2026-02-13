@@ -56,11 +56,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px 80px;
+    padding: 48px 80px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.6s ease;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: var(--bg-primary);
 }
 
@@ -809,8 +810,8 @@ h3 {
     .lifecycle-list { display: flex; }
     
     /* Reduce large margins globally on mobile */
-    [style*="margin-bottom: 60px"] { margin-bottom: 20px !important; }
-    [style*="margin-bottom: 50px"] { margin-bottom: 16px !important; }
+    [style*="margin-bottom: 36px"] { margin-bottom: 20px !important; }
+    [style*="margin-bottom: 28px"] { margin-bottom: 16px !important; }
     [style*="margin-bottom: 40px"] { margin-bottom: 14px !important; }
     [style*="margin-top: 60px"],
     [style*="margin-top: 70px"] { margin-top: 20px !important; }
@@ -1044,8 +1045,8 @@ h3 {
     [style*="gap: 24px"] { gap: 10px !important; }
     
     /* Margin reductions */
-    [style*="margin-bottom: 60px"] { margin-bottom: 20px !important; }
-    [style*="margin-bottom: 50px"] { margin-bottom: 18px !important; }
+    [style*="margin-bottom: 36px"] { margin-bottom: 20px !important; }
+    [style*="margin-bottom: 28px"] { margin-bottom: 18px !important; }
     [style*="margin-bottom: 40px"] { margin-bottom: 16px !important; }
     [style*="margin-top: 50px"] { margin-top: 18px !important; }
     [style*="margin-top: 40px"] { margin-top: 16px !important; }
@@ -1086,7 +1087,7 @@ h3 {
     </svg>
 
     <div style="text-align: center; position: relative; z-index: 1; max-width: 900px;">
-        <div class="anim" style="margin-bottom: 50px;">
+        <div class="anim" style="margin-bottom: 28px;">
             <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 60px;">
         </div>
         <h1 class="anim d1">Employee Identity Security</h1>
@@ -1103,7 +1104,7 @@ h3 {
 <section class="slide" data-slide="2">
     <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">The Evolving Threat</div>
-        <h2 class="anim d1" style="margin-bottom: 60px;">A threat that's been <span class="danger">accelerating rapidly</span></h2>
+        <h2 class="anim d1" style="margin-bottom: 36px;">A threat that's been <span class="danger">accelerating rapidly</span></h2>
 
         <!-- Desktop Timeline (horizontal) -->
         <div class="timeline mobile-hide">
@@ -1189,26 +1190,26 @@ h3 {
 <section class="slide" data-slide="3">
     <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">Scale of the Problem</div>
-        <h2 class="anim d1" style="margin-bottom: 50px;">The hiring fraud epidemic is <span class="danger">here</span></h2>
+        <h2 class="anim d1" style="margin-bottom: 28px;">The hiring fraud epidemic is <span class="danger">here</span></h2>
 
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-bottom: 60px;" class="mobile-2-col">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-bottom: 36px;" class="mobile-2-col">
             <div class="card stat-pop d1" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
-                <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1 in 4</div>
+                <div style="font-size: 2.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1 in 4</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">candidate profiles will be fake by 2028</p>
                 <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Gartner Research</p>
             </div>
             <div class="card stat-pop d2" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
-                <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1,800+</div>
+                <div style="font-size: 2.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1,800+</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">suspected NK applicants blocked by Amazon alone</p>
                 <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Dark Reading, 2025</p>
             </div>
             <div class="card stat-pop d3" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
-                <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">300+</div>
+                <div style="font-size: 2.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">300+</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">US companies infiltrated by NK operatives</p>
                 <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— DOJ Indictment, 2025</p>
             </div>
             <div class="card stat-pop d4" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
-                <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">220%</div>
+                <div style="font-size: 2.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">220%</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">increase in NK infiltrations in 12 months</p>
                 <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Fortune, 2025</p>
             </div>
@@ -1238,7 +1239,7 @@ h3 {
     <div style="max-width: 1100px; width: 100%; text-align: center;">
         <div class="anim section-label">The Gap</div>
         <h2 class="anim d1">Why current solutions <span class="danger">fall short</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 60px;">Point solutions create blind spots. Fraudsters exploit the gaps.</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">Point solutions create blind spots. Fraudsters exploit the gaps.</p>
 
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;">
             <div class="card card-reveal r1" style="text-align: left; position: relative; border-left: 4px solid var(--danger);">
@@ -1279,30 +1280,30 @@ h3 {
 <!-- ===================== SLIDE 5: CASE STUDY ===================== -->
 <section class="slide" data-slide="5">
     <div style="max-width: 1100px; width: 100%; text-align: center;">
-        <div class="anim badge" style="margin-bottom: 24px;">Real Case Study</div>
-        <h2 class="anim d1" style="font-size: 2.6rem; margin-bottom: 16px;">A Fortune 500 insurance company<br>tested <span class="accent">Clarity</span> on 28 resumes</h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 50px;">Here's what we discovered in their active pipeline</p>
+        <div class="anim badge" style="margin-bottom: 16px;">Real Case Study</div>
+        <h2 class="anim d1" style="font-size: 2.2rem; margin-bottom: 10px;">A Fortune 500 insurance company tested <span class="accent">Clarity</span> on 28 resumes</h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 28px;">Here's what we discovered in their active pipeline</p>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto;" class="mobile-2-col">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px; max-width: 900px; margin-left: auto; margin-right: auto;" class="mobile-2-col">
             <div class="card anim d3" style="border-top: 6px solid var(--danger); text-align: center; background: linear-gradient(135deg, white 0%, #fef2f2 100%);">
-                <div style="font-size: 4rem; font-weight: 800; color: var(--danger); margin-bottom: 8px; line-height: 1;">7</div>
+                <div style="font-size: 3rem; font-weight: 800; color: var(--danger); margin-bottom: 8px; line-height: 1;">7</div>
                 <div style="font-weight: 700; color: var(--danger); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">High Risk</div>
                 <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Likely fraud</div>
             </div>
             <div class="card anim d4" style="border-top: 6px solid #F59E0B; text-align: center; background: linear-gradient(135deg, white 0%, #fffbeb 100%);">
-                <div style="font-size: 4rem; font-weight: 800; color: #F59E0B; margin-bottom: 8px; line-height: 1;">5</div>
+                <div style="font-size: 3rem; font-weight: 800; color: #F59E0B; margin-bottom: 8px; line-height: 1;">5</div>
                 <div style="font-weight: 700; color: #F59E0B; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Medium Risk</div>
                 <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Requires review</div>
             </div>
             <div class="card anim d5" style="border-top: 6px solid #10B981; text-align: center; background: linear-gradient(135deg, white 0%, #ecfdf5 100%);">
-                <div style="font-size: 4rem; font-weight: 800; color: #10B981; margin-bottom: 8px; line-height: 1;">16</div>
+                <div style="font-size: 3rem; font-weight: 800; color: #10B981; margin-bottom: 8px; line-height: 1;">16</div>
                 <div style="font-weight: 700; color: #10B981; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Low Risk</div>
                 <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Verified clean</div>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: left; max-width: 900px; margin: 0 auto;" class="mobile-2-col">
-            <div class="anim d6" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; text-align: left; max-width: 900px; margin: 0 auto;" class="mobile-2-col">
+            <div class="anim d6" style="display: flex; align-items: flex-start; gap: 14px; background: white; padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
                 <div class="check-appear cd1" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
@@ -1312,7 +1313,7 @@ h3 {
                 </div>
             </div>
             
-            <div class="anim d7" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+            <div class="anim d7" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
                 <div class="check-appear cd2" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
@@ -1322,7 +1323,7 @@ h3 {
                 </div>
             </div>
             
-            <div class="anim d8" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+            <div class="anim d8" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
                 <div class="check-appear cd3" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
@@ -1332,7 +1333,7 @@ h3 {
                 </div>
             </div>
             
-            <div class="anim d9" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+            <div class="anim d9" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
                 <div class="check-appear cd4" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
@@ -1350,7 +1351,7 @@ h3 {
     <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">The Solution</div>
         <h2 class="anim d1">The Employee Identity <span class="accent">Lifecycle</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 60px;">Clarity verifies identity at every critical touchpoint</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">Clarity verifies identity at every critical touchpoint</p>
 
         <!-- Enhanced Orbit Diagram (Desktop) -->
         <div class="anim d3 orbit-container mobile-hide">
@@ -1482,7 +1483,7 @@ h3 {
     <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">How It Works</div>
         <h2 class="anim d1">The Clarity <span class="accent">Gauntlet</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 50px;">Every candidate runs through multiple verification layers. Threats get detected and ejected.</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 28px;">Every candidate runs through multiple verification layers. Threats get detected and ejected.</p>
 
         <!-- Enhanced Pipeline Visualization -->
         <div class="anim d3" style="position: relative; padding: 40px 0;">
@@ -1527,7 +1528,7 @@ h3 {
     <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">Command Center</div>
         <h2 class="anim d1" style="margin-bottom: 16px;">Complete visibility into your <span class="accent">hiring pipeline</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 50px;">One unified dashboard. Every candidate. Real-time risk assessment.</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 28px;">One unified dashboard. Every candidate. Real-time risk assessment.</p>
 
         <div class="anim d3 demo-frame pulse" style="max-width: 1100px; margin: 0 auto;">
             <img src="../../shared/screenshots/employee-dashboard.png" alt="Clarity Employee Dashboard">
@@ -1616,7 +1617,7 @@ h3 {
     <div style="max-width: 1100px; width: 100%; text-align: center;">
         <div class="anim section-label">Enterprise Ready</div>
         <h2 class="anim d1">Fits into your <span class="accent">existing stack</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 60px;">Deploy in days, not months. API-first architecture with pre-built connectors.</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">Deploy in days, not months. API-first architecture with pre-built connectors.</p>
 
         <div style="max-width: 900px; margin: 0 auto; text-align: left;">
             <div class="int-row anim d3">
@@ -1708,13 +1709,13 @@ h3 {
 <!-- ===================== SLIDE 12: GET STARTED (CTA) ===================== -->
 <section class="slide slide-dark" data-slide="12">
     <div style="text-align: center; position: relative; z-index: 1; max-width: 800px;">
-        <div class="anim" style="margin-bottom: 50px;">
+        <div class="anim" style="margin-bottom: 28px;">
             <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 60px;">
         </div>
 
         <h1 class="anim d1" style="font-size: 3.8rem; color: white; margin-bottom: 20px;">Test your pipeline</h1>
         <div class="anim d2" style="width: 100px; height: 4px; background: var(--accent); margin: 24px auto; border-radius: 2px;"></div>
-        <p class="anim d3" style="font-size: 1.4rem; color: rgba(255,255,255,0.8); margin-bottom: 50px; line-height: 1.5;">Send us your recent CV submissions.<br>See what <span style="color: var(--accent); font-weight: 700;">Clarity</span> finds.</p>
+        <p class="anim d3" style="font-size: 1.4rem; color: rgba(255,255,255,0.8); margin-bottom: 28px; line-height: 1.5;">Send us your recent CV submissions.<br>See what <span style="color: var(--accent); font-weight: 700;">Clarity</span> finds.</p>
 
         <div style="display: flex; flex-direction: column; gap: 24px; align-items: center; max-width: 500px; margin: 0 auto;">
             <a href="mailto:demo@getclarity.ai" class="anim d4" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: var(--accent); color: var(--text-primary); padding: 20px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1.1rem; width: 100%; transition: transform 0.2s ease;">
