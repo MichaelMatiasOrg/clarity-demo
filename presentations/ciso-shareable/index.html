@@ -1480,77 +1480,62 @@ h3 {
         <h2 class="anim d1">The Employee Identity <span class="accent">Lifecycle</span></h2>
         <p class="anim d2 subtitle" style="margin-bottom: 28px;">Clarity verifies identity at every critical touchpoint</p>
 
-        <!-- Desktop: Orbital Lifecycle Visualization -->
-        <div class="anim d3 mobile-hide" style="margin: 40px 0;">
-            <div class="orbit-container" style="position: relative; width: 380px; height: 380px; margin: 0 auto;">
-                <!-- Outer orbit ring -->
-                <div style="position: absolute; inset: 20px; border: 2px dashed rgba(97,243,147,0.3); border-radius: 50%; animation: lifecycleOrbit 20s linear infinite;"></div>
-                
-                <!-- Center: Employee -->
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: var(--text-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(10,22,40,0.2), 0 0 30px 10px rgba(97,243,147,0.1); z-index: 2;">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                        <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+        <!-- Desktop: Horizontal Lifecycle Flow -->
+        <div class="anim d3 mobile-hide" style="margin: 30px auto; max-width: 1000px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: nowrap;">
+                <!-- Pre-Hire -->
+                <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/>
                     </svg>
+                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">Pre-Hire</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Resume Screen</div>
                 </div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, 70px); font-size: 0.9rem; font-weight: 700; color: var(--text-primary); z-index: 2;">Employee</div>
+                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">→</div>
                 
-                <!-- Orbiting verification points -->
-                <div style="position: absolute; inset: 0; animation: lifecycleOrbit 20s linear infinite;">
-                    <!-- Pre-Hire -->
-                    <div style="position: absolute; top: 0; left: 50%; transform: translate(-50%, 0) translateX(0px); width: 100px; height: 80px; margin-top: -40px;">
-                        <div style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 14px 12px; text-align: center; box-shadow: 0 4px 20px rgba(97,243,147,0.25); animation: lifecycleItemOrbit 20s linear infinite;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 6px;">
-                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/>
-                            </svg>
-                            <div style="font-size: 0.65rem; font-weight: 800; color: var(--text-primary); margin-bottom: 2px;">Pre-Hire</div>
-                            <div style="font-size: 0.55rem; color: var(--text-secondary);">Resume Screen</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Interview -->
-                    <div style="position: absolute; top: 50%; right: 0; transform: translate(0, -50%) translateX(0px); width: 100px; height: 80px; margin-right: -50px;">
-                        <div style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 14px 12px; text-align: center; box-shadow: 0 4px 20px rgba(97,243,147,0.25); animation: lifecycleItemOrbit 20s linear infinite;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 6px;">
-                                <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
-                            </svg>
-                            <div style="font-size: 0.65rem; font-weight: 800; color: var(--text-primary); margin-bottom: 2px;">Interview</div>
-                            <div style="font-size: 0.55rem; color: var(--text-secondary);">Live Monitor</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Onboarding -->
-                    <div style="position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 0) translateX(0px); width: 100px; height: 80px; margin-bottom: -40px;">
-                        <div style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 14px 12px; text-align: center; box-shadow: 0 4px 20px rgba(97,243,147,0.25); animation: lifecycleItemOrbit 20s linear infinite;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 6px;">
-                                <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                            </svg>
-                            <div style="font-size: 0.65rem; font-weight: 800; color: var(--text-primary); margin-bottom: 2px;">Onboarding</div>
-                            <div style="font-size: 0.55rem; color: var(--text-secondary);">Day 1 Check</div>
-                        </div>
-                    </div>
-                    
-                    <!-- MFA Reset -->
-                    <div style="position: absolute; top: 50%; left: 0; transform: translate(0, -50%) translateX(0px); width: 100px; height: 80px; margin-left: -50px;">
-                        <div style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 14px 12px; text-align: center; box-shadow: 0 4px 20px rgba(97,243,147,0.25); animation: lifecycleItemOrbit 20s linear infinite;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 6px;">
-                                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
-                            </svg>
-                            <div style="font-size: 0.65rem; font-weight: 800; color: var(--text-primary); margin-bottom: 2px;">MFA Reset</div>
-                            <div style="font-size: 0.55rem; color: var(--text-secondary);">Help Desk</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Continuous (top-right) -->
-                    <div style="position: absolute; top: 25%; right: 25%; transform: translate(50%, -50%) translateX(0px); width: 100px; height: 80px;">
-                        <div style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 14px 12px; text-align: center; box-shadow: 0 4px 20px rgba(97,243,147,0.25); animation: lifecycleItemOrbit 20s linear infinite;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 6px;">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                            </svg>
-                            <div style="font-size: 0.65rem; font-weight: 800; color: var(--text-primary); margin-bottom: 2px;">Continuous</div>
-                            <div style="font-size: 0.55rem; color: var(--text-secondary);">Monitoring</div>
-                        </div>
-                    </div>
+                <!-- Interview -->
+                <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
+                        <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+                    </svg>
+                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">Interview</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Live Monitor</div>
                 </div>
+                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">→</div>
+                
+                <!-- Onboarding -->
+                <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
+                        <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                    </svg>
+                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">Onboarding</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Day 1 Check</div>
+                </div>
+                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">→</div>
+                
+                <!-- MFA Reset -->
+                <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
+                        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                    </svg>
+                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">MFA Reset</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Help Desk</div>
+                </div>
+                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">→</div>
+                
+                <!-- Continuous -->
+                <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">Continuous</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Monitoring</div>
+                </div>
+            </div>
+            
+            <!-- Cycle indicator -->
+            <div style="text-align: center; margin-top: 16px; color: var(--text-secondary); font-size: 0.8rem;">
+                <span style="color: var(--accent);">↻</span> Continuous cycle — identity verified at every touchpoint
             </div>
         </div>
         
