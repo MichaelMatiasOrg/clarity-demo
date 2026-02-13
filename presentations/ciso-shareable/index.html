@@ -638,52 +638,166 @@ h3 {
     margin: 0 2px;
 }
 
-/* ========== RESPONSIVE ========== */
+/* ========== RESPONSIVE: TABLET ========== */
 @media (max-width: 768px) {
-    .slide { padding: 40px 30px; }
-    h1 { font-size: 2.8rem; }
-    h2 { font-size: 2.2rem; }
-    .subtitle { font-size: 1.1rem; }
-    
-    .timeline { flex-wrap: wrap; gap: 20px; }
-    .timeline-item { flex: 0 0 45%; }
-    .timeline-line { display: none; }
-    
-    .orbit-container { width: 320px; height: 320px; }
-    .orbit-item { width: 100px; height: 70px; margin: -35px 0 0 -50px; }
-    .orbit-item:nth-child(n) { transform: rotate(calc(var(--i) * 72deg)) translateX(140px); }
-    
-    [style*="grid-template-columns"] {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-    
-    .demo-frame img { max-height: 50vh; object-fit: contain; }
-    .logo-chip { font-size: 0.7rem; padding: 6px 10px; }
-    .logo-chip img { height: 16px; }
-}
-
-@media (max-width: 480px) {
-    .slide { padding: 30px 20px; }
-    h1 { font-size: 2.2rem; }
+    .slide { padding: 40px 24px; }
+    h1 { font-size: 2.4rem; }
     h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.1rem; }
     .subtitle { font-size: 1rem; }
     .card { padding: 20px; }
     
-    .timeline { flex-direction: column; align-items: stretch; }
-    .timeline-item { flex: none; display: flex; align-items: center; gap: 12px; text-align: left; }
-    .timeline-dot { margin: 0; width: 50px; height: 50px; }
+    /* Timeline → vertical list */
+    .timeline { flex-direction: column; align-items: stretch; gap: 16px; }
+    .timeline-line { display: none; }
+    .timeline-item {
+        flex: none;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        text-align: left;
+    }
+    .timeline-dot { margin: 0; flex-shrink: 0; width: 48px; height: 48px; font-size: 0.65rem; }
+    .timeline-item h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .timeline-item p { font-size: 0.8rem; line-height: 1.4; }
     
-    .orbit-container { width: 260px; height: 260px; }
-    .orbit-center { width: 80px; height: 80px; }
-    .orbit-item { width: 80px; height: 60px; margin: -30px 0 0 -40px; }
+    /* All multi-column grids → single or two columns */
+    [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+    [style*="grid-template-columns: repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
+    [style*="grid-template-columns: 1fr 1.2fr"],
+    [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
     
-    .pipeline-stage { padding: 8px 12px; font-size: 0.65rem; }
+    /* Orbit → smaller */
+    .orbit-container { width: 280px; height: 280px; }
+    .orbit-center { width: 70px; height: 70px; }
+    .orbit-item { width: 80px; height: 56px; margin: -28px 0 0 -40px; }
+    .orbit-card { padding: 6px; }
+    .orbit-card div:first-child { font-size: 0.6rem; }
+    .orbit-card div:last-child { font-size: 0.55rem; }
+    
+    /* Tech summary bar → wrap */
+    [style*="gap: 50px"][style*="justify-content: center"] {
+        flex-wrap: wrap !important;
+        gap: 16px !important;
+        padding: 20px !important;
+    }
+    
+    /* Pipeline stages */
+    .pipeline-track { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .pipeline-stage { padding: 8px 10px; font-size: 0.65rem; min-width: 70px; }
+    
+    /* Quote card — stack vertically */
+    [style*="gap: 40px"][style*="border-left: 6px"] {
+        flex-direction: column !important;
+        gap: 16px !important;
+        padding: 24px !important;
+    }
+    [style*="gap: 40px"][style*="border-left: 6px"] img[alt="Charles Carmakal"] {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    [style*="gap: 40px"][style*="border-left: 6px"] p { font-size: 1rem !important; }
+    
+    /* Stat card numbers */
+    .stat-pop [style*="font-size: 3.8rem"] { font-size: 2.6rem !important; }
+    
+    /* Demo frames */
+    .demo-frame img { max-height: 40vh; object-fit: contain; }
+    
+    /* Logo chips */
+    .logo-chip { font-size: 0.7rem; padding: 6px 10px; }
+    .logo-chip img { height: 16px; }
+    
+    /* Int rows — wrap */
+    .int-row { flex-wrap: wrap; gap: 8px; }
+    .int-row-label { width: 100%; margin-bottom: 4px; }
+    
+    /* Num badges */
     .num-badge { width: 40px; height: 40px; font-size: 1.1rem; }
     
+    /* Nav hint — hide on touch devices */
+    #nav-hint { display: none; }
+    
+    /* CTA slide adjustments */
+    .slide-dark h1 { font-size: 2.4rem !important; }
+    .slide-dark p[style*="font-size: 1.4rem"] { font-size: 1.1rem !important; }
+}
+
+/* ========== RESPONSIVE: MOBILE ========== */
+@media (max-width: 480px) {
+    .slide { padding: 24px 16px; overflow-y: auto; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    .subtitle { font-size: 0.9rem; }
+    .section-label { font-size: 0.65rem; }
+    .card { padding: 16px; border-radius: 12px; }
+    
+    /* All grids → single column on phone */
+    [style*="grid-template-columns: repeat(2"],
+    [style*="grid-template-columns: repeat(3"],
+    [style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Timeline items tighter */
+    .timeline-dot { width: 40px; height: 40px; font-size: 0.6rem; }
+    
+    /* Orbit → replace with vertical list on very small screens */
+    .orbit-container { width: 220px; height: 220px; }
+    .orbit-ring { animation: none !important; }
+    .orbit-center { width: 60px; height: 60px; }
+    .orbit-center img { height: 24px !important; }
+    
+    /* Pipeline — horizontal scroll */
+    .pipeline-track { min-width: 500px; }
+    .pipeline-stage { padding: 6px 8px; font-size: 0.6rem; min-width: 60px; }
+    
+    /* Stat numbers smaller */
+    .stat-pop [style*="font-size: 3.8rem"] { font-size: 2rem !important; }
+    .stat-pop [style*="font-size: 1rem"] { font-size: 0.8rem !important; }
+    
+    /* Case study numbers */
+    [style*="font-size: 4rem"] { font-size: 2.4rem !important; }
+    
+    /* Navbar */
     #navbar { height: 48px; padding: 0 16px; }
-    #navbar img { height: 24px; }
+    #navbar img { height: 22px; }
     .slide { top: 48px; }
+    
+    /* Slide counter */
+    #slide-counter { font-size: 0.65rem; right: 16px; bottom: 12px; }
+    
+    /* Command center stats row */
+    [style*="gap: 40px"][style*="justify-content: center"]:not([style*="border-left"]) {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    /* Buttons on CTA */
+    .slide-dark a { padding: 14px 24px !important; font-size: 0.95rem !important; }
+    
+    /* Logo chip grid wrapping */
+    .logo-chip { font-size: 0.65rem; padding: 5px 8px; gap: 5px; }
+    .logo-chip img { height: 14px; }
+    
+    /* Reduce gaps globally */
+    [style*="gap: 60px"] { gap: 24px !important; }
+    [style*="gap: 50px"] { gap: 20px !important; }
+    [style*="gap: 40px"] { gap: 16px !important; }
+    [style*="gap: 32px"] { gap: 14px !important; }
+    [style*="margin-bottom: 60px"] { margin-bottom: 24px !important; }
+    [style*="margin-bottom: 50px"] { margin-bottom: 20px !important; }
+    
+    /* Title slide trust badge */
+    [style*="padding: 20px 32px"][style*="inline-block"] {
+        padding: 12px 20px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    /* CTA checkmarks */
+    .slide-dark [style*="margin-top: 50px"][style*="padding: 20px"] {
+        font-size: 0.8rem !important;
+    }
 }
     </style>
 </head>
