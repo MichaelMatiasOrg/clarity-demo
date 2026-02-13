@@ -151,6 +151,19 @@ h3 {
     color: var(--accent);
 }
 
+/* ========== MOBILE VISIBILITY ========== */
+/* Hide on mobile */
+.mobile-hide { display: block; }
+@media (max-width: 768px) {
+    .mobile-hide { display: none !important; }
+}
+
+/* Show only on mobile */
+.mobile-only { display: none; }
+@media (max-width: 768px) {
+    .mobile-only { display: block !important; }
+}
+
 /* ========== COMPONENTS ========== */
 .badge {
     display: inline-block;
@@ -329,6 +342,74 @@ h3 {
     50% { transform: scale(1.1); }
 }
 
+/* ========== MOBILE VERTICAL TIMELINE ========== */
+.timeline-mobile {
+    display: none;
+    flex-direction: column;
+    position: relative;
+    max-width: 100%;
+}
+
+.timeline-mobile::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--border);
+}
+
+.timeline-mobile-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.timeline-mobile-dot {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: white;
+    background: var(--text-primary);
+    border: 4px solid white;
+    box-shadow: 0 4px 20px rgba(10,22,40,0.1);
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.timeline-mobile-dot.accent-bg {
+    background: var(--accent);
+    color: var(--text-primary);
+}
+
+.timeline-mobile-dot.danger-bg {
+    background: var(--danger);
+}
+
+.timeline-mobile-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.timeline-mobile-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Short descriptions for mobile */
+.timeline-short {
+    display: none;
+}
+
 /* ========== STAT POP ANIMATION ========== */
 @keyframes statPop {
     0% { transform: scale(0.3); opacity: 0; }
@@ -418,6 +499,49 @@ h3 {
 .orbit-item:nth-child(3) { transform: rotate(144deg) translateX(200px); }
 .orbit-item:nth-child(4) { transform: rotate(216deg) translateX(200px); }
 .orbit-item:nth-child(5) { transform: rotate(288deg) translateX(200px); }
+
+/* ========== MOBILE LIFECYCLE LIST ========== */
+.lifecycle-list {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+}
+
+.lifecycle-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.lifecycle-badge {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.lifecycle-content h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.lifecycle-content p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
 
 /* ========== PIPELINE/GAUNTLET ========== */
 @keyframes candidateFlow {
@@ -638,165 +762,281 @@ h3 {
     margin: 0 2px;
 }
 
-/* ========== RESPONSIVE: TABLET ========== */
+/* ========== RESPONSIVE: TABLET/MOBILE ========== */
 @media (max-width: 768px) {
-    .slide { padding: 40px 24px; }
-    h1 { font-size: 2.4rem; }
-    h2 { font-size: 1.8rem; }
-    h3 { font-size: 1.1rem; }
+    /* Navbar */
+    #navbar { height: 48px; padding: 0 20px; }
+    #navbar img { height: 24px; }
+    
+    /* Slides */
+    .slide { 
+        padding: 40px 20px; 
+        top: 48px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Typography */
+    h1 { font-size: 2.4rem; margin-bottom: 16px; }
+    h2 { font-size: 1.8rem; margin-bottom: 14px; }
+    h3 { font-size: 1.1rem; margin-bottom: 8px; }
     .subtitle { font-size: 1rem; }
-    .card { padding: 20px; }
+    .section-label { font-size: 0.7rem; }
     
-    /* Timeline → vertical list */
-    .timeline { flex-direction: column; align-items: stretch; gap: 16px; }
-    .timeline-line { display: none; }
-    .timeline-item {
-        flex: none;
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
-        text-align: left;
-    }
-    .timeline-dot { margin: 0; flex-shrink: 0; width: 48px; height: 48px; font-size: 0.65rem; }
-    .timeline-item h3 { font-size: 0.95rem; margin-bottom: 4px; }
-    .timeline-item p { font-size: 0.8rem; line-height: 1.4; }
+    /* Components */
+    .card { padding: 20px; border-radius: 12px; }
+    .badge { padding: 6px 16px; font-size: 0.75rem; margin-bottom: 12px; }
     
-    /* All multi-column grids → single or two columns */
-    [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
-    [style*="grid-template-columns: repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
-    [style*="grid-template-columns: 1fr 1.2fr"],
-    [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+    /* Hide decorative elements */
+    .clarity-star { display: none !important; }
+    .slide::after { display: none; }
     
-    /* Orbit → smaller */
-    .orbit-container { width: 280px; height: 280px; }
-    .orbit-center { width: 70px; height: 70px; }
-    .orbit-item { width: 80px; height: 56px; margin: -28px 0 0 -40px; }
-    .orbit-card { padding: 6px; }
-    .orbit-card div:first-child { font-size: 0.6rem; }
-    .orbit-card div:last-child { font-size: 0.55rem; }
-    
-    /* Tech summary bar → wrap */
-    [style*="gap: 50px"][style*="justify-content: center"] {
-        flex-wrap: wrap !important;
-        gap: 16px !important;
-        padding: 20px !important;
-    }
-    
-    /* Pipeline stages */
-    .pipeline-track { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .pipeline-stage { padding: 8px 10px; font-size: 0.65rem; min-width: 70px; }
-    
-    /* Quote card — stack vertically */
-    [style*="gap: 40px"][style*="border-left: 6px"] {
-        flex-direction: column !important;
-        gap: 16px !important;
-        padding: 24px !important;
-    }
-    [style*="gap: 40px"][style*="border-left: 6px"] img[alt="Charles Carmakal"] {
-        width: 60px !important;
-        height: 60px !important;
-    }
-    [style*="gap: 40px"][style*="border-left: 6px"] p { font-size: 1rem !important; }
-    
-    /* Stat card numbers */
-    .stat-pop [style*="font-size: 3.8rem"] { font-size: 2.6rem !important; }
-    
-    /* Demo frames */
-    .demo-frame img { max-height: 40vh; object-fit: contain; }
-    
-    /* Logo chips */
-    .logo-chip { font-size: 0.7rem; padding: 6px 10px; }
-    .logo-chip img { height: 16px; }
-    
-    /* Int rows — wrap */
-    .int-row { flex-wrap: wrap; gap: 8px; }
-    .int-row-label { width: 100%; margin-bottom: 4px; }
-    
-    /* Num badges */
-    .num-badge { width: 40px; height: 40px; font-size: 1.1rem; }
-    
-    /* Nav hint — hide on touch devices */
+    /* Hide nav hint on mobile */
     #nav-hint { display: none; }
     
-    /* CTA slide adjustments */
-    .slide-dark h1 { font-size: 2.4rem !important; }
+    /* Slide counter */
+    #slide-counter { font-size: 0.7rem; right: 16px; bottom: 12px; }
+    
+    /* Timeline: Show mobile version, hide desktop */
+    .timeline { display: none; }
+    .timeline-mobile { display: flex; }
+    .timeline-short { display: block; }
+    .timeline-long { display: none; }
+    
+    /* Lifecycle: Show mobile version, hide desktop orbit */
+    .orbit-container { display: none; }
+    .lifecycle-list { display: flex; }
+    
+    /* Stats grid: 2x2 layout */
+    [style*="grid-template-columns: repeat(4"]:not(.mobile-single-col) { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 20px !important;
+    }
+    
+    /* Stats - make numbers still BIG */
+    .stat-pop [style*="font-size: 3.8rem"] { font-size: 2.8rem !important; line-height: 1 !important; }
+    .stat-pop [style*="font-size: 1rem"] { font-size: 0.85rem !important; }
+    
+    /* Quote card: stack photo above text */
+    [style*="gap: 40px"][style*="border-left: 6px"] {
+        flex-direction: column !important;
+        gap: 20px !important;
+        text-align: center !important;
+        padding: 24px !important;
+    }
+    [style*="gap: 40px"][style*="border-left: 6px"] img[alt*="Carmakal"] {
+        width: 70px !important;
+        height: 70px !important;
+        margin: 0 auto !important;
+    }
+    [style*="gap: 40px"][style*="border-left: 6px"] p[style*="font-size: 1.2rem"] { 
+        font-size: 1rem !important; 
+    }
+    
+    /* Solutions fall short: single column */
+    [style*="grid-template-columns: repeat(2"]:not(.mobile-2-col) { 
+        grid-template-columns: 1fr !important; 
+        gap: 20px !important;
+    }
+    
+    /* Case study: stack risk cards vertically but allow 2 findings per row */
+    [style*="grid-template-columns: repeat(3"]:not(.mobile-2-col) { 
+        grid-template-columns: 1fr !important; 
+        gap: 20px !important;
+    }
+    
+    /* Case study findings: 2 per row on mobile */
+    [style*="grid-template-columns: repeat(2"]:last-child { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 16px !important;
+    }
+    
+    /* Case study risk numbers */
+    [style*="font-size: 4rem"] { font-size: 2.6rem !important; }
+    
+    /* Technology summary bar: wrap into 2x2 */
+    [style*="gap: 50px"][style*="justify-content: center"]:not([style*="border-left"]) {
+        flex-wrap: wrap !important;
+        gap: 20px !important;
+        padding: 20px 24px !important;
+    }
+    [style*="gap: 50px"][style*="justify-content: center"]:not([style*="border-left"]) > div {
+        flex: 1 1 45% !important;
+        min-width: 120px !important;
+    }
+    
+    /* Pipeline track: horizontal scroll */
+    .pipeline-track { 
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch;
+        min-width: 600px;
+        margin: 20px -20px;
+        padding: 20px;
+    }
+    .pipeline-stage { 
+        padding: 8px 12px; 
+        font-size: 0.65rem; 
+        min-width: 80px;
+        white-space: nowrap;
+    }
+    
+    /* Demo frames */
+    .demo-frame img { 
+        max-height: 50vh; 
+        width: auto;
+        max-width: 100%;
+        object-fit: contain; 
+    }
+    
+    /* Logo chips */
+    .logo-chip { 
+        font-size: 0.7rem; 
+        padding: 6px 10px; 
+        gap: 6px;
+    }
+    .logo-chip img { height: 16px; }
+    
+    /* Integration rows: stack labels */
+    .int-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .int-row-label { 
+        width: 100%; 
+        margin-bottom: 6px; 
+        font-size: 0.65rem;
+        text-align: left;
+    }
+    .int-row .logo-chip { margin: 2px; }
+    
+    /* Numbered badges */
+    .num-badge { width: 40px; height: 40px; font-size: 1.1rem; }
+    
+    /* Detection tech: stack screenshot on top */
+    [style*="grid-template-columns: 1fr 1.2fr"] { 
+        grid-template-columns: 1fr !important; 
+        gap: 30px !important;
+    }
+    [style*="grid-template-columns: 1fr 1.2fr"] > div:last-child {
+        order: -1;
+    }
+    
+    /* Command center stats: stack vertically */
+    [style*="gap: 40px"][style*="justify-content: center"]:not([style*="border-left"]):not([style*="padding: 28px"]) {
+        flex-direction: column !important;
+        gap: 16px !important;
+        text-align: center;
+    }
+    
+    /* Threat intel: stack stat card above screenshot */
+    [style*="grid-template-columns: 1fr 1fr"] { 
+        grid-template-columns: 1fr !important; 
+        gap: 30px !important;
+    }
+    
+    /* Threat intel stat card */
+    [style*="font-size: 3.2rem"] { font-size: 2.8rem !important; }
+    
+    /* CTA buttons: full-width */
+    .slide-dark a { 
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 16px 24px !important;
+        font-size: 1rem !important;
+    }
+    
+    /* CTA text */
+    .slide-dark h1[style*="font-size: 3.8rem"] { font-size: 2.6rem !important; }
     .slide-dark p[style*="font-size: 1.4rem"] { font-size: 1.1rem !important; }
+    
+    /* Title slide: hide trusted by badge on mobile if it crowds */
+    .mobile-hide-trust { display: none !important; }
 }
 
-/* ========== RESPONSIVE: MOBILE ========== */
+/* ========== RESPONSIVE: SMALL MOBILE ========== */
 @media (max-width: 480px) {
-    .slide { padding: 24px 16px; overflow-y: auto; }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
+    /* Extra tight spacing */
+    .slide { padding: 20px 16px; }
+    h1 { font-size: 1.9rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1rem; }
     .subtitle { font-size: 0.9rem; }
     .section-label { font-size: 0.65rem; }
-    .card { padding: 16px; border-radius: 12px; }
     
-    /* All grids → single column on phone */
+    /* All grids: single column */
     [style*="grid-template-columns: repeat(2"],
     [style*="grid-template-columns: repeat(3"],
     [style*="grid-template-columns: repeat(4"] {
         grid-template-columns: 1fr !important;
+        gap: 16px !important;
     }
     
-    /* Timeline items tighter */
-    .timeline-dot { width: 40px; height: 40px; font-size: 0.6rem; }
+    /* Cards tighter */
+    .card { padding: 16px; }
     
-    /* Orbit → replace with vertical list on very small screens */
-    .orbit-container { width: 220px; height: 220px; }
-    .orbit-ring { animation: none !important; }
-    .orbit-center { width: 60px; height: 60px; }
-    .orbit-center img { height: 24px !important; }
+    /* Timeline dots smaller */
+    .timeline-mobile-dot { width: 40px; height: 40px; font-size: 0.7rem; }
     
-    /* Pipeline — horizontal scroll */
-    .pipeline-track { min-width: 500px; }
-    .pipeline-stage { padding: 6px 8px; font-size: 0.6rem; min-width: 60px; }
+    /* Lifecycle badges smaller */
+    .lifecycle-badge { width: 50px; height: 50px; }
+    .lifecycle-content h3 { font-size: 0.9rem; }
+    .lifecycle-content p { font-size: 0.8rem; }
     
-    /* Stat numbers smaller */
-    .stat-pop [style*="font-size: 3.8rem"] { font-size: 2rem !important; }
-    .stat-pop [style*="font-size: 1rem"] { font-size: 0.8rem !important; }
-    
-    /* Case study numbers */
-    [style*="font-size: 4rem"] { font-size: 2.4rem !important; }
-    
-    /* Navbar */
-    #navbar { height: 48px; padding: 0 16px; }
-    #navbar img { height: 22px; }
-    .slide { top: 48px; }
-    
-    /* Slide counter */
-    #slide-counter { font-size: 0.65rem; right: 16px; bottom: 12px; }
-    
-    /* Command center stats row */
-    [style*="gap: 40px"][style*="justify-content: center"]:not([style*="border-left"]) {
-        flex-direction: column !important;
-        gap: 12px !important;
+    /* Stats: smaller but still impactful */
+    .stat-pop [style*="font-size: 3.8rem"],
+    .stat-pop [style*="font-size: 2.8rem"] { 
+        font-size: 2.2rem !important; 
+    }
+    [style*="font-size: 4rem"],
+    [style*="font-size: 2.6rem"] { 
+        font-size: 2rem !important; 
+    }
+    [style*="font-size: 3.2rem"],
+    [style*="font-size: 2.8rem"]:not(.stat-pop *) { 
+        font-size: 2.4rem !important; 
     }
     
-    /* Buttons on CTA */
-    .slide-dark a { padding: 14px 24px !important; font-size: 0.95rem !important; }
+    /* Pipeline: smaller stages */
+    .pipeline-stage { 
+        padding: 6px 8px; 
+        font-size: 0.6rem; 
+        min-width: 70px; 
+    }
     
-    /* Logo chip grid wrapping */
-    .logo-chip { font-size: 0.65rem; padding: 5px 8px; gap: 5px; }
+    /* Navbar smaller */
+    #navbar { height: 44px; padding: 0 16px; }
+    #navbar img { height: 20px; }
+    .slide { top: 44px; }
+    
+    /* Logo chips smaller */
+    .logo-chip { 
+        font-size: 0.65rem; 
+        padding: 4px 8px; 
+        gap: 4px;
+    }
     .logo-chip img { height: 14px; }
     
-    /* Reduce gaps globally */
-    [style*="gap: 60px"] { gap: 24px !important; }
-    [style*="gap: 50px"] { gap: 20px !important; }
+    /* Numbered badges smaller */
+    .num-badge { width: 36px; height: 36px; font-size: 1rem; }
+    
+    /* Global gap reductions */
+    [style*="gap: 60px"] { gap: 20px !important; }
+    [style*="gap: 50px"] { gap: 18px !important; }
     [style*="gap: 40px"] { gap: 16px !important; }
     [style*="gap: 32px"] { gap: 14px !important; }
-    [style*="margin-bottom: 60px"] { margin-bottom: 24px !important; }
-    [style*="margin-bottom: 50px"] { margin-bottom: 20px !important; }
+    [style*="gap: 28px"] { gap: 12px !important; }
+    [style*="gap: 24px"] { gap: 10px !important; }
     
-    /* Title slide trust badge */
-    [style*="padding: 20px 32px"][style*="inline-block"] {
-        padding: 12px 20px !important;
-        font-size: 0.8rem !important;
-    }
+    /* Margin reductions */
+    [style*="margin-bottom: 60px"] { margin-bottom: 20px !important; }
+    [style*="margin-bottom: 50px"] { margin-bottom: 18px !important; }
+    [style*="margin-bottom: 40px"] { margin-bottom: 16px !important; }
+    [style*="margin-top: 50px"] { margin-top: 18px !important; }
+    [style*="margin-top: 40px"] { margin-top: 16px !important; }
+    [style*="margin-top: 32px"] { margin-top: 14px !important; }
     
-    /* CTA checkmarks */
-    .slide-dark [style*="margin-top: 50px"][style*="padding: 20px"] {
-        font-size: 0.8rem !important;
+    /* CTA slide adjustments */
+    .slide-dark [style*="margin-top: 50px"] { margin-top: 20px !important; }
+    .slide-dark [style*="padding: 20px"] { 
+        font-size: 0.8rem !important; 
+        padding: 16px !important;
     }
 }
     </style>
@@ -833,7 +1073,7 @@ h3 {
         <h1 class="anim d1">Employee Identity Security</h1>
         <div class="anim d2" style="width: 80px; height: 4px; background: var(--accent); margin: 24px auto; border-radius: 2px;"></div>
         <p class="anim d3 subtitle">Protecting your organization from hiring fraud and synthetic identities</p>
-        <div class="anim d4" style="margin-top: 40px; padding: 20px 32px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); display: inline-block;">
+        <div class="anim d4 mobile-hide-trust" style="margin-top: 40px; padding: 20px 32px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); display: inline-block;">
             <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-right: 12px;">Trusted by</span>
             <span style="font-weight: 700; color: var(--text-primary);">Fortune 500 companies</span>
         </div>
@@ -846,37 +1086,81 @@ h3 {
         <div class="anim section-label">The Evolving Threat</div>
         <h2 class="anim d1" style="margin-bottom: 60px;">A threat that's been <span class="danger">accelerating rapidly</span></h2>
 
-        <div class="timeline">
+        <!-- Desktop Timeline (horizontal) -->
+        <div class="timeline mobile-hide">
             <div class="timeline-line"><div class="timeline-line-fill"></div></div>
 
             <div class="timeline-item anim d2">
                 <div class="timeline-dot">2020</div>
                 <h3 style="font-size: 1.1rem; margin-bottom: 8px;">COVID / Remote</h3>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Remote hiring becomes universal. Identity verification goes virtual with limited oversight.</p>
+                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Remote hiring becomes universal. Identity verification goes virtual with limited oversight.</p>
             </div>
 
             <div class="timeline-item anim d3">
                 <div class="timeline-dot">2022</div>
                 <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Bait-and-Switch</h3>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Candidates swap identities between interview and onboarding. Different person shows up for work.</p>
+                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Candidates swap identities between interview and onboarding. Different person shows up for work.</p>
             </div>
 
             <div class="timeline-item anim d5">
                 <div class="timeline-dot danger-bg">2024</div>
                 <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Deepfakes Emerge</h3>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">$25M Hong Kong deepfake fraud. Real-time face swaps in video interviews become mainstream.</p>
+                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">$25M Hong Kong deepfake fraud. Real-time face swaps in video interviews become mainstream.</p>
             </div>
 
             <div class="timeline-item anim d7">
                 <div class="timeline-dot danger-bg">2025</div>
                 <h3 style="font-size: 1.1rem; margin-bottom: 8px;">NK Infiltration</h3>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">KnowBe4 hires NK operative. DOJ indicts 300+ companies for infiltration incidents.</p>
+                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">KnowBe4 hires NK operative. DOJ indicts 300+ companies for infiltration incidents.</p>
             </div>
 
             <div class="timeline-item anim d9">
                 <div class="timeline-dot accent-bg">2026</div>
                 <h3 style="font-size: 1.1rem; margin-bottom: 8px;">AI-Powered Scale</h3>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Automated creation of synthetic identities. 1 in 4 profiles predicted to be fake by 2028.</p>
+                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Automated creation of synthetic identities. 1 in 4 profiles predicted to be fake by 2028.</p>
+            </div>
+        </div>
+
+        <!-- Mobile Timeline (vertical) -->
+        <div class="timeline-mobile mobile-only">
+            <div class="timeline-mobile-item anim d2">
+                <div class="timeline-mobile-dot">2020</div>
+                <div class="timeline-mobile-content">
+                    <h3>COVID / Remote</h3>
+                    <p class="timeline-short">Remote hiring goes virtual with limited oversight.</p>
+                </div>
+            </div>
+
+            <div class="timeline-mobile-item anim d3">
+                <div class="timeline-mobile-dot">2022</div>
+                <div class="timeline-mobile-content">
+                    <h3>Bait-and-Switch</h3>
+                    <p class="timeline-short">Different person shows up for work than interviewed.</p>
+                </div>
+            </div>
+
+            <div class="timeline-mobile-item anim d4">
+                <div class="timeline-mobile-dot danger-bg">2024</div>
+                <div class="timeline-mobile-content">
+                    <h3>Deepfakes Emerge</h3>
+                    <p class="timeline-short">$25M deepfake fraud. Real-time face swaps go mainstream.</p>
+                </div>
+            </div>
+
+            <div class="timeline-mobile-item anim d5">
+                <div class="timeline-mobile-dot danger-bg">2025</div>
+                <div class="timeline-mobile-content">
+                    <h3>NK Infiltration</h3>
+                    <p class="timeline-short">KnowBe4 hires NK operative. 300+ companies infiltrated.</p>
+                </div>
+            </div>
+
+            <div class="timeline-mobile-item anim d6">
+                <div class="timeline-mobile-dot accent-bg">2026</div>
+                <div class="timeline-mobile-content">
+                    <h3>AI-Powered Scale</h3>
+                    <p class="timeline-short">1 in 4 profiles predicted to be fake by 2028.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -888,7 +1172,7 @@ h3 {
         <div class="anim section-label">Scale of the Problem</div>
         <h2 class="anim d1" style="margin-bottom: 50px;">The hiring fraud epidemic is <span class="danger">here</span></h2>
 
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-bottom: 60px;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-bottom: 60px;" class="mobile-2-col">
             <div class="card stat-pop d1" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
                 <div style="font-size: 3.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1 in 4</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">candidate profiles will be fake by 2028</p>
@@ -980,7 +1264,7 @@ h3 {
         <h2 class="anim d1" style="font-size: 2.6rem; margin-bottom: 16px;">A Fortune 500 insurance company<br>tested <span class="accent">Clarity</span> on 28 resumes</h2>
         <p class="anim d2 subtitle" style="margin-bottom: 50px;">Here's what we discovered in their active pipeline</p>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto;" class="mobile-2-col">
             <div class="card anim d3" style="border-top: 6px solid var(--danger); text-align: center; background: linear-gradient(135deg, white 0%, #fef2f2 100%);">
                 <div style="font-size: 4rem; font-weight: 800; color: var(--danger); margin-bottom: 8px; line-height: 1;">7</div>
                 <div style="font-weight: 700; color: var(--danger); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">High Risk</div>
@@ -998,7 +1282,7 @@ h3 {
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: left; max-width: 900px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: left; max-width: 900px; margin: 0 auto;" class="mobile-2-col">
             <div class="anim d6" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
                 <div class="check-appear cd1" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
@@ -1049,8 +1333,8 @@ h3 {
         <h2 class="anim d1">The Employee Identity <span class="accent">Lifecycle</span></h2>
         <p class="anim d2 subtitle" style="margin-bottom: 60px;">Clarity verifies identity at every critical touchpoint</p>
 
-        <!-- Enhanced Orbit Diagram -->
-        <div class="anim d3 orbit-container">
+        <!-- Enhanced Orbit Diagram (Desktop) -->
+        <div class="anim d3 orbit-container mobile-hide">
             <!-- Center: Clarity Logo with pulse -->
             <div class="orbit-center pulse">
                 <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 36px;">
@@ -1092,6 +1376,59 @@ h3 {
                 <div class="orbit-card">
                     <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">CONTINUOUS</div>
                     <div style="font-size: 0.65rem; color: var(--text-secondary);">Monitoring</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Lifecycle List -->
+        <div class="lifecycle-list mobile-only anim d3">
+            <div class="lifecycle-item">
+                <div class="lifecycle-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                </div>
+                <div class="lifecycle-content">
+                    <h3>Pre-Hire Resume Screening</h3>
+                    <p>Verify candidate information before interviews begin</p>
+                </div>
+            </div>
+
+            <div class="lifecycle-item">
+                <div class="lifecycle-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                </div>
+                <div class="lifecycle-content">
+                    <h3>Interview Live Monitoring</h3>
+                    <p>Real-time deepfake and identity verification during calls</p>
+                </div>
+            </div>
+
+            <div class="lifecycle-item">
+                <div class="lifecycle-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div class="lifecycle-content">
+                    <h3>Day 1 Onboarding Verification</h3>
+                    <p>Confirm the person starting is who you hired</p>
+                </div>
+            </div>
+
+            <div class="lifecycle-item">
+                <div class="lifecycle-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+                </div>
+                <div class="lifecycle-content">
+                    <h3>MFA Reset & Help Desk</h3>
+                    <p>Secure identity verification for account recovery</p>
+                </div>
+            </div>
+
+            <div class="lifecycle-item">
+                <div class="lifecycle-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <div class="lifecycle-content">
+                    <h3>Continuous Monitoring</h3>
+                    <p>Ongoing threat detection throughout employment</p>
                 </div>
             </div>
         </div>
@@ -1141,9 +1478,9 @@ h3 {
                 <!-- Animated candidate dots -->
                 <div class="pipeline-dot clean1"></div>
                 <div class="pipeline-dot clean2"></div>
-                <div class="pipeline-dot threat1"></div>
+                <div class="pipeline-dot threat1 mobile-hide"></div>
                 <div class="pipeline-dot clean3"></div>
-                <div class="pipeline-dot threat2"></div>
+                <div class="pipeline-dot threat2 mobile-hide"></div>
             </div>
 
             <!-- Enhanced Legend with statistics -->
