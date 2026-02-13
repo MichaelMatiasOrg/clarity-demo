@@ -455,7 +455,7 @@ h3 {
     inset: 0;
     border: 2px dashed rgba(97,243,147,0.3);
     border-radius: 50%;
-    animation: orbitSpin 20s linear infinite;
+    /* Ring stays static; items orbit independently */
 }
 
 .orbit-center {
@@ -491,15 +491,35 @@ h3 {
     box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     text-align: center;
     border: 1px solid var(--border);
-    animation: orbitItemCounter 20s linear infinite;
 }
 
-/* Position orbit items */
-.orbit-item:nth-child(1) { transform: rotate(0deg) translateX(155px); }
-.orbit-item:nth-child(2) { transform: rotate(72deg) translateX(155px); }
-.orbit-item:nth-child(3) { transform: rotate(144deg) translateX(155px); }
-.orbit-item:nth-child(4) { transform: rotate(216deg) translateX(155px); }
-.orbit-item:nth-child(5) { transform: rotate(288deg) translateX(155px); }
+/* Position orbit items — each starts at its angle and counter-rotates to keep text upright */
+.orbit-item:nth-child(1) { animation: orbitItem0 20s linear infinite; }
+.orbit-item:nth-child(2) { animation: orbitItem1 20s linear infinite; }
+.orbit-item:nth-child(3) { animation: orbitItem2 20s linear infinite; }
+.orbit-item:nth-child(4) { animation: orbitItem3 20s linear infinite; }
+.orbit-item:nth-child(5) { animation: orbitItem4 20s linear infinite; }
+
+@keyframes orbitItem0 {
+    from { transform: rotate(0deg) translateX(155px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(155px) rotate(-360deg); }
+}
+@keyframes orbitItem1 {
+    from { transform: rotate(72deg) translateX(155px) rotate(-72deg); }
+    to { transform: rotate(432deg) translateX(155px) rotate(-432deg); }
+}
+@keyframes orbitItem2 {
+    from { transform: rotate(144deg) translateX(155px) rotate(-144deg); }
+    to { transform: rotate(504deg) translateX(155px) rotate(-504deg); }
+}
+@keyframes orbitItem3 {
+    from { transform: rotate(216deg) translateX(155px) rotate(-216deg); }
+    to { transform: rotate(576deg) translateX(155px) rotate(-576deg); }
+}
+@keyframes orbitItem4 {
+    from { transform: rotate(288deg) translateX(155px) rotate(-288deg); }
+    to { transform: rotate(648deg) translateX(155px) rotate(-648deg); }
+}
 
 /* ========== MOBILE LIFECYCLE LIST ========== */
 .lifecycle-list {
