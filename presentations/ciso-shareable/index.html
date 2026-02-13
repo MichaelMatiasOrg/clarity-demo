@@ -1616,45 +1616,116 @@ h3 {
 </section>
 
 <!-- ===================== SLIDE 7: THE PIPELINE (GAUNTLET) ===================== -->
-<section class="slide" data-slide="7">
+<section class="slide gauntlet-slide" data-slide="7">
     <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">How It Works</div>
         <h2 class="anim d1">The Clarity <span class="accent">Gauntlet</span></h2>
         <p class="anim d2 subtitle" style="margin-bottom: 28px;">Every candidate runs through multiple verification layers. Threats get detected and ejected.</p>
 
-        <!-- Enhanced Pipeline Visualization -->
-        <div class="anim d3" style="position: relative; padding: 40px 0;">
-            <div class="pipeline-track">
-                <!-- Pipeline stages -->
-                <div class="pipeline-stage">Resume<br>Analysis</div>
-                <div class="pipeline-stage">Interview<br>Monitoring</div>
-                <div class="pipeline-stage">Cross-<br>Verification</div>
-                <div class="pipeline-stage">Identity<br>Validation</div>
-                <div class="pipeline-stage">Risk<br>Scoring</div>
-
-                <!-- Animated candidate dots -->
-                <div class="pipeline-dot clean1"></div>
-                <div class="pipeline-dot clean2"></div>
-                <div class="pipeline-dot threat1 mobile-hide"></div>
-                <div class="pipeline-dot clean3"></div>
-                <div class="pipeline-dot threat2 mobile-hide"></div>
-            </div>
-
-            <!-- Enhanced Legend with statistics -->
-            <div style="display: flex; justify-content: center; gap: 50px; margin-top: 40px; padding: 20px 40px; background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--accent);"></div>
-                    <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Verified candidates proceed</span>
+        <!-- Clarity Checks Layer -->
+        <div class="anim d3" style="margin-bottom: 30px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+                <svg width="120" height="32" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M23.0627 10.008L18.8453 0.46579L16.1663 6.60634H16.165L19.2924 13.7763L26.4613 16.9042L26.4675 16.9017L32.6034 14.2235L23.0602 10.0055L23.0627 10.008Z" fill="#011325"/>
+<path d="M23.1401 23.799L32.6816 19.5816L26.5415 16.9026L19.372 20.03L16.2444 27.1989H16.2432L16.2456 27.205L18.9236 33.341L23.1413 23.7977L23.1401 23.799Z" fill="#011325"/>
+<path d="M9.38277 23.8004L13.5292 33.3426L16.1632 27.202H16.1644L13.0896 20.032L6.04126 16.9042L6.03517 16.9066L0 19.5824L9.38277 23.8004Z" fill="#61F393"/>
+<path d="M9.38367 10.009L0 14.2251L6.03775 16.9042L13.0877 13.7768L16.1632 6.60788H16.1644L16.162 6.60169L13.531 0.465775L9.38367 10.009Z" fill="#61F393"/>
+<path d="M129.061 35.5342H125.86L129.495 27.7247L122.191 11.9725H125.36L131.096 24.6008L136.798 11.9725H140L129.061 35.5342Z" fill="#011325"/>
+<path d="M118.522 28.6851C115.58 28.6851 113.407 27.0591 113.407 23.6081V14.5491H109.863V11.9276H113.407V7.3152H116.282V11.9276H121.096V14.5491H116.282V23.2431C116.282 25.3668 117.218 26.0636 119.057 26.0636C119.759 26.0636 120.561 25.9641 121.096 25.7318V28.2869C120.394 28.5192 119.558 28.6851 118.522 28.6851Z" fill="#011325"/>
+<path d="M106.472 7.54718C105.293 7.54718 104.384 6.68032 104.384 5.51339C104.384 4.41315 105.293 3.47961 106.472 3.47961C107.651 3.47961 108.493 4.41315 108.493 5.51339C108.493 6.68032 107.651 7.54718 106.472 7.54718ZM104.99 28.6852V12.0148H107.887V28.6852H104.99Z" fill="#011325"/>
+<path d="M94.2471 28.6852V11.867H97.0923V15.1297C97.7208 12.977 99.8382 11.6988 101.724 11.6988C102.154 11.6988 102.584 11.7324 103.014 11.8334V14.827C102.485 14.5915 102.022 14.5579 101.459 14.5579C99.375 14.5579 97.0923 16.4079 97.0923 20.3433V28.6852H94.2471Z" fill="#011325"/>
+<path d="M81.3598 28.9591C76.6692 28.9591 73.1514 25.0756 73.1514 20.329C73.1514 15.5824 76.6692 11.6988 81.3598 11.6988C83.906 11.6988 86.1508 12.9933 87.2564 14.5866V12.0307H90.1377V28.6272H87.2564V26.0713C86.1508 27.6646 83.906 28.9591 81.3598 28.9591ZM81.7953 26.3369C85.1457 26.3369 87.4909 23.6815 87.4909 20.329C87.4909 16.9765 85.1457 14.3211 81.7953 14.3211C78.4114 14.3211 76.0662 16.9765 76.0662 20.329C76.0662 23.6815 78.4114 26.3369 81.7953 26.3369Z" fill="#011325"/>
+<path d="M67.6709 28.6852V3.47961H70.4106V28.6852H67(--border);
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--danger);"></div>
-                    <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Threats detected & blocked</span>
+                
+                <div class="check-station-3 mobile-hide" style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 20px 24px; text-align: center; position: relative; z-index: 1; min-width: 140px; transition: all 0.3s;">
+                    <div style="color: var(--accent); font-size: 1.3rem; margin-bottom: 8px;">✦</div>
+                    <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary);">Identity<br>Cross-Check</div>
+                    <!-- Checkmark overlay -->
+                    <div class="check-appear cd3" style="position: absolute; top: -10px; right: -10px; width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
+                        <span style="color: var(--text-primary); font-size: 16px; font-weight: bold;">✓</span>
+                    </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Connector arrows -->
+        <div class="mobile-hide" style="display: flex; justify-content: center; gap: 100px; margin: 15px 0; color: rgba(97, 243, 147, 0.6); font-size: 1.5rem;">
+            <span>↓</span><span>↓</span><span>↓</span>
+        </div>
+        
+        <!-- Enhanced Pipeline with Animated Flow -->
+        <div class="anim d4" style="position: relative; padding: 40px 0;">
+            <!-- Main Pipeline Track -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; position: relative; z-index: 1;">
+                <!-- Dark pipeline stages -->
+                <div style="background: var(--text-primary); color: white; border-radius: 12px; padding: 18px 22px; text-align: center; min-width: 120px; position: relative;">
+                    <div style="font-size: 0.8rem; font-weight: 700;">Candidate<br>Sourced</div>
+                </div>
+                <div style="color: var(--text-secondary); font-size: 1.5rem;">→</div>
+                
+                <div style="background: var(--text-primary); color: white; border-radius: 12px; padding: 18px 22px; text-align: center; min-width: 120px; position: relative;">
+                    <div style="font-size: 0.8rem; font-weight: 700;">Screening<br>Process</div>
+                </div>
+                <div style="color: var(--text-secondary); font-size: 1.5rem;">→</div>
+                
+                <div style="background: var(--text-primary); color: white; border-radius: 12px; padding: 18px 22px; text-align: center; min-width: 120px; position: relative;">
+                    <div style="font-size: 0.8rem; font-weight: 700;">Video<br>Interview</div>
+                    <!-- Threat blocking happens here -->
+                    <div class="threat-block-container">
+                        <div class="threat-blocked-badge">✕ THREAT BLOCKED</div>
+                        <div class="threat-eject-dot"></div>
+                        <div class="particle-burst p1"></div>
+                        <div class="particle-burst p2"></div>
+                    </div>
+                </div>
+                <div style="color: var(--text-secondary); font-size: 1.5rem;">→</div>
+                
+                <div style="background: var(--text-primary); color: white; border-radius: 12px; padding: 18px 22px; text-align: center; min-width: 120px; position: relative;">
+                    <div style="font-size: 0.8rem; font-weight: 700;">Final<br>Offer</div>
+                </div>
+                <div style="color: var(--text-secondary); font-size: 1.5rem;">→</div>
+                
+                <div style="background: var(--accent); color: var(--text-primary); border-radius: 50%; width: 100px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="margin-bottom: 4px;">
+                        <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <div style="font-size: 0.7rem; font-weight: 800;">Trusted<br>Hire</div>
+                </div>
+            </div>
+            
+            <!-- Animated candidates and threats layer -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 10;">
+                <!-- Clean candidates flowing through -->
+                <div class="pipeline-dot clean1"></div>
+                <div class="pipeline-dot clean2"></div>
+                <div class="pipeline-dot clean3"></div>
+                
+                <!-- Threat candidates that get blocked -->
+                <div class="pipeline-dot threat1 mobile-hide"></div>
+                <div class="pipeline-dot threat2 mobile-hide"></div>
+            </div>
+        </div>
 
-        <div class="anim d6" style="margin-top: 40px; padding: 24px 32px; background: var(--accent-muted); border-radius: 16px; border: 1px solid var(--accent); max-width: 600px; margin-left: auto; margin-right: auto;">
-            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">Real-Time Processing</div>
+        <!-- Enhanced Legend with statistics -->
+        <div class="anim d5" style="display: flex; justify-content: center; gap: 50px; margin-top: 40px; padding: 24px 40px; background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 20px; height: 20px; border-radius: 50%; background: #94a3b8; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 10px; height: 10px; background: white; border-radius: 50%;"></div>
+                </div>
+                <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Verified candidates proceed</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 20px; height: 20px; border-radius: 50%; background: var(--danger); display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 10px; height: 10px; background: white; border-radius: 50%;"></div>
+                </div>
+                <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Threats detected & blocked</span>
+            </div>
+        </div>
+
+        <div class="anim d6" style="margin-top: 30px; padding: 20px 28px; background: var(--accent-muted); border-radius: 16px; border: 1px solid var(--accent); max-width: 600px; margin-left: auto; margin-right: auto;">
+            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">Real-Time Processing</div>
             <div style="font-size: 0.9rem; color: var(--text-secondary);">Each verification completes in seconds. No friction for legitimate candidates.</div>
         </div>
     </div>
