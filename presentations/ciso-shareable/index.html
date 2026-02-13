@@ -1343,131 +1343,88 @@ h3 {
 
 <!-- ===================== SLIDE 6: EMPLOYEE IDENTITY LIFECYCLE ===================== -->
 <section class="slide" data-slide="6">
-    <div style="max-width: 1200px; width: 100%; text-align: center;">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
         <div class="anim section-label">The Solution</div>
         <h2 class="anim d1">The Employee Identity <span class="accent">Lifecycle</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 36px;">Clarity verifies identity at every critical touchpoint</p>
+        <p class="anim d2 subtitle" style="margin-bottom: 28px;">Clarity verifies identity at every critical touchpoint</p>
 
-        <!-- Enhanced Orbit Diagram (Desktop) -->
-        <div class="anim d3 orbit-container mobile-hide">
-            <!-- Center: Clarity Logo with pulse -->
-            <div class="orbit-center pulse">
-                <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 36px;">
+        <!-- Lifecycle flow: horizontal stages with connecting line -->
+        <div class="anim d3" style="display: flex; align-items: flex-start; justify-content: center; gap: 0; position: relative; padding: 20px 0; flex-wrap: wrap;">
+            <!-- Connecting line (desktop) -->
+            <div class="mobile-hide" style="position: absolute; top: 52px; left: 10%; right: 10%; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent)); z-index: 0;"></div>
+
+            <!-- Stage 1 -->
+            <div style="flex: 1; min-width: 140px; max-width: 200px; text-align: center; position: relative; z-index: 1; padding: 0 8px;">
+                <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 4px 16px rgba(97,243,147,0.3);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                </div>
+                <div style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 4px;">Pre-Hire</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Resume Screening</div>
             </div>
 
-            <!-- Orbit ring -->
-            <div class="orbit-ring"></div>
+            <!-- Arrow -->
+            <div class="mobile-hide" style="align-self: center; margin-top: -24px; color: var(--accent); font-size: 1.2rem; z-index: 1;">&#8594;</div>
 
-            <!-- Orbit items positioned around the circle -->
-            <div class="orbit-item" style="--i: 0;">
-                <div class="orbit-card">
-                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">PRE-HIRE</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Resume Screening</div>
+            <!-- Stage 2 -->
+            <div style="flex: 1; min-width: 140px; max-width: 200px; text-align: center; position: relative; z-index: 1; padding: 0 8px;">
+                <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 4px 16px rgba(97,243,147,0.3);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
                 </div>
+                <div style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 4px;">Interview</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Live Monitoring</div>
             </div>
-            
-            <div class="orbit-item" style="--i: 1;">
-                <div class="orbit-card">
-                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">INTERVIEW</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Live Monitoring</div>
+
+            <div class="mobile-hide" style="align-self: center; margin-top: -24px; color: var(--accent); font-size: 1.2rem; z-index: 1;">&#8594;</div>
+
+            <!-- Stage 3 -->
+            <div style="flex: 1; min-width: 140px; max-width: 200px; text-align: center; position: relative; z-index: 1; padding: 0 8px;">
+                <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 4px 16px rgba(97,243,147,0.3);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/></svg>
                 </div>
+                <div style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 4px;">Onboarding</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Day 1 Verification</div>
             </div>
-            
-            <div class="orbit-item" style="--i: 2;">
-                <div class="orbit-card">
-                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">ONBOARDING</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Day 1 Verification</div>
+
+            <div class="mobile-hide" style="align-self: center; margin-top: -24px; color: var(--accent); font-size: 1.2rem; z-index: 1;">&#8594;</div>
+
+            <!-- Stage 4 -->
+            <div style="flex: 1; min-width: 140px; max-width: 200px; text-align: center; position: relative; z-index: 1; padding: 0 8px;">
+                <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 4px 16px rgba(97,243,147,0.3);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
                 </div>
+                <div style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 4px;">MFA Reset</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Help Desk IDV</div>
             </div>
-            
-            <div class="orbit-item" style="--i: 3;">
-                <div class="orbit-card">
-                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">MFA RESET</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Help Desk</div>
+
+            <div class="mobile-hide" style="align-self: center; margin-top: -24px; color: var(--accent); font-size: 1.2rem; z-index: 1;">&#8594;</div>
+
+            <!-- Stage 5 -->
+            <div style="flex: 1; min-width: 140px; max-width: 200px; text-align: center; position: relative; z-index: 1; padding: 0 8px;">
+                <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 4px 16px rgba(97,243,147,0.3);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
-            </div>
-            
-            <div class="orbit-item" style="--i: 4;">
-                <div class="orbit-card">
-                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent);">CONTINUOUS</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Monitoring</div>
-                </div>
+                <div style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 4px;">Continuous</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Ongoing Monitoring</div>
             </div>
         </div>
 
-        <!-- Mobile Lifecycle List -->
-        <div class="lifecycle-list mobile-only anim d3">
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>Pre-Hire Resume Screening</h3>
-                    <p>Verify candidate information before interviews begin</p>
-                </div>
+        <!-- Technology Summary -->
+        <div class="anim d5" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; max-width: 900px; margin-left: auto; margin-right: auto;">
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);">
+                <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Biometric</div>
+                <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Face Match & Liveness</div>
             </div>
-
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>Interview Live Monitoring</h3>
-                    <p>Real-time deepfake and identity verification during calls</p>
-                </div>
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);">
+                <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Deepfake</div>
+                <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">AI Media Detection</div>
             </div>
-
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>Day 1 Onboarding Verification</h3>
-                    <p>Confirm the person starting is who you hired</p>
-                </div>
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);">
+                <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Document</div>
+                <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">ID & Resume Verification</div>
             </div>
-
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>MFA Reset & Help Desk</h3>
-                    <p>Secure identity verification for account recovery</p>
-                </div>
-            </div>
-
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>Continuous Monitoring</h3>
-                    <p>Ongoing threat detection throughout employment</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Enhanced Technology Summary -->
-        <div class="anim d6" style="display: flex; justify-content: center; gap: 50px; margin-top: 70px; padding: 28px 50px; background: white; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.06); max-width: 1000px; margin-left: auto; margin-right: auto;">
-            <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">Biometric</div>
-                <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">Face Match & Liveness</div>
-            </div>
-            <div style="width: 2px; background: var(--border);"></div>
-            <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">Deepfake</div>
-                <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">AI Media Detection</div>
-            </div>
-            <div style="width: 2px; background: var(--border);"></div>
-            <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">Document</div>
-                <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">ID & Resume Verification</div>
-            </div>
-            <div style="width: 2px; background: var(--border);"></div>
-            <div style="text-align: center;">
-                <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;">Behavioral</div>
-                <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">Anomaly Detection</div>
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);">
+                <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Behavioral</div>
+                <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Anomaly Detection</div>
             </div>
         </div>
     </div>
