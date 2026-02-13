@@ -1094,93 +1094,67 @@ h3 {
         <div class="anim d2" style="width: 80px; height: 4px; background: var(--accent); margin: 24px auto; border-radius: 2px;"></div>
         <p class="anim d3 subtitle">Protecting your organization from hiring fraud and synthetic identities</p>
         <div class="anim d4 mobile-hide-trust" style="margin-top: 40px; padding: 20px 32px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); display: inline-block;">
-            <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-right: 12px;">Trusted by</span>
-            <span style="font-weight: 700; color: var(--text-primary);">Fortune 500 companies</span>
+            <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-right: 12px;">Deployed with</span>
+            <span style="font-weight: 700; color: var(--text-primary);">Fortune 500 security teams</span>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 2: EVOLVING THREAT TIMELINE ===================== -->
+<!-- ===================== SLIDE 2: EVOLVING THREAT ===================== -->
 <section class="slide" data-slide="2">
-    <div style="max-width: 1200px; width: 100%; text-align: center;">
-        <div class="anim section-label">The Evolving Threat</div>
-        <h2 class="anim d1" style="margin-bottom: 36px;">A threat that's been <span class="danger">accelerating rapidly</span></h2>
+    <div style="max-width: 1100px; width: 100%; text-align: left;">
+        <div class="anim section-label" style="text-align: center;">The Evolving Threat</div>
+        <h2 class="anim d1" style="text-align: center; margin-bottom: 32px;">It started small. <span class="danger">It didn't stay that way.</span></h2>
 
-        <!-- Desktop Timeline (horizontal) -->
-        <div class="timeline mobile-hide">
-            <div class="timeline-line"><div class="timeline-line-fill"></div></div>
+        <!-- Escalating threat cards -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
 
-            <div class="timeline-item anim d2">
-                <div class="timeline-dot">2020</div>
-                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">COVID / Remote</h3>
-                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Remote hiring becomes universal. Identity verification goes virtual with limited oversight.</p>
-            </div>
-
-            <div class="timeline-item anim d3">
-                <div class="timeline-dot">2022</div>
-                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Bait-and-Switch</h3>
-                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Candidates swap identities between interview and onboarding. Different person shows up for work.</p>
-            </div>
-
-            <div class="timeline-item anim d5">
-                <div class="timeline-dot danger-bg">2024</div>
-                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Deepfakes Emerge</h3>
-                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">$25M Hong Kong deepfake fraud. Real-time face swaps in video interviews become mainstream.</p>
-            </div>
-
-            <div class="timeline-item anim d7">
-                <div class="timeline-dot danger-bg">2025</div>
-                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">NK Infiltration</h3>
-                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">KnowBe4 hires NK operative. DOJ indicts 300+ companies for infiltration incidents.</p>
-            </div>
-
-            <div class="timeline-item anim d9">
-                <div class="timeline-dot accent-bg">2026</div>
-                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">AI-Powered Scale</h3>
-                <p class="timeline-long" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Automated creation of synthetic identities. 1 in 4 profiles predicted to be fake by 2028.</p>
-            </div>
-        </div>
-
-        <!-- Mobile Timeline (vertical) -->
-        <div class="timeline-mobile mobile-only">
-            <div class="timeline-mobile-item anim d2">
-                <div class="timeline-mobile-dot">2020</div>
-                <div class="timeline-mobile-content">
-                    <h3>COVID / Remote</h3>
-                    <p class="timeline-short">Remote hiring goes virtual with limited oversight.</p>
+            <!-- 2020: Small, muted — this was the beginning -->
+            <div class="anim d2" style="display: flex; align-items: center; gap: 20px; padding: 14px 24px; background: white; border-radius: 12px; border: 1px solid var(--border); opacity: 0.7;">
+                <div style="font-size: 0.8rem; font-weight: 800; color: var(--text-secondary); min-width: 48px;">2020</div>
+                <div style="flex: 1;">
+                    <span style="font-weight: 700; font-size: 0.9rem;">Remote hiring goes mainstream.</span>
+                    <span style="color: var(--text-secondary); font-size: 0.85rem;"> Identity verification moves to video calls — with no safeguards.</span>
                 </div>
             </div>
 
-            <div class="timeline-mobile-item anim d3">
-                <div class="timeline-mobile-dot">2022</div>
-                <div class="timeline-mobile-content">
-                    <h3>Bait-and-Switch</h3>
-                    <p class="timeline-short">Different person shows up for work than interviewed.</p>
+            <!-- 2022: Slightly bigger -->
+            <div class="anim d3" style="display: flex; align-items: center; gap: 20px; padding: 16px 24px; background: white; border-radius: 12px; border: 1px solid var(--border); opacity: 0.8;">
+                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-secondary); min-width: 48px;">2022</div>
+                <div style="flex: 1;">
+                    <span style="font-weight: 700; font-size: 0.95rem;">Bait-and-switch attacks emerge.</span>
+                    <span style="color: var(--text-secondary); font-size: 0.85rem;"> One person interviews. A different person shows up on day one.</span>
                 </div>
             </div>
 
-            <div class="timeline-mobile-item anim d4">
-                <div class="timeline-mobile-dot danger-bg">2024</div>
-                <div class="timeline-mobile-content">
-                    <h3>Deepfakes Emerge</h3>
-                    <p class="timeline-short">$25M deepfake fraud. Real-time face swaps go mainstream.</p>
+            <!-- 2024: Now it's alarming — bigger card, red accent -->
+            <div class="anim d4" style="display: flex; align-items: center; gap: 20px; padding: 20px 24px; background: white; border-radius: 14px; border-left: 4px solid var(--danger); box-shadow: 0 4px 16px rgba(239,68,68,0.08);">
+                <div style="font-size: 1rem; font-weight: 800; color: var(--danger); min-width: 48px;">2024</div>
+                <div style="flex: 1;">
+                    <span style="font-weight: 700; font-size: 1.05rem;">Deepfakes hit hiring.</span>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;"> $25M stolen via deepfake video call in Hong Kong. Real-time face swaps used in job interviews.</span>
                 </div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: var(--danger); white-space: nowrap;">$25M</div>
             </div>
 
-            <div class="timeline-mobile-item anim d5">
-                <div class="timeline-mobile-dot danger-bg">2025</div>
-                <div class="timeline-mobile-content">
-                    <h3>NK Infiltration</h3>
-                    <p class="timeline-short">KnowBe4 hires NK operative. 300+ companies infiltrated.</p>
+            <!-- 2025: Major escalation — bigger, bolder -->
+            <div class="anim d5" style="display: flex; align-items: center; gap: 20px; padding: 24px 28px; background: linear-gradient(135deg, white 0%, #fef2f2 100%); border-radius: 16px; border-left: 5px solid var(--danger); box-shadow: 0 6px 24px rgba(239,68,68,0.12);">
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--danger); min-width: 48px;">2025</div>
+                <div style="flex: 1;">
+                    <span style="font-weight: 700; font-size: 1.15rem;">Nation-state infiltration.</span>
+                    <span style="color: var(--text-secondary); font-size: 0.95rem;"> KnowBe4 — a cybersecurity company — hires a North Korean operative. DOJ reveals 300+ US companies infiltrated.</span>
                 </div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: var(--danger); white-space: nowrap;">300+</div>
             </div>
 
-            <div class="timeline-mobile-item anim d6">
-                <div class="timeline-mobile-dot accent-bg">2026</div>
-                <div class="timeline-mobile-content">
-                    <h3>AI-Powered Scale</h3>
-                    <p class="timeline-short">1 in 4 profiles predicted to be fake by 2028.</p>
+            <!-- 2026: The alarm — largest card, most intense -->
+            <div class="anim d6" style="display: flex; align-items: center; gap: 24px; padding: 28px 32px; background: linear-gradient(135deg, #0a1628 0%, #1a2a44 100%); border-radius: 18px; box-shadow: 0 8px 32px rgba(10,22,40,0.25); color: white;">
+                <div style="font-size: 1.3rem; font-weight: 800; color: var(--accent); min-width: 48px;">2026</div>
+                <div style="flex: 1;">
+                    <span style="font-weight: 700; font-size: 1.3rem; color: white;">Industrialized identity fraud.</span><br>
+                    <span style="color: rgba(255,255,255,0.7); font-size: 1rem;">AI generates synthetic candidates at scale. Gartner predicts 1 in 4 job profiles will be fake by 2028.</span>
                 </div>
+                <div style="font-size: 2rem; font-weight: 800; color: var(--accent); white-space: nowrap;">1 in 4</div>
             </div>
         </div>
     </div>
