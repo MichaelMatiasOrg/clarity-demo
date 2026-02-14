@@ -1191,6 +1191,68 @@ h3 {
         padding: 16px !important;
     }
 }
+/* ========== SLIDE 4 CARD ICONS & ANIMATIONS ========== */
+.card-icon { width: 40px; height: 40px; margin: 0 auto 10px; }
+
+/* Card 1: Pulse red then fade to gray */
+@keyframes pulse-fade-gray {
+    0%, 100% { opacity: 0.4; filter: saturate(0); }
+    15%, 30% { opacity: 1; filter: saturate(1); }
+}
+.gauge-pulse-gray {
+    animation: pulse-fade-gray 5s ease-in-out infinite;
+}
+
+/* Card 2: Scan line moves down then glitches */
+@keyframes scanline-down {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    60% { top: 100%; opacity: 1; }
+    62% { top: 55%; opacity: 1; }
+    64% { top: 58%; opacity: 0.5; }
+    66% { top: 52%; opacity: 1; }
+    70% { top: 56%; opacity: 0; }
+    100% { top: 56%; opacity: 0; }
+}
+.scan-icon-wrap {
+    position: relative;
+    overflow: hidden;
+}
+.scan-icon-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: #F59E0B;
+    opacity: 0;
+    animation: scanline-down 4s ease-in-out infinite;
+}
+
+/* Card 3: Glitch distortion */
+@keyframes icon-glitch {
+    0%, 85%, 100% { transform: translate(0, 0); filter: none; }
+    87% { transform: translate(-2px, 1px); filter: hue-rotate(90deg); }
+    89% { transform: translate(2px, -1px); filter: hue-rotate(-90deg); }
+    91% { transform: translate(-1px, -1px); filter: blur(1px); }
+    93% { transform: translate(1px, 2px); filter: none; }
+    95% { transform: translate(0, 0); filter: none; }
+}
+.glitch-icon {
+    animation: icon-glitch 4s ease-in-out infinite;
+}
+
+/* Card 4: Pieces drift apart */
+@keyframes drift-left {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-3px, 1px); }
+}
+@keyframes drift-right {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(3px, -1px); }
+}
+.drift-left { animation: drift-left 5s ease-in-out infinite; }
+.drift-right { animation: drift-right 5s ease-in-out infinite; }
+
     </style>
 </head>
 <body>
@@ -1351,8 +1413,16 @@ h3 {
 
             <!-- Background Checks -->
             <div class="anim d2" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <!-- Icon: Clipboard with checkmark -->
+                <div class="card-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
+                        <rect x="8" y="2" width="8" height="4" rx="1"/>
+                        <path d="M9 14l2 2 4-4"/>
+                    </svg>
+                </div>
                 <!-- Failure gauge -->
-                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; position: relative;">
+                <div class="gauge-pulse-gray" style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; position: relative;">
                     <div style="font-size: 1.4rem; font-weight: 800; color: var(--danger);">0%</div>
                 </div>
                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); font-weight: 700; margin-bottom: 8px;">Detection rate</div>
@@ -1364,6 +1434,14 @@ h3 {
 
             <!-- IDV Alone -->
             <div class="anim d3" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <!-- Icon: ID Card -->
+                <div class="card-icon scan-icon-wrap">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="5" width="20" height="14" rx="2"/>
+                        <circle cx="8" cy="12" r="2"/>
+                        <path d="M14 10h4M14 14h3"/>
+                    </svg>
+                </div>
                 <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: #F59E0B; border-right-color: #F59E0B; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
                     <div style="font-size: 1.4rem; font-weight: 800; color: #F59E0B;">~90%</div>
                 </div>
@@ -1375,6 +1453,13 @@ h3 {
 
             <!-- Deepfake Detection -->
             <div class="anim d4" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <!-- Icon: Face with scan overlay -->
+                <div class="card-icon glitch-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+                        <line x1="1" y1="12" x2="16" y2="12" stroke-dasharray="2 2" opacity="0.5"/>
+                    </svg>
+                </div>
                 <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: var(--danger); border-right-color: var(--danger); border-bottom-color: var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
                     <div style="font-size: 1.4rem; font-weight: 800; color: var(--danger);">~80%</div>
                 </div>
@@ -1386,6 +1471,17 @@ h3 {
 
             <!-- Siloed Approach -->
             <div class="anim d5" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <!-- Icon: Broken chain links drifting apart -->
+                <div class="card-icon" style="display: flex; justify-content: center; gap: 2px;">
+                    <svg class="drift-left" width="20" height="40" viewBox="0 0 12 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round">
+                        <rect x="2" y="6" width="8" height="12" rx="4" stroke-dasharray="0" />
+                        <line x1="6" y1="6" x2="6" y2="2"/>
+                    </svg>
+                    <svg class="drift-right" width="20" height="40" viewBox="0 0 12 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round">
+                        <rect x="2" y="6" width="8" height="12" rx="4"/>
+                        <line x1="6" y1="18" x2="6" y2="22"/>
+                    </svg>
+                </div>
                 <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: var(--danger-muted);">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </div>
