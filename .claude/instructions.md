@@ -116,15 +116,18 @@ Every presentation has a dark navy nav bar at top:
 
 ## CRITICAL: Never Read Image Files
 
-**You CANNOT process images.** Any attempt to read, view, or open an image file (PNG, JPG, SVG, WebP, GIF) will cause an API error that breaks the conversation.
+**You CANNOT process images.** Any attempt to read, view, or open an image file will cause an API error that PERMANENTLY BREAKS your conversation. There is no recovery — you will have to start over.
 
-- **NEVER** use `Read` or `cat` on image files
-- **NEVER** try to "check what an image looks like"
-- **ALWAYS** trust the file path and use it directly in `<img src="...">`
-- If you need to know what an image shows, check `docs/ASSETS.md` for descriptions
-- If an image isn't described there, ask the user to describe it
+This applies to ALL image operations:
+- **NEVER** use `Read`, `cat`, `head`, `file`, or any tool on .png, .jpg, .jpeg, .gif, .webp, .svg, .ico, .bmp files
+- **NEVER** try to "check", "verify", "look at", "see", or "inspect" an image file
+- **NEVER** try to check file size, dimensions, or validity of an image by reading it
+- **NEVER** read an image "to see what it looks like" or "to confirm it's correct"
+- **ALWAYS** trust file paths and use them directly in `<img src="...">`
+- To check if an image file exists, use `ls` or `find` (NOT `read` or `cat`)
+- To know what an image shows, check `docs/ASSETS.md` or ask the user
 
-This is not optional. Reading an image file will crash your session.
+**If you read an image file, the session is destroyed.** This has happened multiple times. Do not test it.
 
 ## Brand Rules (Non-Negotiable)
 
