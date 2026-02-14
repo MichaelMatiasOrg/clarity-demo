@@ -1,3 +1,26 @@
 /* ========== PRESENTATION-SPECIFIC STYLES ========== */
 /* Add slide-specific animations and overrides here */
 /* The design system, base animations, and components are loaded from shared/ */
+
+/* ========== Slide 2: Paysure Profile ========== */
+.paysure-fact {
+    padding: 16px;
+    border-radius: 12px;
+    background: #F8FAFC;
+}
+.paysure-fact-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+.paysure-fact-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+.paysure-fact-detail {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
