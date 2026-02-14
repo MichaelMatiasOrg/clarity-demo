@@ -32,65 +32,69 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 24px 20px 20px;
+            padding: 28px 20px 20px;
         }
 
-        .logo { margin-bottom: 20px; }
+        .logo { margin-bottom: 24px; }
         .logo img { height: 32px; }
 
         .hub { max-width: 720px; width: 100%; }
 
-        .section { margin-bottom: 18px; }
+        .section { margin-bottom: 24px; }
         .section:last-child { margin-bottom: 0; }
 
         .section-header {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #94a3b8;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: #64748B;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 6px;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+            padding-left: 10px;
+            border-left: 3px solid #61F393;
         }
 
         /* ── Row-style presentation cards ── */
         .cards {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
         }
 
         .card {
             background: white;
-            border-radius: 10px;
-            padding: 10px 14px;
-            box-shadow: 0 1px 4px rgba(10, 22, 40, 0.06);
-            border: 1.5px solid transparent;
-            transition: all 0.15s ease;
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 3px rgba(10, 22, 40, 0.04), 0 1px 2px rgba(10, 22, 40, 0.06);
+            border: 1px solid rgba(10, 22, 40, 0.06);
+            transition: all 0.2s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
         .card:hover {
-            border-color: #61F393;
-            box-shadow: 0 4px 16px rgba(10, 22, 40, 0.08);
+            border-color: rgba(97, 243, 147, 0.4);
+            box-shadow: 0 4px 12px rgba(10, 22, 40, 0.08), 0 0 0 1px rgba(97, 243, 147, 0.15);
+            background: #fafcff;
         }
 
         .card-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            overflow: hidden;
         }
 
-        .card-icon svg { width: 18px; height: 18px; }
+        .card-icon svg { width: 20px; height: 20px; }
         .card-icon.green { background: linear-gradient(135deg, #61F393, #4ade80); }
         .card-icon.red { background: linear-gradient(135deg, #EF4444, #DC2626); }
 
@@ -100,16 +104,17 @@
         }
 
         .card-body h3 {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             font-weight: 700;
             color: #0a1628;
             line-height: 1.3;
         }
 
         .card-body .desc {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             color: #64748B;
-            line-height: 1.3;
+            line-height: 1.35;
+            margin-top: 1px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -122,24 +127,24 @@
         }
 
         .tag {
-            font-size: 0.67rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            color: #64748B;
-            background: #F0F4F8;
-            padding: 2px 7px;
-            border-radius: 4px;
+            color: #475569;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 100px;
             display: flex;
             align-items: center;
             gap: 4px;
             white-space: nowrap;
         }
 
-        .tag svg { width: 10px; height: 10px; flex-shrink: 0; }
+        .tag svg { width: 11px; height: 11px; flex-shrink: 0; }
 
         .card-arrow {
             color: #cbd5e1;
             flex-shrink: 0;
-            transition: color 0.15s;
+            transition: color 0.2s;
         }
 
         .card:hover .card-arrow { color: #64748B; }
@@ -148,64 +153,65 @@
         .utilities {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5px;
+            gap: 6px;
         }
 
         .util-link {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 9px 12px;
+            padding: 11px 14px;
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
             color: inherit;
-            border: 1.5px solid transparent;
-            transition: all 0.15s ease;
-            box-shadow: 0 1px 4px rgba(10, 22, 40, 0.04);
+            border: 1px solid rgba(10, 22, 40, 0.06);
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(10, 22, 40, 0.04);
         }
 
         .util-link:hover {
-            border-color: #cbd5e1;
-            background: #fafbfc;
+            border-color: rgba(10, 22, 40, 0.12);
+            background: #fafcff;
+            box-shadow: 0 4px 12px rgba(10, 22, 40, 0.06);
         }
 
         .util-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
-        .util-icon svg { width: 14px; height: 14px; }
+        .util-icon svg { width: 16px; height: 16px; }
         .util-icon.dark { background: #0a1628; }
         .util-icon.muted { background: #e2e8f0; }
 
         .util-text h3 {
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: #0a1628;
         }
 
         .util-text p {
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             color: #94a3b8;
-            margin-top: 0;
+            margin-top: 1px;
         }
 
         .util-arrow {
             margin-left: auto;
             color: #cbd5e1;
-            transition: color 0.15s;
+            transition: color 0.2s;
         }
 
         .util-link:hover .util-arrow { color: #64748B; }
 
         .footer {
-            margin-top: 16px;
+            margin-top: 20px;
             font-size: 0.72rem;
             color: #94a3b8;
         }
@@ -223,7 +229,7 @@
             <div class="cards">
                 <a href="presentations/masterclass/" class="card">
                     <div class="card-icon" style="background: #0a1628;">
-                        <img src="shared/logos/guidepoint-white.svg" alt="GuidePoint Security" style="height: 16px;">
+                        <img src="shared/logos/guidepoint-white.svg" alt="GuidePoint Security" style="height: 18px;">
                     </div>
                     <div class="card-body">
                         <h3>Masterclass for GuidePoint CISOs</h3>
@@ -247,7 +253,7 @@
             <div class="cards">
                 <a href="presentations/deel-onboarding/" class="card">
                     <div class="card-icon" style="background: #0a1628;">
-                        <img src="shared/logos/deel.svg" alt="Deel" style="height: 14px; filter: brightness(0) invert(1);">
+                        <img src="shared/logos/deel.svg" alt="Deel" style="height: 16px; filter: brightness(0) invert(1);">
                     </div>
                     <div class="card-body">
                         <h3>Deel Onboarding</h3>
@@ -268,7 +274,7 @@
             <div class="cards">
                 <a href="presentations/hr-greenhouse/" class="card">
                     <div class="card-icon" style="background: #0a1628;">
-                        <img src="shared/logos/greenhouse-full.png" alt="Greenhouse" style="height: 14px; filter: brightness(0) invert(1);">
+                        <img src="shared/logos/greenhouse-full.png" alt="Greenhouse" style="height: 16px; filter: brightness(0) invert(1);">
                     </div>
                     <div class="card-body">
                         <h3>HR Leaders: Remote Hiring Fraud</h3>
