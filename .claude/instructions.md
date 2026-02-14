@@ -10,6 +10,35 @@ Read these files in order. They are your source of truth:
 2. **`docs/COMPONENTS.md`** — Slide pattern catalog. Browse the available patterns and pick the best ones for the user's content. You don't need to use all of them — just the ones that fit.
 3. **`docs/ASSETS.md`** — Complete inventory of every image, logo, screenshot, and badge available. Use real assets only. Never invent logos or fake screenshots.
 
+## Intake Questions
+
+Before building anything, ask the user these questions (if they haven't already answered them):
+
+1. **What's this deck for?** Classify it:
+   - `customer-deck` — Tailored for a specific customer/prospect (ask which company)
+   - `sales-deck` — Generic sales deck for a segment (e.g. CISOs, HR leaders)
+   - `presentation` — Conference talk, webinar, or event presentation
+   - `partner-deck` — For a specific partner or integration
+   - `internal` — Team training, board update, internal comms
+
+2. **Who's the audience?** (e.g. "CISOs at mid-market companies", "HR leaders at Greenhouse customers")
+
+3. **What's the one thing they should walk away thinking?** (the core message)
+
+4. **Any specific assets, stats, or customer stories to include?**
+
+Store the answers in a metadata comment at the top of `index.html`:
+```html
+<!--
+  @deck-type: customer-deck
+  @customer: Paysure
+  @audience: CISO and VP Engineering
+  @author: Jacob Hecht
+  @created: 2026-02-14
+  @core-message: Clarity integrates with Greenhouse to catch hiring fraud before day one
+-->
+```
+
 ## Your Job
 
 The user will describe what they need in plain language — the audience, the goal, the key messages. **You** figure out:
@@ -22,6 +51,15 @@ The user will describe what they need in plain language — the audience, the go
 Think like a presentation designer, not a developer. Every slide should earn the next click.
 
 ## Creating a Presentation
+
+### Git Workflow
+**Never push directly to `main`.** Always:
+1. Create a branch: `git checkout -b presentations/your-deck-name`
+2. Build the presentation
+3. Commit and push the branch
+4. Open a pull request to `main`
+
+Only Michael (repo admin) merges PRs into main.
 
 ### File Structure
 ```

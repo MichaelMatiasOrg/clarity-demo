@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Assets — Clarity Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #F0F4F8;
+            --text: #0a1628;
+            --text-secondary: #64748B;
+            --accent: #61F393;
+            --accent-dark: #34D399;
+            --accent-muted: rgba(97, 243, 147, 0.1);
+            --border: #E2E8F0;
+            --danger: #EF4444;
+            --card: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; height: 56px;
+            background: var(--text); display: flex; align-items: center;
+            padding: 0 24px; z-index: 1000;
+        }
+        nav a { display: flex; align-items: center; text-decoration: none; }
+        nav img { height: 28px; }
+
+        .container {
+            max-width: 600px; margin: 0 auto; padding: 80px 24px 40px;
+        }
+
+        /* ===== WELCOME SCREEN ===== */
+        .welcome {
+            text-align: center; padding: 60px 20px;
+        }
+        .welcome-icon {
+            width: 80px; height: 80px; border-radius: 20px;
+            background: var(--accent); display: flex; align-items: center;
+            justify-content: center; margin: 0 auto 24px;
+            box-shadow: 0 8px 32px rgba(97, 243, 147, 0.3);
+        }
+        .welcome h1 {
+            font-size: 1.8rem; margin-bottom: 12px;
+        }
+        .welcome p {
+            color: var(--text-secondary); font-size: 1rem; line-height: 1.6;
+            margin-bottom: 32px; max-width: 400px; margin-left: auto; margin-right: auto;
+        }
+        .welcome-input-group {
+            max-width: 380px; margin: 0 auto;
+        }
+        .welcome-input-group label {
+            display: block; text-align: left; font-size: 0.8rem; font-weight: 700;
+            color: var(--text-secondary); margin-bottom: 8px;
+        }
+        .welcome-input-group input {
+            width: 100%; border: 2px solid var(--border); border-radius: 12px;
+            padding: 14px 18px; font-family: inherit; font-size: 1rem;
+            text-align: center; letter-spacing: 1px; transition: border-color 0.2s;
+        }
+        .welcome-input-group input:focus {
+            outline: none; border-color: var(--accent);
+        }
+        .welcome-input-group input::placeholder {
+            letter-spacing: 0; color: #CBD5E1;
+        }
+        .welcome-hint {
+            font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;
+        }
+        .welcome-btn {
+            display: block; width: 100%; max-width: 380px; margin: 20px auto 0;
+            background: var(--accent); color: var(--text); border: none;
+            padding: 16px; border-radius: 12px; font-family: inherit;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .welcome-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(97, 243, 147, 0.3);
+        }
+        .welcome-error {
+            color: var(--danger); font-size: 0.85rem; margin-top: 12px;
+            display: none;
+        }
+
+        /* ===== UPLOAD SCREEN ===== */
+        .upload-screen { display: none; }
+        .upload-screen.active { display: block; }
+
+        .upload-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 24px;
+        }
+        .upload-header h1 { font-size: 1.5rem; }
+        .user-badge {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--accent-muted); padding: 6px 14px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600; color: #059669;
+        }
+        .user-badge .dot {
+            width: 8px; height: 8px; border-radius: 50%; background: #059669;
+        }
+
+        /* Steps */
+        .steps {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0; margin-bottom: 32px;
+        }
+        .step {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);
+        }
+        .step.active { color: var(--text); }
+        .step.done { color: var(--accent-dark); }
+        .step-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            border: 2px solid var(--border); display: flex; align-items: center;
+            justify-content: center; font-size: 0.75rem; font-weight: 800;
+        }
+        .step.active .step-num {
+            border-color: var(--accent); background: var(--accent); color: var(--text);
+        }
+        .step.done .step-num {
+            border-color: var(--accent-dark); background: var(--accent-dark); color: white;
+        }
+        .step-line {
+            width: 40px; height: 2px; background: var(--border); margin: 0 8px;
+        }
+        .step.done + .step-line { background: var(--accent-dark); }
+
+        /* Upload Zone */
+        .upload-zone {
+            background: var(--card); border: 2px dashed var(--border); border-radius: 20px;
+            padding: 50px 40px; text-align: center; cursor: pointer;
+            transition: all 0.2s ease; margin-bottom: 20px;
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--accent); background: var(--accent-muted);
+        }
+        .upload-zone .upload-icon {
+            width: 64px; height: 64px; border-radius: 16px; background: var(--accent-muted);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
+        }
+        .upload-zone h3 { font-size: 1.1rem; margin-bottom: 6px; }
+        .upload-zone p { color: var(--text-secondary); font-size: 0.85rem; }
+        .upload-zone input { display: none; }
+
+        /* Detail Form */
+        .detail-form {
+            background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+            padding: 28px; display: none;
+        }
+        .detail-form.visible { display: block; }
+
+        .preview-card {
+            display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
+            padding: 16px; background: var(--bg); border-radius: 12px;
+        }
+        .preview-card img {
+            width: 72px; height: 72px; border-radius: 10px; object-fit: cover;
+            border: 1px solid var(--border);
+        }
+        .preview-card .info { flex: 1; }
+        .preview-card .filename { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+        .preview-card .filesize { color: var(--text-secondary); font-size: 0.8rem; }
+        .preview-card .change-btn {
+            background: none; border: 1px solid var(--border); border-radius: 8px;
+            padding: 6px 14px; font-family: inherit; font-size: 0.8rem; font-weight: 600;
+            color: var(--text-secondary); cursor: pointer;
+        }
+        .preview-card .change-btn:hover { border-color: var(--text-secondary); }
+
+        .field { margin-bottom: 18px; }
+        .field label {
+            display: block; font-size: 0.8rem; font-weight: 700;
+            margin-bottom: 6px; color: var(--text);
+        }
+        .field input, .field select {
+            width: 100%; border: 1px solid var(--border); border-radius: 10px;
+            padding: 12px 16px; font-family: inherit; font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+        .field input:focus, .field select:focus { outline: none; border-color: var(--accent); }
+        .field-hint { font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px; }
+
+        /* Category cards instead of dropdown */
+        .category-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+        }
+        .cat-card {
+            border: 2px solid var(--border); border-radius: 12px; padding: 14px;
+            cursor: pointer; transition: all 0.15s ease; text-align: center;
+        }
+        .cat-card:hover { border-color: var(--accent); }
+        .cat-card.selected { border-color: var(--accent); background: var(--accent-muted); }
+        .cat-card .cat-icon { font-size: 1.5rem; margin-bottom: 4px; }
+        .cat-card .cat-name { font-size: 0.8rem; font-weight: 700; }
+        .cat-card .cat-desc { font-size: 0.65rem; color: var(--text-secondary); margin-top: 2px; }
+
+        .btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--accent); color: var(--text); border: none;
+            padding: 16px 28px; border-radius: 12px; font-family: inherit;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            width: 100%;
+        }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(97,243,147,0.3); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* ===== SUCCESS SCREEN ===== */
+        .success-screen {
+            display: none; text-align: center; padding: 40px 0;
+        }
+        .success-screen.active { display: block; }
+        .success-check {
+            width: 72px; height: 72px; border-radius: 50%; background: var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; box-shadow: 0 8px 32px rgba(97,243,147,0.3);
+        }
+        .success-screen h2 { font-size: 1.5rem; margin-bottom: 8px; }
+        .success-screen .success-subtitle {
+            color: var(--text-secondary); margin-bottom: 28px; font-size: 0.95rem;
+        }
+
+        .path-card {
+            background: var(--text); border-radius: 14px; padding: 20px 24px;
+            margin-bottom: 12px; cursor: pointer; transition: transform 0.1s;
+        }
+        .path-card:hover { transform: scale(1.01); }
+        .path-card-label {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
+            color: rgba(255,255,255,0.5); margin-bottom: 8px; font-weight: 600;
+        }
+        .path-card-value {
+            font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9rem;
+            color: var(--accent); word-break: break-all;
+        }
+        .path-card-hint {
+            font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 24px;
+        }
+
+        .success-actions {
+            display: flex; gap: 12px;
+        }
+        .success-actions .btn { flex: 1; }
+        .btn-outline {
+            background: transparent; border: 2px solid var(--border);
+            color: var(--text); font-weight: 600;
+        }
+        .btn-outline:hover { border-color: var(--text-secondary); box-shadow: none; }
+
+        /* Recent */
+        .recent { margin-top: 40px; }
+        .recent h2 { font-size: 1.1rem; margin-bottom: 14px; }
+        .recent-list { display: flex; flex-direction: column; gap: 8px; }
+        .recent-item {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 10px 14px; cursor: pointer; transition: box-shadow 0.2s;
+        }
+        .recent-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .recent-item img {
+            width: 40px; height: 40px; border-radius: 8px; object-fit: cover;
+        }
+        .recent-item .recent-info { flex: 1; min-width: 0; }
+        .recent-item .recent-name {
+            font-size: 0.8rem; font-weight: 700;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .recent-item .recent-path {
+            font-size: 0.7rem; color: var(--text-secondary);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .recent-item .recent-copy {
+            font-size: 0.7rem; font-weight: 700; color: var(--accent-dark);
+            white-space: nowrap;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: var(--text); color: white; padding: 14px 24px; border-radius: 12px;
+            font-size: 0.85rem; font-weight: 600; transition: transform 0.3s ease;
+            z-index: 2000; box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        .spinner {
+            width: 18px; height: 18px; border: 2px solid transparent;
+            border-top-color: var(--text); border-radius: 50%;
+            animation: spin 0.6s linear infinite; display: inline-block;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 600px) {
+            .container { padding: 72px 16px 24px; }
+            .welcome h1 { font-size: 1.5rem; }
+            .upload-zone { padding: 40px 20px; }
+            .preview-card { flex-direction: column; text-align: center; }
+            .category-grid { grid-template-columns: 1fr 1fr; }
+            .success-actions { flex-direction: column; }
+            .steps .step-text { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">
+            <img src="shared/brand/clarity-logo-white.svg" alt="Clarity">
+        </a>
+    </nav>
+
+    <div class="container">
+
+        <!-- ===== WELCOME / AUTH ===== -->
+        <div class="welcome" id="welcomeScreen">
+            <div class="welcome-icon">
+                <svg width="36" height="36" fill="none" stroke="#0a1628" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                </svg>
+            </div>
+            <h1>Upload Assets</h1>
+            <p>Add images to the Clarity asset library. Your team can use them instantly in presentations built with Claude Code.</p>
+
+            <div class="welcome-input-group">
+                <label>Team Access Code</label>
+                <input type="password" id="teamCode" placeholder="Enter the code from your team lead">
+                <div class="welcome-hint">One-time setup — you won't need to enter this again.</div>
+            </div>
+            <button class="welcome-btn" onclick="authenticate()">Get Started</button>
+            <div class="welcome-error" id="authError">That code doesn't look right. Check with your team lead.</div>
+        </div>
+
+        <!-- ===== UPLOAD SCREEN ===== -->
+        <div class="upload-screen" id="uploadScreen">
+            <div class="upload-header">
+                <h1>Upload an Image</h1>
+                <div class="user-badge" id="userBadge"><div class="dot"></div> Connected</div>
+            </div>
+
+            <!-- Steps -->
+            <div class="steps">
+                <div class="step active" id="step1"><div class="step-num">1</div><span class="step-text">Choose Image</span></div>
+                <div class="step-line"></div>
+                <div class="step" id="step2"><div class="step-num">2</div><span class="step-text">Details</span></div>
+                <div class="step-line"></div>
+                <div class="step" id="step3"><div class="step-num">3</div><span class="step-text">Done</span></div>
+            </div>
+
+            <!-- Step 1: Upload Zone -->
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" accept="image/*,.svg">
+                <div class="upload-icon">
+                    <svg width="28" height="28" fill="none" stroke="var(--accent-dark)" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                    </svg>
+                </div>
+                <h3>Drop your image here</h3>
+                <p>or click to browse your files</p>
+            </div>
+
+            <!-- Step 2: Details -->
+            <div class="detail-form" id="detailForm">
+                <div class="preview-card">
+                    <img id="previewImg" src="" alt="Preview">
+                    <div class="info">
+                        <div class="filename" id="fileName"></div>
+                        <div class="filesize" id="fileSize"></div>
+                    </div>
+                    <button class="change-btn" onclick="resetToStep1()">Change</button>
+                </div>
+
+                <div class="field">
+                    <label>What should we call this image?</label>
+                    <input type="text" id="assetName" placeholder="e.g. greenhouse-dashboard">
+                    <div class="field-hint">This becomes the filename. Use lowercase and hyphens.</div>
+                </div>
+
+                <div class="field">
+                    <label>What type of image is this?</label>
+                    <div class="category-grid">
+                        <div class="cat-card selected" data-cat="screenshots" onclick="selectCategory(this)">
+                            <div class="cat-name">Screenshot</div>
+                            <div class="cat-desc">Product UI, dashboards</div>
+                        </div>
+                        <div class="cat-card" data-cat="logos" onclick="selectCategory(this)">
+                            <div class="cat-name">Logo</div>
+                            <div class="cat-desc">Company or partner</div>
+                        </div>
+                        <div class="cat-card" data-cat="people" onclick="selectCategory(this)">
+                            <div class="cat-name">Person</div>
+                            <div class="cat-desc">Headshot or photo</div>
+                        </div>
+                        <div class="cat-card" data-cat="other" onclick="selectCategory(this)">
+                            <div class="cat-name">Other</div>
+                            <div class="cat-desc">Anything else</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Describe this image (helps Claude Code use it better)</label>
+                    <input type="text" id="assetDescription" placeholder="e.g. Greenhouse ATS showing open job listings">
+                </div>
+
+                <button class="btn" id="uploadBtn" onclick="uploadAsset()">
+                    Upload Image
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== SUCCESS SCREEN ===== -->
+        <div class="success-screen" id="successScreen">
+            <div class="success-check">
+                <svg width="32" height="32" fill="none" stroke="#0a1628" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <h2>Image Uploaded!</h2>
+            <p class="success-subtitle">It's ready to use in any presentation. Copy the path below and paste it into Claude Code.</p>
+
+            <div class="path-card" id="pathCard" onclick="copyPath()">
+                <div class="path-card-label">Path for Claude Code (click to copy)</div>
+                <div class="path-card-value" id="pathValue"></div>
+            </div>
+            <div class="path-card-hint">Tell Claude Code: <strong>"Use <span id="pathExample"></span> on slide 3"</strong></div>
+
+            <div class="success-actions">
+                <button class="btn" onclick="copyPath()">Copy Path</button>
+                <button class="btn btn-outline" onclick="uploadAnother()">Upload Another</button>
+            </div>
+        </div>
+
+        <!-- Recent Uploads -->
+        <div class="recent" id="recentSection" style="display: none;">
+            <h2>Your Recent Uploads</h2>
+            <div class="recent-list" id="recentList"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const REPO = 'MichaelMatiasOrg/clarity-labs';
+        const BRANCH = 'main';
+        const CATEGORY_PATHS = {
+            screenshots: 'shared/screenshots',
+            logos: 'shared/logos',
+            people: 'shared/people',
+            other: 'shared/other'
+        };
+
+        let selectedFile = null;
+        let fileBase64 = null;
+        let selectedCategory = 'screenshots';
+        let lastUploadedPath = '';
+
+        // ===== AUTH =====
+        function getToken() { return localStorage.getItem('clarity_upload_token') || ''; }
+
+        async function authenticate() {
+            const code = document.getElementById('teamCode').value.trim();
+            if (!code) return;
+
+            const errEl = document.getElementById('authError');
+            errEl.style.display = 'none';
+
+            // Validate token against GitHub
+            try {
+                const res = await fetch('https://api.github.com/user', {
+                    headers: { 'Authorization': `Bearer ${code}` }
+                });
+                if (res.ok) {
+                    const user = await res.json();
+                    localStorage.setItem('clarity_upload_token', code);
+                    localStorage.setItem('clarity_upload_user', user.login);
+                    showUploadScreen();
+                    return;
+                }
+            } catch (e) {}
+
+            errEl.style.display = 'block';
+        }
+
+        function showUploadScreen() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('uploadScreen').classList.add('active');
+            const user = localStorage.getItem('clarity_upload_user') || 'team';
+            document.getElementById('userBadge').innerHTML = `<div class="dot"></div> ${user}`;
+            renderRecent();
+        }
+
+        // Check if already authenticated
+        if (getToken()) {
+            showUploadScreen();
+        }
+
+        // ===== FILE HANDLING =====
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+
+        ['dragenter', 'dragover'].forEach(e => {
+            uploadZone.addEventListener(e, ev => { ev.preventDefault(); uploadZone.classList.add('dragover'); });
+        });
+        ['dragleave', 'drop'].forEach(e => {
+            uploadZone.addEventListener(e, ev => { ev.preventDefault(); uploadZone.classList.remove('dragover'); });
+        });
+        uploadZone.addEventListener('drop', ev => { handleFile(ev.dataTransfer.files[0]); });
+        fileInput.addEventListener('change', ev => { if (ev.target.files[0]) handleFile(ev.target.files[0]); });
+
+        function handleFile(file) {
+            if (!file || !(file.type.match(/image/) || file.name.endsWith('.svg'))) {
+                showToast('Please select an image file');
+                return;
+            }
+            if (file.size > 10 * 1024 * 1024) {
+                showToast('File too large — max 10MB');
+                return;
+            }
+
+            selectedFile = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                fileBase64 = e.target.result.split(',')[1];
+                document.getElementById('previewImg').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatSize(file.size);
+
+            // Auto-suggest name
+            const name = file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9-]/g, '-').replace(/-+/g, '-').toLowerCase();
+            document.getElementById('assetName').value = name;
+
+            // Auto-detect logos
+            if (file.name.endsWith('.svg')) {
+                selectCategory(document.querySelector('[data-cat="logos"]'));
+            }
+
+            // Move to step 2
+            uploadZone.style.display = 'none';
+            document.getElementById('detailForm').classList.add('visible');
+            setStep(2);
+        }
+
+        // ===== CATEGORY =====
+        function selectCategory(el) {
+            document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedCategory = el.dataset.cat;
+        }
+
+        // ===== STEPS =====
+        function setStep(n) {
+            [1,2,3].forEach(i => {
+                const step = document.getElementById('step' + i);
+                step.className = 'step' + (i < n ? ' done' : i === n ? ' active' : '');
+            });
+        }
+
+        function resetToStep1() {
+            selectedFile = null;
+            fileBase64 = null;
+            document.getElementById('detailForm').classList.remove('visible');
+            uploadZone.style.display = 'block';
+            fileInput.value = '';
+            setStep(1);
+        }
+
+        // ===== UPLOAD =====
+        async function uploadAsset() {
+            const token = getToken();
+            if (!token) { showToast('Please reconnect'); return; }
+            if (!selectedFile || !fileBase64) { showToast('Select a file first'); return; }
+
+            const name = document.getElementById('assetName').value.trim();
+            if (!name) { showToast('Give the image a name'); return; }
+
+            const ext = selectedFile.name.split('.').pop().toLowerCase();
+            const filename = `${name}.${ext}`;
+            const folder = CATEGORY_PATHS[selectedCategory];
+            const path = `${folder}/${filename}`;
+
+            const btn = document.getElementById('uploadBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Uploading...';
+
+            try {
+                // Check if file already exists (get sha for update)
+                let sha;
+                try {
+                    const existing = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (existing.ok) {
+                        const data = await existing.json();
+                        sha = data.sha;
+                    }
+                } catch (e) {}
+
+                const user = localStorage.getItem('clarity_upload_user') || 'team';
+                const description = document.getElementById('assetDescription').value.trim();
+
+                const body = {
+                    message: `Upload: ${filename}${description ? ' — ' + description : ''} (by ${user})`,
+                    content: fileBase64,
+                    branch: BRANCH
+                };
+                if (sha) body.sha = sha;
+
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.message || 'Upload failed');
+                }
+
+                // Success
+                lastUploadedPath = `../../${path}`;
+                document.getElementById('pathValue').textContent = lastUploadedPath;
+                document.getElementById('pathExample').textContent = lastUploadedPath;
+
+                // Save to recent
+                saveRecent({
+                    name: filename,
+                    path: lastUploadedPath,
+                    category: selectedCategory,
+                    preview: document.getElementById('previewImg').src,
+                    timestamp: Date.now()
+                });
+
+                // Show success
+                document.getElementById('uploadScreen').classList.remove('active');
+                document.getElementById('successScreen').classList.add('active');
+                setStep(3);
+
+            } catch (e) {
+                showToast('Upload failed: ' + e.message);
+                btn.disabled = false;
+                btn.innerHTML = 'Upload Image';
+            }
+        }
+
+        function copyPath() {
+            navigator.clipboard.writeText(lastUploadedPath);
+            showToast('Copied! Paste it into Claude Code');
+        }
+
+        function uploadAnother() {
+            document.getElementById('successScreen').classList.remove('active');
+            document.getElementById('uploadScreen').classList.add('active');
+            document.getElementById('detailForm').classList.remove('visible');
+            uploadZone.style.display = 'block';
+            fileInput.value = '';
+            selectedFile = null;
+            fileBase64 = null;
+            document.getElementById('uploadBtn').disabled = false;
+            document.getElementById('uploadBtn').innerHTML = 'Upload Image';
+            setStep(1);
+            renderRecent();
+        }
+
+        // ===== RECENT UPLOADS =====
+        function getRecent() {
+            try { return JSON.parse(localStorage.getItem('clarity_recent_uploads') || '[]'); }
+            catch { return []; }
+        }
+        function saveRecent(item) {
+            const recent = getRecent();
+            recent.unshift(item);
+            localStorage.setItem('clarity_recent_uploads', JSON.stringify(recent.slice(0, 15)));
+        }
+        function renderRecent() {
+            const recent = getRecent();
+            const section = document.getElementById('recentSection');
+            const list = document.getElementById('recentList');
+            if (recent.length === 0) { section.style.display = 'none'; return; }
+
+            section.style.display = 'block';
+            list.innerHTML = recent.map(r => `
+                <div class="recent-item" onclick="navigator.clipboard.writeText('${r.path}'); showToast('Copied!')">
+                    <img src="${r.preview}" alt="${r.name}" onerror="this.style.background='var(--bg)'">
+                    <div class="recent-info">
+                        <div class="recent-name">${r.name}</div>
+                        <div class="recent-path">${r.path}</div>
+                    </div>
+                    <div class="recent-copy">Copy</div>
+                </div>
+            `).join('');
+        }
+
+        // ===== UTILS =====
+        function formatSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>
