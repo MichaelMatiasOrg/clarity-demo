@@ -114,6 +114,18 @@ Every presentation has a dark navy nav bar at top:
 </nav>
 ```
 
+## CRITICAL: Never Read Image Files
+
+**You CANNOT process images.** Any attempt to read, view, or open an image file (PNG, JPG, SVG, WebP, GIF) will cause an API error that breaks the conversation.
+
+- **NEVER** use `Read` or `cat` on image files
+- **NEVER** try to "check what an image looks like"
+- **ALWAYS** trust the file path and use it directly in `<img src="...">`
+- If you need to know what an image shows, check `docs/ASSETS.md` for descriptions
+- If an image isn't described there, ask the user to describe it
+
+This is not optional. Reading an image file will crash your session.
+
 ## Brand Rules (Non-Negotiable)
 
 1. **NO emojis.** Ever. Not in slides, not in labels, nowhere.
