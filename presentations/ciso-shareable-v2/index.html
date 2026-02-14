@@ -1266,7 +1266,6 @@ h3 {
 
 <!-- ===================== SLIDE 1: TITLE ===================== -->
 <section class="slide active" data-slide="1">
-    <!-- Decorative Clarity stars -->
     <svg class="clarity-star clarity-star-1" viewBox="0 0 60 60" fill="none">
         <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="#0a1628"/>
         <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="#0a1628"/>
@@ -1279,14 +1278,13 @@ h3 {
         <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#0a1628"/>
         <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#0a1628"/>
     </svg>
-
     <div style="text-align: center; position: relative; z-index: 1; max-width: 900px;">
         <div class="anim" style="margin-bottom: 28px;">
             <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 60px;">
         </div>
         <h1 class="anim d1">Employee Identity Security</h1>
         <div class="anim d2" style="width: 80px; height: 4px; background: var(--accent); margin: 24px auto; border-radius: 2px;"></div>
-        <p class="anim d3 subtitle">Protecting your organization from hiring fraud and synthetic identities</p>
+        <p class="anim d3 subtitle">Protecting organizations from hiring fraud, synthetic identities, and deepfake attacks &mdash; across the entire employee lifecycle</p>
         <div class="anim d4 mobile-hide-trust" style="margin-top: 40px; padding: 20px 32px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); display: inline-block;">
             <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-right: 12px;">Protecting companies with</span>
             <span style="font-weight: 700; color: var(--text-primary);">1M+ candidates &nbsp;&middot;&nbsp; 5,000+ employees</span>
@@ -1294,107 +1292,120 @@ h3 {
     </div>
 </section>
 
-<!-- ===================== SLIDE 2: EVOLVING THREAT ===================== -->
+<!-- ===================== SLIDE 2: THE PROBLEM ===================== -->
 <section class="slide" data-slide="2">
+    <div style="max-width: 1100px; width: 100%;">
+        <div class="anim section-label" style="text-align: center;">The Blind Spot</div>
+        <h2 class="anim d1" style="text-align: center; margin-bottom: 32px;">The hiring process was <span class="danger">never built with security in mind</span></h2>
+        <div class="anim d2" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch;">
+            <!-- HR Side -->
+            <div style="background: white; border-radius: 16px 0 0 16px; padding: 28px 24px; border: 1px solid var(--border); border-right: none;">
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); font-weight: 700; margin-bottom: 6px;">HR / Talent Acquisition</div>
+                    <div style="font-size: 1rem; font-weight: 700;">The Hiring Pipeline</div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: 800;">1</span> Source Candidates</div>
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: 800;">2</span> Screen Resumes</div>
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: 800;">3</span> Video Interview</div>
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: 800;">4</span> Extend Offer</div>
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: 800;">5</span> Onboard Employee</div>
+                </div>
+            </div>
+            <!-- The Gap -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 14px; position: relative; z-index: 2;">
+                <div style="width: 3px; flex: 1; background: repeating-linear-gradient(to bottom, var(--danger) 0, var(--danger) 8px, transparent 8px, transparent 16px);"></div>
+                <div style="background: var(--danger); color: white; padding: 10px 14px; border-radius: 10px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; margin: 8px 0; box-shadow: 0 4px 16px rgba(239,68,68,0.3);">No Connection</div>
+                <div style="width: 3px; flex: 1; background: repeating-linear-gradient(to bottom, var(--danger) 0, var(--danger) 8px, transparent 8px, transparent 16px);"></div>
+            </div>
+            <!-- Security Side -->
+            <div style="background: white; border-radius: 0 16px 16px 0; padding: 28px 24px; border: 1px solid var(--border); border-left: none;">
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); font-weight: 700; margin-bottom: 6px;">Security Team</div>
+                    <div style="font-size: 1rem; font-weight: 700;">Their Toolkit</div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600;">IAM / SSO</div>
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600;">SIEM / SOC</div>
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600;">EDR / XDR</div>
+                    <div style="background: var(--bg-primary); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600;">Background Checks</div>
+                    <div style="background: var(--danger-muted); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600; color: var(--danger);">No hiring pipeline visibility</div>
+                </div>
+            </div>
+        </div>
+        <div class="anim d4" style="margin-top: 24px; text-align: center; padding: 16px 28px; background: linear-gradient(135deg, #0a1628, #1a2a44); border-radius: 12px; color: white;">
+            <span style="font-weight: 700;">Remote hiring made it worse.</span>
+            <span style="color: rgba(255,255,255,0.8);"> You're extending access to people you've never physically met &mdash; and your security team isn't part of the process.</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 3: ESCALATION TIMELINE ===================== -->
+<section class="slide" data-slide="3">
     <div style="max-width: 1100px; width: 100%; text-align: left;">
         <div class="anim section-label" style="text-align: center;">The Evolving Threat</div>
         <h2 class="anim d1" style="text-align: center; margin-bottom: 32px;">It started small. <span class="danger">It didn't stay that way.</span></h2>
-
-        <!-- Escalating threat cards -->
         <div style="display: flex; flex-direction: column; gap: 12px;">
-
-            <!-- 2020: Small, muted — this was the beginning -->
             <div class="anim d2" style="display: flex; align-items: center; gap: 20px; padding: 14px 24px; background: white; border-radius: 12px; border: 1px solid var(--border); opacity: 0.7;">
                 <div style="font-size: 0.8rem; font-weight: 800; color: var(--text-secondary); min-width: 48px;">2020</div>
-                <div style="flex: 1;">
-                    <span style="font-weight: 700; font-size: 0.9rem;">Remote hiring goes mainstream.</span>
-                    <span style="color: var(--text-secondary); font-size: 0.85rem;"> Identity verification moves to video calls — with no safeguards.</span>
-                </div>
+                <div style="flex: 1;"><span style="font-weight: 700; font-size: 0.9rem;">Remote hiring goes mainstream.</span> <span style="color: var(--text-secondary); font-size: 0.85rem;">Identity verification moves to video calls &mdash; with no safeguards.</span></div>
             </div>
-
-            <!-- 2022: Slightly bigger -->
             <div class="anim d3" style="display: flex; align-items: center; gap: 20px; padding: 16px 24px; background: white; border-radius: 12px; border: 1px solid var(--border); opacity: 0.8;">
                 <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-secondary); min-width: 48px;">2022</div>
-                <div style="flex: 1;">
-                    <span style="font-weight: 700; font-size: 0.95rem;">Bait-and-switch attacks emerge.</span>
-                    <span style="color: var(--text-secondary); font-size: 0.85rem;"> One person interviews. A different person shows up on day one.</span>
-                </div>
+                <div style="flex: 1;"><span style="font-weight: 700; font-size: 0.95rem;">Bait-and-switch attacks emerge.</span> <span style="color: var(--text-secondary); font-size: 0.85rem;">One person interviews. A different person shows up on day one.</span></div>
             </div>
-
-            <!-- 2024: Now it's alarming — bigger card, red accent -->
             <div class="anim d4" style="display: flex; align-items: center; gap: 20px; padding: 20px 24px; background: white; border-radius: 14px; border-left: 4px solid var(--danger); box-shadow: 0 4px 16px rgba(239,68,68,0.08);">
                 <div style="font-size: 1rem; font-weight: 800; color: var(--danger); min-width: 48px;">2024</div>
-                <div style="flex: 1;">
-                    <span style="font-weight: 700; font-size: 1.05rem;">Deepfakes hit hiring.</span>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;"> $25M stolen via deepfake video call in Hong Kong. Real-time face swaps used in job interviews.</span>
-                </div>
+                <div style="flex: 1;"><span style="font-weight: 700; font-size: 1.05rem;">Deepfakes hit hiring.</span> <span style="color: var(--text-secondary); font-size: 0.9rem;">$25M stolen via deepfake video call in Hong Kong. Real-time face swaps used in job interviews.</span></div>
                 <div style="font-size: 1.6rem; font-weight: 800; color: var(--danger); white-space: nowrap;">$25M</div>
             </div>
-
-            <!-- 2025: Major escalation — bigger, bolder -->
             <div class="anim d5" style="display: flex; align-items: center; gap: 20px; padding: 24px 28px; background: linear-gradient(135deg, white 0%, #fef2f2 100%); border-radius: 16px; border-left: 5px solid var(--danger); box-shadow: 0 6px 24px rgba(239,68,68,0.12);">
                 <div style="font-size: 1.1rem; font-weight: 800; color: var(--danger); min-width: 48px;">2025</div>
-                <div style="flex: 1;">
-                    <span style="font-weight: 700; font-size: 1.15rem;">Nation-state infiltration.</span>
-                    <span style="color: var(--text-secondary); font-size: 0.95rem;"> KnowBe4 — a cybersecurity company — hires a North Korean operative. DOJ reveals 300+ US companies infiltrated.</span>
-                </div>
+                <div style="flex: 1;"><span style="font-weight: 700; font-size: 1.15rem;">Nation-state infiltration.</span> <span style="color: var(--text-secondary); font-size: 0.95rem;">KnowBe4 &mdash; a cybersecurity company &mdash; hires a North Korean operative. DOJ reveals 300+ US companies infiltrated.</span></div>
                 <div style="font-size: 1.6rem; font-weight: 800; color: var(--danger); white-space: nowrap;">300+</div>
             </div>
-
-            <!-- 2026: The alarm — largest card, most intense -->
             <div class="anim d6" style="display: flex; align-items: center; gap: 24px; padding: 28px 32px; background: linear-gradient(135deg, #0a1628 0%, #1a2a44 100%); border-radius: 18px; box-shadow: 0 8px 32px rgba(10,22,40,0.25); color: white;">
                 <div style="font-size: 1.3rem; font-weight: 800; color: var(--accent); min-width: 48px;">2026</div>
-                <div style="flex: 1;">
-                    <span style="font-weight: 700; font-size: 1.3rem; color: white;">Industrialized identity fraud.</span><br>
-                    <span style="color: rgba(255,255,255,0.7); font-size: 1rem;">AI generates synthetic candidates at scale. Gartner predicts 1 in 4 job profiles will be fake by 2028.</span>
-                </div>
+                <div style="flex: 1;"><span style="font-weight: 700; font-size: 1.3rem; color: white;">Industrialized identity fraud.</span><br><span style="color: rgba(255,255,255,0.7); font-size: 1rem;">AI generates synthetic candidates at scale. Gartner predicts 1 in 4 job profiles will be fake by 2028.</span></div>
                 <div style="font-size: 2rem; font-weight: 800; color: var(--accent); white-space: nowrap;">1 in 4</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 3: SCALE OF THE PROBLEM ===================== -->
-<section class="slide" data-slide="3">
+<!-- ===================== SLIDE 4: SCALE + CREDIBILITY ===================== -->
+<section class="slide" data-slide="4">
     <div style="max-width: 1200px; width: 100%; text-align: center;">
         <div class="anim section-label">Scale of the Problem</div>
         <h2 class="anim d1" style="margin-bottom: 28px;">The hiring fraud epidemic is <span class="danger">here</span></h2>
-
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-bottom: 36px;" class="mobile-2-col">
             <div class="card stat-pop d1" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
                 <div style="font-size: 2.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1 in 4</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">candidate profiles will be fake by 2028</p>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Gartner Research</p>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">&mdash; Gartner Research</p>
             </div>
             <div class="card stat-pop d2" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
                 <div style="font-size: 2.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">1,800+</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">suspected NK applicants blocked by Amazon alone</p>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Dark Reading, 2025</p>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">&mdash; Dark Reading, 2025</p>
             </div>
             <div class="card stat-pop d3" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
                 <div style="font-size: 2.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">300+</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">US companies infiltrated by NK operatives</p>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— DOJ Indictment, 2025</p>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">&mdash; DOJ Indictment, 2025</p>
             </div>
             <div class="card stat-pop d4" style="text-align: center; background: linear-gradient(135deg, white 0%, #fafafa 100%);">
                 <div style="font-size: 2.8rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; line-height: 1;">220%</div>
                 <p style="font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 8px;">increase in NK infiltrations in 12 months</p>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">— Fortune, 2025</p>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7;">&mdash; Fortune, 2025</p>
             </div>
         </div>
-
-        <!-- Charles Carmakal Quote Card -->
         <div class="anim d6" style="display: flex; align-items: center; gap: 40px; background: white; border-radius: 20px; padding: 36px 40px; border-left: 6px solid var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.08); text-align: left; max-width: 1000px; margin: 0 auto;">
             <img src="../../shared/people/charles-carmakal.png" alt="Charles Carmakal" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
             <div style="flex: 1;">
-                <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 16px; font-style: italic; color: var(--text-primary); font-weight: 500;">
-                    "Almost every CISO of a Fortune 500 company that I've spoken to — I'll just characterize as <span style="color: var(--danger); font-weight: 700;">dozens</span> — have admitted that they had a North Korean IT worker problem."
-                </p>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 16px; font-style: italic; color: var(--text-primary); font-weight: 500;">"Almost every CISO of a Fortune 500 company that I've spoken to &mdash; I'll just characterize as <span style="color: var(--danger); font-weight: 700;">dozens</span> &mdash; have admitted that they had a North Korean IT worker problem."</p>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <div>
-                        <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">Charles Carmakal</div>
-                        <div style="color: var(--text-secondary); font-size: 0.85rem;">CTO, Mandiant</div>
-                    </div>
+                    <div><div style="font-weight: 700; font-size: 0.95rem;">Charles Carmakal</div><div style="color: var(--text-secondary); font-size: 0.85rem;">CTO, Mandiant</div></div>
                     <img src="../../shared/logos/mandiant.svg" alt="Mandiant" style="height: 24px; margin-left: 8px; opacity: 0.8;">
                 </div>
             </div>
@@ -1402,737 +1413,347 @@ h3 {
     </div>
 </section>
 
-<!-- ===================== SLIDE 4: WHY CURRENT SOLUTIONS FALL SHORT ===================== -->
-<section class="slide" data-slide="4">
+<!-- ===================== SLIDE 5: THE GAP ===================== -->
+<section class="slide" data-slide="5">
     <div style="max-width: 1100px; width: 100%;">
         <div class="anim section-label" style="text-align: center;">The Gap</div>
-        <h2 class="anim d1" style="text-align: center; margin-bottom: 32px;">Every check has a <span class="danger">breaking point</span></h2>
-
-        <!-- Visual gauntlet: fraudster flows through each check, each one fails -->
+        <h2 class="anim d1" style="text-align: center; margin-bottom: 12px;">Every check has a <span class="danger">breaking point</span></h2>
+        <p class="anim d2 subtitle" style="text-align: center; margin-bottom: 28px;">Security teams bolt on tools after the fact &mdash; but none of them were designed for this threat.</p>
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
-
-            <!-- Background Checks -->
-            <div class="anim d2" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
-                <!-- Icon: Clipboard with checkmark -->
-                <div class="card-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
-                        <rect x="8" y="2" width="8" height="4" rx="1"/>
-                        <path d="M9 14l2 2 4-4"/>
-                    </svg>
-                </div>
-                <!-- Failure gauge -->
-                <div class="gauge-pulse-gray" style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; position: relative;">
-                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--danger);">0%</div>
-                </div>
+            <div class="anim d3" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <div class="card-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg></div>
+                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;"><div style="font-size: 1.4rem; font-weight: 800; color: var(--danger);">0%</div></div>
                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); font-weight: 700; margin-bottom: 8px;">Detection rate</div>
                 <h3 style="font-size: 1rem; margin-bottom: 8px;">Background Checks</h3>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">Synthetic identities have no criminal record. "Clean" result on a person who doesn't exist.</p>
-                <!-- BYPASSED stamp -->
                 <div style="position: absolute; top: 12px; right: -20px; background: var(--danger); color: white; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 4px 28px; transform: rotate(35deg); opacity: 0.9;">Bypassed</div>
             </div>
-
-            <!-- IDV Alone -->
-            <div class="anim d3" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
-                <!-- Icon: ID Card -->
-                <div class="card-icon scan-icon-wrap">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="5" width="20" height="14" rx="2"/>
-                        <circle cx="8" cy="12" r="2"/>
-                        <path d="M14 10h4M14 14h3"/>
-                    </svg>
-                </div>
-                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: #F59E0B; border-right-color: #F59E0B; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
-                    <div style="font-size: 1.4rem; font-weight: 800; color: #F59E0B;">~90%</div>
-                </div>
+            <div class="anim d4" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <div class="card-icon scan-icon-wrap"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M14 10h4M14 14h3"/></svg></div>
+                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: #F59E0B; border-right-color: #F59E0B; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;"><div style="font-size: 1.4rem; font-weight: 800; color: #F59E0B;">~90%</div></div>
                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: #F59E0B; font-weight: 700; margin-bottom: 8px;">Conclusive rate</div>
                 <h3 style="font-size: 1rem; margin-bottom: 8px;">IDV Alone</h3>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">10%+ inconclusive. High-quality fakes and AI selfies defeat document checks regularly.</p>
                 <div style="position: absolute; top: 12px; right: -20px; background: #F59E0B; color: white; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 4px 28px; transform: rotate(35deg); opacity: 0.9;">Weak</div>
             </div>
-
-            <!-- Deepfake Detection -->
-            <div class="anim d4" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
-                <!-- Icon: Face with scan overlay -->
-                <div class="card-icon glitch-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
-                        <line x1="1" y1="12" x2="16" y2="12" stroke-dasharray="2 2" opacity="0.5"/>
-                    </svg>
-                </div>
-                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: var(--danger); border-right-color: var(--danger); border-bottom-color: var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
-                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--danger);">~80%</div>
-                </div>
+            <div class="anim d5" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <div class="card-icon glitch-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/><line x1="1" y1="12" x2="16" y2="12" stroke-dasharray="2 2" opacity="0.5"/></svg></div>
+                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border); border-top-color: var(--danger); border-right-color: var(--danger); border-bottom-color: var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;"><div style="font-size: 1.4rem; font-weight: 800; color: var(--danger);">~80%</div></div>
                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); font-weight: 700; margin-bottom: 8px;">Accuracy ceiling</div>
                 <h3 style="font-size: 1rem; margin-bottom: 8px;">Deepfake Detection</h3>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">Standalone tools plateau at ~80%. Attackers adapt faster than models retrain.</p>
                 <div style="position: absolute; top: 12px; right: -20px; background: var(--danger); color: white; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 4px 28px; transform: rotate(35deg); opacity: 0.9;">Arms Race</div>
             </div>
-
-            <!-- Siloed Approach -->
-            <div class="anim d5" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
-                <!-- Icon: Broken chain links drifting apart -->
-                <div class="card-icon" style="display: flex; justify-content: center; gap: 2px;">
-                    <svg class="drift-left" width="20" height="40" viewBox="0 0 12 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round">
-                        <rect x="2" y="6" width="8" height="12" rx="4" stroke-dasharray="0" />
-                        <line x1="6" y1="6" x2="6" y2="2"/>
-                    </svg>
-                    <svg class="drift-right" width="20" height="40" viewBox="0 0 12 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round">
-                        <rect x="2" y="6" width="8" height="12" rx="4"/>
-                        <line x1="6" y1="18" x2="6" y2="22"/>
-                    </svg>
-                </div>
-                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: var(--danger-muted);">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                </div>
+            <div class="anim d6" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <div class="card-icon" style="display: flex; justify-content: center; gap: 2px;"><svg class="drift-left" width="20" height="40" viewBox="0 0 12 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="6" width="8" height="12" rx="4"/><line x1="6" y1="6" x2="6" y2="2"/></svg><svg class="drift-right" width="20" height="40" viewBox="0 0 12 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="6" width="8" height="12" rx="4"/><line x1="6" y1="18" x2="6" y2="22"/></svg></div>
+                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: var(--danger-muted);"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); font-weight: 700; margin-bottom: 8px;">No correlation</div>
                 <h3 style="font-size: 1rem; margin-bottom: 8px;">Siloed Tools</h3>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">No cross-signal analysis. Bypass one check and the rest never know.</p>
                 <div style="position: absolute; top: 12px; right: -20px; background: var(--danger); color: white; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 4px 28px; transform: rotate(35deg); opacity: 0.9;">Blind Spots</div>
             </div>
         </div>
-
-        <!-- Bottom line -->
         <div class="anim d7" style="margin-top: 24px; text-align: center; padding: 16px 28px; background: linear-gradient(135deg, #0a1628, #1a2a44); border-radius: 12px; color: white;">
-            <span style="font-weight: 700; font-size: 1rem;">The result:</span>
-            <span style="color: rgba(255,255,255,0.8); font-size: 0.95rem;"> A determined fraudster bypasses every single one of these. You need all signals, correlated, in real time.</span>
+            <span style="font-weight: 700;">The result:</span>
+            <span style="color: rgba(255,255,255,0.8);"> A determined fraudster bypasses every single one of these. You need all signals, correlated, in real time.</span>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 5: CASE STUDY ===================== -->
-<section class="slide" data-slide="5">
-    <style>
-        @keyframes figCaught {
-            0% { opacity: 0.4; transform: scale(0.95); }
-            50% { transform: scale(1.1); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        .figure-caught { animation: figCaught 0.5s ease forwards; }
-        .figure-row { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin: 32px 0 24px; }
-        .figure-item { display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; }
-        .figure-item.revealed { opacity: 1; }
-        .figure-item.caught.revealed svg { color: #EF4444; }
-        .figure-item.caught.revealed .figure-circle { background: rgba(239,68,68,0.12); border: 2px solid #EF4444; }
-        .figure-item.caught.revealed .caught-label { opacity: 1; transform: translateY(0); }
-        .figure-item.uncaught.revealed .figure-circle { background: transparent; border: 2px dashed #94a3b8; }
-        .figure-item.uncaught.revealed svg { color: #94a3b8; }
-        .figure-circle { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; }
-        .caught-label { font-size: 0.65rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #EF4444; opacity: 0; transform: translateY(6px); transition: all 0.3s ease 0.2s; }
-        @media (max-width: 768px) {
-            .figure-row { gap: 16px; }
-            .figure-circle { width: 48px; height: 48px; }
-            .figure-circle svg { width: 24px !important; height: 24px !important; }
-            .slide5-headline { font-size: 1.5rem !important; }
-            .slide5-result-num { font-size: 2.8rem !important; }
-        }
-    </style>
-    <div style="max-width: 1100px; width: 100%; text-align: center; display: flex; flex-direction: column; min-height: 100%;">
-        <!-- Section 1: The Test -->
-        <div style="flex: 0 0 auto;">
-            <div class="anim badge" style="margin-bottom: 16px;">Real Case Study</div>
-            <h2 class="anim d1 slide5-headline" style="font-size: 2.2rem; margin-bottom: 10px;">A Fortune 500 insurance company seeded known bad actors to test <span class="accent">Clarity</span></h2>
-            <p class="anim d2 subtitle" style="margin-bottom: 8px;">Could we catch fraud from the resume alone — before a single interview?</p>
-        </div>
-
-        <!-- Section 2: Hero Result -->
-        <div style="flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center;">
-            <div class="figure-row anim d3" id="figureRow">
-                <!-- 6 caught figures -->
-                <div class="figure-item caught" data-delay="0">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label">Caught</span>
-                </div>
-                <div class="figure-item caught" data-delay="1">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label">Caught</span>
-                </div>
-                <div class="figure-item caught" data-delay="2">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label">Caught</span>
-                </div>
-                <div class="figure-item caught" data-delay="3">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label">Caught</span>
-                </div>
-                <div class="figure-item caught" data-delay="4">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label">Caught</span>
-                </div>
-                <div class="figure-item caught" data-delay="5">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label">Caught</span>
-                </div>
-                <!-- 3 uncaught figures -->
-                <div class="figure-item uncaught" data-delay="6">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label" style="color: #94a3b8;">Missed</span>
-                </div>
-                <div class="figure-item uncaught" data-delay="7">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label" style="color: #94a3b8;">Missed</span>
-                </div>
-                <div class="figure-item uncaught" data-delay="8">
-                    <div class="figure-circle">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <span class="caught-label" style="color: #94a3b8;">Missed</span>
-                </div>
-            </div>
-
-            <div class="anim d4" style="margin-top: 8px;">
-                <div class="slide5-result-num" style="font-size: 3.5rem; font-weight: 800; color: #0a1628; line-height: 1.1;"><span style="color: #EF4444;">6</span> of 9 bad actors identified</div>
-                <p style="font-size: 1.1rem; color: var(--text-secondary); margin-top: 8px;">Blocked before they ever reached an interview</p>
-            </div>
-        </div>
-
-        <!-- Section 3: Scale bar -->
-        <div class="anim d5" style="flex: 0 0 auto; background: #0a1628; color: white; margin: 24px -60px 0; padding: 18px 32px; border-radius: 14px; font-size: 1rem; font-weight: 500; letter-spacing: 0.2px;">
-            Today, Clarity protects organizations with <strong>1M+ candidates per year</strong> &middot; <strong>5,000+ employees</strong>
-        </div>
-    </div>
-
-    <script>
-    (function() {
-        const slide = document.querySelector('[data-slide="5"]');
-        let animated = false;
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting && !animated) {
-                    animated = true;
-                    const figures = slide.querySelectorAll('.figure-item');
-                    figures.forEach(function(fig) {
-                        const delay = parseInt(fig.dataset.delay);
-                        setTimeout(function() {
-                            fig.classList.add('revealed');
-                            if (fig.classList.contains('caught')) fig.classList.add('figure-caught');
-                        }, 600 + delay * 300);
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
-        observer.observe(slide);
-    })();
-    </script>
-</section>
-
-<!-- ===================== SLIDE 6: EMPLOYEE IDENTITY LIFECYCLE ===================== -->
+<!-- ===================== SLIDE 6: CLARITY'S SOLUTION (HERO) ===================== -->
 <section class="slide" data-slide="6">
     <div style="max-width: 1100px; width: 100%; text-align: center;">
         <div class="anim section-label">The Solution</div>
-        <h2 class="anim d1">The Employee Identity <span class="accent">Lifecycle</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 28px;">Clarity verifies identity at every critical touchpoint</p>
+        <h2 class="anim d1">End-to-End <span class="accent">Identity Security</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 28px;">Clarity bridges the gap &mdash; embedding identity verification at every critical touchpoint across the employee lifecycle.</p>
 
         <!-- Desktop: Horizontal Lifecycle Flow -->
         <div class="anim d3 mobile-hide" style="margin: 30px auto; max-width: 1000px;">
             <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: nowrap;">
-                <!-- Pre-Hire -->
                 <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/>
-                    </svg>
-                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">Pre-Hire</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Resume Screen</div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+                    <div style="font-size: 0.75rem; font-weight: 800;">Pre-Hire</div><div style="font-size: 0.65rem; color: var(--text-secondary);">Resume Screen</div>
                 </div>
-                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">→</div>
-                
-                <!-- Interview -->
+                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">&rarr;</div>
                 <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
-                        <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
-                    </svg>
-                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">Interview</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Live Monitor</div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                    <div style="font-size: 0.75rem; font-weight: 800;">Interview</div><div style="font-size: 0.65rem; color: var(--text-secondary);">Live Monitor</div>
                 </div>
-                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">→</div>
-                
-                <!-- Onboarding -->
+                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">&rarr;</div>
                 <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
-                        <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                    </svg>
-                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">Onboarding</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Day 1 Check</div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    <div style="font-size: 0.75rem; font-weight: 800;">Onboarding</div><div style="font-size: 0.65rem; color: var(--text-secondary);">Day 1 Check</div>
                 </div>
-                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">→</div>
-                
-                <!-- MFA Reset -->
+                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">&rarr;</div>
                 <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
-                        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
-                    </svg>
-                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">MFA Reset</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Help Desk</div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    <div style="font-size: 0.75rem; font-weight: 800;">MFA Reset</div><div style="font-size: 0.65rem; color: var(--text-secondary);">Help Desk</div>
                 </div>
-                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">→</div>
-                
-                <!-- Continuous -->
+                <div style="color: var(--accent); font-size: 1.2rem; font-weight: 700;">&rarr;</div>
                 <div style="background: white; border: 2px solid var(--accent); border-radius: 14px; padding: 16px 14px; text-align: center; min-width: 110px; box-shadow: 0 4px 16px rgba(97,243,147,0.15);">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                    </svg>
-                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-primary);">Continuous</div>
-                    <div style="font-size: 0.65rem; color: var(--text-secondary);">Monitoring</div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" style="margin-bottom: 8px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <div style="font-size: 0.75rem; font-weight: 800;">Continuous</div><div style="font-size: 0.65rem; color: var(--text-secondary);">Monitoring</div>
                 </div>
             </div>
-            
-            <!-- Cycle indicator -->
             <div style="text-align: center; margin-top: 16px; color: var(--text-secondary); font-size: 0.8rem;">
-                <span style="color: var(--accent);">↻</span> Continuous cycle — identity verified at every touchpoint
+                <span style="color: var(--accent);">&circlearrowleft;</span> Continuous cycle &mdash; identity verified at every touchpoint
             </div>
         </div>
-        
+
         <!-- Mobile: List View -->
         <div class="anim d3 mobile-only lifecycle-list">
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/>
-                    </svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>Pre-Hire</h3>
-                    <p>Resume screening and initial identity verification</p>
-                </div>
-            </div>
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2">
-                        <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
-                    </svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>Interview</h3>
-                    <p>Real-time deepfake and voice monitoring</p>
-                </div>
-            </div>
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2">
-                        <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                    </svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>Onboarding</h3>
-                    <p>Day 1 verification and identity confirmation</p>
-                </div>
-            </div>
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2">
-                        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
-                    </svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>MFA Reset</h3>
-                    <p>Help desk identity verification for security changes</p>
-                </div>
-            </div>
-            <div class="lifecycle-item">
-                <div class="lifecycle-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                    </svg>
-                </div>
-                <div class="lifecycle-content">
-                    <h3>Continuous</h3>
-                    <p>Ongoing behavioral and identity monitoring</p>
-                </div>
-            </div>
+            <div class="lifecycle-item"><div class="lifecycle-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div><div class="lifecycle-content"><h3>Pre-Hire</h3><p>Resume screening and initial identity verification</p></div></div>
+            <div class="lifecycle-item"><div class="lifecycle-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="lifecycle-content"><h3>Interview</h3><p>Real-time deepfake and voice monitoring</p></div></div>
+            <div class="lifecycle-item"><div class="lifecycle-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="lifecycle-content"><h3>Onboarding</h3><p>Day 1 verification and identity confirmation</p></div></div>
+            <div class="lifecycle-item"><div class="lifecycle-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="lifecycle-content"><h3>MFA Reset</h3><p>Help desk identity verification for security changes</p></div></div>
+            <div class="lifecycle-item"><div class="lifecycle-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="lifecycle-content"><h3>Continuous</h3><p>Ongoing behavioral and identity monitoring</p></div></div>
         </div>
 
         <!-- Technology Summary -->
         <div class="anim d5" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; max-width: 900px; margin-left: auto; margin-right: auto;">
-            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);">
-                <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Biometric</div>
-                <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Face Match & Liveness</div>
-            </div>
-            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);">
-                <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Deepfake</div>
-                <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">AI Media Detection</div>
-            </div>
-            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);">
-                <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Document</div>
-                <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">ID & Resume Verification</div>
-            </div>
-            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);">
-                <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Behavioral</div>
-                <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Anomaly Detection</div>
-            </div>
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);"><div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Biometric</div><div style="font-size: 0.85rem; font-weight: 600;">Face Match &amp; Liveness</div></div>
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);"><div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Deepfake</div><div style="font-size: 0.85rem; font-weight: 600;">AI Media Detection</div></div>
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);"><div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Document</div><div style="font-size: 0.85rem; font-weight: 600;">ID &amp; Resume Verification</div></div>
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 16px 12px; border: 1px solid var(--border);"><div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Behavioral</div><div style="font-size: 0.85rem; font-weight: 600;">Anomaly Detection</div></div>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 7: THE PIPELINE (GAUNTLET) ===================== -->
-<section class="slide gauntlet-slide" data-slide="7">
+<!-- ===================== SLIDE 7: THREE EXPERIENCES ===================== -->
+<section class="slide" data-slide="7">
     <div style="max-width: 1200px; width: 100%; text-align: center;">
-        <div class="anim section-label">How It Works</div>
-        <h2 class="anim d1">The Clarity <span class="accent">Gauntlet</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 16px;">Every candidate runs through multiple verification layers. Threats get detected and ejected.</p>
+        <div class="anim section-label">Built for Everyone</div>
+        <h2 class="anim d1" style="margin-bottom: 32px;">One platform, <span class="accent">three experiences</span></h2>
 
-        <!-- Clarity Checks Layer -->
-        <div class="anim d3" style="margin-bottom: 16px;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-                <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" height="36">
-            </div>
-            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
-                <div class="check-station-1 mobile-hide" style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 20px 24px; text-align: center; position: relative; z-index: 1; min-width: 140px; transition: all 0.3s;">
-                    <div style="color: var(--accent); font-size: 1.3rem; margin-bottom: 8px;">✦</div>
-                    <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary);">Resume<br>Analysis</div>
-                    <div class="check-appear cd1" style="position: absolute; top: -10px; right: -10px; width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
-                        <span style="color: var(--text-primary); font-size: 16px; font-weight: bold;">✓</span>
-                    </div>
-                </div>
-                <div class="check-station-2 mobile-hide" style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 20px 24px; text-align: center; position: relative; z-index: 1; min-width: 140px; transition: all 0.3s;">
-                    <div style="color: var(--accent); font-size: 1.3rem; margin-bottom: 8px;">✦</div>
-                    <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary);">Deepfake<br>Detection</div>
-                    <div class="check-appear cd2" style="position: absolute; top: -10px; right: -10px; width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
-                        <span style="color: var(--text-primary); font-size: 16px; font-weight: bold;">✓</span>
-                    </div>
-                </div>
-                <div class="check-station-3 mobile-hide" style="background: white; border: 3px solid var(--accent); border-radius: 16px; padding: 20px 24px; text-align: center; position: relative; z-index: 1; min-width: 140px; transition: all 0.3s;">
-                    <div style="color: var(--accent); font-size: 1.3rem; margin-bottom: 8px;">✦</div>
-                    <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary);">Identity<br>Cross-Check</div>
-                    <div class="check-appear cd3" style="position: absolute; top: -10px; right: -10px; width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0;">
-                        <span style="color: var(--text-primary); font-size: 16px; font-weight: bold;">✓</span>
-                    </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+            <!-- CISO -->
+            <div class="anim d2" style="background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.06);">
+                <div style="padding: 0;"><img src="../../shared/screenshots/employee-dashboard.png" alt="Command Center" style="width: 100%; height: 180px; object-fit: cover; object-position: top;"></div>
+                <div style="padding: 24px;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 8px;">For the CISO</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Command Center</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Full visibility into your hiring pipeline. Real-time risk scores. Instant alerts on anomalies.</p>
                 </div>
             </div>
-        </div>
-        
-        <!-- Connector arrows -->
-        <div class="mobile-hide" style="display: flex; justify-content: center; gap: 100px; margin: 15px 0; color: rgba(97, 243, 147, 0.6); font-size: 1.5rem;">
-            <span>↓</span><span>↓</span><span>↓</span>
-        </div>
-        
-        <!-- Enhanced Pipeline with Animated Flow -->
-        <div class="anim d4" style="position: relative; padding: 20px 0;">
-            <!-- Main Pipeline Track -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; position: relative; z-index: 1;">
-                <!-- Dark pipeline stages -->
-                <div style="background: var(--text-primary); color: white; border-radius: 12px; padding: 18px 22px; text-align: center; min-width: 120px; position: relative;">
-                    <div style="font-size: 0.8rem; font-weight: 700;">Candidate<br>Sourced</div>
-                </div>
-                <div style="color: var(--text-secondary); font-size: 1.5rem;">→</div>
-                
-                <div style="background: var(--text-primary); color: white; border-radius: 12px; padding: 18px 22px; text-align: center; min-width: 120px; position: relative;">
-                    <div style="font-size: 0.8rem; font-weight: 700;">Screening<br>Process</div>
-                </div>
-                <div style="color: var(--text-secondary); font-size: 1.5rem;">→</div>
-                
-                <div style="background: var(--text-primary); color: white; border-radius: 12px; padding: 18px 22px; text-align: center; min-width: 120px; position: relative;">
-                    <div style="font-size: 0.8rem; font-weight: 700;">Video<br>Interview</div>
-                    <!-- Threat blocking happens here -->
-                    <div class="threat-block-container">
-                        <div class="threat-blocked-badge">✕ THREAT BLOCKED</div>
-                        <div class="threat-eject-dot"></div>
-                        <div class="particle-burst p1"></div>
-                        <div class="particle-burst p2"></div>
-                    </div>
-                </div>
-                <div style="color: var(--text-secondary); font-size: 1.5rem;">→</div>
-                
-                <div style="background: var(--text-primary); color: white; border-radius: 12px; padding: 18px 22px; text-align: center; min-width: 120px; position: relative;">
-                    <div style="font-size: 0.8rem; font-weight: 700;">Final<br>Offer</div>
-                </div>
-                <div style="color: var(--text-secondary); font-size: 1.5rem;">→</div>
-                
-                <div style="background: var(--accent); color: var(--text-primary); border-radius: 50%; width: 100px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="margin-bottom: 4px;">
-                        <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    <div style="font-size: 0.7rem; font-weight: 800;">Trusted<br>Hire</div>
+            <!-- Candidate -->
+            <div class="anim d3" style="background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.06);">
+                <div style="padding: 0;"><img src="../../shared/screenshots/pre-interview.png" alt="Candidate Verification" style="width: 100%; height: 180px; object-fit: cover; object-position: top;"></div>
+                <div style="padding: 24px;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 8px;">For the Candidate</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Seamless Verification</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Frictionless identity verification that doesn't interrupt the hiring experience.</p>
                 </div>
             </div>
-            
-            <!-- Animated dots hidden — looked broken as floating circles -->
-            <!--
-            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 10;">
-                <div class="pipeline-dot clean1"></div>
-                <div class="pipeline-dot clean2"></div>
-                <div class="pipeline-dot clean3"></div>
-                <div class="pipeline-dot threat1 mobile-hide"></div>
-                <div class="pipeline-dot threat2 mobile-hide"></div>
-            </div>
-            -->
-        </div>
-
-        <!-- Enhanced Legend with statistics -->
-        <div class="anim d5" style="display: flex; justify-content: center; gap: 50px; margin-top: 20px; padding: 24px 40px; background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 20px; height: 20px; border-radius: 50%; background: #94a3b8; display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 10px; height: 10px; background: white; border-radius: 50%;"></div>
+            <!-- Enterprise -->
+            <div class="anim d4" style="background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.06);">
+                <div style="padding: 20px; background: var(--bg-primary); height: 180px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;">
+                    <div class="logo-chip"><img src="../../shared/logos/okta.svg" alt="Okta" style="height: 18px;">Okta</div>
+                    <div class="logo-chip"><img src="../../shared/logos/ashby.svg" alt="Ashby" style="height: 18px;">Ashby</div>
+                    <div class="logo-chip"><img src="../../shared/logos/workday.svg" alt="Workday" style="height: 18px;">Workday</div>
+                    <div class="logo-chip"><img src="../../shared/logos/servicenow.svg" alt="ServiceNow" style="height: 18px;">ServiceNow</div>
+                    <div class="logo-chip"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse" style="height: 18px;">Greenhouse</div>
                 </div>
-                <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Verified candidates proceed</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 20px; height: 20px; border-radius: 50%; background: var(--danger); display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 10px; height: 10px; background: white; border-radius: 50%;"></div>
+                <div style="padding: 24px;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 8px;">For the Enterprise</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Native Integrations</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Embedded in your existing ATS, HRIS, and identity workflows. No rip-and-replace.</p>
                 </div>
-                <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Threats detected & blocked</span>
-            </div>
-        </div>
-
-        <!-- Real-Time Processing callout removed to reduce clutter -->
-    </div>
-</section>
-
-<!-- ===================== SLIDE 8: COMMAND CENTER ===================== -->
-<section class="slide" data-slide="8" style="justify-content: center;">
-    <div style="max-width: 1200px; width: 100%; text-align: center;">
-        <div class="anim section-label">Command Center</div>
-        <h2 class="anim d1" style="margin-bottom: 16px;">Complete visibility into your <span class="accent">hiring pipeline</span></h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 28px;">One unified dashboard. Every candidate. Real-time risk assessment.</p>
-
-        <div class="anim d3 demo-frame" style="max-width: 1000px; margin: 0 auto;">
-            <img src="../../shared/screenshots/employee-dashboard.png" alt="Clarity Employee Dashboard" style="max-height: 55vh; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
-        </div>
-
-        <div class="anim d5" style="margin-top: 40px; display: flex; justify-content: center; gap: 40px;">
-            <div style="text-align: center;">
-                <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">Real-Time</div>
-                <div style="font-size: 0.85rem; color: var(--text-secondary);">Risk Scoring</div>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">Multi-Modal</div>
-                <div style="font-size: 0.85rem; color: var(--text-secondary);">Verification</div>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">Enterprise</div>
-                <div style="font-size: 0.85rem; color: var(--text-secondary);">Integration</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 9: DETECTION TECHNOLOGY ===================== -->
+<!-- ===================== SLIDE 8: DETECTION TECHNOLOGY (THE BRAIN) ===================== -->
+<section class="slide" data-slide="8">
+    <div style="max-width: 1200px; width: 100%;">
+        <div class="anim section-label" style="text-align: center;">Detection Technology</div>
+        <h2 class="anim d1" style="text-align: center; margin-bottom: 8px;">40+ signals per candidate. <span class="accent">One risk score.</span></h2>
+        <p class="anim d2 subtitle" style="text-align: center; margin-bottom: 36px;">Multiple signal types converge in Clarity's AI engine for a unified risk assessment.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 40px; align-items: center;">
+            <!-- Left: Signal Categories -->
+            <div>
+                <div class="anim d3" style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; background: var(--accent-muted); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+                    <div><div style="font-weight: 700; font-size: 0.85rem;">Video Analysis</div><div style="font-size: 0.7rem; color: var(--text-secondary);">Face swap artifacts, GAN signatures, temporal inconsistencies</div></div>
+                </div>
+                <div class="anim d4" style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; background: var(--accent-muted); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div>
+                    <div><div style="font-weight: 700; font-size: 0.85rem;">Voice Biometrics</div><div style="font-size: 0.7rem; color: var(--text-secondary);">Cloning detection, audio-visual sync, speaker consistency</div></div>
+                </div>
+                <div class="anim d5" style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; background: var(--accent-muted); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div>
+                    <div><div style="font-weight: 700; font-size: 0.85rem;">Document Forensics</div><div style="font-size: 0.7rem; color: var(--text-secondary);">Resume anomalies, ID manipulation, photo forensics</div></div>
+                </div>
+                <div class="anim d6" style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; background: var(--accent-muted); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div><div style="font-weight: 700; font-size: 0.85rem;">Biometric Match</div><div style="font-size: 0.7rem; color: var(--text-secondary);">Cross-document face matching, liveness verification</div></div>
+                </div>
+                <div class="anim d7" style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; background: var(--accent-muted); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+                    <div><div style="font-weight: 700; font-size: 0.85rem;">Network Intelligence</div><div style="font-size: 0.7rem; color: var(--text-secondary);">Dark web monitoring, threat database cross-reference</div></div>
+                </div>
+            </div>
+            <!-- Center: Convergence Arrow -->
+            <div class="anim d4" style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                <div style="width: 3px; height: 40px; background: var(--border);"></div>
+                <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #0a1628, #1a2a44); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(10,22,40,0.3), 0 0 30px 10px rgba(97,243,147,0.1);">
+                    <div style="text-align: center;"><img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity" style="height: 28px;"><div style="font-size: 0.5rem; color: rgba(255,255,255,0.6); margin-top: 4px;">AI ENGINE</div></div>
+                </div>
+                <div style="width: 3px; height: 40px; background: var(--accent);"></div>
+                <div style="color: var(--accent); font-size: 1.5rem;">&darr;</div>
+            </div>
+            <!-- Right: Screenshot showing output -->
+            <div class="anim d5">
+                <div class="demo-frame" style="margin-bottom: 16px;"><img src="../../shared/screenshots/during-interview.png" alt="Clarity Detection Interface"></div>
+                <div style="text-align: center; padding: 12px 20px; background: white; border-radius: 12px; border: 1px solid var(--border);"><span style="font-size: 0.8rem; color: var(--text-secondary);">Risk score: </span><span style="font-size: 1.2rem; font-weight: 800; color: var(--danger);">94/100</span><span style="font-size: 0.8rem; color: var(--text-secondary);"> &mdash; High risk detected</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 9: PROOF (EXPANDED CASE STUDY) ===================== -->
 <section class="slide" data-slide="9">
-    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1200px; width: 100%;">
-        <!-- Left: Technology Steps -->
-        <div>
-            <div class="anim section-label">Detection Technology</div>
-            <h2 class="anim d1" style="font-size: 2.4rem; line-height: 1.2;">Multi-layered<br><span class="accent">identity verification</span></h2>
-            <p class="anim d2 subtitle" style="margin-top: 16px; margin-bottom: 40px;">Comprehensive analysis across multiple signal types</p>
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">Proven Results</div>
+        <h2 class="anim d1" style="margin-bottom: 36px;">Tested. Validated. <span class="accent">Proven.</span></h2>
 
-            <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 28px;">
-                <div class="anim d3" style="display: flex; align-items: flex-start; gap: 20px;">
-                    <div class="num-badge">1</div>
-                    <div>
-                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 1.1rem;">Deepfake Detection</div>
-                        <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">Real-time analysis of video feeds for synthetic media artifacts and manipulation</div>
-                    </div>
-                </div>
-                
-                <div class="anim d4" style="display: flex; align-items: flex-start; gap: 20px;">
-                    <div class="num-badge">2</div>
-                    <div>
-                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 1.1rem;">Voice Analysis</div>
-                        <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">AI voice clone detection and speaker consistency tracking throughout interviews</div>
-                    </div>
-                </div>
-                
-                <div class="anim d5" style="display: flex; align-items: flex-start; gap: 20px;">
-                    <div class="num-badge">3</div>
-                    <div>
-                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 1.1rem;">Biometric Matching</div>
-                        <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">Cross-reference facial features across resume photos, interviews, and ID documents</div>
-                    </div>
-                </div>
-                
-                <div class="anim d6" style="display: flex; align-items: flex-start; gap: 20px;">
-                    <div class="num-badge">4</div>
-                    <div>
-                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 1.1rem;">Identity Signals</div>
-                        <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">Phone, email, employment, and digital footprint verification with threat intelligence</div>
-                    </div>
-                </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+            <!-- Proof 1: Globe Life -->
+            <div class="anim d2" style="background: white; border-radius: 20px; padding: 32px 24px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.06); text-align: center;">
+                <div class="badge" style="margin-bottom: 16px;">Fortune 500 Test</div>
+                <div style="font-size: 3.5rem; font-weight: 800; color: var(--text-primary); line-height: 1; margin-bottom: 12px;"><span style="color: var(--danger);">6</span> / 9</div>
+                <div style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">bad actors identified</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">A Fortune 500 insurance company seeded 9 known bad actors into their pipeline. Clarity caught 6 from the <strong>resume alone</strong> &mdash; before any interview.</p>
             </div>
-        </div>
-
-        <!-- Right: Screenshot with Platform Integrations -->
-        <div class="anim d3">
-            <div class="demo-frame" style="margin-bottom: 24px;">
-                <img src="../../shared/screenshots/during-interview.png" alt="Deepfake Detection Interface">
+            <!-- Proof 2: Deepfake Detection -->
+            <div class="anim d3" style="background: white; border-radius: 20px; padding: 32px 24px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.06); text-align: center;">
+                <div class="badge" style="margin-bottom: 16px;">3rd Party Validated</div>
+                <div style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 12px;">Top 3</div>
+                <div style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">globally for deepfake detection</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Ranked among the top 3 worldwide for deepfake detection accuracy by independent third-party testing organizations.</p>
             </div>
-            
-            <!-- Platform Integration Pills -->
-            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-                <div class="logo-chip"><img src="../../shared/logos/zoom.svg" alt="Zoom">Zoom</div>
-                <div class="logo-chip"><img src="../../shared/logos/teams.svg" alt="Teams">Microsoft Teams</div>
-                <div class="logo-chip"><img src="../../shared/logos/google-meet.svg" alt="Google Meet">Google Meet</div>
-                <div class="logo-chip"><img src="../../shared/logos/slack.svg" alt="Slack">Slack Huddles</div>
+            <!-- Proof 3: Onfido Partnership -->
+            <div class="anim d4" style="background: white; border-radius: 20px; padding: 32px 24px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.06); text-align: center;">
+                <div class="badge" style="margin-bottom: 16px;">Strategic Partner</div>
+                <div style="margin-bottom: 12px;"><img src="../../shared/logos/onfido.svg" alt="Onfido" style="height: 48px;"></div>
+                <div style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">Onfido IDV Partnership</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Partnered with Onfido for enterprise-grade identity document verification, combining IDV with our deepfake and behavioral analysis.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 10: ENTERPRISE INTEGRATION ===================== -->
+<!-- ===================== SLIDE 10: INTEGRATIONS + COMPLIANCE ===================== -->
 <section class="slide" data-slide="10">
     <div style="max-width: 1100px; width: 100%; text-align: center;">
         <div class="anim section-label">Enterprise Ready</div>
         <h2 class="anim d1">Fits into your <span class="accent">existing stack</span></h2>
         <p class="anim d2 subtitle" style="margin-bottom: 36px;">Deploy in days, not months. API-first architecture with pre-built connectors.</p>
-
         <div style="max-width: 900px; margin: 0 auto; text-align: left;">
-            <div class="int-row anim d3">
-                <div class="int-row-label">ATS / HR</div>
-                <div class="logo-chip"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse">Greenhouse</div>
-                <div class="logo-chip"><img src="../../shared/logos/workday.svg" alt="Workday">Workday</div>
-                <div class="logo-chip"><img src="../../shared/logos/ashby.svg" alt="Ashby">Ashby</div>
-                <div class="logo-chip"><img src="../../shared/logos/lever.svg" alt="Lever">Lever</div>
-                <div class="logo-chip"><img src="../../shared/logos/icims.svg" alt="iCIMS">iCIMS</div>
-            </div>
-            
-            <div class="int-row anim d4">
-                <div class="int-row-label">Identity</div>
-                <div class="logo-chip"><img src="../../shared/logos/okta.svg" alt="Okta">Okta</div>
-                <div class="logo-chip"><img src="../../shared/logos/microsoft-entra-id.svg" alt="Entra ID">Microsoft Entra ID</div>
-            </div>
-            
-            <div class="int-row anim d5">
-                <div class="int-row-label">ITSM</div>
-                <div class="logo-chip"><img src="../../shared/logos/servicenow.svg" alt="ServiceNow">ServiceNow</div>
-                <div class="logo-chip"><img src="../../shared/logos/jira.svg" alt="Jira">Jira Service Management</div>
-            </div>
-            
-            <div class="int-row anim d6">
-                <div class="int-row-label">SIEM</div>
-                <div class="logo-chip"><img src="../../shared/logos/splunk.svg" alt="Splunk">Splunk</div>
-                <div class="logo-chip"><img src="../../shared/logos/sentinel.svg" alt="Sentinel">Microsoft Sentinel</div>
-            </div>
-            
-            <div class="int-row anim d7">
-                <div class="int-row-label">Background</div>
-                <div class="logo-chip"><img src="../../shared/logos/hireright.svg" alt="HireRight">HireRight</div>
-                <div class="logo-chip"><img src="../../shared/logos/checkr.svg" alt="Checkr">Checkr</div>
-            </div>
-            
-            <div class="int-row anim d8">
-                <div class="int-row-label">Comms</div>
-                <div class="logo-chip"><img src="../../shared/logos/slack.svg" alt="Slack">Slack</div>
-                <div class="logo-chip"><img src="../../shared/logos/zoom.svg" alt="Zoom">Zoom</div>
-                <div class="logo-chip"><img src="../../shared/logos/teams.svg" alt="Teams">Microsoft Teams</div>
-                <div class="logo-chip"><img src="../../shared/logos/google-meet.svg" alt="Google Meet">Google Meet</div>
-            </div>
+            <div class="int-row anim d3"><div class="int-row-label">ATS / HR</div><div class="logo-chip"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse">Greenhouse</div><div class="logo-chip"><img src="../../shared/logos/workday.svg" alt="Workday">Workday</div><div class="logo-chip"><img src="../../shared/logos/ashby.svg" alt="Ashby">Ashby</div><div class="logo-chip"><img src="../../shared/logos/lever.svg" alt="Lever">Lever</div><div class="logo-chip"><img src="../../shared/logos/icims.svg" alt="iCIMS">iCIMS</div></div>
+            <div class="int-row anim d4"><div class="int-row-label">Identity</div><div class="logo-chip"><img src="../../shared/logos/okta.svg" alt="Okta">Okta</div><div class="logo-chip"><img src="../../shared/logos/microsoft-entra-id.svg" alt="Entra ID">Microsoft Entra ID</div></div>
+            <div class="int-row anim d5"><div class="int-row-label">ITSM</div><div class="logo-chip"><img src="../../shared/logos/servicenow.svg" alt="ServiceNow">ServiceNow</div><div class="logo-chip"><img src="../../shared/logos/jira.svg" alt="Jira">Jira Service Management</div></div>
+            <div class="int-row anim d6"><div class="int-row-label">SIEM</div><div class="logo-chip"><img src="../../shared/logos/splunk.svg" alt="Splunk">Splunk</div><div class="logo-chip"><img src="../../shared/logos/sentinel.svg" alt="Sentinel">Microsoft Sentinel</div></div>
+            <div class="int-row anim d7"><div class="int-row-label">Comms</div><div class="logo-chip"><img src="../../shared/logos/slack.svg" alt="Slack">Slack</div><div class="logo-chip"><img src="../../shared/logos/zoom.svg" alt="Zoom">Zoom</div><div class="logo-chip"><img src="../../shared/logos/teams.svg" alt="Teams">Microsoft Teams</div></div>
         </div>
-        
-        <div class="anim d9" style="margin-top: 32px; text-align: center;">
-            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); font-weight: 600; margin-bottom: 16px;">Compliance & Certifications</div>
+        <div class="anim d8" style="margin-top: 32px;">
+            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); font-weight: 600; margin-bottom: 16px;">Compliance &amp; Certifications</div>
             <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; align-items: center;">
-                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;">
-                    <img src="../../shared/compliance/soc2.png" alt="SOC 2 Type II" height="40">
-                    <span style="font-size: 0.8rem; font-weight: 700;">SOC 2 Type II</span>
-                </div>
-                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;">
-                    <img src="../../shared/compliance/gdpr.png" alt="GDPR" height="40">
-                    <span style="font-size: 0.8rem; font-weight: 700;">GDPR</span>
-                </div>
-                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;">
-                    <img src="../../shared/compliance/ccpa.png" alt="CCPA" height="40">
-                    <span style="font-size: 0.8rem; font-weight: 700;">CCPA</span>
-                </div>
-                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;">
-                    <div style="width: 40px; height: 40px; background: #003399; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                    </div>
-                    <span style="font-size: 0.8rem; font-weight: 700;">EU AI Act</span>
-                </div>
-                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;">
-                    <img src="../../shared/compliance/iso27001.png" alt="ISO 27001" height="40">
-                    <span style="font-size: 0.8rem; font-weight: 700;">ISO 27001</span>
-                </div>
+                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;"><img src="../../shared/compliance/soc2.png" alt="SOC 2" height="40"><span style="font-size: 0.8rem; font-weight: 700;">SOC 2 Type II</span></div>
+                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;"><img src="../../shared/compliance/gdpr.png" alt="GDPR" height="40"><span style="font-size: 0.8rem; font-weight: 700;">GDPR</span></div>
+                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;"><img src="../../shared/compliance/iso27001.png" alt="ISO 27001" height="40"><span style="font-size: 0.8rem; font-weight: 700;">ISO 27001</span></div>
+                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;"><img src="../../shared/compliance/ccpa.png" alt="CCPA" height="40"><span style="font-size: 0.8rem; font-weight: 700;">CCPA</span></div>
+                <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px;"><div style="width: 40px; height: 40px; background: #003399; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><span style="font-size: 0.8rem; font-weight: 700;">EU AI Act</span></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 11: THREAT INTELLIGENCE ===================== -->
+<!-- ===================== SLIDE 11: FREE THREAT INTEL SCAN ===================== -->
 <section class="slide" data-slide="11">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; width: 100%;">
-        <!-- Left: Text Content -->
-        <div>
-            <div class="anim section-label">Threat Intelligence</div>
-            <h2 class="anim d1" style="font-size: 2.4rem; line-height: 1.2;">Cross-reference your pipeline <span class="accent">instantly</span></h2>
-            <p class="anim d2 subtitle" style="margin-top: 16px;">Leverage our continuously updated threat intelligence database</p>
+    <div style="max-width: 900px; width: 100%; text-align: center;">
+        <div class="anim section-label">What's Next</div>
+        <h2 class="anim d1">Free Threat Intelligence <span class="accent">Scan</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">Share your candidate pipeline. We'll cross-reference it against our threat database &mdash; on us.</p>
 
-            <div class="anim d3" style="margin-top: 32px; padding: 32px; background: white; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.06);">
-                <div style="font-size: 3.2rem; font-weight: 800; color: var(--accent); margin-bottom: 12px; line-height: 1;">10,000+</div>
-                <p style="font-size: 1.1rem; color: var(--text-primary); font-weight: 700; margin-bottom: 8px;">Known DPRK-associated identifiers</p>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Email addresses, phone numbers, identity clusters, and behavioral signatures from confirmed threat actor campaigns.</p>
-            </div>
-
-            <div class="anim d5" style="margin-top: 32px;">
-                <a href="https://getclarity.ai/threat-intel" style="display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--text-primary); padding: 16px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1rem; transition: transform 0.2s ease;">
-                    Explore Threat Intelligence
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
+        <div class="anim d3 demo-frame" style="max-width: 800px; margin: 0 auto 32px;">
+            <img src="../../shared/screenshots/threat-intel-dashboard.jpg" alt="Clarity Threat Intelligence" style="max-height: 45vh; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
         </div>
 
-        <!-- Right: Threat Intel Screenshot -->
-        <div class="anim d2">
-            <div class="demo-frame">
-                <img src="../../shared/screenshots/threat-intel-homepage.png" alt="Clarity Threat Intelligence Database">
+        <div class="anim d4" style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <div style="font-size: 2.4rem; font-weight: 800; color: var(--accent);">10,000+</div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">Known threat identifiers</div>
             </div>
-            <div style="margin-top: 20px; text-align: center;">
-                <div style="font-size: 0.8rem; color: var(--text-secondary); padding: 12px 20px; background: white; border-radius: 12px; border: 1px solid var(--border);">
-                    Updated continuously with new threat indicators
-                </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.4rem; font-weight: 800; color: var(--accent);">48h</div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">Results turnaround</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.4rem; font-weight: 800; color: var(--accent);">Free</div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">No commitment required</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===================== SLIDE 12: GET STARTED (CTA) ===================== -->
-<section class="slide slide-dark" data-slide="12">
-    <div style="text-align: center; position: relative; z-index: 1; max-width: 800px;">
+<!-- ===================== SLIDE 12: FULL POC ===================== -->
+<section class="slide" data-slide="12">
+    <div style="max-width: 900px; width: 100%; text-align: center;">
+        <div class="anim section-label">Go Deeper</div>
+        <h2 class="anim d1">Fully Integrated <span class="accent">Proof of Concept</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 40px;">Ready for a comprehensive evaluation? We'll integrate with your stack and run live verification.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 36px;">
+            <div class="anim d3" style="background: white; border-radius: 16px; padding: 28px 24px; border: 1px solid var(--border); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                <div style="width: 50px; height: 50px; border-radius: 12px; background: var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.4rem; font-weight: 800; color: var(--text-primary);">1</div>
+                <h3 style="font-size: 1rem; margin-bottom: 8px;">Integration Setup</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Connect to your ATS, HRIS, and identity platform. Pre-built connectors for fast deployment.</p>
+            </div>
+            <div class="anim d4" style="background: white; border-radius: 16px; padding: 28px 24px; border: 1px solid var(--border); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                <div style="width: 50px; height: 50px; border-radius: 12px; background: var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.4rem; font-weight: 800; color: var(--text-primary);">2</div>
+                <h3 style="font-size: 1rem; margin-bottom: 8px;">Live Verification</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Run real candidates through the platform. See detection in action across your actual pipeline.</p>
+            </div>
+            <div class="anim d5" style="background: white; border-radius: 16px; padding: 28px 24px; border: 1px solid var(--border); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                <div style="width: 50px; height: 50px; border-radius: 12px; background: var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.4rem; font-weight: 800; color: var(--text-primary);">3</div>
+                <h3 style="font-size: 1rem; margin-bottom: 8px;">Measure Results</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Full report with detection rates, false positive analysis, and ROI projection for your organization.</p>
+            </div>
+        </div>
+
+        <div class="anim d6" style="padding: 16px 28px; background: white; border-radius: 12px; border: 1px solid var(--border); display: inline-block;">
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Typical POC timeline:</span>
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);"> 4&ndash;6 weeks</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 13: CLOSING ===================== -->
+<section class="slide slide-dark" data-slide="13">
+    <div style="text-align: center; position: relative; z-index: 1; max-width: 700px;">
         <div class="anim" style="margin-bottom: 28px;">
             <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 60px;">
         </div>
+        <h1 class="anim d1" style="font-size: 3.2rem; color: white; margin-bottom: 16px;">Employee Identity Security</h1>
+        <div class="anim d2" style="width: 80px; height: 4px; background: var(--accent); margin: 20px auto; border-radius: 2px;"></div>
+        <p class="anim d3" style="font-size: 1.2rem; color: rgba(255,255,255,0.7); margin-bottom: 36px; line-height: 1.6;">Protecting organizations from hiring fraud, synthetic identities, and deepfake attacks.</p>
 
-        <h1 class="anim d1" style="font-size: 3.8rem; color: white; margin-bottom: 20px;">Test your pipeline</h1>
-        <div class="anim d2" style="width: 100px; height: 4px; background: var(--accent); margin: 24px auto; border-radius: 2px;"></div>
-        <p class="anim d3" style="font-size: 1.4rem; color: rgba(255,255,255,0.8); margin-bottom: 28px; line-height: 1.5;">Send us your recent CV submissions.<br>See what <span style="color: var(--accent); font-weight: 700;">Clarity</span> finds.</p>
-
-        <div style="display: flex; flex-direction: column; gap: 24px; align-items: center; max-width: 500px; margin: 0 auto;">
-            <a href="mailto:demo@getclarity.ai" class="anim d4" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: var(--accent); color: var(--text-primary); padding: 20px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1.1rem; width: 100%; transition: transform 0.2s ease;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
-                Request Demo
+        <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; max-width: 400px; margin: 0 auto;">
+            <a href="https://getclarity.ai" class="anim d4" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--accent); color: var(--text-primary); padding: 18px 36px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1rem; width: 100%; transition: transform 0.2s ease;">
+                getclarity.ai
             </a>
-            
-            <a href="https://calendly.com/clarity-security/demo" class="anim d5" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: transparent; color: white; border: 2px solid white; padding: 18px 40px; border-radius: 12px; font-weight: 600; text-decoration: none; font-size: 1rem; width: 100%; transition: all 0.2s ease;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Schedule Call
+            <a href="mailto:demo@getclarity.ai" class="anim d5" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 16px 36px; border-radius: 12px; font-weight: 600; text-decoration: none; font-size: 0.95rem; width: 100%; transition: all 0.2s ease;">
+                demo@getclarity.ai
             </a>
-        </div>
-
-        <div class="anim d6" style="margin-top: 50px; padding: 20px; color: rgba(255,255,255,0.6); font-size: 0.9rem;">
-            <div style="margin-bottom: 8px;">✓ Free pilot program for Fortune 500 companies</div>
-            <div style="margin-bottom: 8px;">✓ Results in 48 hours</div>
-            <div>✓ No software installation required</div>
         </div>
     </div>
 </section>
 
+
 <!-- SLIDE COUNTER -->
-<div id="slide-counter">1 / 12</div>
+<div id="slide-counter">1 / 13</div>
 
 <!-- NAV HINT -->
 <div id="nav-hint">
