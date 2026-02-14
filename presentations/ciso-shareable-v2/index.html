@@ -1253,6 +1253,44 @@ h3 {
 .drift-left { animation: drift-left 5s ease-in-out infinite; }
 .drift-right { animation: drift-right 5s ease-in-out infinite; }
 
+/* Silo grid animation */
+.silo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 0 auto 16px;
+    max-width: 180px;
+}
+.silo-chip {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 6px 4px;
+    border-radius: 6px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    opacity: 0.85;
+}
+@keyframes silo-float-1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-4px,-3px); } }
+@keyframes silo-float-2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,-4px); } }
+@keyframes silo-float-3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(5px,2px); } }
+@keyframes silo-float-4 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-5px,3px); } }
+@keyframes silo-float-5 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(2px,5px); } }
+@keyframes silo-float-6 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(4px,-2px); } }
+@keyframes silo-float-7 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-3px,4px); } }
+@keyframes silo-float-8 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,3px); } }
+@keyframes silo-float-9 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-2px,-5px); } }
+.silo-drift-1 { animation: silo-float-1 3.2s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
+.silo-drift-2 { animation: silo-float-2 2.8s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
+.silo-drift-3 { animation: silo-float-3 3.5s ease-in-out infinite; border-color: rgba(245,158,11,0.3); }
+.silo-drift-4 { animation: silo-float-4 3.0s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
+.silo-drift-5 { animation: silo-float-5 2.6s ease-in-out infinite; border-color: rgba(245,158,11,0.3); }
+.silo-drift-6 { animation: silo-float-6 3.3s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
+.silo-drift-7 { animation: silo-float-7 2.9s ease-in-out infinite; border-color: rgba(245,158,11,0.3); }
+.silo-drift-8 { animation: silo-float-8 3.1s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
+.silo-drift-9 { animation: silo-float-9 3.4s ease-in-out infinite; border-color: rgba(245,158,11,0.3); }
+
     </style>
 </head>
 <body>
@@ -1457,8 +1495,17 @@ h3 {
                 <div style="position: absolute; top: 12px; right: -20px; background: var(--danger); color: white; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 4px 28px; transform: rotate(35deg); opacity: 0.9;">Arms Race</div>
             </div>
             <div class="anim d6" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
-                <div class="card-icon" style="display: flex; justify-content: center; gap: 2px;"><svg class="drift-left" width="20" height="40" viewBox="0 0 12 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="6" width="8" height="12" rx="4"/><line x1="6" y1="6" x2="6" y2="2"/></svg><svg class="drift-right" width="20" height="40" viewBox="0 0 12 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="6" width="8" height="12" rx="4"/><line x1="6" y1="18" x2="6" y2="22"/></svg></div>
-                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: var(--danger-muted);"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                <div class="silo-grid">
+                    <span class="silo-chip silo-drift-1">BGC</span>
+                    <span class="silo-chip silo-drift-2">IDV</span>
+                    <span class="silo-chip silo-drift-3">SIEM</span>
+                    <span class="silo-chip silo-drift-4">IAM</span>
+                    <span class="silo-chip silo-drift-5">EDR</span>
+                    <span class="silo-chip silo-drift-6">SSO</span>
+                    <span class="silo-chip silo-drift-7">DLP</span>
+                    <span class="silo-chip silo-drift-8">ATS</span>
+                    <span class="silo-chip silo-drift-9">HRIS</span>
+                </div>
                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); font-weight: 700; margin-bottom: 8px;">No correlation</div>
                 <h3 style="font-size: 1rem; margin-bottom: 8px;">Siloed Tools</h3>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">No cross-signal analysis. Bypass one check and the rest never know.</p>
