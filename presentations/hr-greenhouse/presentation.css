@@ -24,3 +24,54 @@
     font-size: 0.8rem;
     color: var(--text-secondary);
 }
+
+/* ========== Slide 3: Greenhouse Pipeline ========== */
+.gh-pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+.gh-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.gh-stage-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.gh-stage-done .gh-stage-icon {
+    background: var(--accent-muted);
+    color: #16a34a;
+    border: 2px solid #61F393;
+}
+.gh-stage-hired .gh-stage-icon {
+    background: #61F393;
+    color: var(--text-primary);
+    border: 2px solid #61F393;
+    animation: hired-pulse 2s ease-in-out infinite;
+}
+.gh-stage-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.gh-connector {
+    width: 60px;
+    height: 2px;
+    background: #61F393;
+    margin-bottom: 28px;
+}
+
+@keyframes hired-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.15); }
+}
