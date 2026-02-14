@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPE Customer Call Analysis - Clarity Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F0F4F8;
+            color: #0a1628;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 24px 20px 80px; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #5a6a7a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #0a1628; }
+        .back-link svg { width: 16px; height: 16px; }
+
+        /* Header Card */
+        .header-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .header-logos {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .hpe-logo { height: 40px; }
+        .logo-divider { width: 1px; height: 32px; background: #dde3ea; }
+        .clarity-wordmark { font-size: 20px; font-weight: 700; color: #0a1628; letter-spacing: -0.3px; }
+        .meeting-badge {
+            background: #F0F4F8;
+            color: #5a6a7a;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 6px 14px;
+            border-radius: 6px;
+        }
+        .header-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0a1628;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+        .header-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .meta-item { display: flex; flex-direction: column; gap: 4px; }
+        .meta-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #8a96a6; }
+        .meta-value { font-size: 15px; font-weight: 500; color: #0a1628; }
+        .meta-value .role { color: #5a6a7a; font-weight: 400; }
+
+        /* Section Cards */
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #0a1628;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card h2 .accent-bar {
+            width: 4px;
+            height: 20px;
+            background: #01A982;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        .card p { font-size: 15px; color: #2d3a4a; margin-bottom: 12px; }
+        .card p:last-child { margin-bottom: 0; }
+        .card ul { padding-left: 20px; margin-bottom: 12px; }
+        .card li { font-size: 15px; color: #2d3a4a; margin-bottom: 10px; }
+        .card li:last-child { margin-bottom: 0; }
+
+        /* Key Insights Grid */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 640px) { .insight-grid { grid-template-columns: 1fr; } }
+        .insight-item {
+            background: #F7F9FB;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .insight-item h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #01A982;
+            margin-bottom: 8px;
+        }
+        .insight-item p { font-size: 14px; color: #3d4a5a; margin-bottom: 0; }
+
+        /* Requirements Table */
+        .req-table { width: 100%; border-collapse: collapse; }
+        .req-table th {
+            text-align: left;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8a96a6;
+            padding: 8px 12px 12px;
+            border-bottom: 2px solid #eef1f5;
+        }
+        .req-table td {
+            font-size: 14px;
+            padding: 14px 12px;
+            border-bottom: 1px solid #f2f4f7;
+            vertical-align: top;
+        }
+        .req-table tr:last-child td { border-bottom: none; }
+        .req-table td:first-child { font-weight: 600; color: #0a1628; white-space: nowrap; }
+        .req-table td:nth-child(2) { color: #3d4a5a; }
+
+        /* Product Fit */
+        .fit-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f2f4f7;
+        }
+        .fit-item:last-child { border-bottom: none; }
+        .fit-number {
+            width: 28px;
+            height: 28px;
+            background: #01A982;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .fit-content h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+        .fit-content p { font-size: 14px; color: #4a5568; margin-bottom: 0; }
+
+        /* Quotes */
+        .quote-block {
+            border-left: 3px solid #01A982;
+            padding: 16px 20px;
+            background: #F7F9FB;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 16px;
+        }
+        .quote-block:last-of-type { margin-bottom: 0; }
+        .quote-text { font-size: 15px; color: #2d3a4a; font-style: italic; margin-bottom: 8px; }
+        .quote-meta { font-size: 12px; color: #8a96a6; font-weight: 500; }
+
+        /* Action Items */
+        .action-item {
+            display: flex;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f2f4f7;
+            align-items: flex-start;
+        }
+        .action-item:last-child { border-bottom: none; }
+        .action-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #c9d1da;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .action-text { font-size: 15px; color: #2d3a4a; }
+        .action-owner { font-size: 12px; color: #8a96a6; font-weight: 500; margin-top: 2px; }
+
+        /* Risk/Opportunity */
+        .signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 640px) { .signal-grid { grid-template-columns: 1fr; } }
+        .signal-box { background: #F7F9FB; border-radius: 10px; padding: 20px; }
+        .signal-box.opportunity { border-left: 3px solid #01A982; }
+        .signal-box.risk { border-left: 3px solid #E8553A; }
+        .signal-box h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 10px;
+        }
+        .signal-box.opportunity h3 { color: #01A982; }
+        .signal-box.risk h3 { color: #E8553A; }
+        .signal-box li { font-size: 14px; color: #3d4a5a; margin-bottom: 6px; }
+
+        /* Transcript */
+        .transcript-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+        .transcript-toggle svg {
+            width: 20px; height: 20px;
+            transition: transform 0.3s;
+            color: #8a96a6;
+        }
+        .transcript-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .transcript-body.open { max-height: 50000px; }
+        .transcript-toggle.open svg { transform: rotate(180deg); }
+        .transcript-content {
+            padding-top: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        .transcript-content .speaker { font-weight: 600; color: #0a1628; }
+        .transcript-content .timestamp { color: #8a96a6; font-size: 12px; font-weight: 500; }
+        .transcript-content .line { padding: 4px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="https://claritylabs.ai" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            Back to Labs
+        </a>
+
+        <!-- Header -->
+        <div class="header-card">
+            <div class="header-top">
+                <div class="header-logos">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Hewlett_Packard_Enterprise_logo.svg" alt="HPE" class="hpe-logo">
+                    <div class="logo-divider"></div>
+                    <span class="clarity-wordmark">Clarity</span>
+                </div>
+                <span class="meeting-badge">Customer Call Analysis</span>
+            </div>
+            <h1 class="header-title">HPE Insider Threat Team -- Hiring Fraud Detection Discovery Call</h1>
+            <div class="header-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Date</span>
+                    <span class="meta-value">February 2025</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span>
+                    <span class="meta-value">43 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Customer</span>
+                    <span class="meta-value">Brandon Knapp <span class="role">-- Insider Threat Lead, HPE</span></span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Clarity</span>
+                    <span class="meta-value">Jacob Hecht <span class="role">-- VP Sales</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="card">
+            <h2><span class="accent-bar"></span>Executive Summary</h2>
+            <p>Brandon Knapp, who leads the newly formed insider threat team within HPE's cybersecurity group, engaged with Clarity to evaluate solutions for detecting fraudulent candidates in their hiring process. HPE has identified DPRK-linked and other inauthentic candidates as a recognized risk and has formed a cross-functional project group between cybersecurity and HR/Talent to address it.</p>
+            <p>The conversation covered Clarity's end-to-end hiring fraud detection capabilities, including CV analysis, deepfake detection, bio-comparison across interviews, and identity verification. Brandon asked detailed, informed questions about Workday integration, data retention, IDV database checks versus visual checks, and recruiter workflow impact. He indicated that HPE is actively evaluating vendors and that Clarity's Workday integration was a differentiator compared to competitors he had already reviewed.</p>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="card">
+            <h2><span class="accent-bar"></span>Key Insights</h2>
+            <div class="insight-grid">
+                <div class="insight-item">
+                    <h3>Organizational Context</h3>
+                    <p>Insider threat team is new (formed last year). Brandon is evaluating tools on behalf of the cybersecurity org, then presenting recommendations to HR/Talent who hold the budget and will implement.</p>
+                </div>
+                <div class="insight-item">
+                    <h3>Current Focus</h3>
+                    <p>Exclusively focused on hiring and onboarding right now, not the full employee lifecycle. Taking it "piece by piece." IDV is a confirmed requirement -- they will implement some form of identity verification.</p>
+                </div>
+                <div class="insight-item">
+                    <h3>Competitive Landscape</h3>
+                    <p>HPE has evaluated id.me, First Advantage (their current background vendor), Encode, and Persona. Key concern with those: lack of ATS integration and standalone workflows that disrupt recruiters.</p>
+                </div>
+                <div class="insight-item">
+                    <h3>Timing and Context</h3>
+                    <p>Project stalled due to Juniper Networks acquisition (20,000+ employees absorbed in late 2024). Now back on track with project group reformed and vertical leads assigned. No firm timeline but active momentum.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Requirements -->
+        <div class="card">
+            <h2><span class="accent-bar"></span>Customer Requirements</h2>
+            <table class="req-table">
+                <thead>
+                    <tr><th>Requirement</th><th>Details</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Workday Integration</td>
+                        <td>Native integration with Workday ATS is critical. Previous vendors failed this test. Recruiters must not need to log into a separate platform to see alerts.</td>
+                    </tr>
+                    <tr>
+                        <td>IDV Database Checks</td>
+                        <td>Brandon specifically asked whether ID checks validate against government databases (not just visual pattern matching). Wants real verification that a license number matches the named individual.</td>
+                    </tr>
+                    <tr>
+                        <td>Data Retention</td>
+                        <td>Asked about customizable retention periods. Interested in the option to store biometric/facial data either on Clarity's side or in HPE's own infrastructure.</td>
+                    </tr>
+                    <tr>
+                        <td>SIEM Integration</td>
+                        <td>HPE is migrating to Google SecOps. Need alerts pushed to their SIEM alongside the ATS.</td>
+                    </tr>
+                    <tr>
+                        <td>Minimal Recruiter Impact</td>
+                        <td>Strong preference for a solution that does not change recruiter workflows. Alerts should surface in-line within Workday, not require additional logins or training.</td>
+                    </tr>
+                    <tr>
+                        <td>Customer References</td>
+                        <td>HR/Talent team has previously requested customer references when evaluating tools. Brandon acknowledged the sensitivity challenge but will also check his own insider threat network.</td>
+                    </tr>
+                    <tr>
+                        <td>Pricing Transparency</td>
+                        <td>Needs a pricing estimate to present to HR/Talent budget holders. Wants to understand cost relative to standalone IDV-only solutions.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Product Fit Analysis -->
+        <div class="card">
+            <h2><span class="accent-bar"></span>Product Fit Analysis</h2>
+            <div class="fit-item">
+                <div class="fit-number">1</div>
+                <div class="fit-content">
+                    <h3>Workday Integration</h3>
+                    <p>Clarity integrates directly with Workday, surfacing alerts inline on candidate profiles. This was a stated differentiator vs. competitors Brandon has already evaluated (Encode, Persona) which required separate platform logins.</p>
+                </div>
+            </div>
+            <div class="fit-item">
+                <div class="fit-number">2</div>
+                <div class="fit-content">
+                    <h3>End-to-End vs. Point Solution</h3>
+                    <p>HPE is currently comparing Clarity against IDV-only solutions. Clarity's pitch of CV analysis + deepfake detection + bio-compare + IDV addresses the gap Brandon had not yet considered: that standalone IDV cannot confirm the person who did the identity check is the same person who interviewed.</p>
+                </div>
+            </div>
+            <div class="fit-item">
+                <div class="fit-number">3</div>
+                <div class="fit-content">
+                    <h3>SIEM and Alerting</h3>
+                    <p>Clarity confirmed the ability to push alerts to Google SecOps (HPE's incoming SIEM) and messaging platforms like Slack/Teams, aligning with HPE's security operations workflow.</p>
+                </div>
+            </div>
+            <div class="fit-item">
+                <div class="fit-number">4</div>
+                <div class="fit-content">
+                    <h3>Compliance and Privacy</h3>
+                    <p>Brandon noted HPE will require privacy and legal documentation. Clarity's GDPR compliance and human-in-the-loop review process for high-risk flags directly addresses AI compliance concerns under emerging AI acts.</p>
+                </div>
+            </div>
+            <div class="fit-item">
+                <div class="fit-number">5</div>
+                <div class="fit-content">
+                    <h3>Flexible Data Retention</h3>
+                    <p>Customizable retention with the option for HPE to host biometric data in their own infrastructure maps well to enterprise security and privacy requirements at HPE's scale.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Quotes -->
+        <div class="card">
+            <h2><span class="accent-bar"></span>Key Quotes</h2>
+            <div class="quote-block">
+                <p class="quote-text">"We have been working... I'm over the insider threat team within the cybersecurity group here at HPE. It's a newer group formed last year and our primary focus is obviously insider threats, but being proactive in reducing our insider risk."</p>
+                <p class="quote-meta">Brandon Knapp -- 1:09</p>
+            </div>
+            <div class="quote-block">
+                <p class="quote-text">"One of those risks that was highlighted... is the whole DPRK, fraudulent workers, inauthentic candidates, whatever you wanna call it."</p>
+                <p class="quote-meta">Brandon Knapp -- 1:43</p>
+            </div>
+            <div class="quote-block">
+                <p class="quote-text">"We've looked at a few of them where they don't necessarily integrate with Workday very nicely, and you would have to log into a platform for the third party... and you'd have to manually go look up the person that you are tracking."</p>
+                <p class="quote-meta">Brandon Knapp -- 18:04</p>
+            </div>
+            <div class="quote-block">
+                <p class="quote-text">"When I saw that you integrated with Workday, it was kind of a green flag for me thinking this would be nice because it wouldn't impact too much of somebody's job."</p>
+                <p class="quote-meta">Brandon Knapp -- 40:19</p>
+            </div>
+            <div class="quote-block">
+                <p class="quote-text">"That is a piece that we are, for sure, gonna implement within our process. Now the tool that we use, the vendor that we use, the platform that we use, all that stuff, that's still up in the air."</p>
+                <p class="quote-meta">Brandon Knapp -- 36:42</p>
+            </div>
+            <div class="quote-block">
+                <p class="quote-text">"I can tell you that if I would've had this conversation with you six months ago, you might have been feeling that way of like three years because... we purchased Juniper Networks."</p>
+                <p class="quote-meta">Brandon Knapp -- 37:17</p>
+            </div>
+        </div>
+
+        <!-- Action Items -->
+        <div class="card">
+            <h2><span class="accent-bar"></span>Action Items and Next Steps</h2>
+            <div class="action-item">
+                <div class="action-check"></div>
+                <div>
+                    <div class="action-text">Jacob to send follow-up email with documentation and solution overview</div>
+                    <div class="action-owner">Owner: Jacob Hecht (Clarity) -- Completed during call</div>
+                </div>
+            </div>
+            <div class="action-item">
+                <div class="action-check"></div>
+                <div>
+                    <div class="action-text">Brandon to obtain approximate volume of candidates reaching first recruiter screen (for pricing estimate)</div>
+                    <div class="action-owner">Owner: Brandon Knapp (HPE)</div>
+                </div>
+            </div>
+            <div class="action-item">
+                <div class="action-check"></div>
+                <div>
+                    <div class="action-text">Brandon to present Clarity to the HR/Talent project group as a potential vendor</div>
+                    <div class="action-owner">Owner: Brandon Knapp (HPE)</div>
+                </div>
+            </div>
+            <div class="action-item">
+                <div class="action-check"></div>
+                <div>
+                    <div class="action-text">Clarity to explore availability of a customer reference for HPE's HR team</div>
+                    <div class="action-owner">Owner: Jacob Hecht (Clarity)</div>
+                </div>
+            </div>
+            <div class="action-item">
+                <div class="action-check"></div>
+                <div>
+                    <div class="action-text">Schedule follow-up call with HPE HR/Talent team once Brandon gets internal alignment</div>
+                    <div class="action-owner">Owner: Both parties</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk/Opportunity Assessment -->
+        <div class="card">
+            <h2><span class="accent-bar"></span>Risk and Opportunity Assessment</h2>
+            <div class="signal-grid">
+                <div class="signal-box opportunity">
+                    <h3>Opportunity Signals</h3>
+                    <ul>
+                        <li>HPE has confirmed this is a funded initiative with a formal project group</li>
+                        <li>Brandon explicitly stated IDV implementation is definite ("for sure gonna implement")</li>
+                        <li>Workday integration is a key differentiator -- competitors failed this requirement</li>
+                        <li>End-to-end value proposition resonated; Brandon had not considered the bio-compare gap in IDV-only tools</li>
+                        <li>Large enterprise deal: HPE has 60,000+ employees post-Juniper acquisition</li>
+                        <li>Project is back on track after Juniper integration stall</li>
+                    </ul>
+                </div>
+                <div class="signal-box risk">
+                    <h3>Risk Factors</h3>
+                    <ul>
+                        <li>Brandon is the evaluator, not the budget holder. HR/Talent controls purchasing decisions</li>
+                        <li>No timeline committed; enterprise procurement at this scale could be lengthy</li>
+                        <li>Price sensitivity: HR may compare Clarity's holistic pricing against cheaper IDV-only solutions</li>
+                        <li>Customer reference request could become a blocker if not fulfilled</li>
+                        <li>Multiple competitors already evaluated (id.me, First Advantage, Encode, Persona)</li>
+                        <li>First Advantage is their existing background vendor, giving them incumbent advantage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Transcript -->
+        <div class="card">
+            <h2 class="transcript-toggle" onclick="toggleTranscript()">
+                <span style="display:flex;align-items:center;gap:10px"><span class="accent-bar"></span>Full Transcript</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </h2>
+            <div class="transcript-body" id="transcriptBody">
+                <div class="transcript-content" id="transcriptContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTranscript() {
+            const body = document.getElementById('transcriptBody');
+            const toggle = document.querySelector('.transcript-toggle');
+            body.classList.toggle('open');
+            toggle.classList.toggle('open');
+        }
+
+        const transcript = `Unknown: (0:08) : Hey,
+Jacob Hecht: (0:08) : Brandon. Hello.
+Brandon Knapp: (0:10) : Can you hear me?
+Jacob Hecht: (0:11) : Yes. How are you doing?
+Brandon Knapp: (0:13) : Good. Thanks. Sorry about We're
+Brandon Knapp: (0:16) : Zoom takes a little bit for me to launch and log in. But
+Jacob Hecht: (0:19) : do you guys use Teams?
+Brandon Knapp: (0:20) : All that stuff. Yeah.
+Jacob Hecht: (0:22) : But,
+Brandon Knapp: (0:23) : Zoom is good. It just takes me a little bit more to longer to get into the I don't use it all the time, so it know? It's always my luck when one meeting's running along and I try to join, and it's like, you have an update. And then I have to, like, do the update
+Jacob Hecht: (0:36) : and go
+Brandon Knapp: (0:37) : in again and all that fun stuff. So Well,
+Jacob Hecht: (0:39) : I hear you.
+Brandon Knapp: (0:40) : Sounds dumb. So
+Jacob Hecht: (0:41) : Awesome. Okay. Cool. Well, great to meet you.
+Jacob Hecht: (0:45) : You're the only one joining. Right?
+Brandon Knapp: (0:48) : Yeah. Just me for now.
+Jacob Hecht: (0:50) : Cool. Alright. So in terms of background, you are, from security side. Why don't you tell me maybe a little bit? I mean, obviously, we're talking about bad actors. And, you know, potentially getting hired, joining your workforce, etcetera. Is this something that you were, you know, nervous about? Like, where do you see it? How do you see it to kinda direct me a little bit. Yeah.
+Brandon Knapp: (1:07) : Sure.
+Brandon Knapp: (1:09) : So we have been working so I I'm over the insider threat team within the cybersecurity group here at HPE. It's a newer group formed, last year and our primary focus is, obviously, insider threats, but being proactive in reducing our insider risk. Well as, you know, the investigation of insider threat activity. One of those risks that was highlighted and you guys can probably contest, which is probably why a lot of people are looking at this product is the whole DPRK, fraudulent workers,
+Brandon Knapp: (1:43) : inauthentic candidates, whatever you wanna call it. Right? That that issue overall.
+Jacob Hecht: (1:47) : Yep.
+Brandon Knapp: (1:48) : Yep.
+Brandon Knapp: (1:49) : We've been looking at various, like, processes within the company that may need to change to help facilitate better searching or alerting and detection on potential fraudulent candidates, as well as
+Brandon Knapp: (2:02) : what should we put within our hiring process You know, couple years ago, even probably even a year or two years ago, was know, not really a standard, but now is likely going to become a standard, which is the, you know, identity verification checks or you know, AID
+Brandon Knapp: (2:22) : you know, is the person who you're interviewing in high
+Brandon Knapp: (2:26) : say they are? Are they using a deep fake? Are they using AI? Is it
+Brandon Knapp: (2:31) : two different people? Right? And all that
+Jacob Hecht: (2:37) : Cool. You're breaking up a little, but I think I got the big picture.
+Brandon Knapp: (2:40) : Okay. Let me let me turn
+Brandon Knapp: (2:43) : back on, and then, it might help.
+Jacob Hecht: (2:45) : Okay.
+Brandon Knapp: (3:12) : Can you hear me? Is that better?
+Jacob Hecht: (3:14) : I can hear you now. Yeah. Cool.
+Jacob Hecht: (3:18) : So it makes sense. So my question, I guess, to start off with is, you know, from an insider threat perspective, are you more focused on, hiring, or is it, like, the whole employee life cycle as well?
+Brandon Knapp: (3:31) : Right now, it's just hiring. We're kinda taking it piece by piece. So
+Brandon Knapp: (3:36) : right now, it's the hiring and onboarding process.
+Jacob Hecht: (3:40) : Cool. Alright. So it sounds like, it's pretty relevant for us because this is basically what we do. Know, essentially, we bring end to end solution to play to make sure you don't hire a bad actor. So, you know, when we talk about a bad actor, we talk about a bunch of different things. And I think the kind of the stuff that you a little bit alluded to, right, where, first of all, we're connected with your ATS. I think you guys are using Workday, you said? Yep.
+Brandon Knapp: (4:04) : But Okay.
+Jacob Hecht: (4:05) : So we'll integrate into the Workday. And, essentially, what that means is at the earliest stages, within the hiring process, we're gonna actually have the CV sent to us. Essentially, any candidate that you guys actually wanna talk to, we're gonna review that CV. We're gonna look at 40 plus data points to ensure that, you know, this is not a potentially bad actor. We're gonna look at things like you know, the age of the email, age of the phone number, age of the LinkedIn account. We're gonna look at blacklist, We're gonna look through the dark web because, you know, for $50.60 bucks, you can buy a vetted email and, and the LinkedIn profile there. We're also gonna look at other types of associations, you know, so social media, etcetera, to make sure that we can validate that this person really does exist And it's not a fabricated CV that was essentially generated you know, a minute ago right before, you know, the actual, application. And that's at the, you know, kinda workday application level. Then we're gonna have a bot join the actual, calls. Make sure that it's not a deepfake. So we do deepfake detection. That's what we've been doing over the last four years. We look at eye movement, facial expressions, we look at the most, you know, updated AI models to make sure that no one's know, gonna actually be using a total face to make themselves look and sound potentially like me, but really be somebody else. And we're also looking at voice as well. We're also gonna be at every call. So we're gonna check deepfakes in every call, and we're gonna do a bio compare. Because once we get that CV and we have that LinkedIn account during the first call, we have that facial structure, and then we can analyze it and do a bio compare through every call to make sure that you don't have a proxy interview. Is essentially just a different person taking one of the calls, or you've got a different person doing all the calls and someone else showing up on day one. And then we're gonna do an IDV that's identity check at the offer stage usually where, you know, the candidate is gonna get a link. They're gonna click on their phone. They're gonna move their face in, you know, three or four directions. They're gonna upload a legal document. We're gonna make sure that's not a deep fake and that they're not you know, it's not a fabricated document and that it's the same person doing both the document and the face. And then we're gonna biocompare that throughout the entire process, and that's how we're gonna get to this trusted hire. So that when you're onboarding that person, you can make sure that the person's legitimate and not someone you don't wanna hire because they're not fake.
+Jacob Hecht: (6:04) : Cool.
+Brandon Knapp: (6:05) : Is that is that identity check, is it a how should I put it? Is it a check against databases, or is it a check just to make sure it follows the same like, structured data points of a legitimate document. Right? If it's a it's a driver's license, you're not checking through, like, California driver's license bureau to see if it's a legitimate driver's license. You're just checking to make sure it looks like a California driver's license
+Jacob Hecht: (6:35) : is legit. Yeah. So we are going to a database to make sure that it's a legitimate license. We have third parties that'll check in The US and globally. To make sure that, you know, if it's a passport or a driver's license, that it's a legitimate driver's license. And, that this person checks out, you know, as the owner of that driver's license.
+Brandon Knapp: (6:53) : So for instance, if I, you know, fake a driver's license, and put my picture on know, your driver's license and change the name if the number doesn't come back as your legitimate driver's license, it comes back to my driver's license, would it flag that? So
+Jacob Hecht: (7:11) : it'll essentially look at, the identifier pieces. Plus the picture and make sure that that matches the database that the government or state has. And then we're also gonna make sure the person who's doing aliveness is the person who, again, has that legal document that isn't forged. Both from my I created, not fabricated, and not, you know, manipulated.
+Brandon Knapp: (7:32) : Got it. So you're looking at, like, for driver's license, for instance, like watermarks and coloring and specific font types and, like, is the data in specific locations? So it's not necessarily like does this driver's license number really pertain to John Smith, or is this driver's license number, you know, Sally Fields. It's more of a I'm I'm very oversimplifying it. But it's more of a visual identicator.
+Jacob Hecht: (8:00) : It's it's it's both. It's both. So we're gonna look at the way that the card is built to make sure that it's a legitimate card. We're also gonna make look at the information on the card to make sure that the person is legitimate as well.
+Brandon Knapp: (8:12) : Okay. Alright. And then we're
+Jacob Hecht: (8:14) : gonna do that that comparison. Other other questions? Oh,
+Brandon Knapp: (8:17) : that's it for now.
+Jacob Hecht: (8:19) : Cool. So that's the big picture in terms of how we're doing it. I can jump in a little bit bit deeper on each stage because if you are focused on protecting against you know, fraud in the hiring process, these are the different things that kind of could happen. Right? You have people who have fake CV or synthetic identity. You have a defects. You have mules. You have stolen identities, and then you have the workforce fraud.
+Brandon Knapp: (8:54) : Yep.
+Jacob Hecht: (8:54) : Or just take somebody else's CV and claim near them. So we're gonna look at, image search to make sure this person really exists. Are they created by AI? What else have we seen about them?
+Jacob Hecht: (10:13) : email, phone number, no history, and, like, voice over IP number. And this is just basically a clear combination of things that will let us know that it's a bad bad actor. We do integrate them with, your ATS.
+Brandon Knapp: (10:51) : Okay. So I assume in workday, it'd be the same. Right? It'd be Yeah.
+Jacob Hecht: (10:55) : Same concept. Exactly.
+Brandon Knapp: (12:06) : I assume the data points that you're collecting around the facial check and make sure those two faces are the same. Is is that stored within your platform somewhere? So
+Jacob Hecht: (12:16) : we have an option to store either in our platform or in yours. And then you open up a bucket and we can access it.
+Brandon Knapp: (12:22) : Okay.
+Jacob Hecht: (12:24) : either way. Right? Either we'll store it, and then we'll have a data agreement. For how long we can store it. Obviously, the longer we can store it, the more reverifications we can do.
+Brandon Knapp: (12:49) : So the retention is customizable?
+Jacob Hecht: (12:53) : Correct.
+Brandon Knapp: (15:10) : Okay. And now from, like, a workday perspective, like, when the candidate applies, business process wise, what what happens? Can walk me through that?
+Jacob Hecht: (15:26) : essentially, when someone applies, we're not gonna immediately look at them. We're gonna wait until they get into it, the first stage, which is the prerecru screen. Right? Because you're gonna have a ton of people applying, and most of them, you're not gonna wanna talk to anyway because of, you know, skills fed, geography fit, whatever reason. So we're gonna start looking at candidates right before that first call.
+Brandon Knapp: (17:12) : the Centimeters? The
+Jacob Hecht: (17:14) : SIM. Yep.
+Brandon Knapp: (17:15) : Okay.
+Jacob Hecht: (17:16) : what you guys are using. You know, Sentinel, CareLogix, whatever. Sumo Logic.
+Brandon Knapp: (17:21) : We're we're switching to SecOps.
+Jacob Hecht: (17:23) : Okay.
+Brandon Knapp: (17:25) : Google.
+Brandon Knapp: (17:34) : from a recruiter standpoint, the person who's actioning the the hire there's not too much that would change in their day to day activity other than reviewing what may get returned from correct?
+Jacob Hecht: (17:49) : Yeah. Nothing.
+Brandon Knapp: (17:56) : And they don't have to log in to your platform to see an alert.
+Jacob Hecht: (18:03) : Right?
+Brandon Knapp: (18:04) : We've looked at a few of them where they don't necessarily integrate with Workday very nicely, and you would have to log into a platform for the third party in your case, you guys, and you'd have to manually go look up the person that you are tracking. So
+Jacob Hecht: (18:20) : Yeah. No. There should be. It'll be just like what you saw in the the greenhouse.
+Brandon Knapp: (18:25) : Okay. Perfect.
+Brandon Knapp: (18:38) : like, we talked to a few vendors. And, like, just the identity verification space. Right? Not necessarily, like, the CV, text, and and all of that, but more along the lines of that last stage that you were talking about. Right? Like, scanning your face, uploading a document. For for us, a platform like yours how is pricing structured typically?
+Jacob Hecht: (19:17) : it's essentially, we look at how many first recruiter calls are coming in. So it's not really about how many candidates apply because, again, we're not gonna look at them until the pre first call. So we're gonna look at what the range estimated of, you know, maybe the last twelve months or last month at least of how many people were getting to that first call. And then based on that, we'll give you a price for the year.
+Brandon Knapp: (19:46) : Okay. Yeah. So it's like a holistic candidate perspective. It's not like because this person gets checked five times, it's considered five checks.
+Jacob Hecht: (20:00) : Yeah. We we know how many they're expecting to report.
+Brandon Knapp: (21:36) : The CV stage, so that first stage that you were talking about, when a recruiter moves somebody to that next stage that would trigger a review. What is, like, the time frame that that review typically takes? Like, are we talking, like, hours? Are we talking days?
+Jacob Hecht: (21:52) : So for the for each stage, it's max hours. Usually, a little bit earlier.
+Brandon Knapp: (22:40) : yeah, I'm assuming you guys have a lot of documentation along lines of, like, privacy related matters. I saw your GDPR. EU logos on there.
+Jacob Hecht: (22:53) : Yeah. We've gone through the ringer. And come up with the other side when it comes to compliance.
+Brandon Knapp: (23:17) : Then what would I need to get for you to understand kind of, a pricing structure? Would I need the the number of first first wave checks essentially?
+Jacob Hecht: (23:32) : A roundabout number of how many people get to the first screening.
+Brandon Knapp: (24:05) : when there is the calls that get scheduled, how does the bot get invited to the calls?
+Jacob Hecht: (24:12) : So it's going through the automated system. Like, just like with Greenhouse or Ashby or any of these ATS is essentially there's a system that creates the invite, and then we loop into that invite.
+Brandon Knapp: (24:38) : Is there a real time alerting or anything with that or is it after the fact?
+Jacob Hecht: (24:45) : we can't really do real time because of the compliance guidelines. Because we're doing real time, it means that AI made the suggestion.
+Brandon Knapp: (24:52) : Yeah. That's true.
+Brandon Knapp: (26:02) : Got it. So we could even though you don't send green flags, we could incorporate a green flag.
+Jacob Hecht: (26:11) : Yeah. We could send green. It's up to you.
+Brandon Knapp: (26:52) : Is there any like, false positives that you typically see?
+Jacob Hecht: (27:03) : false negatives, which is essentially us saying someone's legit and them not being. That doesn't happen. Right? That's a zero tolerance.
+Brandon Knapp: (29:10) : assuming they're forced to do it on a phone and not a laptop, I'm assuming.
+Jacob Hecht: (29:15) : Correct. The IDV, we're looking at device for sure. We're looking at where they're coming in from and what we've seen from that device in the past.
+Brandon Knapp: (29:48) : That's all I have for right now.
+Brandon Knapp: (29:59) : if you're doing any location checking through, say, the IDV, is any coordination between that and, say, like, the resume? Like, if they say they're listed in Dallas, Texas and the they do the ID check in Boston, Massachusetts.
+Jacob Hecht: (30:21) : the two things we're gonna look at that also in the CV stage. Because what happens there is we're gonna look at the phone, and we're gonna look at how long the phone exists and where the phone number is based.
+Brandon Knapp: (32:01) : reported back to the SIM in, like, the comment section, or does some of that require you to log in to your platform?
+Jacob Hecht: (32:07) : It's all put into your SIM.
+Jacob Hecht: (32:12) : The ATS as well. Both.
+Brandon Knapp: (33:04) : now the person does the ID check, and the ID check face is different the the call face. Is it checked also against the call face?
+Jacob Hecht: (33:11) : Yep.
+Jacob Hecht: (33:13) : I think that hit the point. That's where Clear and all those other companies are not gonna help you because they have no vision into anything until they showed up. Right? It's a total standalone point solution.
+Brandon Knapp: (33:40) : Okay. Thank you. Now I don't need one now, but one of the things that our talent and HR team has asked for in the past when they were evaluating different tools. Is if you have somebody like a customer that would be willing to kinda give their insights and feedback with the tool.
+Jacob Hecht: (34:11) : We can look into that. The challenge there is that a lot of times the companies don't wanna expose what tools they're using.
+Brandon Knapp: (35:07) : Okay. Well, do you have any documentation or anything you can send over just kinda what the stuff that we went over?
+Jacob Hecht: (35:27) : is this something that is planned out? Have you budgeted for this? Like, what's the timing like?
+Brandon Knapp: (35:32) : So from an insider threat perspective, we've highlighted the issue and highlighted the risk. And we've brought it to the HR talent org. And they've acknowledged the risk, and they've now set a project group to start looking into solving the. They're gonna be the moneyholders in this situation would be HR and talent.
+Brandon Knapp: (36:20) : kind of to our needs, then I can present it to them They can say, yeah. It looks like a company that we may wanna have an additional call with.
+Brandon Knapp: (36:42) : something that's been planned to be implemented But I do track. Piece of it, at least. That is a piece that we are, for sure, gonna implement within our process. Now the tool that we use, the vendor that we use, the platform that we use, all that stuff, that's still up in the air.
+Jacob Hecht: (37:02) : fair enough. It's just, you know, you guys are a pretty big company.
+Brandon Knapp: (37:17) : Yeah. I can't give you a timeline. I can tell you that if I would've had this conversation with you six months ago, you might have been feeling that way of, like, three years because, we purchased Juniper Networks.
+Brandon Knapp: (37:43) : That was, like, a 20,000 plus organization that we've now had to implement and integrate and that just closed end of this last year.
+Brandon Knapp: (38:36) : Cool.
+Jacob Hecht: (38:36) : Alright. Makes sense. Let me send you that email.
+Brandon Knapp: (38:59) : Cool. Sounds good.
+Brandon Knapp: (39:02) : I'll see if I can get, like, a number over to you from them and see if they can that might help a little bit too because again, I don't know what their budgeting is for it, but if we can get an idea not concrete, but, like, an idea of the realm that we're talking about costing wise, I think can help them understand where you guys sit too.
+Brandon Knapp: (39:29) : that's just an IDV, right, And it's just doing one check. There's probably gonna be a much lower cost because that's probably gonna be done later in the process. The volume is gonna be a lot lower. All that stuff, but like, does the cost difference make sense given all the other checks that you guys do on top of it?
+Brandon Knapp: (40:01) : We've looked at, id.me. We've looked at our background vendor, which is First Advantage. They offer a solution that we are looking at they do, like, a per candidate cost. We've looked at Encode, Persona, the other ones that you mentioned. Those are a little bit more they didn't really have too much integration with, ATS.
+Brandon Knapp: (40:19) : when I saw that you integrated with Workday, it was kind of a a green flag for me thinking, you know, this would be nice because it wouldn't impact too much of somebody's job to get a flag.
+Jacob Hecht: (40:58) : I think the challenge is, like, what's the value if they're not on the call? Like, again, who's showing up at the offer stage? Is it the same person you interviewed? Because if it's a different person, then everything you know about them was completely irrelevant.
+Jacob Hecht: (42:43) : Let me know if you have more questions and wanna talk with another team and we'll hang on and wait for you guys to be ready.
+Brandon Knapp: (42:43) : Thank you for your time. I really appreciate it.
+Jacob Hecht: (42:45) : Brandon. Take care, man.
+Brandon Knapp: (42:47) : Have a good one. Thanks. Bye.
+Jacob Hecht: (42:48) : Bye bye.`;
+
+        const container = document.getElementById('transcriptContent');
+        const lines = transcript.split('\\n');
+        lines.forEach(line => {
+            const match = line.match(/^(.+?):\s*\((\d+:\d+)\)\s*:\s*(.*)$/);
+            if (match) {
+                const div = document.createElement('div');
+                div.className = 'line';
+                div.innerHTML = '<span class="timestamp">(' + match[2] + ')</span> <span class="speaker">' + match[1] + ':</span> ' + match[3];
+                container.appendChild(div);
+            }
+        });
+    </script>
+</body>
+</html>
