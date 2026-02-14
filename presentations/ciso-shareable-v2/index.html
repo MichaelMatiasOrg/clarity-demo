@@ -1498,18 +1498,35 @@ h3 {
                 <div class="card-icon" style="display: flex; justify-content: center; gap: 4px;">
                     <svg width="20" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                 </div>
-                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--danger); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: var(--danger-muted); position: relative;">
-                    <div class="silo-grid" style="margin: 0; max-width: 60px; gap: 2px;">
-                        <span class="silo-chip silo-drift-1" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">BGC</span>
-                        <span class="silo-chip silo-drift-2" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">IDV</span>
-                        <span class="silo-chip silo-drift-3" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">SIEM</span>
-                        <span class="silo-chip silo-drift-4" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">IAM</span>
-                        <span class="silo-chip silo-drift-5" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">EDR</span>
-                        <span class="silo-chip silo-drift-6" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">SSO</span>
-                        <span class="silo-chip silo-drift-7" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">DLP</span>
-                        <span class="silo-chip silo-drift-8" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">ATS</span>
-                        <span class="silo-chip silo-drift-9" style="font-size: 0.35rem; padding: 2px 1px; border-radius: 3px;">HRIS</span>
+                <!-- Cracked system visual -->
+                <div style="position: relative; width: 120px; height: 120px; margin: 0 auto 16px;">
+                    <!-- Floating tool chips above the crack -->
+                    <div style="position: absolute; top: 0; left: 0; right: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; z-index: 2;">
+                        <span class="silo-chip silo-drift-1" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">BGC</span>
+                        <span class="silo-chip silo-drift-2" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">IDV</span>
+                        <span class="silo-chip silo-drift-3" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">SIEM</span>
+                        <span class="silo-chip silo-drift-4" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">IAM</span>
+                        <span class="silo-chip silo-drift-5" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">EDR</span>
+                        <span class="silo-chip silo-drift-6" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">SSO</span>
+                        <span class="silo-chip silo-drift-7" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">DLP</span>
+                        <span class="silo-chip silo-drift-8" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">ATS</span>
+                        <span class="silo-chip silo-drift-9" style="font-size: 0.4rem; padding: 3px 5px; border-radius: 4px;">HRIS</span>
                     </div>
+                    <!-- Cracked circle / earthquake fracture -->
+                    <svg viewBox="0 0 120 120" width="120" height="120" style="position: absolute; bottom: 0; left: 0;">
+                        <!-- Cracked circle base -->
+                        <circle cx="60" cy="75" r="40" fill="none" stroke="#e2e8f0" stroke-width="3" stroke-dasharray="4 3" opacity="0.6"/>
+                        <!-- Main crack line (jagged) -->
+                        <path d="M20,75 L35,68 L42,78 L50,62 L58,80 L65,58 L72,76 L80,64 L88,72 L100,75" fill="none" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8">
+                            <animate attributeName="stroke-dashoffset" from="200" to="0" dur="2s" fill="freeze"/>
+                        </path>
+                        <!-- Secondary crack branches -->
+                        <path d="M50,62 L46,50 L52,42" fill="none" stroke="var(--danger)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M65,58 L70,48 L64,40" fill="none" stroke="var(--danger)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M72,76 L78,86 L74,94" fill="none" stroke="var(--danger)" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+                        <!-- Subtle glow around crack -->
+                        <path d="M20,75 L35,68 L42,78 L50,62 L58,80 L65,58 L72,76 L80,64 L88,72 L100,75" fill="none" stroke="var(--danger)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.1" filter="blur(3px)"/>
+                    </svg>
                 </div>
                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); font-weight: 700; margin-bottom: 8px;">No correlation</div>
                 <h3 style="font-size: 1rem; margin-bottom: 8px;">Siloed Tools</h3>
