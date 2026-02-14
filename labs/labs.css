@@ -1,0 +1,524 @@
+/* ── Clarity Labs Guide ── */
+/* Standalone CSS — does NOT import design-system.css */
+
+:root {
+    --bg: #F0F4F8;
+    --navy: #0a1628;
+    --green: #61F393;
+    --green-dim: rgba(97, 243, 147, 0.12);
+    --text: #0a1628;
+    --text-secondary: #64748B;
+    --text-muted: #94a3b8;
+    --border: #E2E8F0;
+    --card: #FFFFFF;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+    --info: #3B82F6;
+    --code-bg: #0f1d32;
+    --code-text: #e2e8f0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* ── Nav bar ── */
+.nav {
+    background: var(--navy);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav img { height: 28px; }
+
+.nav-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+}
+
+.nav-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ── Hero ── */
+.hero {
+    text-align: center;
+    padding: 64px 24px 48px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.hero h1 span {
+    background: linear-gradient(135deg, var(--green), #3DD9EB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 540px;
+    margin: 0 auto 32px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.hero-stat {
+    text-align: center;
+}
+
+.hero-stat .value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+.hero-stat .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* ── Main layout ── */
+.main {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    padding-top: 8px;
+}
+
+.sidebar-nav {
+    list-style: none;
+    border-left: 2px solid var(--border);
+}
+
+.sidebar-nav li {
+    position: relative;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 8px 0 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    line-height: 1.3;
+}
+
+.sidebar-nav a:hover {
+    color: var(--text);
+}
+
+.sidebar-nav li.active a {
+    color: var(--navy);
+    font-weight: 700;
+}
+
+.sidebar-nav li.active::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--green);
+    border-radius: 1px;
+}
+
+.sidebar-time {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+/* ── Content area ── */
+.content {
+    min-width: 0;
+}
+
+/* ── Accordion ── */
+.accordion {
+    margin-bottom: 16px;
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+}
+
+.accordion-header:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 12px rgba(10, 22, 40, 0.04);
+}
+
+.accordion.open .accordion-header {
+    border-radius: 14px 14px 0 0;
+    border-bottom-color: transparent;
+    border-color: var(--green);
+}
+
+.accordion-step {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.accordion.open .accordion-step {
+    background: var(--green);
+    color: var(--navy);
+}
+
+.accordion-title {
+    font-size: 1rem;
+    font-weight: 700;
+    flex: 1;
+}
+
+.accordion-time {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 4px 10px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.accordion-chevron {
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.accordion.open .accordion-chevron {
+    transform: rotate(180deg);
+}
+
+.accordion-body {
+    background: var(--card);
+    border: 1.5px solid var(--green);
+    border-top: none;
+    border-radius: 0 0 14px 14px;
+    padding: 0 24px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.accordion.open .accordion-body {
+    padding: 8px 24px 28px;
+    max-height: 2000px;
+}
+
+.accordion-body p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.65;
+}
+
+.accordion-body h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 20px 0 10px;
+}
+
+.accordion-body ul, .accordion-body ol {
+    margin: 0 0 16px 20px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.accordion-body li {
+    margin-bottom: 6px;
+    line-height: 1.55;
+}
+
+.accordion-body li code {
+    font-size: 0.82rem;
+}
+
+/* ── Code blocks ── */
+.code-block {
+    position: relative;
+    background: var(--code-bg);
+    border-radius: 10px;
+    margin: 12px 0 16px;
+    overflow: hidden;
+}
+
+.code-block pre {
+    padding: 16px 20px;
+    overflow-x: auto;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--code-text);
+    margin: 0;
+}
+
+.code-block code {
+    font-family: inherit;
+    color: inherit;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copy-btn:hover {
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+}
+
+.copy-btn.copied {
+    background: rgba(97, 243, 147, 0.2);
+    color: var(--green);
+    border-color: rgba(97, 243, 147, 0.3);
+}
+
+/* Inline code */
+code {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.82rem;
+    background: rgba(10, 22, 40, 0.06);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--navy);
+}
+
+/* ── Callout boxes ── */
+.callout {
+    display: flex;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin: 12px 0 16px;
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+.callout-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+}
+
+.callout.tip {
+    background: rgba(97, 243, 147, 0.1);
+    border: 1px solid rgba(97, 243, 147, 0.25);
+    color: #166534;
+}
+
+.callout.note {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    color: #1e40af;
+}
+
+.callout.warning {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: #92400e;
+}
+
+/* ── Showcase section ── */
+.showcase {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+}
+
+.showcase h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.showcase p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.showcase-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px;
+    background: var(--card);
+    border-radius: 16px;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 24px rgba(10, 22, 40, 0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+}
+
+.showcase-card:hover {
+    border-color: var(--green);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(10, 22, 40, 0.1);
+}
+
+.showcase-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--navy);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.showcase-icon img {
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.showcase-info h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.showcase-info p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+.showcase-arrow {
+    margin-left: auto;
+    color: #cbd5e1;
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+
+.showcase-card:hover .showcase-arrow {
+    color: var(--text-secondary);
+}
+
+.showcase-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.showcase-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg);
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+
+/* ── Footer ── */
+.footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .hero { padding: 40px 20px 32px; }
+    .hero h1 { font-size: 1.8rem; }
+    .hero-stats { gap: 24px; }
+    .hero-stat .value { font-size: 1.2rem; }
+
+    .main {
+        grid-template-columns: 1fr;
+        padding: 0 16px 60px;
+    }
+
+    .sidebar { display: none; }
+
+    .accordion-header { padding: 16px 18px; gap: 10px; }
+    .accordion-title { font-size: 0.9rem; }
+    .accordion.open .accordion-body { padding: 8px 18px 24px; }
+
+    .showcase { padding: 0 16px 48px; }
+    .showcase-card { flex-direction: column; text-align: center; gap: 16px; padding: 24px; }
+    .showcase-arrow { display: none; }
+}

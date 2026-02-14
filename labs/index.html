@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity Labs - Build Decks with Claude Code</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="labs.css">
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+    <a href="../index.html"><img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846e27_Clarity%20Logo%20white.svg" alt="Clarity"></a>
+    <div class="nav-divider"></div>
+    <span class="nav-label">Labs</span>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>Build Decks with <span>Claude Code</span></h1>
+    <p>A friendly, step-by-step guide for Clarity team members. No coding experience needed — Claude does the heavy lifting.</p>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="value">~30 min</div>
+            <div class="label">Total time</div>
+        </div>
+        <div class="hero-stat">
+            <div class="value">6 steps</div>
+            <div class="label">Sections</div>
+        </div>
+        <div class="hero-stat">
+            <div class="value">0 coding</div>
+            <div class="label">Required</div>
+        </div>
+    </div>
+</section>
+
+<!-- Main: sidebar + content -->
+<div class="main">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="active"><a href="#prerequisites">Prerequisites <span class="sidebar-time">10 min</span></a></li>
+            <li><a href="#clone-repo">Clone the Repo <span class="sidebar-time">5 min</span></a></li>
+            <li><a href="#understand-project">Understand the Project <span class="sidebar-time">5 min</span></a></li>
+            <li><a href="#start-deck">Start a New Deck <span class="sidebar-time">3 min</span></a></li>
+            <li><a href="#how-claude-builds">How Claude Builds It <span class="sidebar-time">5 min</span></a></li>
+            <li><a href="#test-push">Test &amp; Push <span class="sidebar-time">5 min</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- 1. Prerequisites -->
+        <div class="accordion open" id="prerequisites" data-section="prerequisites">
+            <button class="accordion-header" aria-expanded="true">
+                <span class="accordion-step">1</span>
+                <span class="accordion-title">Prerequisites</span>
+                <span class="accordion-time">~10 min</span>
+                <svg class="accordion-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="accordion-body">
+                <p>Before you begin, you'll need three things installed on your machine. Don't worry — each one is a quick setup.</p>
+
+                <h4>Install Claude Code</h4>
+                <p>Claude Code is Anthropic's CLI tool that lets you work with Claude directly in your terminal.</p>
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="npm install -g @anthropic-ai/claude-code">Copy</button>
+                    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+                </div>
+                <div class="callout note">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>You'll need <a href="https://nodejs.org" target="_blank">Node.js 18+</a> installed first. Run <code>node --version</code> to check.</div>
+                </div>
+
+                <h4>Install the Superpowers Plugin</h4>
+                <p>This plugin gives Claude Code extra skills for building presentations — brainstorming, frontend design, and structured workflows.</p>
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="claude install @anthropic-ai/claude-code-superpowers">Copy</button>
+                    <pre><code>claude install @anthropic-ai/claude-code-superpowers</code></pre>
+                </div>
+
+                <h4>Get Repository Access</h4>
+                <p>Ask a team lead for access to the <code>MichaelMatiasOrg/clarity-demo</code> GitHub repository. You'll need push permissions to contribute decks.</p>
+
+                <div class="callout tip">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>Verify everything works: run <code>claude --version</code> in your terminal. You should see a version number.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Clone the Repo -->
+        <div class="accordion" id="clone-repo" data-section="clone-repo">
+            <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-step">2</span>
+                <span class="accordion-title">Clone the Repo</span>
+                <span class="accordion-time">~5 min</span>
+                <svg class="accordion-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="accordion-body">
+                <p>Clone the repository and open it locally to make sure everything loads correctly.</p>
+
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="git clone https://github.com/MichaelMatiasOrg/clarity-demo.git
+cd clarity-demo">Copy</button>
+                    <pre><code>git clone https://github.com/MichaelMatiasOrg/clarity-demo.git
+cd clarity-demo</code></pre>
+                </div>
+
+                <h4>Verify It Works</h4>
+                <p>Open <code>index.html</code> in your browser. You should see the Clarity hub page with all presentations listed.</p>
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="open index.html">Copy</button>
+                    <pre><code>open index.html</code></pre>
+                </div>
+
+                <div class="callout tip">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>If you see the Clarity logo and presentation cards, you're all set. No build step needed — it's all static HTML.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Understand the Project -->
+        <div class="accordion" id="understand-project" data-section="understand-project">
+            <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-step">3</span>
+                <span class="accordion-title">Understand the Project</span>
+                <span class="accordion-time">~5 min</span>
+                <svg class="accordion-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="accordion-body">
+                <p>You don't need to memorize all this — Claude reads the project files automatically. But here's a quick mental model of how things are organized.</p>
+
+                <h4>CLAUDE.md is the Brain</h4>
+                <p>The <code>CLAUDE.md</code> file at the root is the project's instruction manual. When Claude Code opens the repo, it reads this file first. It contains the design system, color palette, file structure, and all the rules Claude follows.</p>
+
+                <h4>Shared Assets</h4>
+                <p>The <code>shared/</code> folder contains everything presentations have in common:</p>
+                <ul>
+                    <li><strong>CSS</strong> — design system, animations, narration styles</li>
+                    <li><strong>JS</strong> — navigation, narration engine, dev mode</li>
+                    <li><strong>Logos</strong> — 25+ integration partner logos (SVG/PNG)</li>
+                    <li><strong>Screenshots</strong> — product UI images</li>
+                </ul>
+
+                <h4>The Template System</h4>
+                <p>Every new presentation starts from <code>presentations/_template/</code>. It has the boilerplate HTML, CSS, and narration data structure ready to go. Claude knows to use this as a starting point.</p>
+
+                <h4>Slide Structure</h4>
+                <p>Each slide is a <code>&lt;section class="slide"&gt;</code> element. Slides snap to full screen and are navigated with arrow keys. Each gets a unique <code>data-slide-id</code> attribute.</p>
+
+                <div class="callout note">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>You don't need to understand the code — Claude handles all of this. Just know that the structure exists so you can speak intelligently about it.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Start a New Deck -->
+        <div class="accordion" id="start-deck" data-section="start-deck">
+            <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-step">4</span>
+                <span class="accordion-title">Start a New Deck</span>
+                <span class="accordion-time">~3 min</span>
+                <svg class="accordion-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="accordion-body">
+                <p>This is the fun part. Launch Claude Code from the repo root and describe what you want to build.</p>
+
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="claude">Copy</button>
+                    <pre><code>claude</code></pre>
+                </div>
+
+                <h4>Describe Your Deck</h4>
+                <p>Once Claude is running, describe the presentation you want to create. Be specific about the audience, the story, and any integrations to highlight. Here are some example prompts:</p>
+
+                <div class="code-block" style="margin-bottom: 8px;">
+                    <button class="copy-btn" data-copy="Build a 10-slide deck for HR leaders at companies using Lever, showing how Clarity catches identity fraud during the hiring process. Include a real-world attack story and the Lever integration.">Copy</button>
+                    <pre><code>Build a 10-slide deck for HR leaders at companies
+using Lever, showing how Clarity catches identity
+fraud during the hiring process. Include a
+real-world attack story and the Lever integration.</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="Create a short 6-slide overview for a Zoom call with Okta's security team. Focus on how Clarity integrates with Okta for continuous employee identity verification.">Copy</button>
+                    <pre><code>Create a short 6-slide overview for a Zoom call
+with Okta's security team. Focus on how Clarity
+integrates with Okta for continuous employee
+identity verification.</code></pre>
+                </div>
+
+                <div class="callout tip">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>Claude will start with a brainstorming phase — asking you clarifying questions and proposing a slide outline before writing any code. Collaborate on the outline until you're happy.</div>
+                </div>
+
+                <h4>What Makes a Good Prompt</h4>
+                <ul>
+                    <li><strong>Target audience</strong> — who will see this deck?</li>
+                    <li><strong>Integration focus</strong> — which ATS or platform? (Greenhouse, Lever, Okta...)</li>
+                    <li><strong>Slide count</strong> — how long should it be?</li>
+                    <li><strong>Key message</strong> — what should the viewer walk away remembering?</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 5. How Claude Builds It -->
+        <div class="accordion" id="how-claude-builds" data-section="how-claude-builds">
+            <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-step">5</span>
+                <span class="accordion-title">How Claude Builds It</span>
+                <span class="accordion-time">~5 min</span>
+                <svg class="accordion-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="accordion-body">
+                <p>Once you approve the outline, Claude follows a structured process. Here's what happens behind the scenes so you know what to expect.</p>
+
+                <h4>1. Feature Branch</h4>
+                <p>Claude creates a new git branch (like <code>add-lever-hr-deck</code>) to keep your work isolated from the main codebase. This is a safety measure — nothing touches production until you're ready.</p>
+
+                <h4>2. Scaffold the Presentation</h4>
+                <p>Claude copies the <code>_template/</code> folder into a new directory under <code>presentations/</code> and sets up the file structure:</p>
+                <ul>
+                    <li><code>index.html</code> — the presentation itself</li>
+                    <li><code>presentation.css</code> — slide-specific styles</li>
+                    <li><code>narration-data.js</code> — narration text and timing</li>
+                </ul>
+
+                <h4>3. Build the Slides</h4>
+                <p>Claude writes each slide as a <code>&lt;section&gt;</code> element, using the shared design system for consistent typography, colors, and layout. It pulls in real logos from <code>shared/logos/</code> and product screenshots.</p>
+
+                <h4>4. Add Slide-Specific CSS</h4>
+                <p>Custom animations, layouts, and visual effects go into the presentation's own CSS file — keeping things modular.</p>
+
+                <h4>5. Update the Hub</h4>
+                <p>Claude adds a card for your new deck on the hub landing page (<code>index.html</code>) so the team can find it.</p>
+
+                <div class="callout note">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>Throughout this process, Claude will show you what it's doing and ask for approval before making changes. You're always in control.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Test & Push -->
+        <div class="accordion" id="test-push" data-section="test-push">
+            <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-step">6</span>
+                <span class="accordion-title">Test &amp; Push</span>
+                <span class="accordion-time">~5 min</span>
+                <svg class="accordion-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="accordion-body">
+                <p>Before your deck goes live, it needs to pass the project's automated tests. Claude handles this workflow too.</p>
+
+                <h4>Run Tests Locally</h4>
+                <p>The project uses Playwright for smoke tests. These verify that all pages load, links work, and there are no console errors.</p>
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="npx playwright test">Copy</button>
+                    <pre><code>npx playwright test</code></pre>
+                </div>
+
+                <h4>The Git Workflow</h4>
+                <p>Claude follows a specific branching workflow to keep things safe:</p>
+                <ol>
+                    <li>All work happens on the <strong>feature branch</strong> (never directly on main)</li>
+                    <li>Before pushing, Claude pulls the latest <code>main</code> and merges locally</li>
+                    <li>A <strong>pre-push hook</strong> automatically runs Playwright tests — the push only succeeds if all tests pass</li>
+                    <li>Once pushed, the changes deploy automatically via GitHub Pages</li>
+                </ol>
+
+                <div class="callout warning">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div>If tests fail, don't panic. Claude will read the error output and fix the issue automatically. Just let it work through the problem.</div>
+                </div>
+
+                <h4>Verify Live</h4>
+                <p>After a successful push, your deck will be live within a minute or two at:</p>
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="https://michaelmatiasorg.github.io/clarity-demo/">Copy</button>
+                    <pre><code>https://michaelmatiasorg.github.io/clarity-demo/</code></pre>
+                </div>
+
+                <div class="callout tip">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>Share the direct link to your deck (e.g. <code>clarity-demo/presentations/your-deck/</code>) with the team or client.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Showcase -->
+<section class="showcase">
+    <h2>See It in Action</h2>
+    <p>Here's a real deck built entirely with Claude Code — from prompt to production in one session.</p>
+    <a href="../presentations/hr-greenhouse/" class="showcase-card">
+        <div class="showcase-icon">
+            <img src="../shared/logos/greenhouse.svg" alt="Greenhouse">
+        </div>
+        <div class="showcase-info">
+            <h3>HR Leaders: Remote Hiring Fraud</h3>
+            <p>A story-driven Greenhouse integration deck built with Claude Code — 10 slides, narration-ready.</p>
+            <div class="showcase-tags">
+                <span class="showcase-tag">10 slides</span>
+                <span class="showcase-tag">Greenhouse</span>
+                <span class="showcase-tag">Built with Claude</span>
+            </div>
+        </div>
+        <svg class="showcase-arrow" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    &copy; 2026 Clarity Labs
+</footer>
+
+<!-- Inline JS -->
+<script>
+(function() {
+    // ── Accordion toggle ──
+    document.querySelectorAll('.accordion-header').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const accordion = btn.parentElement;
+            const isOpen = accordion.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.accordion').forEach(a => {
+                a.classList.remove('open');
+                a.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+            });
+
+            // Open clicked (if it was closed)
+            if (!isOpen) {
+                accordion.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // ── Copy to clipboard ──
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.stopPropagation();
+            const text = btn.getAttribute('data-copy');
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    });
+
+    // ── Scroll-based sidebar progress ──
+    const sections = document.querySelectorAll('.accordion[data-section]');
+    const sidebarLinks = document.querySelectorAll('#sidebar-nav li');
+
+    if (sections.length && sidebarLinks.length) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('data-section');
+                    sidebarLinks.forEach(li => li.classList.remove('active'));
+                    const match = document.querySelector(`#sidebar-nav a[href="#${id}"]`);
+                    if (match) match.parentElement.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -60% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+    }
+})();
+</script>
+
+</body>
+</html>
