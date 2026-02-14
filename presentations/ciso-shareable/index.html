@@ -1502,71 +1502,134 @@ h3 {
 
 <!-- ===================== SLIDE 5: CASE STUDY ===================== -->
 <section class="slide" data-slide="5">
-    <div style="max-width: 1100px; width: 100%; text-align: center;">
-        <div class="anim badge" style="margin-bottom: 16px;">Real Case Study</div>
-        <h2 class="anim d1" style="font-size: 2.2rem; margin-bottom: 10px;">A Fortune 500 insurance company tested <span class="accent">Clarity</span> on 28 resumes</h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 28px;">Here's what we discovered in their active pipeline</p>
+    <style>
+        @keyframes figCaught {
+            0% { opacity: 0.4; transform: scale(0.95); }
+            50% { transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .figure-caught { animation: figCaught 0.5s ease forwards; }
+        .figure-row { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin: 32px 0 24px; }
+        .figure-item { display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; }
+        .figure-item.revealed { opacity: 1; }
+        .figure-item.caught.revealed svg { color: #EF4444; }
+        .figure-item.caught.revealed .figure-circle { background: rgba(239,68,68,0.12); border: 2px solid #EF4444; }
+        .figure-item.caught.revealed .caught-label { opacity: 1; transform: translateY(0); }
+        .figure-item.uncaught.revealed .figure-circle { background: transparent; border: 2px dashed #94a3b8; }
+        .figure-item.uncaught.revealed svg { color: #94a3b8; }
+        .figure-circle { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; }
+        .caught-label { font-size: 0.65rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #EF4444; opacity: 0; transform: translateY(6px); transition: all 0.3s ease 0.2s; }
+        @media (max-width: 768px) {
+            .figure-row { gap: 16px; }
+            .figure-circle { width: 48px; height: 48px; }
+            .figure-circle svg { width: 24px !important; height: 24px !important; }
+            .slide5-headline { font-size: 1.5rem !important; }
+            .slide5-result-num { font-size: 2.8rem !important; }
+        }
+    </style>
+    <div style="max-width: 1100px; width: 100%; text-align: center; display: flex; flex-direction: column; min-height: 100%;">
+        <!-- Section 1: The Test -->
+        <div style="flex: 0 0 auto;">
+            <div class="anim badge" style="margin-bottom: 16px;">Real Case Study</div>
+            <h2 class="anim d1 slide5-headline" style="font-size: 2.2rem; margin-bottom: 10px;">A Fortune 500 insurance company seeded known bad actors to test <span class="accent">Clarity</span></h2>
+            <p class="anim d2 subtitle" style="margin-bottom: 8px;">Could we catch fraud from the resume alone — before a single interview?</p>
+        </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px; max-width: 900px; margin-left: auto; margin-right: auto;" class="mobile-2-col">
-            <div class="card anim d3" style="border-top: 6px solid var(--danger); text-align: center; background: linear-gradient(135deg, white 0%, #fef2f2 100%);">
-                <div style="font-size: 3rem; font-weight: 800; color: var(--danger); margin-bottom: 8px; line-height: 1;">7</div>
-                <div style="font-weight: 700; color: var(--danger); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">High Risk</div>
-                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Likely fraud</div>
+        <!-- Section 2: Hero Result -->
+        <div style="flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center;">
+            <div class="figure-row anim d3" id="figureRow">
+                <!-- 6 caught figures -->
+                <div class="figure-item caught" data-delay="0">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label">Caught</span>
+                </div>
+                <div class="figure-item caught" data-delay="1">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label">Caught</span>
+                </div>
+                <div class="figure-item caught" data-delay="2">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label">Caught</span>
+                </div>
+                <div class="figure-item caught" data-delay="3">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label">Caught</span>
+                </div>
+                <div class="figure-item caught" data-delay="4">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label">Caught</span>
+                </div>
+                <div class="figure-item caught" data-delay="5">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label">Caught</span>
+                </div>
+                <!-- 3 uncaught figures -->
+                <div class="figure-item uncaught" data-delay="6">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label" style="color: #94a3b8;">Missed</span>
+                </div>
+                <div class="figure-item uncaught" data-delay="7">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label" style="color: #94a3b8;">Missed</span>
+                </div>
+                <div class="figure-item uncaught" data-delay="8">
+                    <div class="figure-circle">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span class="caught-label" style="color: #94a3b8;">Missed</span>
+                </div>
             </div>
-            <div class="card anim d4" style="border-top: 6px solid #F59E0B; text-align: center; background: linear-gradient(135deg, white 0%, #fffbeb 100%);">
-                <div style="font-size: 3rem; font-weight: 800; color: #F59E0B; margin-bottom: 8px; line-height: 1;">5</div>
-                <div style="font-weight: 700; color: #F59E0B; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Medium Risk</div>
-                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Requires review</div>
-            </div>
-            <div class="card anim d5" style="border-top: 6px solid #10B981; text-align: center; background: linear-gradient(135deg, white 0%, #ecfdf5 100%);">
-                <div style="font-size: 3rem; font-weight: 800; color: #10B981; margin-bottom: 8px; line-height: 1;">16</div>
-                <div style="font-weight: 700; color: #10B981; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Low Risk</div>
-                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Verified clean</div>
+
+            <div class="anim d4" style="margin-top: 8px;">
+                <div class="slide5-result-num" style="font-size: 3.5rem; font-weight: 800; color: #0a1628; line-height: 1.1;"><span style="color: #EF4444;">6</span> of 9 bad actors identified</div>
+                <p style="font-size: 1.1rem; color: var(--text-secondary); margin-top: 8px;">Blocked before they ever reached an interview</p>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; text-align: left; max-width: 900px; margin: 0 auto;" class="mobile-2-col">
-            <div class="anim d6" style="display: flex; align-items: flex-start; gap: 14px; background: white; padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
-                <div class="check-appear cd1" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-                </div>
-                <div>
-                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">VoIP Burner Phones</div>
-                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Temporary numbers from virtual carriers, not real mobile providers</div>
-                </div>
-            </div>
-            
-            <div class="anim d7" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
-                <div class="check-appear cd2" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-                </div>
-                <div>
-                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">Zero-Day Email Creation</div>
-                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Email addresses created just days before job applications</div>
-                </div>
-            </div>
-            
-            <div class="anim d8" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
-                <div class="check-appear cd3" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-                </div>
-                <div>
-                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">Employment Mismatches</div>
-                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Work history contradicts employer verification databases</div>
-                </div>
-            </div>
-            
-            <div class="anim d9" style="display: flex; align-items: flex-start; gap: 16px; background: white; padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
-                <div class="check-appear cd4" style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-                </div>
-                <div>
-                    <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">Cross-Identity Linkage</div>
-                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Contact information linked to multiple different identities</div>
-                </div>
-            </div>
+        <!-- Section 3: Scale bar -->
+        <div class="anim d5" style="flex: 0 0 auto; background: #0a1628; color: white; margin: 24px -60px 0; padding: 18px 32px; border-radius: 14px; font-size: 1rem; font-weight: 500; letter-spacing: 0.2px;">
+            Today, Clarity protects organizations with <strong>1M+ candidates per year</strong> &middot; <strong>5,000+ employees</strong>
         </div>
     </div>
+
+    <script>
+    (function() {
+        const slide = document.querySelector('[data-slide="5"]');
+        let animated = false;
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting && !animated) {
+                    animated = true;
+                    const figures = slide.querySelectorAll('.figure-item');
+                    figures.forEach(function(fig) {
+                        const delay = parseInt(fig.dataset.delay);
+                        setTimeout(function() {
+                            fig.classList.add('revealed');
+                            if (fig.classList.contains('caught')) fig.classList.add('figure-caught');
+                        }, 600 + delay * 300);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(slide);
+    })();
+    </script>
 </section>
 
 <!-- ===================== SLIDE 6: EMPLOYEE IDENTITY LIFECYCLE ===================== -->
