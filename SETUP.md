@@ -38,8 +38,8 @@ On first run, Claude Code will open a browser window to authenticate with your A
 ## Step 2: Clone the Repository
 
 ```bash
-git clone https://github.com/MichaelMatiasOrg/clarity-demo.git
-cd clarity-demo
+git clone https://github.com/MichaelMatiasOrg/clarity-labs.git
+cd clarity-labs
 ```
 
 ---
@@ -86,7 +86,7 @@ npx playwright install chromium
 ## Step 4: Verify Setup
 
 ```bash
-cd clarity-demo
+cd clarity-labs
 claude
 ```
 
@@ -102,7 +102,7 @@ Claude Code should reference the component catalog and asset inventory. If it do
 
 ### Start Claude Code in the repo:
 ```bash
-cd clarity-demo
+cd clarity-labs
 claude
 ```
 
