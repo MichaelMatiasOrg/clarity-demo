@@ -44,22 +44,42 @@ cd clarity-demo
 
 ---
 
-## Step 3: Install Playwright (Browser Preview)
+## Step 3: Install Plugins
 
-This lets Claude Code open your deck in a real browser, take screenshots, and verify everything looks right.
+Open Claude Code and install these plugins. They make the experience significantly better.
 
-```bash
-npx playwright install chromium
-```
-
-Then enable the Playwright MCP plugin in Claude Code:
 ```bash
 claude
-# Once inside Claude Code, run:
+```
+
+### Superpowers (Brainstorming & Structured Workflows)
+This gives Claude Code specialized skills like `/superpowers:brainstorm` — a structured brainstorming workflow that asks smart clarifying questions before building your deck.
+
+```
+/plugin install superpowers@claude-plugins-official
+```
+
+When prompted for scope, choose **User** (installs across all projects).
+
+Skills you'll get:
+- `/superpowers:brainstorm` — Structured brainstorming for deck planning
+- `/superpowers:code-reviewer` — Code review workflows
+- Browse all with `/plugin`
+
+### Playwright (Browser Preview)
+This lets Claude Code open your deck in a real browser, take screenshots, and verify everything looks right.
+
+```
 /mcp add playwright -- npx @anthropic-ai/claude-code-playwright
 ```
 
-Type `/exit` to close Claude Code after setup.
+Then exit and install the browser:
+```bash
+/exit
+npx playwright install chromium
+```
+
+**Requirements:** Claude Code v1.0.33+ (check with `claude --version`)
 
 ---
 
