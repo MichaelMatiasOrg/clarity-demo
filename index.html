@@ -444,6 +444,66 @@
 
     <p class="footer">&copy; 2026 Clarity</p>
 
+    <!-- Confetti Canvas -->
+    <canvas id="confetti" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
+
+    <script>
+    // Confetti Animation
+    (function() {
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const colors = ['#61F393', '#3DD9EB', '#FFD700', '#FF6B6B', '#4ade80', '#0a1628'];
+        const confettiCount = 150;
+        const confetti = [];
+
+        for (let i = 0; i < confettiCount; i++) {
+            confetti.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                w: Math.random() * 10 + 5,
+                h: Math.random() * 6 + 4,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                speed: Math.random() * 3 + 2,
+                angle: Math.random() * Math.PI * 2,
+                spin: Math.random() * 0.2 - 0.1,
+                opacity: 1
+            });
+        }
+
+        let frame = 0;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            frame++;
+
+            confetti.forEach((c, i) => {
+                c.y += c.speed;
+                c.x += Math.sin(c.angle) * 2;
+                c.angle += c.spin;
+
+                if (frame > 100) c.opacity -= 0.01;
+
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, c.opacity);
+                ctx.translate(c.x + c.w/2, c.y + c.h/2);
+                ctx.rotate(c.angle);
+                ctx.fillStyle = c.color;
+                ctx.fillRect(-c.w/2, -c.h/2, c.w, c.h);
+                ctx.restore();
+            });
+
+            if (frame < 200) {
+                requestAnimationFrame(animate);
+            } else {
+                canvas.remove();
+            }
+        }
+        animate();
+    })();
+    </script>
+
     <div id="shortcuts-hint" style="position: fixed; bottom: 20px; right: 20px; background: rgba(10, 22, 40, 0.9); color: white; padding: 12px 18px; border-radius: 10px; font-size: 0.75rem; opacity: 0.7;">
         <kbd style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; margin-right: 4px;">Enter</kbd> Start presentation
         <span style="margin: 0 12px; opacity: 0.4;">|</span>
