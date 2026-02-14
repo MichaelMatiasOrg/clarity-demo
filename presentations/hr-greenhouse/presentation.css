@@ -165,7 +165,30 @@
     flex-shrink: 0;
 }
 
-/* ========== Slide 7: Protected Pipeline ========== */
+/* ========== Slide 9: Getting Started Steps ========== */
+.setup-step {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    border-top: 3px solid #61F393;
+}
+.setup-step-number {
+    width: 36px;
+    height: 36px;
+    background: #61F393;
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 auto 16px;
+}
+
+/* ========== Slide 8: Protected Pipeline ========== */
 .gh-stage-icon-shielded {
     width: 56px;
     height: 56px;
