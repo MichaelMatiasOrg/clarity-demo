@@ -32,122 +32,137 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 60px 20px;
+            padding: 24px 20px 20px;
         }
 
-        .logo { margin-bottom: 48px; }
-        .logo img { height: 40px; }
+        .logo { margin-bottom: 20px; }
+        .logo img { height: 32px; }
 
-        .hub { max-width: 900px; width: 100%; }
+        .hub { max-width: 720px; width: 100%; }
 
-        .section { margin-bottom: 40px; }
+        .section { margin-bottom: 18px; }
         .section:last-child { margin-bottom: 0; }
 
         .section-header {
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: #94a3b8;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            margin-bottom: 16px;
+            margin-bottom: 6px;
         }
 
-        /* ── Cards grid ── */
+        /* ── Row-style presentation cards ── */
         .cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .card {
             background: white;
-            border-radius: 16px;
-            padding: 32px 28px 28px;
-            box-shadow: 0 4px 24px rgba(10, 22, 40, 0.06);
-            border: 2px solid transparent;
-            transition: all 0.25s ease;
+            border-radius: 10px;
+            padding: 10px 14px;
+            box-shadow: 0 1px 4px rgba(10, 22, 40, 0.06);
+            border: 1.5px solid transparent;
+            transition: all 0.15s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
         }
 
         .card:hover {
             border-color: #61F393;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(10, 22, 40, 0.1);
+            box-shadow: 0 4px 16px rgba(10, 22, 40, 0.08);
         }
 
         .card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            flex-shrink: 0;
         }
 
-        .card-icon svg { width: 24px; height: 24px; }
+        .card-icon svg { width: 18px; height: 18px; }
         .card-icon.green { background: linear-gradient(135deg, #61F393, #4ade80); }
         .card-icon.red { background: linear-gradient(135deg, #EF4444, #DC2626); }
 
-        .card h3 {
-            font-size: 1.15rem;
+        .card-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .card-body h3 {
+            font-size: 0.85rem;
             font-weight: 700;
             color: #0a1628;
-            margin-bottom: 6px;
             line-height: 1.3;
         }
 
-        .card .desc {
-            font-size: 0.85rem;
+        .card-body .desc {
+            font-size: 0.72rem;
             color: #64748B;
-            margin-bottom: 20px;
-            line-height: 1.45;
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .card .tags {
-            margin-top: auto;
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 6px;
+            flex-shrink: 0;
         }
 
         .tag {
-            font-size: 0.72rem;
+            font-size: 0.67rem;
             font-weight: 600;
             color: #64748B;
             background: #F0F4F8;
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 2px 7px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+            white-space: nowrap;
         }
 
-        .tag svg { width: 12px; height: 12px; flex-shrink: 0; }
+        .tag svg { width: 10px; height: 10px; flex-shrink: 0; }
+
+        .card-arrow {
+            color: #cbd5e1;
+            flex-shrink: 0;
+            transition: color 0.15s;
+        }
+
+        .card:hover .card-arrow { color: #64748B; }
 
         /* ── Utility links ── */
         .utilities {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 5px;
         }
 
         .util-link {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 16px 20px;
+            gap: 10px;
+            padding: 9px 12px;
             background: white;
-            border-radius: 12px;
+            border-radius: 10px;
             text-decoration: none;
             color: inherit;
             border: 1.5px solid transparent;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 12px rgba(10, 22, 40, 0.04);
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 4px rgba(10, 22, 40, 0.04);
         }
 
         .util-link:hover {
@@ -156,42 +171,42 @@
         }
 
         .util-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 9px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
-        .util-icon svg { width: 18px; height: 18px; }
+        .util-icon svg { width: 14px; height: 14px; }
         .util-icon.dark { background: #0a1628; }
         .util-icon.muted { background: #e2e8f0; }
 
         .util-text h3 {
-            font-size: 0.88rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: #0a1628;
         }
 
         .util-text p {
-            font-size: 0.75rem;
+            font-size: 0.68rem;
             color: #94a3b8;
-            margin-top: 1px;
+            margin-top: 0;
         }
 
         .util-arrow {
             margin-left: auto;
             color: #cbd5e1;
-            transition: color 0.2s;
+            transition: color 0.15s;
         }
 
         .util-link:hover .util-arrow { color: #64748B; }
 
         .footer {
-            margin-top: 48px;
-            font-size: 0.8rem;
+            margin-top: 16px;
+            font-size: 0.72rem;
             color: #94a3b8;
         }
     </style>
@@ -207,21 +222,21 @@
             <h2 class="section-header">Event Decks</h2>
             <div class="cards">
                 <a href="presentations/masterclass/" class="card">
-                    <div class="card-icon" style="background: #0a1628; width: auto; padding: 8px 14px; border-radius: 10px;">
-                        <img src="shared/logos/guidepoint-white.svg" alt="GuidePoint Security" style="height: 24px;">
+                    <div class="card-icon" style="background: #0a1628;">
+                        <img src="shared/logos/guidepoint-white.svg" alt="GuidePoint Security" style="height: 16px;">
                     </div>
-                    <h3>Masterclass for GuidePoint CISOs</h3>
-                    <p class="desc">Hiring Identity Fraud — the full presentation with narration and live demos.</p>
+                    <div class="card-body">
+                        <h3>Masterclass for GuidePoint CISOs</h3>
+                        <p class="desc">Hiring Identity Fraud — full presentation with narration and live demos</p>
+                    </div>
                     <div class="tags">
                         <span class="tag">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             60 min
                         </span>
-                        <span class="tag">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg>
-                            37 slides
-                        </span>
+                        <span class="tag">37 slides</span>
                     </div>
+                    <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
@@ -231,18 +246,18 @@
             <h2 class="section-header">Customer Decks</h2>
             <div class="cards">
                 <a href="presentations/deel-onboarding/" class="card">
-                    <div class="card-icon" style="background: #0a1628; width: auto; padding: 8px 14px; border-radius: 10px;">
-                        <img src="shared/logos/deel.svg" alt="Deel" style="height: 20px; filter: brightness(0) invert(1);">
+                    <div class="card-icon" style="background: #0a1628;">
+                        <img src="shared/logos/deel.svg" alt="Deel" style="height: 14px; filter: brightness(0) invert(1);">
                     </div>
-                    <h3>Deel Onboarding</h3>
-                    <p class="desc">Clarity + Deel integration onboarding deck with deployment roadmap and security features overview.</p>
+                    <div class="card-body">
+                        <h3>Deel Onboarding</h3>
+                        <p class="desc">Integration onboarding with deployment roadmap and security features</p>
+                    </div>
                     <div class="tags">
-                        <span class="tag">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg>
-                            28 slides
-                        </span>
+                        <span class="tag">28 slides</span>
                         <span class="tag">Onboarding</span>
                     </div>
+                    <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
@@ -252,18 +267,18 @@
             <h2 class="section-header">Sales Decks</h2>
             <div class="cards">
                 <a href="presentations/hr-greenhouse/" class="card">
-                    <div class="card-icon" style="background: #0a1628; width: auto; padding: 8px 14px; border-radius: 10px;">
-                        <img src="shared/logos/greenhouse full logo.png" alt="Greenhouse" style="height: 22px; filter: brightness(0) invert(1);">
+                    <div class="card-icon" style="background: #0a1628;">
+                        <img src="shared/logos/greenhouse-full.png" alt="Greenhouse" style="height: 14px; filter: brightness(0) invert(1);">
                     </div>
-                    <h3>HR Leaders: Remote Hiring Fraud</h3>
-                    <p class="desc">Story-driven Greenhouse integration deck — protecting remote-first companies from identity fraud.</p>
+                    <div class="card-body">
+                        <h3>HR Leaders: Remote Hiring Fraud</h3>
+                        <p class="desc">Story-driven Greenhouse integration deck for remote-first companies</p>
+                    </div>
                     <div class="tags">
-                        <span class="tag">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg>
-                            10 slides
-                        </span>
+                        <span class="tag">10 slides</span>
                         <span class="tag">Greenhouse</span>
                     </div>
+                    <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
@@ -273,18 +288,18 @@
             <h2 class="section-header">Offline Decks</h2>
             <div class="cards">
                 <a href="presentations/ciso-shareable/" class="card">
-                    <div class="card-icon" style="background: #0a1628; width: auto; padding: 8px 14px; border-radius: 10px;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M2 10h20"/></svg>
+                    <div class="card-icon" style="background: #0a1628;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M2 10h20"/></svg>
                     </div>
-                    <h3>CISO Shareable</h3>
-                    <p class="desc">Shareable overview deck for CISOs — the problem, proof, and solution.</p>
+                    <div class="card-body">
+                        <h3>CISO Shareable</h3>
+                        <p class="desc">Overview deck for CISOs — the problem, proof, and solution</p>
+                    </div>
                     <div class="tags">
-                        <span class="tag">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg>
-                            12 slides
-                        </span>
+                        <span class="tag">12 slides</span>
                         <span class="tag">Shareable</span>
                     </div>
+                    <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
@@ -299,18 +314,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
                     </div>
-                    <h3>Identity Generator</h3>
-                    <p class="desc">Watch a synthetic identity get built in real time, tailored to any open role.</p>
-                    <div class="tags">
-                        <span class="tag">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
-                            Interactive
-                        </span>
-                        <span class="tag">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            4 identities
-                        </span>
+                    <div class="card-body">
+                        <h3>Identity Generator</h3>
+                        <p class="desc">Watch a synthetic identity get built in real time</p>
                     </div>
+                    <div class="tags">
+                        <span class="tag">Interactive</span>
+                        <span class="tag">4 identities</span>
+                    </div>
+                    <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
 
                 <a href="demos/resume-analyzer/" class="card">
@@ -319,18 +331,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                     </div>
-                    <h3>Resume Risk Analyzer</h3>
-                    <p class="desc">Upload a resume for instant identity verification and fraud detection analysis.</p>
-                    <div class="tags">
-                        <span class="tag">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                            Upload CV
-                        </span>
-                        <span class="tag">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                            24 candidates
-                        </span>
+                    <div class="card-body">
+                        <h3>Resume Risk Analyzer</h3>
+                        <p class="desc">Upload a resume for instant identity verification and fraud detection</p>
                     </div>
+                    <div class="tags">
+                        <span class="tag">Upload CV</span>
+                        <span class="tag">24 candidates</span>
+                    </div>
+                    <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
@@ -349,7 +358,7 @@
                         <h3>Build Decks with Claude Code</h3>
                         <p>Step-by-step guide for the team</p>
                     </div>
-                    <svg class="util-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="util-arrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
@@ -368,7 +377,7 @@
                         <h3>Brand Guidelines</h3>
                         <p>Colors, logos, typography</p>
                     </div>
-                    <svg class="util-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="util-arrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
 
                 <a href="assets.html" class="util-link">
@@ -381,7 +390,7 @@
                         <h3>Asset Library</h3>
                         <p>96 shared assets, 8 categories</p>
                     </div>
-                    <svg class="util-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="util-arrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
 
                 <a href="upload.html" class="util-link">
@@ -394,7 +403,7 @@
                         <h3>Upload Assets</h3>
                         <p>Add images for presentations</p>
                     </div>
-                    <svg class="util-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="util-arrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
 
                 <a href="zoom-backgrounds/" class="util-link">
@@ -407,7 +416,7 @@
                         <h3>Zoom Backgrounds</h3>
                         <p>Branded virtual backgrounds</p>
                     </div>
-                    <svg class="util-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="util-arrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
 
                 <a href="gifs.html" class="util-link">
@@ -421,7 +430,7 @@
                         <h3>GIF Collection</h3>
                         <p>Michael's curated favorites</p>
                     </div>
-                    <svg class="util-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="util-arrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
