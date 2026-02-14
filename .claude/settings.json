@@ -8,15 +8,13 @@
       "Read(*.webp)",
       "Read(*.bmp)",
       "Read(*.ico)",
-      "Read(*.svg)",
       "Read(**/*.png)",
       "Read(**/*.jpg)",
       "Read(**/*.jpeg)",
       "Read(**/*.gif)",
       "Read(**/*.webp)",
       "Read(**/*.bmp)",
-      "Read(**/*.ico)",
-      "Read(**/*.svg)"
+      "Read(**/*.ico)"
     ]
   }
 }
