@@ -23,6 +23,15 @@ Think like a presentation designer, not a developer. Every slide should earn the
 
 ## Creating a Presentation
 
+### Git Workflow
+**Never push directly to `main`.** Always:
+1. Create a branch: `git checkout -b presentations/your-deck-name`
+2. Build the presentation
+3. Commit and push the branch
+4. Open a pull request to `main`
+
+Only Michael (repo admin) merges PRs into main.
+
 ### File Structure
 ```
 presentations/your-deck-name/
