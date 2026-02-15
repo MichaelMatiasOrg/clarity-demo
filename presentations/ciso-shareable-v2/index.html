@@ -1463,37 +1463,54 @@ h3 {
     </div>
 </section>
 
-<!-- ===================== SLIDE 6: IMPACT OF A BAD HIRE ===================== -->
-<section class="slide" data-slide="6">
-    <div style="max-width: 1000px; width: 100%; text-align: center;">
-        <div class="anim section-label">The Impact</div>
-        <h2 class="anim d1">What happens when a <span class="danger">bad hire</span> gets in?</h2>
-        <p class="anim d2 subtitle" style="margin-bottom: 40px;">A bad hire costs time and money. A malicious one costs everything.</p>
-
-        <!-- Crossed-out "old" stats -->
-        <div style="display: flex; justify-content: center; gap: 60px; margin-bottom: 32px;">
-            <div class="anim d3" style="text-align: center; position: relative;">
-                <div style="font-size: 2rem; font-weight: 800; color: var(--text-secondary); opacity: 0.4; text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 3px;">$240K</div>
-                <div style="font-size: 0.8rem; color: var(--text-secondary); opacity: 0.5; margin-top: 4px;">Average bad hire</div>
-                <div style="font-size: 0.65rem; color: var(--text-secondary); opacity: 0.4; margin-top: 2px;">&mdash; SHRM / CareerBuilder</div>
-            </div>
-            <div class="anim d3" style="text-align: center; position: relative;">
-                <div style="font-size: 2rem; font-weight: 800; color: var(--text-secondary); opacity: 0.4; text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 3px;">6 months</div>
-                <div style="font-size: 0.8rem; color: var(--text-secondary); opacity: 0.5; margin-top: 4px;">Average time to detect</div>
-                <div style="font-size: 0.65rem; color: var(--text-secondary); opacity: 0.4; margin-top: 2px;">&mdash; SHRM</div>
-            </div>
-        </div>
-
-        <!-- Hero stat -->
-        <div class="anim d4" style="background: linear-gradient(135deg, #0a1628, #1a2a44); border-radius: 20px; padding: 40px 48px; text-align: center; box-shadow: 0 12px 48px rgba(10,22,40,0.2);">
-            <div style="font-size: 5rem; font-weight: 800; color: var(--danger); line-height: 1; margin-bottom: 8px;">$4.99M</div>
-            <div style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 6px;">When the hire is malicious</div>
-            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 20px;">Average insider threat incident cost &mdash; Ponemon Institute, 2024</p>
-            <div style="display: flex; justify-content: center; gap: 48px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <div>
-                    <div style="font-size: 2rem; font-weight: 800; color: var(--danger); line-height: 1;">292 days</div>
-                    <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 4px;">To identify and contain &mdash; IBM, 2024</div>
+<!-- ===================== SLIDE 6: IMPACT OF A BAD HIRE (Masterclass-style) ===================== -->
+<style>
+    @keyframes shrink-cross {
+        0% { font-size: 3rem; opacity: 1; text-decoration: none; }
+        50% { font-size: 3rem; opacity: 1; text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 3px; }
+        100% { font-size: 1.5rem; opacity: 0.5; text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 3px; }
+    }
+    @keyframes grow-in {
+        0% { font-size: 0; opacity: 0; }
+        100% { font-size: 3rem; opacity: 1; }
+    }
+    #impact-slide .old-stat {
+        font-size: 3rem; font-weight: 800; color: var(--text-secondary); margin: 0; opacity: 1;
+    }
+    #impact-slide .new-stat {
+        font-size: 0; opacity: 0; font-weight: 800; color: var(--danger); margin: 0;
+    }
+    #impact-slide.active .old-stat {
+        animation: shrink-cross 1.5s ease-out forwards;
+        animation-delay: 0.5s;
+    }
+    #impact-slide.active .new-stat {
+        animation: grow-in 0.8s ease-out forwards;
+        animation-delay: 1.5s;
+    }
+</style>
+<section class="slide" id="impact-slide" data-slide="6">
+    <div style="max-width: 900px; width: 100%; text-align: center;">
+        <div class="anim section-label" style="margin-bottom: 16px;">The Real Danger</div>
+        <h2 class="anim d1">But a bad hire isn't just incompetent.<br>What if they're <span class="danger">malicious</span>?</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 44px;">
+            <div class="anim d2" style="background: white; border-radius: 16px; padding: 32px 28px; text-align: left; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; min-height: 50px;">
+                    <h3 class="new-stat">$4.99M</h3>
+                    <h3 class="old-stat">$240K</h3>
                 </div>
+                <p style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">Insider threat incident cost</p>
+                <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Average cost per insider-caused data breach or theft</p>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); opacity: 0.6; margin-top: 12px;">&mdash; Ponemon Institute, 2024</p>
+            </div>
+            <div class="anim d3" style="background: white; border-radius: 16px; padding: 32px 28px; text-align: left; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; min-height: 50px;">
+                    <h3 class="new-stat">292 days</h3>
+                    <h3 class="old-stat">6 mo</h3>
+                </div>
+                <p style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">To identify and contain</p>
+                <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Nearly 10 months of damage before you even know what happened</p>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); opacity: 0.6; margin-top: 12px;">&mdash; IBM, 2024</p>
             </div>
         </div>
     </div>
