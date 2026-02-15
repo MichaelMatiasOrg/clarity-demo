@@ -1,0 +1,189 @@
+/* ========== PRESENTATION-SPECIFIC STYLES ========== */
+/* Add slide-specific animations and overrides here */
+/* The design system, base animations, and components are loaded from shared/ */
+
+/* ========== Slide 2: Helios Health Profile ========== */
+.company-fact {
+    padding: 16px;
+    border-radius: 12px;
+    background: #F8FAFC;
+}
+.company-fact-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+.company-fact-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+.company-fact-detail {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* ========== Slide 3: Lever Pipeline ========== */
+.lever-pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+.lever-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.lever-stage-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.lever-stage-done .lever-stage-icon {
+    background: var(--accent-muted);
+    color: #16a34a;
+    border: 2px solid #61F393;
+}
+.lever-stage-hired .lever-stage-icon {
+    background: #61F393;
+    color: var(--text-primary);
+    border: 2px solid #61F393;
+    animation: hired-pulse 2s ease-in-out infinite;
+}
+.lever-stage-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.lever-connector {
+    width: 60px;
+    height: 2px;
+    background: #61F393;
+    margin-bottom: 28px;
+}
+
+@keyframes hired-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.15); }
+}
+
+/* ========== Slide 4: Alert Cards ========== */
+.alert-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    border-top: 3px solid var(--danger);
+}
+.alert-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--danger-muted);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+/* ========== Slide 6: Clarity + Lever Integration ========== */
+.clarity-check {
+    background: white;
+    border: 2px solid #61F393;
+    border-radius: 14px;
+    padding: 20px 28px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    min-width: 160px;
+}
+.clarity-check-diamond {
+    width: 32px;
+    height: 32px;
+    background: #61F393;
+    color: var(--text-primary);
+    border-radius: 8px;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin: 0 auto 12px;
+}
+.clarity-check-diamond span {
+    transform: rotate(-45deg);
+}
+.clarity-check-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+.clarity-check-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.lever-flow-stage {
+    background: var(--text-primary);
+    color: white;
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+    min-width: 110px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.lever-flow-protected {
+    box-shadow: 0 0 0 3px rgba(97, 243, 147, 0.3);
+}
+.lever-flow-arrow {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+}
+.lever-flow-trusted {
+    background: #61F393;
+    color: var(--text-primary);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ========== Slide 10: Getting Started Steps ========== */
+.setup-step {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    border-top: 3px solid #61F393;
+}
+.setup-step-number {
+    width: 36px;
+    height: 36px;
+    background: #61F393;
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 auto 16px;
+}
