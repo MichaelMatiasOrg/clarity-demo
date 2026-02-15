@@ -244,17 +244,17 @@
   /* ========== ARCHITECTURE — HORIZONTAL 3-COLUMN ========== */
   .arch-diagram {
     width: 100%;
-    max-width: 1020px;
-    margin-top: 12px;
+    max-width: 1200px;
+    margin-top: 8px;
     display: grid;
-    grid-template-columns: 195px 16px 1fr 16px 270px;
+    grid-template-columns: 240px 20px 1fr 20px 320px;
     align-items: stretch;
     gap: 0;
   }
 
   .arch-col {
-    border-radius: 12px;
-    padding: 18px 16px;
+    border-radius: 14px;
+    padding: 22px 20px;
     border: 1.5px solid var(--border);
     box-shadow: 0 2px 12px rgba(10, 22, 40, 0.06);
     display: flex;
@@ -270,11 +270,11 @@
   }
 
   .arch-label {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     color: var(--text-secondary);
     text-align: center;
   }
@@ -297,7 +297,7 @@
   }
 
   .arch-flow-arrow .arrow-line {
-    width: 10px;
+    width: 14px;
     height: 2px;
     background: rgba(97, 243, 147, 0.3);
     position: relative;
@@ -327,30 +327,30 @@
   .app-logo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-    margin-bottom: 12px;
+    gap: 8px;
+    margin-bottom: 14px;
   }
 
   .app-logo-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
-    padding: 6px 4px;
-    border-radius: 6px;
+    gap: 4px;
+    padding: 10px 6px;
+    border-radius: 8px;
     background: var(--bg-primary);
     border: 1px solid var(--border);
   }
 
   .app-logo-item img {
-    height: 20px;
+    height: 36px;
     width: auto;
-    opacity: 0.6;
-    filter: grayscale(30%);
+    opacity: 0.7;
+    filter: grayscale(20%);
   }
 
   .app-logo-item span {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
@@ -360,16 +360,16 @@
   .app-own-products {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     margin-top: auto;
   }
 
   .app-own-pill {
     background: var(--accent);
     color: var(--text-primary);
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 11px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
     font-weight: 700;
     text-align: center;
   }
@@ -378,17 +378,17 @@
   .signal-groups {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     flex: 1;
   }
 
   .signal-group-header {
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-secondary);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     padding-left: 4px;
   }
 
@@ -397,24 +397,24 @@
   .signal-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 3px;
   }
 
   .signal-pill {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     background: #fff;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 5px 10px;
-    font-size: 11px;
+    border-radius: 4px;
+    padding: 3px 7px;
+    font-size: 10px;
     font-weight: 500;
   }
 
   .signal-pill .dot {
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background: #CBD5E1;
     flex-shrink: 0;
@@ -423,13 +423,13 @@
   .signal-pill.ai {
     background: #E8FFF0;
     border-color: rgba(97, 243, 147, 0.4);
-    border-left: 3px solid var(--accent);
+    border-left: 2px solid var(--accent);
     font-weight: 600;
   }
 
   .signal-pill.ai .dot {
     background: var(--accent);
-    box-shadow: 0 0 6px rgba(97, 243, 147, 0.4);
+    box-shadow: 0 0 4px rgba(97, 243, 147, 0.4);
   }
 
   /* ========== RIGHT COL: ENGINE ========== */
@@ -437,31 +437,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
     flex: 1;
   }
 
   .engine-caps {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 6px;
     justify-content: center;
   }
 
   .engine-cap {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 5px;
-    padding: 4px 8px;
-    font-size: 10px;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
     font-weight: 500;
     color: #94A3B8;
     white-space: nowrap;
   }
 
   .engine-core-ring {
-    width: 72px;
-    height: 72px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
     border: 2px solid rgba(97, 243, 147, 0.3);
     display: flex;
@@ -475,15 +475,15 @@
   }
 
   .engine-core-inner {
-    width: 52px;
-    height: 52px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background: rgba(97, 243, 147, 0.1);
     border: 1.5px solid rgba(97, 243, 147, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 700;
     color: var(--accent);
     text-align: center;
@@ -494,7 +494,7 @@
 
   .engine-outputs {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
     margin-top: auto;
   }
@@ -504,10 +504,10 @@
     background: rgba(239, 68, 68, 0.15);
     border: 1px solid rgba(239, 68, 68, 0.3);
     color: #FCA5A5;
-    border-radius: 6px;
-    padding: 6px 10px;
+    border-radius: 8px;
+    padding: 10px 12px;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 13px;
     text-align: center;
   }
 
@@ -516,10 +516,10 @@
     background: rgba(97, 243, 147, 0.12);
     border: 1px solid rgba(97, 243, 147, 0.3);
     color: var(--accent);
-    border-radius: 6px;
-    padding: 6px 10px;
+    border-radius: 8px;
+    padding: 10px 12px;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 13px;
     text-align: center;
   }
 
@@ -1499,7 +1499,7 @@
 <div class="slide" data-slide="9">
   <div class="slide-content">
     <div class="section-label anim">Platform Architecture</div>
-    <h2 class="anim d1" style="font-size:32px; margin-bottom:16px;">Three-Layer Architecture</h2>
+    <h2 class="anim d1" style="font-size:32px; margin-bottom:8px;">Three-Layer Architecture</h2>
     <div class="arch-diagram anim d2">
 
       <!-- LEFT: APPLICATION LAYER -->
