@@ -143,7 +143,7 @@
 
         /* ── Main content ── */
         .main {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 24px 60px;
         }
@@ -176,7 +176,7 @@
         /* ── Featured (big cards) ── */
         .featured-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 16px;
         }
 
@@ -280,6 +280,205 @@
             font-weight: 700;
         }
 
+        /* ── Filter Bar ── */
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #F0F4F8;
+            padding: 12px 0;
+            margin-top: -12px;
+        }
+
+        .filter-bar::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0; right: 0;
+            height: 8px;
+            background: linear-gradient(to bottom, #F0F4F8, transparent);
+            pointer-events: none;
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            flex-shrink: 0;
+        }
+
+        .filter-pills::-webkit-scrollbar { display: none; }
+
+        .filter-pill {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 100px;
+            border: 1px solid rgba(10, 22, 40, 0.08);
+            background: white;
+            color: #0a1628;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .filter-pill:hover {
+            border-color: rgba(97, 243, 147, 0.4);
+            background: #f8fffe;
+        }
+
+        .filter-pill.active {
+            background: #61F393;
+            color: #0a1628;
+            border-color: #61F393;
+            font-weight: 700;
+        }
+
+        .filter-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .search-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-wrap svg {
+            position: absolute;
+            left: 10px;
+            width: 14px;
+            height: 14px;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .search-input {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.72rem;
+            padding: 6px 28px 6px 30px;
+            border: 1px solid rgba(10, 22, 40, 0.08);
+            border-radius: 100px;
+            background: white;
+            color: #0a1628;
+            width: 180px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input::placeholder { color: #94a3b8; }
+
+        .search-input:focus {
+            border-color: rgba(97, 243, 147, 0.5);
+            box-shadow: 0 0 0 3px rgba(97, 243, 147, 0.1);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 8px;
+            width: 16px;
+            height: 16px;
+            border: none;
+            background: #e2e8f0;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #64748b;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .search-clear.visible { display: flex; }
+
+        .sort-select {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border: 1px solid rgba(10, 22, 40, 0.08);
+            border-radius: 100px;
+            background: white;
+            color: #475569;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 26px;
+        }
+
+        /* ── Card animation for filtering ── */
+        .featured-card {
+            transition: all 0.3s ease, opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .featured-card.card-hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            position: absolute;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        /* ── Empty State ── */
+        .empty-state {
+            display: none;
+            text-align: center;
+            padding: 48px 24px;
+            color: #94a3b8;
+        }
+
+        .empty-state.visible { display: block; }
+
+        .empty-state svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            opacity: 0.4;
+        }
+
+        .empty-state p {
+            font-size: 0.88rem;
+            margin-bottom: 12px;
+        }
+
+        .empty-state button {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            color: #0a1628;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .empty-state button:hover {
+            border-color: rgba(97, 243, 147, 0.4);
+        }
+
         /* ── List cards (demos + toolbox) ── */
         .list-grid {
             display: grid;
@@ -343,6 +542,20 @@
             color: #94a3b8;
         }
 
+        /* ── Tablet ── */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .featured-grid { grid-template-columns: 1fr 1fr; }
+            .side-nav a span { display: none; }
+            .side-nav { padding: 12px 6px 12px 8px; }
+            .side-nav a { padding: 10px; border-radius: 50%; }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1200px) {
+            .side-nav a span { display: none; }
+            .side-nav { padding: 12px 6px 12px 8px; }
+            .side-nav a { padding: 10px; border-radius: 50%; }
+        }
+
         /* ── Mobile ── */
         @media (max-width: 768px) {
             .side-nav { display: none; }
@@ -353,12 +566,9 @@
             .featured-grid { grid-template-columns: 1fr; }
             .list-grid { grid-template-columns: 1fr; }
             .list-grid.three-col { grid-template-columns: 1fr; }
-        }
-
-        @media (min-width: 769px) and (max-width: 1100px) {
-            .side-nav a span { display: none; }
-            .side-nav { padding: 12px 6px 12px 8px; }
-            .side-nav a { padding: 10px; border-radius: 50%; }
+            .filter-bar { flex-wrap: wrap; }
+            .filter-controls { width: 100%; }
+            .search-input { flex: 1; width: auto; }
         }
     </style>
 </head>
@@ -411,8 +621,33 @@
     <!-- Presentations -->
     <div class="section" id="presentations">
         <div class="section-label">Presentations</div>
-        <div class="featured-grid">
-            <a href="presentations/masterclass/" class="featured-card" data-author="matiasmichael">
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-pills">
+                <button class="filter-pill active" data-filter="all">All</button>
+                <button class="filter-pill" data-filter="sales">Sales</button>
+                <button class="filter-pill" data-filter="customer">Customer</button>
+                <button class="filter-pill" data-filter="internal">Internal</button>
+                <button class="filter-pill" data-filter="product">Product</button>
+                <button class="filter-pill" data-filter="event">Event</button>
+            </div>
+            <div class="filter-controls">
+                <div class="search-wrap">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <input type="text" class="search-input" placeholder="Search decks..." id="deck-search">
+                    <button class="search-clear" id="search-clear" aria-label="Clear search">&times;</button>
+                </div>
+                <select class="sort-select" id="deck-sort">
+                    <option value="newest">Newest</option>
+                    <option value="slides">Most slides</option>
+                    <option value="az">A-Z</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="featured-grid" id="deck-grid">
+            <a href="presentations/masterclass/" class="featured-card" data-author="matiasmichael" data-category="event" data-date="2026-02-10" data-slides="37" data-title="Masterclass for GuidePoint CISOs" data-tags="event guidepoint ciso hiring fraud narration">
                 <div class="card-preview dark">
                     <span class="preview-badge">Event</span>
                     <img src="shared/logos/guidepoint-white.svg" alt="GuidePoint" style="height: 32px;">
@@ -424,11 +659,10 @@
                         <span class="pill">60 min</span><span class="pill">Feb 10</span>
                         <span class="pill">37 slides</span>
                     </div>
-
                 </div>
             </a>
 
-            <a href="presentations/ciso-shareable/" class="featured-card" data-author="matiasmichael">
+            <a href="presentations/ciso-shareable/" class="featured-card" data-author="matiasmichael" data-category="sales" data-date="2026-02-13" data-slides="12" data-title="CISO Shareable Deck" data-tags="sales ciso shareable offline-ready">
                 <div class="card-preview dark">
                     <span class="preview-badge">Shareable</span>
                     <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 32px; filter: brightness(0) invert(1);">
@@ -440,11 +674,10 @@
                         <span class="pill">12 slides</span>
                         <span class="pill green">Offline-ready</span><span class="pill">Feb 13</span>
                     </div>
-
                 </div>
             </a>
 
-            <a href="presentations/ciso-shareable-v2/" class="featured-card" data-author="matiasmichael">
+            <a href="presentations/ciso-shareable-v2/" class="featured-card" data-author="matiasmichael" data-category="sales" data-date="2026-02-14" data-slides="13" data-title="CISO Shareable Deck v2" data-tags="sales ciso shareable offline-ready">
                 <div class="card-preview dark">
                     <span class="preview-badge">Shareable v2</span>
                     <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 32px; filter: brightness(0) invert(1);">
@@ -457,11 +690,10 @@
                         <span class="pill green">Offline-ready</span>
                         <span class="pill">Feb 14</span>
                     </div>
-
                 </div>
             </a>
 
-            <a href="presentations/deel-onboarding/" class="featured-card" data-author="matiasmichael">
+            <a href="presentations/deel-onboarding/" class="featured-card" data-author="matiasmichael" data-category="customer" data-date="2026-02-13" data-slides="28" data-title="Deel Onboarding" data-tags="customer deel onboarding integration">
                 <div class="card-preview" style="background: linear-gradient(135deg, #0a1628, #1e3a5f);">
                     <span class="preview-badge">Customer</span>
                     <img src="shared/logos/deel.svg" alt="Deel" style="height: 28px; filter: brightness(0) invert(1);">
@@ -473,11 +705,10 @@
                         <span class="pill">28 slides</span>
                         <span class="pill">Onboarding</span><span class="pill">Feb 13</span>
                     </div>
-
                 </div>
             </a>
 
-            <a href="presentations/calix-deepfake-review/" class="featured-card" data-author="jacobhecht">
+            <a href="presentations/calix-deepfake-review/" class="featured-card" data-author="jacobhecht" data-category="customer" data-date="2026-02-15" data-slides="4" data-title="Calix Technical Deep Dive" data-tags="customer calix infosec deepfake review">
                 <div class="card-preview dark">
                     <span class="preview-badge">Customer</span>
                     <img src="shared/logos/calix.svg" alt="Calix" style="height: 28px; filter: brightness(0) invert(1);">
@@ -492,7 +723,7 @@
                 </div>
             </a>
 
-            <a href="presentations/hr-greenhouse/" class="featured-card" data-author="matiasmichael">
+            <a href="presentations/hr-greenhouse/" class="featured-card" data-author="matiasmichael" data-category="sales" data-date="2026-02-14" data-slides="10" data-title="HR Leaders: Remote Hiring Fraud (Greenhouse)" data-tags="sales greenhouse hr hiring fraud">
                 <div class="card-preview green">
                     <span class="preview-badge light">Sales</span>
                     <img src="shared/logos/greenhouse-full.png" alt="Greenhouse" style="height: 36px;">
@@ -504,11 +735,10 @@
                         <span class="pill">10 slides</span>
                         <span class="pill">Greenhouse</span><span class="pill">Feb 14</span>
                     </div>
-
                 </div>
             </a>
 
-            <a href="presentations/safesense-cv/" class="featured-card" data-author="natalie-gy">
+            <a href="presentations/safesense-cv/" class="featured-card" data-author="natalie-gy" data-category="product" data-date="2026-02-15" data-slides="10" data-title="SafeSense: CV Fraud Analysis" data-tags="product safesense cv fraud screening">
                 <div class="card-preview dark">
                     <span class="preview-badge">Product</span>
                     <img src="https://cdn.prod.website-files.com/68ca65f64a04c90f13846d37/68ca65f64a04c90f13846dfe_Clarity%20Logo.svg" alt="Clarity" style="height: 32px; filter: brightness(0) invert(1);">
@@ -521,11 +751,10 @@
                         <span class="pill">SafeSense</span>
                         <span class="pill">Feb 15</span>
                     </div>
-
                 </div>
             </a>
 
-            <a href="presentations/sdr-playbook/" class="featured-card" data-author="jonathanminke-wq">
+            <a href="presentations/sdr-playbook/" class="featured-card" data-author="jonathanminke-wq" data-category="internal" data-date="2026-02-15" data-slides="12" data-title="SDR Targeting Playbook" data-tags="internal sdr outreach targeting playbook">
                 <div class="card-preview dark">
                     <span class="preview-badge">Internal</span>
                     <svg width="32" height="32" fill="none" stroke="rgba(97,243,147,0.8)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
@@ -540,7 +769,7 @@
                 </div>
             </a>
 
-            <a href="presentations/hr-lever/" class="featured-card" data-author="allon-creator">
+            <a href="presentations/hr-lever/" class="featured-card" data-author="allon-creator" data-category="sales" data-date="2026-02-15" data-slides="10" data-title="HR Leaders: Remote Hiring Fraud (Lever)" data-tags="sales lever hr hiring fraud">
                 <div class="card-preview" style="background: linear-gradient(135deg, #f0f4f8, #e2e8f0);">
                     <span class="preview-badge light">Sales</span>
                     <img src="shared/logos/lever.svg" alt="Lever" style="height: 36px;">
@@ -554,6 +783,13 @@
                     </div>
                 </div>
             </a>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <p>No presentations match your search</p>
+            <button id="clear-filters">Clear filters</button>
         </div>
     </div>
 
@@ -818,6 +1054,106 @@ document.querySelectorAll('.featured-card[data-author]').forEach(card => {
     el.appendChild(strong);
     info.appendChild(el);
 });
+</script>
+
+<!-- Presentation filter / sort / search -->
+<script>
+(function() {
+    var grid = document.getElementById('deck-grid');
+    var cards = Array.from(grid.querySelectorAll('.featured-card'));
+    var filterPills = document.querySelectorAll('.filter-pill');
+    var searchInput = document.getElementById('deck-search');
+    var searchClear = document.getElementById('search-clear');
+    var sortSelect = document.getElementById('deck-sort');
+    var emptyState = document.getElementById('empty-state');
+    var clearBtn = document.getElementById('clear-filters');
+
+    var activeCategory = 'all';
+    var searchQuery = '';
+
+    function applyFilters() {
+        var visible = 0;
+        cards.forEach(function(card) {
+            var matchCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+            var matchSearch = true;
+            if (searchQuery) {
+                var haystack = [
+                    card.dataset.title,
+                    card.querySelector('p') ? card.querySelector('p').textContent : '',
+                    card.dataset.tags,
+                    card.dataset.author
+                ].join(' ').toLowerCase();
+                matchSearch = haystack.indexOf(searchQuery) !== -1;
+            }
+            if (matchCategory && matchSearch) {
+                card.classList.remove('card-hidden');
+                visible++;
+            } else {
+                card.classList.add('card-hidden');
+            }
+        });
+        emptyState.classList.toggle('visible', visible === 0);
+    }
+
+    function applySortAndFilters() {
+        var sortVal = sortSelect.value;
+        cards.sort(function(a, b) {
+            if (sortVal === 'newest') return b.dataset.date.localeCompare(a.dataset.date);
+            if (sortVal === 'slides') return parseInt(b.dataset.slides) - parseInt(a.dataset.slides);
+            if (sortVal === 'az') return a.dataset.title.localeCompare(b.dataset.title);
+            return 0;
+        });
+        cards.forEach(function(card) { grid.appendChild(card); });
+        applyFilters();
+    }
+
+    // Filter pills
+    filterPills.forEach(function(pill) {
+        pill.addEventListener('click', function() {
+            filterPills.forEach(function(p) { p.classList.remove('active'); });
+            pill.classList.add('active');
+            activeCategory = pill.dataset.filter;
+            applyFilters();
+        });
+    });
+
+    // Search
+    searchInput.addEventListener('input', function() {
+        searchQuery = searchInput.value.trim().toLowerCase();
+        searchClear.classList.toggle('visible', searchQuery.length > 0);
+        if (searchQuery) {
+            filterPills.forEach(function(p) { p.classList.remove('active'); });
+            document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
+            activeCategory = 'all';
+        }
+        applyFilters();
+    });
+
+    searchClear.addEventListener('click', function() {
+        searchInput.value = '';
+        searchQuery = '';
+        searchClear.classList.remove('visible');
+        applyFilters();
+    });
+
+    // Sort
+    sortSelect.addEventListener('change', function() { applySortAndFilters(); });
+
+    // Clear filters button (empty state)
+    clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        searchQuery = '';
+        searchClear.classList.remove('visible');
+        filterPills.forEach(function(p) { p.classList.remove('active'); });
+        document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
+        activeCategory = 'all';
+        sortSelect.value = 'newest';
+        applySortAndFilters();
+    });
+
+    // Initial sort (newest first)
+    applySortAndFilters();
+})();
 </script>
 
 <script src="shared/js/dev-mode.js"></script>
