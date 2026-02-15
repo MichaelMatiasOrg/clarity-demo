@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="presentation-version" content="1.0.0">
+    <title>Clarity - Deepfake Detection: The Manual Review Process</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/design-system.css">
+    <link rel="stylesheet" href="../../shared/css/animations.css">
+    <link rel="stylesheet" href="presentation.css">
+</head>
+<body>
+
+<!-- Slide 0: Title -->
+<section class="slide slide-title" data-slide-id="title">
+    <div style="position: relative; z-index: 1;">
+        <div class="co-brand">
+            <img src="../../shared/brand/clarity-logo.svg" alt="Clarity">
+            <div class="co-brand-line"></div>
+            <img src="../../shared/logos/calix.svg" alt="Calix">
+        </div>
+        <h1>Technical Deep Dive</h1>
+        <p class="subtitle">Under the Clarity hood</p>
+    </div>
+    <div class="slide-number">1</div>
+</section>
+
+<!-- Slide 1: Table of Contents -->
+<section class="slide" data-slide-id="toc">
+    <h2 style="text-align: center;">Agenda</h2>
+
+    <div class="toc-list">
+        <div class="toc-item">
+            <div class="toc-num">1</div>
+            <div class="toc-label">Live Demo</div>
+        </div>
+        <div class="toc-item">
+            <div class="toc-num">2</div>
+            <div class="toc-label">System Architecture</div>
+        </div>
+        <div class="toc-item">
+            <div class="toc-num">3</div>
+            <div class="toc-label">Ops App</div>
+        </div>
+        <div class="toc-item">
+            <div class="toc-num">4</div>
+            <div class="toc-label">Human Review Flow</div>
+        </div>
+        <div class="toc-item">
+            <div class="toc-num">5</div>
+            <div class="toc-label">Questions from Calix</div>
+        </div>
+    </div>
+
+    <div class="slide-number">2</div>
+</section>
+
+<!-- Slide 2: Post-Hiring Detection Flow -->
+<section class="slide slide-grid-bg" data-slide-id="post-hire-flow">
+    <h2 style="text-align: center;">Human Review Flow in <span class="accent">Post-Hiring</span></h2>
+
+    <div class="flowchart" style="margin-top: 24px;">
+        <div class="flow-node flow-node-entry">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Executive Video Call
+        </div>
+        <div class="flow-connector-down"></div>
+        <div class="flow-node flow-node-ai">Clarity AI Scoring</div>
+        <div class="flow-branch">
+            <div class="flow-branch-stem"></div>
+            <div class="flow-branch-bar"></div>
+        </div>
+        <div class="flow-lanes">
+            <div class="flow-lane">
+                <div class="flow-drop"></div>
+                <div class="flow-tier-badge tier-badge-red">HIGH</div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card flow-lane-immediate">
+                    <div class="flow-lane-title">Immediate Result</div>
+                </div>
+                <div class="flow-lane-footnote flow-lane-footnote-webhook">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+                    Webhook update if reverted after human review
+                </div>
+            </div>
+            <div class="flow-lane">
+                <div class="flow-drop"></div>
+                <div class="flow-tier-badge tier-badge-amber">MEDIUM</div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card flow-lane-human">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <div class="flow-lane-title">Human Expert Review</div>
+                </div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card">
+                    <div class="flow-lane-title">Final Decision</div>
+                </div>
+            </div>
+            <div class="flow-lane">
+                <div class="flow-drop"></div>
+                <div class="flow-tier-badge tier-badge-green">LOW</div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card flow-lane-immediate">
+                    <div class="flow-lane-title">Auto-cleared</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout-bar" style="margin-top: 20px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>HIGH results skip human review as real-time results are needed, as this identity is already in your workforce</span>
+    </div>
+
+    <div class="slide-number">3</div>
+</section>
+
+<!-- Slide 3: Pre-Hiring Detection Flow -->
+<section class="slide" data-slide-id="pre-hire-flow">
+    <h2 style="text-align: center;">Human Review Flow in <span class="accent">Pre-Hiring</span></h2>
+
+    <div class="flowchart" style="margin-top: 24px;">
+        <div class="flow-node flow-node-entry">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            Applicant Screening
+        </div>
+        <div class="flow-connector-down"></div>
+        <div class="flow-node flow-node-ai">Clarity AI Scoring</div>
+        <div class="flow-branch">
+            <div class="flow-branch-stem"></div>
+            <div class="flow-branch-bar"></div>
+        </div>
+        <div class="flow-lanes">
+            <div class="flow-lane">
+                <div class="flow-drop"></div>
+                <div class="flow-tier-badge tier-badge-red">HIGH</div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card flow-lane-human">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <div class="flow-lane-title">Human Expert Review</div>
+                </div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card">
+                    <div class="flow-lane-title">Final Decision</div>
+                </div>
+            </div>
+            <div class="flow-lane">
+                <div class="flow-drop"></div>
+                <div class="flow-tier-badge tier-badge-amber">MEDIUM</div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card flow-lane-human">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <div class="flow-lane-title">Human Expert Review</div>
+                </div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card">
+                    <div class="flow-lane-title">Final Decision</div>
+                </div>
+            </div>
+            <div class="flow-lane">
+                <div class="flow-drop"></div>
+                <div class="flow-tier-badge tier-badge-green">LOW</div>
+                <div class="flow-lane-connector"></div>
+                <div class="flow-lane-card flow-lane-immediate">
+                    <div class="flow-lane-title">Auto-cleared</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flow-reasons">
+        <div class="flow-reason">
+            <div class="flow-reason-icon" style="background: #EFF6FF; color: #2563EB;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div>
+                <div class="flow-reason-title">AI Regulation Compliance</div>
+                <div class="flow-reason-desc">Regulations require human-in-the-loop for hiring decisions &mdash; AI cannot make decisions that impact hiring in a closed loop</div>
+            </div>
+        </div>
+        <div class="flow-reason">
+            <div class="flow-reason-icon" style="background: var(--accent-muted); color: #16a34a;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+                <div class="flow-reason-title">Improved Accuracy</div>
+                <div class="flow-reason-desc">Hiring workflow tolerates a short delay as a tradeoff for reduced false-positive rate on risky cases</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-number">4</div>
+</section>
+
+<!-- Slide Indicator -->
+<div id="slide-indicator"></div>
+
+<!-- Navigation Hint -->
+<div id="nav-hint"><kbd>←</kbd> <kbd>→</kbd> or <kbd>↑</kbd> <kbd>↓</kbd> to navigate</div>
+
+<!-- Navigation -->
+<script src="../../shared/js/navigation.js"></script>
+
+<!-- Narration Engine (uncomment when narration is ready) -->
+<!--
+<link rel="stylesheet" href="../../shared/css/narration-engine.css">
+<script src="narration-data.js"></script>
+<script src="../../shared/js/narration-engine.js"></script>
+<script>
+new NarrationEngine({
+    data: window.NarrationData,
+    slideSelector: '.slide',
+    slideIdAttribute: 'data-slide-id'
+});
+</script>
+-->
+
+<!-- Developer Mode -->
+<script src="../../shared/js/dev-mode.js"></script>
+
+<!-- Version Badge -->
+<div id="version-badge" class="version-badge"></div>
+<script>
+document.getElementById('version-badge').textContent =
+    'v' + document.querySelector('meta[name="presentation-version"]').content;
+</script>
+
+</body>
+</html>

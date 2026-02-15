@@ -1,0 +1,640 @@
+/* ========== DEEPFAKE MANUAL REVIEW — SLIDE-SPECIFIC STYLES ========== */
+
+/* ===== Title: Co-brand ===== */
+.co-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.co-brand img { height: 48px; }
+
+.co-brand-line {
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* ===== Slide 1: Table of Contents ===== */
+.toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 520px;
+    margin: 40px 0 0;
+}
+
+.toc-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 24px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(10, 22, 40, 0.04);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.toc-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(10, 22, 40, 0.08);
+}
+
+.toc-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.toc-label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ===== Slide 1: Why Manual Review ===== */
+.why-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 32px;
+}
+
+.why-card {
+    text-align: center;
+    padding: 32px 24px;
+}
+
+.why-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Callout bar — reused across slides */
+.callout-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--accent-muted);
+    border: 1px solid rgba(97, 243, 147, 0.25);
+    border-radius: 12px;
+    padding: 14px 24px;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ===== Slide 2: Detection Pipeline ===== */
+.pipeline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    max-width: 140px;
+}
+
+.pipeline-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: white;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+}
+
+.pipeline-step-highlight {
+    transform: scale(1.1);
+}
+
+.pipeline-step-highlight .pipeline-icon {
+    border: none;
+}
+
+.pipeline-icon-highlight {
+    background: var(--accent-muted) !important;
+    border: 2px solid var(--accent) !important;
+    color: #16a34a !important;
+    box-shadow: 0 0 24px rgba(97, 243, 147, 0.2);
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+}
+
+.pipeline-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.pipeline-desc {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.pipeline-arrow {
+    flex-shrink: 0;
+    padding: 20px 6px 0;
+}
+
+/* ===== Slide 1: Tier Badges ===== */
+.tier-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: 8px;
+    margin: 14px 0 6px;
+}
+
+.tier-badge-red { background: var(--danger-muted); color: var(--danger); }
+.tier-badge-amber { background: #FEF3C7; color: #92400E; }
+.tier-badge-green { background: var(--accent-muted); color: #16a34a; }
+
+/* ===== Slides 3-4: Flowchart Diagrams ===== */
+.flowchart {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.flow-node {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 24px;
+    text-align: center;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(10, 22, 40, 0.04);
+}
+
+.flow-node-entry {
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.flow-node-ai {
+    max-width: 280px;
+    margin: 0 auto;
+    border: 2px solid var(--accent);
+    background: linear-gradient(180deg, #fff 0%, #f8fdf9 100%);
+    box-shadow: 0 0 20px rgba(97, 243, 147, 0.1), 0 2px 8px rgba(10, 22, 40, 0.04);
+}
+
+/* Vertical connector with arrow */
+.flow-connector-down {
+    width: 2px;
+    height: 22px;
+    background: #CBD5E1;
+    margin: 0 auto;
+    position: relative;
+}
+
+.flow-connector-down::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #CBD5E1;
+}
+
+/* Branch: vertical stem + horizontal bar */
+.flow-branch {
+    position: relative;
+}
+
+.flow-branch-stem {
+    width: 2px;
+    height: 14px;
+    background: #CBD5E1;
+    margin: 0 auto;
+}
+
+.flow-branch-bar {
+    height: 2px;
+    background: #CBD5E1;
+    margin: 0 calc((100% - 32px) / 6);
+}
+
+/* Drop from horizontal bar into each lane */
+.flow-drop {
+    width: 2px;
+    height: 14px;
+    background: #CBD5E1;
+    position: relative;
+}
+
+.flow-drop::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #CBD5E1;
+}
+
+/* Three lanes */
+.flow-lanes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+.flow-lane {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Tier badge used at top of each lane */
+.flow-tier-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 5px 18px;
+    border-radius: 8px;
+    margin-top: 6px;
+}
+
+/* Connector between cards within a lane */
+.flow-lane-connector {
+    width: 2px;
+    height: 14px;
+    background: #CBD5E1;
+    margin: 2px auto;
+    position: relative;
+}
+
+.flow-lane-connector::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #CBD5E1;
+}
+
+/* Lane cards */
+.flow-lane-card {
+    background: white;
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.flow-lane-human {
+    border: 2px solid var(--accent);
+    background: var(--accent-muted);
+}
+
+.flow-lane-immediate {
+    background: #F8FAFC;
+}
+
+.flow-lane-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.flow-lane-desc {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+}
+
+/* Footnote below a lane card */
+.flow-lane-footnote {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.flow-lane-footnote-webhook {
+    background: #FEF3C7;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: #92400E;
+}
+
+/* Pre-hire reasoning cards */
+.flow-reasons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 680px;
+    margin: 20px auto 0;
+}
+
+.flow-reason {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(10, 22, 40, 0.04);
+}
+
+.flow-reason-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.flow-reason-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.flow-reason-desc {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ===== Slide 4: Analyst Workbench ===== */
+.workbench-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.workbench-left .demo-frame {
+    max-width: 100%;
+}
+
+.workbench-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.workbench-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid var(--border);
+}
+
+.workbench-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.workbench-item-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.workbench-item-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ===== Slide 5: Decision Flow ===== */
+.decision-flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto 28px;
+}
+
+.decision-path {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    border-top: 4px solid;
+    box-shadow: 0 4px 20px rgba(10, 22, 40, 0.04);
+}
+
+.decision-path-red { border-top-color: var(--danger); }
+.decision-path-green { border-top-color: var(--accent); }
+.decision-path-amber { border-top-color: #F59E0B; }
+
+.decision-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.decision-header-red { color: var(--danger); }
+.decision-header-green { color: #16a34a; }
+.decision-header-amber { color: #92400E; }
+
+.decision-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.decision-action {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #F8FAFC;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.sla-callout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    background: linear-gradient(135deg, #0a1628, #1a2a44);
+    border-radius: 12px;
+    padding: 18px 36px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.sla-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.sla-label {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sla-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: white;
+}
+
+.sla-value.accent { color: var(--accent); }
+
+.sla-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Slide 6: Quality & Metrics ===== */
+.quality-controls {
+    max-width: 900px;
+    margin: 24px auto 0;
+}
+
+.quality-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.quality-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: white;
+    border-radius: 14px;
+    padding: 22px 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(10, 22, 40, 0.04);
+}
+
+.quality-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--accent-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.quality-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.quality-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+    .pipeline { flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .pipeline-arrow { display: none; }
+    .pipeline-step { max-width: none; }
+    .workbench-layout { grid-template-columns: 1fr; gap: 24px; }
+    .decision-flow { grid-template-columns: 1fr; }
+    .quality-grid { grid-template-columns: 1fr; }
+    .safe-stats { grid-template-columns: repeat(2, 1fr); }
+    .flow-reasons { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .why-cards { grid-template-columns: 1fr; }
+    .flow-lanes { grid-template-columns: 1fr; gap: 12px; }
+    .flow-branch { display: none; }
+    .flow-drop { display: none; }
+}
