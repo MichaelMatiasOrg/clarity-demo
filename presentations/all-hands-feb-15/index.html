@@ -1250,66 +1250,66 @@
     <div class="section-label anim">Section 01</div>
     <h2 class="anim d1">Deel Integration Progress</h2>
     <p class="subtitle anim d2">Both teams actively working through compliance, integration, and rollout milestones.</p>
-    <div class="milestone-list anim d3">
-      <!-- DONE -->
-      <div class="milestone">
-        <div class="milestone-indicator done"></div>
-        <div class="milestone-body">
-          <div class="milestone-title">Legal Framework</div>
-          <div class="milestone-desc">Consent basis resolved — legitimate interest with opt-out path confirmed.</div>
+    <div class="milestone-tracks anim d3">
+      <!-- LEFT: Compliance Track -->
+      <div class="milestone-track">
+        <div class="track-header">Compliance Track</div>
+        <div class="track-milestone">
+          <div class="track-dot done"></div>
+          <div class="track-info">
+            <div class="track-title">Legal Framework</div>
+            <div class="track-desc">Consent basis resolved — legitimate interest with opt-out path confirmed.</div>
+          </div>
+          <div class="track-tag done">Done</div>
         </div>
-        <div class="milestone-tag done">Complete</div>
-      </div>
-      <!-- IN PROGRESS -->
-      <div class="milestone">
-        <div class="milestone-indicator active"></div>
-        <div class="milestone-body">
-          <div class="milestone-title">Opt-Out Handling</div>
-          <div class="milestone-desc">Candidate opt-out flow: Deel wants human reviewer, cost model under discussion with Albert (CISO).</div>
+        <div class="track-milestone">
+          <div class="track-dot done"></div>
+          <div class="track-info">
+            <div class="track-title">IDV Process Docs</div>
+            <div class="track-desc">Sent to Deel, currently under their review.</div>
+          </div>
+          <div class="track-tag done">Done</div>
         </div>
-        <div class="milestone-tag active">In Progress</div>
-      </div>
-      <div class="milestone">
-        <div class="milestone-indicator done"></div>
-        <div class="milestone-body">
-          <div class="milestone-title">IDV Process Documentation</div>
-          <div class="milestone-desc">Sent to Deel, currently under their review.</div>
+        <div class="track-milestone is-pending">
+          <div class="track-dot pending"></div>
+          <div class="track-info">
+            <div class="track-title">Data Retention &amp; Output Mechanisms</div>
+            <div class="track-desc">Awaiting Deel InfoSec alignment on retention policies.</div>
+          </div>
+          <div class="track-tag pending">Upcoming</div>
         </div>
-        <div class="milestone-tag done">Complete</div>
       </div>
-      <div class="milestone">
-        <div class="milestone-indicator active"></div>
-        <div class="milestone-body">
-          <div class="milestone-title">Ashby Integration</div>
-          <div class="milestone-desc">Guide sent to Deel. Meeting with TA Ops — <strong>Tuesday, Feb 18</strong>.</div>
+
+      <!-- RIGHT: Integration Track -->
+      <div class="milestone-track">
+        <div class="track-header">Integration Track</div>
+        <div class="track-milestone">
+          <div class="track-dot active"></div>
+          <div class="track-info">
+            <div class="track-title">Ashby Integration</div>
+            <div class="track-desc">Guide sent to Deel. Meeting with TA Ops — <strong>Tuesday, Feb 18</strong>.</div>
+          </div>
+          <div class="track-tag active">In Progress</div>
         </div>
-        <div class="milestone-tag active">In Progress</div>
-      </div>
-      <!-- UPCOMING -->
-      <div class="milestone is-pending">
-        <div class="milestone-indicator pending"></div>
-        <div class="milestone-body">
-          <div class="milestone-title">Data Retention</div>
-          <div class="milestone-desc">Awaiting Deel InfoSec alignment on retention policies.</div>
+        <div class="track-milestone is-pending">
+          <div class="track-dot pending"></div>
+          <div class="track-info">
+            <div class="track-title">Verdict Injection</div>
+            <div class="track-desc">Define how verification results flow back into Ashby.</div>
+          </div>
+          <div class="track-tag pending">Upcoming</div>
         </div>
-        <div class="milestone-tag pending">Upcoming</div>
       </div>
-      <div class="milestone is-pending">
-        <div class="milestone-indicator pending"></div>
-        <div class="milestone-body">
-          <div class="milestone-title">Verdict Injection</div>
-          <div class="milestone-desc">Define how verification results flow back into Ashby.</div>
-        </div>
-        <div class="milestone-tag pending">Upcoming</div>
+    </div>
+
+    <!-- Pilot Goal -->
+    <div class="milestone-goal anim d4">
+      <div class="goal-icon">&#9654;</div>
+      <div class="goal-body">
+        <div class="goal-title">Pilot: 10% Rollout</div>
+        <div class="goal-desc">Control group deployment after both tracks complete.</div>
       </div>
-      <div class="milestone is-pending">
-        <div class="milestone-indicator pending"></div>
-        <div class="milestone-body">
-          <div class="milestone-title">Pilot Teams</div>
-          <div class="milestone-desc">Deel TA to propose early rollout groups for initial deployment.</div>
-        </div>
-        <div class="milestone-tag pending">Upcoming</div>
-      </div>
+      <div class="goal-tag">Goal</div>
     </div>
   </div>
 </div>
@@ -1329,8 +1329,8 @@
         </div>
         <ul class="pipeline-card-details">
           <li>Technical deep-dive Tuesday</li>
-          <li>POC this week</li>
-          <li>Passed compliance</li>
+          <li>20 CVs expected this week</li>
+          <li>Passed compliance, legal review completing</li>
         </ul>
       </div>
       <!-- Affirm -->
