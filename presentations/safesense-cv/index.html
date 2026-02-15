@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="presentation-version" content="1.0.0">
+    <title>Clarity - SafeSense CV Fraud Analysis</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/design-system.css">
+    <link rel="stylesheet" href="../../shared/css/animations.css">
+    <link rel="stylesheet" href="presentation.css">
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<section class="slide slide-title" data-slide-id="title">
+    <div style="position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border: 2px solid rgba(97, 243, 147, 0.08); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -40px; left: -40px; width: 150px; height: 150px; border: 2px solid rgba(10, 22, 40, 0.05); border-radius: 50%; pointer-events: none;"></div>
+
+    <div style="position: relative; z-index: 1;">
+        <div class="logo">
+            <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 52px;">
+        </div>
+        <h1>SafeSense: CV Fraud Analysis</h1>
+        <p class="subtitle">Autonomous candidate screening for new hires</p>
+        <div style="margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <div style="width: 8px; height: 8px; background: #61F393; border-radius: 50;"></div>
+            <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">AI-Powered Identity Verification</span>
+        </div>
+    </div>
+    <div class="slide-number">1</div>
+</section>
+
+<!-- Slide 2: The Problem -->
+<section class="slide" data-slide-id="the-problem">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="badge badge-danger" style="margin-bottom: 20px;">The Blind Spot</span>
+        <h2 style="font-size: 2.4rem; margin-bottom: 50px;">The resume you <span class="danger">can't trust</span></h2>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 50px;">
+            <div class="stat-card">
+                <div class="stat-number danger">85%</div>
+                <div class="stat-label">of resumes contain misrepresentations</div>
+                <div class="stat-source">HireRight Employment Screening</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number danger">1 in 4</div>
+                <div class="stat-label">candidate profiles will be fake by 2028</div>
+                <div class="stat-source">Gartner</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number danger">$4.9M</div>
+                <div class="stat-label">average cost when a malicious insider breaches</div>
+                <div class="stat-source">IBM Cost of a Data Breach 2024</div>
+            </div>
+        </div>
+
+        <p style="font-size: 1.25rem; color: var(--text-primary);">
+            Your next hire may not be <strong>who they claim to be.</strong>
+        </p>
+    </div>
+    <div class="slide-number">2</div>
+</section>
+
+<!-- Slide 3: Meet SafeSense -->
+<section class="slide" data-slide-id="meet-safesense">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="badge" style="margin-bottom: 20px;">The Platform</span>
+        <h2 style="font-size: 2.4rem; margin-bottom: 12px;">Meet <span class="accent">SafeSense</span></h2>
+        <p class="subtitle" style="margin-bottom: 50px;">AI-powered autonomous analysis for comprehensive candidate investigation</p>
+
+        <div style="background: white; border-radius: 20px; padding: 40px; box-shadow: 0 8px 40px rgba(10,22,40,0.08); max-width: 800px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="#61F393" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 style="margin: 0 0 4px; font-size: 1rem;">CV & Resume Parsing</h3>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">PDF, DOCX, and OCR for scanned documents — structured into verified data fields</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#61F393" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 style="margin: 0 0 4px; font-size: 1rem;">Multi-Source Cross-Reference</h3>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">CV vs LinkedIn vs enrichment data — identifies discrepancies and anomalies</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke="#61F393" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 style="margin: 0 0 4px; font-size: 1rem;">Secure Execution</h3>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Docker-isolated containers ensure analysis runs in a fully sandboxed environment</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="#61F393" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 style="margin: 0 0 4px; font-size: 1rem;">Real-Time Chat Interface</h3>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Interactive investigation with streaming AI responses and file generation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">3</div>
+</section>
+
+<!-- Slide 4: How It Works -->
+<section class="slide" data-slide-id="how-it-works">
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+        <span class="badge" style="margin-bottom: 20px;">The Workflow</span>
+        <h2 style="font-size: 2.4rem; margin-bottom: 12px;">How CV Fraud Analysis <span class="accent">works</span></h2>
+        <p class="subtitle" style="margin-bottom: 50px;">From upload to actionable risk report in minutes</p>
+
+        <div class="workflow-pipeline">
+            <div class="workflow-step">
+                <div class="workflow-step-number">1</div>
+                <div class="workflow-step-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Upload CV</h3>
+                <p>PDF, DOCX, or scanned resume + LinkedIn URL + enrichment data</p>
+            </div>
+            <div class="workflow-connector">
+                <svg width="40" height="24" viewBox="0 0 40 24" fill="none"><path d="M0 12h36M30 6l6 6-6 6" stroke="#61F393" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="workflow-step">
+                <div class="workflow-step-number">2</div>
+                <div class="workflow-step-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" stroke="#0a1628" stroke-width="2"/></svg>
+                </div>
+                <h3>Parse & Extract</h3>
+                <p>AI extracts structured data: name, history, education, skills, contacts</p>
+            </div>
+            <div class="workflow-connector">
+                <svg width="40" height="24" viewBox="0 0 40 24" fill="none"><path d="M0 12h36M30 6l6 6-6 6" stroke="#61F393" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="workflow-step">
+                <div class="workflow-step-number">3</div>
+                <div class="workflow-step-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Cross-Reference</h3>
+                <p>Three-way comparison: CV vs LinkedIn vs enrichment vendors</p>
+            </div>
+            <div class="workflow-connector">
+                <svg width="40" height="24" viewBox="0 0 40 24" fill="none"><path d="M0 12h36M30 6l6 6-6 6" stroke="#61F393" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="workflow-step">
+                <div class="workflow-step-number">4</div>
+                <div class="workflow-step-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="#0a1628" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Risk Report</h3>
+                <p>Scored assessment with findings, recommendations, and explainability</p>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">4</div>
+</section>
+
+<!-- Slide 5: Data Sources -->
+<section class="slide" data-slide-id="data-sources">
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+        <span class="badge" style="margin-bottom: 20px;">Intelligence Layer</span>
+        <h2 style="font-size: 2.4rem; margin-bottom: 12px;">Multi-source <span class="accent">intelligence</span></h2>
+        <p class="subtitle" style="margin-bottom: 44px;">Every data point cross-referenced for consistency and authenticity</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+            <!-- Source 1: CV -->
+            <div class="source-card">
+                <div class="source-icon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3 style="font-size: 1.15rem; margin: 0 0 8px;">CV / Resume</h3>
+                <ul class="source-list">
+                    <li>PDF and DOCX parsing</li>
+                    <li>OCR for scanned documents</li>
+                    <li>Employment history extraction</li>
+                    <li>Education verification</li>
+                    <li>Skills inventory</li>
+                    <li>Contact information</li>
+                </ul>
+            </div>
+
+            <!-- Source 2: LinkedIn -->
+            <div class="source-card">
+                <div class="source-icon" style="background: linear-gradient(135deg, #0077B5, #005e94);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3 style="font-size: 1.15rem; margin: 0 0 8px;">LinkedIn Profile</h3>
+                <ul class="source-list">
+                    <li>Work experience timeline</li>
+                    <li>Education records</li>
+                    <li>Skills & endorsements</li>
+                    <li>Connections depth</li>
+                    <li>Profile completeness</li>
+                    <li>Account age & activity</li>
+                </ul>
+            </div>
+
+            <!-- Source 3: Enrichment -->
+            <div class="source-card">
+                <div class="source-icon" style="background: linear-gradient(135deg, #61F393, #16a34a);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3 style="font-size: 1.15rem; margin: 0 0 8px;">Vendor Enrichment</h3>
+                <ul class="source-list">
+                    <li>Fraud risk scoring</li>
+                    <li>Email & phone validation</li>
+                    <li>Identity verification</li>
+                    <li>Trust & behavioral signals</li>
+                    <li>Person data enrichment</li>
+                    <li>Dark web exposure checks</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 36px; padding: 16px 28px; background: var(--text-primary); border-radius: 12px; display: inline-block;">
+            <p style="margin: 0; font-size: 1rem; color: white; font-weight: 600;">
+                Three-way comparison identifies discrepancies invisible to any single source
+            </p>
+        </div>
+    </div>
+    <div class="slide-number">5</div>
+</section>
+
+<!-- Slide 6: 8 Detectors -->
+<section class="slide" data-slide-id="eight-detectors">
+    <div style="max-width: 1050px; margin: 0 auto; text-align: center;">
+        <span class="badge" style="margin-bottom: 20px;">Detection Engine</span>
+        <h2 style="font-size: 2.4rem; margin-bottom: 12px;">8 specialized <span class="accent">fraud detectors</span></h2>
+        <p class="subtitle" style="margin-bottom: 36px;">Each candidate is scored 0-5 across every dimension</p>
+
+        <div class="detector-grid">
+            <div class="detector-card">
+                <div class="detector-icon" style="background: #FEE2E2; color: #DC2626;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <h4>Threat Intelligence</h4>
+                <p>IP reputation, fraud blacklists, dark web exposure</p>
+            </div>
+            <div class="detector-card">
+                <div class="detector-icon" style="background: #E0E7FF; color: #4338CA;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h4>Device Fingerprint</h4>
+                <p>Browser consistency, emulator detection, hardware anomalies</p>
+            </div>
+            <div class="detector-card">
+                <div class="detector-icon" style="background: #DBEAFE; color: #1D4ED8;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <h4>Online Presence</h4>
+                <p>LinkedIn age, social activity, professional platform engagement</p>
+            </div>
+            <div class="detector-card">
+                <div class="detector-icon" style="background: #FEF3C7; color: #B45309;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h4>Cross-Reference Integrity</h4>
+                <p>CV vs LinkedIn vs application data for employment, titles, education</p>
+            </div>
+            <div class="detector-card">
+                <div class="detector-icon" style="background: #D1FAE5; color: #065F46;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <h4>Contact Authenticity</h4>
+                <p>Phone validity, carrier type, email domain reputation</p>
+            </div>
+            <div class="detector-card">
+                <div class="detector-icon" style="background: #FCE7F3; color: #BE185D;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h4>Document Integrity</h4>
+                <p>CV metadata, editing patterns, template fingerprinting</p>
+            </div>
+            <div class="detector-card">
+                <div class="detector-icon" style="background: #ECFDF5; color: #047857;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="currentColor" stroke-width="2"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <h4>Geographic Consistency</h4>
+                <p>IP location vs claimed location, timezone behavior, career plausibility</p>
+            </div>
+            <div class="detector-card">
+                <div class="detector-icon" style="background: #EDE9FE; color: #5B21B6;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h4>Network Depth</h4>
+                <p>Connection quality, endorsement patterns, social graph centrality</p>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">6</div>
+</section>
+
+<!-- Slide 7: Risk Scoring -->
+<section class="slide" data-slide-id="risk-scoring">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="badge" style="margin-bottom: 20px;">Scoring</span>
+        <h2 style="font-size: 2.4rem; margin-bottom: 12px;">Clear <span class="accent">risk verdicts</span></h2>
+        <p class="subtitle" style="margin-bottom: 50px;">Every candidate receives a scored assessment with actionable recommendations</p>
+
+        <!-- Risk Meter -->
+        <div class="risk-meter-container">
+            <div class="risk-meter">
+                <div class="risk-zone risk-low">
+                    <span class="risk-zone-label">LOW</span>
+                    <span class="risk-zone-range">0 – 33</span>
+                </div>
+                <div class="risk-zone risk-medium">
+                    <span class="risk-zone-label">MEDIUM</span>
+                    <span class="risk-zone-range">34 – 66</span>
+                </div>
+                <div class="risk-zone risk-high">
+                    <span class="risk-zone-label">HIGH</span>
+                    <span class="risk-zone-range">67 – 100</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px;">
+            <div class="recommendation-card" style="border-top: 3px solid #22c55e;">
+                <div style="width: 40px; height: 40px; background: #DCFCE7; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="#16a34a" stroke-width="2"/></svg>
+                </div>
+                <h3 style="margin: 0 0 8px; font-size: 1rem; color: #16a34a;">Proceed</h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">Verified candidate. Proceed with standard onboarding process.</p>
+            </div>
+            <div class="recommendation-card" style="border-top: 3px solid #F59E0B;">
+                <div style="width: 40px; height: 40px; background: #FEF3C7; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 9v2m0 4h.01M12 3l9.5 16.5H2.5L12 3z" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3 style="margin: 0 0 8px; font-size: 1rem; color: #D97706;">Enhanced Verification</h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">Request government ID, verify employment history, conduct video interview.</p>
+            </div>
+            <div class="recommendation-card" style="border-top: 3px solid #EF4444;">
+                <div style="width: 40px; height: 40px; background: #FEE2E2; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" stroke="#DC2626" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <h3 style="margin: 0 0 8px; font-size: 1rem; color: #DC2626;">Do Not Proceed</h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">Strong fraud or identity theft indicators. Do not advance this candidate.</p>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">7</div>
+</section>
+
+<!-- Slide 8: Sample Analysis -->
+<section class="slide" data-slide-id="sample-analysis">
+    <div style="max-width: 1000px; margin: 0 auto;">
+        <div class="text-center" style="margin-bottom: 36px;">
+            <span class="badge badge-danger" style="margin-bottom: 20px;">Live Analysis</span>
+            <h2 style="font-size: 2.4rem; margin-bottom: 8px;">A candidate <span class="danger">under review</span></h2>
+            <p class="subtitle">SafeSense detector scores and findings for a flagged candidate</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+            <!-- Left: Detector Scores -->
+            <div style="background: white; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                    <h3 style="margin: 0; font-size: 1.1rem;">Detector Scores</h3>
+                    <span class="badge badge-danger" style="font-size: 0.7rem;">MEDIUM RISK</span>
+                </div>
+
+                <div class="score-row">
+                    <span class="score-label">Threat Intelligence</span>
+                    <div class="score-bar"><div class="score-fill score-low" style="width: 20%;"></div></div>
+                    <span class="score-value">1</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">Device Fingerprint</span>
+                    <div class="score-bar"><div class="score-fill score-low" style="width: 0%;"></div></div>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">Online Presence</span>
+                    <div class="score-bar"><div class="score-fill score-medium" style="width: 60%;"></div></div>
+                    <span class="score-value">3</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">Cross-Reference</span>
+                    <div class="score-bar"><div class="score-fill score-low" style="width: 0%;"></div></div>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">Contact Authenticity</span>
+                    <div class="score-bar"><div class="score-fill score-medium" style="width: 60%;"></div></div>
+                    <span class="score-value">3</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">Document Integrity</span>
+                    <div class="score-bar"><div class="score-fill score-low" style="width: 20%;"></div></div>
+                    <span class="score-value">1</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">Geographic Consistency</span>
+                    <div class="score-bar"><div class="score-fill score-low" style="width: 0%;"></div></div>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">Network Depth</span>
+                    <div class="score-bar"><div class="score-fill score-high" style="width: 80%;"></div></div>
+                    <span class="score-value">4</span>
+                </div>
+            </div>
+
+            <!-- Right: Findings -->
+            <div style="background: white; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                <h3 style="margin: 0 0 20px; font-size: 1.1rem;">Key Findings</h3>
+
+                <div class="finding-item finding-warning">
+                    <div class="finding-dot" style="background: #F59E0B;"></div>
+                    <div>
+                        <strong>Thin professional network</strong>
+                        <p>LinkedIn connections appear shallow with minimal endorsement depth and limited interaction history</p>
+                    </div>
+                </div>
+                <div class="finding-item finding-warning">
+                    <div class="finding-dot" style="background: #F59E0B;"></div>
+                    <div>
+                        <strong>Contact channel concerns</strong>
+                        <p>Phone number associated with VoIP service; email domain registered recently</p>
+                    </div>
+                </div>
+                <div class="finding-item finding-warning">
+                    <div class="finding-dot" style="background: #F59E0B;"></div>
+                    <div>
+                        <strong>Limited online footprint</strong>
+                        <p>Professional platform presence is sparse relative to claimed experience level</p>
+                    </div>
+                </div>
+                <div class="finding-item finding-ok">
+                    <div class="finding-dot" style="background: #22c55e;"></div>
+                    <div>
+                        <strong>Document integrity verified</strong>
+                        <p>Resume metadata and formatting consistent with legitimate document creation</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; padding: 14px 18px; background: #FEF3C7; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 0.85rem; color: #92400E; font-weight: 600;">
+                        Recommendation: Requires enhanced verification before proceeding
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">8</div>
+</section>
+
+<!-- Slide 9: Batch Reporting -->
+<section class="slide" data-slide-id="batch-reporting">
+    <div style="max-width: 950px; margin: 0 auto; text-align: center;">
+        <span class="badge" style="margin-bottom: 20px;">Reporting</span>
+        <h2 style="font-size: 2.4rem; margin-bottom: 12px;">Professional <span class="accent">fraud reports</span></h2>
+        <p class="subtitle" style="margin-bottom: 44px;">Batch processing with explainable, client-ready outputs</p>
+
+        <!-- Report Structure -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px;">
+            <div class="report-page">
+                <div class="report-page-header">Page 1</div>
+                <div class="report-page-body">
+                    <h4 style="margin: 0 0 12px; font-size: 0.95rem;">Overview</h4>
+                    <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 12px;">
+                        <span class="mini-badge" style="background: #FEE2E2; color: #DC2626;">3 High</span>
+                        <span class="mini-badge" style="background: #FEF3C7; color: #D97706;">5 Medium</span>
+                        <span class="mini-badge" style="background: #DCFCE7; color: #16a34a;">12 Low</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">
+                        Risk distribution summary<br>
+                        Flagged candidates table<br>
+                        Total resumes reviewed
+                    </div>
+                </div>
+            </div>
+            <div class="report-page">
+                <div class="report-page-header">Page 2</div>
+                <div class="report-page-body">
+                    <h4 style="margin: 0 0 12px; font-size: 0.95rem;">Detection Categories</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 12px;">
+                        <div class="mini-detector">Threat Intel</div>
+                        <div class="mini-detector">Device FP</div>
+                        <div class="mini-detector">Online</div>
+                        <div class="mini-detector">Cross-Ref</div>
+                        <div class="mini-detector">Contact</div>
+                        <div class="mini-detector">Document</div>
+                        <div class="mini-detector">Geo</div>
+                        <div class="mini-detector">Network</div>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">
+                        What each detector checks<br>
+                        Score interpretation guide
+                    </div>
+                </div>
+            </div>
+            <div class="report-page">
+                <div class="report-page-header">Per Candidate</div>
+                <div class="report-page-body">
+                    <h4 style="margin: 0 0 12px; font-size: 0.95rem;">Individual Assessment</h4>
+                    <div style="margin-bottom: 12px;">
+                        <div class="mini-score-bar"><div style="width: 60%; height: 100%; background: #F59E0B; border-radius: 3px;"></div></div>
+                        <div class="mini-score-bar"><div style="width: 20%; height: 100%; background: #22c55e; border-radius: 3px;"></div></div>
+                        <div class="mini-score-bar"><div style="width: 80%; height: 100%; background: #EF4444; border-radius: 3px;"></div></div>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">
+                        Detector score cards<br>
+                        Risk summary<br>
+                        Actionable recommendations
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Points -->
+        <div style="background: var(--text-primary); border-radius: 16px; padding: 24px 36px; color: white;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: left;">
+                <div>
+                    <p style="font-size: 0.95rem; font-weight: 600; margin: 0 0 4px; color: white;">Batch Processing</p>
+                    <p style="font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0;">Up to 20 candidates analyzed in parallel using dedicated subagents</p>
+                </div>
+                <div>
+                    <p style="font-size: 0.95rem; font-weight: 600; margin: 0 0 4px; color: white;">IP-Protected</p>
+                    <p style="font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0;">Reports show findings, not methodology — safe for client delivery</p>
+                </div>
+                <div>
+                    <p style="font-size: 0.95rem; font-weight: 600; margin: 0 0 4px; color: white;">Version Control</p>
+                    <p style="font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0;">Full revision history with change tracking and published releases</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">9</div>
+</section>
+
+<!-- Slide 10: CTA -->
+<section class="slide" data-slide-id="cta" style="background: #F0F4F8;">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 48px; margin-bottom: 40px;">
+
+        <h2 style="font-size: 2.8rem; margin-bottom: 12px;">Start screening your <span class="accent">pipeline</span></h2>
+        <p class="subtitle" style="margin-bottom: 40px;">See what SafeSense reveals about your candidates</p>
+
+        <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: 0 12px 40px rgba(10,22,40,0.1); max-width: 600px; margin: 0 auto 36px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
+                <div>
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">8</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Fraud Detectors</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">20+</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Parallel Analyses</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">3</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Data Sources</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://getclarity.ai" style="display: inline-flex; align-items: center; gap: 12px; background: #0a1628; color: white; padding: 18px 40px; border-radius: 50px; font-size: 1.2rem; font-weight: 700; text-decoration: none; box-shadow: 0 8px 30px rgba(10,22,40,0.2);">
+            <span>Request a Demo</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <p style="margin-top: 30px; color: var(--text-secondary); font-size: 0.95rem;">
+            michael@getclarity.ai
+        </p>
+    </div>
+    <div class="slide-number">10</div>
+</section>
+
+<!-- Slide Indicator -->
+<div id="slide-indicator"></div>
+
+<!-- Navigation Hint -->
+<div id="nav-hint"><kbd>←</kbd> <kbd>→</kbd> or <kbd>↑</kbd> <kbd>↓</kbd> to navigate</div>
+
+<!-- Navigation -->
+<script src="../../shared/js/navigation.js"></script>
+
+<!-- Narration Engine (uncomment when narration is ready) -->
+<!--
+<link rel="stylesheet" href="../../shared/css/narration-engine.css">
+<script src="narration-data.js"></script>
+<script src="../../shared/js/narration-engine.js"></script>
+<script>
+new NarrationEngine({
+    data: window.NarrationData,
+    slideSelector: '.slide',
+    slideIdAttribute: 'data-slide-id'
+});
+</script>
+-->
+
+<!-- Developer Mode -->
+<script src="../../shared/js/dev-mode.js"></script>
+
+<!-- Version Badge -->
+<div id="version-badge" class="version-badge"></div>
+<script>
+document.getElementById('version-badge').textContent =
+    'v' + document.querySelector('meta[name="presentation-version"]').content;
+</script>
+
+</body>
+</html>
