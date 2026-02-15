@@ -235,6 +235,10 @@
     vertical-align: middle;
   }
 
+  .card ul.no-dots li::before {
+    display: none;
+  }
+
   /* ========== ARCHITECTURE DIAGRAM ========== */
   /* ========== UNIFIED ARCHITECTURE DIAGRAM ========== */
   .arch-diagram {
@@ -1433,7 +1437,7 @@
       <!-- LEFT: Losing path -->
       <div class="card" style="border-left:4px solid #CBD5E1; padding:20px; opacity:0.75;">
         <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#94A3B8; margin-bottom:12px;">Pre-Hire Only</div>
-        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
+        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;" class="no-dots">
           <li style="font-size:13px; color:var(--text-secondary);">Competes with Tofu, point solutions</li>
           <li style="font-size:13px; color:var(--text-secondary);">HR budget (smaller)</li>
           <li style="font-size:13px; color:var(--text-secondary);">Saturated market</li>
@@ -1443,9 +1447,9 @@
       <!-- RIGHT: Winning path -->
       <div class="card" style="border-left:4px solid var(--accent); padding:20px; background:rgba(97,243,147,0.03);">
         <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--accent); margin-bottom:12px;">Full Identity Lifecycle</div>
-        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
+        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;" class="no-dots">
           <li style="font-size:13px; color:var(--text-primary); font-weight:600;">Security / CISO budget (larger)</li>
-          <li style="font-size:13px; color:var(--text-primary); font-weight:600;">One vendor for hire-to-exit</li>
+          <li style="font-size:13px; color:var(--text-primary); font-weight:600;">One vendor for the full Joiner-Mover-Leaver lifecycle</li>
           <li style="font-size:13px; color:var(--text-primary); font-weight:600;">Enterprise orchestration play</li>
           <li style="font-size:13px; color:var(--text-primary); font-weight:600;">Unique differentiation — no one else does this</li>
           <li style="font-size:13px; color:var(--text-primary); font-weight:600;">Aligns with cybersecurity consolidation trend</li>
@@ -1465,7 +1469,7 @@
       </div>
       <div style="background:white; border:1px solid #E2E8F0; border-radius:8px; padding:10px 12px;">
         <img src="../../shared/logos/affirm.svg" alt="Affirm" style="height:18px; margin-bottom:4px; display:block;">
-        <div style="font-size:11px; color:var(--text-secondary);">Full scope from day one</div>
+        <div style="font-size:11px; color:var(--text-secondary);">Post-hire expansion re-engaged a stalling deal</div>
       </div>
       <div style="background:white; border:1px solid #E2E8F0; border-radius:8px; padding:10px 12px;">
         <img src="../../shared/logos/deel.svg" alt="Deel" style="height:18px; margin-bottom:4px; display:block;">
