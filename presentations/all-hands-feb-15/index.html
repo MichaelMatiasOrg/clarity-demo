@@ -235,239 +235,238 @@
   }
 
   /* ========== ARCHITECTURE DIAGRAM ========== */
+  /* ========== UNIFIED ARCHITECTURE DIAGRAM ========== */
   .arch-diagram {
     width: 100%;
-    max-width: 1000px;
-    margin-top: 16px;
-    position: relative;
+    max-width: 960px;
+    margin-top: 12px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+    box-shadow: 0 4px 24px rgba(10, 22, 40, 0.08);
   }
 
   .arch-layer {
-    border-radius: 16px;
-    padding: 20px 24px;
-    position: relative;
-    z-index: 2;
+    padding: 20px 28px;
   }
 
   .arch-layer.top {
-    background: var(--bg-card);
-    border: 1.5px solid var(--border);
-    box-shadow: 0 2px 12px rgba(10, 22, 40, 0.04);
+    background: #fff;
   }
 
   .arch-layer.mid {
-    background: var(--bg-card);
-    border: 1.5px solid var(--border);
-    box-shadow: 0 4px 20px rgba(10, 22, 40, 0.06);
+    background: #FAFBFC;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 
   .arch-layer.bottom {
     background: var(--text-primary);
-    border: 2px solid transparent;
     color: #fff;
-    box-shadow:
-      0 0 0 1px rgba(97, 243, 147, 0.3),
-      0 8px 32px rgba(10, 22, 40, 0.25),
-      0 0 60px rgba(97, 243, 147, 0.08);
-    padding: 24px 28px;
+    padding: 22px 28px;
   }
 
   .arch-label {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     color: var(--text-secondary);
+    text-align: center;
   }
 
   .arch-layer.bottom .arch-label {
     color: var(--accent);
-    font-size: 12px;
     letter-spacing: 2px;
   }
 
-  .arch-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .arch-item {
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .arch-layer.bottom .arch-item {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.12);
-    color: #CBD5E1;
-    font-size: 12px;
-  }
-
-  .arch-item.highlight {
-    background: var(--accent);
-    color: var(--text-primary);
-    border-color: var(--accent);
-    font-weight: 700;
-  }
-
-  .arch-layer.bottom .arch-item.highlight {
-    background: var(--accent);
-    color: var(--text-primary);
-    border-color: var(--accent);
-    box-shadow: 0 0 16px rgba(97, 243, 147, 0.3);
-  }
-
-  /* Flow connectors */
-  .arch-flow {
+  /* Thin flow divider between layers */
+  .arch-divider {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6px;
-    padding: 6px 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .arch-flow-line {
-    width: 2px;
+    gap: 8px;
+    padding: 0;
+    background: var(--bg-primary);
     height: 20px;
-    background: linear-gradient(to bottom, var(--border), var(--accent));
-    border-radius: 1px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 
-  .arch-flow-dot {
-    width: 6px;
-    height: 6px;
+  .arch-divider.dark {
+    background: rgba(10, 22, 40, 0.95);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: none;
+  }
+
+  .arch-divider-dot {
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--accent);
+    opacity: 0.5;
   }
 
-  .slide.active .arch-flow-dot {
+  .slide.active .arch-divider-dot {
     animation: flowPulse 2s ease-in-out infinite;
   }
 
-  .arch-flow-dot:nth-child(1) { animation-delay: 0s; }
-  .arch-flow-dot:nth-child(3) { animation-delay: 0.3s; }
-  .arch-flow-dot:nth-child(5) { animation-delay: 0.6s; }
+  .arch-divider-dot:nth-child(1) { animation-delay: 0s; }
+  .arch-divider-dot:nth-child(2) { animation-delay: 0.25s; }
+  .arch-divider-dot:nth-child(3) { animation-delay: 0.5s; }
 
-  /* Engine interior */
-  .engine-interior {
+  .arch-divider-line {
+    width: 1px;
+    height: 10px;
+    background: var(--accent);
+    opacity: 0.3;
+  }
+
+  /* ========== APP LAYER LOGOS ========== */
+  .app-logo-row {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
     align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .app-logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .app-logo-item img {
+    height: 30px;
+    width: auto;
+    opacity: 0.55;
+    filter: grayscale(30%);
+  }
+
+  .app-logo-item span {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .app-own-products {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .app-own-pill {
+    background: var(--accent);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* ========== SIGNAL GRID ========== */
+  .signal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .signal-col {
+    text-align: center;
+  }
+
+  .signal-col-header {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+  }
+
+  .signal-col-header.accent {
+    color: var(--accent);
+  }
+
+  .signal-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .signal-card .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #CBD5E1;
+    flex-shrink: 0;
+  }
+
+  .signal-card.ai {
+    background: #E8FFF0;
+    border-color: rgba(97, 243, 147, 0.4);
+    border-left: 3px solid var(--accent);
+    font-weight: 600;
+  }
+
+  .signal-card.ai .dot {
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(97, 243, 147, 0.4);
+  }
+
+  /* ========== ENGINE (horizontal flow) ========== */
+  .engine-flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     width: 100%;
   }
 
-  .engine-modules {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+  .engine-caps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    flex: 1;
   }
 
-  .engine-module {
+  .engine-cap {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 6px;
-    padding: 6px 10px;
+    padding: 5px 10px;
     font-size: 11px;
     font-weight: 500;
     color: #94A3B8;
-    text-align: center;
+    white-space: nowrap;
   }
 
-  .engine-core {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .engine-core-ring {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid rgba(97, 243, 147, 0.3);
+  .engine-arrow-connector {
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    flex-shrink: 0;
   }
 
-  .slide.active .engine-core-ring {
-    animation: engineGlow 3s ease-in-out infinite;
-  }
-
-  .engine-core-inner {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: rgba(97, 243, 147, 0.1);
-    border: 1.5px solid rgba(97, 243, 147, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent);
-    text-align: center;
-    line-height: 1.3;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-
-  .engine-output {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-  }
-
-  .engine-score {
-    background: var(--accent);
-    color: var(--text-primary);
-    border-radius: 10px;
-    padding: 12px 20px;
-    font-weight: 700;
-    font-size: 14px;
-    box-shadow: 0 0 20px rgba(97, 243, 147, 0.25);
-  }
-
-  .engine-score-low {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
-    padding: 12px 20px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #94A3B8;
-  }
-
-  .engine-arrow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    color: rgba(97, 243, 147, 0.5);
-    font-size: 20px;
-  }
-
-  .engine-arrow-line {
-    width: 32px;
+  .engine-arrow-bar {
+    width: 24px;
     height: 2px;
     background: rgba(97, 243, 147, 0.3);
-    border-radius: 1px;
     position: relative;
     overflow: hidden;
   }
 
-  .slide.active .engine-arrow-line::after {
+  .slide.active .engine-arrow-bar::after {
     content: "";
     position: absolute;
     top: 0;
@@ -478,10 +477,78 @@
     animation: arrowFlow 1.5s ease-in-out infinite;
   }
 
+  .engine-arrow-head {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid rgba(97, 243, 147, 0.4);
+  }
+
+  .engine-core-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid rgba(97, 243, 147, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .slide.active .engine-core-ring {
+    animation: engineGlow 3s ease-in-out infinite;
+  }
+
+  .engine-core-inner {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(97, 243, 147, 0.1);
+    border: 1.5px solid rgba(97, 243, 147, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .engine-outputs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .engine-out-high {
+    background: var(--accent);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 12px;
+    box-shadow: 0 0 16px rgba(97, 243, 147, 0.2);
+  }
+
+  .engine-out-low {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 12px;
+    color: #94A3B8;
+  }
+
   /* Architecture animations */
   @keyframes engineGlow {
-    0%, 100% { box-shadow: 0 0 20px rgba(97, 243, 147, 0.1); border-color: rgba(97, 243, 147, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(97, 243, 147, 0.2); border-color: rgba(97, 243, 147, 0.5); }
+    0%, 100% { box-shadow: 0 0 16px rgba(97, 243, 147, 0.1); border-color: rgba(97, 243, 147, 0.3); }
+    50% { box-shadow: 0 0 32px rgba(97, 243, 147, 0.2); border-color: rgba(97, 243, 147, 0.5); }
   }
 
   @keyframes flowPulse {
@@ -493,112 +560,6 @@
     0% { left: -50%; }
     100% { left: 150%; }
   }
-
-  @keyframes flowDown {
-    0% { transform: translateY(-4px); opacity: 0.2; }
-    50% { opacity: 1; }
-    100% { transform: translateY(4px); opacity: 0.2; }
-  }
-
-  /* ========== APP LAYER LOGOS ========== */
-  .app-logo-row {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-
-  .app-logo-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .app-logo-item img {
-    height: 28px;
-    width: auto;
-    opacity: 0.6;
-    filter: grayscale(40%);
-    transition: opacity 0.3s;
-  }
-
-  .app-logo-item span {
-    font-size: 9px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* ========== SIGNAL CARDS ========== */
-  .signal-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 7px 12px;
-    font-size: 13px;
-    font-weight: 500;
-    width: fit-content;
-  }
-
-  .signal-item .signal-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--text-secondary);
-    flex-shrink: 0;
-    opacity: 0.5;
-  }
-
-  .signal-item.ai-powered {
-    background: #E8FFF0;
-    border-color: rgba(97, 243, 147, 0.4);
-    border-left: 3px solid var(--accent);
-    font-weight: 600;
-  }
-
-  .signal-item.ai-powered .signal-dot {
-    background: var(--accent);
-    opacity: 1;
-    box-shadow: 0 0 6px rgba(97, 243, 147, 0.5);
-  }
-
-  /* Signal flow arrows */
-  .signal-flow-arrows {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    padding: 4px 0 0;
-  }
-
-  .signal-flow-arrow {
-    width: 2px;
-    height: 14px;
-    background: linear-gradient(to bottom, var(--border), var(--accent));
-    border-radius: 1px;
-    position: relative;
-  }
-
-  .slide.active .signal-flow-arrow::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: -2px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: flowPulse 2s ease-in-out infinite;
-  }
-
-  .signal-flow-arrow:nth-child(1)::after { animation-delay: 0s; }
-  .signal-flow-arrow:nth-child(2)::after { animation-delay: 0.2s; }
-  .signal-flow-arrow:nth-child(3)::after { animation-delay: 0.4s; }
 
   /* ========== STAT ========== */
   .stat {
@@ -890,20 +851,31 @@
   </div>
 </div>
 
-<!-- SLIDE 4: Deel - Timeline (LIGHT) -->
+<!-- SLIDE 4: Deel - Integration Status (LIGHT) -->
 <div class="slide" data-slide="4">
   <div class="slide-content">
     <div class="section-label anim">Section 01</div>
-    <h2 class="anim d1">Deel Timeline and Milestones</h2>
-    <div class="placeholder anim d2" style="margin-top:32px; padding:48px 24px;">
-      Timeline details to be added — waiting on update from Neev
+    <div class="anim d1" style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
+      <h2 style="margin:0;">Deel Integration Status</h2>
+      <img src="../../shared/logos/deel.svg" alt="Deel" style="height:30px;">
     </div>
-    <div class="card anim d3" style="margin-top:20px;">
-      <h4>Next Steps</h4>
-      <ul>
-        <li>Key milestones and deliverables TBD</li>
-        <li>Expand engagement based on initial results</li>
-      </ul>
+    <p class="subtitle anim d2" style="margin-bottom:28px;">Joint teams actively building together — real momentum with a clear path forward.</p>
+    <div class="card-grid cols-3 anim d3">
+      <div class="card" style="border-left: 3px solid var(--accent);">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:8px;">Status</div>
+        <h4 style="font-size:17px; margin-bottom:8px;">Integration In Progress</h4>
+        <p style="font-size:14px; line-height:1.6; color:var(--text-secondary);">Both teams working from a joint Slack canvas with micro-tasks tracked by both sides.</p>
+      </div>
+      <div class="card" style="border-left: 3px solid #F59E0B;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#F59E0B; margin-bottom:8px;">Blocker</div>
+        <h4 style="font-size:17px; margin-bottom:8px;">Deel Internal Compliance</h4>
+        <p style="font-size:14px; line-height:1.6; color:var(--text-secondary);">Waiting on Deel to resolve output mechanisms and data retention requirements.</p>
+      </div>
+      <div class="card" style="border-left: 3px solid #3B82F6;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#3B82F6; margin-bottom:8px;">Next Milestone</div>
+        <h4 style="font-size:17px; margin-bottom:8px;">1:1 with Deel TA Ops</h4>
+        <p style="font-size:14px; line-height:1.6; color:var(--text-secondary);">Neev meets with Colm from Deel's TA Ops team — <strong>Tuesday, Feb 18</strong>.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -1005,9 +977,9 @@
     <h2 class="anim d1" style="font-size:32px; margin-bottom:16px;">Three-Layer Architecture</h2>
     <div class="arch-diagram anim d2">
 
-      <!-- APPLICATION LAYER (Top — Integration Surface) -->
+      <!-- APPLICATION LAYER -->
       <div class="arch-layer top">
-        <div class="arch-label" style="color:var(--text-secondary);">Application Layer</div>
+        <div class="arch-label">Application Layer</div>
         <div class="app-logo-row">
           <div class="app-logo-item"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse"><span>ATS</span></div>
           <div class="app-logo-item"><img src="../../shared/logos/workday.svg" alt="Workday"><span>HRIS</span></div>
@@ -1016,91 +988,78 @@
           <div class="app-logo-item"><img src="../../shared/logos/splunk.svg" alt="Splunk"><span>SIEM</span></div>
           <div class="app-logo-item"><img src="../../shared/logos/zoom.svg" alt="Zoom"><span>Video</span></div>
         </div>
-        <div class="arch-items" style="justify-content:center;">
-          <div class="arch-item highlight">Video Call Bot</div>
-          <div class="arch-item highlight">IDV Experience</div>
+        <div class="app-own-products">
+          <div class="app-own-pill">Video Call Bot</div>
+          <div class="app-own-pill">IDV Experience</div>
         </div>
       </div>
 
-      <!-- Flow: App → Signals -->
-      <div class="arch-flow">
-        <div class="arch-flow-dot"></div>
-        <div class="arch-flow-line"></div>
-        <div class="arch-flow-dot"></div>
-        <div class="arch-flow-line"></div>
-        <div class="arch-flow-dot"></div>
+      <!-- Divider: App → Signals -->
+      <div class="arch-divider">
+        <div class="arch-divider-dot"></div>
+        <div class="arch-divider-line"></div>
+        <div class="arch-divider-dot"></div>
+        <div class="arch-divider-line"></div>
+        <div class="arch-divider-dot"></div>
       </div>
 
-      <!-- IDENTITY SIGNALS (Middle — Signal Collection) -->
+      <!-- IDENTITY SIGNALS -->
       <div class="arch-layer mid">
         <div class="arch-label">Identity Signals</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
-          <div>
-            <div style="font-size:10px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Candidate</div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div class="signal-item"><span class="signal-dot"></span>CV Analysis</div>
-              <div class="signal-item"><span class="signal-dot"></span>LinkedIn Profile</div>
-            </div>
+        <div class="signal-grid">
+          <div class="signal-col">
+            <div class="signal-col-header">Candidate</div>
+            <div class="signal-card"><span class="dot"></span>CV Analysis</div>
+            <div class="signal-card"><span class="dot"></span>LinkedIn Profile</div>
           </div>
-          <div>
-            <div style="font-size:10px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Shared — AI-Powered</div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div class="signal-item ai-powered"><span class="signal-dot"></span>Deepfake Detection</div>
-              <div class="signal-item ai-powered"><span class="signal-dot"></span>ID Document Verification</div>
-            </div>
+          <div class="signal-col">
+            <div class="signal-col-header accent">Shared — AI-Powered</div>
+            <div class="signal-card ai"><span class="dot"></span>Deepfake Detection</div>
+            <div class="signal-card ai"><span class="dot"></span>ID Document Verification</div>
           </div>
-          <div>
-            <div style="font-size:10px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Employee</div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div class="signal-item"><span class="signal-dot"></span>Organizational Context</div>
-              <div class="signal-item"><span class="signal-dot"></span>Security Questions</div>
-            </div>
+          <div class="signal-col">
+            <div class="signal-col-header">Employee</div>
+            <div class="signal-card"><span class="dot"></span>Organizational Context</div>
+            <div class="signal-card"><span class="dot"></span>Security Questions</div>
           </div>
-        </div>
-        <div class="signal-flow-arrows">
-          <div class="signal-flow-arrow"></div>
-          <div class="signal-flow-arrow"></div>
-          <div class="signal-flow-arrow"></div>
         </div>
       </div>
 
-      <!-- Flow: Signals → Engine -->
-      <div class="arch-flow">
-        <div class="arch-flow-dot"></div>
-        <div class="arch-flow-line" style="background:var(--accent);"></div>
-        <div class="arch-flow-dot"></div>
-        <div class="arch-flow-line" style="background:var(--accent);"></div>
-        <div class="arch-flow-dot"></div>
+      <!-- Divider: Signals → Engine -->
+      <div class="arch-divider dark">
+        <div class="arch-divider-dot"></div>
+        <div class="arch-divider-line"></div>
+        <div class="arch-divider-dot"></div>
+        <div class="arch-divider-line"></div>
+        <div class="arch-divider-dot"></div>
       </div>
 
-      <!-- CORE ENGINE (Bottom — The IP, the Hero) -->
+      <!-- CORE ENGINE -->
       <div class="arch-layer bottom">
         <div class="arch-label">Core Engine</div>
-        <div class="engine-interior">
-          <!-- Left: ML Modules -->
-          <div class="engine-modules">
-            <div class="engine-module">ML Models</div>
-            <div class="engine-module">Cross-Signal Correlation</div>
-            <div class="engine-module">Behavioral Analysis</div>
-            <div class="engine-module">Pattern Matching</div>
-            <div class="engine-module">Anomaly Detection</div>
-            <div class="engine-module">Identity Graphing</div>
+        <div class="engine-flow">
+          <div class="engine-caps">
+            <div class="engine-cap">ML Models</div>
+            <div class="engine-cap">Cross-Signal Correlation</div>
+            <div class="engine-cap">Behavioral Analysis</div>
+            <div class="engine-cap">Pattern Matching</div>
+            <div class="engine-cap">Anomaly Detection</div>
+            <div class="engine-cap">Identity Graphing</div>
           </div>
-
-          <!-- Center: Core Ring -->
-          <div class="engine-core">
-            <div class="engine-core-ring">
-              <div class="engine-core-inner">Risk<br>Analysis</div>
-            </div>
+          <div class="engine-arrow-connector">
+            <div class="engine-arrow-bar"></div>
+            <div class="engine-arrow-head"></div>
           </div>
-
-          <!-- Right: Output -->
-          <div class="engine-output">
-            <div class="engine-arrow">
-              <div class="engine-arrow-line"></div>
-            </div>
-            <div class="engine-score">High Risk</div>
-            <div class="engine-score-low">Low Risk</div>
+          <div class="engine-core-ring">
+            <div class="engine-core-inner">Risk<br>Analysis</div>
+          </div>
+          <div class="engine-arrow-connector">
+            <div class="engine-arrow-bar"></div>
+            <div class="engine-arrow-head"></div>
+          </div>
+          <div class="engine-outputs">
+            <div class="engine-out-high">High Risk</div>
+            <div class="engine-out-low">Low Risk</div>
           </div>
         </div>
       </div>
