@@ -1,0 +1,1070 @@
+<!--
+  @deck-type: sales-deck
+  @audience: CISOs, HR leaders, security teams
+  @author: Clarity
+  @created: 2026-02-15
+  @core-message: AI hiring fraud is an escalating threat — Clarity provides end-to-end protection
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarity — AI Hiring Fraud: Threats & Protection</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ========== VARIABLES ========== */
+:root {
+    --bg-primary: #F0F4F8;
+    --bg-card: #FFFFFF;
+    --text-primary: #0a1628;
+    --text-secondary: #64748B;
+    --accent: #61F393;
+    --accent-muted: #E8FFF0;
+    --border: #E2E8F0;
+    --danger: #EF4444;
+    --danger-muted: #FEE2E2;
+}
+
+/* ========== RESET & BASE ========== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ========== NAV BAR ========== */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: var(--text-primary);
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    z-index: 1000;
+}
+#navbar a { display: flex; align-items: center; text-decoration: none; }
+#navbar img { height: 28px; }
+
+/* ========== SLIDES ========== */
+.slide {
+    position: absolute;
+    inset: 0;
+    top: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 80px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--bg-primary);
+}
+
+.slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(97,243,147,0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(10,22,40,0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.slide-dark {
+    background: var(--text-primary) !important;
+    color: white;
+}
+
+.slide-dark::before {
+    background:
+        radial-gradient(circle at 30% 70%, rgba(97,243,147,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(97,243,147,0.03) 0%, transparent 50%);
+}
+
+/* ========== ANIMATIONS ========== */
+.anim {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: none;
+}
+
+.slide.active .anim {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+.slide.active .d1 { animation-delay: 0.1s; }
+.slide.active .d2 { animation-delay: 0.2s; }
+.slide.active .d3 { animation-delay: 0.3s; }
+.slide.active .d4 { animation-delay: 0.4s; }
+.slide.active .d5 { animation-delay: 0.5s; }
+.slide.active .d6 { animation-delay: 0.6s; }
+.slide.active .d7 { animation-delay: 0.7s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== TYPOGRAPHY ========== */
+.section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.accent { color: var(--accent); }
+.danger { color: var(--danger); }
+
+/* ========== CARDS ========== */
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* ========== NEWS CARDS ========== */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+}
+
+.news-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 28px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-align: left;
+}
+
+.news-card .outlet {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+}
+
+.news-card .headline {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.news-card .context {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ========== STAT CARDS ========== */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-align: center;
+}
+
+.stat-card .stat-number {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--danger);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-card .stat-desc {
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.stat-card .stat-source {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* ========== THREE COLUMN ========== */
+.three-col-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+}
+
+.col-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-align: left;
+}
+
+.col-card .col-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.col-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.col-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ========== FAILURE GAUGES ========== */
+.failure-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+}
+
+.failure-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.failure-card .gauge {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.failure-card .gauge svg {
+    transform: rotate(-90deg);
+    position: absolute;
+    inset: 0;
+}
+
+.failure-card .gauge-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 1;
+}
+
+.failure-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.failure-card p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.failure-card .stamp {
+    position: absolute;
+    top: 12px;
+    right: -28px;
+    background: var(--danger);
+    color: white;
+    padding: 4px 36px;
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transform: rotate(35deg);
+}
+
+/* ========== QUOTE ========== */
+.quote-block {
+    background: var(--text-primary);
+    border-radius: 16px;
+    padding: 36px 40px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    max-width: 1100px;
+}
+
+.quote-block .quote-photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(97,243,147,0.4);
+    flex-shrink: 0;
+}
+
+.quote-block .quote-text {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+    font-style: italic;
+    flex: 1;
+}
+
+.quote-block .quote-attr {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 12px;
+    font-style: normal;
+}
+
+/* ========== SPLIT CONTENT ========== */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1100px;
+}
+
+/* ========== VIDEO THUMBNAIL ========== */
+.video-thumb {
+    background: #111;
+    border-radius: 16px;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.2s ease;
+}
+
+.video-thumb:hover {
+    transform: scale(1.02);
+}
+
+.video-thumb .play-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.video-thumb .play-btn svg {
+    margin-left: 4px;
+}
+
+.video-thumb .vid-title {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* ========== SOLUTION ========== */
+.solution-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.solution-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.solution-step .step-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--accent-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.solution-step h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.solution-step p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ========== INTEGRATION ROWS ========== */
+.int-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.int-row:last-child { border-bottom: none; }
+
+.int-row-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.logo-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.logo-chip img {
+    height: 18px;
+    width: auto;
+}
+
+/* ========== CTA BUTTONS ========== */
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 36px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.cta-btn:hover { transform: scale(1.03); }
+
+.cta-btn-primary {
+    background: var(--accent);
+    color: var(--text-primary);
+}
+
+.cta-btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ========== DEMO FRAME ========== */
+.demo-frame {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(10,22,40,0.15);
+    border: 1px solid var(--border);
+}
+
+.demo-frame img {
+    width: 100%;
+    display: block;
+}
+
+/* ========== SLIDE COUNTER ========== */
+#slide-counter {
+    position: fixed;
+    bottom: 20px;
+    right: 32px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    z-index: 999;
+}
+
+/* ========== NAV HINT ========== */
+#nav-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    z-index: 999;
+    transition: opacity 0.5s ease;
+}
+#nav-hint kbd {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: inherit;
+    font-size: 0.65rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .slide { padding: 24px 20px; }
+    h2 { font-size: 1.6rem; }
+    .news-grid, .three-col-grid { grid-template-columns: 1fr; }
+    .stat-grid, .failure-grid { grid-template-columns: repeat(2, 1fr); }
+    .split-layout { grid-template-columns: 1fr; }
+    .quote-block { flex-direction: column; text-align: center; padding: 24px; }
+    .int-row-label { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV BAR ========== -->
+<nav id="navbar">
+    <a href="../../index.html">
+        <img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity">
+    </a>
+</nav>
+
+<!-- ===================== SLIDE 1: TITLE (DARK) ===================== -->
+<section class="slide slide-dark active" data-slide="1">
+    <!-- Decorative Clarity star -->
+    <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; opacity: 0.05;" viewBox="0 0 60 60" fill="none">
+        <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="white"/>
+        <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="white"/>
+        <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/>
+        <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/>
+    </svg>
+    <div style="text-align: center; position: relative; z-index: 1; max-width: 800px;">
+        <div class="anim section-label" style="color: rgba(255,255,255,0.5); letter-spacing: 3px;">Threat Briefing</div>
+        <h2 class="anim d1" style="font-size: 3rem; color: white; margin-bottom: 20px; line-height: 1.15;">AI Hiring Fraud: The Threat Your Organization Can't Ignore</h2>
+        <div class="anim d2" style="width: 60px; height: 3px; background: var(--accent); margin: 0 auto 20px; border-radius: 2px;"></div>
+        <p class="anim d3" style="font-size: 1.1rem; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 650px; margin: 0 auto 40px;">How deepfakes, synthetic identities, and state-sponsored operatives are infiltrating your hiring pipeline.</p>
+        <div class="anim d4" style="font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 1px;">
+            Prepared by Clarity &nbsp;|&nbsp; getclarity.ai &nbsp;|&nbsp; February 2026
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 2: NEWS HEADLINES ===================== -->
+<section class="slide" data-slide="2">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">Making Headlines</div>
+        <h2 class="anim d1">This threat is making <span class="accent">global news</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">Major media outlets are sounding the alarm. This isn't a vendor scare story.</p>
+        <div class="news-grid">
+            <div class="news-card anim d3">
+                <div class="outlet">BBC News</div>
+                <div class="headline">"Amazon blocks 1,800 job applications from suspected North Korean agents"</div>
+                <p class="context">Amazon's CSO Stephen Schmidt confirmed North Korean agents applied for remote IT jobs using fake identities and stolen credentials.</p>
+            </div>
+            <div class="news-card anim d4">
+                <div class="outlet">ABC News</div>
+                <div class="headline">"DOJ charges four North Koreans in IT worker scam"</div>
+                <p class="context">Posed as IT workers with stolen credentials, scammed US companies out of hundreds of thousands of dollars across multiple states.</p>
+            </div>
+            <div class="news-card anim d5">
+                <div class="outlet">CNN</div>
+                <div class="headline">"North Korean operatives using fake identities to secure remote tech jobs"</div>
+                <p class="context">Millions funneled to Kim Jong Un's weapons programs through fake remote workers placed in Western companies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 3: THREE ATTACK VECTORS ===================== -->
+<section class="slide" data-slide="3">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">The Threat Landscape</div>
+        <h2 class="anim d1">Three ways fraudsters exploit your hiring process</h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">Each vector is distinct, but sophisticated attackers combine all three.</p>
+        <div class="three-col-grid">
+            <div class="col-card anim d3">
+                <div class="col-number">1</div>
+                <h3>Deepfake Interviews</h3>
+                <p>AI-generated personas conducting fake video interviews. Real-time face swaps, synthetic voices, fabricated backgrounds. The person you're interviewing may not exist.</p>
+            </div>
+            <div class="col-card anim d4">
+                <div class="col-number">2</div>
+                <h3>Resume & Credential Fraud</h3>
+                <p>AI tools generating convincing fake resumes, fabricated work histories, and forged credentials. Traditional background checks can't catch synthetic identities.</p>
+            </div>
+            <div class="col-card anim d5">
+                <div class="col-number">3</div>
+                <h3>Identity Theft & Impersonation</h3>
+                <p>Stolen personal information used to pass background checks, onboarding, and verification. Real person's identity, fake applicant behind the screen.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 4: THE SCALE ===================== -->
+<section class="slide" data-slide="4">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">Scale of the Problem</div>
+        <h2 class="anim d1">The numbers are <span class="danger">staggering</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">This isn't a hypothetical risk. It's already happening at scale.</p>
+        <div class="stat-grid">
+            <div class="stat-card anim d3">
+                <div class="stat-number">1,800+</div>
+                <div class="stat-desc">Suspected NK applicants blocked by Amazon alone</div>
+                <div class="stat-source">Dark Reading, 2025</div>
+            </div>
+            <div class="stat-card anim d4">
+                <div class="stat-number">300+</div>
+                <div class="stat-desc">US companies infiltrated by NK operatives</div>
+                <div class="stat-source">DOJ Indictment, 2025</div>
+            </div>
+            <div class="stat-card anim d5">
+                <div class="stat-number">1 in 4</div>
+                <div class="stat-desc">Candidate profiles will be fake by 2028</div>
+                <div class="stat-source">Gartner Research</div>
+            </div>
+            <div class="stat-card anim d6">
+                <div class="stat-number">17%</div>
+                <div class="stat-desc">Of hiring managers have encountered deepfake applicants</div>
+                <div class="stat-source">CNBC, 2025</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 5: DOCUMENTARY EVIDENCE ===================== -->
+<section class="slide" data-slide="5">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">Investigative Report</div>
+        <h2 class="anim d1" style="margin-bottom: 32px;">"I tried to hire a North Korean scammer"</h2>
+        <div class="split-layout">
+            <div class="anim d2" style="text-align: left;">
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--danger); margin-top: 6px; flex-shrink: 0;"></div>
+                        <span style="font-size: 0.9rem; line-height: 1.5;">Thousands of NK workers secretly employed in US, Europe, and East Asia</span>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--danger); margin-top: 6px; flex-shrink: 0;"></div>
+                        <span style="font-size: 0.9rem; line-height: 1.5;">Fake identities and stolen credentials used to pass background checks</span>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--danger); margin-top: 6px; flex-shrink: 0;"></div>
+                        <span style="font-size: 0.9rem; line-height: 1.5;">Wages funneled to North Korea's weapons programs</span>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; background: white; border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--danger); margin-top: 6px; flex-shrink: 0;"></div>
+                        <span style="font-size: 0.9rem; line-height: 1.5;">Remote interview setups using green screens and deepfake tactics</span>
+                    </div>
+                </div>
+                <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 14px; font-style: italic;">Source: YouTube documentary investigation</div>
+            </div>
+            <div class="anim d3">
+                <div class="video-thumb">
+                    <div class="play-btn">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19"/></svg>
+                    </div>
+                    <div class="vid-title">"Inside the North Korean IT Worker Scam"</div>
+                    <div style="font-size: 0.7rem; color: rgba(255,255,255,0.4);">Documentary Investigation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 6: GOVERNMENT ACTION + CARMAKAL QUOTE ===================== -->
+<section class="slide" data-slide="6">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">Federal Response</div>
+        <h2 class="anim d1">The DOJ is taking action &mdash; <span class="accent">are you?</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 32px;">The Department of Justice has announced coordinated nationwide actions against DPRK's schemes to fund its regime through remote IT work at US companies.</p>
+
+        <div class="anim d3 quote-block" style="margin-bottom: 28px;">
+            <img src="../../shared/people/charles-carmakal.png" alt="Charles Carmakal" class="quote-photo">
+            <div>
+                <div class="quote-text">"Almost every CISO of a Fortune 500 company that I've spoken to &mdash; I'll just characterize as dozens &mdash; have admitted that they had a North Korean IT worker problem."</div>
+                <div class="quote-attr">Charles Carmakal, CTO of Mandiant (Google)</div>
+            </div>
+        </div>
+
+        <div class="anim d4" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <div style="background: white; border-radius: 12px; padding: 16px 24px; border: 1px solid var(--border); text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--danger);">220%</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Increase in NK infiltrations in 12 months</div>
+                <div style="font-size: 0.6rem; color: var(--text-secondary); font-style: italic; margin-top: 4px;">Fortune, 2025</div>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 16px 24px; border: 1px solid var(--border); text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--danger);">$25M</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Stolen via single deepfake video call</div>
+                <div style="font-size: 0.6rem; color: var(--text-secondary); font-style: italic; margin-top: 4px;">Arup case, Hong Kong, 2024</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 7: MORE HEADLINES ===================== -->
+<section class="slide" data-slide="7">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">The Evidence Keeps Mounting</div>
+        <h2 class="anim d1">Every week brings <span class="danger">new incidents</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">The coverage isn't slowing down. If anything, it's accelerating.</p>
+        <div class="news-grid">
+            <div class="news-card anim d3">
+                <div class="outlet">Forbes</div>
+                <div class="headline">New guidelines for AI hiring security emerging</div>
+                <p class="context">Compliance requirements are tightening as regulators recognize the scale of AI-driven hiring fraud across industries.</p>
+            </div>
+            <div class="news-card anim d4">
+                <div class="outlet">CNBC</div>
+                <div class="headline">"Deepfake job applicants are on the rise"</div>
+                <p class="context">17% of hiring managers surveyed have encountered deepfake candidates. The real number is likely far higher.</p>
+            </div>
+            <div class="news-card anim d5">
+                <div class="outlet">CBS News</div>
+                <div class="headline">Half of businesses say they've experienced AI deepfake fraud</div>
+                <p class="context">AI used to create realistic video and audio to impersonate people during interviews, onboarding, and identity verification.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 8: WHY POINT SOLUTIONS FAIL ===================== -->
+<section class="slide" data-slide="8">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">The Gap</div>
+        <h2 class="anim d1">Today's tools weren't built for <span class="danger">this threat</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 36px;">Each solution catches a piece. None see the full picture.</p>
+        <div class="failure-grid">
+            <div class="failure-card anim d3">
+                <div class="stamp">Bypassed</div>
+                <div class="gauge">
+                    <svg width="72" height="72" viewBox="0 0 72 72">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#E2E8F0" stroke-width="6"/>
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#EF4444" stroke-width="6" stroke-dasharray="47 143" stroke-linecap="round" opacity="0.7"/>
+                    </svg>
+                    <span class="gauge-label">25%</span>
+                </div>
+                <h3>Background Checks</h3>
+                <p>Synthetic identities have no criminal record. A "clean" result on a person who doesn't exist.</p>
+            </div>
+            <div class="failure-card anim d4">
+                <div class="stamp">Weak</div>
+                <div class="gauge">
+                    <svg width="72" height="72" viewBox="0 0 72 72">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#E2E8F0" stroke-width="6"/>
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#F59E0B" stroke-width="6" stroke-dasharray="85 105" stroke-linecap="round" opacity="0.7"/>
+                    </svg>
+                    <span class="gauge-label">45%</span>
+                </div>
+                <h3>IDV Alone</h3>
+                <p>Not built for deepfakes. AI-generated selfies and forged documents pass through undetected.</p>
+            </div>
+            <div class="failure-card anim d5">
+                <div class="stamp">Arms Race</div>
+                <div class="gauge">
+                    <svg width="72" height="72" viewBox="0 0 72 72">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#E2E8F0" stroke-width="6"/>
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#F59E0B" stroke-width="6" stroke-dasharray="132 58" stroke-linecap="round" opacity="0.7"/>
+                    </svg>
+                    <span class="gauge-label">70%</span>
+                </div>
+                <h3>Deepfake Detection</h3>
+                <p>Standalone tools plateau at ~70%. Attackers adapt faster than models retrain.</p>
+            </div>
+            <div class="failure-card anim d6">
+                <div class="stamp">Blind Spots</div>
+                <div class="gauge">
+                    <svg width="72" height="72" viewBox="0 0 72 72">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#E2E8F0" stroke-width="6"/>
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#EF4444" stroke-width="6" stroke-dasharray="38 152" stroke-linecap="round" opacity="0.7"/>
+                    </svg>
+                    <span class="gauge-label">20%</span>
+                </div>
+                <h3>Siloed Tools</h3>
+                <p>No cross-signal analysis. Bypass one check and the rest never know.</p>
+            </div>
+        </div>
+        <div class="anim d7" style="margin-top: 24px; background: var(--text-primary); color: white; padding: 16px 28px; border-radius: 12px; display: inline-block; font-size: 0.85rem; font-weight: 600;">
+            Point solutions leave gaps. Attackers exploit the seams between them.
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 9: CLARITY — THE SOLUTION ===================== -->
+<section class="slide" data-slide="9">
+    <div style="max-width: 1100px; width: 100%; text-align: center;">
+        <div class="anim section-label">The Solution</div>
+        <h2 class="anim d1">End-to-end identity security for your <span class="accent">hiring pipeline</span></h2>
+        <p class="anim d2 subtitle" style="margin-bottom: 32px;">Clarity is an AI security company backed by Bessemer Venture Partners that protects organizations from AI-driven impersonation in hiring.</p>
+        <div class="split-layout anim d3">
+            <div style="text-align: left;">
+                <div class="solution-steps">
+                    <div class="solution-step">
+                        <div class="step-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+                        </div>
+                        <div>
+                            <h4>Pre-Interview Screening</h4>
+                            <p>Identity verification before the first call. Resume analysis, credential validation, biometric matching.</p>
+                        </div>
+                    </div>
+                    <div class="solution-step">
+                        <div class="step-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Real-Time Deepfake Detection</h4>
+                            <p>AI detection running during live interviews. Catches face swaps, voice clones, and synthetic personas in real time.</p>
+                        </div>
+                    </div>
+                    <div class="solution-step">
+                        <div class="step-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Continuous Verification</h4>
+                            <p>Through onboarding and employment. MFA reset verification, help desk identity checks, ongoing monitoring.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); font-weight: 600; margin-bottom: 12px;">Integrates with</div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <div class="logo-chip"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse">Greenhouse</div>
+                        <div class="logo-chip"><img src="../../shared/logos/okta.svg" alt="Okta">Okta</div>
+                        <div class="logo-chip"><img src="../../shared/logos/zoom.svg" alt="Zoom">Zoom</div>
+                        <div class="logo-chip"><img src="../../shared/logos/workday.svg" alt="Workday">Workday</div>
+                        <div class="logo-chip"><img src="../../shared/logos/servicenow.svg" alt="ServiceNow">ServiceNow</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="demo-frame" style="margin-bottom: 16px;">
+                    <img src="../../shared/screenshots/during-interview.png" alt="Clarity Detection Interface">
+                </div>
+                <div style="text-align: center; padding: 12px 20px; background: white; border-radius: 12px; border: 1px solid var(--border);">
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">Protecting companies with </span>
+                    <span style="font-size: 1rem; font-weight: 800; color: var(--accent);">1M+ candidates</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);"> annually</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SLIDE 10: CTA (DARK) ===================== -->
+<section class="slide slide-dark" data-slide="10">
+    <!-- Decorative Clarity star -->
+    <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; opacity: 0.05;" viewBox="0 0 60 60" fill="none">
+        <path d="M39.48 16.28L32.35 0L27.81 10.48H27.81L33.1 22.71L45.23 28.05L45.24 28.04L55.63 23.47L39.48 16.28Z" fill="white"/>
+        <path d="M39.48 39.81L55.62 32.62L45.24 28.05L33.11 33.38L27.81 45.62H27.81L27.82 45.63L32.35 56.1L39.48 39.81Z" fill="white"/>
+        <path d="M16.15 39.82L23.28 56.1L27.82 45.62H27.82L22.53 33.39L10.4 28.05L10.39 28.06L0 32.62L16.15 39.82Z" fill="#61F393"/>
+        <path d="M16.15 16.28L0 23.48L10.39 28.05L22.52 22.71L27.81 10.48H27.81L27.81 10.47L23.28 0L16.15 16.28Z" fill="#61F393"/>
+    </svg>
+    <div style="text-align: center; position: relative; z-index: 1; max-width: 700px;">
+        <div class="anim" style="margin-bottom: 28px;">
+            <img src="../../shared/brand/clarity-logo-green-white.svg" alt="Clarity" style="height: 60px;">
+        </div>
+        <h2 class="anim d1" style="font-size: 2.4rem; color: white; margin-bottom: 16px; line-height: 1.2;">Don't wait for the next headline to be about <span class="accent">your company</span></h2>
+        <div class="anim d2" style="width: 60px; height: 3px; background: var(--accent); margin: 0 auto 32px; border-radius: 2px;"></div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px;">
+            <div class="anim d3" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px 24px; text-align: left;">
+                <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; margin-bottom: 10px;">Low Commitment</div>
+                <div style="font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 8px;">Free Threat Assessment</div>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5;">Send us 50 recent applicant profiles. We'll show you what's hiding in your pipeline.</p>
+            </div>
+            <div class="anim d4" style="background: rgba(97,243,147,0.08); border: 1px solid rgba(97,243,147,0.25); border-radius: 16px; padding: 28px 24px; text-align: left;">
+                <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; margin-bottom: 10px;">Full Evaluation</div>
+                <div style="font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 8px;">Proof of Concept</div>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5;">See Clarity in action across your entire hiring workflow. 2-4 week engagement.</p>
+            </div>
+        </div>
+
+        <a href="https://getclarity.ai" class="anim d5 cta-btn cta-btn-primary" style="margin-bottom: 20px;">
+            Get Clarity
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="anim d6" style="font-size: 0.8rem; color: rgba(255,255,255,0.4);">
+            getclarity.ai
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE COUNTER -->
+<div id="slide-counter">1 / 10</div>
+
+<!-- NAV HINT -->
+<div id="nav-hint">
+    <kbd>&larr;</kbd> <kbd>&rarr;</kbd> Navigate &nbsp; <kbd>F</kbd> Fullscreen &nbsp; <kbd>ESC</kbd> Exit
+</div>
+
+<script>
+// ========== PRESENTATION LOGIC ==========
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+
+const hashMatch = window.location.hash.match(/^#slide-(\d+)$/);
+if (hashMatch) {
+    const slideNum = parseInt(hashMatch[1]) - 1;
+    if (slideNum >= 0 && slideNum < slides.length) {
+        slides[0].classList.remove('active');
+        currentSlide = slideNum;
+        slides[currentSlide].classList.add('active');
+    }
+}
+
+function updateSlideCounter() {
+    document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+}
+
+function showSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (n + totalSlides) % totalSlides;
+    slides[currentSlide].classList.add('active');
+    updateSlideCounter();
+    history.replaceState(null, '', '#slide-' + (currentSlide + 1));
+}
+
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
+
+// ========== EVENT LISTENERS ==========
+document.addEventListener('keydown', (e) => {
+    switch(e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+        case ' ':
+            e.preventDefault(); nextSlide(); break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+            e.preventDefault(); prevSlide(); break;
+        case 'f': case 'F':
+            e.preventDefault();
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                document.getElementById('nav-hint').style.display = 'none';
+            }
+            break;
+        case 'Escape':
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+                document.getElementById('nav-hint').style.display = 'block';
+            }
+            break;
+        case 'Home': e.preventDefault(); showSlide(0); break;
+        case 'End': e.preventDefault(); showSlide(totalSlides - 1); break;
+    }
+});
+
+// Touch/swipe support
+let startX = null, startY = null;
+document.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; startY = e.touches[0].clientY; });
+document.addEventListener('touchend', (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) { dx > 0 ? prevSlide() : nextSlide(); }
+    startX = startY = null;
+});
+
+// Click navigation
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' || e.target.closest('a')) return;
+    e.clientX < window.innerWidth / 2 ? prevSlide() : nextSlide();
+});
+
+updateSlideCounter();
+
+// Auto-hide nav hint
+setTimeout(() => {
+    const hint = document.getElementById('nav-hint');
+    if (hint) { hint.style.opacity = '0.3'; setTimeout(() => hint.style.display = 'none', 3000); }
+}, 5000);
+</script>
+
+<script src="../../shared/js/dev-mode.js"></script>
+</body>
+</html>
