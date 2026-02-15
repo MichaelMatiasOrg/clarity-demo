@@ -23,7 +23,7 @@
     <p>A friendly, step-by-step guide for Clarity team members. No coding experience needed — Claude does the heavy lifting.</p>
     <div class="hero-stats">
         <div class="hero-stat">
-            <div class="value">~30 min</div>
+            <div class="value">~35 min</div>
             <div class="label">Total time</div>
         </div>
         <div class="hero-stat">
@@ -43,7 +43,7 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
-            <li class="active"><a href="#prerequisites">Prerequisites <span class="sidebar-time">10 min</span></a></li>
+            <li class="active"><a href="#prerequisites">Prerequisites <span class="sidebar-time">15 min</span></a></li>
             <li><a href="#clone-repo">Clone the Repo <span class="sidebar-time">5 min</span></a></li>
             <li><a href="#understand-project">Understand the Project <span class="sidebar-time">5 min</span></a></li>
             <li><a href="#start-deck">Start a New Deck <span class="sidebar-time">3 min</span></a></li>
@@ -60,11 +60,56 @@
             <button class="accordion-header" aria-expanded="true">
                 <span class="accordion-step">1</span>
                 <span class="accordion-title">Prerequisites</span>
-                <span class="accordion-time">~10 min</span>
+                <span class="accordion-time">~15 min</span>
                 <svg class="accordion-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="accordion-body">
-                <p>Before you begin, you'll need three things installed on your machine. Don't worry — each one is a quick setup.</p>
+                <p>Before you begin, you'll need a few things installed on your machine. Don't worry — each one is a quick setup, and you only do this once.</p>
+
+                <h4>Install Git (the save system)</h4>
+                <p>Git is like a "save game" system for code. Every time we make changes, Git remembers what changed and lets us undo mistakes. GitHub is the website where our project lives online — think of it as Google Drive, but for code.</p>
+
+                <div class="callout note">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div><strong>Already have Git?</strong> Type <code>git --version</code> in your terminal. If you see a version number, skip to "Create a GitHub Account" below.</div>
+                </div>
+
+                <p><strong>Mac:</strong> Open Terminal (search "Terminal" in Spotlight) and run:</p>
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="xcode-select --install">Copy</button>
+                    <pre><code>xcode-select --install</code></pre>
+                </div>
+                <p>A popup will appear — click "Install" and wait for it to finish. That's it.</p>
+
+                <p><strong>Windows:</strong> Download Git from <a href="https://git-scm.com/download/win" target="_blank">git-scm.com</a> and run the installer. Click "Next" through all the screens — the defaults are perfect.</p>
+
+                <h4>Create a GitHub Account</h4>
+                <p>If you don't have one yet, go to <a href="https://github.com/join" target="_blank">github.com/join</a> and sign up. It's free. Use your work email so your team lead can give you access to our project.</p>
+
+                <h4>Connect Git to GitHub</h4>
+                <p>Tell Git who you are (use the name and email from your GitHub account):</p>
+                <div class="code-block">
+                    <button class="copy-btn" data-copy='git config --global user.name "Your Name"
+git config --global user.email "your@email.com"'>Copy</button>
+                    <pre><code>git config --global user.name "Your Name"
+git config --global user.email "your@email.com"</code></pre>
+                </div>
+
+                <p>Then log in to GitHub from your terminal — this is a one-time setup:</p>
+                <div class="code-block">
+                    <button class="copy-btn" data-copy="gh auth login">Copy</button>
+                    <pre><code>gh auth login</code></pre>
+                </div>
+                <div class="callout note">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>Don't have the <code>gh</code> command? Install it first: <strong>Mac:</strong> <code>brew install gh</code> &mdash; <strong>Windows:</strong> download from <a href="https://cli.github.com" target="_blank">cli.github.com</a>. If you don't have <code>brew</code> either, install it from <a href="https://brew.sh" target="_blank">brew.sh</a> (just paste the one-liner they show you into Terminal).</div>
+                </div>
+                <p>Follow the prompts — pick "GitHub.com", "HTTPS", and "Login with a web browser". It will open your browser to confirm. Done.</p>
+
+                <div class="callout tip">
+                    <svg class="callout-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div><strong>Checkpoint:</strong> Run <code>git --version</code> — you should see something like <code>git version 2.x.x</code>. If yes, you're good to go.</div>
+                </div>
 
                 <h4>Install Claude Code</h4>
                 <p>Claude Code is Anthropic's CLI tool that lets you work with Claude directly in your terminal.</p>
