@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarity — All Hands | February 15, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --green: #61F393;
+    --bg: #F0F4F8;
+    --card-bg: #FFFFFF;
+    --text: #0a1628;
+    --text-light: #4a5568;
+    --red: #EF4444;
+    --border: #E2E8F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    background: var(--bg);
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .slide.dark {
+    background: var(--navy);
+    color: #FFFFFF;
+  }
+
+  .slide.dark .subtitle { color: #94A3B8; }
+  .slide.dark .text-light { color: #94A3B8; }
+
+  /* Slide number */
+  .slide-number {
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #94A3B8;
+    z-index: 100;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  /* Logo */
+  .logo {
+    position: absolute;
+    top: 32px;
+    left: 40px;
+    height: 28px;
+  }
+
+  .logo img { height: 28px; }
+
+  /* Typography */
+  h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+
+  h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: var(--text-light);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 700px;
+  }
+
+  .green { color: var(--green); }
+  .accent-bar {
+    width: 48px;
+    height: 4px;
+    background: var(--green);
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  .slide-content {
+    width: 100%;
+    max-width: 1100px;
+    text-align: left;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 12px;
+  }
+
+  .dark .card {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .card-grid {
+    display: grid;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--green);
+  }
+
+  .dark .card h4 { color: var(--green); }
+
+  .card p, .card li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-light);
+  }
+
+  .dark .card p, .dark .card li { color: #CBD5E1; }
+
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .card ul li::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  /* Architecture diagram */
+  .arch-diagram {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 20px;
+  }
+
+  .arch-layer {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .arch-layer.top {
+    background: rgba(97, 243, 147, 0.08);
+    border: 1.5px solid rgba(97, 243, 147, 0.25);
+  }
+
+  .arch-layer.mid {
+    background: rgba(10, 22, 40, 0.04);
+    border: 1.5px solid var(--border);
+  }
+
+  .arch-layer.bottom {
+    background: var(--navy);
+    border: 1.5px solid var(--navy);
+    color: #fff;
+  }
+
+  .arch-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    color: var(--text-light);
+  }
+
+  .arch-layer.bottom .arch-label { color: var(--green); }
+
+  .arch-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .arch-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .arch-layer.bottom .arch-item {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+
+  .arch-item.highlight {
+    background: var(--green);
+    color: var(--navy);
+    border-color: var(--green);
+    font-weight: 700;
+  }
+
+  .arch-connector {
+    text-align: center;
+    font-size: 18px;
+    color: #94A3B8;
+    margin: 4px 0;
+    letter-spacing: 4px;
+  }
+
+  /* Stat */
+  .stat {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 16px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  .dark .stat-label { color: #94A3B8; }
+
+  /* Department grid */
+  .dept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .dept-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .dept-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  .dept-card p {
+    font-size: 13px;
+    color: #94A3B8;
+    line-height: 1.5;
+  }
+
+  /* CTA */
+  .cta-box {
+    background: var(--green);
+    color: var(--navy);
+    border-radius: 12px;
+    padding: 32px 40px;
+    text-align: center;
+    margin-top: 32px;
+    max-width: 700px;
+  }
+
+  .cta-box h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .cta-box p {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* Placeholder */
+  .placeholder {
+    border: 2px dashed rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #64748B;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 16px;
+  }
+
+  .light .placeholder {
+    border-color: var(--border);
+  }
+
+  /* Progress bar */
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--green);
+    z-index: 200;
+    transition: width 0.4s ease;
+  }
+
+  /* Inline flex row */
+  .flex-row { display: flex; gap: 24px; align-items: flex-start; }
+  .flex-1 { flex: 1; }
+
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+  }
+
+  .bullet-list li {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-light);
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .dark .bullet-list li { color: #CBD5E1; }
+
+  .bullet-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(97,243,147,0.15);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-right: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="slide-number" id="slideNum"></div>
+
+<!-- SLIDE 1: Title -->
+<div class="slide dark active" data-slide="1">
+  <div class="slide-content" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+    <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height:40px; margin-bottom:48px;">
+    <h1 style="font-size:56px;">All Hands</h1>
+    <p class="subtitle" style="text-align:center;">February 15, 2026</p>
+  </div>
+</div>
+
+<!-- SLIDE 2: Agenda -->
+<div class="slide dark" data-slide="2">
+  <div class="slide-content">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
+    <div class="accent-bar"></div>
+    <h2>Today's Agenda</h2>
+    <div class="card-grid cols-3" style="margin-top:32px;">
+      <div class="card" style="text-align:center; padding:32px 24px;">
+        <div style="font-size:32px; font-weight:800; color:var(--green); margin-bottom:8px;">01</div>
+        <h3 style="font-size:18px; color:#fff;">Running with Deel</h3>
+        <p>Our first live customer engagement</p>
+      </div>
+      <div class="card" style="text-align:center; padding:32px 24px;">
+        <div style="font-size:32px; font-weight:800; color:var(--green); margin-bottom:8px;">02</div>
+        <h3 style="font-size:18px; color:#fff;">Pre-Hire + Post-Hire</h3>
+        <p>Broadening our value proposition</p>
+      </div>
+      <div class="card" style="text-align:center; padding:32px 24px;">
+        <div style="font-size:32px; font-weight:800; color:var(--green); margin-bottom:8px;">03</div>
+        <h3 style="font-size:18px; color:#fff;">AI as Daily Practice</h3>
+        <p>Claude Code for every team member</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: Deel - Overview -->
+<div class="slide dark" data-slide="3">
+  <div class="slide-content">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
+    <div class="section-label">Section 01</div>
+    <h2>We Are Live with Deel</h2>
+    <p class="subtitle" style="margin-bottom:24px;">Our pre-hire candidate verification is actively running with a real customer. This validates our core value proposition.</p>
+    <div class="card-grid cols-2">
+      <div class="card">
+        <h4>What This Means</h4>
+        <ul>
+          <li>Deel is using Clarity in production</li>
+          <li>Pre-hire candidate verification validated</li>
+          <li>Real data, real feedback, real learnings</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Why It Matters</h4>
+        <ul>
+          <li>First enterprise customer live</li>
+          <li>Proves our technology works at scale</li>
+          <li>Foundation for expanding the product</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: Deel - Timeline -->
+<div class="slide dark" data-slide="4">
+  <div class="slide-content">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
+    <div class="section-label">Section 01</div>
+    <h2>Deel Timeline and Milestones</h2>
+    <div class="placeholder" style="margin-top:32px; padding:48px 24px;">
+      Timeline details to be added — waiting on update from Neev
+    </div>
+    <div class="card" style="margin-top:20px;">
+      <h4>Next Steps</h4>
+      <ul>
+        <li>Key milestones and deliverables TBD</li>
+        <li>Expand engagement based on initial results</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Broadening Value Prop - Intro -->
+<div class="slide" data-slide="5">
+  <div class="slide-content">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="filter:brightness(0);"></div>
+    <div class="section-label" style="color:var(--navy);">Section 02</div>
+    <h2>Broadening Our Value Proposition</h2>
+    <p class="subtitle" style="margin-bottom:32px;">We are expanding from <strong>candidate verification</strong> to <strong>candidate AND employee verification</strong> — covering the full identity lifecycle.</p>
+    <div class="flex-row" style="margin-top:16px;">
+      <div style="flex:1; text-align:center; padding:24px;">
+        <div style="font-size:14px; font-weight:700; color:var(--text-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Before</div>
+        <div style="font-size:24px; font-weight:700;">Pre-Hire Only</div>
+        <p style="color:var(--text-light); font-size:14px; margin-top:4px;">Candidate verification</p>
+      </div>
+      <div style="font-size:32px; color:var(--green); align-self:center; font-weight:700;">&#8594;</div>
+      <div style="flex:1; text-align:center; padding:24px; background:rgba(97,243,147,0.08); border-radius:12px; border:1.5px solid rgba(97,243,147,0.25);">
+        <div style="font-size:14px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Now</div>
+        <div style="font-size:24px; font-weight:700;">Pre-Hire + Post-Hire</div>
+        <p style="color:var(--text-light); font-size:14px; margin-top:4px;">Candidate AND employee verification</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Architecture Diagram -->
+<div class="slide" data-slide="6">
+  <div class="slide-content">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="filter:brightness(0);"></div>
+    <div class="section-label" style="color:var(--navy);">Platform Architecture</div>
+    <h2 style="font-size:32px; margin-bottom:20px;">Three-Layer Architecture</h2>
+    <div class="arch-diagram">
+      <!-- Top Layer -->
+      <div class="arch-layer top">
+        <div class="arch-label" style="color:var(--navy);">Application Layer</div>
+        <div class="arch-items" style="margin-bottom:10px;">
+          <div class="arch-item" style="font-weight:700;">HR Systems <span style="font-weight:400; color:var(--text-light); font-size:12px;">(ATS, HRIS)</span></div>
+          <div class="arch-item" style="font-weight:700;">IDP Systems <span style="font-weight:400; color:var(--text-light); font-size:12px;">(Okta, ServiceNow)</span></div>
+          <div class="arch-item">Security Systems <span style="font-weight:400; color:var(--text-light); font-size:12px;">(SIEM)</span></div>
+        </div>
+        <div class="arch-items">
+          <div class="arch-item highlight">Video Call Bot</div>
+          <div class="arch-item highlight">IDV Experience</div>
+        </div>
+      </div>
+
+      <div class="arch-connector">|||</div>
+
+      <!-- Middle Layer -->
+      <div class="arch-layer mid">
+        <div class="arch-label">Identity Signals</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--text-light); text-transform:uppercase; margin-bottom:6px;">Candidate</div>
+            <div class="arch-items" style="flex-direction:column;">
+              <div class="arch-item" style="width:fit-content;">CV Analysis</div>
+              <div class="arch-item" style="width:fit-content;">LinkedIn Profile</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--green); text-transform:uppercase; margin-bottom:6px;">Shared</div>
+            <div class="arch-items" style="flex-direction:column;">
+              <div class="arch-item highlight" style="width:fit-content;">Deepfake Detection</div>
+              <div class="arch-item highlight" style="width:fit-content;">ID Document Verification</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--text-light); text-transform:uppercase; margin-bottom:6px;">Employee</div>
+            <div class="arch-items" style="flex-direction:column;">
+              <div class="arch-item" style="width:fit-content;">Organizational Context</div>
+              <div class="arch-item" style="width:fit-content;">Security Questions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-connector">|||</div>
+
+      <!-- Bottom Layer -->
+      <div class="arch-layer bottom">
+        <div class="arch-label">Core Engine</div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div class="arch-item highlight" style="font-size:15px; padding:12px 20px;">Risk Analysis Engine</div>
+          <div style="font-size:20px;">&#8594;</div>
+          <div class="arch-item" style="font-size:15px; padding:12px 20px;">Risk Score (Low / High)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Sales Validation -->
+<div class="slide" data-slide="7">
+  <div class="slide-content">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="filter:brightness(0);"></div>
+    <div class="section-label" style="color:var(--navy);">Market Validation</div>
+    <h2>Customers Want Both</h2>
+    <p class="subtitle" style="margin-bottom:32px;">The market is telling us: pre-hire alone isn't enough. Customers need full lifecycle identity verification.</p>
+    <div class="card-grid cols-2">
+      <div class="card" style="border-left:4px solid var(--green);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <h3 style="margin-bottom:4px;">Robinhood RFP</h3>
+            <p style="font-size:14px;">Pre-hire + Post-hire verification</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="stat" style="font-size:36px;">$175K</div>
+            <div class="stat-label">ARR</div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--green);">
+        <div>
+          <h3 style="margin-bottom:4px;">Calix</h3>
+          <p style="font-size:14px;">Same pattern — requesting both pre-hire and post-hire capabilities</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px; background:rgba(97,243,147,0.05); border-color:rgba(97,243,147,0.2);">
+      <p style="font-size:16px; font-weight:600; color:var(--navy); text-align:center;">The expansion from pre-hire to full lifecycle is not a pivot — it is what the market demands.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: AI Section Intro -->
+<div class="slide dark" data-slide="8">
+  <div class="slide-content" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
+    <div class="section-label">Section 03</div>
+    <h1 style="font-size:48px;">AI as Daily Practice</h1>
+    <p class="subtitle" style="text-align:center; margin-top:8px;">Starting today, every person at Clarity uses Claude Code in their daily work.</p>
+  </div>
+</div>
+
+<!-- SLIDE 9: AI by Department -->
+<div class="slide dark" data-slide="9">
+  <div class="slide-content">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
+    <h2 style="font-size:30px; margin-bottom:20px;">Claude Code Across Every Department</h2>
+    <div class="dept-grid">
+      <div class="dept-card">
+        <h4>CEO</h4>
+        <p>Creating decks, reviewing customer calls, organizing files, meeting prep</p>
+      </div>
+      <div class="dept-card">
+        <h4>Operations</h4>
+        <p>Office management, streamlining communication workflows</p>
+      </div>
+      <div class="dept-card">
+        <h4>Sales</h4>
+        <p>Building decks, proposals, customer-facing materials</p>
+      </div>
+      <div class="dept-card">
+        <h4>SDRs</h4>
+        <p>Building automations, personalized outreach messaging</p>
+      </div>
+      <div class="dept-card">
+        <h4>Product</h4>
+        <p>End-to-end demos, A/B tests, rapid prototyping</p>
+      </div>
+      <div class="dept-card">
+        <h4>R&D</h4>
+        <p>Full application development, code generation, debugging</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: AI Commitment -->
+<div class="slide dark" data-slide="10">
+  <div class="slide-content" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
+    <h2 style="font-size:36px; max-width:800px;">This is not optional.<br>This is how we work now.</h2>
+    <p class="subtitle" style="text-align:center; margin-top:16px; margin-bottom:32px;">Every team member starts using Claude Code today. No exceptions.</p>
+    <div class="cta-box">
+      <h3>"I will personally sit with anyone who needs help getting started."</h3>
+      <p style="margin-top:8px;">— Michael</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Closing -->
+<div class="slide dark" data-slide="11">
+  <div class="slide-content" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
+    <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height:48px; margin-bottom:40px;">
+    <h1 style="font-size:44px;">Let's Build This Together</h1>
+    <div style="margin-top:32px; display:flex; gap:32px;">
+      <div style="text-align:center;">
+        <div style="font-size:14px; color:var(--green); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Deel</div>
+        <div style="font-size:16px; color:#94A3B8;">Live and running</div>
+      </div>
+      <div style="width:1px; background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:14px; color:var(--green); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Pre + Post Hire</div>
+        <div style="font-size:16px; color:#94A3B8;">Full lifecycle identity</div>
+      </div>
+      <div style="width:1px; background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:14px; color:var(--green); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Claude Code</div>
+        <div style="font-size:16px; color:#94A3B8;">AI-first, starting today</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let current = 0;
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, totalSlides - 1));
+    slides[current].classList.add('active');
+    document.getElementById('slideNum').textContent = (current + 1) + ' / ' + totalSlides;
+    document.getElementById('progress').style.width = ((current + 1) / totalSlides * 100) + '%';
+    // Match slide-number color to slide theme
+    const isDark = slides[current].classList.contains('dark');
+    document.getElementById('slideNum').style.color = isDark ? '#64748B' : '#94A3B8';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      showSlide(current + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      showSlide(current - 1);
+    } else if (e.key === 'Home') {
+      showSlide(0);
+    } else if (e.key === 'End') {
+      showSlide(totalSlides - 1);
+    }
+  });
+
+  // Click to advance
+  document.addEventListener('click', (e) => {
+    if (e.clientX > window.innerWidth / 2) {
+      showSlide(current + 1);
+    } else {
+      showSlide(current - 1);
+    }
+  });
+
+  showSlide(0);
+</script>
+
+</body>
+</html>
