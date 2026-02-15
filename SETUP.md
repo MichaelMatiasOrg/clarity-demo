@@ -1,256 +1,284 @@
-# Team Setup Guide — Clarity Presentation Builder
+# Getting Started — Clarity Presentation Builder
 
-*Get up and running in 10 minutes. Build on-brand Clarity presentations using Claude Code.*
-
----
-
-## What You'll Get
-
-After setup, you can create professional Clarity presentations by just talking to Claude Code in plain English. No CSS, no HTML, no design skills needed. You describe the deck, Claude Code builds it.
+*Follow these steps once. After that, you can create polished Clarity presentations just by typing what you want in plain English.*
 
 ---
 
-## Prerequisites
+## What This Does
 
-- **macOS or Linux** (Windows works via WSL)
-- **Node.js 18+** — check with `node --version`
-- **Git** — check with `git --version`
-- **Claude Max subscription** (or Claude Pro) at [claude.ai](https://claude.ai)
+Once set up, you'll have a tool called **Claude Code** on your computer. You talk to it like a coworker: "Build me a 10-slide deck about hiring fraud for CISOs." It builds the whole thing — design, layout, animations — using our real brand assets. No design or coding skills needed.
 
 ---
 
-## Step 1: Install Claude Code
+## Before You Start
 
-```bash
+You need three things on your computer. Here's how to check (and install) each one.
+
+### 1. Open your Terminal
+
+This is the app where you type commands. Don't worry — you only need it for setup.
+
+- **On Mac:** Press **Cmd + Space**, type **Terminal**, and hit Enter
+- **On Windows:** Press the **Windows key**, type **PowerShell**, and hit Enter
+- **On Linux:** Press **Ctrl + Alt + T**
+
+You'll see a window with a blinking cursor. That's your terminal. Leave it open — you'll use it for the next steps.
+
+### 2. Check for Node.js
+
+Type this into your terminal and press Enter:
+
+```
+node --version
+```
+
+- **If you see a number** like `v18.0.0` or higher — you're good. Move on.
+- **If you see "command not found"** — you need to install it:
+  1. Go to [nodejs.org](https://nodejs.org)
+  2. Click the big green **"LTS"** download button
+  3. Open the downloaded file and follow the installer
+  4. Close your terminal, open a new one, and try `node --version` again
+
+### 3. Check for Git
+
+Type this into your terminal and press Enter:
+
+```
+git --version
+```
+
+- **If you see a number** like `git version 2.39.0` — you're good.
+- **If you see "command not found"** — you need to install it:
+  - **Mac:** A popup will ask to install developer tools. Click **Install** and wait.
+  - **Windows:** Download from [git-scm.com](https://git-scm.com/download/win), run the installer, and accept all defaults.
+  - **Linux:** Type `sudo apt install git` and press Enter.
+
+### 4. Claude subscription
+
+You need a **Claude Max** (or Claude Pro) subscription. If you don't have one, sign up at [claude.ai](https://claude.ai).
+
+---
+
+## Setup (one time only)
+
+### Step 1: Install Claude Code
+
+Copy and paste this into your terminal, then press Enter:
+
+```
 npm install -g @anthropic-ai/claude-code
 ```
 
-Verify it installed:
-```bash
+Wait for it to finish (about 30 seconds). You'll know it's done when you see your blinking cursor again.
+
+**Check it worked** — type this and press Enter:
+
+```
 claude --version
-# Should show: 2.x.x (Claude Code)
 ```
 
-On first run, Claude Code will open a browser window to authenticate with your Anthropic account.
+You should see a version number. If you do, Claude Code is installed.
 
----
+### Step 2: Download the project files
 
-## Step 2: Clone the Repository
+Copy and paste this into your terminal, then press Enter:
 
-```bash
+```
 git clone https://github.com/MichaelMatiasOrg/clarity-labs.git
+```
+
+This downloads all the Clarity presentation files to your computer. It creates a folder called `clarity-labs` wherever your terminal is currently pointed (usually your home folder).
+
+### Step 3: Go into the project folder
+
+Copy and paste this into your terminal, then press Enter:
+
+```
 cd clarity-labs
 ```
 
----
+> **What does `cd` mean?** It stands for "change directory" — it's like double-clicking a folder on your desktop. You're just telling the terminal "go inside this folder."
 
-## Step 3: Install Plugins
+### Step 4: Launch Claude Code for the first time
 
-Open Claude Code and install these plugins. They make the experience significantly better.
+Type this and press Enter:
 
-```bash
+```
 claude
 ```
 
-### Superpowers (Brainstorming & Structured Workflows)
-This gives Claude Code specialized skills like `/superpowers:brainstorm` — a structured brainstorming workflow that asks smart clarifying questions before building your deck.
+**The first time you run this, a few things will happen:**
+
+1. **Sign in** — Your web browser will open to an Anthropic login page. Sign in with the same account you use for [claude.ai](https://claude.ai). Once you see "Authentication successful," switch back to your terminal.
+
+2. **Choose a theme** — Claude Code will ask if you want **dark mode** or **light mode**. This is just the color of the tool's interface (dark text on light background, or light text on dark background). **Pick whichever you prefer — it doesn't affect your presentations.** You can always change it later.
+
+3. **Choose your editor** — If asked about a "preferred editor," just press Enter to accept the default. This doesn't matter for what we're doing.
+
+4. **Done!** You'll see Claude Code's prompt — a text area where you can type messages. It looks similar to the Claude chat at claude.ai, but it runs in your terminal and can build files on your computer.
+
+### Step 5: Install plugins (recommended)
+
+These make the experience better. Type each command into Claude Code (not your regular terminal — you should already be inside Claude Code from Step 4).
+
+**Superpowers plugin** — gives Claude Code a structured brainstorming mode:
 
 ```
 /plugin install superpowers@claude-plugins-official
 ```
 
-When prompted for scope, choose **User** (installs across all projects).
+When it asks about scope, type **User** and press Enter.
 
-Skills you'll get:
-- `/superpowers:brainstorm` — Structured brainstorming for deck planning
-- `/superpowers:code-reviewer` — Code review workflows
-- Browse all with `/plugin`
-
-### Playwright (Browser Preview)
-This lets Claude Code open your deck in a real browser, take screenshots, and verify everything looks right.
+**Browser preview plugin** — lets Claude Code open your presentations in a browser to check them visually:
 
 ```
 /mcp add playwright -- npx @anthropic-ai/claude-code-playwright
 ```
 
-Then exit and install the browser:
-```bash
-/exit
+After this, type `/exit` to leave Claude Code, then run this in your regular terminal:
+
+```
 npx playwright install chromium
 ```
 
-**Requirements:** Claude Code v1.0.33+ (check with `claude --version`)
+This downloads a lightweight browser that Claude Code uses for previews.
 
----
+### Step 6: Make sure everything works
 
-## Step 4: Verify Setup
+Go back into the project folder and start Claude Code:
 
-```bash
+```
 cd clarity-labs
 claude
 ```
 
-You should see Claude Code load with the Clarity instructions automatically (from `.claude/instructions.md`). Try asking:
+Try typing:
 
-> "What presentation templates are available?"
+```
+What presentation templates are available?
+```
 
-Claude Code should reference the component catalog and asset inventory. If it does, you're good to go.
+If Claude Code gives you a helpful answer about components and assets, everything is set up correctly.
+
+---
+
+## Using It Day-to-Day
+
+Every time you want to build or edit a presentation, you just need two steps:
+
+### 1. Open your terminal
+
+(Same as before — Cmd+Space → Terminal on Mac, or Windows key → PowerShell on Windows.)
+
+### 2. Go to the project folder and start Claude Code
+
+Copy and paste this and press Enter:
+
+```
+cd clarity-labs && claude
+```
+
+> **Tip:** This is the same as opening a folder and then launching the tool inside it. The `&&` just means "do the first thing, then do the second thing."
 
 ---
 
 ## Building a Presentation
 
-### Start Claude Code in the repo:
-```bash
-cd clarity-labs
-claude
-```
+Once Claude Code is running, just describe what you need in plain English:
 
-### Just describe what you need:
 ```
 Build me a 10-slide deck for HR leaders at mid-market companies
 about how Clarity catches hiring fraud before day one.
 Focus on the Greenhouse integration and the free threat scan offer.
 ```
 
-### Claude Code will:
-1. **Ask you a few questions** — deck type, audience, core message
-2. **Pick the right slide patterns** from our component library
-3. **Use real brand assets** — logos, screenshots, colors, fonts
-4. **Build the full HTML file** with animations and mobile support
-5. **Create a branch and open a PR** (only Michael merges to main)
+Claude Code will:
+1. Ask you a few clarifying questions (audience, tone, key message)
+2. Pick the right slide layouts from our library
+3. Use real Clarity logos, screenshots, colors, and fonts
+4. Build the full presentation file
+5. Save it on a separate branch (Michael will review and publish it)
 
-### Iterate naturally:
+### Making changes
+
+Talk to it naturally — one change at a time works best:
+
 ```
 "Make the stats on slide 3 bigger"
-"Add the Workday logo to the integration slide"  
+"Add the Workday logo to the integration slide"
 "Change the title to 'Secure Your Hiring Pipeline'"
-"Use the employee-dashboard.png screenshot on slide 5"
 ```
 
----
+### Using images
 
-## Using Images
+Claude Code can't look at images you paste in. Instead, tell it which image to use by name:
 
-Claude Code **cannot process images visually** — don't paste or drag images into it.
-
-Instead, reference images by file path:
 ```
-"Use this screenshot on slide 4: ../../shared/screenshots/during-interview.png"
+"Use the during-interview screenshot on slide 4"
 ```
 
-To see all available images:
+To see everything available:
+
 ```
 "Show me what's in docs/ASSETS.md"
 ```
 
-If you need an image that doesn't exist in the repo, ask Michael or the design team to add it.
+If you need an image that doesn't exist yet, ask Michael or the design team to add it.
 
 ---
 
-## Git Workflow
+## What You Don't Need to Worry About
 
-**You cannot push directly to `main`.** This is enforced.
-
-Claude Code will automatically:
-1. Create a branch (e.g. `presentations/my-new-deck`)
-2. Build the presentation there
-3. Push the branch
-
-**You then:**
-1. Open a Pull Request on GitHub
-2. Michael reviews and merges
-
-If Claude Code tries to push to main and gets rejected, tell it:
-```
-"Create a new branch called presentations/my-deck-name and push there instead"
-```
+- **Design rules** — Claude Code already knows our brand guidelines (colors, fonts, no emojis). You don't need to memorize them.
+- **Code** — You never need to write or read HTML/CSS. Just describe what you want.
+- **Publishing** — You can't accidentally break the live site. Your work is always saved separately. Michael reviews and publishes it.
 
 ---
 
-## File Structure
+## Common Questions
 
-Your presentation lives in:
+### "It says 'command not found' when I type `claude`"
+Close your terminal, open a new one, and try again. If it still doesn't work, re-run the install command from Step 1.
+
+### "I closed the terminal. How do I get back in?"
+Open your terminal again and type:
 ```
-presentations/your-deck-name/
-├── index.html    # The full presentation (single file)
-└── assets/       # Any deck-specific images (optional)
+cd clarity-labs && claude
 ```
 
-The HTML file contains embedded metadata at the top:
-```html
-<!--
-  @deck-type: customer-deck
-  @customer: Acme Corp
-  @audience: CISO
-  @author: Your Name
-  @created: 2026-02-14
-  @core-message: Clarity catches hiring fraud before day one
--->
+### "It's asking me to log in again"
+That's normal if it's been a while. Your browser will open — just sign in and switch back to the terminal.
+
+### "It tried to push to main and got rejected"
+Tell Claude Code:
+```
+"Create a new branch and push there instead"
 ```
 
----
+### "The presentation looks weird on my phone"
+Tell Claude Code:
+```
+"Check the mobile layout for all slides and fix any issues"
+```
 
-## Available Assets
+### "I need a logo or screenshot that doesn't exist"
+Don't let Claude Code make one up — it won't look right. Ask Michael or the design team to add the real asset.
 
-Everything is in `shared/` — Claude Code knows about all of them.
-
-| Folder | Contents |
-|--------|----------|
-| `shared/brand/` | Clarity logos (dark, white, green+white) |
-| `shared/screenshots/` | Product UI screenshots (dashboard, detection, threat intel) |
-| `shared/logos/` | 35+ integration partner logos (Okta, Greenhouse, Workday, etc.) |
-| `shared/people/` | People photos (for quote slides) |
-| `shared/compliance/` | SOC 2, GDPR, ISO 27001, CCPA badges |
-
-Full inventory with descriptions: `docs/ASSETS.md`
+### "I'm stuck or something went wrong"
+Ask Michael or ping in the team Slack. Don't worry — you can't break anything.
 
 ---
 
-## Brand Rules (Don't Fight These)
+## Quick Reference Card
 
-These are enforced by the system. You don't need to remember them — Claude Code knows.
-
-- **Font:** Manrope (not Inter, not Arial)
-- **Background:** Soft blue-gray (#F0F4F8), not white
-- **Green accent:** #61F393 — used sparingly
-- **No emojis.** Ever. This is enterprise software.
-- **No fake logos.** Only real assets from the repo.
-- **Light theme** by default. Dark only for closing slides.
-
-Full guidelines: `docs/BRAND.md`
+| What you want to do | What to type in your terminal |
+|---|---|
+| Open the project | `cd clarity-labs && claude` |
+| Check Claude Code is installed | `claude --version` |
+| Check Node.js is installed | `node --version` |
+| Leave Claude Code | `/exit` |
+| See available presentation assets | (Inside Claude Code) `Show me docs/ASSETS.md` |
 
 ---
 
-## Tips
-
-- **Be specific about your audience.** "CISOs at Fortune 500 companies" gets better results than "security people"
-- **Mention specific integrations.** "Focus on Greenhouse and Okta" helps Claude Code pick the right logos and content
-- **Ask for previews.** "Open the deck in the browser and take a screenshot" (requires Playwright plugin)
-- **Iterate fast.** Change one thing at a time. "Make the quote text bigger" is better than rewriting 5 things at once.
-- **Check mobile.** "Show me how slide 3 looks on mobile" (Playwright can emulate mobile viewports)
-
----
-
-## Troubleshooting
-
-### Claude Code can't process my image
-Don't paste images. Put the file in the repo and give the path. See "Using Images" above.
-
-### Push to main rejected
-You need to push to a branch and open a PR. See "Git Workflow" above.
-
-### Claude Code doesn't know about Clarity
-Make sure you're running `claude` from inside the `clarity-demo` directory. The instructions auto-load from `.claude/instructions.md`.
-
-### Presentation looks wrong on mobile
-Tell Claude Code: "Check the mobile layout for all slides and fix any issues." With Playwright installed, it can actually test this.
-
-### Need a logo or screenshot that doesn't exist
-Ask Michael or the design team. Don't let Claude Code invent one — it will look wrong.
-
----
-
-## Questions?
-
-Ask Michael or ping in the team Slack. Happy building!
+*Questions? Ask Michael or ping in the team Slack. Happy building!*
