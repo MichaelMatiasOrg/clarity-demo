@@ -14,6 +14,7 @@
 4. Edit `narration-data.js` — add narration text for each slide
 
 5. Add the new presentation to the hub page (`/index.html`)
+   - Include a `<div class="card-author">by <strong>@yourusername</strong></div>` line after `.card-meta` in your hub card
 
 ## Shared Resources
 
