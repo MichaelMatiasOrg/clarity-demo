@@ -197,7 +197,10 @@ Claude Code will:
 2. Pick the right slide layouts from our library
 3. Use real Clarity logos, screenshots, colors, and fonts
 4. Build the full presentation file
-5. Save it on a separate branch (Michael will review and publish it)
+
+### Your work starts as a private draft
+
+While you're working with Claude Code, your changes are only on your computer — like a Google Doc that hasn't been shared yet. Nobody else can see them, and the live site is not affected. This means you can experiment freely without worrying about breaking anything.
 
 ### Making changes
 
@@ -208,6 +211,18 @@ Talk to it naturally — one change at a time works best:
 "Add the Workday logo to the integration slide"
 "Change the title to 'Secure Your Hiring Pipeline'"
 ```
+
+### When you're happy, say: "Submit my work"
+
+When you're done (or want feedback), tell Claude Code:
+
+```
+Submit my work
+```
+
+That's it. Claude Code will package up your changes and send them to Michael for review. Once Michael approves, your work goes live. You'll get a link you can share so Michael knows what to review.
+
+> **You can say "Submit my work" as many times as you want** — after each round of changes, after a big milestone, or whenever you want a checkpoint. It won't overwrite your previous submissions.
 
 ### Using images
 
@@ -231,7 +246,7 @@ If you need an image that doesn't exist yet, ask Michael or the design team to a
 
 - **Design rules** — Claude Code already knows our brand guidelines (colors, fonts, no emojis). You don't need to memorize them.
 - **Code** — You never need to write or read HTML/CSS. Just describe what you want.
-- **Publishing** — You can't accidentally break the live site. Your work is always saved separately. Michael reviews and publishes it.
+- **Publishing** — You can't accidentally break the live site. Just say **"Submit my work"** when you're ready, and Michael will review it before anything goes live.
 
 ---
 
@@ -249,11 +264,12 @@ cd clarity-labs && claude
 ### "It's asking me to log in again"
 That's normal if it's been a while. Your browser will open — just sign in and switch back to the terminal.
 
-### "It tried to push to main and got rejected"
+### "How do I share my work with the team?"
 Tell Claude Code:
 ```
-"Create a new branch and push there instead"
+Submit my work
 ```
+It will handle everything and give you a link to share with Michael.
 
 ### "The presentation looks weird on my phone"
 Tell Claude Code:
@@ -271,13 +287,13 @@ Ask Michael or ping in the team Slack. Don't worry — you can't break anything.
 
 ## Quick Reference Card
 
-| What you want to do | What to type in your terminal |
+| What you want to do | What to type |
 |---|---|
-| Open the project | `cd clarity-labs && claude` |
-| Check Claude Code is installed | `claude --version` |
-| Check Node.js is installed | `node --version` |
+| Open the project | (In your terminal) `cd clarity-labs && claude` |
+| Send your work for review | (Inside Claude Code) `Submit my work` |
+| See available assets | (Inside Claude Code) `Show me docs/ASSETS.md` |
 | Leave Claude Code | `/exit` |
-| See available presentation assets | (Inside Claude Code) `Show me docs/ASSETS.md` |
+| Check Claude Code is installed | (In your terminal) `claude --version` |
 
 ---
 
