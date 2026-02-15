@@ -686,9 +686,23 @@
             catch { return []; }
         }
         function saveRecent(item) {
+            // Truncate preview to avoid localStorage quota issues
+            if (item.preview && item.preview.length > 2000) {
+                item.preview = '';
+            }
             const recent = getRecent();
             recent.unshift(item);
-            localStorage.setItem('clarity_recent_uploads', JSON.stringify(recent.slice(0, 15)));
+            const trimmed = recent.slice(0, 10);
+            try {
+                localStorage.setItem('clarity_recent_uploads', JSON.stringify(trimmed));
+            } catch (e) {
+                // Quota exceeded — clear old entries and retry
+                try {
+                    localStorage.setItem('clarity_recent_uploads', JSON.stringify(trimmed.slice(0, 3)));
+                } catch (e2) {
+                    localStorage.removeItem('clarity_recent_uploads');
+                }
+            }
         }
         function renderRecent() {
             const recent = getRecent();
