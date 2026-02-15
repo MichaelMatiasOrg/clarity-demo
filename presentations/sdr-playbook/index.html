@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="presentation-version" content="1.0.0">
+    <title>Clarity - SDR Targeting Playbook</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/design-system.css">
+    <link rel="stylesheet" href="../../shared/css/animations.css">
+    <link rel="stylesheet" href="presentation.css">
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<section class="slide slide-title" data-slide-id="title">
+    <div style="position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border: 2px solid rgba(97, 243, 147, 0.08); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -40px; left: -40px; width: 150px; height: 150px; border: 2px solid rgba(10, 22, 40, 0.05); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: relative; z-index: 1;">
+        <div class="logo">
+            <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 52px;">
+        </div>
+        <h1>SDR Targeting Playbook</h1>
+        <p class="subtitle">Who to target & what to say</p>
+        <div style="margin-top: 36px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; background: rgba(10,22,40,0.06); padding: 5px 14px; border-radius: 100px;">Internal Use Only</span>
+        </div>
+    </div>
+    <div class="slide-number">1</div>
+</section>
+
+<!-- Slide 2: Why Targeting Matters -->
+<section class="slide" data-slide-id="why-targeting">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge">Playbook</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 12px;">Why targeting matters</h2>
+        <p class="subtitle" style="margin-bottom: 16px;">Clarity detects identity fraud across the hiring lifecycle.</p>
+        <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 44px; max-width: 600px; margin-left: auto; margin-right: auto;">Three buyer pain points open the door to a conversation:</p>
+
+        <div class="pain-points">
+            <div class="pain-card">
+                <div class="pain-icon" style="background: #FEE2E2; color: #DC2626;">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3>Identity Fraud</h3>
+                <p>Synthetic identities passing background checks and entering the workforce</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon" style="background: #FEF3C7; color: #D97706;">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <h3>Compliance Risk</h3>
+                <p>Regulatory exposure from unverified identities accessing sensitive systems</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon" style="background: #EDE9FE; color: #7C3AED;">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                </div>
+                <h3>Insider Threats</h3>
+                <p>Bad actors using stolen credentials to gain persistent access from inside</p>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">2</div>
+</section>
+
+<!-- Slide 3: Top 5 Industries -->
+<section class="slide" data-slide-id="industries">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge">Playbook</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 40px;">Top 5 Target Industries</h2>
+
+        <div class="industry-grid">
+            <div class="industry-card">
+                <div class="industry-rank">#1 Priority</div>
+                <h3>Financial Services</h3>
+                <div class="why">Heavily regulated (SOX, GLBA). Remote fraud directly threatens customer funds and data. High-value targets for nation-state actors.</div>
+                <span class="sweet-spot">1,000 &ndash; 10,000 employees</span>
+            </div>
+            <div class="industry-card">
+                <div class="industry-rank">#2 Priority</div>
+                <h3>Healthcare</h3>
+                <div class="why">HIPAA mandates identity verification. Patient data is extremely valuable on the dark web. Remote-first trend expanding attack surface.</div>
+                <span class="sweet-spot">500 &ndash; 5,000 employees</span>
+            </div>
+            <div class="industry-card">
+                <div class="industry-rank">#3 Priority</div>
+                <h3>Technology / SaaS</h3>
+                <div class="why">Fully remote workforces, fast hiring cycles, and engineers with production access from day one. North Korean IT worker schemes target this sector.</div>
+                <span class="sweet-spot">500 &ndash; 5,000 employees</span>
+            </div>
+            <div class="industry-card">
+                <div class="industry-rank">#4 Priority</div>
+                <h3>Government / Defense</h3>
+                <div class="why">Clearance-required roles and sensitive data. Executive orders now mandate identity verification for contractors and remote workers.</div>
+                <span class="sweet-spot">Contractors &amp; system integrators</span>
+            </div>
+            <div class="industry-card wide">
+                <div class="industry-rank">#5 Priority</div>
+                <h3>Staffing & RPO</h3>
+                <div class="why">High-volume hiring with limited visibility into candidate identity. Fraud scales easily through staffing pipelines. Strong channel partner potential.</div>
+                <span class="sweet-spot">All sizes &mdash; volume is key</span>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">3</div>
+</section>
+
+<!-- Slide 4: Security Buyers -->
+<section class="slide" data-slide-id="titles-security">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge dark">Titles</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 12px;">Security Buyers</h2>
+        <p class="subtitle" style="margin-bottom: 36px;">Primary persona &mdash; they own the risk and the budget</p>
+
+        <div class="titles-grid">
+            <div class="title-card">
+                <div class="seniority">C-Level / VP</div>
+                <h3>CISO</h3>
+                <div class="reason">Owns enterprise risk posture. Identity fraud is a board-level issue they need to address proactively.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">VP / Senior Director</div>
+                <h3>VP of Information Security</h3>
+                <div class="reason">Runs the security org day-to-day. Evaluates and champions new security tools.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">Director</div>
+                <h3>Director of Security Operations</h3>
+                <div class="reason">Deals with incidents and investigations. Sees the downstream impact of fraudulent hires.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">Director / Manager</div>
+                <h3>Head of Insider Threat</h3>
+                <div class="reason">Directly responsible for detecting bad actors inside the org. Clarity is their early-warning system.</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">4</div>
+</section>
+
+<!-- Slide 5: HR & Talent Buyers -->
+<section class="slide" data-slide-id="titles-hr">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge dark">Titles</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 12px;">HR & Talent Buyers</h2>
+        <p class="subtitle" style="margin-bottom: 36px;">Secondary persona &mdash; they own the hiring process</p>
+
+        <div class="titles-grid">
+            <div class="title-card">
+                <div class="seniority">C-Level / VP</div>
+                <h3>Chief People Officer</h3>
+                <div class="reason">Responsible for workforce integrity. A fraudulent hire is a CPO's worst nightmare in regulated industries.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">VP / Director</div>
+                <h3>VP of People / HR</h3>
+                <div class="reason">Oversees all hiring operations. Needs assurance that new hires are who they claim to be.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">Director</div>
+                <h3>Head of Talent Acquisition</h3>
+                <div class="reason">Runs recruiting pipeline. Directly affected when a fraudulent candidate wastes team time and resources.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">Director / Manager</div>
+                <h3>Director of Recruiting Ops</h3>
+                <div class="reason">Manages ATS workflows and vendor integrations. Key champion for Clarity's ATS integration story.</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">5</div>
+</section>
+
+<!-- Slide 6: IT & Compliance Buyers -->
+<section class="slide" data-slide-id="titles-it">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge dark">Titles</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 12px;">IT & Compliance Buyers</h2>
+        <p class="subtitle" style="margin-bottom: 36px;">Third path in &mdash; identity-adjacent roles with budget authority</p>
+
+        <div class="titles-grid">
+            <div class="title-card">
+                <div class="seniority">VP / Director</div>
+                <h3>VP of IT</h3>
+                <div class="reason">Manages provisioning and access. A fraudulent hire with admin access is their worst-case scenario.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">Director</div>
+                <h3>Director of IAM</h3>
+                <div class="reason">Owns identity and access management. Clarity extends identity verification to pre-hire, closing their blind spot.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">Director / Manager</div>
+                <h3>Head of Compliance / GRC</h3>
+                <div class="reason">Ensures regulatory compliance. Identity fraud creates audit failures and reporting gaps they need to close.</div>
+            </div>
+            <div class="title-card">
+                <div class="seniority">C-Level / VP</div>
+                <h3>CISO (cross-functional)</h3>
+                <div class="reason">Often straddles security and IT. When approached from the compliance angle, they become a dual champion.</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">6</div>
+</section>
+
+<!-- Slide 7: Cold Email Templates -->
+<section class="slide" data-slide-id="cold-email">
+    <div style="max-width: 940px; margin: 0 auto; text-align: center;">
+        <span class="section-badge">Templates</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 36px;">Cold Email Templates</h2>
+
+        <div class="email-grid">
+            <div class="email-card">
+                <div class="email-header">For Security Buyers</div>
+                <div class="email-subject"><span>Subject: </span>Identity fraud in your hiring pipeline</div>
+                <div class="email-body">
+                    Hi [First Name],<br><br>
+                    The FBI recently flagged a surge in synthetic identities infiltrating remote hiring pipelines &mdash; especially in [industry].<br><br>
+                    At Clarity, we help security teams detect fraudulent candidates before they get access to production systems. We verify identity at three points: application, interview (deepfake detection), and onboarding.<br><br>
+                    <span class="cta-line">Worth a 15-min call to see if this is on your radar?</span><br><br>
+                    Best,<br>[Your Name]
+                </div>
+            </div>
+            <div class="email-card">
+                <div class="email-header">For HR Buyers</div>
+                <div class="email-subject"><span>Subject: </span>Are your remote hires who they say they are?</div>
+                <div class="email-body">
+                    Hi [First Name],<br><br>
+                    1 in 4 resumes now contains material misrepresentation, and synthetic identities are passing standard background checks.<br><br>
+                    Clarity integrates directly with [ATS name] to verify candidate identity at every stage &mdash; from application through onboarding &mdash; without slowing down your hiring process.<br><br>
+                    <span class="cta-line">Would you be open to a quick call this week?</span><br><br>
+                    Best,<br>[Your Name]
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">7</div>
+</section>
+
+<!-- Slide 8: LinkedIn Outreach -->
+<section class="slide" data-slide-id="linkedin-msg">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge">Templates</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 36px;">LinkedIn Outreach</h2>
+
+        <div class="linkedin-grid">
+            <div class="linkedin-card">
+                <div class="msg-type">Connection Request &mdash; Security</div>
+                <div class="msg-text">"Hi [Name], I work with security teams tackling identity fraud in remote hiring. Given [Company]'s growth, thought this might be relevant. Would love to connect."</div>
+            </div>
+            <div class="linkedin-card">
+                <div class="msg-type">Connection Request &mdash; HR</div>
+                <div class="msg-text">"Hi [Name], I noticed [Company] is scaling its remote team. We help TA leaders verify candidate identities before they enter the pipeline. Happy to share how &mdash; would love to connect."</div>
+            </div>
+            <div class="linkedin-card">
+                <div class="msg-type">Follow-Up InMail &mdash; Security</div>
+                <div class="msg-text">"[Name], following up &mdash; the FBI's latest advisory on synthetic identity fraud in hiring has been a big topic with the CISOs we work with. If your team is thinking about pre-hire identity verification, I'd love to share what we're seeing. Quick call this week?"</div>
+            </div>
+            <div class="linkedin-card">
+                <div class="msg-type">Follow-Up InMail &mdash; HR</div>
+                <div class="msg-text">"[Name], wanted to share a quick stat: companies using identity verification at the hiring stage are catching fraudulent candidates 12x earlier than background checks alone. Happy to walk through how this works with [ATS]. 15 minutes?"</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">8</div>
+</section>
+
+<!-- Slide 9: Follow-Up Sequence -->
+<section class="slide" data-slide-id="followup-1">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge">Cadence</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 36px;">Follow-Up Sequence (No Reply)</h2>
+
+        <div class="followup-timeline">
+            <div class="followup-step">
+                <div class="followup-day"><span>Day</span>3</div>
+                <div class="followup-content">
+                    <div class="step-label">Quick Bump</div>
+                    <div class="msg-text">"Hi [Name], just floating this back up. Happy to share a 2-min video showing how identity fraud is entering hiring pipelines &mdash; no call needed. Want me to send it over?"</div>
+                </div>
+            </div>
+            <div class="followup-step">
+                <div class="followup-day"><span>Day</span>7</div>
+                <div class="followup-content">
+                    <div class="step-label">Value Add</div>
+                    <div class="msg-text">"[Name], thought you'd find this relevant &mdash; [industry peer] recently discovered 3 synthetic identities in their pipeline using Clarity. Happy to share the case study if useful."</div>
+                </div>
+            </div>
+            <div class="followup-step">
+                <div class="followup-day"><span>Day</span>14</div>
+                <div class="followup-content">
+                    <div class="step-label warn">Breakup</div>
+                    <div class="msg-text">"[Name], I'll assume the timing isn't right and won't keep following up. If identity fraud in hiring ever lands on your radar, I'm an easy find. Wishing you and the [Company] team well."</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">9</div>
+</section>
+
+<!-- Slide 10: Common Objections -->
+<section class="slide" data-slide-id="objections">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge">Playbook</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 36px;">Common Objections & Responses</h2>
+
+        <div class="objection-grid">
+            <div class="objection-card">
+                <div class="objection">"We already do background checks"</div>
+                <div class="rebuttal"><strong>Response:</strong> Background checks verify credentials, not identity. A synthetic identity with a real SSN and a fabricated work history will pass every time. Clarity verifies the person is real before you check their background.</div>
+            </div>
+            <div class="objection-card">
+                <div class="objection">"We're too small for this"</div>
+                <div class="rebuttal"><strong>Response:</strong> Smaller companies are actually easier targets &mdash; less security infrastructure, fewer checks. One fraudulent hire with admin access at a 200-person company can cause the same damage as at a Fortune 500.</div>
+            </div>
+            <div class="objection-card">
+                <div class="objection">"We use [competitor]"</div>
+                <div class="rebuttal"><strong>Response:</strong> Great &mdash; which part of the hiring lifecycle do they cover? Most tools only check at one point. Clarity verifies identity at application, live interview (deepfake detection), and onboarding. Happy to show where the gaps are.</div>
+            </div>
+            <div class="objection-card">
+                <div class="objection">"Not a priority right now"</div>
+                <div class="rebuttal"><strong>Response:</strong> Totally understand. Most companies don't prioritize it until after an incident. Would it help to see data on how often this is happening in [their industry]? Happy to send a one-pager &mdash; no meeting required.</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">10</div>
+</section>
+
+<!-- Slide 11: Qualifying Questions -->
+<section class="slide" data-slide-id="qualifying">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="section-badge">Playbook</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 36px;">Qualifying Questions</h2>
+
+        <div class="question-list">
+            <div class="question-item">
+                <div class="question-number">1</div>
+                <div class="question-text">
+                    <h4>Pain Severity</h4>
+                    <p>"Have you had any incidents with fraudulent candidates or employees in the last 12 months?"</p>
+                </div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">2</div>
+                <div class="question-text">
+                    <h4>Current Tools</h4>
+                    <p>"What does your identity verification process look like today? Background checks only, or something more?"</p>
+                </div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">3</div>
+                <div class="question-text">
+                    <h4>Budget & Authority</h4>
+                    <p>"Who else would need to be involved in evaluating a solution like this? Security, HR, both?"</p>
+                </div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">4</div>
+                <div class="question-text">
+                    <h4>Timeline</h4>
+                    <p>"Is this something you're looking to address this quarter, or more of a next-half initiative?"</p>
+                </div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">5</div>
+                <div class="question-text">
+                    <h4>Scale</h4>
+                    <p>"How many hires are you making per year, and what percentage are fully remote?"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">11</div>
+</section>
+
+<!-- Slide 12: Resources -->
+<section class="slide" data-slide-id="resources" style="background: var(--text-primary);">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 1;">
+        <span class="section-badge" style="background: rgba(97, 243, 147, 0.15); color: var(--accent);">Resources</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 12px; color: white;">Resources & Links</h2>
+        <p style="color: rgba(255,255,255,0.5); font-size: 0.95rem; margin-bottom: 40px;">Everything you need in one place</p>
+
+        <div class="resources-grid">
+            <div class="resource-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1);">
+                <div class="resource-icon" style="color: var(--accent);">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                </div>
+                <h3 style="color: white;">CRM Sequences</h3>
+                <p style="color: rgba(255,255,255,0.5);">Pre-built outreach sequences in HubSpot. Clone and customize.</p>
+            </div>
+            <div class="resource-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1);">
+                <div class="resource-icon" style="color: var(--accent);">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                </div>
+                <h3 style="color: white;">Clarity One-Pager</h3>
+                <p style="color: rgba(255,255,255,0.5);">PDF leave-behind for prospects. Covers problem, solution, and proof points.</p>
+            </div>
+            <div class="resource-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1);">
+                <div class="resource-icon" style="color: var(--accent);">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <h3 style="color: white;">Case Studies</h3>
+                <p style="color: rgba(255,255,255,0.5);">Real customer stories by industry. Use in follow-ups and value-add touches.</p>
+            </div>
+            <div class="resource-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1);">
+                <div class="resource-icon" style="color: var(--accent);">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                </div>
+                <h3 style="color: white;">#sdr-questions</h3>
+                <p style="color: rgba(255,255,255,0.5);">Slack channel for real-time help. Post objections, get answers from the team.</p>
+            </div>
+        </div>
+
+        <p style="color: rgba(255,255,255,0.3); font-size: 0.85rem; margin-top: 48px;">getclarity.ai</p>
+    </div>
+    <div class="slide-number" style="color: rgba(255,255,255,0.3);">12</div>
+</section>
+
+<!-- Slide Indicator -->
+<div id="slide-indicator"></div>
+
+<!-- Navigation Hint -->
+<div id="nav-hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> or <kbd>&uarr;</kbd> <kbd>&darr;</kbd> to navigate</div>
+
+<!-- Navigation -->
+<script src="../../shared/js/navigation.js"></script>
+
+<!-- Developer Mode -->
+<script src="../../shared/js/dev-mode.js"></script>
+
+<!-- Version Badge -->
+<div id="version-badge" class="version-badge"></div>
+<script>
+document.getElementById('version-badge').textContent =
+    'v' + document.querySelector('meta[name="presentation-version"]').content;
+</script>
+
+</body>
+</html>
