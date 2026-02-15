@@ -241,34 +241,32 @@
 
   /* ========== ARCHITECTURE DIAGRAM ========== */
   /* ========== UNIFIED ARCHITECTURE DIAGRAM ========== */
+  /* ========== ARCHITECTURE — HORIZONTAL 3-COLUMN ========== */
   .arch-diagram {
     width: 100%;
-    max-width: 960px;
+    max-width: 1020px;
     margin-top: 12px;
-    border-radius: 16px;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: 195px 16px 1fr 16px 270px;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .arch-col {
+    border-radius: 12px;
+    padding: 18px 16px;
     border: 1.5px solid var(--border);
-    box-shadow: 0 4px 24px rgba(10, 22, 40, 0.08);
+    box-shadow: 0 2px 12px rgba(10, 22, 40, 0.06);
+    display: flex;
+    flex-direction: column;
   }
 
-  .arch-layer {
-    padding: 20px 28px;
-  }
-
-  .arch-layer.top {
-    background: #fff;
-  }
-
-  .arch-layer.mid {
-    background: #FAFBFC;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .arch-layer.bottom {
+  .arch-col.left { background: #fff; }
+  .arch-col.center { background: #FAFBFC; }
+  .arch-col.right {
     background: var(--text-primary);
     color: #fff;
-    padding: 22px 28px;
+    border-color: rgba(255,255,255,0.08);
   }
 
   .arch-label {
@@ -276,64 +274,60 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     color: var(--text-secondary);
     text-align: center;
   }
 
-  .arch-layer.bottom .arch-label {
+  .arch-col.right .arch-label {
     color: var(--accent);
     letter-spacing: 2px;
   }
 
-  /* Thin flow divider between layers */
-  .arch-divider {
+  /* Flow arrows between columns */
+  .arch-flow-arrow {
     display: flex;
+    align-items: center;
     justify-content: center;
+  }
+
+  .arch-flow-arrow-inner {
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 0;
-    background: var(--bg-primary);
-    height: 20px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
   }
 
-  .arch-divider.dark {
-    background: rgba(10, 22, 40, 0.95);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: none;
+  .arch-flow-arrow .arrow-line {
+    width: 10px;
+    height: 2px;
+    background: rgba(97, 243, 147, 0.3);
+    position: relative;
+    overflow: hidden;
   }
 
-  .arch-divider-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
+  .slide.active .arch-flow-arrow .arrow-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
     background: var(--accent);
-    opacity: 0.5;
+    animation: arrowFlow 1.8s ease-in-out infinite;
   }
 
-  .slide.active .arch-divider-dot {
-    animation: flowPulse 2s ease-in-out infinite;
+  .arch-flow-arrow .arrow-head {
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid rgba(97, 243, 147, 0.5);
   }
 
-  .arch-divider-dot:nth-child(1) { animation-delay: 0s; }
-  .arch-divider-dot:nth-child(2) { animation-delay: 0.25s; }
-  .arch-divider-dot:nth-child(3) { animation-delay: 0.5s; }
-
-  .arch-divider-line {
-    width: 1px;
-    height: 10px;
-    background: var(--accent);
-    opacity: 0.3;
-  }
-
-  /* ========== APP LAYER LOGOS ========== */
-  .app-logo-row {
+  /* ========== LEFT COL: APP LAYER ========== */
+  .app-logo-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0;
-    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
     margin-bottom: 12px;
   }
 
@@ -341,18 +335,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
+    padding: 6px 4px;
+    border-radius: 6px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
   }
 
   .app-logo-item img {
-    height: 30px;
+    height: 20px;
     width: auto;
-    opacity: 0.55;
+    opacity: 0.6;
     filter: grayscale(30%);
   }
 
   .app-logo-item span {
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
@@ -361,138 +359,109 @@
 
   .app-own-products {
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto;
   }
 
   .app-own-pill {
     background: var(--accent);
     color: var(--text-primary);
-    border-radius: 8px;
-    padding: 7px 16px;
-    font-size: 12px;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
     font-weight: 700;
-  }
-
-  /* ========== SIGNAL GRID ========== */
-  .signal-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-  }
-
-  .signal-col {
     text-align: center;
   }
 
-  .signal-col-header {
-    font-size: 10px;
+  /* ========== CENTER COL: SIGNALS ========== */
+  .signal-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .signal-group-header {
+    font-size: 9px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 8px;
     color: var(--text-secondary);
+    margin-bottom: 4px;
+    padding-left: 4px;
   }
 
-  .signal-col-header.accent {
-    color: var(--accent);
+  .signal-group-header.accent { color: var(--accent); }
+
+  .signal-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
   }
 
-  .signal-card {
+  .signal-pill {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: var(--bg-primary);
+    gap: 5px;
+    background: #fff;
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 12px;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 11px;
     font-weight: 500;
-    margin-bottom: 6px;
   }
 
-  .signal-card .dot {
-    width: 6px;
-    height: 6px;
+  .signal-pill .dot {
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: #CBD5E1;
     flex-shrink: 0;
   }
 
-  .signal-card.ai {
+  .signal-pill.ai {
     background: #E8FFF0;
     border-color: rgba(97, 243, 147, 0.4);
     border-left: 3px solid var(--accent);
     font-weight: 600;
   }
 
-  .signal-card.ai .dot {
+  .signal-pill.ai .dot {
     background: var(--accent);
     box-shadow: 0 0 6px rgba(97, 243, 147, 0.4);
   }
 
-  /* ========== ENGINE (horizontal flow) ========== */
-  .engine-flow {
+  /* ========== RIGHT COL: ENGINE ========== */
+  .engine-inner {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
-    width: 100%;
+    gap: 10px;
+    flex: 1;
   }
 
   .engine-caps {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
-    flex: 1;
+    gap: 4px;
+    justify-content: center;
   }
 
   .engine-cap {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 6px;
-    padding: 5px 10px;
-    font-size: 11px;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 10px;
     font-weight: 500;
     color: #94A3B8;
     white-space: nowrap;
   }
 
-  .engine-arrow-connector {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .engine-arrow-bar {
-    width: 24px;
-    height: 2px;
-    background: rgba(97, 243, 147, 0.3);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .slide.active .engine-arrow-bar::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: var(--accent);
-    animation: arrowFlow 1.5s ease-in-out infinite;
-  }
-
-  .engine-arrow-head {
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 6px solid rgba(97, 243, 147, 0.4);
-  }
-
   .engine-core-ring {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     border: 2px solid rgba(97, 243, 147, 0.3);
     display: flex;
@@ -506,15 +475,15 @@
   }
 
   .engine-core-inner {
-    width: 58px;
-    height: 58px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     background: rgba(97, 243, 147, 0.1);
     border: 1.5px solid rgba(97, 243, 147, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     color: var(--accent);
     text-align: center;
@@ -525,29 +494,33 @@
 
   .engine-outputs {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex-shrink: 0;
+    gap: 8px;
+    width: 100%;
+    margin-top: auto;
   }
 
   .engine-out-high {
-    background: var(--accent);
-    color: var(--text-primary);
-    border-radius: 8px;
-    padding: 8px 14px;
+    flex: 1;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #FCA5A5;
+    border-radius: 6px;
+    padding: 6px 10px;
     font-weight: 700;
-    font-size: 12px;
-    box-shadow: 0 0 16px rgba(97, 243, 147, 0.2);
+    font-size: 11px;
+    text-align: center;
   }
 
   .engine-out-low {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-weight: 600;
-    font-size: 12px;
-    color: #94A3B8;
+    flex: 1;
+    background: rgba(97, 243, 147, 0.12);
+    border: 1px solid rgba(97, 243, 147, 0.3);
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-weight: 700;
+    font-size: 11px;
+    text-align: center;
   }
 
   /* Architecture animations */
@@ -1529,10 +1502,10 @@
     <h2 class="anim d1" style="font-size:32px; margin-bottom:16px;">Three-Layer Architecture</h2>
     <div class="arch-diagram anim d2">
 
-      <!-- APPLICATION LAYER -->
-      <div class="arch-layer top">
-        <div class="arch-label">Application Layer</div>
-        <div class="app-logo-row">
+      <!-- LEFT: APPLICATION LAYER -->
+      <div class="arch-col left">
+        <div class="arch-label">Integrations & Experience</div>
+        <div class="app-logo-grid">
           <div class="app-logo-item"><img src="../../shared/logos/greenhouse.svg" alt="Greenhouse"><span>ATS</span></div>
           <div class="app-logo-item"><img src="../../shared/logos/workday.svg" alt="Workday"><span>HRIS</span></div>
           <div class="app-logo-item"><img src="../../shared/logos/okta.svg" alt="Okta"><span>IDP</span></div>
@@ -1546,50 +1519,55 @@
         </div>
       </div>
 
-      <!-- Divider: App → Signals -->
-      <div class="arch-divider">
-        <div class="arch-divider-dot"></div>
-        <div class="arch-divider-line"></div>
-        <div class="arch-divider-dot"></div>
-        <div class="arch-divider-line"></div>
-        <div class="arch-divider-dot"></div>
+      <!-- Arrow: App → Signals -->
+      <div class="arch-flow-arrow">
+        <div class="arch-flow-arrow-inner">
+          <div class="arrow-line"></div>
+          <div class="arrow-head"></div>
+        </div>
       </div>
 
-      <!-- IDENTITY SIGNALS -->
-      <div class="arch-layer mid">
+      <!-- CENTER: IDENTITY SIGNALS -->
+      <div class="arch-col center">
         <div class="arch-label">Identity Signals</div>
-        <div class="signal-grid">
-          <div class="signal-col">
-            <div class="signal-col-header">Candidate</div>
-            <div class="signal-card"><span class="dot"></span>CV Analysis</div>
-            <div class="signal-card"><span class="dot"></span>LinkedIn Profile</div>
+        <div class="signal-groups">
+          <div>
+            <div class="signal-group-header">Candidate</div>
+            <div class="signal-pills">
+              <div class="signal-pill"><span class="dot"></span>CV Analysis</div>
+              <div class="signal-pill"><span class="dot"></span>LinkedIn Profile</div>
+            </div>
           </div>
-          <div class="signal-col">
-            <div class="signal-col-header accent">Shared — AI-Powered</div>
-            <div class="signal-card ai"><span class="dot"></span>Deepfake Detection</div>
-            <div class="signal-card ai"><span class="dot"></span>ID Document Verification</div>
+          <div>
+            <div class="signal-group-header accent">Shared — AI-Powered</div>
+            <div class="signal-pills">
+              <div class="signal-pill ai"><span class="dot"></span>Deepfake Detection</div>
+              <div class="signal-pill ai"><span class="dot"></span>ID Document Verification</div>
+              <div class="signal-pill ai"><span class="dot"></span>Biometric Matching</div>
+            </div>
           </div>
-          <div class="signal-col">
-            <div class="signal-col-header">Employee</div>
-            <div class="signal-card"><span class="dot"></span>Organizational Context</div>
-            <div class="signal-card"><span class="dot"></span>Security Questions</div>
+          <div>
+            <div class="signal-group-header">Employee</div>
+            <div class="signal-pills">
+              <div class="signal-pill"><span class="dot"></span>Organizational Context</div>
+              <div class="signal-pill"><span class="dot"></span>Security Questions</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Divider: Signals → Engine -->
-      <div class="arch-divider dark">
-        <div class="arch-divider-dot"></div>
-        <div class="arch-divider-line"></div>
-        <div class="arch-divider-dot"></div>
-        <div class="arch-divider-line"></div>
-        <div class="arch-divider-dot"></div>
+      <!-- Arrow: Signals → Engine -->
+      <div class="arch-flow-arrow">
+        <div class="arch-flow-arrow-inner">
+          <div class="arrow-line"></div>
+          <div class="arrow-head"></div>
+        </div>
       </div>
 
-      <!-- CORE ENGINE -->
-      <div class="arch-layer bottom">
+      <!-- RIGHT: CORE ENGINE -->
+      <div class="arch-col right">
         <div class="arch-label">Core Engine</div>
-        <div class="engine-flow">
+        <div class="engine-inner">
           <div class="engine-caps">
             <div class="engine-cap">ML Models</div>
             <div class="engine-cap">Cross-Signal Correlation</div>
@@ -1599,16 +1577,8 @@
             <div class="engine-cap">Identity Graphing</div>
             <div class="engine-cap">Biometric Comparison</div>
           </div>
-          <div class="engine-arrow-connector">
-            <div class="engine-arrow-bar"></div>
-            <div class="engine-arrow-head"></div>
-          </div>
           <div class="engine-core-ring">
             <div class="engine-core-inner">Risk<br>Analysis</div>
-          </div>
-          <div class="engine-arrow-connector">
-            <div class="engine-arrow-bar"></div>
-            <div class="engine-arrow-head"></div>
           </div>
           <div class="engine-outputs">
             <div class="engine-out-high">High Risk</div>
