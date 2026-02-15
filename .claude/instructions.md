@@ -247,10 +247,18 @@ Use the Playwright MCP to screenshot EVERY slide:
 1. Open the presentation in the browser
 2. Navigate to each slide (arrow key or hash URL)
 3. Take a screenshot of each slide
-4. **Review each screenshot yourself** — but remember you CANNOT read image files. Instead, check:
+4. **Review each screenshot yourself** — but remember you CANNOT visually evaluate image files. Instead, check:
    - Does the slide render without errors? (no broken image icons in terminal output)
    - Is the slide counter correct?
    - Does navigation work forward and backward?
+
+**⚠️ CRITICAL: You cannot judge visual symmetry, alignment, or spacing from screenshots.**
+Do NOT claim things "look great" or "are perfectly aligned" — you have no way to verify this.
+Instead, for any positioned elements (absolute positioning, circles, orbits, grids):
+- **Show the math**: Calculate positions explicitly (e.g., "5 items at 72° intervals, radius 55px from center 80,70")
+- **Verify with computed styles**: Use Playwright to read `getBoundingClientRect()` on positioned elements and confirm symmetry numerically
+- **Flag for human review**: Tell the user "I've set the positions mathematically but cannot visually verify — please check alignment"
+- **Never say "looks great"** unless you've numerically verified element positions match the intended layout
 
 ### Step 3: Checklist (verify ALL before delivering)
 - [ ] Every `<img>` src path resolves to a real file (verified with `ls`)

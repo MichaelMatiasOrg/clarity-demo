@@ -1253,23 +1253,17 @@ h3 {
 .drift-left { animation: drift-left 5s ease-in-out infinite; }
 .drift-right { animation: drift-right 5s ease-in-out infinite; }
 
-/* Card 4 redesign: Siloed tools orbit */
+/* Card 4 redesign: Siloed tools — static circle, no animation */
 .silo-orbit-ring {
     position: relative;
-    width: 140px;
+    width: 160px;
     height: 140px;
     margin: -8px auto 4px;
-}
-
-@keyframes silo-orbit {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
 }
 
 .silo-orbit-track {
     position: absolute;
     inset: 0;
-    animation: silo-orbit 25s linear infinite;
 }
 
 .silo-pill {
@@ -1283,15 +1277,14 @@ h3 {
     padding: 2px 7px;
     white-space: nowrap;
     transform: translate(-50%, -50%);
-    animation: silo-orbit 25s linear infinite reverse;
 }
 
-/* 5 pills at 72° intervals, r=65px from center (70,70) */
-.silo-pill:nth-child(1) { top: 5px;   left: 70px;  }  /* BGC — 0° (top) */
-.silo-pill:nth-child(2) { top: 50px;  left: 132px; }  /* Device — 72° */
-.silo-pill:nth-child(3) { top: 123px; left: 108px; }  /* Resume — 144° */
-.silo-pill:nth-child(4) { top: 123px; left: 32px;  }  /* Deepfake — 216° */
-.silo-pill:nth-child(5) { top: 50px;  left: 8px;   }  /* IDV — 288° */
+/* 5 pills at 72° intervals, r=52px from center (80,70) */
+.silo-pill:nth-child(1) { top: 18px;  left: 80px;  }  /* BGC — top center */
+.silo-pill:nth-child(2) { top: 40px;  left: 130px; }  /* Device — upper right */
+.silo-pill:nth-child(3) { top: 104px; left: 112px; }  /* Resume — lower right */
+.silo-pill:nth-child(4) { top: 104px; left: 48px;  }  /* Deepfake — lower left */
+.silo-pill:nth-child(5) { top: 40px;  left: 30px;  }  /* IDV — upper left */
 
     </style>
 </head>
