@@ -4,63 +4,94 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clarity — All Hands | February 15, 2026</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0a1628;
-    --green: #61F393;
-    --bg: #F0F4F8;
-    --card-bg: #FFFFFF;
-    --text: #0a1628;
-    --text-light: #4a5568;
-    --red: #EF4444;
+    --accent: #61F393;
+    --accent-muted: #E8FFF0;
+    --text-primary: #0a1628;
+    --text-secondary: #64748B;
+    --bg-primary: #F0F4F8;
+    --bg-card: #FFFFFF;
     --border: #E2E8F0;
+    --danger: #EF4444;
+    --danger-muted: #FEE2E2;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Manrope', sans-serif;
-    background: var(--navy);
-    color: var(--text);
+    background: var(--bg-primary);
+    color: var(--text-primary);
     overflow: hidden;
     height: 100vh;
     width: 100vw;
   }
 
+  /* ========== NAV BAR ========== */
+  #navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: var(--text-primary);
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    z-index: 1000;
+  }
+  #navbar a { display: flex; align-items: center; text-decoration: none; }
+  #navbar img { height: 28px; }
+
+  /* ========== SLIDES ========== */
   .slide {
     position: absolute;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
+    top: 56px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px 80px;
+    padding: 32px 80px;
     opacity: 0;
-    transform: translateX(40px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
     pointer-events: none;
-    background: var(--bg);
+    transition: opacity 0.6s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--bg-primary);
   }
 
   .slide.active {
     opacity: 1;
-    transform: translateX(0);
     pointer-events: auto;
   }
 
   .slide.dark {
-    background: var(--navy);
+    background: var(--text-primary);
     color: #FFFFFF;
   }
 
   .slide.dark .subtitle { color: #94A3B8; }
-  .slide.dark .text-light { color: #94A3B8; }
 
-  /* Slide number */
-  .slide-number {
+  /* ========== IN-VIEW ANIMATIONS ========== */
+  .anim {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .slide.active .anim { opacity: 1; transform: translateY(0); }
+  .slide.active .anim.d1 { transition-delay: 0.1s; }
+  .slide.active .anim.d2 { transition-delay: 0.2s; }
+  .slide.active .anim.d3 { transition-delay: 0.3s; }
+  .slide.active .anim.d4 { transition-delay: 0.4s; }
+  .slide.active .anim.d5 { transition-delay: 0.5s; }
+  .slide.active .anim.d6 { transition-delay: 0.6s; }
+
+  /* ========== SLIDE COUNTER ========== */
+  #slide-counter {
     position: fixed;
     bottom: 24px;
     right: 32px;
@@ -71,17 +102,28 @@
     font-family: 'Manrope', sans-serif;
   }
 
-  /* Logo */
-  .logo {
-    position: absolute;
-    top: 32px;
-    left: 40px;
-    height: 28px;
+  /* ========== NAV HINT ========== */
+  #nav-hint {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10,22,40,0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    z-index: 999;
+    opacity: 0.7;
+  }
+  #nav-hint kbd {
+    background: rgba(255,255,255,0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin: 0 2px;
   }
 
-  .logo img { height: 28px; }
-
-  /* Typography */
+  /* ========== TYPOGRAPHY ========== */
   h1 {
     font-size: 52px;
     font-weight: 800;
@@ -106,17 +148,26 @@
 
   .subtitle {
     font-size: 20px;
-    color: var(--text-light);
+    color: var(--text-secondary);
     font-weight: 400;
     line-height: 1.5;
     max-width: 700px;
   }
 
-  .green { color: var(--green); }
+  .accent { color: var(--accent); }
+  .section-label {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+
   .accent-bar {
     width: 48px;
     height: 4px;
-    background: var(--green);
+    background: var(--accent);
     border-radius: 2px;
     margin-bottom: 20px;
   }
@@ -127,9 +178,9 @@
     text-align: left;
   }
 
-  /* Cards */
+  /* ========== CARDS ========== */
   .card {
-    background: var(--card-bg);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 24px 28px;
@@ -156,15 +207,13 @@
     margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: var(--green);
+    color: var(--accent);
   }
-
-  .dark .card h4 { color: var(--green); }
 
   .card p, .card li {
     font-size: 15px;
     line-height: 1.6;
-    color: var(--text-light);
+    color: var(--text-secondary);
   }
 
   .dark .card p, .dark .card li { color: #CBD5E1; }
@@ -179,13 +228,13 @@
     display: inline-block;
     width: 6px;
     height: 6px;
-    background: var(--green);
+    background: var(--accent);
     border-radius: 50%;
     margin-right: 10px;
     vertical-align: middle;
   }
 
-  /* Architecture diagram */
+  /* ========== ARCHITECTURE DIAGRAM ========== */
   .arch-diagram {
     width: 100%;
     max-width: 1000px;
@@ -210,8 +259,8 @@
   }
 
   .arch-layer.bottom {
-    background: var(--navy);
-    border: 1.5px solid var(--navy);
+    background: var(--text-primary);
+    border: 1.5px solid var(--text-primary);
     color: #fff;
   }
 
@@ -221,10 +270,10 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 12px;
-    color: var(--text-light);
+    color: var(--text-secondary);
   }
 
-  .arch-layer.bottom .arch-label { color: var(--green); }
+  .arch-layer.bottom .arch-label { color: var(--accent); }
 
   .arch-items {
     display: flex;
@@ -233,7 +282,7 @@
   }
 
   .arch-item {
-    background: var(--card-bg);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 8px 14px;
@@ -248,9 +297,9 @@
   }
 
   .arch-item.highlight {
-    background: var(--green);
-    color: var(--navy);
-    border-color: var(--green);
+    background: var(--accent);
+    color: var(--text-primary);
+    border-color: var(--accent);
     font-weight: 700;
   }
 
@@ -262,23 +311,23 @@
     letter-spacing: 4px;
   }
 
-  /* Stat */
+  /* ========== STAT ========== */
   .stat {
     font-size: 48px;
     font-weight: 800;
-    color: var(--green);
+    color: var(--accent);
     line-height: 1;
   }
 
   .stat-label {
     font-size: 16px;
-    color: var(--text-light);
+    color: var(--text-secondary);
     margin-top: 4px;
   }
 
   .dark .stat-label { color: #94A3B8; }
 
-  /* Department grid */
+  /* ========== DEPARTMENT GRID ========== */
   .dept-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -287,29 +336,36 @@
   }
 
   .dept-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 18px 20px;
+  }
+
+  .dark .dept-card {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
   }
 
   .dept-card h4 {
     font-size: 14px;
     font-weight: 700;
-    color: var(--green);
+    color: var(--accent);
     margin-bottom: 6px;
   }
 
   .dept-card p {
     font-size: 13px;
-    color: #94A3B8;
+    color: var(--text-secondary);
     line-height: 1.5;
   }
 
-  /* CTA */
+  .dark .dept-card p { color: #94A3B8; }
+
+  /* ========== CTA ========== */
   .cta-box {
-    background: var(--green);
-    color: var(--navy);
+    background: var(--accent);
+    color: var(--text-primary);
     border-radius: 12px;
     padding: 32px 40px;
     text-align: center;
@@ -328,44 +384,35 @@
     font-weight: 500;
   }
 
-  /* Section label */
-  .section-label {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--green);
-    margin-bottom: 8px;
-  }
-
-  /* Placeholder */
+  /* ========== PLACEHOLDER ========== */
   .placeholder {
-    border: 2px dashed rgba(255,255,255,0.2);
+    border: 2px dashed var(--border);
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    color: #64748B;
+    color: var(--text-secondary);
     font-size: 14px;
     font-weight: 500;
     margin-top: 16px;
   }
 
-  .light .placeholder {
-    border-color: var(--border);
+  .dark .placeholder {
+    border-color: rgba(255,255,255,0.2);
+    color: #94A3B8;
   }
 
-  /* Progress bar */
+  /* ========== PROGRESS BAR ========== */
   .progress {
     position: fixed;
     top: 0;
     left: 0;
     height: 3px;
-    background: var(--green);
-    z-index: 200;
+    background: var(--accent);
+    z-index: 2000;
     transition: width 0.4s ease;
   }
 
-  /* Inline flex row */
+  /* ========== FLEX HELPERS ========== */
   .flex-row { display: flex; gap: 24px; align-items: flex-start; }
   .flex-1 { flex: 1; }
 
@@ -378,7 +425,7 @@
   .bullet-list li {
     font-size: 16px;
     line-height: 1.8;
-    color: var(--text-light);
+    color: var(--text-secondary);
     padding-left: 18px;
     position: relative;
   }
@@ -392,14 +439,14 @@
     top: 12px;
     width: 6px;
     height: 6px;
-    background: var(--green);
+    background: var(--accent);
     border-radius: 50%;
   }
 
   .tag {
     display: inline-block;
     background: rgba(97,243,147,0.15);
-    color: var(--green);
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
     padding: 3px 10px;
@@ -410,52 +457,57 @@
 </head>
 <body>
 
-<div class="progress" id="progress"></div>
-<div class="slide-number" id="slideNum"></div>
+<!-- NAV BAR -->
+<div id="navbar">
+  <a href="../../index.html">
+    <img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity">
+  </a>
+</div>
 
-<!-- SLIDE 1: Title -->
+<div class="progress" id="progress"></div>
+<div id="slide-counter"></div>
+
+<!-- SLIDE 1: Title (DARK) -->
 <div class="slide dark active" data-slide="1">
   <div class="slide-content" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-    <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height:40px; margin-bottom:48px;">
-    <h1 style="font-size:56px;">All Hands</h1>
-    <p class="subtitle" style="text-align:center;">February 15, 2026</p>
+    <img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity" style="height:40px; margin-bottom:48px;" class="anim">
+    <h1 style="font-size:56px;" class="anim d1">All Hands</h1>
+    <p class="subtitle anim d2" style="text-align:center;">February 15, 2026</p>
   </div>
 </div>
 
-<!-- SLIDE 2: Agenda -->
-<div class="slide dark" data-slide="2">
+<!-- SLIDE 2: Agenda (LIGHT) -->
+<div class="slide" data-slide="2">
   <div class="slide-content">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
-    <div class="accent-bar"></div>
-    <h2>Today's Agenda</h2>
-    <div class="card-grid cols-3" style="margin-top:32px;">
+    <div class="accent-bar anim"></div>
+    <h2 class="anim d1">Today's Agenda</h2>
+    <div class="card-grid cols-3 anim d2" style="margin-top:32px;">
       <div class="card" style="text-align:center; padding:32px 24px;">
-        <div style="font-size:32px; font-weight:800; color:var(--green); margin-bottom:8px;">01</div>
-        <h3 style="font-size:18px; color:#fff;">Running with Deel</h3>
+        <div style="font-size:32px; font-weight:800; color:var(--accent); margin-bottom:8px;">01</div>
+        <h3 style="font-size:18px;">Running with Deel</h3>
         <p>Our first live customer engagement</p>
       </div>
       <div class="card" style="text-align:center; padding:32px 24px;">
-        <div style="font-size:32px; font-weight:800; color:var(--green); margin-bottom:8px;">02</div>
-        <h3 style="font-size:18px; color:#fff;">Pre-Hire + Post-Hire</h3>
+        <div style="font-size:32px; font-weight:800; color:var(--accent); margin-bottom:8px;">02</div>
+        <h3 style="font-size:18px;">Pre-Hire + Post-Hire</h3>
         <p>Broadening our value proposition</p>
       </div>
       <div class="card" style="text-align:center; padding:32px 24px;">
-        <div style="font-size:32px; font-weight:800; color:var(--green); margin-bottom:8px;">03</div>
-        <h3 style="font-size:18px; color:#fff;">AI as Daily Practice</h3>
+        <div style="font-size:32px; font-weight:800; color:var(--accent); margin-bottom:8px;">03</div>
+        <h3 style="font-size:18px;">AI as Daily Practice</h3>
         <p>Claude Code for every team member</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 3: Deel - Overview -->
-<div class="slide dark" data-slide="3">
+<!-- SLIDE 3: Deel - Overview (LIGHT) -->
+<div class="slide" data-slide="3">
   <div class="slide-content">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
-    <div class="section-label">Section 01</div>
-    <h2>We Are Live with Deel</h2>
-    <p class="subtitle" style="margin-bottom:24px;">Our pre-hire candidate verification is actively running with a real customer. This validates our core value proposition.</p>
-    <div class="card-grid cols-2">
+    <div class="section-label anim">Section 01</div>
+    <h2 class="anim d1">We Are Live with Deel</h2>
+    <p class="subtitle anim d2" style="margin-bottom:24px;">Our pre-hire candidate verification is actively running with a real customer. This validates our core value proposition.</p>
+    <div class="card-grid cols-2 anim d3">
       <div class="card">
         <h4>What This Means</h4>
         <ul>
@@ -476,16 +528,15 @@
   </div>
 </div>
 
-<!-- SLIDE 4: Deel - Timeline -->
-<div class="slide dark" data-slide="4">
+<!-- SLIDE 4: Deel - Timeline (LIGHT) -->
+<div class="slide" data-slide="4">
   <div class="slide-content">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
-    <div class="section-label">Section 01</div>
-    <h2>Deel Timeline and Milestones</h2>
-    <div class="placeholder" style="margin-top:32px; padding:48px 24px;">
+    <div class="section-label anim">Section 01</div>
+    <h2 class="anim d1">Deel Timeline and Milestones</h2>
+    <div class="placeholder anim d2" style="margin-top:32px; padding:48px 24px;">
       Timeline details to be added — waiting on update from Neev
     </div>
-    <div class="card" style="margin-top:20px;">
+    <div class="card anim d3" style="margin-top:20px;">
       <h4>Next Steps</h4>
       <ul>
         <li>Key milestones and deliverables TBD</li>
@@ -495,43 +546,41 @@
   </div>
 </div>
 
-<!-- SLIDE 5: Broadening Value Prop - Intro -->
+<!-- SLIDE 5: Broadening Value Prop - Intro (LIGHT) -->
 <div class="slide" data-slide="5">
   <div class="slide-content">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="filter:brightness(0);"></div>
-    <div class="section-label" style="color:var(--navy);">Section 02</div>
-    <h2>Broadening Our Value Proposition</h2>
-    <p class="subtitle" style="margin-bottom:32px;">We are expanding from <strong>candidate verification</strong> to <strong>candidate AND employee verification</strong> — covering the full identity lifecycle.</p>
-    <div class="flex-row" style="margin-top:16px;">
+    <div class="section-label anim">Section 02</div>
+    <h2 class="anim d1">Broadening Our Value Proposition</h2>
+    <p class="subtitle anim d2" style="margin-bottom:32px;">We are expanding from <strong>candidate verification</strong> to <strong>candidate AND employee verification</strong> — covering the full identity lifecycle.</p>
+    <div class="flex-row anim d3" style="margin-top:16px;">
       <div style="flex:1; text-align:center; padding:24px;">
-        <div style="font-size:14px; font-weight:700; color:var(--text-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Before</div>
+        <div style="font-size:14px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Before</div>
         <div style="font-size:24px; font-weight:700;">Pre-Hire Only</div>
-        <p style="color:var(--text-light); font-size:14px; margin-top:4px;">Candidate verification</p>
+        <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Candidate verification</p>
       </div>
-      <div style="font-size:32px; color:var(--green); align-self:center; font-weight:700;">&#8594;</div>
+      <div style="font-size:32px; color:var(--accent); align-self:center; font-weight:700;">&#8594;</div>
       <div style="flex:1; text-align:center; padding:24px; background:rgba(97,243,147,0.08); border-radius:12px; border:1.5px solid rgba(97,243,147,0.25);">
-        <div style="font-size:14px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Now</div>
+        <div style="font-size:14px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Now</div>
         <div style="font-size:24px; font-weight:700;">Pre-Hire + Post-Hire</div>
-        <p style="color:var(--text-light); font-size:14px; margin-top:4px;">Candidate AND employee verification</p>
+        <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Candidate AND employee verification</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 6: Architecture Diagram -->
+<!-- SLIDE 6: Architecture Diagram (LIGHT) -->
 <div class="slide" data-slide="6">
   <div class="slide-content">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="filter:brightness(0);"></div>
-    <div class="section-label" style="color:var(--navy);">Platform Architecture</div>
-    <h2 style="font-size:32px; margin-bottom:20px;">Three-Layer Architecture</h2>
-    <div class="arch-diagram">
+    <div class="section-label anim">Platform Architecture</div>
+    <h2 class="anim d1" style="font-size:32px; margin-bottom:20px;">Three-Layer Architecture</h2>
+    <div class="arch-diagram anim d2">
       <!-- Top Layer -->
       <div class="arch-layer top">
-        <div class="arch-label" style="color:var(--navy);">Application Layer</div>
+        <div class="arch-label" style="color:var(--text-primary);">Application Layer</div>
         <div class="arch-items" style="margin-bottom:10px;">
-          <div class="arch-item" style="font-weight:700;">HR Systems <span style="font-weight:400; color:var(--text-light); font-size:12px;">(ATS, HRIS)</span></div>
-          <div class="arch-item" style="font-weight:700;">IDP Systems <span style="font-weight:400; color:var(--text-light); font-size:12px;">(Okta, ServiceNow)</span></div>
-          <div class="arch-item">Security Systems <span style="font-weight:400; color:var(--text-light); font-size:12px;">(SIEM)</span></div>
+          <div class="arch-item" style="font-weight:700;">HR Systems <span style="font-weight:400; color:var(--text-secondary); font-size:12px;">(ATS, HRIS)</span></div>
+          <div class="arch-item" style="font-weight:700;">IDP Systems <span style="font-weight:400; color:var(--text-secondary); font-size:12px;">(Okta, ServiceNow)</span></div>
+          <div class="arch-item">Security Systems <span style="font-weight:400; color:var(--text-secondary); font-size:12px;">(SIEM)</span></div>
         </div>
         <div class="arch-items">
           <div class="arch-item highlight">Video Call Bot</div>
@@ -546,21 +595,21 @@
         <div class="arch-label">Identity Signals</div>
         <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
           <div>
-            <div style="font-size:11px; font-weight:700; color:var(--text-light); text-transform:uppercase; margin-bottom:6px;">Candidate</div>
+            <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:6px;">Candidate</div>
             <div class="arch-items" style="flex-direction:column;">
               <div class="arch-item" style="width:fit-content;">CV Analysis</div>
               <div class="arch-item" style="width:fit-content;">LinkedIn Profile</div>
             </div>
           </div>
           <div>
-            <div style="font-size:11px; font-weight:700; color:var(--green); text-transform:uppercase; margin-bottom:6px;">Shared</div>
+            <div style="font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">Shared</div>
             <div class="arch-items" style="flex-direction:column;">
               <div class="arch-item highlight" style="width:fit-content;">Deepfake Detection</div>
               <div class="arch-item highlight" style="width:fit-content;">ID Document Verification</div>
             </div>
           </div>
           <div>
-            <div style="font-size:11px; font-weight:700; color:var(--text-light); text-transform:uppercase; margin-bottom:6px;">Employee</div>
+            <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:6px;">Employee</div>
             <div class="arch-items" style="flex-direction:column;">
               <div class="arch-item" style="width:fit-content;">Organizational Context</div>
               <div class="arch-item" style="width:fit-content;">Security Questions</div>
@@ -584,15 +633,14 @@
   </div>
 </div>
 
-<!-- SLIDE 7: Sales Validation -->
+<!-- SLIDE 7: Sales Validation (LIGHT) -->
 <div class="slide" data-slide="7">
   <div class="slide-content">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="filter:brightness(0);"></div>
-    <div class="section-label" style="color:var(--navy);">Market Validation</div>
-    <h2>Customers Want Both</h2>
-    <p class="subtitle" style="margin-bottom:32px;">The market is telling us: pre-hire alone isn't enough. Customers need full lifecycle identity verification.</p>
-    <div class="card-grid cols-2">
-      <div class="card" style="border-left:4px solid var(--green);">
+    <div class="section-label anim">Market Validation</div>
+    <h2 class="anim d1">Customers Want Both</h2>
+    <p class="subtitle anim d2" style="margin-bottom:32px;">The market is telling us: pre-hire alone isn't enough. Customers need full lifecycle identity verification.</p>
+    <div class="card-grid cols-2 anim d3">
+      <div class="card" style="border-left:4px solid var(--accent);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <h3 style="margin-bottom:4px;">Robinhood RFP</h3>
@@ -604,35 +652,33 @@
           </div>
         </div>
       </div>
-      <div class="card" style="border-left:4px solid var(--green);">
+      <div class="card" style="border-left:4px solid var(--accent);">
         <div>
           <h3 style="margin-bottom:4px;">Calix</h3>
           <p style="font-size:14px;">Same pattern — requesting both pre-hire and post-hire capabilities</p>
         </div>
       </div>
     </div>
-    <div class="card" style="margin-top:16px; background:rgba(97,243,147,0.05); border-color:rgba(97,243,147,0.2);">
-      <p style="font-size:16px; font-weight:600; color:var(--navy); text-align:center;">The expansion from pre-hire to full lifecycle is not a pivot — it is what the market demands.</p>
+    <div class="card anim d4" style="margin-top:16px; background:rgba(97,243,147,0.05); border-color:rgba(97,243,147,0.2);">
+      <p style="font-size:16px; font-weight:600; color:var(--text-primary); text-align:center;">The expansion from pre-hire to full lifecycle is not a pivot — it is what the market demands.</p>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 8: AI Section Intro -->
-<div class="slide dark" data-slide="8">
+<!-- SLIDE 8: AI Section Intro (LIGHT) -->
+<div class="slide" data-slide="8">
   <div class="slide-content" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
-    <div class="section-label">Section 03</div>
-    <h1 style="font-size:48px;">AI as Daily Practice</h1>
-    <p class="subtitle" style="text-align:center; margin-top:8px;">Starting today, every person at Clarity uses Claude Code in their daily work.</p>
+    <div class="section-label anim">Section 03</div>
+    <h1 style="font-size:48px;" class="anim d1">AI as Daily Practice</h1>
+    <p class="subtitle anim d2" style="text-align:center; margin-top:8px;">Starting today, every person at Clarity uses Claude Code in their daily work.</p>
   </div>
 </div>
 
-<!-- SLIDE 9: AI by Department -->
-<div class="slide dark" data-slide="9">
+<!-- SLIDE 9: AI by Department (LIGHT) -->
+<div class="slide" data-slide="9">
   <div class="slide-content">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
-    <h2 style="font-size:30px; margin-bottom:20px;">Claude Code Across Every Department</h2>
-    <div class="dept-grid">
+    <h2 class="anim" style="font-size:30px; margin-bottom:20px;">Claude Code Across Every Department</h2>
+    <div class="dept-grid anim d1">
       <div class="dept-card">
         <h4>CEO</h4>
         <p>Creating decks, reviewing customer calls, organizing files, meeting prep</p>
@@ -661,42 +707,45 @@
   </div>
 </div>
 
-<!-- SLIDE 10: AI Commitment -->
-<div class="slide dark" data-slide="10">
+<!-- SLIDE 10: AI Commitment (LIGHT) -->
+<div class="slide" data-slide="10">
   <div class="slide-content" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
-    <h2 style="font-size:36px; max-width:800px;">This is not optional.<br>This is how we work now.</h2>
-    <p class="subtitle" style="text-align:center; margin-top:16px; margin-bottom:32px;">Every team member starts using Claude Code today. No exceptions.</p>
-    <div class="cta-box">
+    <h2 class="anim" style="font-size:36px; max-width:800px;">This is not optional.<br>This is how we work now.</h2>
+    <p class="subtitle anim d1" style="text-align:center; margin-top:16px; margin-bottom:32px;">Every team member starts using Claude Code today. No exceptions.</p>
+    <div class="cta-box anim d2">
       <h3>"I will personally sit with anyone who needs help getting started."</h3>
       <p style="margin-top:8px;">— Michael</p>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 11: Closing -->
+<!-- SLIDE 11: Closing (DARK) -->
 <div class="slide dark" data-slide="11">
   <div class="slide-content" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-    <div class="logo"><img src="../../shared/brand/clarity-logo.svg" alt="Clarity"></div>
-    <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height:48px; margin-bottom:40px;">
-    <h1 style="font-size:44px;">Let's Build This Together</h1>
-    <div style="margin-top:32px; display:flex; gap:32px;">
+    <img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity" style="height:48px; margin-bottom:40px;" class="anim">
+    <h1 style="font-size:44px;" class="anim d1">Let's Build This Together</h1>
+    <div class="anim d2" style="margin-top:32px; display:flex; gap:32px;">
       <div style="text-align:center;">
-        <div style="font-size:14px; color:var(--green); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Deel</div>
+        <div style="font-size:14px; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Deel</div>
         <div style="font-size:16px; color:#94A3B8;">Live and running</div>
       </div>
       <div style="width:1px; background:rgba(255,255,255,0.15);"></div>
       <div style="text-align:center;">
-        <div style="font-size:14px; color:var(--green); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Pre + Post Hire</div>
+        <div style="font-size:14px; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Pre + Post Hire</div>
         <div style="font-size:16px; color:#94A3B8;">Full lifecycle identity</div>
       </div>
       <div style="width:1px; background:rgba(255,255,255,0.15);"></div>
       <div style="text-align:center;">
-        <div style="font-size:14px; color:var(--green); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Claude Code</div>
+        <div style="font-size:14px; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Claude Code</div>
         <div style="font-size:16px; color:#94A3B8;">AI-first, starting today</div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- NAV HINT -->
+<div id="nav-hint">
+  <kbd>&larr;</kbd> <kbd>&rarr;</kbd> Navigate &nbsp; <kbd>F</kbd> Fullscreen &nbsp; <kbd>ESC</kbd> Exit
 </div>
 
 <script>
@@ -704,33 +753,80 @@
   const totalSlides = slides.length;
   let current = 0;
 
+  // Load slide from URL hash
+  const hashMatch = window.location.hash.match(/^#slide-(\d+)$/);
+  if (hashMatch) {
+    const slideNum = parseInt(hashMatch[1]) - 1;
+    if (slideNum >= 0 && slideNum < totalSlides) {
+      slides[0].classList.remove('active');
+      current = slideNum;
+      slides[current].classList.add('active');
+    }
+  }
+
   function showSlide(n) {
     slides[current].classList.remove('active');
     current = Math.max(0, Math.min(n, totalSlides - 1));
     slides[current].classList.add('active');
-    document.getElementById('slideNum').textContent = (current + 1) + ' / ' + totalSlides;
+    document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + totalSlides;
     document.getElementById('progress').style.width = ((current + 1) / totalSlides * 100) + '%';
-    // Match slide-number color to slide theme
+    // Match counter color to slide theme
     const isDark = slides[current].classList.contains('dark');
-    document.getElementById('slideNum').style.color = isDark ? '#64748B' : '#94A3B8';
+    document.getElementById('slide-counter').style.color = isDark ? '#64748B' : '#94A3B8';
+    history.replaceState(null, '', '#slide-' + (current + 1));
   }
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
-      e.preventDefault();
-      showSlide(current + 1);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      showSlide(current - 1);
-    } else if (e.key === 'Home') {
-      showSlide(0);
-    } else if (e.key === 'End') {
-      showSlide(totalSlides - 1);
+    switch(e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+      case ' ':
+        e.preventDefault();
+        showSlide(current + 1);
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        showSlide(current - 1);
+        break;
+      case 'Home':
+        showSlide(0);
+        break;
+      case 'End':
+        showSlide(totalSlides - 1);
+        break;
+      case 'f':
+      case 'F':
+        e.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+          document.getElementById('nav-hint').style.display = 'none';
+        }
+        break;
+      case 'Escape':
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+          document.getElementById('nav-hint').style.display = 'block';
+        }
+        break;
     }
+  });
+
+  // Touch/swipe support
+  let startX = null;
+  document.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e) => {
+    if (startX === null) return;
+    const delta = e.changedTouches[0].clientX - startX;
+    if (Math.abs(delta) > 50) {
+      delta > 0 ? showSlide(current - 1) : showSlide(current + 1);
+    }
+    startX = null;
   });
 
   // Click to advance
   document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' || e.target.closest('a')) return;
     if (e.clientX > window.innerWidth / 2) {
       showSlide(current + 1);
     } else {
@@ -738,8 +834,18 @@
     }
   });
 
-  showSlide(0);
+  showSlide(current);
+
+  // Auto-hide nav hint
+  setTimeout(() => {
+    const hint = document.getElementById('nav-hint');
+    if (hint) {
+      hint.style.opacity = '0.3';
+      setTimeout(() => hint.style.display = 'none', 3000);
+    }
+  }, 5000);
 </script>
 
+<script src="../../shared/js/dev-mode.js"></script>
 </body>
 </html>
