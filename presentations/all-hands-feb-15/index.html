@@ -878,6 +878,170 @@
     color: #94A3B8;
   }
 
+  /* ========== PARALLEL MILESTONE TRACKS ========== */
+  .milestone-tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 20px;
+  }
+
+  .milestone-track {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #E2E8F0;
+  }
+
+  .track-header {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #E2E8F0;
+  }
+
+  .track-milestone {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .track-milestone + .track-milestone {
+    border-top: 1px solid #F1F5F9;
+  }
+
+  .track-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .track-dot.done {
+    background: var(--accent);
+    color: var(--text-primary);
+  }
+
+  .track-dot.done::after { content: "\2713"; }
+
+  .track-dot.active {
+    background: #DBEAFE;
+    border: 2px solid #3B82F6;
+    animation: milestoneActivePulse 2.5s ease-in-out infinite;
+  }
+
+  .track-dot.active::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #3B82F6;
+  }
+
+  .track-dot.pending {
+    background: #F1F5F9;
+    border: 2px solid #CBD5E1;
+  }
+
+  .track-info { flex: 1; }
+
+  .track-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+
+  .track-milestone.is-pending .track-title {
+    color: var(--text-secondary);
+  }
+
+  .track-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .track-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .track-tag.done { background: rgba(97,243,147,0.15); color: #0a1628; }
+  .track-tag.active { background: #DBEAFE; color: #2563EB; }
+  .track-tag.pending { background: #F1F5F9; color: #94A3B8; }
+
+  /* Pilot goal row */
+  .milestone-goal {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #0a1628 0%, #162033 100%);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid rgba(97,243,147,0.3);
+  }
+
+  .goal-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .goal-body { flex: 1; }
+
+  .goal-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2px;
+  }
+
+  .goal-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  .goal-tag {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: rgba(97,243,147,0.2);
+    color: var(--accent);
+    border: 1px solid rgba(97,243,147,0.3);
+    flex-shrink: 0;
+  }
+
   @keyframes milestoneActivePulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.2); }
     50% { box-shadow: 0 0 0 6px rgba(59,130,246,0); }
@@ -1092,9 +1256,18 @@
         <div class="milestone-indicator done"></div>
         <div class="milestone-body">
           <div class="milestone-title">Legal Framework</div>
-          <div class="milestone-desc">Consent model resolved — legitimate interest with opt-out path and human reviewer.</div>
+          <div class="milestone-desc">Consent basis resolved — legitimate interest with opt-out path confirmed.</div>
         </div>
         <div class="milestone-tag done">Complete</div>
+      </div>
+      <!-- IN PROGRESS -->
+      <div class="milestone">
+        <div class="milestone-indicator active"></div>
+        <div class="milestone-body">
+          <div class="milestone-title">Opt-Out Handling</div>
+          <div class="milestone-desc">Candidate opt-out flow: Deel wants human reviewer, cost model under discussion with Albert (CISO).</div>
+        </div>
+        <div class="milestone-tag active">In Progress</div>
       </div>
       <div class="milestone">
         <div class="milestone-indicator done"></div>
@@ -1104,7 +1277,6 @@
         </div>
         <div class="milestone-tag done">Complete</div>
       </div>
-      <!-- IN PROGRESS -->
       <div class="milestone">
         <div class="milestone-indicator active"></div>
         <div class="milestone-body">
