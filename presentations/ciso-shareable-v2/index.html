@@ -1253,43 +1253,44 @@ h3 {
 .drift-left { animation: drift-left 5s ease-in-out infinite; }
 .drift-right { animation: drift-right 5s ease-in-out infinite; }
 
-/* Silo grid animation */
-.silo-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin: 0 auto 16px;
-    max-width: 180px;
+/* Card 4 redesign: Siloed tools orbit */
+.silo-orbit-ring {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: -4px auto 8px;
 }
-.silo-chip {
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    padding: 6px 4px;
-    border-radius: 6px;
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
+
+@keyframes silo-orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.silo-orbit-track {
+    position: absolute;
+    inset: 0;
+    animation: silo-orbit 25s linear infinite;
+}
+
+.silo-pill {
+    position: absolute;
+    font-size: 0.58rem;
+    font-weight: 600;
     color: var(--text-secondary);
-    opacity: 0.85;
+    background: #f0f4f8;
+    border: 1px solid #dde3ea;
+    border-radius: 12px;
+    padding: 2px 7px;
+    white-space: nowrap;
+    animation: silo-orbit 25s linear infinite reverse;
 }
-@keyframes silo-float-1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-4px,-3px); } }
-@keyframes silo-float-2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,-4px); } }
-@keyframes silo-float-3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(5px,2px); } }
-@keyframes silo-float-4 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-5px,3px); } }
-@keyframes silo-float-5 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(2px,5px); } }
-@keyframes silo-float-6 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(4px,-2px); } }
-@keyframes silo-float-7 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-3px,4px); } }
-@keyframes silo-float-8 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,3px); } }
-@keyframes silo-float-9 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-2px,-5px); } }
-.silo-drift-1 { animation: silo-float-1 3.2s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
-.silo-drift-2 { animation: silo-float-2 2.8s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
-.silo-drift-3 { animation: silo-float-3 3.5s ease-in-out infinite; border-color: rgba(245,158,11,0.3); }
-.silo-drift-4 { animation: silo-float-4 3.0s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
-.silo-drift-5 { animation: silo-float-5 2.6s ease-in-out infinite; border-color: rgba(245,158,11,0.3); }
-.silo-drift-6 { animation: silo-float-6 3.3s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
-.silo-drift-7 { animation: silo-float-7 2.9s ease-in-out infinite; border-color: rgba(245,158,11,0.3); }
-.silo-drift-8 { animation: silo-float-8 3.1s ease-in-out infinite; border-color: rgba(239,68,68,0.3); }
-.silo-drift-9 { animation: silo-float-9 3.4s ease-in-out infinite; border-color: rgba(245,158,11,0.3); }
+
+/* 5 pills evenly around orbit — no overlap, no clipping */
+.silo-pill:nth-child(1) { top: -4px;  left: 50%;  margin-left: -20px; }   /* top center */
+.silo-pill:nth-child(2) { top: 24px;  right: -8px; }                       /* right-upper */
+.silo-pill:nth-child(3) { bottom: -2px; left: 50%; margin-left: 4px; }     /* bottom-right */
+.silo-pill:nth-child(4) { bottom: -2px; right: 50%; margin-right: 4px; }   /* bottom-left */
+.silo-pill:nth-child(5) { top: 24px;  left: -14px; }                       /* left-upper */
 
     </style>
 </head>
@@ -1548,11 +1549,29 @@ h3 {
                 <div style="position: absolute; top: 12px; right: -20px; background: var(--danger); color: white; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 4px 28px; transform: rotate(35deg); opacity: 0.9;">Arms Race</div>
             </div>
             <div class="anim d6" style="background: white; border-radius: 16px; padding: 28px 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden;">
-                <div style="margin-bottom: 16px;">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-                </div>
-                <div style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid #e2e8f0; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
-                    <span style="font-size: 1.1rem; font-weight: 800; color: var(--danger);">0%</span>
+                <!-- Orbiting silo pills -->
+                <div class="silo-orbit-ring">
+                    <div class="silo-orbit-track">
+                        <span class="silo-pill">Deepfake</span>
+                        <span class="silo-pill">IDV</span>
+                        <span class="silo-pill">BGC</span>
+                        <span class="silo-pill">Device</span>
+                        <span class="silo-pill">Resume</span>
+                    </div>
+                    <!-- Cracked circle: broken ring with fracture lines -->
+                    <svg width="72" height="72" viewBox="0 0 72 72" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <!-- Main ring with gap at top-right -->
+                        <circle cx="36" cy="36" r="28" fill="none" stroke="var(--danger)" stroke-width="4.5" stroke-dasharray="132 44" stroke-linecap="round" opacity="0.2"/>
+                        <!-- Second arc to close bottom -->
+                        <circle cx="36" cy="36" r="28" fill="none" stroke="var(--danger)" stroke-width="4.5" stroke-dasharray="44 132" stroke-dashoffset="-132" stroke-linecap="round" opacity="0.2"/>
+                        <!-- Fracture lines at each gap -->
+                        <line x1="56" y1="14" x2="62" y2="8" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+                        <line x1="58" y1="18" x2="64" y2="16" stroke="var(--danger)" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                        <line x1="16" y1="58" x2="10" y2="64" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+                        <line x1="14" y1="54" x2="8" y2="56" stroke="var(--danger)" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                        <!-- Center X -->
+                        <path d="M31 31L41 41M41 31L31 41" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" opacity="0.35"/>
+                    </svg>
                 </div>
                 <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); font-weight: 700; margin-bottom: 8px;">No correlation</div>
                 <h3 style="font-size: 1rem; margin-bottom: 8px;">Siloed Tools</h3>
