@@ -10,6 +10,23 @@ Read these files in order. They are your source of truth:
 2. **`docs/COMPONENTS.md`** — Slide pattern catalog. Browse the available patterns and pick the best ones for the user's content. You don't need to use all of them — just the ones that fit.
 3. **`docs/ASSETS.md`** — Complete inventory of every image, logo, screenshot, and badge available. Use real assets only. Never invent logos or fake screenshots.
 
+### Deep Review of Existing Presentations (MANDATORY)
+
+Before building ANY new deck, you MUST thoroughly review all existing presentations to absorb:
+- **Current messaging & positioning** — What claims does Clarity make? What language is used? What stats are cited?
+- **Narrative patterns** — How do existing decks structure their story arc? What works?
+- **Up-to-date facts** — Customer names, logos, statistics, quotes, and proof points evolve. The latest decks have the freshest data.
+- **Visual patterns** — What design approaches, animations, and layouts have been refined?
+- **Assets already created** — Logos, screenshots, mockups that exist and should be reused.
+
+**How to review:** Read the `index.html` of each presentation in `presentations/`:
+```bash
+ls presentations/*/index.html
+```
+At minimum, read the two most recent/polished decks fully. Scan others for unique content (stats, quotes, customer logos) you might need.
+
+**Why this matters:** Clarity's messaging evolves rapidly. A deck built with stale stats or outdated positioning undermines credibility. Every new deck should reflect the LATEST state of the company's narrative.
+
 ## Intake Questions
 
 Before building anything, ask the user these questions (if they haven't already answered them):
