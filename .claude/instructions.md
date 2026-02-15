@@ -184,19 +184,97 @@ If you need an asset that doesn't exist (logo, screenshot, photo):
 2. Add a visible placeholder: `<div style="background: #E2E8F0; padding: 40px; text-align: center; border-radius: 12px; color: #64748B;">IMAGE NEEDED: [description]</div>`
 3. Tell the user what's missing and who to ask (Michael or the design team)
 
-## Quality Checklist
+## Design Constraints (Enforced)
 
-Before delivering, verify:
-- [ ] Every `<img>` src path resolves to a real file
-- [ ] No emojis anywhere
-- [ ] Nav bar links to `../../index.html`
-- [ ] Slide counter shows correct total
-- [ ] Mobile looks good (not just "works")
-- [ ] Each slide has a clear visual hierarchy
-- [ ] Statistics have sources cited
-- [ ] Animations use `.anim` + delay classes
-- [ ] All slides scroll if content overflows
+These rules prevent cluttered, amateur-looking slides. Follow them strictly.
+
+### Per-Slide Limits
+- **Max 4 major elements per slide.** A "major element" is a heading, a card group, a quote, a stat row, or an image. If you need more, split into two slides.
+- **Max 1 heading per slide.** One H2. Period. Use a section label above it if needed.
+- **Max 4 cards in a row.** If you have 5+ items, use a 2-row layout or a different pattern.
+- **Max 3 lines of body text per block.** If you're writing paragraphs, you're doing it wrong. Distill.
+- **Minimum 40px padding** on all slide content containers. Content should never touch edges.
+- **Minimum 24px gap** between major elements. Let things breathe.
+
+### Visual Hierarchy Rules
+- **One focal point per slide.** The eye should know exactly where to go first.
+- **Big numbers are BIG.** Stats should be 2.5rem+ and bold. The number IS the slide.
+- **Labels are tiny.** Section labels, source citations = 0.6-0.7rem, uppercase, muted color.
+- **Never use the same layout on consecutive slides.** If slide 3 is a 3-column grid, slide 4 must be something different (quote, timeline, full-width image, etc).
+- **Every slide must have whitespace.** If it feels "full," remove something.
+
+### Color Discipline
+- **Green (#61F393):** Max 2-3 uses per slide. Accent, not wallpaper.
+- **Red (#EF4444):** Only for threats, risks, danger. Never decorative.
+- **Dark slides:** Only for closing, section breaks, or dramatic reveals. Max 2 per deck.
+- **Card backgrounds:** Always white (#FFFFFF). Not gray, not tinted.
+
+### Typography
+- **H2 (slide title):** 2.2-3rem, font-weight 700-800
+- **Body text:** 0.85-1rem, line-height 1.5+, color var(--text-secondary)
+- **Card titles:** 0.95-1.1rem, font-weight 700
+- **Stat numbers:** 2.5rem+, font-weight 800
+- **Labels:** 0.6-0.7rem, uppercase, letter-spacing 1.5px+
+- **Never go below 0.6rem for anything.** If it's too small to read, it shouldn't be there.
+
+### Logo & Image Rules
+- **Logos in cards:** 16-28px height. Consistent across the slide.
+- **Screenshots:** Always inside a container with rounded corners (16px) and subtle shadow. Never bare.
+- **People photos:** Always circular, with a subtle border or shadow.
+- **Check every image path exists** with `ls` before using it. If it doesn't exist, use a placeholder.
+
+## Quality Assurance Protocol
+
+**After building every deck, you MUST complete this QA process before delivering.**
+
+### Step 1: Automated Checks
+Run these checks (use terminal commands):
+```bash
+# Verify all image files exist
+grep -oP 'src="([^"]+)"' index.html | sed 's/src="//;s/"//' | while read f; do
+  [ ! -f "$f" ] && echo "MISSING: $f"
+done
+
+# Check for emojis (should return nothing)
+grep -P '[\x{1F300}-\x{1F9FF}]' index.html
+
+# Count slides
+grep -c 'class="slide' index.html
+```
+
+### Step 2: Visual Review with Playwright
+Use the Playwright MCP to screenshot EVERY slide:
+1. Open the presentation in the browser
+2. Navigate to each slide (arrow key or hash URL)
+3. Take a screenshot of each slide
+4. **Review each screenshot yourself** — but remember you CANNOT read image files. Instead, check:
+   - Does the slide render without errors? (no broken image icons in terminal output)
+   - Is the slide counter correct?
+   - Does navigation work forward and backward?
+
+### Step 3: Checklist (verify ALL before delivering)
+- [ ] Every `<img>` src path resolves to a real file (verified with `ls`)
+- [ ] No emojis anywhere in the HTML
+- [ ] Nav bar present with Clarity logo linking to `../../index.html`
+- [ ] Slide counter shows correct total (matches actual slide count)
+- [ ] Hash navigation works (#slide-1 through #slide-N)
+- [ ] Arrow key navigation works
+- [ ] No two consecutive slides use the same layout pattern
+- [ ] Every slide has clear whitespace (no cramming)
+- [ ] Statistics have source citations
+- [ ] Animations use `.anim` + delay classes (`.d1` through `.d7`)
+- [ ] All slides have `overflow-y: auto` (long content scrolls)
 - [ ] Dark slides use `.slide-dark` class
+- [ ] Mobile responsive: grids collapse, fonts scale, nothing overflows
+- [ ] No placeholder text left (no "Lorem ipsum", no "TODO", no "TBD")
+- [ ] Metadata comment present at top of HTML with deck-type, audience, author, date
+
+### Step 4: Report
+After QA, tell the user:
+- Total slides built
+- Any issues found and fixed
+- Any missing assets that need to be provided
+- The branch name and how to open a PR
 
 ## Existing Presentations (for reference)
 
