@@ -238,42 +238,54 @@
   .arch-diagram {
     width: 100%;
     max-width: 1000px;
-    margin-top: 20px;
-  }
-
-  .arch-layer {
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 8px;
+    margin-top: 16px;
     position: relative;
   }
 
+  .arch-layer {
+    border-radius: 16px;
+    padding: 20px 24px;
+    position: relative;
+    z-index: 2;
+  }
+
   .arch-layer.top {
-    background: rgba(97, 243, 147, 0.08);
-    border: 1.5px solid rgba(97, 243, 147, 0.25);
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    box-shadow: 0 2px 12px rgba(10, 22, 40, 0.04);
   }
 
   .arch-layer.mid {
-    background: rgba(10, 22, 40, 0.04);
+    background: var(--bg-card);
     border: 1.5px solid var(--border);
+    box-shadow: 0 4px 20px rgba(10, 22, 40, 0.06);
   }
 
   .arch-layer.bottom {
     background: var(--text-primary);
-    border: 1.5px solid var(--text-primary);
+    border: 2px solid transparent;
     color: #fff;
+    box-shadow:
+      0 0 0 1px rgba(97, 243, 147, 0.3),
+      0 8px 32px rgba(10, 22, 40, 0.25),
+      0 0 60px rgba(97, 243, 147, 0.08);
+    padding: 24px 28px;
   }
 
   .arch-label {
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     margin-bottom: 12px;
     color: var(--text-secondary);
   }
 
-  .arch-layer.bottom .arch-label { color: var(--accent); }
+  .arch-layer.bottom .arch-label {
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
 
   .arch-items {
     display: flex;
@@ -282,7 +294,7 @@
   }
 
   .arch-item {
-    background: var(--bg-card);
+    background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 8px 14px;
@@ -291,9 +303,10 @@
   }
 
   .arch-layer.bottom .arch-item {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.15);
-    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.12);
+    color: #CBD5E1;
+    font-size: 12px;
   }
 
   .arch-item.highlight {
@@ -303,12 +316,188 @@
     font-weight: 700;
   }
 
-  .arch-connector {
-    text-align: center;
-    font-size: 18px;
+  .arch-layer.bottom .arch-item.highlight {
+    background: var(--accent);
+    color: var(--text-primary);
+    border-color: var(--accent);
+    box-shadow: 0 0 16px rgba(97, 243, 147, 0.3);
+  }
+
+  /* Flow connectors */
+  .arch-flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .arch-flow-line {
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--border), var(--accent));
+    border-radius: 1px;
+  }
+
+  .arch-flow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .slide.active .arch-flow-dot {
+    animation: flowPulse 2s ease-in-out infinite;
+  }
+
+  .arch-flow-dot:nth-child(1) { animation-delay: 0s; }
+  .arch-flow-dot:nth-child(3) { animation-delay: 0.3s; }
+  .arch-flow-dot:nth-child(5) { animation-delay: 0.6s; }
+
+  /* Engine interior */
+  .engine-interior {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .engine-modules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .engine-module {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 500;
     color: #94A3B8;
-    margin: 4px 0;
-    letter-spacing: 4px;
+    text-align: center;
+  }
+
+  .engine-core {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .engine-core-ring {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(97, 243, 147, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .slide.active .engine-core-ring {
+    animation: engineGlow 3s ease-in-out infinite;
+  }
+
+  .engine-core-inner {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(97, 243, 147, 0.1);
+    border: 1.5px solid rgba(97, 243, 147, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .engine-output {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .engine-score {
+    background: var(--accent);
+    color: var(--text-primary);
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 0 20px rgba(97, 243, 147, 0.25);
+  }
+
+  .engine-score-low {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #94A3B8;
+  }
+
+  .engine-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: rgba(97, 243, 147, 0.5);
+    font-size: 20px;
+  }
+
+  .engine-arrow-line {
+    width: 32px;
+    height: 2px;
+    background: rgba(97, 243, 147, 0.3);
+    border-radius: 1px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide.active .engine-arrow-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: var(--accent);
+    animation: arrowFlow 1.5s ease-in-out infinite;
+  }
+
+  /* Architecture animations */
+  @keyframes engineGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(97, 243, 147, 0.1); border-color: rgba(97, 243, 147, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(97, 243, 147, 0.2); border-color: rgba(97, 243, 147, 0.5); }
+  }
+
+  @keyframes flowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+
+  @keyframes arrowFlow {
+    0% { left: -50%; }
+    100% { left: 150%; }
+  }
+
+  @keyframes flowDown {
+    0% { transform: translateY(-4px); opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { transform: translateY(4px); opacity: 0.2; }
   }
 
   /* ========== STAT ========== */
@@ -571,73 +760,8 @@
   </div>
 </div>
 
-<!-- SLIDE 6: Architecture Diagram (LIGHT) -->
+<!-- SLIDE 6: Sales Validation (LIGHT) -->
 <div class="slide" data-slide="6">
-  <div class="slide-content">
-    <div class="section-label anim">Platform Architecture</div>
-    <h2 class="anim d1" style="font-size:32px; margin-bottom:20px;">Three-Layer Architecture</h2>
-    <div class="arch-diagram anim d2">
-      <!-- Top Layer -->
-      <div class="arch-layer top">
-        <div class="arch-label" style="color:var(--text-primary);">Application Layer</div>
-        <div class="arch-items" style="margin-bottom:10px;">
-          <div class="arch-item" style="font-weight:700;">HR Systems <span style="font-weight:400; color:var(--text-secondary); font-size:12px;">(ATS, HRIS)</span></div>
-          <div class="arch-item" style="font-weight:700;">IDP Systems <span style="font-weight:400; color:var(--text-secondary); font-size:12px;">(Okta, ServiceNow)</span></div>
-          <div class="arch-item">Security Systems <span style="font-weight:400; color:var(--text-secondary); font-size:12px;">(SIEM)</span></div>
-        </div>
-        <div class="arch-items">
-          <div class="arch-item highlight">Video Call Bot</div>
-          <div class="arch-item highlight">IDV Experience</div>
-        </div>
-      </div>
-
-      <div class="arch-connector">|||</div>
-
-      <!-- Middle Layer -->
-      <div class="arch-layer mid">
-        <div class="arch-label">Identity Signals</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
-          <div>
-            <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:6px;">Candidate</div>
-            <div class="arch-items" style="flex-direction:column;">
-              <div class="arch-item" style="width:fit-content;">CV Analysis</div>
-              <div class="arch-item" style="width:fit-content;">LinkedIn Profile</div>
-            </div>
-          </div>
-          <div>
-            <div style="font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">Shared</div>
-            <div class="arch-items" style="flex-direction:column;">
-              <div class="arch-item highlight" style="width:fit-content;">Deepfake Detection</div>
-              <div class="arch-item highlight" style="width:fit-content;">ID Document Verification</div>
-            </div>
-          </div>
-          <div>
-            <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:6px;">Employee</div>
-            <div class="arch-items" style="flex-direction:column;">
-              <div class="arch-item" style="width:fit-content;">Organizational Context</div>
-              <div class="arch-item" style="width:fit-content;">Security Questions</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="arch-connector">|||</div>
-
-      <!-- Bottom Layer -->
-      <div class="arch-layer bottom">
-        <div class="arch-label">Core Engine</div>
-        <div style="display:flex; align-items:center; gap:16px;">
-          <div class="arch-item highlight" style="font-size:15px; padding:12px 20px;">Risk Analysis Engine</div>
-          <div style="font-size:20px;">&#8594;</div>
-          <div class="arch-item" style="font-size:15px; padding:12px 20px;">Risk Score (Low / High)</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SLIDE 7: Sales Validation (LIGHT) -->
-<div class="slide" data-slide="7">
   <div class="slide-content">
     <div class="section-label anim">Market Validation</div>
     <h2 class="anim d1">Customers Want Both</h2>
@@ -664,6 +788,109 @@
     </div>
     <div class="card anim d4" style="margin-top:16px; background:rgba(97,243,147,0.05); border-color:rgba(97,243,147,0.2);">
       <p style="font-size:16px; font-weight:600; color:var(--text-primary); text-align:center;">The expansion from pre-hire to full lifecycle is not a pivot — it is what the market demands.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Architecture Diagram (LIGHT) -->
+<div class="slide" data-slide="7">
+  <div class="slide-content">
+    <div class="section-label anim">Platform Architecture</div>
+    <h2 class="anim d1" style="font-size:32px; margin-bottom:16px;">Three-Layer Architecture</h2>
+    <div class="arch-diagram anim d2">
+
+      <!-- APPLICATION LAYER (Top — Integration Surface) -->
+      <div class="arch-layer top">
+        <div class="arch-label" style="color:var(--text-secondary);">Application Layer</div>
+        <div class="arch-items" style="margin-bottom:8px;">
+          <div class="arch-item" style="font-weight:600;">HR Systems <span style="font-weight:400; color:var(--text-secondary); font-size:11px;">(ATS, HRIS)</span></div>
+          <div class="arch-item" style="font-weight:600;">IDP Systems <span style="font-weight:400; color:var(--text-secondary); font-size:11px;">(Okta, ServiceNow)</span></div>
+          <div class="arch-item">Security Systems <span style="font-weight:400; color:var(--text-secondary); font-size:11px;">(SIEM)</span></div>
+        </div>
+        <div class="arch-items">
+          <div class="arch-item highlight">Video Call Bot</div>
+          <div class="arch-item highlight">IDV Experience</div>
+        </div>
+      </div>
+
+      <!-- Flow: App → Signals -->
+      <div class="arch-flow">
+        <div class="arch-flow-dot"></div>
+        <div class="arch-flow-line"></div>
+        <div class="arch-flow-dot"></div>
+        <div class="arch-flow-line"></div>
+        <div class="arch-flow-dot"></div>
+      </div>
+
+      <!-- IDENTITY SIGNALS (Middle — Signal Collection) -->
+      <div class="arch-layer mid">
+        <div class="arch-label">Identity Signals</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+          <div>
+            <div style="font-size:10px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Candidate</div>
+            <div class="arch-items" style="flex-direction:column;">
+              <div class="arch-item" style="width:fit-content;">CV Analysis</div>
+              <div class="arch-item" style="width:fit-content;">LinkedIn Profile</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Shared</div>
+            <div class="arch-items" style="flex-direction:column;">
+              <div class="arch-item highlight" style="width:fit-content;">Deepfake Detection</div>
+              <div class="arch-item highlight" style="width:fit-content;">ID Document Verification</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Employee</div>
+            <div class="arch-items" style="flex-direction:column;">
+              <div class="arch-item" style="width:fit-content;">Organizational Context</div>
+              <div class="arch-item" style="width:fit-content;">Security Questions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flow: Signals → Engine -->
+      <div class="arch-flow">
+        <div class="arch-flow-dot"></div>
+        <div class="arch-flow-line" style="background:linear-gradient(to bottom, var(--accent), var(--accent));"></div>
+        <div class="arch-flow-dot"></div>
+        <div class="arch-flow-line" style="background:linear-gradient(to bottom, var(--accent), var(--accent));"></div>
+        <div class="arch-flow-dot"></div>
+      </div>
+
+      <!-- CORE ENGINE (Bottom — The IP, the Hero) -->
+      <div class="arch-layer bottom">
+        <div class="arch-label">Core Engine</div>
+        <div class="engine-interior">
+          <!-- Left: ML Modules -->
+          <div class="engine-modules">
+            <div class="engine-module">ML Models</div>
+            <div class="engine-module">Cross-Signal Correlation</div>
+            <div class="engine-module">Behavioral Analysis</div>
+            <div class="engine-module">Pattern Matching</div>
+            <div class="engine-module">Anomaly Detection</div>
+            <div class="engine-module">Identity Graphing</div>
+          </div>
+
+          <!-- Center: Core Ring -->
+          <div class="engine-core">
+            <div class="engine-core-ring">
+              <div class="engine-core-inner">Risk<br>Analysis</div>
+            </div>
+          </div>
+
+          <!-- Right: Output -->
+          <div class="engine-output">
+            <div class="engine-arrow">
+              <div class="engine-arrow-line"></div>
+            </div>
+            <div class="engine-score">High Risk</div>
+            <div class="engine-score-low">Low Risk</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
