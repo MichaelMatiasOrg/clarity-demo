@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="presentation-version" content="1.0.0">
+    <title>Clarity - Hiring & Identity Fraud Protection</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/design-system.css">
+    <link rel="stylesheet" href="../../shared/css/animations.css">
+    <link rel="stylesheet" href="presentation.css">
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<section class="slide slide-title" data-slide-id="title">
+    <div style="position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border: 2px solid rgba(97, 243, 147, 0.08); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -40px; left: -40px; width: 150px; height: 150px; border: 2px solid rgba(10, 22, 40, 0.05); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: relative; z-index: 1;">
+        <div class="logo">
+            <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 52px;">
+        </div>
+        <h1>Hiring & Identity<br>Fraud Protection</h1>
+    </div>
+    <div class="slide-number">1</div>
+</section>
+
+<!-- Slide 2: Tagline -->
+<section class="slide slide-quote" data-slide-id="tagline">
+    <div style="position: relative; z-index: 1;">
+        <p class="reveal-text" style="max-width: 800px; text-align: center;">
+            End-to-end solution to ensure you<br>
+            <strong>never hire and employ a <span class="danger">bad-actor</span></strong>
+        </p>
+    </div>
+    <div class="slide-number">2</div>
+</section>
+
+<!-- Slide 3: End-to-End Protection Overview -->
+<section class="slide slide-e2e" data-slide-id="e2e-overview">
+    <h2 style="text-align: center; color: white; margin-bottom: 6px;">End-to-End Protection</h2>
+    <p style="text-align: center; color: rgba(255,255,255,0.5); font-size: 1.15rem; font-weight: 500; margin-bottom: 20px;">Securing your hiring and workflow lifecycles</p>
+
+    <div style="text-align: center; margin-bottom: 6px;">
+        <img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity" style="height: 20px; opacity: 0.6; vertical-align: middle; margin-right: 6px;">
+        <span style="color: rgba(255,255,255,0.7); font-weight: 700; font-size: 0.85rem;">Checks</span>
+    </div>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <span style="color: white; font-size: 1.3rem; font-weight: 700;">Candidate Identity</span>
+    </div>
+
+    <!-- Main diagram area -->
+    <div class="e2e-diagram">
+        <!-- Dashed bracket above check boxes -->
+        <svg class="e2e-bracket" viewBox="0 0 580 36" fill="none">
+            <path d="M97 35 L97 12 Q97 2 107 2 L282 2" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.45"/>
+            <path d="M290 2 L290 35" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.45"/>
+            <path d="M483 35 L483 12 Q483 2 473 2 L298 2" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.45"/>
+            <circle cx="290" cy="2" r="3" fill="var(--accent)" opacity="0.5"/>
+        </svg>
+
+        <!-- Two-row layout: sourced on far left, check boxes + stages in columns, trusted hire on right -->
+        <div class="e2e-layout">
+            <div class="e2e-sourced">
+                <div class="e2e-stage">Candidate is<br>Sourced</div>
+            </div>
+
+            <div class="e2e-col">
+                <div class="e2e-check-box">
+                    <svg class="e2e-star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2l2.09 6.26L20 10l-4.91 3.74L16.18 20 12 16.27 7.82 20l1.09-6.26L4 10l5.91-1.74L12 2z"/></svg>
+                    <div class="e2e-check-label">Background<br>Verification</div>
+                </div>
+                <div class="e2e-stage">Application<br>Screening</div>
+            </div>
+
+            <div class="e2e-col">
+                <div class="e2e-check-box">
+                    <svg class="e2e-star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2l2.09 6.26L20 10l-4.91 3.74L16.18 20 12 16.27 7.82 20l1.09-6.26L4 10l5.91-1.74L12 2z"/></svg>
+                    <div class="e2e-check-label">AI Deepfake<br>Detection</div>
+                </div>
+                <div class="e2e-stage">Video<br>Interview</div>
+            </div>
+
+            <div class="e2e-col">
+                <div class="e2e-check-box">
+                    <svg class="e2e-star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2l2.09 6.26L20 10l-4.91 3.74L16.18 20 12 16.27 7.82 20l1.09-6.26L4 10l5.91-1.74L12 2z"/></svg>
+                    <div class="e2e-check-label">Identity<br>Check</div>
+                </div>
+                <div class="e2e-stage">Final<br>Offer</div>
+            </div>
+
+            <div class="e2e-trusted">
+                <div class="e2e-trusted-inner">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7s3-3 5.5-3A2.5 2.5 0 0 1 15 6.5V9"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                    <span>Trusted<br>Hire</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compliance badges -->
+    <div class="e2e-compliance">
+        <span class="e2e-badge">SOC 2 Type 2</span>
+        <span class="e2e-badge">GDPR</span>
+        <span class="e2e-badge">EU AI Act</span>
+    </div>
+
+    <div class="slide-number" style="color: rgba(255,255,255,0.3);">3</div>
+</section>
+
+<!-- Slide 4: Lifecycle Diagram -->
+<section class="slide slide-grid-bg" data-slide-id="lifecycle">
+    <h2 style="text-align: center;">The Identity <span class="accent">Lifecycle</span></h2>
+
+    <div class="lifecycle-flow">
+        <div class="lifecycle-stage">
+            <div class="lifecycle-icon" style="background: #EFF6FF; border-color: #93C5FD;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="lifecycle-label">Application</div>
+            <div class="lifecycle-sub">Resume analysis</div>
+        </div>
+        <div class="lifecycle-connector"></div>
+        <div class="lifecycle-stage">
+            <div class="lifecycle-icon" style="background: #FEF3C7; border-color: #FCD34D;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="lifecycle-label">Interview</div>
+            <div class="lifecycle-sub">Deepfake detection</div>
+        </div>
+        <div class="lifecycle-connector"></div>
+        <div class="lifecycle-stage">
+            <div class="lifecycle-icon" style="background: #F3E8FF; border-color: #C4B5FD;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="lifecycle-label">Verification</div>
+            <div class="lifecycle-sub">Liveness + documents</div>
+        </div>
+        <div class="lifecycle-connector"></div>
+        <div class="lifecycle-stage lifecycle-stage-active">
+            <div class="lifecycle-icon" style="background: var(--accent-muted); border-color: var(--accent);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="lifecycle-label">Hired</div>
+            <div class="lifecycle-sub">Onboarded</div>
+        </div>
+        <div class="lifecycle-connector"></div>
+        <div class="lifecycle-stage">
+            <div class="lifecycle-icon" style="background: #FEE2E2; border-color: #FCA5A5;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="lifecycle-label">Workforce</div>
+            <div class="lifecycle-sub">Continuous verification</div>
+        </div>
+    </div>
+
+    <div class="slide-number">4</div>
+</section>
+
+<!-- Slide 5: Case 1 — Michael Smith -->
+<section class="slide" data-slide-id="case-fake-cv">
+    <div style="text-align: center;">
+        <span class="badge badge-danger" style="margin-bottom: 24px;">Case 1</span>
+        <h2 style="font-size: 2.8rem;">Michael Smith</h2>
+        <p class="subtitle" style="margin-bottom: 48px;">Fake CV</p>
+
+        <div class="profile-card" style="margin: 0 auto;">
+            <div class="profile-header"></div>
+            <div style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; margin: -50px auto 16px; background: linear-gradient(135deg, #94a3b8, #64748b); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700;">M</div>
+            <div class="profile-body">
+                <div class="profile-name">Michael Smith</div>
+                <div class="profile-title">Senior Software Engineer</div>
+                <div class="profile-company">Applied via job posting</div>
+                <div style="margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                    <span class="badge-muted">10+ years exp</span>
+                    <span class="badge-muted">Remote</span>
+                    <span class="badge-muted">$180k</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">5</div>
+</section>
+
+<!-- Slide 6: Deep Research on Resume -->
+<section class="slide" data-slide-id="deep-research">
+    <div style="text-align: center;">
+        <h2>We perform a <span class="accent">deep research</span><br>on the resume</h2>
+        <p class="subtitle" style="margin-bottom: 48px;">Every data point is cross-referenced and validated</p>
+
+        <div class="demo-frame" style="max-width: 700px; margin: 0 auto;">
+            <img src="../../shared/screenshots/pre-interview.png" alt="Clarity Pre-Interview Analysis">
+        </div>
+    </div>
+    <div class="slide-number">6</div>
+</section>
+
+<!-- Slide 7: What Clarity Analyzes -->
+<section class="slide" data-slide-id="analysis-snapshot">
+    <h2 style="text-align: center;">Snapshot of <span class="accent">what Clarity analyzes</span></h2>
+
+    <div class="analysis-grid">
+        <div class="analysis-item">
+            <div class="analysis-icon" style="background: #FEE2E2;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <div>
+                <div class="analysis-title">Reverse Image Search</div>
+                <div class="analysis-desc">Check if profile photo is stolen or AI-generated</div>
+            </div>
+        </div>
+        <div class="analysis-item">
+            <div class="analysis-icon" style="background: #EFF6FF;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div>
+                <div class="analysis-title">Analyze LinkedIn Profile</div>
+                <div class="analysis-desc">Verify connections, history, and activity patterns</div>
+            </div>
+        </div>
+        <div class="analysis-item">
+            <div class="analysis-icon" style="background: #F3E8FF;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+                <div class="analysis-title">Analyze Phone Number</div>
+                <div class="analysis-desc">Carrier lookup, VoIP detection, geo-matching</div>
+            </div>
+        </div>
+        <div class="analysis-item">
+            <div class="analysis-icon" style="background: #FEF3C7;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+                <div class="analysis-title">Analyze Email</div>
+                <div class="analysis-desc">Domain age, disposable check, breach history</div>
+            </div>
+        </div>
+        <div class="analysis-item">
+            <div class="analysis-icon" style="background: #ECFDF5;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+                <div class="analysis-title">Analyze Address</div>
+                <div class="analysis-desc">Verify physical address matches claimed location</div>
+            </div>
+        </div>
+        <div class="analysis-item">
+            <div class="analysis-icon" style="background: #F0F4F8;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+                <div class="analysis-title">Company & Work Records</div>
+                <div class="analysis-desc">Confirm employers exist and employment records match</div>
+            </div>
+        </div>
+        <div class="analysis-item">
+            <div class="analysis-icon" style="background: #EFF6FF;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>
+            </div>
+            <div>
+                <div class="analysis-title">Education Background</div>
+                <div class="analysis-desc">Graduation records, institution verification</div>
+            </div>
+        </div>
+        <div class="analysis-item">
+            <div class="analysis-icon" style="background: #FEE2E2;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+                <div class="analysis-title">Dark-web & Blacklists</div>
+                <div class="analysis-desc">Scan for persona across known threat databases</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-number">7</div>
+</section>
+
+<!-- Slide 8: Anomalies Detected -->
+<section class="slide" data-slide-id="anomalies">
+    <div style="text-align: center;">
+        <h2 style="font-size: 3.2rem;"><span class="danger">3 anomalies</span> detected!</h2>
+        <p class="subtitle" style="margin-bottom: 48px;">Clarity flagged critical inconsistencies in Michael's application</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto;">
+            <div class="anomaly-card">
+                <div class="anomaly-num">1</div>
+                <div class="anomaly-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <h3 style="font-size: 1.05rem; margin-bottom: 8px;">AI-Generated Photo</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0; line-height: 1.5;">Profile image flagged as synthetic — no matches found online</p>
+            </div>
+            <div class="anomaly-card">
+                <div class="anomaly-num">2</div>
+                <div class="anomaly-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <h3 style="font-size: 1.05rem; margin-bottom: 8px;">Fake Employer</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0; line-height: 1.5;">Listed company does not exist — domain registered 2 weeks ago</p>
+            </div>
+            <div class="anomaly-card">
+                <div class="anomaly-num">3</div>
+                <div class="anomaly-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>
+                </div>
+                <h3 style="font-size: 1.05rem; margin-bottom: 8px;">No Graduation Record</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0; line-height: 1.5;">Claimed university has no record of this individual</p>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">8</div>
+</section>
+
+<!-- Slide 9: Case 2 — Alex Brown -->
+<section class="slide" data-slide-id="case-deepfake">
+    <div style="text-align: center;">
+        <span class="badge badge-danger" style="margin-bottom: 24px;">Case 2</span>
+        <h2 style="font-size: 2.8rem;">Alex Brown</h2>
+        <p class="subtitle" style="margin-bottom: 48px;">The Deepfake Candidate</p>
+
+        <div class="profile-card" style="margin: 0 auto;">
+            <div class="profile-header"></div>
+            <div style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; margin: -50px auto 16px; background: linear-gradient(135deg, #7c3aed, #6d28d9); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700;">A</div>
+            <div class="profile-body">
+                <div class="profile-name">Alex Brown</div>
+                <div class="profile-title">DevOps Engineer</div>
+                <div class="profile-company">Video interview scheduled</div>
+                <div style="margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                    <span class="badge-muted">Remote</span>
+                    <span class="badge-muted">Video call</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">9</div>
+</section>
+
+<!-- Slide 10: Deepfake Detection -->
+<section class="slide" data-slide-id="deepfake-detection">
+    <h2 style="text-align: center;">Real-time <span class="accent">Deepfake Detection</span></h2>
+
+    <div class="detection-split">
+        <div class="detection-card">
+            <div class="detection-card-header" style="background: linear-gradient(135deg, #7C3AED, #6D28D9);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Audio Deepfake Detection</h3>
+            <p class="text-secondary" style="font-size: 0.95rem;">Voice cloning and speech synthesis detection through spectral analysis and neural network classification</p>
+            <div class="detection-signals">
+                <div class="detection-signal">Spectral anomalies</div>
+                <div class="detection-signal">Voice clone artifacts</div>
+                <div class="detection-signal">Lip-sync mismatch</div>
+            </div>
+        </div>
+
+        <div class="detection-card">
+            <div class="detection-card-header" style="background: linear-gradient(135deg, #EF4444, #DC2626);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Video Deepfake Detection</h3>
+            <p class="text-secondary" style="font-size: 0.95rem;">Face-swap and real-time manipulation detection using temporal consistency and facial landmark analysis</p>
+            <div class="detection-signals">
+                <div class="detection-signal">Facial landmark drift</div>
+                <div class="detection-signal">Temporal inconsistency</div>
+                <div class="detection-signal">Rendering artifacts</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-number">10</div>
+</section>
+
+<!-- Slide 11: Case 3 — Jennifer Davis -->
+<section class="slide" data-slide-id="case-mule">
+    <div style="text-align: center;">
+        <span class="badge badge-danger" style="margin-bottom: 24px;">Case 3</span>
+        <h2 style="font-size: 2.8rem;">Jennifer Davis</h2>
+        <p class="subtitle" style="margin-bottom: 48px;">The Mule</p>
+
+        <div class="profile-card" style="margin: 0 auto;">
+            <div class="profile-header"></div>
+            <div style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; margin: -50px auto 16px; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700;">J</div>
+            <div class="profile-body">
+                <div class="profile-name">Jennifer Davis</div>
+                <div class="profile-title">Full-Stack Developer</div>
+                <div class="profile-company">Passed initial screening</div>
+                <div style="margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                    <span class="badge-muted">Legitimate identity</span>
+                    <span class="badge-muted">Fronting for another</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">11</div>
+</section>
+
+<!-- Slide 12: Mule Detection -->
+<section class="slide" data-slide-id="mule-detection">
+    <h2 style="text-align: center;">Different person at each <span class="danger">stage</span></h2>
+
+    <div class="mule-comparison">
+        <div class="mule-stage">
+            <div class="mule-stage-header" style="background: linear-gradient(135deg, #16a34a, #15803d);">Interview 1</div>
+            <div class="mule-stage-body">
+                <div class="mule-person">
+                    <div class="mule-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">J</div>
+                    <div>
+                        <div style="font-weight: 700;">Jennifer Davis</div>
+                        <div class="text-secondary" style="font-size: 0.85rem;">Real person, real ID</div>
+                    </div>
+                </div>
+                <div class="mule-badge mule-badge-pass">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Identity verified
+                </div>
+            </div>
+        </div>
+
+        <div class="mule-vs">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+
+        <div class="mule-stage">
+            <div class="mule-stage-header" style="background: linear-gradient(135deg, #EF4444, #DC2626);">Technical Test</div>
+            <div class="mule-stage-body">
+                <div class="mule-person">
+                    <div class="mule-avatar" style="background: linear-gradient(135deg, #64748b, #475569);">?</div>
+                    <div>
+                        <div style="font-weight: 700;">Unknown Person</div>
+                        <div class="text-secondary" style="font-size: 0.85rem;">Different biometric signals</div>
+                    </div>
+                </div>
+                <div class="mule-badge mule-badge-fail">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    Biometric mismatch
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 32px; font-size: 1.1rem; color: var(--text-secondary);">
+        Clarity detects when <strong style="color: var(--danger);">a different person</strong> shows up at different hiring stages
+    </p>
+
+    <div class="slide-number">12</div>
+</section>
+
+<!-- Slide 13: Case 4 — Anna Johnson -->
+<section class="slide" data-slide-id="case-stolen-id">
+    <div style="text-align: center;">
+        <span class="badge badge-danger" style="margin-bottom: 24px;">Case 4</span>
+        <h2 style="font-size: 2.8rem;">Anna Johnson</h2>
+        <p class="subtitle" style="margin-bottom: 48px;">Stolen Identity</p>
+
+        <div class="profile-card" style="margin: 0 auto;">
+            <div class="profile-header"></div>
+            <div style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; margin: -50px auto 16px; background: linear-gradient(135deg, #ef4444, #dc2626); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700;">A</div>
+            <div class="profile-body">
+                <div class="profile-name">Anna Johnson</div>
+                <div class="profile-title">Data Analyst</div>
+                <div class="profile-company">Using stolen credentials</div>
+                <div style="margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                    <span class="badge-muted">Real person's name</span>
+                    <span class="badge-muted">Fake applicant</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">13</div>
+</section>
+
+<!-- Slide 14: Identity Verification -->
+<section class="slide" data-slide-id="identity-verification">
+    <h2 style="text-align: center;">Identity <span class="accent">Verification</span></h2>
+
+    <div class="detection-split">
+        <div class="detection-card">
+            <div class="detection-card-header" style="background: linear-gradient(135deg, #16a34a, #15803d);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M12 14l-2 2 2 2"/></svg>
+            </div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Liveness Check</h3>
+            <p class="text-secondary" style="font-size: 0.95rem;">Confirm a real person is present — not a photo, video, or mask being used to spoof the camera</p>
+            <div class="detection-signals">
+                <div class="detection-signal">3D depth analysis</div>
+                <div class="detection-signal">Micro-expression tracking</div>
+                <div class="detection-signal">Challenge-response</div>
+            </div>
+        </div>
+
+        <div class="detection-card">
+            <div class="detection-card-header" style="background: linear-gradient(135deg, #2563EB, #1D4ED8);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="7" y1="15" x2="13" y2="15"/></svg>
+            </div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Document Verification</h3>
+            <p class="text-secondary" style="font-size: 0.95rem;">Cross-reference government-issued ID with the person on camera and application details</p>
+            <div class="detection-signals">
+                <div class="detection-signal">ID authenticity check</div>
+                <div class="detection-signal">Face-to-document match</div>
+                <div class="detection-signal">Data cross-reference</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-number">14</div>
+</section>
+
+<!-- Slide 15: Case 5 — Tom Miller -->
+<section class="slide" data-slide-id="case-workforce">
+    <div style="text-align: center;">
+        <span class="badge badge-danger" style="margin-bottom: 24px;">Case 5</span>
+        <h2 style="font-size: 2.8rem;">Tom Miller</h2>
+        <p class="subtitle" style="margin-bottom: 48px;">Workforce Fraud</p>
+
+        <div class="profile-card" style="margin: 0 auto;">
+            <div class="profile-header"></div>
+            <div style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; margin: -50px auto 16px; background: linear-gradient(135deg, #0a1628, #1e3a5f); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700;">T</div>
+            <div class="profile-body">
+                <div class="profile-name">Tom Miller</div>
+                <div class="profile-title">Cloud Infrastructure Lead</div>
+                <div class="profile-company">Currently employed</div>
+                <div style="margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                    <span class="badge-muted">Hired 6 months ago</span>
+                    <span class="badge-muted">Admin access</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">15</div>
+</section>
+
+<!-- Slide 16: Workforce Threat -->
+<section class="slide" data-slide-id="workforce-threat">
+    <h2 style="text-align: center;">From <span class="accent">hire</span> to <span class="danger">threat</span></h2>
+
+    <div class="threat-flow">
+        <div class="threat-stage">
+            <div class="threat-stage-icon" style="background: var(--accent-muted); border-color: var(--accent);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 style="font-size: 1.2rem;">Candidate Hired</h3>
+            <p class="text-secondary" style="font-size: 0.88rem;">Passed all interviews<br>Background check cleared</p>
+        </div>
+
+        <div class="threat-arrow">
+            <svg width="60" height="24" viewBox="0 0 60 24"><path d="M0 12h52M46 6l6 6-6 6" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="threat-stage">
+            <div class="threat-stage-icon" style="background: var(--danger-muted); border-color: var(--danger);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <h3 style="font-size: 1.2rem;">Worker with Sensitive Access</h3>
+            <p class="text-secondary" style="font-size: 0.88rem;">Admin credentials granted<br>Access to production systems</p>
+        </div>
+    </div>
+
+    <div style="max-width: 700px; margin: 40px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border); border-left: 3px solid var(--danger);">
+            <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 4px;">Source code access</div>
+            <div class="text-secondary" style="font-size: 0.82rem;">Intellectual property exfiltration risk</div>
+        </div>
+        <div style="background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border); border-left: 3px solid var(--danger);">
+            <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 4px;">Customer data</div>
+            <div class="text-secondary" style="font-size: 0.82rem;">PII and financial data exposure</div>
+        </div>
+    </div>
+
+    <div class="slide-number">16</div>
+</section>
+
+<!-- Slide 17: Workforce Continuous Verification -->
+<section class="slide" data-slide-id="continuous-verify">
+    <h2 style="text-align: center;">Workforce Continuous Identity <span class="accent">Verification</span></h2>
+    <p class="subtitle" style="text-align: center; margin-bottom: 48px;">The Full Chain of Trust</p>
+
+    <div class="trust-columns">
+        <div class="trust-card">
+            <div class="trust-icon" style="background: linear-gradient(135deg, #2563EB, #1D4ED8);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Is this a Trusted<br><span class="accent">Device</span>?</h3>
+            <div class="trust-checks">
+                <div class="trust-check">Device fingerprinting</div>
+                <div class="trust-check">Hardware attestation</div>
+                <div class="trust-check">Geo-location analysis</div>
+                <div class="trust-check">Network posture check</div>
+            </div>
+        </div>
+
+        <div class="trust-card">
+            <div class="trust-icon" style="background: linear-gradient(135deg, #16a34a, #15803d);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Is this a Trusted<br><span class="accent">Person</span>?</h3>
+            <div class="trust-checks">
+                <div class="trust-check">Biometric verification</div>
+                <div class="trust-check">Behavioral analysis</div>
+                <div class="trust-check">Typing pattern matching</div>
+                <div class="trust-check">Continuous face check</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-number">17</div>
+</section>
+
+<!-- Slide 18: Compliant Workforce Authentication -->
+<section class="slide slide-grid-bg" data-slide-id="workforce-auth">
+    <h2 style="text-align: center;">Compliant Workforce <span class="accent">Authentication</span></h2>
+    <p class="subtitle" style="text-align: center; margin-bottom: 48px;">Seamlessly integrated into org flows</p>
+
+    <div class="auth-hub">
+        <div class="auth-spoke auth-spoke-top">
+            <img src="../../shared/logos/okta.svg" alt="Okta" style="height: 22px;">
+            <span>IAM Integration</span>
+        </div>
+        <div class="auth-spoke auth-spoke-right">
+            <img src="../../shared/logos/jira.svg" alt="Jira" style="height: 22px;">
+            <span>ITSM Integration</span>
+        </div>
+        <div class="auth-spoke auth-spoke-bottom">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>HRIS Integration</span>
+        </div>
+        <div class="auth-spoke auth-spoke-left">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Biometric Source of Truth</span>
+        </div>
+
+        <div class="auth-center">
+            <div class="auth-center-inner">
+                <img src="../../shared/brand/clarity-logo.svg" alt="Clarity" style="height: 28px; margin-bottom: 6px;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-primary);">SAFE Platform</div>
+            </div>
+        </div>
+
+        <div class="auth-ring"></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 32px;">
+        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Triggered by events &bull; Identity by Design</span>
+    </div>
+
+    <div class="slide-number">18</div>
+</section>
+
+<!-- Slide 19: Closing -->
+<section class="slide" data-slide-id="closing" style="background: var(--text-primary);">
+    <div class="text-center" style="position: relative; z-index: 1;">
+        <img src="../../shared/brand/clarity-logo-white.svg" alt="Clarity" style="height: 52px; margin-bottom: 50px;">
+        <p style="color: white; font-size: 1.8rem; font-weight: 700; max-width: 700px; margin: 0 auto 40px;">
+            Full protection against giving access to a <span style="color: var(--accent);">bad-actor</span>
+        </p>
+        <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem;">getclarity.ai</p>
+    </div>
+    <div class="slide-number" style="color: rgba(255,255,255,0.3);">19</div>
+</section>
+
+<!-- Slide Indicator -->
+<div id="slide-indicator"></div>
+
+<!-- Navigation Hint -->
+<div id="nav-hint"><kbd>←</kbd> <kbd>→</kbd> or <kbd>↑</kbd> <kbd>↓</kbd> to navigate</div>
+
+<!-- Navigation -->
+<script src="../../shared/js/navigation.js"></script>
+
+<!-- Narration Engine (uncomment when narration is ready) -->
+<!--
+<link rel="stylesheet" href="../../shared/css/narration-engine.css">
+<script src="narration-data.js"></script>
+<script src="../../shared/js/narration-engine.js"></script>
+<script>
+new NarrationEngine({
+    data: window.NarrationData,
+    slideSelector: '.slide',
+    slideIdAttribute: 'data-slide-id'
+});
+</script>
+-->
+
+<!-- Developer Mode -->
+<script src="../../shared/js/dev-mode.js"></script>
+
+<!-- Version Badge -->
+<div id="version-badge" class="version-badge"></div>
+<script>
+document.getElementById('version-badge').textContent =
+    'v' + document.querySelector('meta[name="presentation-version"]').content;
+</script>
+
+</body>
+</html>
