@@ -704,6 +704,138 @@
     margin-right: 6px;
   }
 
+  /* ========== MILESTONE TRACKER ========== */
+  .milestone-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 24px;
+    position: relative;
+  }
+
+  .milestone-list::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: #E2E8F0;
+  }
+
+  .milestone {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px 0;
+    position: relative;
+  }
+
+  .milestone-indicator {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .milestone-indicator.done {
+    background: var(--accent);
+    color: var(--text-primary);
+  }
+
+  .milestone-indicator.done::after {
+    content: "\2713";
+  }
+
+  .milestone-indicator.active {
+    background: #DBEAFE;
+    border: 2px solid #3B82F6;
+    color: #3B82F6;
+    animation: milestoneActivePulse 2.5s ease-in-out infinite;
+  }
+
+  .milestone-indicator.active::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3B82F6;
+  }
+
+  .milestone-indicator.pending {
+    background: #F1F5F9;
+    border: 2px solid #CBD5E1;
+  }
+
+  .milestone-indicator.pending::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #CBD5E1;
+  }
+
+  .milestone-body {
+    flex: 1;
+    padding-top: 4px;
+  }
+
+  .milestone-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+
+  .milestone.is-pending .milestone-title {
+    color: var(--text-secondary);
+  }
+
+  .milestone-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .milestone-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .milestone-tag.done {
+    background: rgba(97,243,147,0.15);
+    color: #0a1628;
+  }
+
+  .milestone-tag.active {
+    background: #DBEAFE;
+    color: #2563EB;
+  }
+
+  .milestone-tag.pending {
+    background: #F1F5F9;
+    color: #94A3B8;
+  }
+
+  @keyframes milestoneActivePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(59,130,246,0); }
+  }
+
   /* ========== PIPELINE CARDS ========== */
   .pipeline-grid {
     display: grid;
@@ -856,25 +988,61 @@
   <div class="slide-content">
     <div class="section-label anim">Section 01</div>
     <div class="anim d1" style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
-      <h2 style="margin:0;">Deel Integration Status</h2>
+      <h2 style="margin:0;">Deel Integration Progress</h2>
       <img src="../../shared/logos/deel.svg" alt="Deel" style="height:30px;">
     </div>
-    <p class="subtitle anim d2" style="margin-bottom:28px;">Joint teams actively building together — real momentum with a clear path forward.</p>
-    <div class="card-grid cols-3 anim d3">
-      <div class="card" style="border-left: 3px solid var(--accent);">
-        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:8px;">Status</div>
-        <h4 style="font-size:17px; margin-bottom:8px;">Integration In Progress</h4>
-        <p style="font-size:14px; line-height:1.6; color:var(--text-secondary);">Both teams working from a joint Slack canvas with micro-tasks tracked by both sides.</p>
+    <p class="subtitle anim d2">Joint task tracking active — both teams working from a shared Slack canvas.</p>
+    <div class="milestone-list anim d3">
+      <!-- DONE -->
+      <div class="milestone">
+        <div class="milestone-indicator done"></div>
+        <div class="milestone-body">
+          <div class="milestone-title">Legal Framework</div>
+          <div class="milestone-desc">Consent model resolved — legitimate interest with opt-out path and human reviewer.</div>
+        </div>
+        <div class="milestone-tag done">Complete</div>
       </div>
-      <div class="card" style="border-left: 3px solid #F59E0B;">
-        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#F59E0B; margin-bottom:8px;">Blocker</div>
-        <h4 style="font-size:17px; margin-bottom:8px;">Deel Internal Compliance</h4>
-        <p style="font-size:14px; line-height:1.6; color:var(--text-secondary);">Waiting on Deel to resolve output mechanisms and data retention requirements.</p>
+      <div class="milestone">
+        <div class="milestone-indicator done"></div>
+        <div class="milestone-body">
+          <div class="milestone-title">IDV Process Documentation</div>
+          <div class="milestone-desc">Sent to Deel, currently under their review.</div>
+        </div>
+        <div class="milestone-tag done">Complete</div>
       </div>
-      <div class="card" style="border-left: 3px solid #3B82F6;">
-        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#3B82F6; margin-bottom:8px;">Next Milestone</div>
-        <h4 style="font-size:17px; margin-bottom:8px;">1:1 with Deel TA Ops</h4>
-        <p style="font-size:14px; line-height:1.6; color:var(--text-secondary);">Neev meets with Colm from Deel's TA Ops team — <strong>Tuesday, Feb 18</strong>.</p>
+      <!-- IN PROGRESS -->
+      <div class="milestone">
+        <div class="milestone-indicator active"></div>
+        <div class="milestone-body">
+          <div class="milestone-title">Ashby Integration</div>
+          <div class="milestone-desc">Guide sent to Deel. Meeting with TA Ops — <strong>Tuesday, Feb 18</strong>.</div>
+        </div>
+        <div class="milestone-tag active">In Progress</div>
+      </div>
+      <!-- UPCOMING -->
+      <div class="milestone is-pending">
+        <div class="milestone-indicator pending"></div>
+        <div class="milestone-body">
+          <div class="milestone-title">Data Retention</div>
+          <div class="milestone-desc">Awaiting Deel InfoSec alignment on retention policies.</div>
+        </div>
+        <div class="milestone-tag pending">Upcoming</div>
+      </div>
+      <div class="milestone is-pending">
+        <div class="milestone-indicator pending"></div>
+        <div class="milestone-body">
+          <div class="milestone-title">Verdict Injection</div>
+          <div class="milestone-desc">Define how verification results flow back into Ashby.</div>
+        </div>
+        <div class="milestone-tag pending">Upcoming</div>
+      </div>
+      <div class="milestone is-pending">
+        <div class="milestone-indicator pending"></div>
+        <div class="milestone-body">
+          <div class="milestone-title">Pilot Teams</div>
+          <div class="milestone-desc">Deel TA to propose early rollout groups for initial deployment.</div>
+        </div>
+        <div class="milestone-tag pending">Upcoming</div>
       </div>
     </div>
   </div>
